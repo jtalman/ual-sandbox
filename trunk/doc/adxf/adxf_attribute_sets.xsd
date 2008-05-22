@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation> Element attributes </xs:documentation>
+    </xs:annotation>
+    <xs:include schemaLocation="adxf_simple_types.xsd"/>
+    <xs:include schemaLocation="adxf_core.xsd"/>
+    <xs:element name="bend" substitutionGroup="attributeSet">
+        <xs:annotation>
+            <xs:documentation> A set of bend attributes, such as angle, etc.. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="attributeSetType">
+                    <xs:attribute name="angle" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mfield" substitutionGroup="attributeSet">
+        <xs:annotation>
+            <xs:documentation> A set of multipole field attributes. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="attributeSetType">
+                    <xs:attribute name="ml" type="attValueType" use="optional"/>
+                    <xs:attribute name="b" type="attArrayType" use="optional" default=""/>
+                    <xs:attribute name="a" type="attArrayType" use="optional" default=""/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="aperture" substitutionGroup="attributeSet">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="attributeSetType">
+                    <xs:attribute name="shape" type="apertureShapeName" use="required"/>
+                    <xs:attribute name="xsize" type="attValueType" use="optional" default="1.0"/>
+                    <xs:attribute name="ysize" type="attValueType" use="optional" default="1.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="apertureShapeName">
+        <xs:annotation>
+            <xs:documentation> A list of supported aperture shapes. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:Name">
+            <xs:enumeration value="rectangle"/>
+            <xs:enumeration value="ellipse"/>
+            <xs:enumeration value="diamond"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

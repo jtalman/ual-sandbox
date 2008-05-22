@@ -1,0 +1,5 @@
+OBJS += $(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/PropagatorComponent.o \
+	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/PropagatorNodePtr.o \
+	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/PropagatorFactory.o \
+	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/PropagatorSequence.o \
+	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/AcceleratorPropagator.o 

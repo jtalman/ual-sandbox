@@ -1,0 +1,4 @@
+HEADERS+=	$(UAL_SIMBAD)/src/SIMBAD/Base/Def.hh \
+		$(UAL_SIMBAD)/src/SIMBAD/Base/BasicPropagator.hh \
+		$(UAL_SIMBAD)/src/SIMBAD/SC/TSCPropagator.hh \
+		$(UAL_SIMBAD)/src/SIMBAD/SC/TSCPropagatorFFT.hh 

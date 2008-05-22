@@ -1,0 +1,35 @@
+Usage:
+
+1. RHIC 
+
+>perl rhic2sxf.pl 
+--- initializes SMF data structures from RHIC data (UAL/data/RHIC/rf directory)
+--- prints first turn track output (./out/firstturn/rhic.all) 
+--- prepares a SXF output file (./in/rhic.sxf)
+
+>perl sxf2rhic.pl 
+--- parses a SXF input file (./in/rhic.sxf) and prints an echo file (./echo/rhic.sxf)
+--- prints first turn track output (./out/firstturn/rhic.sxf) 
+--- prepares a SXF otput file (./out/rhic.sxf)
+
+2. LHC
+
+>perl sxf2lhc.pl 
+--- parses a SXF input file (./in/lhc.v5.0.sxf) and prints an echo file
+--- prints first turn track output (./out/8/lhc.v5.0.sxf) 
+--- prepares a SXF otput file (./out/lhc.v5.0.sxf)
+
+The directory ./out/8 contains several files that illustrate some differences
+between TEAPOT and MAD algorithms:
+
+1. TEAPOT++.  
+
+lhc.v5.0.T_00  (on-momentum) and lhc.v5.0.T_DE (off-momentum)
+
+2. TEAPOT++ with the MAD linear drift approximation:
+
+lhc.v5.0.TM_00 (on-momentum) and lhc.v5.0.TM_DE (off-momentum)
+
+3. MAD 8.
+
+lhc.v5.0.M_00  (on-momentum) and lhc.v5.0.M_DE  (off-momentum)

@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------
+Description:
+--------------------------------------------------------------------------
+
+The application  demonstrates the SIMBAD space charge integrator.
+The scenario consists of two steps:
+
+1. Preparing the sxf file for tracking.
+
+> perl mad2sxf.pl 
+
+The script reads the mad file, splits quadrupoles into thin elements, 
+adjusts chromaticity. Here you can also add errors, etc.
+
+2. Tracking or calculating footprint.
+
+>make
+>cd linux
+>./tracker >& tracker.out
+>./footprint >& footprint.out
+
+tracker and footprint are compiled from ./src/tracker.cc and ./src/footprint.cc. 
+Both programs read the sxf file, prepare bunch, define sc integrator attributes, 
+track particles and/or calculate the tune footprint.  
+
+
+--------------------------------------------------------------------------
+Structure:
+--------------------------------------------------------------------------
+
+./data      -   directory with the MAD input file, SXF accelerator lattice 
+		and APDF accelerator propagator files
+./src       -   source directory with tracker.cc, footprint.cc and the C++
+		user shell.
+./linux     -   directory with the tracker and footprint programs
+./out       -   directory with output files (analysis, twiss, map1) produced
+	        by mad2sxf.pl
+
+

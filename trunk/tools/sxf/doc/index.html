@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h2><font face="Times New Roman, Times, serif" color="#FF3333">SXF: Standard eXchange 
+  Format </font></h2>
+<table width="100%" border="0" cellpadding="0" cellspacing="2">
+  <tr bgcolor="#00315A"> 
+    <td width="24%" height="1">&nbsp;</td>
+    <td width="76%" height="1" >&nbsp;</td>
+  </tr>
+  <tr bgcolor="#CCCC99"> 
+    <td width="24%" valign="top">&nbsp;</td>
+    <td width="76%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#f0f0f0"> 
+    <td width="24%" valign="top"><font color="#FF3333"><b><font face="Times New Roman, Times, serif">Description</font></b></font></td>
+    <td width="76%">The SXF represents a flat, complete, and independent description 
+      of the current accelerator state.&nbsp; At this time, it includes only the 
+      full-instantiated view of the accelerator, however it provides the mechanism 
+      for its integration with the present site-specific design hierarchical models. 
+      This approach stems from the desire to make this format neutral to different 
+      conceptual models and adaptable to arbitrary data stores. The SXF can be 
+      considered as the additional independent layer to existing design data structures, 
+      particular to the Standard Input Format&nbsp; (SIF) <i>design</i> components, 
+      <i>element</i> and <i>beam line. </i>The relationship between SIF and SXF 
+      structures is provided by the references embedded in the SXF objects. The 
+      SXF format is based on the integration of the MAD <i>sequence </i>and UAL/SMF 
+      <i>element buckets</i>, orthogonal collection of element attributes. It 
+      preserves all SIF element types and provides the mechanism for introducing 
+      new ones, such as CESR superimposed solenoid and quadrupole elements, LHC 
+      and CESR parasitic beam-beam effects, Muon Collider Ionization Cooling, 
+      and others. </td>
+  </tr>
+  <tr bgcolor="#f0f0f0"> 
+    <td width="24%" valign="top"><font color="#FF3333"><b><font face="Times New Roman, Times, serif">Authors</font></b></font></td>
+    <td width="76%">H.Grote, J. Holt, N. Malitsky, F. Pilat, R. Talman, C.G. Trahern, 
+      W.Fischer </td>
+  </tr>
+  <tr bgcolor="#f0f0f0"> 
+    <td width="24%" valign="top"><font face="Times New Roman, Times, serif" color="#FF3333"><b>References</b></font></td>
+    <td width="76%"> 
+      <ul>
+        <li>H. Grote, J. Holt, N. Malitsky, F. Pilat, R. Talman, C.G. Trahern. 
+          &quot;SXF (Standard eXchange Format): definition, syntax, examples&quot;, 
+          RHIC/AP/155, August 1998.</li>
+        <li>W. Fischer. &quot;An SXF Extension for Alignment&quot;, RHIC/AP/165, 
+          November 1998.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr bgcolor="#f0f0f0"> 
+    <td width="24%" valign="top"><font face="Times New Roman, Times, serif" color="#FF3333"><b>Parser 
+      Developer</b></font></td>
+    <td width="76%">Nikolay Malitsky</td>
+  </tr>
+  <tr bgcolor="#f0f0f0"> 
+    <td width="24%" valign="top"><font face="Times New Roman, Times, serif" color="#FF3333"><b>
+	      Specification </b></font></td>
+    <td width="76%"> 
+	    <ul>
+	      <li> <a href="./src/html/index.html"> C++ API  </a> </li>
+	      <li>
+		<a HREF="files/sxf.ll.txt">sxf.ll </a> - FLEX lexical patterns.
+	      </li>
+	      <li>
+		<a HREF="files/sxf.yy.txt">sxf.yy</a> - YACC grammar .</li>
+
+	      <li>
+		<a HREF="files/elements.gperf.txt">element.gperf</a> - GPERF keyfile for
+		the NodeRegistry.</li>
+	    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

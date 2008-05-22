@@ -1,0 +1,4 @@
+OBJS +=	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/JavaSingleton.o \
+	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/JWindowManager.o
+
+

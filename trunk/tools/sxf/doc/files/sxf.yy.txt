@@ -1,0 +1,276 @@
+/* sxf.yy - YACC grammar for SXF */
+
+%{
+
+/* Declarations */
+
+#include "sxf/SXF.hh"
+#include <stdio.h>
+#include <iostream.h>
+#include <malloc.h>
+
+void yyerror(char *);
+int yylex (void);
+extern "C" int yywrap (void);
+extern char yytext[];
+extern int yyleng;
+
+#define YYDEBUG 1
+
+%}
+
+/* Declare the type of values in the grammar */
+
+%union{ 
+  long      ival;           /* Long value           */
+  double    dval;           /* Double value         */
+  char      cval;           /* Char value           */
+  char*     strval;         /* Char * value         */
+}
+
+/*
+ * Token types: These are returned by the lexer
+ */
+
+%token <strval> SXF_IDENTIFIER
+%token <cval>   SXF_CHARACTER_LITERAL
+%token <dval>   SXF_NUMERIC_LITERAL
+
+%token 		SXF_ACCELERATOR
+%token 		SXF_SEQUENCE
+%token 		SXF_ENDSEQUENCE
+%token 		SXF_DESIGN
+%token 		SXF_BODY
+%token 		SXF_BODY_DEV
+%token 		SXF_AT
+%token 		SXF_L
+%token 		SXF_ARC
+%token 		SXF_N
+
+
+/*
+ * Production starts here
+ * These rules have been derived from the Accelerator Description
+ * eXchange Format (ADXF) to fit the SXF specification.
+ */
+
+%%
+
+start				: sequence;
+
+
+/* Sequence */
+
+sequence			: SXF_IDENTIFIER SXF_SEQUENCE 
+				{ 
+				  if(!SXF::Reader->open($1)) SXF::Reader->echo().cfe_error()
+				    << "\n*** CFE Error in the sequence declaration" << endl;  
+                                }
+				'{' sequence_nodes sequence_end '}'
+				{ SXF::Reader->close(); }
+				;
+
+sequence_nodes			: /* empty */
+				| sequence_nodes sequence_node
+				;
+
+sequence_node			: element  ';'
+				| error
+				{
+				   SXF::Reader->echo().syntax_error() 
+                                     << "\n*** Syntax Error: in the seq. node declaration" << endl;
+ 			        }
+				';'
+				{ 
+				   yyerrok; 
+                                }
+				; 
+
+sequence_end			: SXF_ENDSEQUENCE sequence_end_attributes
+				;
+
+sequence_end_attributes		: /* empty */ 
+				| sequence_end_attributes sequence_end_attribute
+				;
+
+sequence_end_attribute		: SXF_AT '=' SXF_NUMERIC_LITERAL 
+				{ SXF::Reader->getSequence()->setLength($3);}
+				;
+
+/* Element */
+
+element				: elem_key_and_type 
+				'{' elem_header elem_buckets '}'
+				{ SXF::Reader->closeElement(); }
+				;
+			
+elem_key_and_type		: SXF_IDENTIFIER SXF_IDENTIFIER 
+				{ 
+				  if(!SXF::Reader->openElement($2, $1)) 
+				    SXF::Reader->echo().cfe_error()
+				       << "\n*** CFE Error in the element declaration" << endl;  
+                                }
+				| SXF_IDENTIFIER 
+				{ 
+				  if(!SXF::Reader->openElement($1, "")) 
+				    SXF::Reader->echo().cfe_error()
+				      << "\n*** CFE Error in the element declaration" << endl;
+                                }
+				;
+
+/* Element Header */
+
+elem_header			: /* empty */
+				| elem_header elem_header_attribute
+
+elem_header_attribute		: SXF_DESIGN '=' SXF_IDENTIFIER
+				{ SXF::Reader->getElement()->setDesign($3);}
+				| SXF_L '='      SXF_NUMERIC_LITERAL
+				{ SXF::Reader->getElement()->setLength($3);}
+				| SXF_ARC '='    SXF_NUMERIC_LITERAL
+				{ SXF::Reader->getElement()->setLength($3);}
+				| SXF_AT '='     SXF_NUMERIC_LITERAL
+				{ SXF::Reader->getElement()->setAt($3);}
+				| SXF_N '='      SXF_NUMERIC_LITERAL
+				{ SXF::Reader->getElement()->setN($3);}
+				;
+
+/* Element Buckets */
+
+elem_buckets			: elem_bodies
+				| elem_buckets elem_bucket 
+
+/* Element Body */
+
+elem_bodies		        : /* empty */
+				| elem_bodies elem_body
+
+elem_body			: elem_body_key '{' elem_attributes '}'
+				{ SXF::Reader->getElement()->closeBucket();}			
+				;
+
+elem_body_key			: SXF_BODY '='
+				{ 
+                                  if(!SXF::Reader->getElement()->openBody("body")) 
+				    SXF::Reader->echo().cfe_error()
+				      << "\n*** CFE Error in the element body declaration" << endl;
+                                }
+				| SXF_BODY_DEV '='
+				{ 
+                                  if(!SXF::Reader->getElement()->openBody("body.dev")) 
+				    SXF::Reader->echo().cfe_error()
+				      << "\n*** CFE Error in the element body.dev declaration" << endl;
+                                }
+				;
+
+/* Element Bucket */
+
+elem_bucket			: elem_bucket_key '{' elem_attributes '}'
+				{ SXF::Reader->getElement()->closeBucket();}
+				;
+
+elem_bucket_key			: SXF_IDENTIFIER '='
+				{ 
+				  if(!SXF::Reader->getElement()->openBucket($1)) 
+				   SXF::Reader->echo().cfe_error()
+				     << "\n*** CFE Error in the element attribute or bucket(" << $1 
+				     << ") declaration" << endl;	
+                                }
+				;
+
+/* Element Attribute */
+
+elem_attributes			: /* empty */
+				| elem_attributes elem_attribute 
+				;
+
+elem_attribute			: elem_attribute_key elem_attribute_value 
+				{ SXF::Reader->getElement()->getBucket()->closeAttribute(); }
+				;
+
+
+elem_attribute_key		: SXF_IDENTIFIER  '='  
+				{ 
+                                  if(!SXF::Reader->getElement()->getBucket()->openAttribute($1))
+                                    SXF::Reader->echo().cfe_error() 
+				     << "\n*** CFE Error in the element attribute(" << $1 
+				     << ") declaration" << endl;	
+                                }
+				;
+
+/* Element Attribute Values */
+
+elem_attribute_value		: elem_attribute_scalar 
+				| elem_attribute_array 
+				| elem_attribute_hash
+				;
+
+elem_attribute_scalar		: SXF_NUMERIC_LITERAL
+				{ 
+                                  if(!SXF::Reader->getElement()->getBucket()->setScalarValue($1))
+				    SXF::Reader->echo().cfe_error()
+				     << "\n*** CFE Error in setting scalar value(" 
+				     << $1 << ")" << endl;
+                                }
+                       		;
+
+elem_attribute_array		: 
+				'['
+				{ 
+                                  if(!SXF::Reader->getElement()->getBucket()->openArray())
+				    SXF::Reader->echo().cfe_error()
+				     << "\n*** CFE Error in opening an array" << endl;
+                                }
+				elem_attribute_avalues 
+				']'
+				{ SXF::Reader->getElement()->getBucket()->closeArray();}	
+				;
+
+elem_attribute_hash 		: 
+				'{' 
+				{ 
+                                  if(!SXF::Reader->getElement()->getBucket()->openHash())
+				    SXF::Reader->echo().cfe_error()
+				     << "\n*** CFE Error in opening a hash" << endl;
+                                }
+				elem_attribute_hvalues 
+				'}'
+				{ SXF::Reader->getElement()->getBucket()->closeHash();}
+				;
+
+elem_attribute_avalues		: /* empty */
+				| elem_attribute_avalues elem_attribute_avalue
+				;	
+
+elem_attribute_avalue		: SXF_NUMERIC_LITERAL
+				{ SXF::Reader->getElement()->getBucket()->setArrayValue($1);}
+                       		;
+
+
+elem_attribute_hvalues		: /* empty */
+				| elem_attribute_hvalues  elem_attribute_hvalue
+				;
+
+elem_attribute_hvalue		: '[' SXF_NUMERIC_LITERAL ']' '=' SXF_NUMERIC_LITERAL
+				{ 
+                                   if(!SXF::Reader->getElement()->getBucket()->setHashValue($5, (int)$2))
+					SXF::Reader->echo().cfe_error()
+					<< "\n*** CFE Error in setting a hash value( ["
+					<< $2 << "] = " << $5 << ")" <<  endl;
+                                }
+				; 	
+	
+%%
+
+/* programs */
+
+int yywrap() { 
+  SXF::Reader->echo().write_status();
+  return 1; 
+}
+
+/* Report an error situation discovered in a production */
+void yyerror(char* ) {
+   SXF::Reader->echo().syntax_error() << "\n*** Syntax Error: in the last lines" << endl;	
+}
+

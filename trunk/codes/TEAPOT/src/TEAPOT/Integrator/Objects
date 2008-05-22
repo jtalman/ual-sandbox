@@ -1,0 +1,19 @@
+OBJS +=	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/ElemSlice.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DipoleData.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/MagnetData.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/BasicPropagator.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/BasicTracker.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DriftTracker.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DipoleTracker.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/MltTracker.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TrackerFactory.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/BasicDaIntegrator.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DriftDaIntegrator.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DipoleDaIntegrator.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/MapDaIntegrator.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/MltDaIntegrator.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/MatrixTracker.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/RFCavityTracker.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DaIntegratorFactory.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/LostCollector.o
+

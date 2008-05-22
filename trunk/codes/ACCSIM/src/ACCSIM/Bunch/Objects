@@ -1,0 +1,6 @@
+OBJS +=	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/BunchAnalyzer.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/BunchGenerator.o 
+
+
+
+

@@ -1,0 +1,2 @@
+OBJS +=	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/RCObject.o \
+	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/AttributeSet.o 

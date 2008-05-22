@@ -1,0 +1,25 @@
+energy = 12
+mass   = 0.93828
+charge = -1
+Let's consider particle #500 
+x  = 0.5
+px = 0
+y  = 0.5
+py = 0
+ct = 0
+de = 1e-05
+x_moment(0) = 1
+OR 
+x_moment(0) = 1
+x_moment(1) = 0.4995
+OR 
+x_moment(1) = 0.4995
+x_moment(2) = 0.332833
+OR 
+x_moment(2) = 0.332833
+x_moment(3) = 0.2495
+OR 
+x_moment(3) = 0.2495
+x_moment(4) = 0.1995
+OR 
+x_moment(4) = 0.1995

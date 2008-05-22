@@ -1,0 +1,4 @@
+OBJS += $(UAL_AIM)/lib/$(UAL_ARCH)/obj/Monitor.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/MonitorCollector.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/PoincareMonitor.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/PoincareMonitorCollector.o 

@@ -1,0 +1,33 @@
+OBJS +=	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/BasicViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_BasicViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/Svd1DViewUI.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_Svd1DViewUI.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/BpmSvd1DViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_BpmSvd1DViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/SVDWorker.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/BunchXPxViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_BunchXPxViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/BunchYPyViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_BunchYPyViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/BunchCtDeViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_BunchCtDeViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/MountainRangeViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_MountainRangeViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/TwissViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_TwissViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/OrbitViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_OrbitViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/PoincareViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_PoincareViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/PoincareXPxViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_PoincareXPxViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/PoincareYPyViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_PoincareYPyViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/PoincareCtDeViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_PoincareCtDeViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/BunchTBTViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_BunchTBTViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/MonitorFFTViewer.o \
+	$(UAL_GUI)/ROOT/lib/$(UAL_ARCH)/obj/moc_MonitorFFTViewer.o 
+ 
+

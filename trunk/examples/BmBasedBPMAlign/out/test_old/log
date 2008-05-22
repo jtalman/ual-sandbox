@@ -1,0 +1,70 @@
+
+reads the MAD input file ./data/BmBasedBPMAlign.mad
+start = 1037129993
+end   = 1037129993
+
+writes the SMF data into the FTPOT file 
+
+ start           . 1037129993
+
+ end             . 1037129993
+
+make map 
+start = 1037129993
+end   = 1037129994
+
+analysis
+
+  closed orbit     1037129994
+
+  twiss parameters 1037129994
+
+  end            . 1037129995
+
+hsteer 
+start = 1037129995
+end   = 1037129996
+
+vsteer 
+start = 1037129996
+end   = 1037129996
+
+hsteer 
+start = 1037129996
+end   = 1037129996
+
+vsteer 
+start = 1037129996
+end   = 1037129997
+
+analysis
+
+  closed orbit     1037129997
+
+  twiss parameters 1037129997
+
+  end            . 1037129998
+
+hsteer 
+start = 1037129998
+end   = 1037129998
+
+vsteer 
+start = 1037129998
+end   = 1037129998
+
+hsteer 
+start = 1037129999
+end   = 1037129999
+
+vsteer 
+start = 1037129999
+end   = 1037129999
+
+run 
+start = 1037129999
+
+_revfreq
+ suml                   = 248
+ excess circumference   = 0.000101087202434151
+ revfreq                = 1057766.01901346end   = 1037130001

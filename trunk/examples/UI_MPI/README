@@ -1,0 +1,9 @@
+Description:
+------------
+
+Starter UI script running in the MPI-based parallel environment
+
+Usage:
+------
+
+mpirun -np 1 shell_sns_mpi.pl

@@ -1,0 +1,127 @@
+###########################################################
+# Core Libraries
+###########################################################
+
+setenv UAL_CORE $UAL/codes/UAL
+setenv LD_LIBRARY_PATH $UAL_CORE/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# OPTICALC - Fast tracking program
+setenv UAL_OPTICALC    $UAL/codes/OPTICALC
+setenv LD_LIBRARY_PATH $UAL_OPTICALC/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# BETACOOL - Electron cooling program 
+setenv UAL_BETACOOL    $UAL/codes/BETACOOL
+setenv LD_LIBRARY_PATH $UAL_BETACOOL/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# ZLIB - Numerical Library for Differential Algebra
+setenv UAL_ZLIB        $UAL/codes/ZLIB
+setenv LD_LIBRARY_PATH $UAL_ZLIB/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# PAC - Set of containers with the element's parameters 
+setenv UAL_PAC         $UAL/codes/PAC
+setenv LD_LIBRARY_PATH $UAL_PAC/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# TEAPOT - element by element tracker (with errors)
+setenv UAL_TEAPOT          $UAL/codes/TEAPOT
+setenv LD_LIBRARY_PATH $UAL_TEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# ORBIT - objective ring injection and tracking code
+setenv UAL_ORBIT           $UAL/codes/ORBIT
+setenv LD_LIBRARY_PATH $UAL_ORBIT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+setenv UAL_ACCSIM          $UAL/codes/ACCSIM
+setenv LD_LIBRARY_PATH $UAL_ACCSIM/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# Collection of Mike Blaskiewicz's algorithms 
+setenv UAL_ICE              $UAL/codes/ICE
+setenv LD_LIBRARY_PATH  $UAL_ICE/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# SPINK - tracking code for polarized particles in a circular accelerator 
+setenv UAL_SPINK             $UAL/codes/SPINK
+setenv LD_LIBRARY_PATH  $UAL_SPINK/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# TIBETAN - longitudinal phase space tracking program
+setenv UAL_TIBETAN           $UAL/codes/TIBETAN
+setenv LD_LIBRARY_PATH  $UAL_TIBETAN/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# AIM - accelerator instrumentation module 
+setenv UAL_AIM          $UAL/codes/AIM
+setenv LD_LIBRARY_PATH  $UAL_AIM/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# SIMBAD - simulation of beam advanced dynamics 
+setenv UAL_SIMBAD       $UAL/codes/SIMBAD
+setenv LD_LIBRARY_PATH  $UAL_SIMBAD/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+# DA Runge-Kutta and Lie Integrators 
+setenv UAL_DA              $UAL/codes/DA
+
+###########################################################
+# Extensions
+###########################################################
+
+setenv UAL_EXTRA $UAL/ext
+
+setenv UAL_ROOT $UAL_EXTRA/ROOT
+setenv UAL_SXF  $UAL_EXTRA/SXF
+
+set path=($path $UAL_EXTRA/PAC/bin/$UAL_ARCH)
+setenv LD_LIBRARY_PATH $UAL/ext/ALE/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH $UAL_ROOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+setenv LD_LIBRARY_PATH $UAL/ext/UI/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH $UAL/ext/SXF/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH $UAL/ext/ADXF/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+###########################################################
+# GUI
+###########################################################
+
+setenv UAL_GUI $UAL/gui
+setenv LD_LIBRARY_PATH $UAL_GUI/QT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH $UAL_GUI/ROOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH $UAL_GUI/COIN3D/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+###########################################################
+# Tools
+###########################################################
+
+setenv LD_LIBRARY_PATH $UAL/tools/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+set path=($UAL/tools/bin/$UAL_ARCH/ $path)
+
+# XERCESCROOT 
+setenv XERCESCROOT $UAL/tools/tars/xerces-c-src_2_6_0
+
+# LIBXML2
+
+setenv UAL_LIBXM2 $UAL/tools/include/libxml2
+# setenv UAL_LIBXM2 /usr/include/libxml2
+# setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH/:/usr/lib
+
+# SXF
+
+setenv SXF $UAL/tools/sxf/
+setenv SXF_ARCH $UAL_ARCH
+setenv LD_LIBRARY_PATH $SXF/lib/$SXF_ARCH/:$LD_LIBRARY_PATH
+
+# MPI
+
+setenv UAL_MPI_PERL $UAL/tools/shortmpi
+
+# CORAANT - COmprehensive Root-based Accelerator ANalysis Toolkit
+setenv CORAANT $UAL/tools/coraant
+setenv LD_LIBRARY_PATH $CORAANT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
+###########################################################
+# PGPLOT library
+###########################################################
+
+# setenv  PGPLOT $UAL/tools/pgplot/$UAL_ARCH
+# setenv  PGPLOT_DIR $PGPLOT
+# setenv  PGPLOT_DEV /XSERVE
+# setenv  LD_LIBRARY_PATH $PGPLOT_DIR/.:$LD_LIBRARY_PATH
+
+###########################################################
+
+
+
+

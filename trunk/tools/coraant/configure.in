@@ -1,0 +1,49 @@
+AC_PREREQ(2.57)
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(CORAANT - COprehensive Root-based Accelerator ANalysis Toolkit, 0.0.1)
+
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_CXX
+
+
+AC_PREFIX_DEFAULT($PWD)
+AC_SUBST(prefix,$PWD)
+
+dnl Checking for root
+AC_MSG_CHECKING(for ROOTSYS variable )
+if test $ROOTSYS; then
+	AC_MSG_RESULT(yes);	
+	else AC_MSG_ERROR(No ROOTSYS variable defined);
+fi
+AC_CHECK_FILE($ROOTSYS/bin/rootcint,,AC_MSG_ERROR(Cannot find $ROOTSYS/bin/rootcint))
+
+dnl FFTW library specifications
+
+AC_ARG_WITH(fftwinc,--with-fftwinc=DIR FFTW include directory,
+	#if fftwinc specified
+			[AC_SUBST(fftwinc,$with_fftwinc)
+			AC_CHECK_HEADERS($fftwinc/fftw.h, AC_SUBST(fftwversion,2),
+				[AC_CHECK_HEADER($fftwinc/fftw3.h,AC_SUBST(fftwversion,3),AC_MSG_ERROR(No fftw libraries seen in $fftwinc))])],
+	#else
+		[AC_CHECK_HEADERS(fftw.h, AC_SUBST(fftwversion,2),
+				[AC_CHECK_HEADER(fftw3.h,AC_SUBST(fftwversion,3),AC_MSG_ERROR(No fftw headers seen - need to specify --with-fftwinc=DIR))])])
+
+
+AC_ARG_WITH(fftwlib,--with-fftwlib=DIR FFTW library directory,
+	#if fftwlib specified
+		[AC_SUBST(fftwlib,$with_fftwlib) 
+			AC_CHECK_FILE($fftwlib/libfftw.so, AC_CHECK_FILE($fftwlib/librfftw.so,,AC_MSG_ERROR(No fftw libraries seen in $fftwlib)),
+			AC_CHECK_FILE($fftwlib/libfftw3.so, ,AC_MSG_ERROR(No fftw libraries seen in $fftwlib)))],
+
+
+	#if not 
+		[AC_CHECK_LIB(fftw,fftw_create_plan,,AC_MSG_ERROR(No fftw libraries seen - need to specify --with-fftwlib=DIR))])
+
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+
+
+AC_OUTPUT(doc/Makefile Makefile src/Makefile src/1DFFT.hh)

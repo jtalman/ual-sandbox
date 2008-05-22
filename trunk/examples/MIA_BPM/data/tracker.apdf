@@ -1,0 +1,12 @@
+<apdf>
+  <propagator id="teapot" accelerator="blue">
+     <create>
+	<link algorithm="TEAPOT::DriftTracker"  types="Default" />
+        <link algorithm="TEAPOT::DriftTracker"  types="Marker|Drift" />
+        <link algorithm="TEAPOT::DipoleTracker" types="Sbend" />
+        <link algorithm="TEAPOT::MltTracker"    types="Quadrupole|Sextupole|Multipole|[VH]kicker|Kicker"/>
+        <link algorithm="TIBETAN::RfCavityTracker" types="RfCavity"/>
+        <link algorithm="MIA::BPM"                 types="Monitor|[VH]monitor" />
+     </create>
+  </propagator>
+</apdf>

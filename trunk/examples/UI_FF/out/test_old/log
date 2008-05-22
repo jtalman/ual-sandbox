@@ -1,0 +1,86 @@
+
+reads the MAD input file ./data/ff_sext_latnat.mad
+start = 1037823841
+end   = 1037823841
+
+writes the SMF data into the FTPOT file 
+
+ start           . 1037823841
+
+ end             . 1037823841
+
+analysis
+
+  closed orbit     1037823841
+
+  twiss parameters 1037823841
+
+  end            . 1037823842
+
+analysis
+
+  closed orbit     1037823842
+
+  twiss parameters 1037823842
+
+  end            . 1037823843
+
+analysis
+
+  closed orbit     1037823843
+
+  twiss parameters 1037823843
+
+  end            . 1037823844
+
+analysis
+
+  closed orbit     1037823844
+
+  twiss parameters 1037823844
+
+  end            . 1037823844
+
+analysis
+
+  closed orbit     1037823844
+
+  twiss parameters 1037823845
+
+  end            . 1037823845
+
+analysis
+
+  closed orbit     1037823845
+
+  twiss parameters 1037823845
+
+  end            . 1037823846
+
+analysis
+
+  closed orbit     1037823846
+
+  twiss parameters 1037823846
+
+  end            . 1037823847
+
+analysis
+
+  closed orbit     1037823847
+
+  twiss parameters 1037823847
+
+  end            . 1037823848
+
+make map 
+start = 1037823848
+end   = 1037823848
+
+run 
+start = 1037823849
+
+_revfreq
+ suml                   = 248.154809435189
+ excess circumference   = -2.825942132664e-15
+ revfreq                = 1057106.57084991end   = 1037823851

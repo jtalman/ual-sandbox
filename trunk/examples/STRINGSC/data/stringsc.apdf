@@ -1,0 +1,13 @@
+<apdf>
+  <propagator id="stringsc" accelerator="ring">
+     <create>
+	<link algorithm="TEAPOT::DriftStringSCKick"     types="Default" />
+        <link algorithm="TEAPOT::DriftTracker"     types="Marker" />
+        <link algorithm="TEAPOT::DriftStringSCKick"     types="Drift" />
+        <link algorithm="TEAPOT::DipoleStringSCKick"    types="Sbend" />
+        <link algorithm="TEAPOT::MltStringSCKick"       types="Quadrupole|Sextupole|Multipole|[VH]kicker"/>
+        <link algorithm="TEAPOT::RFCavityTracker"  types="RfCavity"/>
+	<link algorithm="TEAPOT::MltStringSCKick"     types="Kicker"/>
+     </create>
+  </propagator>
+</apdf>

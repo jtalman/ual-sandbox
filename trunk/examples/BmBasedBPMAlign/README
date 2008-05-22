@@ -1,0 +1,27 @@
+Description:
+------------
+
+Example shows how to extends (personalize) shell for the beam-based
+alignment application. The physics of this example concerns itself
+with a family of quadrupoles, each equipped with a steering elements
+(kicker), and a BPM. The task is to center the beam horizontally
+at each of the (imperfectly aligned) quadrupoles. This example is 
+based on an actual study of beam-based alignment of quadrupoles 
+in the SNS and is discussed in detail in the technical note 
+./doc/TechNote116.pdf .
+
+Usage:
+------
+
+perl BmBasedBPMAlign.pl
+
+Structure:
+-----------
+
+BmBasedBPMAlign.pl - Perl script
+api/UALUSR/Shell.pm  - the personalized UALUSR::Shell module
+data/BmBasedBPMAlign.mad  - MAD input file
+doc/TechNote116.pdf - technical note
+out/test - directory with output files
+
+

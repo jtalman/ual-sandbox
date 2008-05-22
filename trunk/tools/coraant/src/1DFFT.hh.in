@@ -1,0 +1,148 @@
+
+/*  ******************************************************************************************
+    *                                                                                        *
+    *        CORAANT Library: COmprehensive Root-based Accelerator ANalysis Toolkit          *
+    *                                                                                        *
+    *        Class OneDFFT, real1DFFT, complex 1DFFT:  One dimensional FFT classes           *
+    *              using FFTW v2.1.3.                                                        *
+    *         Based heavily on the C++ wrappers written by   Matt Flax <flatmax@ieee.org>    *
+    *                   MFFM FFTw Wrapper library                                            *
+    *                                                                                        *
+    *        Copyright   : see Copyright file                                                *
+    *        Author      : Raymond Fliller III                                               *
+    *                                                                                        *
+    *                                                                                        *
+    ******************************************************************************************
+*/
+
+// note this class is made availible to ROOT, but does not make use of the 
+// ROOT I/O capabilities....
+
+//another note:  In actuality, the plans and the fwd/invtransform function implementations can
+// be moved to OneDFFT class for Version3.0.1 of FTTW however, I am not convinced this is wise.
+
+#ifndef __1DFFT__
+#define __1DFFT__
+
+
+
+#define FFTWVersion @fftwversion@
+
+#if FFTWVersion == 2
+// use version 2.1+ of FFTW
+  #include <fftw.h>
+  #include <rfftw.h>
+  #define PLANTYPE FFTW_ESTIMATE
+#else
+// use version 3.0+
+  #include <fftw3.h>
+  #define fftw_real double
+  #define rfftw_plan fftw_plan 
+  #define PLANTYPE FFTW_ESTIMATE | FFTW_PRESERVE_INPUT
+  #define c_re(c) ((c)[0])
+  #define c_im(c) ((c)[1])
+#endif
+
+#include "Rtypes.h"
+
+namespace CORAANT{
+  
+  class OneDFFT{
+    
+  protected:
+    int size;  //size of input arrays
+    int psize; //size of power spectrum array
+    bool deleteIn;  //delete internal in array;
+    bool deleteOut; //delete internal out array;
+    Double_t *power_spectrum; 
+    
+    double totalPower;
+    int minPowerBin;
+    int maxPowerBin;
+    
+    virtual void createPlan()=0;
+    virtual void destroyPlan()=0; 
+    
+  public:
+    OneDFFT(){size=psize=0; power_spectrum=NULL;}
+    OneDFFT(int s, int ps=0);
+    virtual ~OneDFFT();
+    
+    virtual void fwdTransform()=0; // Forward fft
+    virtual void invTransform()=0; // Inverse fft
+    virtual int compPowerSpec()=0;
+    const int GetSize() const {return size;}
+    const int GetPowerSize() const {return psize;}
+    const double GetTotalPower() const {return totalPower;}
+    const int GetMinPowerBin() const{return minPowerBin;}
+    const int GetMaxPowerBin() const{return maxPowerBin;}
+    const Double_t *GetPowerSpectrum() const  {return power_spectrum;} 
+    
+  };
+  
+  class real1DFFT: public OneDFFT{
+    
+  protected:
+    rfftw_plan fwdPlan, invPlan;
+    fftw_real *in;
+    fftw_real *out;
+    
+    virtual void createPlan();
+    virtual void destroyPlan();
+    
+  public:
+    real1DFFT():OneDFFT(){in=NULL;out=NULL;}
+    real1DFFT(int s);
+    real1DFFT(int s, fftw_real *inp, fftw_real *outp=NULL);
+    ~real1DFFT();
+    
+    const fftw_real *GetIn() const  {return in;}
+    const fftw_real *GetOut() const  {return out;}
+    void switchData(int s, fftw_real *inp);
+#if FFTWVersion == 2    
+    virtual void fwdTransform(){rfftw_one(fwdPlan, in, out);}
+    virtual void invTransform(){rfftw_one(invPlan, out, in);}
+#else
+    virtual void fwdTransform(){fftw_execute(fwdPlan);}
+    virtual void invTransform(){fftw_execute(invPlan);}
+#endif
+    virtual int compPowerSpec();
+    
+  };
+  
+
+class complex1DFFT: public OneDFFT{
+
+protected:
+  fftw_plan fwdPlan, invPlan;
+  fftw_complex *in;
+  fftw_complex *out;
+
+  virtual void createPlan();
+  virtual void destroyPlan();
+
+public:
+  complex1DFFT():OneDFFT(){in=NULL;out=NULL;}
+  complex1DFFT(int s);
+  complex1DFFT(int s, fftw_complex *inp, fftw_complex *outp=NULL);
+  ~complex1DFFT();
+
+  const fftw_complex *GetIn() const  {return in;}
+  const fftw_complex *GetOut() const  {return out;}
+  void switchData(int s, fftw_complex *inp);
+
+#if FFTWVersion == 2
+  virtual void fwdTransform(){fftw_one(fwdPlan, in, out);}
+  virtual void invTransform(){fftw_one(invPlan, out, in);}
+#else
+  virtual void fwdTransform(){fftw_execute(fwdPlan);}
+  virtual void invTransform(){fftw_execute(invPlan);}
+#endif
+
+  virtual int compPowerSpec();
+  
+};
+
+};
+
+#endif

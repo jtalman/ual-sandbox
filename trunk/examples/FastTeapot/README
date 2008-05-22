@@ -1,0 +1,39 @@
+Description:
+------------------------------------------
+
+Fast TEAPOT is the first application of the UAL Accelerator Propagator Framework (APF) 
+introducing a uniform mechanism for development and assembly of diverse accelerator 
+simulation approaches. Fast TEAPOT is built as a UAL local (application-oriented) 
+extension based on the combination of sector linear matricies and TEAPOT symplectic 
+integrators. 
+
+The source code is located in the ./src directory and includes the following components:
+
+- evolver           : main program for producing two Taylor maps, teapot.map 
+                      and fast_teapot.map, based on the element-by-element and 
+                      matrix-quad-matrix (fast TEAPOT) approaches respectively
+- tracker           : main program for tracking a bunch of particles based on 
+                      the element-by-element and matrix-quad-matrix (fast TEAPOT) 
+                      approaches.
+
+Usage:
+------------------------------------------
+
+make
+cd linux
+./evolver
+./tracker
+
+Structure:
+------------------------------------------
+
+rhic.pl - Perl script calculating chromaticity and the second order Taylor maps
+	  based on the TEAPOT element-by-element approach. 
+./data/blue - dAu-top-swn-no_sexts.sxf - RHIC SXF file with a linear lattice
+./out/rhic  - output files produced by rhic.pl
+./src       - source directory with the FastTEAPOT builder, evolver, and tracker
+./linux     - directory with the evolver (generating two Taylor maps, teapot.map 
+              and fast_teapot.map) and tracker (propagating a bunch of particles). 
+
+
+

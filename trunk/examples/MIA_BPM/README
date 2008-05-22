@@ -1,0 +1,36 @@
+--------------------------------------------------------------------
+Description:
+--------------------------------------------------------------------
+
+The application  shows how to add the new specialized BPM approach 
+into the accelerator tracker:
+
+1. The BPM algorithm has been implemented as the MIA::BPM class and 
+registered into the UAL::PropagatorFactory (see src/BPM.cc);
+
+2. The data/tracker.apdf file with the description of the accelerator 
+tracker has been updated with two lines associating MIA::BPM propagator 
+nodes with accelerator elements selected by types and names:
+
+<link algorithm="MIA::BPM" types="Monitor" />
+
+--------------------------------------------------------------------
+Usage:
+--------------------------------------------------------------------
+
+make
+cd linux
+./tracker
+
+--------------------------------------------------------------------
+Structure:
+--------------------------------------------------------------------
+
+./data      - 	director with the SXF accelerator lattice and APDF 
+		accelerator propagator files
+./src       - 	source directory with BPM, BPMCollector, and tracker
+./linux     - 	directory with the tracker program collecting BPM 
+		turn-by-turn data. 
+
+
+

@@ -1,0 +1,1 @@
+OBJS +=	$(UAL_PAC)/lib/$(UAL_ARCH)/obj/PacException.o 

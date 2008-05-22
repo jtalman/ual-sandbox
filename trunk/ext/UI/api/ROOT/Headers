@@ -1,0 +1,8 @@
+HEADERS += \
+	$(UAL)/ext/UI/include/UAL/UI/Argument.hh \
+	$(UAL)/ext/UI/include/UAL/UI/Arguments.hh \
+	$(UAL)/ext/UI/include/UAL/UI/Shell.hh
+
+
+
+

@@ -1,0 +1,27 @@
+TYPEMAP
+PacLattice *            O_OBJECT
+PacLattElement *        O_OBJECT
+BeamAttributes *        O_OBJECT
+Position*               O_OBJECT
+PacSurveyData *         O_OBJECT
+PacVTps *               O_OBJECT
+PacTwissData *          O_OBJECT
+PacChromData *          O_OBJECT
+Teapot *                O_OBJECT
+TeapotElement *         O_OBJECT
+TeapotIntegrator*       O_OBJECT
+TeapotDAIntegrator*     O_OBJECT
+
+
+OUTPUT
+O_OBJECT
+	sv_setref_pv($arg, CLASS, (void*)$var );
+
+INPUT
+O_OBJECT
+	if(sv_isobject($arg) && (SvTYPE(SvRV($arg)) == SVt_PVMG) )
+		$var = ($type) SvIV((SV*) SvRV( $arg ));
+	else{
+		warn( \"${Package}::$func_name() -- $var is not a blessed SV reference\" );
+		XSRETURN_UNDEF;
+	}

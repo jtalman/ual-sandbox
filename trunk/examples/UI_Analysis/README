@@ -1,0 +1,18 @@
+Description:
+------------
+
+Starter example with survey and twiss methods for calculating accelerator geometry 
+and lattice linear functions.
+
+Usage:
+------
+
+perl shell_sns.pl
+
+Structure:
+----------
+
+shell_sns.pl - Perl script
+data - directory with the MAD input file
+out - directory with output files
+

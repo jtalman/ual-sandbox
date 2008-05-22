@@ -1,0 +1,215 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation> MAD elements </xs:documentation>
+    </xs:annotation>
+    <xs:include schemaLocation="adxf_simple_types.xsd"/>
+    <xs:include schemaLocation="adxf_core.xsd"/>
+    <xs:element name="marker" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="drift" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sbend" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="angle" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="e1" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="e2" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rbend" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="angle" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="e1" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="e2" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="quadrupole" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="k1" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sextupole" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="k2" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="octupole" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="k3" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="multipole" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="solenoid" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="ks" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="hkicker" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="kick" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vkicker" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="kick" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="kicker" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="hkick" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="vkick" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rfcavity" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="volt" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="lag" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="harmon" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="elseparator" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="e" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="tilt" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="hmonitor" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vmonitor" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="monitor" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ecollimator" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="xsize" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="ysize" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rcollimator" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="xsize" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="ysize" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="yrot" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="angle" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="srot" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="angle" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="beambeam" substitutionGroup="element">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="elementType">
+                    <xs:attribute name="sigx" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="sigy" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="xma" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="yma" type="attValueType" use="optional" default="0.0"/>
+                    <xs:attribute name="charge" type="attValueType" use="optional" default="0.0"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

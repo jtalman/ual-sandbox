@@ -1,0 +1,30 @@
+
+reads the MAD input file ./data/MAD8_lat.asc
+start = 1055710666
+end   = 1055710668
+
+writes the SMF data into the FTPOT file 
+
+ start           . 1055710668
+
+ end             . 1055710668
+
+analysis
+
+  closed orbit     1055710668
+
+  twiss parameters 1055710669
+
+  end            . 1055710669
+
+make map 
+start = 1055710669
+end   = 1055710670
+
+survey 
+start = 1055710670
+end   = 1055710670
+
+twiss 
+start = 1055710670
+end   = 1055710688

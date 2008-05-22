@@ -1,0 +1,28 @@
+%{
+#include "sxf/Def.hh"
+/* Command-line: $(GPERF) -a -p  -j1 -g -o -t -T -k1,2 -N sxf_elements_gperf  */ 
+%}
+struct SXF_Key { char* name; int number; };
+%%
+marker, 0,
+drift, 1
+rbend, 2
+sbend, 3
+quadrupole, 4
+sextupole, 5
+octupole, 6
+multipole, 7
+solenoid, 8
+hkicker, 9
+vkicker, 10
+kicker, 11
+rfcavity, 12
+elseparator, 13
+hmonitor, 14
+vmonitor, 15
+monitor, 16
+instrument, 17
+ecollimator, 18
+rcollimator, 19
+beambeam, 20
+$$$, 21

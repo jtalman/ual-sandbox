@@ -1,0 +1,43 @@
+#!/bin/csh -f
+set version="v18nm"
+
+set qtot=1.0e-9
+set qtotp=0
+set np=100
+set nt=1
+set seed=-100
+set ee=5.0
+set xhW=0.000063
+set yhW=36e-6
+set cthW=0.0002
+set dehW=0.000002
+set lstr=0.000003
+set longit_dist="gaussian"
+set ddeBydct=-36
+set d2deBydct2=0
+set betax0=40.0
+set alphax0=2.6
+set betay0=13.0
+set alphay0=1.0
+
+set lattice=chicaneR56q25
+
+set basedir="~/stringsc/$version"
+set outdir="$basedir/out"
+set linuxdir="$basedir/linux"
+# set plotcalcdir=$outdir"/xmgrace/bunch"
+# set savedir=$plotcalcdir/outputs/$longit_dist/
+
+cd $linuxdir
+
+./main $lattice $qtot $np $nt $seed $ee  $xhW   $yhW   $cthW   $dehW   $lstr $longit_dist $ddeBydct $d2deBydct2 $betax0 $alphax0 $betay0 $alphay0 >! $outdir/out
+
+# xmgrace -hardcopy -noprint -nosafe -noask -batch inout.com -block bunchout -timestamp -param bunch.par -printfile bunchinout.ps
+# xmgrace -hardcopy -noprint -nosafe -noask -batch bunchplot.com -block bunchin -timestamp -param bunch.par -printfile bunchin.ps
+# xmgrace -hardcopy -noprint -nosafe -noask -batch bunchplot.com -block bunchout -timestamp -param bunch.par -printfile bunchout.ps
+# xmgrace -hardcopy -noprint -nosafe -noask -batch histoplot.com -block bunchout -timestamp -param bunch.par -printfile outhistogram.ps
+
+echo $np | cat >>! $outdir/chicane.data
+tail --lines=1 --quiet $outdir/out >>! $outdir/chicane.data
+
+

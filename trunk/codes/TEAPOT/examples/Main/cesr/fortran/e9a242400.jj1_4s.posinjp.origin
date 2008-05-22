@@ -1,0 +1,1392 @@
+TITLE
+  ! TITLE
+
+! Two families of fake quads have been introduced for use by tunethin
+! They are situated beside, and have sign of, each quad that is not type=IR
+
+! Two families of fake sextupoles have been introduced for use by chromfit
+
+! Quads except those with name matching NOTHING
+!    have become 'type=ir'
+
+! PARTICLE = electron
+! ENERGY = 5.289
+
+! Rfcavities have been replaced by drifts
+
+! NUX = 10.77 requested
+! NUY = 9.77 requested
+
+QFFAKE : MULTIPOL , type = xtun , k1l = 0.0001
+QDFAKE : MULTIPOL , type = ytun , k1l = 0.0001
+SFFAKE : MULTIPOL , type = xchr , k2l = 0.0001
+SDFAKE : MULTIPOL , type = ychr , k2l = 0.0001
+MST : MARKER
+
+  !optics from : e9a242400.jj1_4s
+  !sext. distrib. from : SEXTPR_E9A242400.JJ1_4S
+ 
+  KF = 0.001 * (17.44 * DQX + 4.814 * DQY)
+  KD = 0.001 * (4.726 * DQX + 18.1123 * DQY)
+  DQX = 0.0
+  DQY = 0.0
+ 
+  CRA = 0.0
+  F154 : DRIFT , L = 0.0001000
+
+F101A : drift , l = 0.2272
+F101B : drift , l = 0.3124
+
+SQ04W : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &
+        type = xpla
+SQ04E : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &
+        type = xpla
+SQ05W : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla
+SQ05E : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla
+
+DSQ04W : line = (F101A , SQ04W , F101B)
+DSQ04E : line = (F101A , SQ04E , F101B)
+DSQ05W : line = (F101A , SQ05W , F101B)
+DSQ05E : line = (F101A , SQ05E , F101B)
+
+!   F101 : DRIFT , L = 0.7123000
+
+  F102 : DRIFT , L = 0.4951500
+  F103 : DRIFT , L = 0.1571400
+
+F104A : DRIFT , L = 0.8730400 - 169.070 + 168.554528
+F104B : DRIFT , L = 169.070 - 168.554528
+
+PIV23W : VKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of pinger PIV23W should be 168.5545
+
+PV23W : LINE = ( F104A , PIV23W , F104B )
+
+F104WC : DRIFT , L = 193.380 - 193.044
+F104WD : DRIFT , L = 0.8730400 - 193.380 + 193.044
+
+PBH26W : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of bumper PBH26W should be 193.380305
+
+PB26W : LINE = ( F104WC , PBH26W , F104WD )
+
+
+F104EC : DRIFT , L = 0.8730400 - 575.041 + 574.755
+F104ED : DRIFT , L = 575.041 - 574.755
+
+PBH26E : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of bumper PBH26E should be 575.041403
+
+PB26E : LINE = ( F104EC , PBH26E , F104ED )
+
+F104WE : DRIFT , L = 210.017 - 209.684
+F104WF : DRIFT , L = 0.8730400 - 210.017 + 209.684
+
+PBH28W : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of bumper PBH28W should be 210.017989
+
+PB28W : LINE = ( F104WE , PBH28W , F104WF )
+
+
+F104EE : DRIFT , L = 0.8730400 - 558.406 + 558.115
+F104EF : DRIFT , L = 558.406 - 558.115
+
+PBH28E : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of bumper PBH28E should be 558.405519
+
+PB28E : LINE = ( F104EE , PBH28E , F104EF )
+
+
+F104EG : DRIFT , L = 0.8730400 - 599.876 + 599.602
+F104EH : DRIFT , L = 599.876 - 599.602
+
+SBV23E : VKICK , KICK = 0.0 , L = 0.0
+SBH23E : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of shaker SBV23E should be 599.876330
+! Longitudinal coordinate of shaker SBH23E should be 599.876330
+
+FSBHV23E : LINE = ( F104EG , SBV23E , SBH23E , F104EH )
+
+  F104 : DRIFT , L = 0.8730400
+  F105 : DRIFT , L = 6.0599999
+  F106 : DRIFT , L = 5.3699999
+  F107 : DRIFT , L = 0.5017500
+  F108 : DRIFT , L = 8.8683300
+  F109 : DRIFT , L = 5.9105701
+
+MHVSIP : MARKER
+MSBPMW0 : MARKER
+MSBPME0 : MARKER
+
+SOLFAC = -1.0
+
+SOL110CP : solenoid , l = 0.62/3 , ks = 0.085*0.9*SOLFAC
+! SOL110C : line = ( SOL110CP , MHVSIP )
+
+SOL110D : solenoid , l = 0.02 , ks = 0.085*0.9*SOLFAC
+
+SOL351A : solenoid , l = 0.04008 , ks = 2*0.085*0.9*SOLFAC
+SOL351B : solenoid , l = 1.5247999/20 , ks = 2*0.085*0.9*SOLFAC
+
+!   F110 : DRIFT , L = 0.6400000
+
+  F111 : DRIFT , L = 0.7602000
+  F112 : DRIFT , L = 1.4574000
+  F125 : DRIFT , L = 1.4977000
+
+F129A : drift , l = 0.68862
+F129B : drift , l = 0.1183001
+F129C : drift , l = 0.42128
+
+SQ02W : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &
+         type = xpla
+SQ02E : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &
+         type = xpla
+SQ03W : quadrupole , l = 0.1727 , k1 = 0.0240463 , tilt , &
+         type = cpla
+SQ03E : quadrupole , l = 0.1727 , k1 = -0.0240463 , tilt , &
+         type = cpla
+
+DSQ02W : line = (F129A , SQ02W , F129B , SQ03W , F129C)
+DSQ02E : line = (F129A , SQ02E , F129B , SQ03E , F129C)
+
+!   F129 : DRIFT , L = 1.5736001
+
+  F113 : DRIFT , L = 3.0736001
+  F114 : DRIFT , L = 0.3772100
+  F115 : DRIFT , L = 0.6094700
+  F116 : DRIFT , L = 0.2353800
+  F117 : DRIFT , L = 5.7094498
+  F118 : DRIFT , L = 1.6799999
+  F119 : DRIFT , L = 2.0000000
+  F120 : DRIFT , L = 0.4600000
+  F121 : DRIFT , L = 1.9200000
+  F122 : DRIFT , L = 2.0000000
+  F123 : DRIFT , L = 1.0800000
+  F124 : DRIFT , L = 0.2980100
+  F126 : DRIFT , L = 0.2250000
+  F127 : DRIFT , L = 2.3998101
+  F128 : DRIFT , L = 3.3399999
+  F134 : DRIFT , L = 0.5683000
+
+F135WA : DRIFT , L = 275.4697 - (273.727+0.1571400)
+F135WB : DRIFT , L = 2.6137600 - 1.58556 - 0.8
+F135WC : DRIFT , L = 0.4 
+F135WD : DRIFT , L = 0.4 
+
+PIH36W : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of pinger PIH36W should be 275.4697
+PBH36W : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of bumper PBH36W should be 275.875115
+MSCH36W : MARKER
+! Longitudinal coordinate of scraper MSCH36W should be 276.267615
+
+PH36W : LINE = ( F135WA , PIH36W , F135WC , PBH36W , & 
+F135WD , MSCH36W , F135WB )
+
+F135EA : DRIFT , L = 1.84736
+F135EB : DRIFT , L = 2.6137600 - 1.84736 - 0.8 - 0.019
+F135EC : DRIFT , L = 0.4 + 0.09
+F135ED : DRIFT , L = 0.4 + 0.019 - 0.09
+
+PIH36E : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of pinger PIH36E should be 492.9402
+PBH36E : HKICK , KICK = 0.0 , L = 0.0
+! Longitudinal coordinate of bumper PBH36E should be 492.450543
+MSCH36E : MARKER
+! Longitudinal coordinate of scraper MSCH36E should be 492.158843
+
+PH36E : LINE = ( F135EA , PIH36E , F135EC , PBH36e , & 
+F135ED , MSCH36E , F135EB )
+
+  F135 : DRIFT , L = 2.6137600
+  F136 : DRIFT , L = 0.6835400
+  F139 : DRIFT , L = 1.0255001
+  F142 : DRIFT , L = 0.5000000
+  F141 : DRIFT , L = 1.7199900
+
+! Adjust drifts so that VSP48W comes out at 376.901, which is the location
+! of SPV48W in "master6.dat". Unfortunately, then  VSP48E comes out at
+! 391.771m in "out/e9a242400.recomp" when it should be at 391.525.
+! These discrepancies are comparable with the thin vs thick discrepancies.
+
+VSP48W : VKICK , KICK = 0.0
+VSP48E : VKICK , KICK = 0.0
+
+F143A : DRIFT , L = 376.901 - 375.364
+F143B : DRIFT , L = 1.6520000 - 1.537
+
+!   F143 : DRIFT , L = 1.6520000
+
+  F145 : DRIFT , L = 0.8538000
+
+ ! Adjust drifts so that SKQ47W appears at 366.319m in the "out" file
+ ! listing. This is the value in the "master6.dat" file of Feb 7, 1996.
+ ! I am taking this to be the center of the element.
+ ! This may not be quite right since (as I recall) the values in
+ ! "master6.dat" may refer to the north end of the element. Unfortunately
+ ! that would make F146a slightly negative.
+ ! SKQ47E appears at 402.353m in the "out" file and at
+ !                   402.108m in "master6.dat"
+ ! The fact that this discrepancy is close to the length of SKQ47E
+ ! (which is 0.128m) supports the conjecture that all of
+ ! SKQ47W, SKQ47E, SKQ49W, and SKQ49E are wrong by half their lengths
+ ! in this file 9feb96. However, these discrepancies are only comparable
+ ! with the thin vs thick discrepancies.
+ ! (In "master6.dat" the
+ ! element SPH45W is said to be at 347.893m while 
+ ! it appears (as element HSP45W) at 347.996m in "out/e9a242400.recomp").
+ ! Drifts for SKQ47E and SKQ49W(E) were adjusted the same way as SKQ47W
+
+DQKHZ = 0.0
+SKQ47W : QUAD , L = 0.128 , K1 = 0.00950694*DQKHZ , tilt
+SKQ47E : QUAD , L = 0.128 , K1 = 0.00950694*DQKHZ , tilt
+
+!F146A : DRIFT , L = 366.319 - 366.242 - 0.128/2.0
+!F146B : DRIFT , L = 1.1056401 - 0.128 - 0.013
+
+ ! Actually, from the "master6.dat" file, the two drifts should be:
+F146A : DRIFT , L = 366.319208 - 365.820808 - 0.6/2 - 0.128/2 ! = 0.1344
+F146B : DRIFT , L = 1.1056401 - 0.128 - 0.1344
+
+!   F146 : DRIFT , L = 1.1056401
+
+  F147 : DRIFT , L = 0.7901300
+
+SKQ49W : QUAD , L = 0.254 , K1 = -0.00353390*DQKHZ , tilt
+SKQ49E : QUAD , L = 0.254 , K1 = -0.00353390*DQKHZ , tilt
+
+!F148A : DRIFT , L = 380.810 - 379.336 - 0.254/2.0
+!F148B : DRIFT , L = 2.0500000 - 0.254 - 1.347
+
+ ! Actually, from the "master6.dat" file, the two drifts should be:
+F148A : DRIFT , L = 380.773897 - 378.912855 - 0.6/2 - 0.254/2 ! = 1.434042
+F148B : DRIFT , L = 2.0500000 - 0.254 - 1.434042
+
+!   F148 : DRIFT , L = 2.0500000
+
+  F140 : DRIFT , L = 0.0000010
+  F149 : DRIFT , L = 0.6000000
+  F150 : DRIFT , L = 3.6456001
+  F151 : DRIFT , L = 0.1826000
+  F152 : DRIFT , L = 5.7398100
+  F153 : DRIFT , L = 1.3260000
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! NOTE: mad2tpot makes focusing strength of a pole face proportional to pole
+! face angle, NOT its tangent. If you don't like it, replace k1L 
+! by sin(K1L)/cos(K1L) for I and O multipoles by hand or in mad2tpot.awk 
+! Message will not be repeated. 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Original line was
+ ! H208 : SBEND , L = 6.5752883 , ANGLE = 0.112200 , E1 = 0.028050 , &
+!      E2 = 0.028050 , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+ !      0.025000
+  IH208 : MULTIPOL , K1L = -0.000478642
+ BH208 : SBEND , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+       0.025000 , L = 6.5752883 , ANGLE = 0.112200
+  OH208 : MULTIPOL , K1L = -0.000478642
+  H208 : LINE = ( IH208 , BH208 , OH208 )
+! Original line was
+ ! H201 : SBEND , L = 6.5742621 , ANGLE = 0.074800 , E1 = 0.018700 , &
+!      E2 = 0.018700 , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+ !      0.025000
+  IH201 : MULTIPOL , K1L = -0.000212763
+ BH201 : SBEND , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+       0.025000 , L = 6.5742621 , ANGLE = 0.074800
+  OH201 : MULTIPOL , K1L = -0.000212763
+  H201 : LINE = ( IH201 , BH201 , OH201 )
+! Original line was
+ ! H203 : SBEND , L = 2.9453139 , ANGLE = 0.020944 , E1 = 0.010472 , &
+!      E2 = 0.010472 , TYPEAPER = 1 , XAPSIZE = 0.060000 , YAPSIZE = &
+ !      0.023000
+  IH203 : MULTIPOL , K1L = -7.44659e-05
+ BH203 : SBEND , TYPEAPER = 1 , XAPSIZE = 0.060000 , YAPSIZE = &
+       0.023000 , L = 2.9453139 , ANGLE = 0.020944
+  OH203 : MULTIPOL , K1L = -7.44659e-05
+  H203 : LINE = ( IH203 , BH203 , OH203 )
+! Original line was
+ ! H202 : SBEND , L = 3.2379034 , ANGLE = 0.102289 , E1 = 0.000000 , &
+!      E2 = 0.000000 , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+ !      0.025000
+  IH202 : MULTIPOL , K1L = 0
+ BH202 : SBEND , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+       0.025000 , L = 3.2379034 , ANGLE = 0.102289
+  OH202 : MULTIPOL , K1L = 0
+  H202 : LINE = ( IH202 , BH202 , OH202 )
+! Original line was
+ ! H204 : SBEND , L = 1.6435239 , ANGLE = 0.018699 , E1 = 0.009350 , &
+!      E2 = 0.009350 , TYPEAPER = 1 , XAPSIZE = 0.060000 , YAPSIZE = &
+ !      0.023000
+  IH204 : MULTIPOL , K1L = -0.000106379
+ BH204 : SBEND , TYPEAPER = 1 , XAPSIZE = 0.060000 , YAPSIZE = &
+       0.023000 , L = 1.6435239 , ANGLE = 0.018699
+  OH204 : MULTIPOL , K1L = -0.000106379
+  H204 : LINE = ( IH204 , BH204 , OH204 )
+! Original line was
+ ! H206 : SBEND , L = 3.2871714 , ANGLE = 0.037400 , E1 = 0.018700 , &
+!      E2 = 0.018700 , TYPEAPER = 1 , XAPSIZE = 0.060000 , YAPSIZE = &
+ !      0.023000
+  IH206 : MULTIPOL , K1L = -0.00021276
+ BH206 : SBEND , TYPEAPER = 1 , XAPSIZE = 0.060000 , YAPSIZE = &
+       0.023000 , L = 3.2871714 , ANGLE = 0.037400
+  OH206 : MULTIPOL , K1L = -0.00021276
+  H206 : LINE = ( IH206 , BH206 , OH206 )
+! Original line was
+ ! H207 : SBEND , L = 3.1772223 , ANGLE = 0.091254 , E1 = 0.000000 , &
+!      E2 = 0.000000 , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+ !      0.025000
+  IH207 : MULTIPOL , K1L = 0
+ BH207 : SBEND , TYPEAPER = 1 , XAPSIZE = 0.045000 , YAPSIZE = &
+       0.025000 , L = 3.1772223 , ANGLE = 0.091254
+  OH207 : MULTIPOL , K1L = 0
+  H207 : LINE = ( IH207 , BH207 , OH207 )
+  HSP8W : HKICK , KICK = 0.000068235 / 2.62 * CRA
+  HSP8E : HKICK , KICK = -0.000068235 / 2.62 * CRA
+  HSP45W : HKICK , KICK = -0.000113144 / 2.62 * CRA
+  HSP45E : HKICK , KICK = 0.000113144 / 2.62 * CRA
+ FQ300 : QUAD , L = 0.0000001 , K1 = 2100.000000 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q300 : LINE = ( FQ300 , QFFAKE )
+ FQ301 : QUAD , L = 0.9500000 , K1 = 0.677784 , TYPEAPER = 1 , XAPSIZE &
+       = 0.052500 , YAPSIZE = 0.025000 , TYPE = ir
+
+pi = 3.141592654
+ang301 = 6.8659*2*pi/360
+kquad301 = 0.665606
+F301 : drift , L = 0.9500000/20
+
+Q301W1 : QUAD , L = 0.9500000/40 , K1 = 2*kquad301 , &
+      TYPEAPER = 1 , XAPSIZE &
+      = 0.052500 , YAPSIZE = 0.025000 , tilt = ang301
+Q301W2 : QUAD , L = 0.9500000/20 , K1 = 2*kquad301 , &
+      TYPEAPER = 1 , XAPSIZE &
+      = 0.052500 , YAPSIZE = 0.025000 , tilt = ang301
+Q301E1 : QUAD , L = 0.9500000/40 , K1 = 2*kquad301 , &
+      TYPEAPER = 1 , XAPSIZE &
+      = 0.052500 , YAPSIZE = 0.025000 , tilt = -ang301
+Q301E2 : QUAD , L = 0.9500000/20 , K1 = 2*kquad301 , &
+      TYPEAPER = 1 , XAPSIZE &
+      = 0.052500 , YAPSIZE = 0.025000 , tilt = -ang301
+
+SQ301W : multipole , k1l = 0.0 , t1 , type = xpla
+SQ301E : multipole , k1l = 0.0 , t1 , type = xpla
+
+FQ301W1 : line = (F301 , Q301W2)
+FQ301W2 : line = (Q301W2 , F301)
+FQ301E1 : line = (F301 , Q301E2)
+FQ301E2 : line = (Q301e2 , F301)
+
+Q301W : LINE = (Q301W1 , 4*FQ301W1 , F301 , Q301W1, SQ301W , &
+        Q301W1 , F301 , 4*FQ301W2 , Q301W1)
+Q301E : LINE = (Q301E1 , 4*FQ301E1 , F301 , Q301E1, SQ301e , &
+        Q301E1 , F301 , 4*FQ301E2 , Q301E1)
+
+  Q301 : LINE = ( FQ301 , QFFAKE )
+ DQ302 : QUAD , L = 0.6000000 , K1 = -0.247084 , TYPEAPER = 1 , &
+       XAPSIZE = 0.065000 , YAPSIZE = 0.045500 , TYPE = ir
+
+ang302 = 14.5544*2*pi/360
+kquad302 = -0.232746
+F302 : drift , L = 0.6000000/20
+
+Q302W1 : QUAD , L = 0.6000000/40 , K1 = 2*kquad302 , &
+      TYPEAPER = 1 , XAPSIZE &
+      = 0.065000 , YAPSIZE = 0.025000 , tilt = ang302
+Q302W2 : QUAD , L = 0.6000000/20 , K1 = 2*kquad302 , &
+      TYPEAPER = 1 , XAPSIZE &
+      = 0.065000 , YAPSIZE = 0.025000 , tilt = ang302
+Q302E1 : QUAD , L = 0.6000000/40 , K1 = 2*kquad302 , &
+      TYPEAPER = 1 , XAPSIZE &
+      = 0.065000 , YAPSIZE = 0.025000 , tilt = -ang302
+Q302E2 : QUAD , L = 0.6000000/20 , K1 = 2*kquad302 , &
+      TYPEAPER = 1 , XAPSIZE &
+       = 0.065000 , YAPSIZE = 0.025000 , tilt = -ang302
+
+SQ302W : multipole , k1l = 0.0 , t1 , type = xpla
+SQ302E : multipole , k1l = 0.0 , t1 , type = xpla
+
+FQ302W1 : line = (F302 , Q302W2)
+FQ302W2 : line = (Q302W2 , F302)
+FQ302E1 : line = (F302 , Q302E2)
+FQ302E2 : line = (Q302E2 , F302)
+
+Q302W : LINE = (Q302W1 , 4*FQ302W1 , F302 , Q302W1, SQ302W , &
+        Q302W1 , F302 , 4*FQ302w2 , Q302W1)
+Q302E : LINE = (Q302E1 , 4*FQ302E1 , F302 , Q302E1, SQ302E , &
+        Q302E1 , F302 , 4*FQ302E2 , Q302E1)
+
+  Q302 : LINE = ( DQ302 , QDFAKE )
+ DQ303 : QUAD , L = 0.6000000 , K1 = -0.298923 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+
+kquad303 = -0.296364
+Q303W : QUAD , L = 0.6000000 , K1 = kquad303 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR
+Q303E : QUAD , L = 0.6000000 , K1 = kquad303 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR
+  Q303 : LINE = ( DQ303 , QDFAKE )
+ FQ304 : QUAD , L = 0.6000000 , K1 = 0.414771 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+
+kquad304 = 0.410842
+Q304W : QUAD , L = 0.6000000 , K1 = kquad304 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR2
+Q304E : QUAD , L = 0.6000000 , K1 = kquad304 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR2
+  Q304 : LINE = ( FQ304 , QFFAKE )
+ DQ305 : QUAD , L = 0.6000000 , K1 = -0.275733 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+
+kquad305 = -0.288915
+Q305W : QUAD , L = 0.6000000 , K1 = kquad305 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR
+Q305E : QUAD , L = 0.6000000 , K1 = kquad305 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR
+  Q305 : LINE = ( DQ305 , QDFAKE )
+ FQ306 : QUAD , L = 0.6000000 , K1 = 0.400494 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+
+kquad306 = 0.408156
+Q306W : QUAD , L = 0.6000000 , K1 = kquad306 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR2
+Q306E : QUAD , L = 0.6000000 , K1 = kquad306 , TYPEAPER = 1 , &
+      XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = IR2
+  Q306 : LINE = ( FQ306 , QFFAKE )
+ DQ307 : QUAD , L = 0.6000000 , K1 = -0.264821 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q307 : LINE = ( DQ307 , QDFAKE )
+ FQ308 : QUAD , L = 0.6000000 , K1 = 0.141031 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q308 : LINE = ( FQ308 , QFFAKE )
+ DQ309 : QUAD , L = 0.6000000 , K1 = -0.218935 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q309 : LINE = ( DQ309 , QDFAKE )
+ FQ310 : QUAD , L = 0.6000000 , K1 = 0.229558 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q310 : LINE = ( FQ310 , QFFAKE )
+ DQ311 : QUAD , L = 0.6000000 , K1 = -0.210051 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q311 : LINE = ( DQ311 , QDFAKE )
+ FQ312 : QUAD , L = 0.6000000 , K1 = 0.228398 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q312 : LINE = ( FQ312 , QFFAKE )
+ DQ313 : QUAD , L = 0.6000000 , K1 = -0.243352 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q313 : LINE = ( DQ313 , QDFAKE )
+ FQ314 : QUAD , L = 0.6000000 , K1 = 0.271697 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q314 : LINE = ( FQ314 , QFFAKE )
+ DQ315 : QUAD , L = 0.6000000 , K1 = -0.232716 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q315 : LINE = ( DQ315 , QDFAKE )
+ FQ316 : QUAD , L = 0.6000000 , K1 = 0.267593 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q316 : LINE = ( FQ316 , QFFAKE )
+ DQ317 : QUAD , L = 0.6000000 , K1 = -0.261477 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q317 : LINE = ( DQ317 , QDFAKE )
+ FQ318 : QUAD , L = 0.6000000 , K1 = 0.267542 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q318 : LINE = ( FQ318 , QFFAKE )
+ DQ319 : QUAD , L = 0.6000000 , K1 = -0.328507 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q319 : LINE = ( DQ319 , QDFAKE )
+ FQ320 : QUAD , L = 0.6000000 , K1 = 0.245163 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q320 : LINE = ( FQ320 , QFFAKE )
+ DQ321 : QUAD , L = 0.6000000 , K1 = -0.285077 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q321 : LINE = ( DQ321 , QDFAKE )
+ FQ322 : QUAD , L = 0.6000000 , K1 = 0.256764 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q322 : LINE = ( FQ322 , QFFAKE )
+ DQ323 : QUAD , L = 0.6000000 , K1 = -0.234584 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q323 : LINE = ( DQ323 , QDFAKE )
+ FQ324 : QUAD , L = 0.6000000 , K1 = 0.244626 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q324 : LINE = ( FQ324 , QFFAKE )
+ DQ325 : QUAD , L = 0.6000000 , K1 = -0.294958 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q325 : LINE = ( DQ325 , QDFAKE )
+ FQ326 : QUAD , L = 0.6000000 , K1 = 0.259367 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q326 : LINE = ( FQ326 , QFFAKE )
+ DQ327 : QUAD , L = 0.6000000 , K1 = -0.293133 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q327 : LINE = ( DQ327 , QDFAKE )
+ FQ328 : QUAD , L = 0.6000000 , K1 = 0.249048 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q328 : LINE = ( FQ328 , QFFAKE )
+ DQ329 : QUAD , L = 0.6000000 , K1 = -0.228843 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q329 : LINE = ( DQ329 , QDFAKE )
+ FQ330 : QUAD , L = 0.6000000 , K1 = 0.257508 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q330 : LINE = ( FQ330 , QFFAKE )
+ DQ331 : QUAD , L = 0.6000000 , K1 = -0.200739 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q331 : LINE = ( DQ331 , QDFAKE )
+ FQ332 : QUAD , L = 0.6000000 , K1 = 0.207124 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q332 : LINE = ( FQ332 , QFFAKE )
+ DQ333 : QUAD , L = 0.6000000 , K1 = -0.201227 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q333 : LINE = ( DQ333 , QDFAKE )
+! FQ334 : QUAD , L = 0.6000000 , K1 = 0.250069 +KF , TYPEAPER = 1 , &
+!       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+ FQ334 : QUAD , L = 0.6000000 , K1 = 0.250069 +KF , TYPE = ir
+  Q334 : LINE = ( FQ334 , QFFAKE )
+ DQ335 : QUAD , L = 0.6000000 , K1 = -0.182243 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q335 : LINE = ( DQ335 , QDFAKE )
+ FQ336 : QUAD , L = 0.6000000 , K1 = 0.235810 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q336 : LINE = ( FQ336 , QFFAKE )
+ DQ337 : QUAD , L = 0.6000000 , K1 = -0.238413 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q337 : LINE = ( DQ337 , QDFAKE )
+ FQ338 : QUAD , L = 0.6000000 , K1 = 0.260686 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q338 : LINE = ( FQ338 , QFFAKE )
+ DQ339 : QUAD , L = 0.6000000 , K1 = -0.217470 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q339 : LINE = ( DQ339 , QDFAKE )
+ FQ340 : QUAD , L = 0.6000000 , K1 = 0.255270 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q340 : LINE = ( FQ340 , QFFAKE )
+ DQ341 : QUAD , L = 0.6000000 , K1 = -0.212221 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q341 : LINE = ( DQ341 , QDFAKE )
+ FQ342 : QUAD , L = 0.6000000 , K1 = 0.241472 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q342 : LINE = ( FQ342 , QFFAKE )
+ DQ343 : QUAD , L = 0.6000000 , K1 = -0.190566 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q343 : LINE = ( DQ343 , QDFAKE )
+ FQ344 : QUAD , L = 0.6000000 , K1 = 0.292308 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q344 : LINE = ( FQ344 , QFFAKE )
+ DQ345 : QUAD , L = 0.6000000 , K1 = -0.271935 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q345 : LINE = ( DQ345 , QDFAKE )
+ FQ346 : QUAD , L = 0.6000000 , K1 = 0.336803 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q346 : LINE = ( FQ346 , QFFAKE )
+ DQ347 : QUAD , L = 0.6000000 , K1 = -0.052574 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q347 : LINE = ( DQ347 , QDFAKE )
+ FQ348 : QUAD , L = 0.6000000 , K1 = 0.546159 +KF , TYPEAPER = 1 , &
+       XAPSIZE = 0.065000 , YAPSIZE = 0.045500 , TYPE = ir
+  Q348 : LINE = ( FQ348 , QFFAKE )
+ DQ349 : QUAD , L = 0.9500000 , K1 = -0.272314 -KD , TYPEAPER = 1 , &
+       XAPSIZE = 0.052500 , YAPSIZE = 0.025000 , TYPE = ir
+  Q349 : LINE = ( DQ349 , QDFAKE )
+ DQ350 : QUAD , L = 0.6000000 , K1 = -0.268153 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q350 : LINE = ( DQ350 , QDFAKE )
+
+ang351 = 4.4884*2*pi/360
+Q351W1 : QUAD , L = 1.5247999/40 , K1 = -2*0.837600 , TYPEAPER = 1 , &
+   XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , tilt = ang351
+Q351W2 : QUAD , L = 1.5247999/20 , K1 = -2*0.837600 , TYPEAPER = 1 , &
+   XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , tilt = ang351
+Q351E1 : QUAD , L = 1.5247999/40 , K1 = -2*0.837600 , TYPEAPER = 1 , &
+   XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , tilt = -ang351
+Q351E2 : QUAD , L = 1.5247999/20 , K1 = -2*0.837600 , TYPEAPER = 1 , &
+   XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , tilt = -ang351
+SQ351W : multipole , k1l = 0.0 , t1 , type = cplx
+SQ351E : multipole , k1l = 0.0 , t1 , type = cplx
+F351A : drift , L = 0.03616
+F351B : drift , L = 1.5247999/20
+DQ351W : line = (SOL351B , Q351W2)
+DQ351E : line = (SOL351B , Q351E2)
+Q351W : line = (Q351W1 , 4*DQ351W , SOL351B , Q351W1 , SQ351W , &
+        Q351W1 , 3*DQ351W , SOL351A , F351A , Q351W2 , F351B , Q351W1)
+Q351E : line = (Q351E1 , 4*DQ351E , SOL351B , Q351E1 , SQ351E , &
+        Q351E1 , 3*DQ351E , SOL351A , F351A , Q351E2 , F351B , Q351E1)
+
+ Q351 : QUAD , L = 1.5247999 , K1 = -0.837600 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+ FQ353 : QUAD , L = 0.0000010 , K1 = 0.000001 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q353 : LINE = ( FQ353 , QFFAKE )
+ FQ354 : QUAD , L = 0.0000010 , K1 = 0.000001 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q354 : LINE = ( FQ354 , QFFAKE )
+ FQ355 : QUAD , L = 0.0000010 , K1 = 0.000001 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q355 : LINE = ( FQ355 , QFFAKE )
+ DQ356 : QUAD , L = 0.0000010 , K1 = -0.138051 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q356 : LINE = ( DQ356 , QDFAKE )
+ FQ358 : QUAD , L = 0.0000010 , K1 = 0.000398 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000 , TYPE = ir
+  Q358 : LINE = ( FQ358 , QFFAKE )
+
+!  master6.dat has no sext at either 06 or 07 
+
+F155A : drift , l = 0.0
+F155B : drift , l = 0.4403000 - 0.1727
+SQ06W : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla
+SQ06E : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla
+DSQ06W : line = (F155A , SQ06W , F155B)
+DSQ06E : line = (F155A , SQ06E , F155B)
+
+!   F155 : DRIFT , L = 0.4403000
+
+  F156 : DRIFT , L = 5.4374499
+  F1RF : DRIFT , L = 1.5120000
+  F2RF : DRIFT , L = 2.7543299
+! RFW : DRIFT , L = 4.330
+ RFW : RFCAVITY , L = 4.33 , VOLT = -0.0034 , FREQ = 1281 , LAG = &
+      0.00 , ENRGLOSS = 0.0005
+! RFE : DRIFT , L = 4.330
+ RFE : RFCAVITY , L = 4.33 , VOLT = -0.0034 , FREQ = 1281 , LAG = &
+      0.00 , ENRGLOSS = 0.0005
+  F157W : LINE = (F1RF , RFW , F2RF)
+  F157E : LINE = (F1RF , RFE , F2RF)
+  F158 : DRIFT , L = 5.6385703
+  F159 : DRIFT , L = 0.6010400
+  F160 : DRIFT , L = 0.1880000
+  F161 : DRIFT , L = 1.6480000
+  F162 : DRIFT , L = 5.7880001
+  F163 : DRIFT , L = 1.7280000
+  F164 : DRIFT , L = -0.0470000
+  F165 : DRIFT , L = 0.8080000
+
+  F166 : DRIFT , L = 5.0980000
+  F166a : DRIFT , L = 4.3211
+  F166b : DRIFT , L = 0.7769
+
+  F167 : DRIFT , L = 0.2963000
+  F168 : DRIFT , L = 0.7535000
+  F169 : DRIFT , L = 0.4115400
+  F170 : DRIFT , L = 3.3736000
+  F171 : DRIFT , L = 2.1278100
+
+IJS34W : XSEPTUM , xthcknss = 0.003 , sup = -0.5075 , sdwn = 0.5075 , &
+                   xin = -0.045, type=x1
+
+! IJS34W : marker
+
+! IJS34E : XSEPTUM , xthcknss = 0.003 , sup = -0.5075 , sdwn = 0.5075 , &
+!                    xin = -0.045
+ IJS34E : marker
+
+ S401W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.052500 , YAPSIZE = 0.025000
+ S402W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.065000 , YAPSIZE = 0.045500
+ S403W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S404W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S405W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S406W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S407W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ FS408W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S408W : LINE = ( FS408W , SFFAKE )
+ DS409W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S409W : LINE = ( DS409W , SDFAKE )
+ FS410W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S410W : LINE = ( FS410W , SFFAKE )
+ DS411W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S411W : LINE = ( DS411W , SDFAKE )
+ FS412W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S412W : LINE = ( FS412W , SFFAKE )
+ DS413W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S413W : LINE = ( DS413W , SDFAKE )
+ FS414W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S414W : LINE = ( FS414W , SFFAKE )
+ DS415W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S415W : LINE = ( DS415W , SDFAKE )
+ FS416W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S416W : LINE = ( FS416W , SFFAKE )
+ DS417W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S417W : LINE = ( DS417W , SDFAKE )
+ FS418W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S418W : LINE = ( FS418W , SFFAKE )
+ DS419W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S419W : LINE = ( DS419W , SDFAKE )
+ FS420W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S420W : LINE = ( FS420W , SFFAKE )
+ DS421W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S421W : LINE = ( DS421W , SDFAKE )
+ FS422W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S422W : LINE = ( FS422W , SFFAKE )
+ DS423W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S423W : LINE = ( DS423W , SDFAKE )
+ FS424W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S424W : LINE = ( FS424W , SFFAKE )
+ DS425W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S425W : LINE = ( DS425W , SDFAKE )
+ FS426W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S426W : LINE = ( FS426W , SFFAKE )
+ DS427W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S427W : LINE = ( DS427W , SDFAKE )
+ FS428W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S428W : LINE = ( FS428W , SFFAKE )
+ DS429W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S429W : LINE = ( DS429W , SDFAKE )
+ FS430W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S430W : LINE = ( FS430W , SFFAKE )
+ DS431W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S431W : LINE = ( DS431W , SDFAKE )
+ FS432W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S432W : LINE = ( FS432W , SFFAKE )
+ DS433W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S433W : LINE = ( DS433W , SDFAKE )
+! FS434W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+!       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+ FS434W : SEXT , L = 0.27200001 , K2 = 0.73076 
+  S434W : LINE = ( FS434W , SFFAKE )
+ DS435W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S435W : LINE = ( DS435W , SDFAKE )
+ FS436W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S436W : LINE = ( FS436W , SFFAKE )
+ DS437W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S437W : LINE = ( DS437W , SDFAKE )
+ FS438W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S438W : LINE = ( FS438W , SFFAKE )
+ DS439W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S439W : LINE = ( DS439W , SDFAKE )
+ FS440W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S440W : LINE = ( FS440W , SFFAKE )
+ DS441W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S441W : LINE = ( DS441W , SDFAKE )
+ FS442W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S442W : LINE = ( FS442W , SFFAKE )
+ DS443W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S443W : LINE = ( DS443W , SDFAKE )
+ FS444W : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S444W : LINE = ( FS444W , SFFAKE )
+ DS445W : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S445W : LINE = ( DS445W , SDFAKE )
+ S446W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S447W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S448W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.065000 , YAPSIZE = 0.045500
+ S449W : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.052500 , YAPSIZE = 0.025000
+ S449E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.052500 , YAPSIZE = 0.025000
+ S448E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.065000 , YAPSIZE = 0.045500
+ S447E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S446E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ DS445E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S445E : LINE = ( DS445E , SDFAKE )
+ FS444E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S444E : LINE = ( FS444E , SFFAKE )
+ DS443E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S443E : LINE = ( DS443E , SDFAKE )
+ FS442E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S442E : LINE = ( FS442E , SFFAKE )
+ DS441E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S441E : LINE = ( DS441E , SDFAKE )
+ FS440E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S440E : LINE = ( FS440E , SFFAKE )
+ DS439E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S439E : LINE = ( DS439E , SDFAKE )
+ FS438E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S438E : LINE = ( FS438E , SFFAKE )
+ DS437E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S437E : LINE = ( DS437E , SDFAKE )
+ FS436E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S436E : LINE = ( FS436E , SFFAKE )
+ DS435E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S435E : LINE = ( DS435E , SDFAKE )
+ FS434E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S434E : LINE = ( FS434E , SFFAKE )
+ DS433E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S433E : LINE = ( DS433E , SDFAKE )
+ FS432E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S432E : LINE = ( FS432E , SFFAKE )
+ DS431E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S431E : LINE = ( DS431E , SDFAKE )
+ FS430E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S430E : LINE = ( FS430E , SFFAKE )
+ DS429E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S429E : LINE = ( DS429E , SDFAKE )
+ FS428E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S428E : LINE = ( FS428E , SFFAKE )
+ DS427E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S427E : LINE = ( DS427E , SDFAKE )
+ FS426E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S426E : LINE = ( FS426E , SFFAKE )
+ DS425E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S425E : LINE = ( DS425E , SDFAKE )
+ FS424E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S424E : LINE = ( FS424E , SFFAKE )
+ DS423E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S423E : LINE = ( DS423E , SDFAKE )
+ FS422E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S422E : LINE = ( FS422E , SFFAKE )
+ DS421E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S421E : LINE = ( DS421E , SDFAKE )
+ FS420E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S420E : LINE = ( FS420E , SFFAKE )
+ DS419E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S419E : LINE = ( DS419E , SDFAKE )
+ FS418E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S418E : LINE = ( FS418E , SFFAKE )
+ DS417E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S417E : LINE = ( DS417E , SDFAKE )
+ FS416E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S416E : LINE = ( FS416E , SFFAKE )
+ DS415E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S415E : LINE = ( DS415E , SDFAKE )
+ FS414E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S414E : LINE = ( FS414E , SFFAKE )
+ DS413E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S413E : LINE = ( DS413E , SDFAKE )
+ FS412E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S412E : LINE = ( FS412E , SFFAKE )
+ DS411E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S411E : LINE = ( DS411E , SDFAKE )
+ FS410E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S410E : LINE = ( FS410E , SFFAKE )
+ DS409E : SEXT , L = 0.27200001 , K2 = -0.86092 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S409E : LINE = ( DS409E , SDFAKE )
+ FS408E : SEXT , L = 0.27200001 , K2 = 0.73076 , TYPEAPER = 1 , &
+       XAPSIZE = 0.045000 , YAPSIZE = 0.025000
+  S408E : LINE = ( FS408E , SFFAKE )
+ S407E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S406E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S405E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S404E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S403E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.045000 , YAPSIZE = 0.025000
+ S402E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.065000 , YAPSIZE = 0.045500
+ S401E : SEXT , L = 0.27200001 , K2 = 0.00000 , TYPEAPER = 1 , XAPSIZE &
+       = 0.052500 , YAPSIZE = 0.025000
+  mnip : MARKER
+  msip : MARKER
+ 
+M303W : marker , type = cpld
+M303E : marker , type = cpld
+M304W : marker , type = cpld
+M304E : marker , type = cpld
+M305W : marker , type = cpld
+M305E : marker , type = cpld
+M306W : marker , type = cpld
+M306E : marker , type = cpld
+M307W : marker , type = cpld
+M307E : marker , type = cpld
+M308W : marker , type = cpld
+M308E : marker , type = cpld
+M309W : marker , type = cpld
+M309E : marker , type = cpld
+M310W : marker , type = cpld
+M310E : marker , type = cpld
+M311W : marker , type = cpld
+M311E : marker , type = cpld
+M312W : marker , type = cpld
+M312E : marker , type = cpld
+M313W : marker , type = cpld
+M313E : marker , type = cpld
+M314W : marker , type = cpld
+M314E : marker , type = cpld
+M315W : marker , type = cpld
+M315E : marker , type = cpld
+M316W : marker , type = cpld
+M316E : marker , type = cpld
+M317W : marker , type = cpld
+M317E : marker , type = cpld
+M318W : marker , type = cpld
+M318E : marker , type = cpld
+M319W : marker , type = cpld
+M319E : marker , type = cpld
+M320W : marker , type = cpld
+M320E : marker , type = cpld
+M321W : marker , type = cpld
+M321E : marker , type = cpld
+M322W : marker , type = cpld
+M322E : marker , type = cpld
+M323W : marker , type = cpld
+M323E : marker , type = cpld
+M324W : marker , type = cpld
+M324E : marker , type = cpld
+M325W : marker , type = cpld
+M325E : marker , type = cpld
+M326W : marker , type = cpld
+M326E : marker , type = cpld
+M327W : marker , type = cpld
+M327E : marker , type = cpld
+M328W : marker , type = cpld
+M328E : marker , type = cpld
+M329W : marker , type = cpld
+M329E : marker , type = cpld
+M330W : marker , type = cpld
+M330E : marker , type = cpld
+M331W : marker , type = cpld
+M331E : marker , type = cpld
+M332W : marker , type = cpld
+M332E : marker , type = cpld
+M333W : marker , type = cpld
+M333E : marker , type = cpld
+M334W : marker , type = cpld
+M334E : marker , type = cpld
+M335W : marker , type = cpld
+M335E : marker , type = cpld
+M336W : marker , type = cpld
+M336E : marker , type = cpld
+M337W : marker , type = cpld
+M337E : marker , type = cpld
+M338W : marker , type = cpld
+M338E : marker , type = cpld
+M339W : marker , type = cpld
+M339E : marker , type = cpld
+M340W : marker , type = cpld
+M340E : marker , type = cpld
+M341W : marker , type = cpld
+M341E : marker , type = cpld
+M342W : marker , type = cpld
+M342E : marker , type = cpld
+M343W : marker , type = cpld
+M343E : marker , type = cpld
+M344W : marker , type = cpld
+M344E : marker , type = cpld
+M345W : marker , type = cpld
+M345E : marker , type = cpld
+M346W : marker , type = cpld
+M346E : marker , type = cpld
+M347W : marker , type = cpld
+M347E : marker , type = cpld
+M348W : marker , type = cpld
+M348E : marker , type = cpld
+M349W : marker , type = cpld
+M349E : marker , type = cpld
+
+ IRSOLW1 : LINE = &
+         ( SOL110CP , MHVSIP , SOL110CP , MHVSIP , SOL110CP , MHVSIP )
+ IRSOLW2 : LINE = ( SOL110D )
+
+ RINGW1 : LINE = ( Q351W , F111 , &
+ Q301W , F112 , &
+ Q302W , F125 , &
+ DSQ02W &
+, H203 , F114 , H204 , F115 , &
+ Q303W , M303W &
+ , F116 , H202 , &
+ DSQ04W , &
+ Q304W , M304W &
+ , &
+F102 , H202 , &
+ DSQ05W , &
+ Q305W , M305W &
+ , F102 , H202 , S406W , &
+ DSQ06W , &
+ Q306W , M306W &
+ , &
+F102 , H202 , F124 , Q307 , M307W &
+ , S407W , F156 , HSP8W , F118 , Q308 , M308W &
+ , &
+S408W , F157W , Q309 , M309W &
+ , S409W , F158 , Q310 , M310W &
+ , S410W , F159 , H201 &
+, F103 , Q311 , M311W &
+ , S411W , F159 , H201 , F103 , Q312 , M312W &
+ , S412W , F160 &
+, F104 , H201 , F103 , Q313 , M313W &
+ , S413W , F159 , H201 , F103 , Q314 , M314W &
+ &
+, S414W , F161 , F104 , H201 , F103 , Q315 , M315W &
+ , S415W , F159 , H201 &
+, F103 , Q316 , M316W &
+ , S416W , F159 , H201 , F103 , Q317 , M317W &
+ , S417W , F159 &
+, H201 , F103 , Q318 , M318W &
+ , S418W , F162 , Q319 , M319W &
+ , S419W , F159 , H201 &
+, F103 , Q320 , M320W &
+ , S420W , F159 , H201 , F103 , Q321 , M321W &
+ , S421W , F159 &
+, H201 , F103 , Q322 , M322W &
+ , S422W , F159 , H201 , F103 , Q323 , M323W &
+ , S423W &
+      , F163 , &
+PV23W , H201 , F103 , Q324 , M324W &
+ , S424W , F159 , H201 , F103 &
+, Q325 , M325W &
+ , S425W , F159 , H201 , F103 , Q326 , M326W &
+ , S426W , F164 , &
+ PB26W &
+, H201 , F103 , Q327 , M327W &
+ , S427W , F159 , H201 , F103 , Q328 , M328W &
+ , S428W &
+      , F164 , &
+PB28W , H201 , F103 , Q329 , M329W &
+ , S429W , F165 , F104 , H201 &
+, F103 , Q330 , M330W &
+ , S430W , F164 , F104 , H201 , F103 , Q331 , M331W &
+ , S431W &
+, F159 , H201 , F103 , Q332 , M332W &
+ , S432W , F164 , F104 , H201 , F103 &
+, Q333 , M333W &
+ , S433W , F166a)
+
+RINGW2 : LINE = ( IJS34W , F166b , Q334 , M334W &
+ , S434W , F167 , H201 , F103 , Q335 , M335W &
+ &
+      , S435W , F168 , H201 , F103 , &
+PH36W, Q336 , M336W &
+ , S436W , F169 , H201 &
+, F103 , Q337 , M337W &
+ , S437W , F159 , H201 , F103 , Q338 , M338W &
+ , S438W , F164 &
+, F104 , H201 , F103 , Q339 , M339W &
+ , S439W , F159 , H201 , F103 , Q340 , M340W &
+ &
+, S440W , F159 , H201 , F103 , Q341 , M341W &
+ , S441W , F159 , H201 , F103 &
+, Q342 , M342W &
+ , S442W , F159 , H201 , F103 , Q343 , M343W &
+ , S443W , F170 , H208 &
+, F151 , Q344 , M344W &
+ , S444W , F171 , HSP45W , F128 , Q345 , M345W &
+ , S445W , &
+F159 , H208 , F151 , Q346 , M346W &
+ , F153 , H206 , F145 , Q347 , M347W &
+ , F146A , &
+ SKQ47W , F146B &
+ , &
+      H207 , F107 , Q350 , F147 , H203 , F143A , &
+ VSP48W , F143B &
+, Q353 , F141 , Q348 , M348W &
+ , &
+       F148A , &
+ SKQ49W , F148B &
+, Q349 , M349W &
+ , F119 , Q354 , F140 )
+ 
+ IRSOLE1 : LINE = &
+      ( SOL110CP , MHVSIP , SOL110CP , MHVSIP , SOL110CP , MHVSIP )
+ IRSOLE2 : LINE = ( SOL110D )
+
+ RINGE1 : LINE = ( Q351E , F111 , &
+ Q301E , F112 , &
+ Q302E , F125 , &
+ DSQ02E &
+, H203 , F114 , H204 , F115 , &
+ Q303E , M303E &
+ , F116 , H202 , &
+ DSQ04E , &
+ Q304E , M304E &
+ , &
+F102 , H202 , &
+ DSQ05E , &
+ Q305E , M305E &
+ , F102 , H202 , S406E , &
+ DSQ06E , &
+ Q306E , M306E &
+ , &
+F102 , H202 , F124 , Q307 , M307E &
+ , S407E , F156 , HSP8E , F118 , Q308 , M308E &
+ , &
+S408E , F157E , Q309 , M309E &
+ , S409E , F158 , Q310 , M310E &
+ , S410E , F159 , H201 &
+, F103 , Q311 , M311E &
+ , S411E , F159 , H201 , F103 , Q312 , M312E &
+ , S412E , F160 &
+, F104 , H201 , F103 , Q313 , M313E &
+ , S413E , F159 , H201 , F103 , Q314 , M314E &
+ &
+, S414E , F161 , F104 , H201 , F103 , Q315 , M315E &
+ , S415E , F159 , H201 &
+, F103 , Q316 , M316E &
+ , S416E , F159 , H201 , F103 , Q317 , M317E &
+ , S417E , F159 &
+, H201 , F103 , Q318 , M318E &
+ , S418E , F162 , Q319 , M319E &
+ , S419E , F159 , H201 &
+, F103 , Q320 , M320E &
+ , S420E , F159 , H201 , F103 , Q321 , M321E &
+ , S421E , F159 &
+, H201 , F103 , Q322 , M322E &
+ , S422E , F159 , H201 , F103 , Q323 , M323E &
+ , S423E &
+      , F163 , &
+FSBHV23E , H201 , F103 , Q324 , M324E &
+ , S424E , F159 , H201 , F103 &
+, Q325 , M325E &
+ , S425E , F159 , H201 , F103 , Q326 , M326E &
+ , S426E , F164 , &
+ PB26E &
+, H201 , F103 , Q327 , M327E &
+ , S427E , F159 , H201 , F103 , Q328 , M328E &
+ , S428E &
+      , F164 , &
+PB28E , H201 , F103 , Q329 , M329E &
+ , S429E , F165 , F104 , H201 &
+, F103 , Q330 , M330E &
+ , S430E , F164 , F104 , H201 , F103 , Q331 , M331E &
+ , S431E &
+, F159 , H201 , F103 , Q332 , M332E &
+ , S432E , F164 , F104 , H201 , F103 &
+, Q333 , M333E &
+ , S433E , F166a )
+
+RINGE2 : LINE = ( IJS34E , F166b , Q334 , M334E &
+ , S434E , F167 , H201 , F103 , Q335 , M335E &
+ &
+      , S435E , F168 , H201 , F103 , &
+PH36E , Q336 , M336E &
+ , S436E , F169 , H201 &
+, F103 , Q337 , M337E &
+ , S437E , F159 , H201 , F103 , Q338 , M338E &
+ , S438E , F164 &
+, F104 , H201 , F103 , Q339 , M339E &
+ , S439E , F159 , H201 , F103 , Q340 , M340E &
+ &
+, S440E , F159 , H201 , F103 , Q341 , M341E &
+ , S441E , F159 , H201 , F103 &
+, Q342 , M342E &
+ , S442E , F159 , H201 , F103 , Q343 , M343E &
+ , S443E , F170 , H208 &
+, F151 , Q344 , M344E &
+ , S444E , F171 , HSP45E , F128 , Q345 , M345E &
+ , S445E , &
+F159 , H208 , F151 , Q346 , M346E &
+ , F153 , H206 , F145 , Q347 , M347E &
+ , F146A , &
+ SKQ47E , F146B &
+ , &
+      H207 , F107 , Q350 , F147 , H203 , F143A , &
+ VSP48E , F143B &
+, Q353 , F141 , Q348 , M348E &
+ , &
+       F148A , &
+ SKQ49E , F148B &
+, Q349 , M349E &
+ , F119 , Q354 , F140 )
+ 
+  RING : LINE = ( msip , IRSOLW1 , MSBPMW0 , IRSOLW2 , &
+                 RINGW1 , RINGW2 , &
+                 mnip , &
+                -RINGE2 , -RINGE1 , &
+                -IRSOLE2, -MSBPME0 , -IRSOLE1 )
+
+  CWRING : LINE = ( msip , IRSOLW1 , MSBPMW0 , IRSOLW2 , &
+                 RINGW1 , RINGW2 , &
+                 mnip , &
+                -RINGE2 , -RINGE1 , &
+                -IRSOLE2, -MSBPME0 , -IRSOLE1 )
+
+  CCWRING : LINE = ( msip , IRSOLE1 , MSBPME0 , IRSOLE2 , &
+                     RINGE1 , RINGE2 , &
+                     mnip , &
+                     -RINGW2 , -RINGW1 , &
+                     -IRSOLW2 , -MSBPMW0 , -IRSOLW1 )
+
+  POSINJ : LINE = ( RINGW2 , mnip , &
+                -RINGE2 , -RINGE1 , &
+                -IRSOLE2, -MSBPME0 , -IRSOLE1 , &
+                 msip , IRSOLW1 , MSBPMW0 , IRSOLW2 , &
+                 RINGW1 )
+
+  USE , POSINJ
+ 
+ twiss !, print=elements
+ makethin !, print=elements 
+
+ analysis , particle = electron , energy = 5.289 , &
+   xtyp=1.e-5 , pxtyp = 1.e-6 , &
+   ytyp=1.e-5 , pytyp=1.e-6 , dptyp=1.e-5 
+
+ tunethin , mux = 10.77 , muy = 9.77 , & 
+   famf = xtun[b1] , famd = ytun[b1] , & 
+   numtries = 5 , tolerance = .01 , stepsize = .0001 
+
+ analysis , particle = electron , energy = 5.289 , &
+   xtyp=1.e-5 , pxtyp = 1.e-6 , &
+   ytyp=1.e-5 , pytyp=1.e-6 , dptyp=1.e-5
+
+ ! stop 
+
+ chromfit , chromx = 0.0 , chromy = 0.0 , &
+   famf = xchr[b2] , famd = ychr[b2] , &
+   numtries = 3 , tolerance = .1 , stepsize = .0001 
+
+ analysis , particle = electron , energy = 5.289 , &
+   xtyp=1.e-5 , pxtyp = 1.e-6 , &
+   ytyp=1.e-5 , pytyp=1.e-6 , dptyp=1.e-5 
+
+ decouplo , numtries = 10 , badness = 0.1 
+
+ analysis , particle = electron , energy = 5.289 , &
+   xtyp=1.e-5 , pxtyp = 1.e-6 , &
+   ytyp=1.e-5 , pytyp=1.e-6 , dptyp=1.e-5 
+
+ tunethin , mux = 10.76 , muy = 9.78 , & 
+   famf = xtun[b1] , famd = ytun[b1] , & 
+   numtries = 5 , tolerance = .0001 , stepsize = .0001 
+
+ analysis , particle = electron , energy = 5.289 , &
+   xtyp=1.e-5 , pxtyp = 1.e-6 , &
+   ytyp=1.e-5 , pytyp=1.e-6 , dptyp=1.e-5 , &
+   print, tape 
+
+writefile
+stop
+
+! modify, PBH26W, BZEROL = 1.0, SYSTEMATIC = 1.0, SIGB0 =  0.00058
+! modify, PBH28W, BZEROL = 1.0, SYSTEMATIC = 1.0, SIGB0 =  0.0001
+! modify, PBH36W, BZEROL = 1.0, SYSTEMATIC = 1.0, SIGB0 = -0.00075
+
+modify, PBH26W, BZEROL = 1.0, SYSTEMATIC = 1.0, SIGB0 = -0.00106
+modify, PBH28W, BZEROL = 1.0, SYSTEMATIC = 1.0, SIGB0 = -0.0002
+modify, PBH36W, BZEROL = 1.0, SYSTEMATIC = 1.0, SIGB0 =  0.0015
+
+ analysis , particle = electron , energy = 5.289 , &
+   xtyp=1.e-5 , pxtyp = 1.e-6 , &
+   ytyp=1.e-5 , pytyp=1.e-6 , dptyp=1.e-5 , tape
+
+! beta = 38.36
+! alpha = -2.895
+! px = -(alpha/beta)*x = 0.0755*x
+
+ track, energy = 5.29, particle=electron , print1st
+  start, x=-0.01, px=-0.001, y=0.0, py=0.0, dp=0.0
+ run, turns=1
+
+modify, PBH26W, BZEROL = 1.0, SYSTEMATIC = -0.1, SIGB0 = -0.00106
+modify, PBH28W, BZEROL = 1.0, SYSTEMATIC = -0.1, SIGB0 = -0.0002
+modify, PBH36W, BZEROL = 1.0, SYSTEMATIC = -0.1, SIGB0 =  0.0015
+
+ continue, turns=1
+
+modify, PBH26W, BZEROL = 1.0, SYSTEMATIC = -0.6, SIGB0 = -0.00106
+modify, PBH28W, BZEROL = 1.0, SYSTEMATIC = -0.6, SIGB0 = -0.0002
+modify, PBH36W, BZEROL = 1.0, SYSTEMATIC = -0.6, SIGB0 =  0.0015
+
+ continue, turns=1
+
+modify, PBH26W, BZEROL = 1.0, SYSTEMATIC = -0.3, SIGB0 = -0.00106
+modify, PBH28W, BZEROL = 1.0, SYSTEMATIC = -0.3, SIGB0 = -0.0002
+modify, PBH36W, BZEROL = 1.0, SYSTEMATIC = -0.3, SIGB0 =  0.0015
+
+ continue, turns=128
+
+writefile , slow
+
+
+
+
+
+
+
+
+stop
+
+! beta = 38.36
+! alpha = -2.895
+! px = -(alpha/beta)*x = 0.0755*x
+
+ trackclo, energy = 5.29, particle=electron , print1st
+  start, x=-0.0024, px=-0.000181, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0048, px=-0.000362, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0072, px=-0.0000543, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0096, px=-0.000724, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0120, px=-0.000905, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0144, px=-0.001086, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0168, px=-0.001267, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0192, px=-0.001448, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0216, px=-0.001629, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0240, px=-0.001810, y=0.0, py=0.0, dp=0.0
+  start, x=-0.0264, px=-0.001991, y=0.0, py=0.0, dp=0.0
+ run, turns=512
+
+ stop 
+
+

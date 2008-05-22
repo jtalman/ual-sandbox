@@ -1,0 +1,137 @@
+    <HTML> 
+	<HEAD> 
+	    <TITLE>Class ALE::UI::Shell</TITLE> 
+<style type="text/css">
+<!--
+.TableHead_my {  background-color: #9999FF}
+-->
+</style>
+<link rel="stylesheet" href="../../css/PerlPackage.css">
+	</HEAD>
+
+	<BODY bgcolor="#FFFFFF">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#66CCFF">
+  <tr valign="middle" bgcolor="#CCCCFF"> 
+    <td><font size="+2">Class <a href="../package.html"> </a><a href="package-summary.html">ALE::UI</a>::RandomGenerator</font></td>
+  </tr>
+</table>
+<p> The RandomGenerator is an adapter to the TEAPOT Gaussian random generator. 
+</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Constructor 
+      Summary </font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="83%" valign="top"><b>new ALE::UI::RandomGenerator($iseed)</b><br>
+      <i>Creates the instance of the ALE::UI::RandomGenerator. $iseed - an integer 
+      seed for initializing the generator.</i></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td colspan="2" valign="top" bgcolor="#CCCCFF"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Method 
+      Summary</font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top" height="29"> 
+      <div align="center"><font color="#0099FF">Returns</font></div>
+    </td>
+    <td width="91%" valign="top" height="29"> 
+      <div align="center"><font color="#0099ff">Methods</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> int</b></td>
+    <td width="91%" valign="top"> <b><a href="#getSeed">getSeed</a>() </b><br>
+      <i>Returns the initializing integer seed.</i> </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> void</b></td>
+    <td width="91%" valign="top"> <b><a href="#setSeed">setSeed</a>($iseed) </b><br>
+      <i>Sets up the generator with the new initializing integer seed.</i> </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> double</b></td>
+    <td width="91%" valign="top"> <b><a href="#getran">getran</a>($cut) </b><br>
+      <i>Returns a normally distributed random number with zero mean and unit 
+      variance.</i></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"> <b><font size="+1" face="Arial, Helvetica, sans-serif">Method Detail </font></b></td>
+  </tr>
+</table>
+<p><b>int getSeed<a name="getSeed"></a>()</b></p>
+<p> Returns the initializing integer seed.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">returns</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$iseed</td>
+    <td width="83%" valign="top">the initializing integer seed.</td>
+  </tr>
+</table>
+<p><b>Example </b>: $iseed = $generator-&gt;getSeed();</p>
+<hr>
+<p><b>void setSeed<a name="setSeed"></a>($iseed)</b></p>
+<p> Sets up the generator with the new initializing integer seed.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$iseed</td>
+    <td width="83%" valign="top">the initializing integer seed.</td>
+  </tr>
+</table>
+<p><b>Example </b>: setSeed(97357) </p>
+<hr>
+<p><b>double getran<a name="getran"></a>($cut)</b></p>
+<p> Returns a normally distributed random number with zero mean and unit variance.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$cut</td>
+    <td width="83%" valign="top">the cutoff parameter for a Gaussian distribution.</td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">returns</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$ran_number</td>
+    <td width="83%" valign="top">the next pseudo-random number.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><b>Example </b>: $ran_number = $generator-&gt;getran(3);</p>
+<hr>
+<p>&nbsp; </p>
+</BODY>
+
+    </HTML>

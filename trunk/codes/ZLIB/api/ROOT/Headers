@@ -1,0 +1,6 @@
+HEADERS  =\
+	$(UAL_ZLIB)/include/ZLIB/Tps/Space.hh \
+	$(UAL_ZLIB)/include/ZLIB/Tps/Vector.hh \
+	$(UAL_ZLIB)/include/ZLIB/Tps/Tps.hh \
+	$(UAL_ZLIB)/include/ZLIB/Tps/VTps.hh
+# $(UAL_ZLIB)/include/ZLIB/Tps/GlobalTable.h 

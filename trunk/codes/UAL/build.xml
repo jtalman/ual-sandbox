@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="ual">
+
+    <target name="init">
+        <property environment="env"/>
+        <property name="javahome" value="${env.JAVA_HOME}"/>
+        <property name="ualhome" value="${env.UAL}"/>
+        <property name="buildroot" value="lib/java"/>
+        <property name="docroot" value="doc/src/javadoc"/>
+        <mkdir dir="${buildroot}"/>
+        <mkdir dir="${docroot}"/>
+    </target>
+
+    <target name="compile" depends="init" >
+        <mkdir dir="${buildroot}/compile"/>
+        <javac debug="true" deprecation="true" destdir="${buildroot}/compile" srcdir="src/java">
+            <classpath>
+                <pathelement location="${buildroot}/compile"/>
+                <pathelement location="${ualhome}/tools/java"/>     
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jar" depends="init,compile" >
+        <jar basedir="${buildroot}/compile" compress="true" jarfile="${buildroot}/ualcore.jar">
+        </jar>
+    </target>
+
+    <target name="all" depends="init,jar" description="Build everything." >
+        <echo message="Application built. "/>
+    </target>
+
+
+    <target name="javadoc" depends="init" description="Javadoc for my API." >
+        <javadoc destdir="${docroot}" packagenames="ual.*" 
+		author="false" version="false">
+            <sourcepath> 
+                <pathelement location="src/java"/> 
+            </sourcepath>
+        </javadoc>
+    </target>
+    <target name="test" depends="init, compile, jar" description="Testing." >
+        <java classname="ual.gui.Main" failonerror="true" fork="true" jvm="${javahome}/jre/bin/java">
+            <classpath>
+                <pathelement location="${ualhome}/codes/UAL/lib/java/ualcore.jar"/>  
+            </classpath>
+        </java>
+    </target>
+    <target name="clean" depends="init" description="Clean all build products." >
+        <delete dir="${buildroot}"/> 
+        <delete dir="${docroot}"/> 
+    </target>
+
+</project>

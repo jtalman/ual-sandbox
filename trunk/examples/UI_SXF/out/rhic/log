@@ -1,0 +1,12 @@
+
+analysis
+
+  closed orbit     1039728615
+
+  twiss parameters 1039728615
+
+  end            . 1039728617
+
+make map 
+start = 1039728617
+end   = 1039728618

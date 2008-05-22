@@ -1,0 +1,4 @@
+OBJS +=	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/FermiScatter.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/BetheBlochSlower.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/NuclearInteraction.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/CollimatorTracker.o 

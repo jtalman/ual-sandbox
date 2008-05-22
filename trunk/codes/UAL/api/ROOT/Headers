@@ -1,0 +1,12 @@
+HEADERS += \
+	$(UAL_CORE)/include/UAL/SMF/AcceleratorNode.hh \
+	$(UAL_CORE)/include/UAL/SMF/AcceleratorNodeFinder.hh \
+	$(UAL_CORE)/include/UAL/APF/PropagatorNode.hh \
+	$(UAL_CORE)/include/UAL/APF/PropagatorNodePtr.hh \
+	$(UAL_CORE)/include/UAL/APF/PropagatorFactory.hh \
+	$(UAL_CORE)/include/UAL/APF/PropagatorSequence.hh \
+	$(UAL_CORE)/include/UAL/APF/PropagatorComponent.hh \
+	$(UAL_CORE)/include/UAL/APF/AcceleratorPropagator.hh \
+	$(UAL_CORE)/include/UAL/APDF/APDF_Builder.hh
+
+

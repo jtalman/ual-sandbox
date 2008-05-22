@@ -1,0 +1,11 @@
+ECHOSXFHEADERS+= \
+	$(SXFDIR)/Def.hh               	            \
+	$(ECHOSXFDIR)/EchoElemBucket.hh             \
+	$(ECHOSXFDIR)/EchoElemError.hh              \
+	$(ECHOSXFDIR)/EchoElemBucketRegistry.hh     \
+	$(ECHOSXFDIR)/EchoElement.hh                \
+	$(ECHOSXFDIR)/EchoError.hh                  \
+	$(ECHOSXFDIR)/EchoSequence.hh               \
+	$(ECHOSXFDIR)/EchoNodeRegistry.hh           \
+	$(ECHOSXFDIR)/EchoAcceleratorReader.hh      \
+	$(ECHOSXFDIR)/EchoParser.hh        

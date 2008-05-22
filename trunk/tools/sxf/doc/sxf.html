@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; SunOS 5.5.1 sun4u) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+
+<H1>
+Package&nbsp; SXF</H1>
+
+<HR WIDTH="100%">
+<BR>The&nbsp; package SXF implements the front end for&nbsp; the Standard
+eXchange Format .&nbsp; It is based on the lex/yacc tools and provides
+the framework for producing output in a target language or data structures.&nbsp;
+The extensibility has been the main criterion of the SXF design and its
+implementation approach.&nbsp; The SXF can be configured in several
+ways to support different project requirements: introducing new element
+types (e.g.&nbsp; a RHIC&nbsp; helical dipole or a CESR wiggler ),&nbsp;
+specializing bucket of element attributes (e.g. entry or exit thin multipoles
+vs. COSY INFINITY fringe fields), and including new element buckets common&nbsp;
+for all element types.&nbsp; The configuration mechanism&nbsp; is built
+on&nbsp; several&nbsp; extensible registries, such as NodeRegistry
+and ElemBucketRegistry, and the effective hash mapping technique, such
+as a perfect hash function generator (GPERF).
+<UL>
+<LI>
+<A HREF="files/sxf.ll.txt">sxf.ll&nbsp; </A>-&nbsp; FLEX&nbsp; lexical
+patterns.</LI>
+
+<LI>
+<A HREF="files/sxf.yy.txt">sxf.yy</A> - YACC grammar .</LI>
+
+<LI>
+<A HREF="files/elements.gperf.txt">element.gperf</A> - GPERF keyfile for
+the NodeRegistry.</LI>
+</UL>
+
+<HR WIDTH="100%">
+<H2>
+Diagrams</H2>
+
+<UL>
+<LI>
+<A HREF="diagrams/sxf_model.html">Object Model</A></LI>
+
+<LI>
+<A HREF="diagrams/sxf_interaction.html">Interactions.</A></LI>
+</UL>
+&nbsp;
+<BR>
+<HR WIDTH="100%">
+<H2>
+Primary Classes</H2>
+
+<UL>
+<LI>
+<A HREF="classes/sxf/AcceleratorReader.hh.html">AcceleratorReader</A></LI>
+
+<LI>
+<A HREF="classes/sxf/AcceleratorNode.hh.html">AcceleratorNode</A></LI>
+
+<LI>
+<A HREF="classes/sxf/Element.hh.html">Element</A></LI>
+
+<LI>
+<A HREF="classes/sxf/ElemBucket.hh.html">ElemBucket</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemBucketHash.hh.html">ElemBucketHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/ElemBucketRegistry.hh.html">ElemBucketRegistry</A></LI>
+
+<LI>
+<A HREF="classes/sxf/NodeRegistry.hh.html">NodeRegistry</A></LI>
+
+<LI>
+<A HREF="classes/sxf/OStream.hh.html">OStream</A></LI>
+
+<LI>
+<A HREF="classes/sxf/Sequence.hh.html">Sequence</A></LI>
+
+<LI>
+<A HREF="classes/sxf/SequenceStack.hh.html">SequenceStack</A></LI>
+
+<LI>
+<A HREF="classes/sxf/SXF.hh.html">SXF</A></LI>
+</UL>
+
+<H2>
+Secondary Classes</H2>
+
+<UL>
+<LI>
+<A HREF="classes/sxf/hashes/ElemAlignHash.hh.html">ElemAlignHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemApertureHash.hh.html">ElemApertureHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemBeamBeamHash.hh.html">ElemBeamBeamHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemBendHash.hh.html">ElemBendHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemCollimatorHash.hh.html">ElemCollimatorHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemElSeparatorHash.hh.html">ElemElSeparatorHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemEmptyHash.hh.html">ElemEmptyHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemMultipoleHash.hh.html">ElemMultipoleHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemRfCavityHash.hh.html">ElemRfCavityHash</A></LI>
+
+<LI>
+<A HREF="classes/sxf/hashes/ElemSolenoidHash.hh.html">ElemSolenoidHash</A></LI>
+</UL>
+
+<HR WIDTH="100%">
+</BODY>
+</HTML>

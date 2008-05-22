@@ -1,0 +1,175 @@
+    <HTML> 
+	<HEAD> 
+	    <TITLE>Class ALE::UI::Shell</TITLE> 
+<style type="text/css">
+<!--
+.TableHead_my {  background-color: #9999FF}
+-->
+</style>
+<link rel="stylesheet" href="../../css/PerlPackage.css">
+	</HEAD>
+
+	<BODY bgcolor="#FFFFFF">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#66CCFF">
+  <tr valign="middle" bgcolor="#CCCCFF"> 
+    <td><font size="+2">Class <a href="../package.html"> </a><a href="package-summary.html">ALE::UI</a>::Bunch</font></td>
+  </tr>
+</table>
+<p> ALE::UI::Bunch is an adapter to PAC::Bunch container. </p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Constructor 
+      Summary </font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="83%" valign="top"><b>new ALE::UI::Bunch($size)</b><br>
+      <i>Creates the instance of the ALE::UI::Bunch. A variable $size is a total 
+      number of particles in the bunch.</i></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td colspan="2" valign="top" bgcolor="#CCCCFF"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Method 
+      Summary</font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="11%" valign="top" height="29"> 
+      <div align="center"><font color="#0099FF">Returns</font></div>
+    </td>
+    <td width="89%" valign="top" height="29"> 
+      <div align="center"><font color="#0099ff">Methods</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="11%" valign="top"> <b> void</b></td>
+    <td width="89%" valign="top"> <b><a href="#setBeamAttributes">setBeamAttributes</a>($energy,$mass) 
+      </b><br>
+      <i>Defines mass and energy of the bunch particles.</i></td>
+  </tr>
+  <tr> 
+    <td width="11%" valign="top"> <b> void</b></td>
+    <td width="89%" valign="top"> <b><a href="#setPosition">setPosition</a>( $i, 
+      $x, $px, $y, $py, $ct, $dp) </b><br>
+      <i>Defines 6D coordinates of the i-th particle.</i></td>
+  </tr>
+  <tr> 
+    <td width="11%" valign="top"> <b> @position</b></td>
+    <td width="89%" valign="top"> <b><a href="#getPosition">getPosition</a>($i) 
+      </b><br>
+      <i>Returns an array of 6D coordinates of the i-th particle.</i> </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"> <b><font size="+1" face="Arial, Helvetica, sans-serif">Method Detail </font></b></td>
+  </tr>
+</table>
+<p><b>void setBeamAttributes<a name="setBeamAttributes"></a>($energy,$mass)</b></p>
+<p> Defines mass and energy of the bunch particles.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$mass</td>
+    <td width="83%" valign="top">particle mass in GeV.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$energy</td>
+    <td width="83%" valign="top">beam energy in GeV.</td>
+  </tr>
+</table>
+<p><b>Example </b>: setBeamAttributes(1.93827231, 0.93827231)</p>
+<hr>
+<p><b>void setPosition<a name="setPosition"></a>($i, $x, $px, $y, $py, $ct, $dp)</b></p>
+<p> Defines 6D coordinates of the i-th particle.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$i</td>
+    <td width="83%" valign="top">index of particle in this bunch.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$x</td>
+    <td width="83%" valign="top">horizontal position of the particle, referred 
+      to the ideal orbit [m].</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$px</td>
+    <td width="83%" valign="top">horizontal canonical momentum of the particle 
+      referred to the ideal orbit, divided by the reference momentum.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$y</td>
+    <td width="83%" valign="top"> vertical position of the particle, referred 
+      to the ideal orbit [m].</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$py</td>
+    <td width="83%" valign="top">vertical canonical momentum of the particle referred 
+      to the ideal orbit, divided by the reference momentum..</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$ct</td>
+    <td width="83%" valign="top">negative time difference with respect to the 
+      reference particle times the velocity of time [m].</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$dp</td>
+    <td width="83%" valign="top">momentum difference, divided by the reference 
+      momentum.</td>
+  </tr>
+</table>
+<p><b>Example </b>: setPosition($i, 1.e-2*$i, 0.0, 1.e-2*$i, 0.0, 0.0, 1.e-3*$i)</p>
+<hr>
+<p><b>getPosition<a name="getPosition"></a>($i)</b></p>
+<p> Returns the array of particle coordinates. </p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$i</td>
+    <td width="83%" valign="top">index of particle in the bunch.</td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">returns</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">@position</td>
+    <td width="83%" valign="top">array of particle coordinates, ($x, $px, $y , 
+      $py, $ct, $dp). See the <a href="#setPosition">setPosition</a> method for 
+      explanations.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><b>Example </b>: my ($x, $px, $y , $py, $ct, $dp) = $bunch->getPosition($i) 
+</p>
+<hr>
+<p>&nbsp; </p>
+</BODY>
+
+    </HTML>

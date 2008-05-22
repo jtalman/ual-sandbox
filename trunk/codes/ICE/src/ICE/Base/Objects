@@ -1,0 +1,2 @@
+OBJS += $(UAL_ICE)/lib/$(UAL_ARCH)/obj/BasicPropagator.o
+

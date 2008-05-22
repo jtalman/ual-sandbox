@@ -1,0 +1,20 @@
+Description:
+------------------------------------------
+
+Starter example UI with the SXF file (replacing the MAD input file)
+
+Usage:
+------------------------------------------
+
+perl rhic.pl
+
+Structure:
+------------------------------------------
+
+rhic.pl     - Perl script 
+./data/blue - dAu-top-swn-no_sexts.sxf - RHIC SXF file with a linear lattice
+./out/rhic  - directory with output files 
+
+
+
+

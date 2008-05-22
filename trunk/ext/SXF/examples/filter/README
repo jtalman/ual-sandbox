@@ -1,0 +1,11 @@
+
+This is the simple SXF filter based on the SMF model and 
+the regular expression mechanism. It reads the SXF input 
+file (lhc.v5.0.sxf), initializes the SMF, executes query 
+on the SMF data structures, and writes data into the output 
+file (lhc.v5.0.sxf.query).
+
+Usage:  
+
+>perl filter.pl
+

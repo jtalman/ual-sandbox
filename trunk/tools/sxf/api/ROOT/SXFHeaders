@@ -1,0 +1,23 @@
+SXFHEADERS+= \
+	$(SXFDIR)/Def.hh                 \
+	$(SXFDIR)/OStream.hh             \
+	$(SXFDIR)/ElemBucket.hh          \
+	$(SXFDIR)/ElemBucketRegistry.hh  \
+	$(SXFDIR)/AcceleratorNode.hh     \
+	$(SXFDIR)/Element.hh             \
+	$(SXFDIR)/Sequence.hh            \
+	$(SXFDIR)/SequenceStack.hh       \
+	$(SXFDIR)/NodeRegistry.hh        \
+	$(SXFDIR)/AcceleratorReader.hh   \
+	$(SXFDIR)/y.tab.h               \
+	$(SXFDIR)/hashes/ElemAlignHash.hh       \
+	$(SXFDIR)/hashes/ElemApertureHash.hh    \
+	$(SXFDIR)/hashes/ElemBeamBeamHash.hh    \
+	$(SXFDIR)/hashes/ElemBendHash.hh        \
+	$(SXFDIR)/hashes/ElemElSeparatorHash.hh \
+	$(SXFDIR)/hashes/ElemMultipoleHash.hh   \
+	$(SXFDIR)/hashes/ElemRfCavityHash.hh    \
+	$(SXFDIR)/hashes/ElemSolenoidHash.hh    \
+	$(SXFDIR)/hashes/ElemEmptyHash.hh       \
+	$(SXFDIR)/hashes/ElemCollimatorHash.hh  \
+	$(SXFDIR)/hashes/ElemBucketHash.hh      

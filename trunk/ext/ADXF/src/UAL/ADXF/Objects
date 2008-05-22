@@ -1,0 +1,52 @@
+OBJS = 	$(LDIR)/obj/Reader.o \
+	$(LDIR)/obj/BasicHandler.o \
+	$(LDIR)/obj/DocumentHandler.o \
+	$(LDIR)/obj/ADXFHandler.o \
+	$(LDIR)/obj/ConstantsHandler.o \
+	$(LDIR)/obj/ConstantHandler.o \
+	$(LDIR)/obj/ConstantManager.o \
+	$(LDIR)/obj/ElementHandler.o \
+	$(LDIR)/obj/ElementsHandler.o \
+	$(LDIR)/obj/handlers/MarkerHandler.o \
+	$(LDIR)/obj/handlers/DriftHandler.o \
+	$(LDIR)/obj/handlers/SbendHandler.o \
+	$(LDIR)/obj/handlers/QuadrupoleHandler.o \
+	$(LDIR)/obj/handlers/SextupoleHandler.o \
+	$(LDIR)/obj/handlers/MonitorHandler.o \
+	$(LDIR)/obj/handlers/MultipoleHandler.o \
+	$(LDIR)/obj/handlers/InstrumentHandler.o \
+	$(LDIR)/obj/handlers/VmonitorHandler.o \
+	$(LDIR)/obj/handlers/HmonitorHandler.o \
+	$(LDIR)/obj/handlers/RcollimatorHandler.o \
+	$(LDIR)/obj/handlers/HkickerHandler.o \
+	$(LDIR)/obj/handlers/VkickerHandler.o \
+	$(LDIR)/obj/handlers/KickerHandler.o \
+	$(LDIR)/obj/handlers/SolenoidHandler.o \
+	$(LDIR)/obj/ElementSetHandler.o \
+	$(LDIR)/obj/ElementSetsHandler.o \
+	$(LDIR)/obj/handlers/MfieldHandler.o \
+	$(LDIR)/obj/SectorsHandler.o \
+	$(LDIR)/obj/SectorHandler.o \
+	$(LDIR)/obj/Writer.o \
+	$(LDIR)/obj/ElementWriter.o \
+	$(LDIR)/obj/ElementsWriter.o \
+	$(LDIR)/obj/elements/MarkerWriter.o \
+	$(LDIR)/obj/elements/DriftWriter.o \
+	$(LDIR)/obj/elements/SbendWriter.o \
+	$(LDIR)/obj/elements/QuadrupoleWriter.o \
+	$(LDIR)/obj/elements/SextupoleWriter.o \
+	$(LDIR)/obj/elements/MultipoleWriter.o \
+	$(LDIR)/obj/elements/HkickerWriter.o \
+	$(LDIR)/obj/elements/VkickerWriter.o \
+	$(LDIR)/obj/elements/KickerWriter.o \
+	$(LDIR)/obj/elements/HmonitorWriter.o \
+	$(LDIR)/obj/elements/VmonitorWriter.o \
+	$(LDIR)/obj/elements/MonitorWriter.o \
+	$(LDIR)/obj/elements/InstrumentWriter.o \
+	$(LDIR)/obj/elements/RfCavityWriter.o \
+	$(LDIR)/obj/elements/RcollimatorWriter.o \
+	$(LDIR)/obj/elements/SolenoidWriter.o \
+	$(LDIR)/obj/SectorsWriter.o \
+	$(LDIR)/obj/SectorWriter.o 
+
+	

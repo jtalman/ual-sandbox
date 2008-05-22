@@ -1,0 +1,8 @@
+OBJS += $(UAL_AIM)/lib/$(UAL_ARCH)/obj/BTFBasicDevice.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/BTFKicker.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/BTFSignal.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/BTFSpectrum.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/BTFBpmCollector.o \
+	$(UAL_AIM)/lib/$(UAL_ARCH)/obj/BTFBpm.o 
+	
+

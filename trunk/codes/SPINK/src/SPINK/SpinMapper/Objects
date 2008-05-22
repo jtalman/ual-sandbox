@@ -1,0 +1,4 @@
+OBJS += $(UAL_SPINK)/lib/$(UAL_ARCH)/obj/SpinPropagator.o \
+	$(UAL_SPINK)/lib/$(UAL_ARCH)/obj/SpinMapper.o \
+	$(UAL_SPINK)/lib/$(UAL_ARCH)/obj/DriftSpinMapper.o \
+	$(UAL_SPINK)/lib/$(UAL_ARCH)/obj/SpinMapperFactory.o

@@ -1,0 +1,17 @@
+HEADERS+=$(UAL_ACCSIM)/src/ACCSIM/Base/Def.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/BasicPropagator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/GaussianGenerator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/OrbitGaussianGenerator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/OrbitUniformGenerator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/OrbitUniformGenerator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/RandomNumberGenerator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/TeapotGenerator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Base/UniformGenerator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Collimator/BetheBlochSlower.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Collimator/CollimatorTracker.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Collimator/FermiScatter.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Collimator/IMaterialPropagator.hh \
+	$(UAL_ACCSIM)/src/ACCSIM/Collimator/NuclearInteraction.hh 
+
+#	$(UAL_ACCSIM)/src/ACCSIM/Bunch/BunchAnalyzer.hh \
+#	$(UAL_ACCSIM)/src/ACCSIM/Bunch/BunchGenerator.hh \

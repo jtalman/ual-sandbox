@@ -1,0 +1,41 @@
+This directory contains files so show
+
+   1) What a ROOT version of a UAL script may look like. (demo.cc)
+      The shell used for this demo is is ual/ext/ROOT and is made 
+      automatically if ROOT is properly installed.
+
+  To run in ROOT do:
+ root [0] gSystem->Load("$(UAL_EXTRA)/ROOT/lib/linux/libUalRoot.so")      --- load UalRoot library. 
+         **** Above step is only needed if above line
+	 **** In NOT in rootlogon.C file
+ root [1] .L demo.cc           --- load scripts.  These are interperted.
+ root [2] run()                --- runs the script.
+ <hopefully good output here :-)
+
+  This procedure is identical for aperture_demo.cc
+
+
+  Any ROOT script is essentially a  C++ program.
+  To make a UAL C++ program into a ROOT script.
+  1) Load all of the libraries (can be done in the script if needed) as shown above.
+  2) rename main to something else.
+  3) remove all includes EXCEPT for STL related includes.
+  4) BE CAREFUL WITH STL and templates in general.  CINT does not interpret templates
+     very well, this includes STL.  vector's and lists are the most well supported.  STL and
+     template use is fine in compiled code, but this is interpreted!
+  5) the std namespace is in global scope in CINT.
+  6) multiple functions can be contained in a single script file.
+  7) in the ROOT Users Guide theses are called MACROS.
+
+
+ When using classes in ROOT the following should be noted:
+   0) Class needs to be compiled with Dictionary (see makefile).
+   1) once the Class.so library is loaded, the #include<Class.hh> statement is not needed.
+      It is possible to have ROOT automatically load these classes when it starts. (may include example later).
+   2) If the class is a template class, only the templates that are defined in the LinkDef
+      file are availible in the CINT interpreter. (may include example later)
+   3) Otherwise, inside of CINT, the class behaves like normal.
+
+   
+   Additional information including the comprehensive User Guide and  a variety of featuring
+   examples can be downloaded from the ROOT site: http://root.cern.ch.

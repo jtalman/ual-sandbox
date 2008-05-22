@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation> ADXF Model </xs:documentation>
+    </xs:annotation>
+    <xs:include schemaLocation="adxf_simple_types.xsd"/>
+    <xs:include schemaLocation="adxf_abstract_types.xsd"/>
+    <!-- =========================================================== -->
+    <!--  I.Constants                                                -->
+    <!-- =========================================================== -->
+    <xs:element name="constants">
+        <xs:annotation>
+            <xs:documentation> The first part of ADXF description: collection of constants and
+                arrays. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="constant" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="array" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="constant">
+        <xs:annotation>
+            <xs:documentation> A named constant whose value can be defined by an expression.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:Name" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="optional" default="0.0"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="array">
+        <xs:annotation>
+            <xs:documentation> A named constant whose value is an array of doubles and constant
+                names. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:Name" use="required"/>
+            <xs:attribute name="value" type="attArrayType" use="optional" default=""/>
+        </xs:complexType>
+    </xs:element>
+    <!-- =========================================================== -->
+    <!--  II.Elements                                                -->
+    <!-- =========================================================== -->
+    <xs:element name="elements">
+        <xs:annotation>
+            <xs:documentation> The second part of ADXF description: collection of elements.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="element" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="elementType">
+        <xs:annotation>
+            <xs:documentation> Element type </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="componentType">
+                <xs:sequence minOccurs="0">
+                    <xs:element ref="attributeSet" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="type" type="xs:Name" use="optional"/>
+                <xs:attribute name="l" type="attValueType" default="0.0"/>
+                <xs:attribute name="design" type="xs:Name"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="element" substitutionGroup="component" type="elementType">
+        <xs:annotation>
+            <xs:documentation> A leaf component in the accelerator tree organization. There are many
+                different types of accelerator elements (e.g. sbend, quadrupole,etc.), but all of
+                them have the same structure: name, length, and open collection of attribute sets.
+                Elements may have a reference to the design element. </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <!-- =========================================================== -->
+    <!--  III. Sectors, Frames, Survey coordinates and misalignments -->
+    <!-- =========================================================== -->
+    <xs:element name="sectors">
+        <xs:annotation>
+            <xs:documentation> The third part of ADXF description: collection of sectors.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sector" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sector" substitutionGroup="component">
+        <xs:annotation>
+            <xs:documentation> A named sequence of frames containing installed accelerator
+                components. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="componentType">
+                    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="frame"/>
+                    </xs:sequence>
+		    <xs:attribute name="line" type="lineEntries" use="optional" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="frame">
+        <xs:annotation>
+            <xs:documentation> A layout of installed component (which represents one or more
+                elements). It contains a relative position (londitudinal position at or Survey
+                coordinates), misalignments, and a reference to an accelerator component.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="survey" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="offset" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="rotation" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="at" type="attValueType" use="optional"/>
+            <xs:attribute name="ref" type="xs:Name"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="survey">
+        <xs:annotation>
+            <xs:documentation> Global element position coordinates (empty for now).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="offset">
+        <xs:annotation>
+            <xs:documentation> A set of translation misalignments. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="x" type="attValueType" use="optional" default="0.0"/>
+            <xs:attribute name="y" type="attValueType" use="optional" default="0.0"/>
+            <xs:attribute name="s" type="attValueType" use="optional" default="0.0"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rotation">
+        <xs:annotation>
+            <xs:documentation> rotational misalignments. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="phi" type="attValueType" use="optional" default="0.0"/>
+            <xs:attribute name="theta" type="attValueType" use="optional" default="0.0"/>
+            <xs:attribute name="psi" type="attValueType" use="optional" default="0.0"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,2 @@
+OBJS +=	$(UAL_GUI)/COIN3D/lib/$(UAL_ARCH)/obj/BunchViewer.o \
+	$(UAL_GUI)/COIN3D/lib/$(UAL_ARCH)/obj/moc_BunchViewer.o 

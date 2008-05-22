@@ -1,0 +1,292 @@
+
+// R56q is adjusted to match Braun, Corsini et al. PRST-AB 3, 124402 (2000),
+//         R56q = k_CTFII * theta^2, where k_CTFII = 361 mm/rad^2
+// NOT from UAL lattice calculation
+
+// This file "CTFII-2.madx" treats "BC" chicane "BC", as "sbends" 
+// with pole angles obtained from the original
+// CERN-provided mad file "~/LATTICES/INPUT-sif/mad/CTFII.madORIG",
+// but modified to convert from "rbends" (in the original) to "sbends".
+// The "SL" chicane is treated as drifts.
+// It is to be compared with "CTFII-1.madx" which treats the "BC" chicane
+// as "sbends".
+
+r56q := 8.0;
+kdr : kicker;
+ltiny := 0.001;
+
+// title, "ctf-II with new chicane"
+
+//****** Define constant drifts, angles ....
+deg2rad   := 0.01745329252;
+qcal     := 1.033;
+quadl    : quadrupole, l := 0.2235/4;
+quads    : quadrupole, l := 0.1115/4;
+
+drrft13x : drift, l := 0.04;
+
+// ***** Define triplet 13x
+k130       :=    7.141*qcal;
+k131       :=  -14.047*qcal;
+k132       :=    8.820*qcal;
+drq13x  : drift, l := 0.0745;
+q130        : quadrupole, l := 0.2235/4, k1 := k130;
+q131        : quadrupole, l := 0.2235/4, k1 := k131;
+q132        : quadrupole, l := 0.2235/4, k1 := k132;
+t13x     : line=(q130,q130,q130,q130,drq13x, 
+                 q131,q131,q131,q131, kdr, drq13x, 
+                 q132,q132,q132,q132);
+
+// drt1 : drift, l := 1.7727/20
+drt120q : drift, l := 1.7727/4;
+drt120 : line=(kdr, drt120q, drt120q, kdr, drt120q, kdr, drt120q, kdr);
+
+// ***** Define triplet 14x
+k140       :=    2.714*qcal;
+k141       :=   -2.357*qcal;
+drq14x  : drift, l := 0.07525;
+q140           : quadrupole, l := 0.1115/4, k1 := k140;
+q141           : quadrupole, l := 0.2235/4, k1 := k141;
+q142           : quadrupole, l := 0.1115/4, k1 := k140;
+t14x    : line=(q140,q140,q140,q140,drq14x, 
+                q141,q141,q141, kdr, q141,drq14x, 
+                q142,q142,q142,q142);
+
+drt14xbc : drift, l := 0.1035;
+
+//****** Define the bunch compressor (bc)
+pbc   := 4.273*deg2rad*sqrt(r56q/8.03) ; //****** deflection angle of bc
+
+lbbc1 := 0.223           ; //* eff. magn. length of 1st comp. dipole
+lbbc2 := 0.1865          ; //* eff. magn. length of 2nd comp. dipole
+distb1b2 := 0.572           ; //* dist. betw. polefaces of dip1 dip2
+// db1b2    := distb1b2/cos(pbc) !** pathl. betw. polef. of dip1&2
+
+// value, pbc
+// value, lbbc1
+// value, lbbc2
+
+// Value of expression "PBC" is: 0.074577918938
+// Value of expression "LBBC1" is: 0.223
+// Value of expression "LBBC2" is: 0.1865
+
+// value, cos(pbc/2)
+// value, cos(pbc)
+// value, db1b2
+// value, distb1b2/cos(pbc)
+
+db1b2    := distb1b2/0.997220355696 ; //** pathl. betw. polef. of dip1&2
+
+// bcbend1  : rbend, l := lbbc1/cos(pbc/2), angle := pbc,  e1 := -pbc/2, e2 := pbc/2
+// bcbend2  : rbend, l := lbbc2/cos(pbc/2), angle := -pbc, e1 := -pbc/2, e2 := pbc/2
+// bcbend3  : rbend, l := lbbc2/cos(pbc/2), angle := -pbc, e1 := pbc/2,  e2 := -pbc/2
+// bcbend4  : rbend, l := lbbc1/cos(pbc/2), angle := pbc,  e1 := pbc/2,  e2 := -pbc/2
+
+// In the following pole face angle formulas the first term is taken from the original file
+// (the above four lines) and the second term converts from "rbend" to "sbend".
+// Note that these pole-face angles depend on the chicane angle setting 
+// (i.e. on "r56q" via "pbc"). This is because the orbit entry and exit angles depend on
+// the chicane powering. The entry angle to the first magnet should NOT depend on
+// chicane powering. The vanishing "e1" entry for "bcbend1hi" confirms this. In other
+// words, the orthogonal entry to the first magnet is consistent with the first half
+// of the magnet being treated as a pure "sbend".
+// The sign of pole-face angles for "reverse-bend" dipoles (i.e. the second and third ones)
+// is fixed by the requirement that, when they are treated as sector bends, since the
+// second and third magnets are actually a single magnet, the
+// end of the second magnet is flush with the beginning of the third one, so the pole face
+// focusing at that interface (bcbend2ho/bcbend3hi) has to vanish.
+
+bcbend1hi : sbend, l := lbbc1/0.999304847305/2, angle := pbc/2, e1 := -pbc/2 + pbc/2;
+bcbend1ho : sbend, l := lbbc1/0.999304847305/2, angle := pbc/2, e2 := pbc/2 + pbc/2;
+
+bcbend2hi : sbend, l := lbbc2/0.999304847305/2, angle := -pbc/2, e1 := -pbc/2 - pbc/2;
+bcbend2ho : sbend, l := lbbc2/0.999304847305/2, angle := -pbc/2, e2 := pbc/2 - pbc/2;
+
+bcbend3hi : sbend, l := lbbc2/0.999304847305/2, angle := -pbc/2, e1 := pbc/2 - pbc/2;
+bcbend3ho : sbend, l := lbbc2/0.999304847305/2, angle := -pbc/2, e2 := -pbc/2 - pbc/2;
+
+bcbend4hi : sbend, l := lbbc1/0.999304847305/2, angle := pbc/2, e1 := pbc/2 + pbc/2;
+bcbend4ho : sbend, l := lbbc1/0.999304847305/2, angle := pbc/2, e2 := -pbc/2 + pbc/2;
+
+// drb1b2 : drift, l := db1b2/10       !** drift/10 between dipoles
+drb1b210 : drift, l := db1b2;
+
+kctf1 : kicker;
+kctf2 : kicker;
+kctf3 : kicker;
+kctf4 : kicker;
+
+// bcl : line=(bcbend1,drb1b210,bcbend2)
+// bcr : line=(bcbend3,drb1b210, bcbend4)
+
+bcl : line=(bcbend1hi,kctf1,bcbend1ho,drb1b210,kdr, 
+                            bcbend2hi,kctf2,bcbend2ho);
+bcr : line=(bcbend3hi,kctf3,bcbend3ho,kdr,drb1b210, 
+                            bcbend4hi,kctf4,bcbend4ho);
+
+bc   : line=(bcl,bcr);
+
+drbct16x : drift, l := 0.08275;
+
+// ***** Define triplet 16x
+k160       :=    5.204*qcal;
+k161       :=  -10.756*qcal;
+k162       :=    7.603*qcal*0.7;
+drq16x  : drift, l := 0.0745;
+q160           : quadrupole, l := 0.2235/4, k1 := k160;
+q161           : quadrupole, l := 0.2235/4, k1 := k161;
+q162           : quadrupole, l := 0.2235/4, k1 := k162;
+t16x    : line=(q160,q160,q160, kdr, q160,drq16x, 
+                q161,q161,q161,q161,drq16x, 
+                q162,q162,q162,q162, kdr);
+
+dt16xt17 := 2.3955;
+// drt16xsl  : drift, l := (dt16xt17 - 0.8 - 1.0)/20
+drt1620  : drift, l := 0.5955;
+
+//****** Define the new chicane (slope sl)
+psl1       := 11.0*deg2rad    ; //* 1st deflection angle of sl
+psl2       := 15.58004*deg2rad ; //* 2nd deflection angle of sl
+rbsl2     := 0.3265176        ; //* bend radius in 2nd sl dipole
+lbsl      := 0.15            ; //* eff. magn. length of slope dipole
+distb4b5 := 0.100           ; //* dist. betw. polefaces of dip4 dip5
+distb5b6 := 0.200           ; //* dist. betw. polefaces of dip5 dip6
+
+// value, cos(psl2/2)
+// value, sin((psl1+psl2)/2)
+
+// Value of expression "L_BSL/COS(PSL1/2.0)" is: 0.150693764198
+// Value of expression "PSL1" is: 0.19198621772
+// Value of expression "PSL1/2.0" is: 0.09599310886
+// Value of expression "2.0*R_BSL2*SIN((PSL1+PSL2)/2.0)" is: 0.15011987652
+// Value of expression "PSL1+PSL2" is: 0.463909213313
+// Value of expression "(PSL2-PSL1)/2.0" is: 0.039968388937
+// Value of expression "2.0*R_BSL2*SIN((PSL1+PSL2)/2.0)" is: 0.15011987652
+
+// slbnd1  : rbend, l := 0.150693764198, angle := 0.19198621772, &
+//                   e1 := -0.19198621772/2, e2 := 0.19198621772/2
+// slbnd2  : rbend, l := 0.15011987652, angle := -0.463909213313, &
+//                   e1 := 0.039968388937, e2 := -0.039968388937
+// slbnd3  : rbend, l := 0.15011987652, angle := 0.463909213313, &
+//                   e1 := -0.039968388937, e2 := 0.03996838893
+// slbnd4  : rbend, l := 0.150693764198, angle := -0.19198621772, &
+//                   e1 := 0.19198621772/2, e2 := -0.19198621772/2
+
+slbnd1ph  : sbend, l := 0.150693764198/2, angle := 0.19198621772/2;
+slbnd2ph  : sbend, l := 0.15011987652/2, angle := -0.463909213313/2;
+slbnd3ph  : sbend, l := 0.15011987652/2, angle := 0.463909213313/2;
+slbnd4ph  : sbend, l := 0.150693764198/2, angle := -0.19198621772/2;
+
+rho1 :=  0.150693764198/0.19198621772;
+angle1 :=  0.19198621772;
+e1in   := -0.19198621772/2;
+k1lin  := -(e1in+angle1/2)/rho1;
+e1out  := 0.19198621772/2;
+k1lout  := -(e1out+angle1/2)/rho1;
+
+rho2 := -0.15011987652/0.463909213313;
+angle2 := -0.463909213313;
+e2in   := 0.039968388937;
+k2lin  := -(e2in+angle2/2)/rho2;
+e2out  := -0.039968388937;
+k2lout  := -(e2out+angle2/2)/rho2;
+
+rho3 :=  0.15011987652/0.463909213313;
+angle3 :=  0.463909213313;
+e3in   := -0.039968388937;
+k3lin  := -(e3in+angle3/2)/rho3;
+e3out  := 0.03996838893;
+k3lout  := -(e3out+angle3/2)/rho3;
+
+rho4 := -0.150693764198/0.19198621772;
+angle4 := -0.19198621772;
+e4in   := 0.19198621772/2;
+k4lin  := -(e4in+angle4/2)/rho4;
+e4out  := -0.19198621772/2;
+k4lout  := -(e4out+angle4/2)/rho4;
+
+qfak1in  : quadrupole, l := ltiny, k1 := k1lin/ltiny;
+qfak1out : quadrupole, l := ltiny, k1 := k1lout/ltiny;
+
+qfak2in  : quadrupole, l := ltiny, k1 := k2lin/ltiny;
+qfak2out : quadrupole, l := ltiny, k1 := k2lout/ltiny;
+
+qfak3in  : quadrupole, l := ltiny, k1 := k3lin/ltiny;
+qfak3out : quadrupole, l := ltiny, k1 := k3lout/ltiny;
+
+qfak4in  : quadrupole, l := ltiny, k1 := k1lin/ltiny;
+qfak4out : quadrupole, l := ltiny, k1 := k1lout/ltiny;
+
+kctf5 : kicker;
+kctf6 : kicker;
+kctf7 : kicker;
+kctf8 : kicker;
+
+// slbnd1 : line = (qfak1in, slbnd1ph, kctf5, slbnd1ph, qfak1out)
+// slbnd2 : line = (qfak2in, slbnd2ph, kctf6, slbnd2ph, qfak2out)
+// slbnd3 : line = (qfak3in, slbnd3ph, kctf7, slbnd3ph, qfak3out)
+// slbnd4 : line = (qfak4in, slbnd4ph, kctf8, slbnd4ph, qfak4out)
+
+// To reinstate the shield chicane, uncomment previous 4 lines
+// and comment out the next 4.
+
+slbnd1 : drift, l := 0.150693764198;
+slbnd2 : drift, l := 0.15011987652;
+slbnd3 : drift, l := 0.15011987652;
+slbnd4 : drift, l := 0.150693764198;
+
+// Value of expression "DIST_B4_B5" is: 0.1
+// Value of expression "DIST_B5_B6/2.0" is: 0.1
+
+// drb4b5 : drift, l := distb4b5/10 !** drift/10 between dipoles 4&5
+// drb5b6 : drift, l := distb5b6/10 !** drift/10 between dipoles 5&6
+
+drb4b510 : drift, l := distb4b5;
+drb5b610 : drift, l := distb5b6;
+drb4b55 : drift, l := distb4b5/2;
+drb5b65 : drift, l := distb5b6/2;
+
+// sll : line=(slbnd1h,kctf5,slbnd1h,drb4b510, &
+//             slbnd2h,kctf6,slbnd2h,drb5b65)
+// slr : line=(drb5b65,slbnd3h,kctf7,slbnd3h, &
+//             drb4b510,slbnd4h,kctf8,slbnd4h)
+
+sll : line=(slbnd1, drb4b510, kdr, slbnd2, drb5b65);
+slr : line=(drb5b65, slbnd3, kdr, drb4b510, slbnd4);
+sl   : line=(sll,slr);
+
+// ***** Define triplet 17x
+k170 :=    7.70;
+k171 :=  -13.97;
+k172 :=    6.78;
+drq17x : drift, l := 0.0745;
+q170 : quadrupole, l := 0.2235/4, k1 := k170;
+q171 : quadrupole, l := 0.2235/4, k1 := k171;
+q172 : quadrupole, l := 0.2235/4, k1 := k172;
+t17x : line=(q170, kdr, q170,q170,q170,drq17x, 
+             q171,q171, kdr, q171,q171,drq17x, 
+             q172,q172,q172,q172, kdr);
+
+dt17x10 : drift, l := 0.8/2;
+dt17gh10 : drift, l := 1.67/2;
+
+motr : marker;
+mbunlen : marker;
+
+rf2asl : line=(drrft13x, t13x, drt120, t14x, 
+                  drt14xbc, bc, kdr, drbct16x, 
+                  t16x, drt1620, kdr, sl);
+
+m1out : marker;
+rf230gh : line=(rf2asl, dt17x10, kdr, mbunlen, dt17x10, 
+                  t17x, dt17gh10, motr, kdr, dt17gh10, m1out);
+
+extension : line = (t17x, dt17gh10, kdr, 
+                    dt17x10, t17x, dt17gh10, kdr, 
+                    dt17x10, t17x, dt17gh10, kdr, 
+                    dt17x10, t17x, dt17gh10, kdr, 
+                    dt17gh10, m1out);
+
+ring : line = (rf230gh, extension);
+
+

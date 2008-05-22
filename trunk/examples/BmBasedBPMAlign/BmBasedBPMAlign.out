@@ -1,0 +1,212 @@
+Create the UALUSR::Shell instance
+Define the space of Taylor maps
+Read MAD input file
+Define aperture parameters
+Select and initialize a lattice
+Define beam parameters
+Linear analysis
+Add systematic errors
+Add random errors
+Investigate beam-based BPM alignment
+Misalign all QFH half-quads, and print net deflections
+
+Re-steer beam and print required deflections
+----------------------------------------------------------
+least squares orbit flattening by varying hkick strengths
+initial closed orbit 
+-0.00497233 0.00642105 -0.00195748 -0.0014751 
+ bpm 0 -0.0272645
+ bpm 1 -0.0274713
+ bpm 2 -0.0272782
+ bpm 3 -0.0274897
+ bpm 4 -0.0272576
+ bpm 5 -0.0274744
+ bpm 6 -0.0272834
+ bpm 7 -0.0274722
+orbit badness = 0.00599473
+rms orbit distortion before correction-measured at BPMs is 0.0273741
+final closed orbit 
+-0.000283071 0.000230022 -0.00185521 -0.0014282 
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+least squares orbit flattening by varying vkick strengths
+initial closed orbit 
+-0.000283071 0.000230022 -0.00185521 -0.0014282 
+ bpm 0 0.00335638
+ bpm 1 0.00335837
+ bpm 2 0.00335938
+ bpm 3 0.00335573
+ bpm 4 0.00335573
+ bpm 5 0.0033587
+ bpm 6 0.00336037
+ bpm 7 0.00335495
+orbit badness = 9.01799e-05
+rms orbit distortion before correction-measured at BPMs is 0.00335745
+final closed orbit 
+-0.000289861 0.000221901 -0.000100289 -8.57108e-05 
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+least squares orbit flattening by varying hkick strengths
+initial closed orbit 
+-0.000289861 0.000221901 -0.000100289 -8.57108e-05 
+ bpm 0 -0.000532724
+ bpm 1 -0.000795738
+ bpm 2 -0.000503858
+ bpm 3 -0.000828334
+ bpm 4 -0.00053946
+ bpm 5 -0.000843778
+ bpm 6 -0.000580446
+ bpm 7 -0.000851655
+orbit badness = 3.92222e-06
+rms orbit distortion before correction-measured at BPMs is 0.000700198
+final closed orbit 
+-3.8015e-05 4.99615e-05 -0.000100112 -8.56388e-05 
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+least squares orbit flattening by varying vkick strengths
+initial closed orbit 
+-3.8015e-05 4.99615e-05 -0.000100112 -8.56388e-05 
+ bpm 0 -3.69224e-07
+ bpm 1 -3.63509e-06
+ bpm 2 4.30372e-06
+ bpm 3 7.21404e-06
+ bpm 4 -1.66752e-06
+ bpm 5 6.87638e-08
+ bpm 6 1.33729e-05
+ bpm 7 9.91616e-06
+orbit badness = 3.63864e-10
+rms orbit distortion before correction-measured at BPMs is 6.74411e-06
+final closed orbit 
+-3.80358e-05 4.9966e-05 -0.000111828 -8.61753e-05 
+----------------------------------------------------------
+
+q_num el_index  kl1_bef   del_x     del_y     defl_x    kickh     defl_y    kickv 
+   0       49   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+   1       54   0.17187   0.01000   0.01000
+   2      105   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+   3      110   0.17187   0.01000   0.01000
+   4      164   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+   5      169   0.17187   0.01000   0.01000
+   6      220   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+   7      225   0.17187   0.01000   0.01000
+   8      279   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+   9      284   0.17187   0.01000   0.01000
+  10      335   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+  11      340   0.17187   0.01000   0.01000
+  12      394   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+  13      399   0.17187   0.01000   0.01000
+  14      450   0.17187   0.01000   0.01000  -0.00344   0.00339   0.00344   0.00325
+  15      455   0.17187   0.01000   0.01000
+
+Apply standard trim current to all QFH quadrupoles
+q_num el_index  kl1_aft 
+   0       49   0.17359
+   1       54   0.17359
+   2      105   0.17359
+   3      110   0.17359
+   4      164   0.17359
+   5      169   0.17359
+   6      220   0.17359
+   7      225   0.17359
+   8      279   0.17359
+   9      284   0.17359
+  10      335   0.17359
+  11      340   0.17359
+  12      394   0.17359
+  13      399   0.17359
+  14      450   0.17359
+  15      455   0.17359
+
+Re-steer beam and print required deflections
+----------------------------------------------------------
+least squares orbit flattening by varying hkick strengths
+initial closed orbit 
+-8.73761e-05 0.000114798 -0.0001302 -0.000100257 
+ bpm 0 -0.000276959
+ bpm 1 -0.000276737
+ bpm 2 -0.000276812
+ bpm 3 -0.000276796
+ bpm 4 -0.00027695
+ bpm 5 -0.000276962
+ bpm 6 -0.000277008
+ bpm 7 -0.000276893
+orbit badness = 6.13343e-07
+rms orbit distortion before correction-measured at BPMs is 0.00027689
+final closed orbit 
+-3.83558e-05 5.0364e-05 -0.000130054 -0.000100214 
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+least squares orbit flattening by varying vkick strengths
+initial closed orbit 
+-3.83558e-05 5.0364e-05 -0.000130054 -0.000100214 
+ bpm 0 3.29985e-05
+ bpm 1 3.30014e-05
+ bpm 2 3.30025e-05
+ bpm 3 3.29952e-05
+ bpm 4 3.30002e-05
+ bpm 5 3.29995e-05
+ bpm 6 3.30026e-05
+ bpm 7 3.2996e-05
+orbit badness = 8.71174e-09
+rms orbit distortion before correction-measured at BPMs is 3.29995e-05
+final closed orbit 
+-3.83591e-05 5.03534e-05 -0.000112928 -8.70229e-05 
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+least squares orbit flattening by varying hkick strengths
+initial closed orbit 
+-3.83591e-05 5.03534e-05 -0.000112928 -8.70229e-05 
+ bpm 0 -2.2157e-08
+ bpm 1 -9.86721e-08
+ bpm 2 -1.41665e-08
+ bpm 3 -8.10762e-08
+ bpm 4 -1.99425e-08
+ bpm 5 -9.1407e-08
+ bpm 6 -1.42144e-08
+ bpm 7 -7.79775e-08
+orbit badness = 3.20366e-14
+rms orbit distortion before correction-measured at BPMs is 6.32818e-08
+final closed orbit 
+-3.83276e-05 5.03399e-05 -0.000112928 -8.70229e-05 
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+least squares orbit flattening by varying vkick strengths
+initial closed orbit 
+-3.83276e-05 5.03399e-05 -0.000112928 -8.70229e-05 
+ bpm 0 -1.51845e-10
+ bpm 1 -1.68166e-10
+ bpm 2 2.87526e-10
+ bpm 3 2.75991e-10
+ bpm 4 -2.20802e-10
+ bpm 5 3.47731e-11
+ bpm 6 7.77957e-10
+ bpm 7 3.88687e-10
+orbit badness = 1.01644e-18
+rms orbit distortion before correction-measured at BPMs is 3.56447e-10
+final closed orbit 
+-3.83276e-05 5.03399e-05 -0.000112929 -8.70229e-05 
+----------------------------------------------------------
+
+q_num el_index  del_kick_x  -defl_x*f |  del_kick_y   defl_y*f 
+   0       49   0.0000344   0.0000344 |  0.0000321   0.0000344
+   1      105   0.0000344   0.0000344 |  0.0000321   0.0000344
+   2      164   0.0000344   0.0000344 |  0.0000321   0.0000344
+   3      220   0.0000344   0.0000344 |  0.0000321   0.0000344
+   4      279   0.0000344   0.0000344 |  0.0000321   0.0000344
+   5      335   0.0000344   0.0000344 |  0.0000321   0.0000344
+   6      394   0.0000344   0.0000344 |  0.0000321   0.0000344
+   7      450   0.0000344   0.0000344 |  0.0000321   0.0000344
+Track bunch of particles
+End

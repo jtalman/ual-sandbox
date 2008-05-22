@@ -1,0 +1,104 @@
+
+************************************
+
+Build a simple output 
+
+************************************
+
+
+Lattices:  0 toy
+
+Elements: 
+
+0 0 mf Marker
+1 0.25 dbb Drift Body: L = 0.5
+2 0.54445 arcend Drift Body: L = 0.0889
+3 2.7225 arcf Sbend Front: ANGLE = 0.010471975511966 Body: L = 4.2672 ANGLE = 0.020943951023932 KL1 = 0.05058061512 KL2 = 0.0118161157632 N = 4 End: ANGLE = 0.010471975511966
+4 4.90055 arcend Drift Body: L = 0.0889
+5 8.644095819 dcell Drift Body: L = 7.398191638
+6 12.387641638 arcend Drift Body: L = 0.0889
+7 14.565691638 arcd Sbend Front: ANGLE = 0.010471975511966 Body: L = 4.2672 ANGLE = 0.020943951023932 KL1 = -0.048435792384 KL2 = -0.0195649327776 N = 4 End: ANGLE = 0.010471975511966
+8 16.743741638 arcend Drift Body: L = 0.0889
+9 17.038191638 dbb Drift Body: L = 0.5
+10 17.288191638 md Marker
+11 17.288191638 md Marker
+12 17.538191638 dbb Drift Body: L = 0.5
+13 17.832641638 arcend Drift Body: L = 0.0889
+14 20.010691638 arcd Sbend Front: ANGLE = 0.010471975511966 Body: L = 4.2672 ANGLE = 0.020943951023932 KL1 = -0.048435792384 KL2 = -0.0195649327776 N = 4 End: ANGLE = 0.010471975511966
+15 22.188741638 arcend Drift Body: L = 0.0889
+16 25.932287457 dcell Drift Body: L = 7.398191638
+17 29.675833276 arcend Drift Body: L = 0.0889
+18 31.853883276 arcf Sbend Front: ANGLE = 0.010471975511966 Body: L = 4.2672 ANGLE = 0.020943951023932 KL1 = 0.05058061512 KL2 = 0.0118161157632 N = 4 End: ANGLE = 0.010471975511966
+19 34.031933276 arcend Drift Body: L = 0.0889
+20 34.326383276 dbb Drift Body: L = 0.5
+21 34.576383276 mf Marker
+
+************************************
+
+Check all SMF collections 
+
+************************************
+
+Element keys: 
+
+0 1 Rbend
+1 2 Sbend
+2 3 Quadrupole
+3 4 Sextupole
+4 5 Octupole
+5 6 Multipole
+6 7 Solenoid
+7 8 Hmonitor
+8 9 Vmonitor
+9 10 Monitor
+10 11 Hkicker
+11 12 Vkicker
+12 13 Kicker
+13 14 RfCavity
+14 15 ElSeparator
+15 16 Ecollimator
+16 17 Rcollimator
+17 18 Yrot
+18 19 Srot
+19 97 Drift
+20 98 Marker
+21 99 Element
+
+We have found Quadrupole!
+
+Element bucket keys: 
+
+0 1 Length( L ) 0
+1 2 Bend( ANGLE FINT ) 0
+2 3 Multipole( KL KTL ) 1
+3 4 Offset( DX DY DS ) 0
+4 5 Rotation( DPHI DTHETA TILT ) 0
+5 6 Aperture( SHAPE XSIZE YSIZE ) 0
+6 7 Complexity( N ) 0
+7 8 Solenoid( KS ) 0
+8 9 RfCavity( VOLT LAG HARMON ) 1
+
+We have found Multipole!
+
+Generic Elements: 
+
+0 arcd
+1 arcend
+2 arcf
+3 dbb
+4 dcell
+5 md
+6 mf
+
+Lines: 
+
+0 barcd
+1 barcf
+2 cellff
+3 hcdf
+4 hcfd
+5 ring
+
+Lattices: 
+
+0 toy

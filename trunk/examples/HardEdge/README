@@ -1,0 +1,17 @@
+Description:
+------------
+
+Local extension of the DA package for generating fringe field maps based
+on the hard edge approximation. 
+
+Usage:
+------
+
+perl ff.pl
+
+Structure:
+----------
+
+ff.pl - Perl script
+HardEdge.pm - local Perl module-extension with the Hard Edge integrator
+out - directory with output files
