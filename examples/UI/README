@@ -1,0 +1,19 @@
+Description:
+------------
+
+Starter example shows  basic methods of the ALE::UI user interface, 
+such as reading the design parameters, adding systematic and random 
+errors, general analysis, tracking.
+
+Usage:
+------
+
+perl shell_sns.pl
+
+Structure:
+----------
+
+shell_sns.pl - Perl script
+data - directory with the MAD input file
+out - directory with output files
+

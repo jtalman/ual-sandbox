@@ -1,0 +1,58 @@
+0... expansion of "ring" complete:      1996 elements,      2658 positions
+ 
+1
+
+  ! title                                                                       
+   "teapot" version:     4.0   run: WedApr 9   11:52:50
+ 
+  x unstable, cosmux is -.1006E+01
+ 
+  x unstable, cosmux is -.1006E+01
+ 
+
+twiss parameters for beam line "ring"
+ 
+length of thin lens machine is         768.6688 meters
+ length of thick lens machine is       768.4258 meters
+ total bend angle is  6.283194000E+00 radians
+ twopi - angle is    -8.692820396E-06
+ 
+x matrix 
+           -0.100554151E+01    0.483134686E-02
+            0.231155099E+01   -0.100559538E+01
+ 
+y matrix 
+            0.172744787E+00   -0.193407898E+00
+            0.501623346E+01    0.172629419E+00
+ 
+ qx =           0.0000000  qy =           9.7776225
+ betax =           0.0000  betay =           0.1964
+ alphax =  0.00000000E+00  alphay = -0.58563647E-04
+ gammax =      0.0000E+00  gammay =      0.5093E+01
+ ------------------------------------------------------------------------------------------------------------------------------------
+1
+
+  ! title                                                                       
+   "teapot" version:     4.0   run: WedApr 9   11:52:50
+ survey of beam line "ring"                                                                                                page     1
+ ------------------------------------------------------------------------------------------------------------------------------------
+ total length =        768.668824          arc length   =        768.668824
+ error(x)     =         -0.577617E-08      error(y)     =          0.000000E+00      error(z)     =          0.136685E-02
+ error(theta) =         -0.869282E-05      error(phi)   =          0.000000E+00      error(psi)   =          0.000000E+00
+ ------------------------------------------------------------------------------------------------------------------------------------
+ 
+tracking     1 particles for  1000 turns
+ 
+     mass      charge      pc        energy        beta         gamma 
+  5.1103E-04    1.0   5.0000E+00   5.0000E+00   1.0000E+00   9.7841E+03
+ 
+initial coordinates for particle number     1 are
+        x           px            y            py           t          dp
+  -1.10000E-03 -1.20000E-03 -1.30000E-03 -1.40000E-03  0.00000E+00 -1.00000E-03
+
+    Lost particle coordinates and location
+     x           y           px            py       deltaloc       part turn  elem# element 
+ 
+  final coordinates for particle number     1 are
+        x           px            y            py           t          dp
+   1.21011E-04 -8.55520E-03 -1.66225E-03  2.37630E-03 -7.29920E+00 -1.00000E-03

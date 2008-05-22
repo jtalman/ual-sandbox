@@ -1,0 +1,8 @@
+HEADERS += \
+	$(UAL_AIM)/include/AIM/BTF/BTFBasicDevice.hh \
+	$(UAL_AIM)/include/AIM/BTF/BTFBpmCollector.hh \
+	$(UAL_AIM)/include/AIM/BTF/BTFBpm.hh \
+	$(UAL_AIM)/include/AIM/BTF/BTFKicker.hh \
+	$(UAL_AIM)/include/AIM/BTF/BTFSignal.hh \
+	$(UAL_AIM)/include/AIM/BTF/BTFSpectrum.hh 
+

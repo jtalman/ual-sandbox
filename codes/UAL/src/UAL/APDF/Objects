@@ -1,0 +1,11 @@
+OBJS += $(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_CreateElement.o \
+	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_LinkElement.o \
+	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_BuilderImpl.o \
+	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_Builder.o 
+# 	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_ErrorHandler.o \
+#	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_LinkElement.o \
+#	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_CreateElement.o \
+#	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_BuilderImpl.o \
+#	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_Builder.o 
+#	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_SetElement.o \
+#	$(UAL_CORE)/lib/$(UAL_ARCH)/obj/APDF_Builder.o

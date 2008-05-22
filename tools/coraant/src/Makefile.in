@@ -1,0 +1,83 @@
+SHELL = /bin/sh
+prefix = @prefix@
+exec_prefix= @exec_prefix@
+CC = @CC@  # Compiler
+DLD = @CC@  # Dynamic linker
+CCFLAGS = @CXXFLAGS@
+LIBS = @LIBS@
+
+
+LIBDIR = @libdir@
+OBJDIR= $(prefix)/obj
+INCDIR= @includedir@
+
+DLDFLAGS = -shared                                # Dynamic linker flags
+
+ROOTCFLAGS    = $(shell root-config --cflags)
+ROOTLIBS      = $(shell root-config --libs)
+ROOTGLIBS     = $(shell root-config --glibs)
+FFTWVERSION   = @fftwversion@
+FFTWINCDIR    = @fftwinc@
+FFTWLIBDIR    = @fftwlib@
+
+CCFLAGS += -ansi -pedantic -Wall -Wno-deprecated -Wno-long-long -fPIC $(ROOTCFLAGS) -I$(FFTWINCDIR)
+
+
+LIBS = $(ROOTLIBS) $(ROOTGLIBS) -L$(FFTWLIBDIR) 
+ifeq ($(FFTWVERSION), 2)
+	LIBS+= -lfftw -lrfftw
+else
+	LIBS+= -lfftw3
+endif
+
+HEADERS := 	$(wildcard *.hh)
+OBJECTS :=      $(patsubst %.hh, $(OBJDIR)/%.o,$(HEADERS))
+DEPS 	:=      $(patsubst %.hh,%.d,$(HEADERS))
+RMHEADS :=      $(patsubst %, $(INCDIR)/%, $(HEADERS))
+
+# Dictionary object
+DICT =  $(OBJDIR)/CORAANTDICT.o 
+
+#compile : $(LIBDIR)/libCORAANT.so
+#	rm -f *DICT.*
+compile :
+	if [ ! -d $(LIBDIR) ] ; \
+		then (mkdir $(LIBDIR);); fi;
+	if [ ! -d $(OBJDIR) ]; \
+		then (mkdir $(OBJDIR); ); fi;
+	if [ ! -d $(INCDIR) ]; \
+		then (mkdir $(INCDIR); ); fi;
+	cp -f $(HEADERS) $(INCDIR)
+	make $(LIBDIR)/libCORAANT.so
+	rm -f *DICT.*
+
+clean:
+	rm -f $(LIBDIR)/libCORAANT.so
+	rm -rf $(OBJDIR)
+	rm -f $(RMHEADS)
+	rm -f *DICT.*
+	rm -f *.d
+
+# The UAL Dictionaries are not cleaned with this makefile, this is left to the 
+# Dictionary generation makefiles  The UalRoot Dictionary file IS cleaned though.
+
+%.d :%.cc
+	$(CXX) -M $(CCFLAGS) $< | sed s/\\.o/.d/ > $@
+
+$(LIBDIR)/libCORAANT.so:  $(OBJECTS) $(DICT)
+	$(DLD) $(DLDFLAGS) -Wl,-soname,libCORAANT.so -o $@ $(DICT) $(OBJECTS) $(LIBS) 
+
+$(OBJDIR)/%.o : %.cc %.d
+	@echo "Compiling $<..."
+	$(CC) $(CCFLAGS) -c $< -o $@
+
+CORAANTDICT.cc: $(HEADERS) LinkDef.h
+	@echo "Generating dictionary $@..."
+	$(ROOTSYS)/bin/rootcint  -f CORAANTDICT.cc -c -p -I$(FFTWINCDIR) $^
+
+depend: $(DEPS)
+	@echo "Dependancies are now up to date"
+
+-include $(DEPS)
+
+

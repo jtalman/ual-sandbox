@@ -1,0 +1,521 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>PlayerUI</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>PlayerUI</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>593</width>
+            <height>458</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>PlayerUI</string>
+    </property>
+    <hbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout23</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>3</number>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout22</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QFrame">
+                            <property name="name">
+                                <cstring>listFrame</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>160</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>150</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="frameShape">
+                                <enum>StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Plain</enum>
+                            </property>
+                            <property name="lineWidth">
+                                <number>1</number>
+                            </property>
+                            <vbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>5</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>0</number>
+                                </property>
+                                <widget class="QLayoutWidget">
+                                    <property name="name">
+                                        <cstring>layout19</cstring>
+                                    </property>
+                                    <vbox>
+                                        <property name="name">
+                                            <cstring>unnamed</cstring>
+                                        </property>
+                                        <widget class="QListView">
+                                            <column>
+                                                <property name="text">
+                                                    <string>Tools</string>
+                                                </property>
+                                                <property name="clickable">
+                                                    <bool>true</bool>
+                                                </property>
+                                                <property name="resizable">
+                                                    <bool>false</bool>
+                                                </property>
+                                            </column>
+                                            <property name="name">
+                                                <cstring>listView</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>5</hsizetype>
+                                                    <vsizetype>7</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>150</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>150</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="frameShape">
+                                                <enum>Panel</enum>
+                                            </property>
+                                            <property name="frameShadow">
+                                                <enum>Raised</enum>
+                                            </property>
+                                            <property name="lineWidth">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="midLineWidth">
+                                                <number>1</number>
+                                            </property>
+                                            <property name="resizePolicy">
+                                                <enum>Manual</enum>
+                                            </property>
+                                            <property name="hScrollBarMode">
+                                                <enum>Auto</enum>
+                                            </property>
+                                            <property name="rootIsDecorated">
+                                                <bool>true</bool>
+                                            </property>
+                                        </widget>
+                                        <widget class="QFrame">
+                                            <property name="name">
+                                                <cstring>frame8</cstring>
+                                            </property>
+                                            <property name="acceptDrops">
+                                                <bool>false</bool>
+                                            </property>
+                                            <property name="frameShape">
+                                                <enum>StyledPanel</enum>
+                                            </property>
+                                            <property name="frameShadow">
+                                                <enum>Raised</enum>
+                                            </property>
+                                            <hbox>
+                                                <property name="name">
+                                                    <cstring>unnamed</cstring>
+                                                </property>
+                                                <property name="margin">
+                                                    <number>4</number>
+                                                </property>
+                                                <property name="spacing">
+                                                    <number>0</number>
+                                                </property>
+                                                <widget class="QLayoutWidget">
+                                                    <property name="name">
+                                                        <cstring>layout14</cstring>
+                                                    </property>
+                                                    <vbox>
+                                                        <property name="name">
+                                                            <cstring>unnamed</cstring>
+                                                        </property>
+                                                        <property name="margin">
+                                                            <number>0</number>
+                                                        </property>
+                                                        <property name="spacing">
+                                                            <number>0</number>
+                                                        </property>
+                                                        <widget class="QFrame">
+                                                            <property name="name">
+                                                                <cstring>frame7</cstring>
+                                                            </property>
+                                                            <property name="frameShape">
+                                                                <enum>StyledPanel</enum>
+                                                            </property>
+                                                            <property name="frameShadow">
+                                                                <enum>Plain</enum>
+                                                            </property>
+                                                            <property name="lineWidth">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <hbox>
+                                                                <property name="name">
+                                                                    <cstring>unnamed</cstring>
+                                                                </property>
+                                                                <property name="margin">
+                                                                    <number>0</number>
+                                                                </property>
+                                                                <property name="spacing">
+                                                                    <number>0</number>
+                                                                </property>
+                                                            </hbox>
+                                                        </widget>
+                                                        <widget class="QFrame">
+                                                            <property name="name">
+                                                                <cstring>frame6</cstring>
+                                                            </property>
+                                                            <property name="acceptDrops">
+                                                                <bool>false</bool>
+                                                            </property>
+                                                            <property name="frameShape">
+                                                                <enum>StyledPanel</enum>
+                                                            </property>
+                                                            <property name="frameShadow">
+                                                                <enum>Plain</enum>
+                                                            </property>
+                                                            <property name="lineWidth">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <hbox>
+                                                                <property name="name">
+                                                                    <cstring>unnamed</cstring>
+                                                                </property>
+                                                                <property name="margin">
+                                                                    <number>9</number>
+                                                                </property>
+                                                                <property name="spacing">
+                                                                    <number>0</number>
+                                                                </property>
+                                                            </hbox>
+                                                        </widget>
+                                                    </vbox>
+                                                </widget>
+                                            </hbox>
+                                        </widget>
+                                    </vbox>
+                                </widget>
+                            </vbox>
+                        </widget>
+                        <widget class="QFrame">
+                            <property name="name">
+                                <cstring>pageFrame</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>400</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="frameShape">
+                                <enum>StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Plain</enum>
+                            </property>
+                            <vbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="spacing">
+                                    <number>1</number>
+                                </property>
+                                <widget class="QWidgetStack">
+                                    <property name="name">
+                                        <cstring>widgetStack</cstring>
+                                    </property>
+                                    <widget class="QWidget">
+                                        <property name="name">
+                                            <cstring>WStackPage</cstring>
+                                        </property>
+                                        <attribute name="id">
+                                            <number>0</number>
+                                        </attribute>
+                                    </widget>
+                                </widget>
+                            </vbox>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>buttonFrame</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>5</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>0</width>
+                            <height>0</height>
+                        </size>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Plain</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>2</number>
+                        </property>
+                        <widget class="QLayoutWidget">
+                            <property name="name">
+                                <cstring>layout6</cstring>
+                            </property>
+                            <hbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <widget class="QPushButton">
+                                    <property name="name">
+                                        <cstring>setupButton</cstring>
+                                    </property>
+                                    <property name="minimumSize">
+                                        <size>
+                                            <width>50</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property name="maximumSize">
+                                        <size>
+                                            <width>50</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property name="text">
+                                        <string>Setup</string>
+                                    </property>
+                                </widget>
+                                <widget class="QPushButton">
+                                    <property name="name">
+                                        <cstring>runButton</cstring>
+                                    </property>
+                                    <property name="maximumSize">
+                                        <size>
+                                            <width>40</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property name="text">
+                                        <string>Run</string>
+                                    </property>
+                                </widget>
+                                <widget class="QPushButton">
+                                    <property name="name">
+                                        <cstring>pauseButton</cstring>
+                                    </property>
+                                    <property name="maximumSize">
+                                        <size>
+                                            <width>60</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property name="text">
+                                        <string>Pause</string>
+                                    </property>
+                                </widget>
+                                <widget class="QPushButton">
+                                    <property name="name">
+                                        <cstring>continueButton</cstring>
+                                    </property>
+                                    <property name="maximumSize">
+                                        <size>
+                                            <width>60</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property name="text">
+                                        <string>Continue</string>
+                                    </property>
+                                </widget>
+                                <widget class="QPushButton">
+                                    <property name="name">
+                                        <cstring>stopButton</cstring>
+                                    </property>
+                                    <property name="minimumSize">
+                                        <size>
+                                            <width>0</width>
+                                            <height>0</height>
+                                        </size>
+                                    </property>
+                                    <property name="maximumSize">
+                                        <size>
+                                            <width>40</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property name="text">
+                                        <string>Stop</string>
+                                    </property>
+                                </widget>
+                                <widget class="QSlider">
+                                    <property name="name">
+                                        <cstring>turnSlider</cstring>
+                                    </property>
+                                    <property name="maximumSize">
+                                        <size>
+                                            <width>32767</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                    <property name="orientation">
+                                        <enum>Horizontal</enum>
+                                    </property>
+                                </widget>
+                                <widget class="QLCDNumber">
+                                    <property name="name">
+                                        <cstring>turnNumber</cstring>
+                                    </property>
+                                    <property name="maximumSize">
+                                        <size>
+                                            <width>32767</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                </widget>
+                                <spacer>
+                                    <property name="name">
+                                        <cstring>spacer1</cstring>
+                                    </property>
+                                    <property name="orientation">
+                                        <enum>Horizontal</enum>
+                                    </property>
+                                    <property name="sizeType">
+                                        <enum>Expanding</enum>
+                                    </property>
+                                    <property name="sizeHint">
+                                        <size>
+                                            <width>100</width>
+                                            <height>25</height>
+                                        </size>
+                                    </property>
+                                </spacer>
+                            </hbox>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </hbox>
+</widget>
+<connections>
+    <connection>
+        <sender>runButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PlayerUI</receiver>
+        <slot>startRun()</slot>
+    </connection>
+    <connection>
+        <sender>pauseButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PlayerUI</receiver>
+        <slot>pauseRun()</slot>
+    </connection>
+    <connection>
+        <sender>continueButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PlayerUI</receiver>
+        <slot>continueRun()</slot>
+    </connection>
+    <connection>
+        <sender>stopButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PlayerUI</receiver>
+        <slot>stopRun()</slot>
+    </connection>
+    <connection>
+        <sender>listView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>PlayerUI</receiver>
+        <slot>showPage(QListViewItem*)</slot>
+    </connection>
+    <connection>
+        <sender>turnSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>turnNumber</receiver>
+        <slot>display(int)</slot>
+    </connection>
+    <connection>
+        <sender>setupButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PlayerUI</receiver>
+        <slot>initRun()</slot>
+    </connection>
+    <connection>
+        <sender>setupButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PlayerUI</receiver>
+        <slot>initRun()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>startRun()</slot>
+    <slot>pauseRun()</slot>
+    <slot>showPage(QListViewItem* item)</slot>
+    <slot>stopRun()</slot>
+    <slot>registerViewer(QWidget* viewer)</slot>
+    <slot>continueRun()</slot>
+    <slot>initRun()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

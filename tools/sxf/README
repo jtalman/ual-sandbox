@@ -1,0 +1,44 @@
+
+This package implements the Standard eXchange Format (SXF) front end for 
+translating SXF files into different accelerator input formats or data
+structures.
+
+========================================================================
+
+INSTALLATION
+
+0. add the gperf-2.7.2, bison-1.33, flex-2.5.4 tools in your path 
+  (e.g. set path = (/home/ual/tools/gperf/$SXF_ARCH/bin $path)
+1. setenv SXF <this directory>
+2. setenv SXF_ARCH <linux or sun_gcc>
+3. setenv LD_LIBRARY_PATH $SXF/lib/$SXF_ARCH/:$LD_LIBRARY_PATH
+4. make
+
+========================================================================
+
+CONTEXT
+
+The package includes the following directories:
+
+Source code.
+------------
+
+./src/sxf      - SXF library, the SXF front end;
+./src/echo_sxf - EchoSXF library, the SXF demonstration back end.
+
+
+Documentation.
+--------------
+
+./doc/src/html/index.html - entry point of the SXF documentation 
+
+Examples.
+---------
+
+./examples/echo  - sxf_tester program and several sxf input files provided 
+		   by Hans Grote.
+  
+========================================================================
+Nikolay Malitsky (malitsky@cesr34.lns.cornell.edu)
+
+ 

@@ -1,0 +1,4 @@
+OBJS += $(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotVector.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotMatrix.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotEigenBasis.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotRandomGenerator.o 

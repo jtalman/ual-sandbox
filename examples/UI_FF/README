@@ -1,0 +1,17 @@
+Description:
+------------
+
+Starter example UI with additional fringe fields effects defined by Taylor maps
+
+Usage:
+------
+
+perl shell_sns_ff.pl
+
+Structure:
+----------
+
+shell_sns_ff.pl - Perl script
+data - directory with the MAD input file
+quadff - directory with the fringe field maps
+out - directory with output files

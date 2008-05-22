@@ -1,0 +1,5 @@
+OBJS +=	$(UAL_SIMBAD)/lib/$(UAL_ARCH)/obj/TSCCalculatorFFT_3D_MPI.o \
+	$(UAL_SIMBAD)/lib/$(UAL_ARCH)/obj/TSCPropagatorFFT_3D_MPI.o \
+	$(UAL_SIMBAD)/lib/$(UAL_ARCH)/obj/LoadBalancer.o
+
+

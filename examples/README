@@ -1,0 +1,48 @@
+(Incomplete) list of examples illustrating different features of the UAL environment:
+
+-----------------------------------------------------------------------------
+Basic user scripts:
+-----------------------------------------------------------------------------
+
+1. UI 		: Starter example shows  basic methods of the ALE::UI user 
+		  interface (such as reading the design parameters, adding 
+		  systematic and random errors, general analysis, tracking)
+2. UI_Aalysis	: UI script with survey and twiss methodsfor calculating 
+		  geometry and lattice linear functions.
+3. UI_FF	: UI script with additional fringe fields effects defined 
+		  by Taylor maps
+4. UI_SXF	: UI script with the SXF input file
+
+-----------------------------------------------------------------------------
+Parallel scripts :
+-----------------------------------------------------------------------------
+
+1. ShortMPI	: Simple Perl script running in the MPI-based parallel 
+		  environment
+2. UI_MPI	: Local extensionof the DA package for generating fringe
+		  field maps based on the hard edge approximation.
+
+-----------------------------------------------------------------------------
+Advanced scripts with Perl extensions:
+-----------------------------------------------------------------------------
+
+1. HardEdge	   : Local extension of the DA package for generating fringe
+		     field maps based on the hard edge approximation. 
+2. BmBasedBPMAlign : Example showing how to extend (personalize) UI shell 
+		     for the beam-based alignment application.
+
+-----------------------------------------------------------------------------
+C++ developer's corner: applications of the Accelerator Propagator Framework
+-----------------------------------------------------------------------------
+
+1. FastTeapot	: Efficient tracking engine based on the combination of 
+		  sector-linear matrices and TEAPOT symplectic integrators.
+2. TIBETAN	: Jie Wei's longitudinal phase space tracking program.
+3. SPINK        : Alfredo Luccio's tracking code for polarized particles
+4. MIA_BPM      : application generating TBT BPM data for Ram Calaga's MIA program 
+5. CINT         : Ray Fliller's application demonstrating the UAl/ROOT interface
+6. BTF          : Peter Cameron's BTF application based on Mike Blaskievicz approach 
+
+-----------------------------------------------------------------------------
+
+

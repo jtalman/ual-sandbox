@@ -1,0 +1,501 @@
+    <HTML> 
+	<HEAD> 
+	    <TITLE>Class ALE::UI::Shell</TITLE> 
+<style type="text/css">
+<!--
+.TableHead_my {  background-color: #9999FF}
+-->
+</style>
+<link rel="stylesheet" href="../../css/PerlPackage.css">
+	</HEAD>
+
+	<BODY bgcolor="#FFFFFF">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#66CCFF">
+  <tr valign="middle" bgcolor="#CCCCFF"> 
+    <td><font size="+2">Class <a href="../package.html"> </a><a href="package-summary.html">ALE::UI</a>::Shell</font></td>
+  </tr>
+</table>
+<p> A user (MAD+TEAPOT-like) interface to the UAL environment.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Constructor 
+      Summary </font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="83%" valign="top"><b><a href="#constructor">new(%parameters)</a></b><br>
+      <i>Creates the instance of the ALE::UI::Shell.</i></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td colspan="2" valign="top" bgcolor="#CCCCFF"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Method 
+      Summary</font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top" height="29"> 
+      <div align="center"><font color="#0099FF">Returns</font></div>
+    </td>
+    <td width="91%" valign="top" height="29"> 
+      <div align="center"><font color="#0099ff">Methods</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top">
+      <h4>Space of Taylor Maps:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> void</b></td>
+    <td width="91%" valign="top"> <b><a href="#setMapAttributes">setMapAttributes</a>(%parameters) 
+      </b><br>
+      <i>Defines global parameters of 6D Taylor maps.</i> </td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Accelerator Design:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> void</b></td>
+    <td width="91%" valign="top"> <b><a href="#readMAD">readMAD</a>(%parameters) 
+      </b><br>
+      <i>Reads accelerator data from a MAD file.</i> </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> void</b></td>
+    <td width="91%" valign="top"> <b><a href="#addSplit">addSplit</a>(%parameters) 
+      </b><br>
+      <i>Splits selected generic elements into several thin multipoles.</i> </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> void</b></td>
+    <td width="91%" valign="top"> <b><a href="#addAperture">addAperture</a>(%parameters) 
+      </b><br>
+      <i>Defines aperture parameters of selected elements.</i> </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> void</b></td>
+    <td width="91%" valign="top"> <b><a href="#addMap">addMap</a>(%parameters) 
+      </b><br>
+      <i>Defines Taylor maps of selected elements.</i></td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"><b>void</b></td>
+    <td width="91%" valign="top"> <b><a href="#use">use</a>(%parameters) </b><br>
+      <i>Builds an accelerator lattice for operations.</i> </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"> <b> void</b></td>
+    <td width="91%" valign="top"> <b><a href="#writeFTPOT">writeFTPOT</a>(%parameters) 
+      </b><br>
+      <i>Writes SMF data into a FTPOT file.</i></td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Field Errors, Misalignments, etc.:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"><b>void</b></td>
+    <td width="91%" valign="top"> <b><a href="#addFieldError">addFieldError</a>(%parameters) 
+      </b><br>
+      <i>Defines systematic and random field errors of selected elements.</i> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"><b>void</b></td>
+    <td width="91%" valign="top"> <b><a href="#addMisalignment">addMisalignment</a>(%parameters)</b> 
+      <br>
+      <i> Defines systematic and random misalignments of selected elements.</i> 
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Beam Attributes:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"><b>void</b></td>
+    <td width="91%" valign="top"> <b><a href="#setBeamAttributes">setBeamAttributes</a>(%parameters) 
+      </b><br>
+      <i>Defines beam parameters ( such as energy, mass, etc.).</i> </td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Analysis:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"><b>void</b></td>
+    <td width="91%" valign="top"> <b><a href="#analysis">analysis</a>(%parameters) 
+      </b><br>
+      <i>Finds the closed orbit and performs Twiss analysis of the machine.</i> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"><b>void</b></td>
+    <td width="91%" valign="top"><b><a href="#map">map</a>(%parameters) </b><br>
+      <i>Makes a one-turn 6D Taylor map.</i> </td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4><b>Tracking:</b></h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="9%" valign="top"><b>void</b></td>
+    <td width="91%" valign="top"><b><a href="#run">run</a>(%parameters) </b><br>
+      <i>Tracks particles and generates the output file (fort.8) for TEAPOT post-processing 
+      tools such as tealeaf, turnplot, etc.</i> </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"> <b><font size="+1" face="Arial, Helvetica, sans-serif">Method Detail </font></b></td>
+  </tr>
+</table>
+<p><b>new<a name="constructor"></a>(%parameters)</b></p>
+<p> Creates the instance of the ALE::UI::Shell.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">print</td>
+    <td width="83%" valign="top">a log file name (default: &quot;.log&quot;).</td>
+  </tr>
+</table>
+<p><b>Example </b>: my $shell = new ALE::UI::Shell(&quot;print&quot; =&gt; &quot;./out/log&quot;);</p>
+<p><b>void setMapAttributes<a name="setMapAttributes"></a>(%parameters)</b></p>
+<p> Defines global parameters of 6D Taylor maps.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">order</td>
+    <td width="83%" valign="top">the maximum order of Taylor maps.</td>
+  </tr>
+</table>
+<p><b>Example </b>: setMapAttributes(&quot;order&quot;=&gt;6)</p>
+<hr>
+<p><b>void readMAD<a name="readMAD"></a>(%parameters)</b></p>
+<p> Reads accelerator data from a MAD file<i>.</i></p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">file</td>
+    <td width="83%" valign="top">a MAD file name.</td>
+  </tr>
+  <tr>
+    <td width="17%" valign="top">id</td>
+    <td width="83%" valign="top">process id (parameter is mandatory only for parallel 
+      applications; default: 0)</td>
+  </tr>
+</table>
+<p><b>Example </b>: readMAD("file" => "./data/ff_sext_latnat.mad") </p>
+<hr>
+<p><b>void addSplit<a name="addSplit"></a>(%parameters)</b></p>
+<p> Splits selected generic elements into several thin multipoles. </p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top">
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">elements</td>
+    <td width="83%" valign="top">a regular expression for selecting elements.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">ir</td>
+    <td width="83%" valign="top">TEAPOT split number (1 - IR, 2 - IR2, etc.); 
+      number of intervals = IR*4</td>
+  </tr>
+</table>
+<p><b>Example </b>: addSplit("elements" => "^(q[df]h|q[fd][lmc]h|qfbh)\$", "ir" 
+  => 2)</p>
+<hr>
+<p><b>void addAperture<a name="addAperture"></a>(%parameters)</b></p>
+<p> Defines aperture parameters of selected elements.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">elements</td>
+    <td width="83%" valign="top">a regular expression for selecting elements.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">aperture</td>
+    <td width="83%" valign="top">an array of aperture parameters: [<i>shape, xsize, 
+      ysize</i>]. Apertures can be elliptical (<i>shape=1</i>), rectangular (<i>shape=2</i>), 
+      or diamond (<i>shape=3</i>); <i>xsize</i> and <i>ysize</i> are half-aperture 
+      dimensions.</td>
+  </tr>
+</table>
+<p><b>Example </b>: addAperture("elements" => "^(b[lr])\$", "aperture" => [2.,0.115,0.075]) 
+</p>
+<hr>
+<p><b>void addMap<a name="addMap"></a>(%parameters)</b></p>
+<p> Defines Taylor maps of selected elements. </p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">elements</td>
+    <td width="83%" valign="top">a regular expression for selecting elements.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">map</td>
+    <td width="83%" valign="top">a file that contains Taylor map coefficients.</td>
+  </tr>
+</table>
+<p><b>Example </b>: addMap("elements" => "^(mbnde1)\$", "map" => "./I.map") </p>
+<hr>
+<p><b>void use<a name="use"></a>(%parameters)</b></p>
+<p> Builds an accelerator lattice for operations.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">lattice</td>
+    <td width="83%" valign="top">a lattice name.</td>
+  </tr>
+</table>
+<p><b>Example </b>: use("lattice&quot; =&gt; &quot;ring&quot;) </p>
+<hr>
+<p><b>void writeFTPOT<a name="writeFTPOT"></a>(%parameters)</b></p>
+<p> Writes SMF data into a FTPOT file.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">file</td>
+    <td width="83%" valign="top">a FTPOT file name.</td>
+  </tr>
+</table>
+<p><b>Example </b>: writeFTPOT(&quot;file&quot; => "./reference.tpot") </p>
+<hr>
+<p><b>void addFieldError<a name="addFieldError"></a>(%parameters)</b></p>
+<p> Defines systematic and random field errors of selected elements.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">elements</td>
+    <td width="83%" valign="top">a regular expression for selecting elements.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">R</td>
+    <td width="83%" valign="top">a reference radius [m] (default: 1 m).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">b</td>
+    <td width="83%" valign="top">array of normal components of magnetic field 
+      errors normalized to 1.E-04 of the main field at the reference radius R.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">a</td>
+    <td width="83%" valign="top">array of skew components of magnetic field errors 
+      normalized to 1.E-04 of the main field at the reference radius R.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">cut</td>
+    <td width="83%" valign="top">the cutoff in sigma for the error generation 
+      (default: 3).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">engine</td>
+    <td width="83%" valign="top">a pointer to the <a href="RandomGenerator.html">ALE::UI::RandomGenerator</a> 
+      instance (Default: systematic errors).</td>
+  </tr>
+</table>
+<p><b>Example </b>: addFieldError("elements" => "^b[lr]", "R" => 0.13, "b" => 
+  [0.0, 0.0, -0.2, 0.0, 0.8, 0.0, -0.8, 0.0, -3.0])</p>
+<hr>
+<p><b>void addMisalignment<a name="addMisalignment"></a>(%parameters)</b></p>
+<p> Defines systematic and random misalignments of selected elements. </p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">elements</td>
+    <td width="83%" valign="top">a regular expression for selecting elements.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">dx</td>
+    <td width="83%" valign="top">x-offset (m, default: 0).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">dy</td>
+    <td width="83%" valign="top">y-offset (m, default: 0).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">tilt</td>
+    <td width="83%" valign="top">tilt (default: 0).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">cut</td>
+    <td width="83%" valign="top">the cutoff in sigma for the error generation 
+      (default: 3).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">engine</td>
+    <td width="83%" valign="top">a pointer to the <a href="RandomGenerator.html">ALE::UI::RandomGenerator</a> 
+      instance (Default: systematic errors).</td>
+  </tr>
+</table>
+<p><b>Example </b>: addMisalignment("elements" => "^bl\$", "dx" => 1.e-4, "dy" 
+  => 1.e-4, "tilt" => 1.e-4, "engine" => $random_generator)</p>
+<hr>
+<p><b>void setBeamAttributes<a name="setBeamAttributes"></a>(%parameters)</b></p>
+<p> Defines beam parameters ( such as energy, mass, etc.).</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">energy</td>
+    <td width="83%" valign="top">beam energy (GeV, default: infinity).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">mass</td>
+    <td width="83%" valign="top">particle mass (GeV, default: 0.93828).</td>
+  </tr>
+</table>
+<p><b>Example </b>: setBeamAttributes("energy" => 1.93827231, "mass" => 0.93827231)</p>
+<hr>
+<p><b>void analysis<a name="analysis"></a>(%parameters)</b></p>
+<p> Finds the closed orbit and performs Twiss analysis of the machine. </p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">print</td>
+    <td width="83%" valign="top">an output file name (default: "./analysis"). 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">dp/p</td>
+    <td width="83%" valign="top"> relative momentum difference.</td>
+  </tr>
+</table>
+<p><b>Example </b>: analysis("print" => "./data/analysis.out", &quot;dp/p&quot; 
+  => 1.0e-3) </p>
+<hr>
+<p><b>void map<a name="map"></a>(%parameters)</b></p>
+<p> Makes a one-turn 6D Taylor map. </p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">order</td>
+    <td width="83%" valign="top">the map order.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">print</td>
+    <td width="83%" valign="top">an output file name.</td>
+  </tr>
+</table>
+<p><b>Example </b>: map(&quot;order&quot; => 2, &quot;print&quot; => "./data/map.out") 
+</p>
+<hr>
+<p><b>void run<a name="run"></a>(%parameters)</b></p>
+<p> Tracks particles and generates the output file (fort.8) for TEAPOT post-processing 
+  tools such as tealeaf, turnplot, etc.</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1" bordercolor="#0099cc">
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><b><font color="#0099FF">parameters</font></b></div>
+    </td>
+    <td width="83%" valign="top" align="center"> <b><font color="#0099FF">description</font></b> 
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">bunch</td>
+    <td width="83%" valign="top">a pointer to the <a href="Bunch.html">ALE::UI::Bunch 
+      </a>instance.</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">print</td>
+    <td width="83%" valign="top">an output file name (default: "./fort.8").</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">turns</td>
+    <td width="83%" valign="top">number of turns (default: 1).</td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">step</td>
+    <td width="83%" valign="top">printing after "step" turns (default: 1).</td>
+  </tr>
+</table>
+<p><b>Example </b>: run("turns" => 100, "step" => 10, "print" => "./out/fort.8", 
+  "bunch" => $bunch)</p>
+<hr>
+<p>&nbsp;</p>
+<p>&nbsp; </p>
+</BODY>
+
+    </HTML>

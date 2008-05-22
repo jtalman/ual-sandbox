@@ -1,0 +1,10 @@
+<apdf>
+  <propagator id="evolver" accelerator="RHIC">
+     <create>
+        <link algorithm="TEAPOT::MapDaIntegrator" 
+	      sector="Default" />
+        <link algorithm="TEAPOT::MltDaIntegrator" 
+	      elements="^q([fd]|ac|[1-7][io]([2468]|1[02])|[4-6][io]t([2468]|1[02]))"/>
+     </create>
+  </propagator>
+</apdf>

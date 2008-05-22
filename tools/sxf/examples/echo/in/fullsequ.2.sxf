@@ -1,0 +1,362 @@
+// SXF version 1.0
+FULLSEQU sequence
+ {
+   DZERO
+     drift {
+         at = 0
+         };
+   DL2
+     drift {
+         l = 2
+         at = 10
+         };
+   RBZERO
+     rbend {
+         at = 20
+         body = {
+                 kl = [ 0.1]
+                }
+	 aperture = {
+ 		shape = 1
+		xsize = 0.314
+		ysize = 0.314
+		}
+         };
+   RB2
+     rbend {
+         arc = 2.00020817495
+         at = 30
+         body = {
+                 kl = [ 0.1]
+                }
+	 
+         };
+   SBZERO
+     sbend {
+         at = 40
+         body = {
+                 kl = [ 0.1]
+                }	
+         };
+   SB2
+     sbend {
+         arc = 2
+         at = 50
+         body = {
+                 kl = [ 0.1]
+                }
+         };
+   RBZEROT
+     rbend {
+         at = 60
+         body = {
+                 kl = [ -5.71192738809e-16]
+                 kls = [ 0.1]
+                }
+         };
+   RB2T
+     rbend {
+         arc = 2.00020817495
+         at = 70
+         body = {
+                 kl = [ -5.70954771583e-16]
+                 kls = [ 0.1]
+                }
+         };
+   SBZEROT
+     sbend {
+         at = 80
+         body = {
+                 kl = [ -5.71192738809e-16]
+                 kls = [ 0.1]
+                }
+         };
+   SB2T
+     sbend {
+         arc = 2
+         at = 90
+         body = {
+                 kl = [ -5.71192738809e-16]
+                 kls = [ 0.1]
+                }
+         };
+   QZERO
+     quadrupole {
+         at = 100
+         body = {
+                 kl = [ 0 0.1]
+                }
+         align.dev = {
+                 al = [ 6.47810750729e-05 -1.29880013123e-07]
+                }
+         };
+   Q2
+     quadrupole {
+         l = 2
+         at = 110
+         body = {
+                 kl = [ 0 0.2]
+                }
+         align.dev = {
+                 al = [ 7.22860276746e-05 4.99985855616e-06]
+                }
+         };
+   QZEROT
+     quadrupole {
+         at = 120
+         body = {
+                 kl = [ 0 0.0707106781187]
+                 kls = [ 0 0.0707106781187]
+                }
+         align.dev = {
+                 al = [ -2.53340066771e-05 6.67101928254e-06]
+                }
+         };
+   Q2T
+     quadrupole {
+         l = 2
+         at = 130
+         body = {
+                 kl = [ 0 0.141421356237]
+                 kls = [ 0 0.141421356237]
+                }
+         align.dev = {
+                 al = [ -8.8419923281e-05 -3.72543010383e-06]
+                }
+         };
+   SZERO
+     sextupole {
+         at = 140
+         body = {
+                 kl = [ 0 0 0.02]
+                }
+         };
+   S2
+     sextupole {
+         l = 2
+         at = 150
+         body = {
+                 kl = [ 0 0 0.04]
+                }
+         };
+   SZEROT
+     sextupole {
+         at = 160
+         body = {
+                 kl = [ 0 0 0.0173205080757]
+                 kls = [ 0 0 0.01]
+                }
+         };
+   S2T
+     sextupole {
+         l = 2
+         at = 170
+         body = {
+                 kl = [ 0 0 0.0346410161514]
+                 kls = [ 0 0 0.02]
+                }
+         };
+   OZERO
+     octupole {
+         at = 180
+         body = {
+                 kl = [ 0 0 0 0.003]
+                }
+         };
+   O2
+     octupole {
+         l = 2
+         at = 190
+         body = {
+                 kl = [ 0 0 0 0.006]
+                }
+         };
+   OZEROT
+     octupole {
+         at = 200
+         body = {
+                 kl = [ 0 0 0 0.00277163859753]
+                 kls = [ 0 0 0 0.0011480502971]
+                }
+         };
+   O2T
+     octupole {
+         l = 2
+         at = 210
+         body = {
+                 kl = [ 0 0 0 0.00554327719507]
+                 kls = [ 0 0 0 0.00229610059419]
+                }
+         };
+   MTZERO
+     multipole {
+         at = 220
+         body = {
+                 lrad =  10 kl = [ 0.0001 4e-06 3e-08 4e-10]
+                }
+         body.dev = {
+                 kl  = [ 1e-08 2e-06 0.0003 0.04 5 600 70000 8000000 900000000
+                 100000000000 1.1e+13]
+                 kls = [ 1e-08 2e-06 0.0003 0.04 5 600 70000 8000000 900000000
+                 100000000000 1.1e+13]
+                }
+         };
+   MTZEROT
+     multipole {
+         at = 230
+         body = {
+                 kl = [ 0 -5.71192738809e-21]
+                 kls = [ 0 1e-06]
+                }
+         body.dev = {
+                 kl  = [ 0 2e-10 3e-08 4e-06 0.0005 0.06 7 800 90000]
+                 kls = [ 0 2e-10 3e-08 4e-06 0.0005 0.06 7 800 90000]
+                }
+         };
+   MTZEROTT
+     multipole {
+         at = 240
+         body = {
+                 kl = [ 0 0 -5.71192738809e-23]
+                 kls = [ 0 0 1e-08]
+                }
+         };
+   MTZEROTTT
+     multipole {
+         at = 250
+         body = {
+                 kl = [ 0 0 0 -5.71192738809e-25]
+                 kls = [ 0 0 0 1e-10]
+                }
+         };
+   SOL2
+     solenoid {
+         l = 2
+         at = 260
+         body = {
+                 ks =  0.25
+                }
+         };
+   RFCZERO
+     rfcavity {
+         at = 270
+         body = {
+                 volt =  0.9876 harmon =  432 shunt =  21.345 tfill =  90
+                }
+         };
+   RFC2
+     rfcavity {
+         l = 2
+         at = 280
+         body = {
+                 volt =  0.9876 harmon =  432 shunt =  21.345 tfill =  90
+                }
+         };
+   ELZERO
+     elseparator {
+         at = 290
+         body = {
+                 ex =  -5.14073464928e-14 ey =  9
+                }
+         };
+   EL2
+     elseparator {
+         l = 2
+         at = 300
+         body = {
+                 ex =  -5.14073464928e-14 ey =  9
+                }
+         };
+   ELZERO
+     elseparator {
+         at = 310
+         body = {
+                 ex =  -5.14073464928e-14 ey =  9
+                }
+         };
+   EL2
+     elseparator {
+         l = 2
+         at = 320
+         body = {
+                 ex =  -5.14073464928e-14 ey =  9
+                }
+         };
+   KICKZERO
+     kicker {
+         at = 330
+         body = {
+                 kl =  0.1 kls =  0.2
+                }
+         };
+   KICK2
+     kicker {
+         l = 2
+         at = 340
+         body = {
+                 kl =  0.1 kls =  0.2
+                }
+         };
+   MONZERO
+     monitor {
+         at = 350
+         };
+   MON2
+     monitor {
+         l = 2
+         at = 360
+         };
+   ECOLZERO
+     ecollimator {
+         at = 370
+         body = {
+                 xsize =  0.01 ysize =  0.02
+                }
+         };
+   ECOL2
+     ecollimator {
+         l = 2
+         at = 380
+         body = {
+                 xsize =  0.01 ysize =  0.02
+                }
+         };
+   RCOLZERO
+     rcollimator {
+         at = 390
+         body = {
+                 xsize =  0.01 ysize =  0.02
+                }
+         };
+   RCOL2
+     rcollimator {
+         l = 2
+         at = 400
+         body = {
+                 xsize =  0.01 ysize =  0.02
+                }
+         };
+   BB
+     beambeam {
+         at = 410
+         body = {
+                 sigx =  0.001 sigy =  0.002 xma =  -0.003 yma =  -0.004
+                 charge =  -1 npart =  105000000000
+                }
+         };
+   INSZERO
+     instrument {
+         at = 420
+         };
+   INS2
+     instrument {
+         l = 2
+         at = 430
+         };
+   MZERO
+     marker {
+         at = 440
+         };
+ endsequence at = 440
+}
+// SXF end

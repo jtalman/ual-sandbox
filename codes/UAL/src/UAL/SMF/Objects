@@ -1,0 +1,2 @@
+OBJS += $(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/AcceleratorNode.o \
+	$(UAL)/codes/UAL/lib/$(UAL_ARCH)/obj/AcceleratorNodeFinder.o 

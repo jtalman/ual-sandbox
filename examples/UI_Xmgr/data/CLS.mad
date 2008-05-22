@@ -1,0 +1,56 @@
+
+drift1 : DRIFT, L=0.25
+drift1b : DRIFT, L=0.357
+drift2 : DRIFT, L=0.534
+drift3 : DRIFT, L=0.312
+drift4 : DRIFT, L=0.407
+drift5 : DRIFT, L=0.3125
+drift6 : DRIFT, L=0.1695
+drift7 : DRIFT, L=0.3975
+drift8 : DRIFT, L=0.322
+quad1 : QUADRUPOLE, L=0.18, K1=1.77982
+
+Ltiny := 0.000001
+K1Qt := (-0.004-0.000729114-4.8392e-06)/Ltiny
+quadt : QUADRUPOLE, L=Ltiny, K1=K1Qt
+
+quad2 : QUADRUPOLE, L=0.18, K1=1.71791
+quad3 : QUADRUPOLE, L=0.260, K1=2.0403
+S1 : SEXTUPOLE, L=0.192, K2=-26.0494
+S2 : SEXTUPOLE, L=0.192, K2=39.8364
+
+Mb : marker
+CellEnd : marker
+TestPoint1 : marker
+TestPoint2 : marker
+BendEdge : marker
+quadin : marker
+quadout : marker
+
+K1big := (-0.065+6.53687e-05+1.22194e-06)/Ltiny
+M1HC : QUADRUPOLE, L=Ltiny, K1=K1big
+
+LHCtw := 1.87/12
+HCtwang := 0.261799/12
+bendin : SBEND, L=LHCtw, ANGLE=HCtwang, E1=0.105
+bend : SBEND, L=LHCtw, ANGLE=HCtwang
+bendout : SBEND, L=LHCtw, ANGLE=HCtwang, E2=0.105
+HC : LINE=(BendEdge, bendin, M1HC, &
+     bend, M1HC, bend, M1HC, bend, M1HC, bend, M1HC, bend, M1HC, &
+     bend, M1HC, bend, M1HC, bend, M1HC, bend, M1HC, bend, M1HC, &
+     bendout, BendEdge)
+
+! CAV:RFCAVITY,L=0.,VOLT=2.4,LAG=3.1415,FREQ=285.,ENERGY=2.9
+  CAV:RFCAVITY,L=0.,VOLT=2.4, HARMON=285
+! CAV : DRIFT , L=0
+
+CELL : LINE=(Mb, drift1, drift1, drift1, drift1, drift1, drift1, drift1, drift1, drift1, &
+       drift1b, quadin, quad1, quadt, quadout, &
+       drift2, quadin, quad2, quadt, quadout, drift3, HC, drift4, S1, drift5, quad3, quadt, quadout, &
+       drift6, S2, drift6, quadt, quad3, quadout, drift7, S1, drift8, HC, drift3, quadt, &
+       quad2, quadout, drift2, &
+       quadt, quad1, quadout, drift1b, drift1, drift1, TestPoint1, drift1, TestPoint2, &
+       drift1, drift1, drift1, drift1, drift1, drift1, CellEnd)
+CELLt12 : LINE = (CELL, CELL, CELL, CELL, CELL, CELL, &
+             CELL, CELL, CELL, CELL, CELL, CELL)
+RING : LINE = (CELLt12, CAV)

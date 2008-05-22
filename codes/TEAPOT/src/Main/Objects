@@ -1,0 +1,10 @@
+OBJS += $(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotMapService.o  \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotTrackService.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotMatrixService.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotClOrbitService.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotTwissService.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotChromService.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotEigenService.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/SlidingBumps.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/TeapotFirstTurnService.o \
+	$(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/Teapot.o

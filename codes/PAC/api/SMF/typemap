@@ -1,0 +1,39 @@
+TYPEMAP
+PacSmf*                         O_OBJECT
+PacElemKey*                     O_OBJECT
+PacElemKeys*                    O_OBJECT
+PacElemKeyIterator*             O_OBJECT
+PacElemBucketKey*               O_OBJECT
+PacElemBucketKeys*              O_OBJECT
+PacElemBucketKeyIterator*       O_OBJECT
+PacElemAttribKey*               O_OBJECT
+PacElemBucket*                  O_OBJECT
+PacElemAttributes*              O_OBJECT
+PacElemAttribIterator*          O_OBJECT
+PacElemPart*                    O_OBJECT
+PacGenElement*                  O_OBJECT
+PacGenElements*                 O_OBJECT
+PacGenElemIterator*             O_OBJECT
+PacLattElement*                 O_OBJECT
+PacLine*                  	O_OBJECT
+PacLines*                 	O_OBJECT
+PacLineIterator*             	O_OBJECT
+PacLattice*                  	O_OBJECT
+PacLattices*                 	O_OBJECT
+PacLatticeIterator*             O_OBJECT
+PacVTps *                       O_OBJECT
+VTps*                           O_OBJECT
+
+
+OUTPUT
+O_OBJECT
+	sv_setref_pv($arg, CLASS, (void*)$var );
+
+INPUT
+O_OBJECT
+	if(sv_isobject($arg) && (SvTYPE(SvRV($arg)) == SVt_PVMG) )
+		$var = ($type) SvIV((SV*) SvRV( $arg ));
+	else{
+		warn( \"${Package}::$func_name() -- $var is not a blessed SV reference\" );
+		XSRETURN_UNDEF;
+	}

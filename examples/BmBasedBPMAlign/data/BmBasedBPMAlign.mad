@@ -1,0 +1,327 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! ******* This is an SNS lattice including chromatic sextupoles   *******
+! ******* RF cavities, and markers for collimators and  hard-edge *******
+! ******* quadrupole fringe-fields				  *******
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+!!!!!!!!!!!!!!!!!!!!!
+!
+! Parameters
+!
+!!!!!!!!!!!!!!!!!!!!!
+!
+! Magnetic rigidity
+!
+  Brho := 5.6573735 ! 1.0 GeV (for 1.3 GeV: factor 1.1981566)
+!  Brho := 6.7777   ! 1.3 GeV
+!
+! Tunes and phase advance 
+!
+  QH:=6.3
+  QV:=5.8
+  MUH:=QH/4.0
+  MUV:=QV/4.0
+!
+! Matching value for beta functions
+!
+  BEXD := 2.428
+  BEYD := 13.047
+
+!!!!!!!!!!!!!!!
+!
+! drifts
+!
+!!!!!!!!!!!!!!!
+
+ OARC    : DRIFT, L = 1
+ O1      : DRIFT, L = 6.85
+ O11     : DRIFT, L = O1[L]/4
+ O2      : DRIFT, L = 0.4
+ O3      : DRIFT, L = 6.25
+ O31      : DRIFT, L = O3[L]/5
+ OZ : DRIFT, L = 0.0
+ OQ1 : DRIFT, L = 0.0
+ OQ2 : DRIFT, L = 0.0
+ OQ3 : DRIFT, L = 0.0
+
+!!!!!!!!!!!!!!
+! Bends
+!!!!!!!!!!!!!!
+!
+! angles
+!
+  ANG:= 2*PI/32 
+  EE := ANG/2
+!
+! length
+!
+  lbnd := 1.5
+!!!!!!!!!!!!!!!
+!
+! Dipoles
+!
+!!!!!!!!!!!!!!!
+
+  BL:  Sbend, L=lbnd/2, Angle=EE, E1=0., E2=0.
+  BR:  Sbend, L=lbnd/2, Angle=EE, E1=0., E2=0.
+  BND: Sbend, L=lbnd, Angle=ANG, E1=0.0, E2=0.0
+
+!!!!!!!!!!!!!!!
+!
+! Quadrupoles
+!
+!!!!!!!!!!!!!!!
+!
+! Arc Quad strengths for achromat in both planes
+!
+   KF:= 4.66011/1.1981566
+   KD:=-4.94176/1.1981566
+!
+! "Matching" quad strength
+!
+   KMAT := -3.41118/1.1981566   
+!
+!  Doublet strengths
+! 
+   KS2 :=  4.29830/1.1981566
+   KS3 := -4.58404/1.1981566
+!
+! Strengths for 1.3 Gev
+!
+!  KF:= 4.66011
+!  KD:=-4.94176
+!  KMAT := -3.41118
+!  KS2 :=  4.29830
+!  KS3 := -4.58404
+!
+!
+!  old values
+!
+!  KF:= 4.65962
+!  KD:=-4.94124
+!  KMAT := -3.405
+!  KS2 :=  4.298150
+!  KS3 := -4.586139
+!
+! lengths
+!
+  lq := 0.5
+  lq1 := 0.25/2
+  lq2 := 0.7
+  lq3 := 0.55
+!
+! Half Quadrupoles
+!
+ QDH     : QUADRUPOLE, L = lq/2, K1 = KD/Brho     ! focusing arc quad   (21Q40)
+ QFH     : QUADRUPOLE, L = lq/2, K1 = KF/Brho     ! defocusing arc quad (21Q40)
+ QFBH    : QUADRUPOLE, L = lq/2, K1 = KF/Brho     ! large focusing arc quad   (26Q38)
+ QDMH    : QUADRUPOLE, L = lq/2, K1 = KMAT/Brho   ! "matching" quad (21Q40)
+ QFLH    : QUADRUPOLE, L = lq2/2,K1 = KS2/Brho    ! long doublet quad (30Q65)
+ QDCH    : QUADRUPOLE, L = lq3/2, K1 = KS3/Brho   ! short doublet quad (30Q45)
+!
+!
+! Quadrupole fringes markers
+!
+  QDH1  :  MARKER
+  QDH2  :  MARKER
+  QFH1  :  MARKER
+  QFH2  :  MARKER
+  QFBH1 :  MARKER 
+  QFBH2 :  MARKER 
+  QDMH1 :  MARKER 
+  QDMH2 :  MARKER 
+  QFLH1 :  MARKER 
+  QFLH2 :  MARKER 
+  QDCH1 :  MARKER 
+  QDCH2 :  MARKER 
+
+!!!!!!!!!!!!!!!!!!!!!!!
+!
+! Steering elements and BPM's
+!
+!!!!!!!!!!!!!!!!!!!!!!!
+
+kickha : HKICKER
+kickhb : HKICKER
+kickhc : HKICKER
+kickhd : HKICKER
+kickhe : HKICKER
+kickhf : HKICKER
+kickhg : HKICKER
+kickhh : HKICKER
+
+kickva : VKICKER
+kickvb : VKICKER
+kickvc : VKICKER
+kickvd : VKICKER
+kickve : VKICKER
+kickvf : VKICKER
+kickvg : VKICKER
+kickvh : VKICKER 
+
+bpmha : HMONITOR
+bpmhb : HMONITOR
+bpmhc : HMONITOR
+bpmhd : HMONITOR
+bpmhe : HMONITOR
+bpmhf : HMONITOR
+bpmhg : HMONITOR
+bpmhh : HMONITOR
+
+bpmva : VMONITOR
+bpmvb : VMONITOR
+bpmvc : VMONITOR
+bpmvd : VMONITOR
+bpmve : VMONITOR
+bpmvf : VMONITOR
+bpmvg : VMONITOR
+bpmvh : VMONITOR
+!
+!
+! Quadrupole lines
+!
+!
+ QD      :   LINE = (QDH1,QDH,QDH,QDH2)
+! QF      :   LINE = (QFH1,QFH,QFH,QFH2)
+ QF_a      :   LINE = (QFH1,QFH,kickha,kickva,bpmha,bpmva,QFH,QFH2)
+ QF_b      :   LINE = (QFH1,QFH,kickhb,kickvb,bpmhb,bpmvb,QFH,QFH2)
+ QF_c      :   LINE = (QFH1,QFH,kickhc,kickvc,bpmhc,bpmvc,QFH,QFH2)
+ QF_d      :   LINE = (QFH1,QFH,kickhd,kickvd,bpmhd,bpmvd,QFH,QFH2)
+ QF_e      :   LINE = (QFH1,QFH,kickhe,kickve,bpmhe,bpmve,QFH,QFH2)
+ QF_f      :   LINE = (QFH1,QFH,kickhf,kickvf,bpmhf,bpmvf,QFH,QFH2)
+ QF_g      :   LINE = (QFH1,QFH,kickhg,kickvg,bpmhg,bpmvg,QFH,QFH2)
+ QF_h      :   LINE = (QFH1,QFH,kickhh,kickvh,bpmhh,bpmvh,QFH,QFH2)
+
+ QFB     :   LINE = (QFBH1,QFBH,QFBH,QFBH2)
+ QDM     :   LINE = (QDMH1,QDMH,QDMH,QDMH2)
+ QFL     :   LINE = (QFLH1,QFLH,QFLH,QFLH2)
+ QDC     :   LINE = (QDCH1,QDCH,QDCH,QDCH2)
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! CHROMATICITY SEXTUPOLES
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+PS70:=0.70
+S30:  DRIFT, L=0.30
+LSEX:=0.15
+!
+! strengths for natural chromaticity
+!
+! VS1D:=0.0
+! VS2F:=0.0
+! VS3D:=0.0
+! VS4F:=0.0
+!
+! strengths for chromaticity to 0
+!
+VS1D:=-2.891275
+VS2F:=2.563548
+VS3D:=-4.449269
+VS4F:=3.354977
+!
+! strengths for chromaticity to -2
+!
+!VS1D:=-2.075591E+00
+!VS2F:=1.792185E+00
+!VS3D:=-3.057019E+00
+!VS4F:=2.534535E+00
+!
+!
+!
+S1D:   SEXTUPOLE, L=LSEX, K2=VS1D
+S2F:   SEXTUPOLE, L=LSEX, K2=VS2F
+S3D:   SEXTUPOLE, L=LSEX, K2=VS3D
+S4F:   SEXTUPOLE, L=LSEX, K2=VS4F
+!
+LDAS:  DRIFT, L=PS70-LSEX
+SSX1D: LINE = (S30,S1D,LDAS)
+SSX2F: LINE = (S30,S2F,LDAS)
+SSX3D: LINE = (LDAS,S3D,S30)
+SSX4F: LINE = (LDAS,S4F,S30)
+SSX5D: LINE = (LDAS,S1D,S30)
+
+
+!!!!!!!!!!!!!!!!!!!!!!!
+!
+! RF Cavities
+!
+!!!!!!!!!!!!!!!!!!!!!!!
+LREF:=1.7
+ORF : DRIFT, L = O31[L] - LREF/2.5
+RF1 : RFCAVITY, L = LREF, HARMON = 1, VOLT =  0.0
+RF2 : RFCAVITY, L = LREF, HARMON = 2, VOLT = -0.0
+RFL1: LINE = (ORF,ORF,RF1,ORF,ORF,RF1,ORF)
+RFL2: LINE = (ORF,RF1,ORF,ORF,RF2,ORF,ORF)
+
+!!!!!!!!!!!!!!!!!!!!!!!
+!
+! Collimators
+!
+!!!!!!!!!!!!!!!!!!!!!!!
+MCOL1: MARKER
+MCOL2: MARKER
+
+!!!!!!!!!!!!
+!
+! SNS lines (Carefull the UAL parser does not support * or - in lines)
+!
+!!!!!!!!!!!!
+!
+!
+  SC     : line = (QDM,O11,O11,O11,O11,QFL,O2,QDC,O31,O31,O31,O31,O31)
+  SCM    : line = (O31,O31,O31,O31,O31,QDC,O2,QFL,O11,O11,O11,O11,QDM)
+  SCOL   : line = (QDM,O11,O11,MCOL1,O11,O11,QFL,O2,QDC,O31,O31,MCOL2,&
+                   O31,O31,O31)
+  SCOLM  : line = (O31,O31,O31,O31,O31,QDC,O2,QFL,O11,O11,MCOL1,&
+                   O11,O11,QDM)
+  SCRF   : line = (QDM,O11,O11,O11,O11,QFL,O2,QDC,RFL1)
+  SCRFM  : line = (RFL2,QDC,O2,QFL,O11,O11,O11,O11,QDM)
+!  ACF    : line = (OARC,BND,OARC,QF)
+  ACF_a    : line = (OARC,BND,OARC,QF_a)
+  ACF_b    : line = (OARC,BND,OARC,QF_b)
+  ACF_c    : line = (OARC,BND,OARC,QF_c)
+  ACF_d    : line = (OARC,BND,OARC,QF_d)
+  ACF_e    : line = (OARC,BND,OARC,QF_e)
+  ACF_f    : line = (OARC,BND,OARC,QF_f)
+  ACF_g    : line = (OARC,BND,OARC,QF_g)
+  ACF_h    : line = (OARC,BND,OARC,QF_h)
+
+  ACFM   : line = (OARC,BND,OARC,QD)
+  ACS1   : line = (SSX1D,BND,OARC,QFB)
+  ACS2   : line = (SSX2F,BND,SSX3D,QD)
+  ACS3   : line = (OARC,BND,SSX4F,QFB)
+  ACS4   : line = (OARC,BND,SSX5D,QD)
+  ACFL   : line = (OARC,BND,OARC)
+!
+! arc line
+!
+!  ARC    : line = (ACF,ACFM,ACS1,ACS2,ACS3,ACS4,ACF,ACFL)
+  ARC_a    : line = (ACF_a,ACFM,ACS1,ACS2,ACS3,ACS4,ACF_e,ACFL)
+  ARC_b    : line = (ACF_b,ACFM,ACS1,ACS2,ACS3,ACS4,ACF_f,ACFL)
+  ARC_c    : line = (ACF_c,ACFM,ACS1,ACS2,ACS3,ACS4,ACF_g,ACFL)
+  ARC_d    : line = (ACF_d,ACFM,ACS1,ACS2,ACS3,ACS4,ACF_h,ACFL)
+!
+! insertion lines
+!
+  INSERT  : line = (SC,OZ,SCM)
+  INSERTC : line = (SCOL,OZ,SCOLM)
+  INSERTR : line = (SCRF,OZ,SCRFM)
+!
+! superperiod (Broken out for beam-based quad alignment)
+!
+!  SP :      line = (INSERT,ARC)
+  SP_a :      line = (INSERT,ARC_a)
+  SP_b :      line = (INSERT,ARC_b)
+  SP_c :      line = (INSERT,ARC_c)
+  SP_d :      line = (INSERT,ARC_d)
+
+RING  : line = (SP_a,SP_b,SP_c,SP_d)
+
+

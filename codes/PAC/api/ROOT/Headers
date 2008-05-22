@@ -1,0 +1,10 @@
+HEADERS+=$(UAL_PAC)/include/PAC/Beam/BeamAttributes.hh \
+	$(UAL_PAC)/include/PAC/Beam/Position.hh \
+	$(UAL_PAC)/include/PAC/Beam/Spin.hh \
+	$(UAL_PAC)/include/PAC/Beam/Particle.hh  \
+	$(UAL_PAC)/include/PAC/Beam/Bunch.hh  \
+	$(UAL_PAC)/src/Optics/PacTwissData.h \
+	$(UAL_PAC)/src/Optics/PacChromData.h \
+	$(UAL_PAC)/src/Optics/PacVTps.h \
+	$(UAL_PAC)/src/Optics/PacTMap.h
+#	$(UAL_PAC)/src/Optics/LinearMapper.hh \

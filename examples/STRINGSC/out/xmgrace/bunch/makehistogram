@@ -1,0 +1,4 @@
+#!/bin/csh -f
+
+xmgrace -nosafe -noask -batch histoplot.com -block bunchout -timestamp -param bunch.par -printfile outhistogram.ps
+

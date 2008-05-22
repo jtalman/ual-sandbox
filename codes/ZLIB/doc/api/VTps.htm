@@ -1,0 +1,199 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.TableHead_my {  background-color: #9999FF}
+-->
+</style>
+<link rel="stylesheet" href="../css/PerlPackage.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#CCCCFF"> 
+    <td><font size="+2"><b><font face="Arial, Helvetica, sans-serif">Class ZLIB:VTps</font></b></font></td>
+  </tr>
+</table>
+<p>Represents the data and algebra of Vectors of Truncated Power Series (VTPS).</p>
+<p>Example: <a href="../examples/vtps.txt">vtps.pl</a></p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Constructor 
+      Summary</font></b></font></td>
+  </tr>
+  <tr> 
+    <td>VTps($size)<br>
+      <i>Creates a vector with $size Tps components.</i></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Method 
+      Summary</font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top"> 
+      <div align="center"><font color="#0099ff">Returns</font></div>
+    </td>
+    <td width="83%" valign="top"> 
+      <div align="center"><font color="#0099ff">Methods</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$order</td>
+    <td width="83%" valign="top">order()<br>
+      <i>Returns the maximum order of Tps components.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">void</td>
+    <td width="83%" valign="top">order($order)<br>
+      <i>Sets the order for all Tps components.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$size</td>
+    <td width="83%" valign="top">size()<br>
+      <i>Returns the number of Tps components.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">value($j)<br>
+      <i>Returns the $jth Tps component.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">Void</td>
+    <td width="83%" valign="top">value($j, $inputTps)<br>
+      <i>Sets the $jth Tps component.</i></td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Mathematical Operators:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator=+($number)<br>
+      <i>Adds the Identity VTps multiplied by the floating-point $number and returns 
+      the pointer to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps </td>
+    <td width="83%" valign="top">operator+($number)<br>
+      <i>Adds the Identity VTps multiplied by the floating-point $number and returns 
+      the pointer to the $resultVTps object.</i> </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator=+($inputVTps)<br>
+      <i>Adds this and $inputVTps objects and returns the pointer to the $resultVTps 
+      object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator+($inputTps)<br>
+      <i>Adds this and $inputVTps objects and returns the pointer to the $resultVTps 
+      object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator=/($number)<br>
+      <i>Divides this object by the floating-point $number and returns the pointer 
+      to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator/($number)<br>
+      <i>Divides this object by the floating-point $number and returns the pointer 
+      to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator=/($inputVTps)<br>
+      <i>Divides this object by the $inputVTps object and returns the pointer 
+      to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator/($inputVTps)<br>
+      <i>Divides this object by the $inputVTps object and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator=*($number)<br>
+      <i>Multiplies this object by the floating-point $number and returns the 
+      pointer to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator*($number)<br>
+      <i>Multiplies this object by the floating-point $number and returns the 
+      pointer to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator=*($inputVTps)<br>
+      <i>Multiplies this and $inputTps objects and returns the pointer to the 
+      $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator*($inputTps)<br>
+      <i>Multiplies this and $inputTps objects and returns the pointer to the 
+      $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator=-($number)<br>
+      <i>Subtracts the Identity VTps multiplied by the floating-point $number 
+      from this object and returns the pointer to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator-($number)<br>
+      <i>Subtracts the Identity VTps multiplied by the floating-point $number 
+      from this object and returns the pointer to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps </td>
+    <td width="83%" valign="top">operator=-($inputVTps)<br>
+      <i>Subtracts $inputVTps components from this object and returns the pointer 
+      to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">operator-($inputVTps)<br>
+      <i>Subtracts $inputTps components from this object and returns the pointer 
+      to the $resultVTps object.</i></td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Mathematical functions:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">D($i) <br>
+      <i>Returns the partial derivative of all Tps components with respect to 
+      i-variable.</i></td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>I/O methods:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">void </td>
+    <td width="83%" valign="top">read($fileName)<br>
+      <i>Reads Tps components from the file with the specified name.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">void </td>
+    <td width="83%" valign="top">write($fileName)<br>
+      <i>Writes Tps components into the file with the specified name.</i></td>
+  </tr>
+</table>
+</body>
+</html>

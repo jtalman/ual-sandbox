@@ -1,0 +1,842 @@
+// Program     : Teapot
+// File        : Integrator/TeapotEngine.icc
+// Copyright   : see Copyright file
+// Description : Tracking Engine
+// Author      : Nikolay Malitsky
+
+
+// Constructors
+
+template<class Coordinate, class Position>
+TeapotEngine<Coordinate, Position>::TeapotEngine()
+{
+  _steps[0] = 0.5;
+  _steps[1] = 0.1;
+  _steps[2] = 4./15.;
+  _steps[3] = 4./15.;
+  _steps[4] = 4./15.;
+  _steps[5] = 0.1;
+
+  _kicks[0] = 1.;
+  _kicks[1] = 0.25;
+  _kicks[2] = 0.25;
+  _kicks[3] = 0.25;
+  _kicks[4] = 0.25;
+
+  initialize();
+}
+
+// Public commands
+
+template<class Coordinate, class Position> 
+int TeapotEngine<Coordinate, Position>::propagate(
+ const PacGenElement& ge, 
+ PAC::BeamAttributes& ba,
+ Position& p)
+{
+  TeapotElement te(ge);
+  return propagate(te, ba, p);
+}
+
+template<class Coordinate, class Position>
+int TeapotEngine<Coordinate, Position>::propagate(
+ const TeapotElement& te, 
+ PAC::BeamAttributes& ba,
+ Position& p)
+{
+  Position tmp(p);
+
+  double e0 = ba.getEnergy(), m0 = ba.getMass();
+  double p0 = sqrt(e0*e0 - m0*m0);
+
+  double v0byc = p0/e0;
+
+  makeVelocity(p, tmp, v0byc);
+  makeRV(ba, p, tmp);
+  return propagate(te, p, tmp, ba, &v0byc);
+}
+
+template<class Coordinate, class Position>
+int TeapotEngine<Coordinate, Position>::propagate(
+ const TeapotElement& te, 
+ Position& p,
+ Position& tmp,
+ PAC::BeamAttributes& ba,
+ double* v0byc)
+{
+  // Map
+
+  if(te.map().count()){
+	PacTMap map(te.map());
+	map.propagate(p); 
+	makeVelocity(p, tmp, *v0byc);
+	return 0;
+  }
+  int r;
+
+  r  = passFront(te, p, tmp, *v0byc);
+  r += passBody(te, p, tmp, ba, v0byc);
+  r += passEnd(te, p, tmp, *v0byc);
+
+  return r;
+}
+
+// Parts
+
+template<class Coordinate, class Position>
+int TeapotEngine<Coordinate, Position>::passFront(
+ const TeapotElement& te, 
+ Position& p,
+ Position& tmp,
+ double v0byc)
+{
+  int flag = 0;
+
+  TeapotElemBend* bend = te.bend();
+  if(bend){
+    p[1] -= ((bend->ke1())*p[0]); // was : p[PacPosition::X]*bend->ke1(); 
+    p[3] += ((bend->ke1())*p[2]);  // was : p[PacPosition::Y]*bend->ke1(); 
+    flag = 1;   
+  }
+
+  _front = te.getFront();
+  if(_front){
+     PacElemAttributes::iterator it = _front->find(PAC_MULTIPOLE);
+     if(it != _front->end()){
+
+        Coordinate t0, x, y, px, py;
+        PacElemMultipole* mult = (PacElemMultipole*) &(*it);
+
+        x = p[0]; //  xdif
+        y = p[2]; //  ydif
+
+        px = 0.0;
+        py = 0.0;
+
+
+//        int order = mult->size() - 1;
+//    	for(int i = order; i >= 0 ; i--){
+//          t0  = x*px;
+//          t0 -= y*py - mult->kl(i);
+//          py  = x*py;
+//          py += y*px + mult->ktl(i);    
+//          px  = t0;
+//       }  
+
+//       int     index = 2*mult->size();
+       int index = mult->size();
+
+       double* data = mult->data();
+       double kl, ktl;
+       if(index > 0){
+    	  do {
+	  	ktl = data[--index];
+	 	kl  = data[--index];
+          	t0  = x*px;
+          	t0 += kl-(py*y);     // was :t0 -= y*py - kl; 
+          	py  = py*x;          // was :py  = x*py; 
+          	py += ktl+(px*y);     // was :py += y*px + ktl; 
+          	px  = t0;
+       	  } while ( index > 0 );
+       }
+
+
+       p[1] -= px;      // px/p0
+       p[3] += py;      // py/p0
+
+       flag = 1;
+     }	
+  }
+
+
+  if (flag){
+    makeVelocity(p, tmp, v0byc);    
+  }
+
+  return 0;
+}
+
+template<class Coordinate, class Position>
+int TeapotEngine<Coordinate, Position>::passEnd(
+ const TeapotElement& te, 
+ Position& p,
+ Position& tmp,
+ double v0byc)
+{
+  int flag = 0;
+
+  TeapotElemBend* bend = te.bend();
+  if(bend){
+    p[1] -=  p[0]*bend->ke2();
+    p[3] +=  p[2]*bend->ke2(); 
+    flag = 1;   
+  }
+
+
+  _end = te.getEnd();
+  if(_end){
+     PacElemAttributes::iterator it = _end->find(PAC_MULTIPOLE);
+     if(it != _end->end()){
+
+        Coordinate t0, x, y, px, py;
+        PacElemMultipole* mult = (PacElemMultipole*) &(*it);
+
+        x = p[0]; //  xdif
+        y = p[2]; //  ydif
+
+        px = 0.0;
+        py = 0.0;
+
+//        int order = mult->size() - 1;
+//    	for(int i = order; i >= 0 ; i--){
+//          t0  = x*px;
+//          t0 -= y*py - mult->kl(i);
+//          py  = x*py;
+//          py += y*px + mult->ktl(i);    
+//          px  = t0;
+//       }  
+
+//       int     index = 2*mult->size();
+       int     index = mult->size();
+       double* data = mult->data();
+       double kl, ktl;
+       if(index > 0){
+    	  do {
+	  	ktl = data[--index];
+	 	kl  = data[--index];
+          	t0  = x*px;
+          	t0 -= y*py - kl;
+          	py  = x*py;
+          	py += y*px + ktl;    
+          	px  = t0;
+       	  } while ( index > 0 );
+       }
+
+       p[1] -= px;      // px/p0
+       p[3] += py;      // py/p0
+
+       flag = 1;
+     }	
+  }
+
+
+
+  if (flag){
+    makeVelocity(p, tmp, v0byc);    
+  }
+
+  return 0;
+}
+
+template<class Coordinate, class Position>
+int TeapotEngine<Coordinate, Position>::passBody(
+ const TeapotElement& te, 
+ Position& p,
+ Position& tmp,
+ PAC::BeamAttributes& ba,
+ double* v0byc)
+{
+
+ PacElemAttributes *attributes = te.getBody();
+
+ // Marker
+
+ if(!attributes) {
+   passDrift(te.l(), p, tmp, *v0byc);
+   return 0;
+ }  
+
+ // Drift
+
+ if(attributes->size() ==  1) {
+   PacElemAttributes::iterator it = attributes->begin();
+   if((*it).key() == PAC_LENGTH){
+   	passDrift(te.l(), p, tmp, *v0byc);
+   	return 0;
+   }
+ }  
+
+ // Others
+
+ body(te);
+
+ // Simple Element
+
+ if(!_ir){
+   passInterval(0, 0, te, p, tmp, *v0byc); 
+   if(_mult != 0 || _bend != 0) { passMltKick(te, 0, p, tmp, *v0byc); }
+   if(_rf != 0 )                { passRfKick(0, p, tmp, ba, v0byc); }	
+   passInterval(1, 0, te, p, tmp, *v0byc);
+   return testAperture(p);
+ } 
+
+ // Complex Element
+ 
+ _rIr = 1./_ir;
+
+ int counter = 0;
+ for(int i = 0; i < _ir; i++){
+   for(int is = 1; is < 5; is++){
+     passInterval(counter++, is, te, p, tmp, *v0byc); 
+     if(_mult != 0 || _bend != 0) { passMltKick(te, is, p, tmp, *v0byc); }
+     if(_rf != 0 )                { passRfKick(is, p, tmp, ba, v0byc); }
+   }
+   passInterval(counter++, 5, te, p, tmp, *v0byc);
+ }
+
+ return testAperture(p);
+}
+
+// Intervals
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::passInterval( 
+  int nSlice, 
+  int nStep,  
+  const TeapotElement& te,
+  Position& p, 
+  Position& tmp, 
+  double v0byc)
+{
+  double dl = _rIr*_steps[nStep]*_l;
+
+  switch(_pathKey){
+  case BEND :
+    passBend(te, _bend->slice(nSlice), p, tmp, v0byc);
+    if(nStep == 5)  makeVelocity(p, tmp, v0byc);
+    break;
+  case SOLENOID :
+    passDrift(dl*0.5, p, tmp, v0byc);
+    passSlndKick(dl, p, tmp, v0byc);
+    passDrift(dl*0.5, p, tmp, v0byc);
+    break;
+  case BEND + SOLENOID :
+    cerr << "Bend + Solenoid is not implemented \n";
+    assert(0);
+    break;
+  default:    
+    passDrift(dl, p, tmp, v0byc);
+  }
+}
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::passDrift(
+  double rlipl, 
+  Position& p, 
+  Position& tmp, 
+  double v0byc)
+{
+  Coordinate rvbyc, p1, p2, p4;
+
+  // Transform coordinates into frame of multipole
+
+  p[0] += (rlipl*tmp[1]); // was :tmp[PacPosition::PX]*rlipl;                 
+  p[2] += (rlipl*tmp[3]); // was :tmp[PacPosition::PY]*rlipl; 
+
+
+
+  if(p.size() > 5){
+
+    // -p[5] = cdt = L/(v/c) -Lo/(vo/c) = (L - Lo)/(v/c) + Lo*(c/v - c/vo) =
+    //                                  = cdt_circ       + cdt_vel
+
+    // 1. cdt_circ = (c/v)(L - Lo) = (c/v)(L**2 - Lo**2)/(L + Lo) ~ 
+
+/*
+    rvbyc  = v0byc*(1.+ tmp[PacPosition::CT]);  
+    rvbyc  = 1./rvbyc;                                // c/v
+*/
+
+    rvbyc  = tmp[5];                     // c/v
+
+    p1  = tmp[1];
+    p1 *= p1;
+    p2  = tmp[3];
+    p2 *= p2;
+    p1 += p2;
+
+    // Define L + Lo instead of 2*Lo (April 98)
+    p4  = 1.;
+    p4 += p1;
+    p4  = sqrt(p4);                                    // L/Lo
+    p4 += 1.;                                          // (L+Lo)/Lo
+    p4 /= 2.;
+
+    p1 /= p4;
+
+    p1 *= rvbyc;
+    p1 *= rlipl/2.;
+
+    // 2. cdt_vel  = Lo*(c/v -c/vo) 
+ 
+    p2  =  1./v0byc;
+    p2 -=  rvbyc;
+    p2 *=  rlipl;
+
+    // Total
+
+    p[4] -= p1; 
+    p[4] += p2;
+
+  }
+               
+  return;
+}
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::passBend(
+  const TeapotElement& te, 
+  const TeapotElemSlice& slice, 
+  Position& p, 
+  Position& tmp,
+  double v0byc)
+{
+  // From makeVelocity:
+  //
+  // tmp[x]  = psbyp0
+  // tmp[px] = vx/vs
+  // tmp[py] = vy/vs
+
+  if(!te.l()) return;
+
+  Coordinate t0, t1, x, y;
+
+  // Transform velocities into frame of multipole
+
+ t0  = ((slice.cphpl())*p[1]);                                       // was : p[PacPosition::PX]*slice.cphpl(); 
+ t0 -= ((slice.sphpl())*tmp[0]);  // (px*cos(phi+) - ps*sin(phi+))/p0 // was : tmp[PacPosition::X]*slice.sphpl(); 
+ p[1] = t0;
+
+ // Transform coordinates into frame of multipole
+
+ t0  = 1/(1. + ((slice.tphpl())*tmp[1])); // 1/(1+vx/vs*tan(phi+))  // was : 1/(1. + tmp[PacPosition::PX]*slice.tphpl()); 
+ t1  = (-slice.scrx()) + p[0];            // x - scrx               // was : p[PacPosition::X] - slice.scrx(); 
+
+ 
+ if(p.size() > 5) {
+   tmp[2] = t0;
+   if(slice.rlipl()) deltaPath(slice, p, tmp, v0byc);  // P[5] -= cdt
+ }
+
+ x  = t1;
+ x += (slice.scrs())*tmp[1];            // (x - scrx + vx/vs*scrs)*   // was :tmp[PacPosition::PX]*slice.scrs(); 
+ x = ((1.0/(slice.cphpl()))*t0)*x;                             // *t0/cos(phi+) // was :  x *= t0/slice.cphpl(); 
+ y  = slice.scrs();
+ y -= slice.tphpl()*t1;                             // (scrs - tan(phi+)*(x - scrx))*
+ y *= tmp[3]*t0;                      // *vy/vs*t0+
+ y += p[2];                            // +y
+
+
+ p[0] = x;
+ p[2] = y;
+                              
+ return;
+}
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::deltaPath(
+  const TeapotElemSlice& slice, 
+  Position& p, 
+  Position& tmp,
+  double v0byc)
+{
+  Coordinate rvbyc, p0, p1, p3, p2, p4;
+
+  // From passBend:
+  // 
+  // tmp[x]  = psbyp0
+  // tmp[y]  = 1/(1+vx/vs*tan(phi+))
+  // tmp[px] = vx/vs
+  // tmp[py] = vy/vs
+  // tmp[ct] = dV
+
+  // L = sqrt(dx*dx + dy*dy + ds*ds)
+
+  p0  = (p[0] + (slice.spxt())*tmp[1]);      // was :  (p[PacPosition::X] + tmp[PacPosition::PX]*slice.spxt()); 
+  p0 *= tmp[2];                                  // (x + vx/vs*spxt)*tmp[y]  
+  p1  = p0 - p[0];                               // dx
+  p0  = (slice.tphpl())*((-slice.scrx()) + p0 );                    // (t0 - scrx)*tan(phi+)   // was :(p0 - slice.scrx())*slice.tphpl(); 
+  p3  = slice.scrs() - p0;                                    // ds
+  p2  = tmp[3]*p3;                              // dy
+
+  p4  = 0;                                                    // L*L
+  p1 *= p1;
+  p2 *= p2;
+  p3 *= p3;
+  p4  = p1 + p2 + p3;
+  p4  = sqrt(p4);                                             // L
+  p4 += slice.rlipl();                                        // L + Lo
+
+
+  // p[5] = cdt = L/(v/c) - Lo/(vo/c) = (L - Lo)/(v/c) + Lo*(c/v -c/vo) =
+  //                                  =  cdt_circ      + cdt_vel
+
+
+  // cdt_circ = (c/v)(L - Lo) = (c/v)(L**2 - Lo**2)/(L + Lo)  
+
+/*
+  rvbyc = v0byc*(1. + tmp[4]);
+  rvbyc = 1./rvbyc;
+*/
+
+  rvbyc = tmp[5];
+
+  p1  = p1 + p2 + p0*p0;
+  p1 -= slice.scrx()*slice.scrx();             
+  p1 -= (2.*slice.scrs())*p0;                 // L**2 - Lo**2     // was :  2.*p0*slice.scrs() 
+
+  p4 = p1/p4;
+  p1  =  p4*rvbyc;                          // cdt_old + cdt_circ 
+  
+  // cdt_vel  = Lo*(c/v - c/vo)   
+
+  p2  = 1./v0byc;
+  p2 -= rvbyc;
+  p2 *= slice.rlipl();
+
+  p[4]   -= p1;               // cdt
+  p[4]   += p2;               // cdt
+
+  return;
+}
+
+// Kicks
+
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::passMltKick( 
+  const TeapotElement& te,
+  int iKick,
+  Position& p,
+  Position& tmp, 
+  double v0byc)
+{
+ 
+  if(_mult == 0 && _bend == 0) return;
+
+//    double kl, ktl;  
+  Coordinate t0, x, x1, y, px, px1, py;
+
+  x = p[0]; //  xdif
+  y = p[2]; //  ydif
+
+  px = 0.0;
+  py = 0.0;
+
+  if(_offset) {
+    x -= _offset->dx();
+    y -= _offset->dy();
+  }
+
+  double tilt, ctilt, stilt;
+
+  tilt = 0.0 ; ctilt= 1.0 ; stilt = 0.0 ; 
+
+  if(_rotation) {  
+    tilt  = _rotation->tilt();
+    ctilt = cos(tilt);
+    stilt = sin(tilt);
+
+    x1 = x;
+    x  =  x1*ctilt;
+    x +=  y*stilt;
+    y  =  y*ctilt;
+    y -=  x1*stilt;
+  }
+
+  if(_mult){
+
+     double rkicks = _kicks[iKick]*_rIr;
+
+     int     index = _mult->size();
+     double* data = _mult->data();
+
+     double kl, ktl;	
+
+     if(index > 0){
+    	  do {
+	  	ktl = data[--index];
+	 	kl  = data[--index];
+          	t0  = x*px;
+          	t0 -= y*py - kl;
+          	py  = x*py;
+          	py += y*px + ktl;    
+          	px  = t0;
+       	  } while ( index > 0 ) ;
+     }
+     px *= rkicks;
+     py *= rkicks;
+  }
+/*
+  if(_bend){
+    if(te.l()){
+  	px += x*_bend->btw(1);
+  	px += _bend->btw(0);
+
+  	py += y*_bend->atw(1);
+  	py += _bend->atw(0);
+    }
+    else {
+	// MAD thin dipole
+        double factor = _bend->angle()/v0byc;
+        px -= factor*p[5];
+        p[4] -= factor*p[0];
+    }
+  }
+*/
+  
+  px *= -1;
+
+  if(_rotation) {  
+    x1  = x;
+    x   =  x1*ctilt;
+    x  -=   y*stilt;
+    y   =   y*ctilt;
+    y  +=  x1*stilt;
+
+    px1 =  px;
+    px  =  px1*ctilt;
+    px -=  py*stilt;
+    py  =  py*ctilt;
+    py +=  px1*stilt;
+  }
+
+  if(_bend){
+   double btw01 = _bend->btw(1);
+   double atw01 = _bend->atw(1);
+   double btw00 = _bend->btw(0);
+   double atw00 = _bend->atw(0);
+    if(_rotation) { 
+      double ctilt2 = cos(2*tilt);
+      double stilt2 = sin(2*tilt);
+      btw01 = btw01*ctilt2 + atw01*stilt2;
+      atw01 = atw01*ctilt2 - _bend->btw(1)*stilt2;
+      btw00 = btw00*ctilt + atw00*stilt;
+      atw00 = atw00*ctilt - _bend->btw(0)*stilt;
+    }
+    if(te.l()){
+  	px -= x*btw01;
+  	px -= btw00;
+
+  	py += y*atw01;
+  	py += atw00;
+    }
+    else {
+	// MAD thin dipole
+        double factor = _bend->angle()/v0byc;
+        px += factor*p[5];
+        p[4] -= factor*p[0];
+    }
+  }
+
+  p[1] += px;                              // px/p0
+  p[3] += py;                              // py/p0
+
+  makeVelocity(p, tmp, v0byc);
+
+}
+/*
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::passRfKick( int, Position& , Position& , PacBeamAttributes&, double*)
+{
+  cerr << "Error: this version does not support a RF kick" << endl;
+}
+*/
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::passSlndKick(
+  double dl,
+  Position& p,
+  Position& tmp,
+  double v0byc)
+{
+
+  Coordinate x, y;
+
+  x = p[0]; //  xdif
+  y = p[2]; //  ydif
+
+  if(_offset) {
+    x -= _offset->dx();
+    y -= _offset->dy();
+  }
+
+  // Focusing
+
+  double ks  = 0.5*_solenoid->ks();
+  double angle = ks*dl;
+  double strength = angle*ks;
+  
+  p[1] -= strength*x;
+  p[3] -= strength*y;     
+
+  // Rotation
+
+  double cthslnd = cos(angle);
+  double sthslnd = sin(angle);
+
+  x  = cthslnd*p[0];
+  x += sthslnd*p[2];
+
+  y  = cthslnd*p[2];
+  y -= sthslnd*p[0]; 
+
+  p[0] = x;
+  p[2] = y;
+  
+  x  = cthslnd*p[1];
+  x += sthslnd*p[3];
+
+  y  = cthslnd*p[3];
+  y -= sthslnd*p[1]; 
+
+  p[1] = x;
+  p[3] = y;
+
+  makeVelocity(p, tmp, v0byc);
+
+}
+
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::makeVelocity(
+  Position& p,
+  Position& tmp,
+  double v0byc)
+{
+  Coordinate t0, t1;
+
+  t0  = 1.;
+ 
+  if(p.size() > 5){ 
+    t1  = p[5];
+    t1 += 2./v0byc;
+    t1 *= p[5];
+    t0 += t1;
+  }
+
+  t1  = p[1];
+  t1 *= t1;
+  t0 -= t1;
+
+  t1  = p[3];
+  t1 *= t1;
+  t0 -= t1;
+
+  t0  = sqrt(t0);
+  tmp[0]   = t0;
+
+  t0  = 1./t0;
+  tmp[1]  = p[1]*t0;    // vx/vs
+  tmp[3]  = p[3]*t0;    // vy/vs
+
+  return;
+}
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::makeRV(
+  const PAC::BeamAttributes& ba, 
+  Position& p,
+  Position& tmp)
+{
+  double e0 = ba.getEnergy(), m0 = ba.getMass();
+  double p0 = sqrt(e0*e0 - m0*m0);
+ 
+  Coordinate e, p2, rv;
+
+  e  = e0;
+  e += (p0*p[5]);    // was : p[PacPosition::DE]*p0; 
+
+  p2  = e;
+  p2 *= e;
+  p2 -= m0*m0;
+  p2  = sqrt(p2);
+  
+  rv  = e;
+  rv /= p2;
+
+  tmp[5] = rv;
+
+}
+
+
+// Secondary methods
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::initialize()
+{
+
+  _pathKey   = 0;
+
+  // Element Buckets
+
+  _mult      = 0;
+  _offset    = 0;
+  _aperture  = 0;
+  _solenoid  = 0;
+  _rf        = 0;
+  _rotation  = 0;
+
+  // TeapotElement Data
+
+  _l   = 0.; // length
+  _ir  = 0 ; // ir
+  _rIr = 1.; // 1./ir
+
+  _bend = 0;
+ 
+}
+
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::body(
+ const TeapotElement& te) 
+{
+  initialize();
+
+ // Teapot static part
+
+ _l = te.l();
+
+ _bend = te.bend();
+ if(_bend) _pathKey += BEND;
+ 
+ _ir = te.ir();
+
+ PacElemAttributes* attributes = te.getBody();
+
+ // Variable part
+
+ if(attributes){
+  for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++)
+    switch((*it).key()){
+    case PAC_MULTIPOLE:
+      _mult = (PacElemMultipole*) &(*it);
+      break;
+    case PAC_OFFSET:
+      _offset = (PacElemOffset*) &(*it);
+      break;
+    case PAC_APERTURE:
+      _aperture = (PacElemAperture*) &(*it);
+      break;
+    case PAC_SOLENOID:
+      _solenoid = (PacElemSolenoid*) &(*it);
+      _pathKey += SOLENOID;
+      break;
+    case PAC_RFCAVITY:
+      _rf = (PacElemRfCavity*) &(*it);
+      break;
+    case PAC_ROTATION:
+      _rotation = (PacElemRotation*) &(*it);
+      break;
+    default:
+      break;
+    }
+ } 
+
+}
+
+/*
+template<class Coordinate, class Position>
+int  TeapotEngine<Coordinate, Position>::testAperture(Position& ) 
+{ return 0; }
+*/

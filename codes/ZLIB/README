@@ -1,0 +1,68 @@
+ZLIB: Numerical Library for Differential Algebra.
+
+ZLIB provides accelerator physicists with the efficient numerical approach 
+for fundamental operations with vectors of Truncated Power Series (TPS) and 
+the relevant mapping techniques.
+
+---------------------------------------------------------------------------
+Organization
+---------------------------------------------------------------------------
+
+The ZLIB downloaded software includes the following directories:
+
+./doc - C++ and Perl API specifications
+./lib - C++ shared libraries 
+./api - Perl adapters to ZLIB C++ classes
+./examples -  Perl scripts with detail per-line comments.
+
+---------------------------------------------------------------------------
+Running ZLIB applications on the single-process computer. 
+Examples: ./example/Tps/api/<tps.pl and vtps.pl>  
+---------------------------------------------------------------------------
+
+Before testing or running ZLIB-based applications on the single-process
+computer, user should define in the ~/.cshrc file the following environment 
+variables:
+
+setenv UAL_ARCH 	<type of operating system: linux or sun_gcc>
+setenv UAL_ZLIB 	<path to the ZLIB installed software>
+setenv LD_LIBRARY_PATH 	$UAL_ZLIB/lib/$UAL_ARCH  
+
+After the initialization of UAL environment variables, one can copy 
+tps.pl and vtps.pl scripts from the $UAL_ZLIB/examples/Tps/api directory 
+into the local one and run these examples as ordinary Perl scripts:
+
+>cp $UAL_ZLIB/examples/Tps/api/*.pl .
+>perl tps.pl 
+>perl vtps.pl 
+
+---------------------------------------------------------------------------
+Running ZLIB-based embarrassingly parallel applications.
+Examples: ./example/Tps/api/<tps_mpi.pl and vtps_mpi.pl>  
+---------------------------------------------------------------------------
+
+ZLIB-based scripts can be run also in the parallel environment based on the
+Message-Passing Interface (MPI). Before testing or running these applications,
+user should install the MPICH library (http://www-unix.mcs.anl.gov/mpi/mpich)
+and the Perl Parallel-MPI module (http://cpan.perl.org/modules/by-module/Parallel)
+and define the additional UAL MPI-specific environment variables:
+
+setenv UAL_MPI_PERL <path to the Perl Parallel-MPI module>
+
+After the initialization of MPI-specific environment variables, one can copy 
+tps_mpi.pl and vtps_mpi.pl scripts from the $UAL_ZLIB/examples/Tps/api directory 
+into the local one and run these examples as executable MPI programs:
+
+>mpirun -np <number of cpu nodes> tps_mpi.pl  -arch LINUX 
+>mpirun -np <number of cpu nodes> vtps_mpi.pl -arch LINUX 
+
+
+
+
+
+
+
+
+
+
+

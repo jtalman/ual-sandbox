@@ -1,0 +1,18 @@
+setenv UAL_ARCH sun_gcc
+
+if(!($?LD_LIBRARY_PATH)) setenv LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH /opt/sfw/lib:$LD_LIBRARY_PATH
+
+###########################################################
+# Paths to UAL Components
+###########################################################
+
+source $UAL/env/common/setup-ual-env
+
+###########################################################
+# System-Specific Variables
+###########################################################
+
+source $UAL/env/$UAL_ARCH/setup-arch-env
+
+

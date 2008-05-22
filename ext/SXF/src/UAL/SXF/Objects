@@ -1,0 +1,23 @@
+OBJS = \
+	$(LDIR)/obj/ElemBucket.o             \
+	$(LDIR)/obj/ElemBucketRegistry.o     \
+	$(LDIR)/obj/Element.o                \
+	$(LDIR)/obj/Error.o                  \
+	$(LDIR)/obj/NodeRegistry.o           \
+	$(LDIR)/obj/Sequence.o               \
+	$(LDIR)/obj/AcceleratorReader.o      \
+	$(LDIR)/obj/Parser.o		     \
+	$(LDIR)/obj/buckets/ElemError.o      \
+	$(LDIR)/obj/buckets/ElemMultipole.o  \
+	$(LDIR)/obj/buckets/ElemMltEntry.o   \
+	$(LDIR)/obj/buckets/ElemMltBody.o    \
+	$(LDIR)/obj/buckets/ElemMltExit.o    \
+	$(LDIR)/obj/buckets/ElemSolenoid.o   \
+	$(LDIR)/obj/buckets/ElemEmpty.o      \
+	$(LDIR)/obj/buckets/ElemBend.o       \
+	$(LDIR)/obj/buckets/ElemRfCavity.o   \
+	$(LDIR)/obj/buckets/ElemAlign.o      \
+	$(LDIR)/obj/buckets/ElemKicker.o     \
+	$(LDIR)/obj/buckets/ElemCollimator.o \
+	$(LDIR)/obj/buckets/ElemAperture.o
+

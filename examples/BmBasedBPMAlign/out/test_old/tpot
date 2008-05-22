@@ -1,0 +1,172 @@
+bl       : sbend      , l = 0.75, angle = 0.098174770424681
+bnd      : sbend      , l = 1.5, angle = 0.196349540849362 & 
+   , type = ir2, &
+ typeaper = 1,  xapsize = 0.116,  yapsize = 0.079
+bpmha    : hmonitor   
+bpmhb    : hmonitor   
+bpmhc    : hmonitor   
+bpmhd    : hmonitor   
+bpmhe    : hmonitor   
+bpmhf    : hmonitor   
+bpmhg    : hmonitor   
+bpmhh    : hmonitor   
+bpmva    : vmonitor   
+bpmvb    : vmonitor   
+bpmvc    : vmonitor   
+bpmvd    : vmonitor   
+bpmve    : vmonitor   
+bpmvf    : vmonitor   
+bpmvg    : vmonitor   
+bpmvh    : vmonitor   
+br       : sbend      , l = 0.75, angle = 0.098174770424681
+kickha   : hkick      
+kickhb   : hkick      
+kickhc   : hkick      
+kickhd   : hkick      
+kickhe   : hkick      
+kickhf   : hkick      
+kickhg   : hkick      
+kickhh   : hkick      
+kickva   : vkick      
+kickvb   : vkick      
+kickvc   : vkick      
+kickvd   : vkick      
+kickve   : vkick      
+kickvf   : vkick      
+kickvg   : vkick      
+kickvh   : vkick      
+ldas     : drift      , l = 0.55
+mcol1    : marker     
+mcol2    : marker     
+o1       : drift      , l = 6.85
+o11      : drift      , l = 1.7125
+o2       : drift      , l = 0.4
+o3       : drift      , l = 6.25
+o31      : drift      , l = 1.25
+oarc     : drift      , l = 1
+oq1      : drift      
+oq2      : drift      
+oq3      : drift      
+orf      : drift      , l = 0.57
+oz       : drift      
+qdch     : quadrupole , l = 0.275, k1 = -0.676269751258253, &
+ type = ir , &
+ typeaper = 1,  xapsize = 0.15,  yapsize = 0.15
+qdch1    : marker     
+qdch2    : marker     
+qdh      : quadrupole , l = 0.25, k1 = -0.729043116111112, &
+ type = ir , &
+ typeaper = 1,  xapsize = 0.105,  yapsize = 0.105
+qdh1     : marker     
+qdh2     : marker     
+qdmh     : quadrupole , l = 0.25, k1 = -0.503241213012349, &
+ type = ir , &
+ typeaper = 1,  xapsize = 0.105,  yapsize = 0.105
+qdmh1    : marker     
+qdmh2    : marker     
+qfbh     : quadrupole , l = 0.25, k1 = 0.687492131511963, &
+ type = ir , &
+ typeaper = 1,  xapsize = 0.13,  yapsize = 0.13
+qfbh1    : marker     
+qfbh2    : marker     
+qfh      : quadrupole , l = 0.25, k1 = 0.687492131511963, &
+ type = ir , &
+ typeaper = 1,  xapsize = 0.105,  yapsize = 0.105
+qfh1     : marker     
+qfh2     : marker     
+qflh     : quadrupole , l = 0.35, k1 = 0.634115381155781, &
+ type = ir , &
+ typeaper = 1,  xapsize = 0.15,  yapsize = 0.15
+qflh1    : marker     
+qflh2    : marker     
+rf1      : rfcavity   , l = 1.7, freq = 1
+rf2      : rfcavity   , l = 1.7, freq = 2
+s1d      : sextupole  , l = 0.15, k2 = -2.891275, &
+ typeaper = 1,  xapsize = 0.105,  yapsize = 0.105
+s2f      : sextupole  , l = 0.15, k2 = 2.563548, &
+ typeaper = 1,  xapsize = 0.13,  yapsize = 0.13
+s30      : drift      , l = 0.3
+s3d      : sextupole  , l = 0.15, k2 = -4.449269, &
+ typeaper = 1,  xapsize = 0.105,  yapsize = 0.105
+s4f      : sextupole  , l = 0.15, k2 = 3.354977, &
+ typeaper = 1,  xapsize = 0.13,  yapsize = 0.13
+
+
+ring : line = ( & 
+  qdmh1   , qdmh    , qdmh    , qdmh2   , o11     , o11      & 
+, o11     , o11     , qflh1   , qflh    , qflh    , qflh2    & 
+, o2      , qdch1   , qdch    , qdch    , qdch2   , o31      & 
+, o31     , o31     , o31     , o31     , oz      , o31      & 
+, o31     , o31     , o31     , o31     , qdch1   , qdch     & 
+, qdch    , qdch2   , o2      , qflh1   , qflh    , qflh     & 
+, qflh2   , o11     , o11     , o11     , o11     , qdmh1    & 
+, qdmh    , qdmh    , qdmh2   , oarc    , bnd     , oarc     & 
+, qfh1    , qfh     , kickha  , kickva  , bpmha   , bpmva    & 
+, qfh     , qfh2    , oarc    , bnd     , oarc    , qdh1     & 
+, qdh     , qdh     , qdh2    , s30     , s1d     , ldas     & 
+, bnd     , oarc    , qfbh1   , qfbh    , qfbh    , qfbh2    & 
+, s30     , s2f     , ldas    , bnd     , ldas    , s3d      & 
+, s30     , qdh1    , qdh     , qdh     , qdh2    , oarc     & 
+, bnd     , ldas    , s4f     , s30     , qfbh1   , qfbh     & 
+, qfbh    , qfbh2   , oarc    , bnd     , ldas    , s1d      & 
+, s30     , qdh1    , qdh     , qdh     , qdh2    , oarc     & 
+, bnd     , oarc    , qfh1    , qfh     , kickhe  , kickve   & 
+, bpmhe   , bpmve   , qfh     , qfh2    , oarc    , bnd      & 
+, oarc    , qdmh1   , qdmh    , qdmh    , qdmh2   , o11      & 
+, o11     , o11     , o11     , qflh1   , qflh    , qflh     & 
+, qflh2   , o2      , qdch1   , qdch    , qdch    , qdch2    & 
+, o31     , o31     , o31     , o31     , o31     , oz       & 
+, o31     , o31     , o31     , o31     , o31     , qdch1    & 
+, qdch    , qdch    , qdch2   , o2      , qflh1   , qflh     & 
+, qflh    , qflh2   , o11     , o11     , o11     , o11      & 
+, qdmh1   , qdmh    , qdmh    , qdmh2   , oarc    , bnd      & 
+, oarc    , qfh1    , qfh     , kickhb  , kickvb  , bpmhb    & 
+, bpmvb   , qfh     , qfh2    , oarc    , bnd     , oarc     & 
+, qdh1    , qdh     , qdh     , qdh2    , s30     , s1d      & 
+, ldas    , bnd     , oarc    , qfbh1   , qfbh    , qfbh     & 
+, qfbh2   , s30     , s2f     , ldas    , bnd     , ldas     & 
+, s3d     , s30     , qdh1    , qdh     , qdh     , qdh2     & 
+, oarc    , bnd     , ldas    , s4f     , s30     , qfbh1    & 
+, qfbh    , qfbh    , qfbh2   , oarc    , bnd     , ldas     & 
+, s1d     , s30     , qdh1    , qdh     , qdh     , qdh2     & 
+, oarc    , bnd     , oarc    , qfh1    , qfh     , kickhf   & 
+, kickvf  , bpmhf   , bpmvf   , qfh     , qfh2    , oarc     & 
+, bnd     , oarc    , qdmh1   , qdmh    , qdmh    , qdmh2    & 
+, o11     , o11     , o11     , o11     , qflh1   , qflh     & 
+, qflh    , qflh2   , o2      , qdch1   , qdch    , qdch     & 
+, qdch2   , o31     , o31     , o31     , o31     , o31      & 
+, oz      , o31     , o31     , o31     , o31     , o31      & 
+, qdch1   , qdch    , qdch    , qdch2   , o2      , qflh1    & 
+, qflh    , qflh    , qflh2   , o11     , o11     , o11      & 
+, o11     , qdmh1   , qdmh    , qdmh    , qdmh2   , oarc     & 
+, bnd     , oarc    , qfh1    , qfh     , kickhc  , kickvc   & 
+, bpmhc   , bpmvc   , qfh     , qfh2    , oarc    , bnd      & 
+, oarc    , qdh1    , qdh     , qdh     , qdh2    , s30      & 
+, s1d     , ldas    , bnd     , oarc    , qfbh1   , qfbh     & 
+, qfbh    , qfbh2   , s30     , s2f     , ldas    , bnd      & 
+, ldas    , s3d     , s30     , qdh1    , qdh     , qdh      & 
+, qdh2    , oarc    , bnd     , ldas    , s4f     , s30      & 
+, qfbh1   , qfbh    , qfbh    , qfbh2   , oarc    , bnd      & 
+, ldas    , s1d     , s30     , qdh1    , qdh     , qdh      & 
+, qdh2    , oarc    , bnd     , oarc    , qfh1    , qfh      & 
+, kickhg  , kickvg  , bpmhg   , bpmvg   , qfh     , qfh2     & 
+, oarc    , bnd     , oarc    , qdmh1   , qdmh    , qdmh     & 
+, qdmh2   , o11     , o11     , o11     , o11     , qflh1    & 
+, qflh    , qflh    , qflh2   , o2      , qdch1   , qdch     & 
+, qdch    , qdch2   , o31     , o31     , o31     , o31      & 
+, o31     , oz      , o31     , o31     , o31     , o31      & 
+, o31     , qdch1   , qdch    , qdch    , qdch2   , o2       & 
+, qflh1   , qflh    , qflh    , qflh2   , o11     , o11      & 
+, o11     , o11     , qdmh1   , qdmh    , qdmh    , qdmh2    & 
+, oarc    , bnd     , oarc    , qfh1    , qfh     , kickhd   & 
+, kickvd  , bpmhd   , bpmvd   , qfh     , qfh2    , oarc     & 
+, bnd     , oarc    , qdh1    , qdh     , qdh     , qdh2     & 
+, s30     , s1d     , ldas    , bnd     , oarc    , qfbh1    & 
+, qfbh    , qfbh    , qfbh2   , s30     , s2f     , ldas     & 
+, bnd     , ldas    , s3d     , s30     , qdh1    , qdh      & 
+, qdh     , qdh2    , oarc    , bnd     , ldas    , s4f      & 
+, s30     , qfbh1   , qfbh    , qfbh    , qfbh2   , oarc     & 
+, bnd     , ldas    , s1d     , s30     , qdh1    , qdh      & 
+, qdh     , qdh2    , oarc    , bnd     , oarc    , qfh1     & 
+, qfh     , kickhh  , kickvh  , bpmhh   , bpmvh   , qfh      & 
+, qfh2    , oarc    , bnd     , oarc    ) 

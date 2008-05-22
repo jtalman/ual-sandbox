@@ -1,0 +1,15 @@
+
+Usage :
+
+>go to the platform-specific directory (cd linux)
+>sxf_tester <sxf file in the ../in directory> <echo file>
+
+Example:
+
+> cd linux
+> ./sxf_tester ../in/fullsequ.2.sxf fullsequ.2.echo1
+> diff         ../in/fullsequ.2.sxf fullsequ.2.echo1
+> sxf_tester   fullsequ.2.echo1     fullsequ.2.echo2
+> diff         fullsequ.2.echo1     fullsequ.2.echo2
+> rm           fullsequ.2.echo1     fullsequ.2.echo2
+

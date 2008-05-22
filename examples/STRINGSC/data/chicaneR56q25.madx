@@ -1,0 +1,133 @@
+!TITLE,'MAD-X file used to translate ".madx" file to ".sxf" file';
+
+ eg   :=  0.042;
+ bg   :=  eg/emass;
+ en   := 3.75e-06;
+ epsx := en/bg;
+ epsy := en/bg;
+// beam, particle = electron, energy =   eg        , 
+//                         sigt=      0.077     , 
+//                         sige=      1.1e-4    , 
+//                         npart=     1.05e11   , 
+//                         exn=4*en,  eyn=4*en  , 
+//                         kbunch = 10,
+//                         et = 0.002, bv = -1,
+//                         ex=epsx,   ey=epsy;
+
+beam, particle = electron;
+
+value,epsx,epsy;
+// option,-echo;
+r56q := 25.0;
+bndfac := sqrt(r56q/25.0);
+
+//  EBC2   := 5.000     ! BC2 energy (GeV)
+  EMITXN := 1.000E-06  ; // normalized horizontal emittance (m)
+  EMITYN := 1.000E-06  ; // normalized vertical emittance (m)
+  BLENG  := 0.200E-03  ; // bunch length (m)
+  ESPRD  := 0.720E-02  ; // energy spread (1)
+  bX     := 40.0       ; // twiss beta x (m)
+  aX     := 2.6        ; // twiss alpha x
+  bY     := 13.0       ; // twiss beta y (m)
+  aY     := 1.0        ; // twiss alpha y
+
+// Input Beta's guess:
+// ==================
+  TBETX := bX;
+  TBETY := bY;
+  TALFX := aX;
+  TALFY := aY;
+
+  LB   := 0.500                ; // BC2-Bend "Z" length [m]
+
+//  Brho := 1.0E10/CLIGHT*5.000  ! beam rigidity at BC2 (kG-m)
+  Brho := 166.667  ; // beam rigidity at BC2 (kG-m)
+  BB   := -16.120960797916    ; // chicane bend field (kG)
+
+//  RB   := Brho/BB             ! chicane bend radius (m)
+//  RB   := -166.667/16.12096080 ! chicane bend radius (m)
+  RB   := -10.338528           ; // chicane bend radius (m)
+//  AN   := ASIN(LB/RB)         ! full chicane bend angle (rad)
+//  AN   := ASIN(-0.5/10.338528) ! full chicane bend angle (rad)
+  AN   := -0.048381657           ; // full chicane bend angle (rad)
+  ANh := -0.024190829*bndfac;
+//  LBS  := RB*AN               ! chicane bend path length (m)
+//  LBS  := -10.338528*AN       ! chicane bend path length (m)
+  LBS  := 0.50019512           ; // chicane bend path length (m)
+  LBSh  := 0.25009756           ; // chicane bend path length (m)
+
+// magnet-to-magnet path lengths
+
+  LD   := 5.0                 ; // outer bend-to-bend "Z" distance (m)
+//  LDo  := LD/COS(AN)         ! outer bend-to-bend path length (m)
+//  LDo  := LD/COS(-0.048381657) ! outer bend-to-bend path length (m)
+  LDo  := 5.005858            ; // outer bend-to-bend path length (m)
+  LDi  := 1.0                 ; // inner bend-to-bend "Z" distance (m)
+
+LBShBy4 := LBSh/4;
+ANhBy4 := ANh/4;
+
+//bends:
+//=====
+  B1i  : SBEND, L := LBShBy4, ANGLE := +ANhBy4, E1 := 0,   E2 := 0;
+  B2i  : SBEND, L := LBShBy4, ANGLE := -ANhBy4, E1 := -AN, E2 := 0;
+  B3i  : SBEND, L := LBShBy4, ANGLE := -ANhBy4, E1 := 0,   E2 := 0;
+  B4i  : SBEND, L := LBShBy4, ANGLE := +ANhBy4, E1 := +AN, E2 := 0;
+
+  B1  : SBEND, L := LBShBy4, ANGLE := +ANhBy4;
+  B2  : SBEND, L := LBShBy4, ANGLE := -ANhBy4;
+  B3  : SBEND, L := LBShBy4, ANGLE := -ANhBy4;
+  B4  : SBEND, L := LBShBy4, ANGLE := +ANhBy4;
+
+  B1o  : SBEND, L := LBShBy4, ANGLE := +ANhBy4, E1 := 0,   E2 := +AN;
+  B2o  : SBEND, L := LBShBy4, ANGLE := -ANhBy4, E1 := 0,   E2 := 0;
+  B3o  : SBEND, L := LBShBy4, ANGLE := -ANhBy4, E1 := 0,   E2 := -AN;
+  B4o  : SBEND, L := LBShBy4, ANGLE := +ANhBy4, E1 := 0,   E2 := 0;
+
+LDf := 2.0;
+
+LDoBy10 := LDo/10;
+LDiBy2 := LDi/2;
+LDfBy4 := LDf/4;
+
+//drifts:
+//======
+  DoBy10  : DRIFT, L := LDoBy10;
+  DiBy2  : DRIFT, L := LDiBy2;
+  DfBy4  : DRIFT, L := LDfBy4;
+
+Do: line=(DoBy10,DoBy10,DoBy10,DoBy10,DoBy10, 
+          DoBy10,DoBy10,DoBy10,DoBy10,DoBy10 );
+Di: line=(DiBy2,DiBy2);
+Df: line=(DfBy4,DfBy4,DfBy4,DfBy4);
+
+mend: marker;
+
+//beamlines
+//=========
+  ring   : LINE=(B1i,B1,B1,B1,B1,B1,B1,B1o, Do, 
+                 B2i,B2,B2,B2,B2,B2,B2,B2o, Di, 
+                 B3i,B3,B3,B3,B3,B3,B3,B3o, Do, 
+                 B4i,B4,B4,B4,B4,B4,B4,B4o, Df, mend);
+
+
+// option,echo;
+
+use, period=ring;
+// twiss, sequence = ring;
+
+// select, flag="sxfwrite_table", class=quadrupole,column=name,s,betx,bety,dx;
+select, flag="sxfwrite_table", column=name,s,alfx, betx, alfy, bety,dx;
+twiss, betx=40, alfx=2.6, bety=13.0, alfy=1.0, deltap=0.0
+       table="sxfwrite_table", file="twiss";
+
+plot, vaxis=betx,bety, haxis=s,colour=100, interpolate=true, 
+      table="sxfwrite_table", title="betas", file="twiss";
+
+plot, vaxis=dx, haxis=s, colour=100, interpolate=true, 
+      table="sxfwrite_table", title="dispersion";
+
+sxfwrite, file = "chicaneR56q25.sxf";
+
+stop;
+

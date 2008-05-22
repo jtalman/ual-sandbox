@@ -1,0 +1,19 @@
+TYPEMAP
+Position * 		 O_OBJECT
+Bunch * 		 O_OBJECT
+PacTwissData * 		 O_OBJECT
+BunchGenerator * O_OBJECT
+BunchAnalyzer *  O_OBJECT
+
+OUTPUT
+O_OBJECT
+	sv_setref_pv($arg, CLASS, (void*)$var );
+
+INPUT
+O_OBJECT
+	if(sv_isobject($arg) && (SvTYPE(SvRV($arg)) == SVt_PVMG) )
+		$var = ($type) SvIV((SV*) SvRV( $arg ));
+	else{
+		warn( \"${Package}::$func_name() -- $var is not a blessed SV reference\" );
+		XSRETURN_UNDEF;
+	}

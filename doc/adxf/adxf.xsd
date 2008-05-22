@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:documentation> Accelerator Description Exchange Format 2.0 </xs:documentation>
+  </xs:annotation>
+  <xs:include schemaLocation="adxf_simple_types.xsd"/>
+  <xs:include schemaLocation="adxf_abstract_types.xsd"/>
+  <xs:include schemaLocation="adxf_core.xsd"/>
+  <xs:include schemaLocation="adxf_attribute_sets.xsd"/>
+  <xs:include schemaLocation="adxf_mad_elements.xsd"/>
+  <!-- ================================================ -->
+  <!--  ADXF structure:constants, elements, sectors     -->
+  <!-- ================================================ -->
+  <xs:element name="adxf">
+    <xs:annotation>
+      <xs:documentation> The outer tag of the ADXF description. </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="constants" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="elements" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sectors" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="constantName">
+      <xs:selector xpath="./constants/constant | ./constants/array "/>
+      <xs:field xpath="@name"/>
+    </xs:key>
+    <xs:key name="componentName">
+      <xs:selector xpath="./sectors/sector  | ./elements/element "/>
+      <xs:field xpath="@name"/>
+    </xs:key>
+    <xs:keyref refer="componentName" name="componentRef">
+      <xs:selector xpath="./sectors/sector/frame"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

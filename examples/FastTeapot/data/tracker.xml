@@ -1,0 +1,10 @@
+<apdf>
+  <propagator id="tracker" accelerator="RHIC">
+     <create>
+        <link algorithm="TEAPOT::MatrixTracker" 
+	      sector="Default"/>
+        <link algorithm="TEAPOT::MltTracker" 
+	      elements="^q([fd]|ac|[1-7][io]([2468]|1[02])|[4-6][io]t([2468]|1[02]))"/>
+     </create>
+  </propagator>
+</apdf>

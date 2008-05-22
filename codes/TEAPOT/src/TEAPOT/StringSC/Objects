@@ -1,0 +1,4 @@
+OBJS +=  $(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/StringSCSolver.o \
+	 $(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DipoleStringSCKick.o \
+	 $(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/DriftStringSCKick.o \
+	 $(UAL_TEAPOT)/lib/$(UAL_ARCH)/obj/MltStringSCKick.o 

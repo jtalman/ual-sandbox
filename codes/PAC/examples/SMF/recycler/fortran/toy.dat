@@ -1,0 +1,183 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!   Fermilab 8.9 Gev/c TOY Recycler lattice:
+!
+!
+!   INITIAL LATTICE: D. Johnson  October 10, 1995
+!
+!   CURRENT VERSION:  DEC 6, 1996  ~dej/recycler/ring/toy/toy.lat
+
+
+!
+!   Define energy and brho
+!
+KE    = 8.0
+E0    = 0.93826
+p0    = SQRT(KE*(2*E0+KE))
+BRHO  = p0/.2997925  !units of T-m
+!
+!  Define cell lengths for arc,dispersion suppressor and
+!  straight section
+!
+larccell = 17.288191638
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!#%  GRADIENT MAGNET DEFINITIONS
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! Define the arc magnet magnetic length as 4.064 m (160 inches)
+! Define the end pack to be 2.5 inches so the full length of the
+! magnet is 165 inches
+lbarcmag  =  4.2672  !(168") 4.064   !old value 3.645
+lbarcend  =  0.0889  !(3.5") 0.0635  !old value 0.127
+lbarcphy  =  lbarcmag + 2*lbarcend
+!
+!  Define the bend angle, theta,  for the arc gradient
+!  magents assuming there are 300 equivalent gradient
+!  magnets
+!
+
+pi = 3.1415926535898
+
+ndipoles  = 300
+theta  = 2*pi/ndipoles
+!
+dir = +1  ! for pbars
+b0  = dir*theta*BRHO/lbarcmag
+!
+! Define the bend angle for both dipoles
+!
+barcang  = b0*lbarcmag/BRHO
+!
+! Define arc gradient magnet gradients for 4.2672 m magnets
+!   psix=86.8deg/cell  psiy=79.3deg/cell
+!
+BARCK1F  =                                  1.185335E-02
+BARCK1D  =                                 -1.135072E-02
+GFarc = barck1f*BRHO
+GDarc = barck1d*BRHO
+!
+! Sextupole in the arc combined function
+!
+BARCK2F  =      5.538112E-03
+BARCK2D  =     -9.169916E-03
+SFbarc = barck2f*brho
+SDbarc = barck2d*brho
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!#%  GRADIENT MAGNET DEFINITIONS (IN TERMS OF SBEND)
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!  Define arc gradient FOCUSING magnets including ends  (RBEND DEFINITION)
+!
+!ARCF:  RBEND, TYPE=arcf, L=lbarcmag, ANGLE = barcang, K1 = barck1f ,&
+!                                                      K2 = barck2f
+!
+!  Define arc gradient FOCUSING magnets including ends  (SBEND DEFINITION)
+!
+IARCF : MULTIPOL , K1L = &
+	-(sin(0.5*barcang)/cos(0.5*barcang))/ &
+	 (lbarcmag/barcang)
+!       (-(0.5*(barcang))/(((lbarcmag)*(0.5*(barcang)/ &
+!         sin(0.5*(barcang))))/(barcang)))
+
+B1ARCF:  SBEND, L=lbarcmag, ANGLE = barcang, &
+	K1 = barck1f, K2 = barck2f, type=ir4
+
+OARCF : MULTIPOL , K1L = &
+	-(sin(0.5*barcang)/cos(0.5*barcang))/ &
+	 (lbarcmag/barcang)
+!       (-(0.5*(barcang))/(((lbarcmag)*(0.5*(barcang)/ &
+!         sin(0.5*(barcang))))/(barcang)))
+
+ARCF : LINE = (IARCF , B1ARCF, OARCF )
+!
+!  Define arc gradient DEFOCUSING magnets including ends  (RBEND DEFINITION)
+!
+!ARCD:  RBEND, TYPE=arcd, L=lbarcmag, ANGLE = barcang, K1 = barck1d ,&
+!                                                      K2 = barck2d
+!
+!  Define arc gradient DEFOCUSING magnets including ends  (SBEND DEFINITION)
+!
+
+IARCD : MULTIPOL , K1L = &
+	-(sin(0.5*barcang)/cos(0.5*barcang))/ &
+	 (lbarcmag/barcang)
+!       (-(0.5*(barcang))/(((lbarcmag)*(0.5*(barcang)/ &
+!         sin(0.5*(barcang))))/(barcang)))
+
+B1ARCD:  SBEND, L=lbarcmag, ANGLE = barcang, &
+	K1 = barck1d , K2 = barck2d, type=ir4
+
+OARCD : MULTIPOL , K1L = &
+	-(sin(0.5*barcang)/cos(0.5*barcang))/ &
+	 (lbarcmag/barcang)
+!       (-(0.5*(barcang))/(((lbarcmag)*(0.5*(barcang)/ &
+!         sin(0.5*(barcang))))/(barcang)))
+
+ARCD : LINE = (IARCD , B1ARCD, OARCD )
+!
+! Define Physical magnet
+!
+ARCEND: DRIFT, L = lbarcend
+BARCF: LINE=(ARCEND,ARCF,ARCEND)
+BARCD: LINE=(ARCEND,ARCD,ARCEND)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+!#%  Define DRIFT lengths
+!  NOTE: If any non-zero length magnet is added into the space between opposite
+!        polarity gradient magnets it needs to be subtracted off from the
+!        approperate drift.
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!  Define  drifts between half cells for arc cells, dispersion suppressors
+!  and quads
+!
+ldbb = 0.5
+DBB:   DRIFT, L = ldbb
+!
+! Define length of long drift space between F and D arc cell gradient magnets
+!
+DCELL: DRIFT, L = larccell - 2*lbarcphy - 2*ldbb
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!#%  Define Markers for cell boundries
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+MF: marker
+MD: marker
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+!#%  Define HALFCELLS
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HCFD: line=(MF,DBB,BARCF,DCELL,BARCD,DBB,MD)
+HCDF: line=(MD,DBB,BARCD,DCELL,BARCF,DBB,MF)
+
+cellff: line=(hcfd,hcdf)
+
+ring: line=(75*cellff)
+
+use, ring
+makethin
+
+writefile, slow
+
+track, energy = 8.9382796e+9, particle=proton ! , print1st
+start, x=-0.001, px=-0.0010, y=-0.0010, py=-0.0010 , dp=-0.0010
+run, turns = 1000
+
+

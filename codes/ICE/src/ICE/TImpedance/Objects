@@ -1,0 +1,3 @@
+OBJS +=	$(UAL_ICE)/lib/$(UAL_ARCH)/obj/CmplxVector.o \
+	$(UAL_ICE)/lib/$(UAL_ARCH)/obj/TImpedanceWF.o 
+

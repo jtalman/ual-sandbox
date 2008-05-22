@@ -1,0 +1,32 @@
+OBJS +=	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/PlayerEvent.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/TurnCounter.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/PlayerWorker.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/PlayerShell.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/SeparatrixCalculator.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/MainPlayerUI.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_MainPlayerUI.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/PlayerUI.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_PlayerUI.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/TablePageUI.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_TablePageUI.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/RightAlignedTableItem.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/TunefitEditor.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_TunefitEditor.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/ChromfitEditor.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_ChromfitEditor.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/BasicPlayer.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_BasicPlayer.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/BasicViewer.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_BasicViewer.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/BasicEditor.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_BasicEditor.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/BeamEditor.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_BeamEditor.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/RFEditor.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_RFEditor.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/ParameterViewer.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_ParameterViewer.o \
+	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/PropagatorViewer.o \
+ 	$(UAL_GUI)/QT/lib/$(UAL_ARCH)/obj/moc_PropagatorViewer.o 
+
+	 

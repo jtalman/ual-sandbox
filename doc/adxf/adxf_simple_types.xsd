@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+      <xs:documentation> Simple Types </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType name="attValueType">
+        <xs:union memberTypes="xs:double xs:Name"/>
+    </xs:simpleType>
+    <xs:simpleType name="attArrayType">
+        <xs:list itemType="attValueType"/>
+    </xs:simpleType>
+    <xs:simpleType name="lineEntries">
+        <xs:list itemType="xs:string"/>
+    </xs:simpleType>
+</xs:schema>

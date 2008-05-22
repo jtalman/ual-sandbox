@@ -1,0 +1,16 @@
+
+Usage :
+
+>cd <platform-specific directory>
+>./parser <sxf file in the ../in directory>
+
+The parser translates data into SMF data structures, 
+dumps an echo file (./echo directory), and produces 
+output(./out directory) directly from the SMF. 
+
+Example:
+
+> cd linux
+> ./parser fullsequ.2.sxf 
+
+

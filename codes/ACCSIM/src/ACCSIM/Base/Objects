@@ -1,0 +1,9 @@
+OBJS +=	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/BasicPropagator.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/RandomNumberGenerator.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/UniformGenerator.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/GaussianGenerator.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/TeapotGenerator.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/OrbitGaussianGenerator.o \
+	$(UAL_ACCSIM)/lib/$(UAL_ARCH)/obj/OrbitUniformGenerator.o 		
+
+

@@ -1,0 +1,200 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.TableHead_my {  background-color: #9999FF}
+-->
+</style>
+<link rel="stylesheet" href="../css/PerlPackage.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#CCCCFF"> 
+    <td><font size="+2"><b><font face="Arial, Helvetica, sans-serif">Class ZLIB::Tps</font></b></font></td>
+  </tr>
+</table>
+<p>Represents the data and algebra of Truncated Power Series (TPS).</p>
+<p>Example: <a href="../examples/tps.txt">tps.pl</a></p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Constructor 
+      Summary</font></b></font></td>
+  </tr>
+  <tr> 
+    <td>Tps()<br>
+      <i>Creates a Tps instance.</i></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="3" bordercolor="#0099cc">
+  <tr bgcolor="#CCCCFF"> 
+    <td colspan="2" valign="top"><font size="+1"><b><font face="Arial, Helvetica, sans-serif">Method 
+      Summary</font></b></font></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top" height="29"> 
+      <div align="center"><font color="#0099FF">Returns</font></div>
+    </td>
+    <td width="83%" valign="top" height="29"> 
+      <div align="center"><font color="#0099ff">Methods</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$order</td>
+    <td width="83%" valign="top">order()<br>
+      <i>Returns the order of this Tps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">void</td>
+    <td width="83%" valign="top">order($order)<br>
+      <i>Sets the order of this Tps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$size</td>
+    <td width="83%" valign="top">size()<br>
+      <i>Returns the number of Tps coefficients.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$value</td>
+    <td width="83%" valign="top">value($j)<br>
+      <i>Returns the value of the $jth coefficient.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">Void</td>
+    <td width="83%" valign="top">value($j, $value)<br>
+      <i>Sets the value of the $jth coefficient.</i></td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Mathematical Operators:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator=+($number)<br>
+      <i>Adds the floating-point $number to this object and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator+($number)<br>
+      <i>Adds the floating-point $number to this object and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator=+($inputTps)<br>
+      <i>Adds $inputTps coefficients to this object and returns the pointer to 
+      the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator+($inputTps)<br>
+      <i>Adds $inputTps coefficients to this object and returns the pointer to 
+      the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator=/($number)<br>
+      <i>Divides this object by the floating-point $number and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator/($number)<br>
+      <i>Divides this object by the floating-point $number and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator=/($inputTps)<br>
+      <i>Divides this object by the $inputTps object and returns the pointer to 
+      the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator/($inputTps)<br>
+      <i>Divides this object by the $inputTps object and returns the pointer to 
+      the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator=*($number)<br>
+      <i>Multiplies this object by the floating-point $number and returns the 
+      pointer to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator*($number)<br>
+      <i>Multiplies this object by the floating-point $number and returns the 
+      pointer to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator=*($inputTps)<br>
+      <i>Multiplies this object by the $inputTps object and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator*($inputTps)<br>
+      <i>Multiplies this object by the $inputTps object and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator=-($number)<br>
+      <i>Subtracts the floating-point $number from this object and returns the 
+      pointer to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator-($number)<br>
+      <i>Subtracts the floating-point $number from this object and returns the 
+      pointer to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps </td>
+    <td width="83%" valign="top">operator=-($inputTps)<br>
+      <i>Subtracts $inputTps coefficients from this object and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">operator-($inputTps)<br>
+      <i>Subtracts $inputTps coefficients from this object and returns the pointer 
+      to the $resultTps object.</i></td>
+  </tr>
+  <tr> 
+    <td colspan="2" valign="top"> 
+      <h4>Mathematical Functions:</h4>
+    </td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">D($i) <br>
+      <i>Returns the partial derivative of this object with respect to i-variable.</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">poisson($inputTps) <br>
+      <i>Returns the Poisson bracket of this and input TPS objects: [this object, 
+      $inputTps].</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultVTps</td>
+    <td width="83%" valign="top">vpoisson($inputVTps)<br>
+      <i>Returns the Poisson bracket of this object and the instance of the Vector 
+      of Truncated Power Series (VTps) : [this object, $inputVTps].</i></td>
+  </tr>
+  <tr> 
+    <td width="17%" valign="top">$resultTps</td>
+    <td width="83%" valign="top">sqrt()<br>
+      <i>Returns the square root of this object.</i></td>
+  </tr>
+</table>
+</body>
+</html>

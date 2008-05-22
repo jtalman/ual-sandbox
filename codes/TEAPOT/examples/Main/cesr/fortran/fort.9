@@ -1,0 +1,2023 @@
+1"teapot" version     4.0 
+0date and time of this run:     WedApr 9      11:52:50
+0input stream and message log:
+ 
+               title                                                                           
+                 ! title                                                                       
+                                                                                               
+               ! two families of fake quads have been introduced for use by tunethin           
+         5     ! they are situated beside, and have sign of, each quad that is not type=ir     
+                                                                                               
+               ! two families of fake sextupoles have been introduced for use by chromfit      
+                                                                                               
+               ! quads except those with name matching nothing                                 
+        10     !    have become 'type=ir'                                                      
+                                                                                               
+               ! particle = electron                                                           
+               ! energy = 5.289                                                                
+                                                                                               
+        15     ! rfcavities have been replaced by drifts                                       
+                                                                                               
+               ! nux = 10.77 requested                                                         
+               ! nuy = 9.77 requested                                                          
+                                                                                               
+        20     !optics from : e9a242400.jj1_4s                                                 
+               !sext. distrib. from : sextpr_e9a242400.jj1_4s                                  
+                                                                                               
+               ! pi = 3.141592654                                                              
+               pi = 3.14159265358979                                                           
+        25                                                                                     
+               ! dipoles                                                                       
+                                                                                               
+               loh201 = 6.574262     ! 6.5742621 was in teapot                                 
+               lh201  = 6.504359                                                               
+        30                                                                                     
+               loh202 = 3.237903     ! 3.2379034 was in teapot                                 
+               lh202 =  3.154790                                                               
+                                                                                               
+               loh203 = 2.945314     ! 2.9453139 was in teapot                                 
+        35     lh203  = 2.880080                                                               
+                                                                                               
+               loh204 = 1.643524     ! 1.6435239 was in teapot                                 
+               lh204  = 1.578360                                                               
+                                                                                               
+        40     loh206 = 3.287171     ! 3.2871714 was in teapot                                 
+               lh206  = 3.22168                                                                
+                                                                                               
+               loh207 = 3.177222     ! 3.1772223 was in teapot                                 
+               lh207  = 3.094430                                                               
+        45                                                                                     
+               loh208 = 6.575288     ! 6.5752883 was in teapot                                 
+               lh208  = 6.502509                                                               
+                                                                                               
+               !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                            
+        50     ! note: mad2tpot makes focusing strength of a pole face proportional to pole    
+               ! face angle, not its tangent. if you don't like it, replace k1l                
+               ! by sin(k1l)/cos(k1l) for i and o multipoles by hand or in mad2tpot.awk        
+               ! message will not be repeated.                                                 
+               !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                            
+        55                                                                                     
+                ih201 : multipol , k1l = -0.000215074701 ! -0.000212763                        
+                bh201 : sbend , typeaper = 1 , xapsize = 0.045000 , yapsize = &                
+                      0.025000 , l = lh201 , angle = 0.074800                                  
+                oh201 : multipol , k1l = -0.000215074701 ! -0.000212763                        
+        60      h201 : line = ( ih201 , bh201 , oh201 )                                        
+                                                                                               
+                ih202 : multipol , k1l = 0                                                     
+                bh202 : sbend , typeaper = 1 , xapsize = 0.045000 , yapsize = &                
+                      0.025000 , l = lh202 , angle = 0.102289                                  
+        65      oh202 : multipol , k1l = 0                                                     
+                h202 : line = ( ih202 , bh202 , oh202 )                                        
+                                                                                               
+                ih203 : multipol , k1l =  -7.61553796e-05  ! -7.44659e-05                      
+                bh203 : sbend , typeaper = 1 , xapsize = 0.060000 , yapsize = &                
+        70            0.023000 , l = lh203 , angle = 0.020944                                  
+                oh203 : multipol , k1l =  -7.61553796e-05  ! -7.44659e-05                      
+                h203 : line = ( ih203 , bh203 , oh203 )                                        
+                                                                                               
+                ih204 : multipol , k1l = -0.0001107736797 ! -0.000106379                       
+        75      bh204 : sbend , typeaper = 1 , xapsize = 0.060000 , yapsize = &                
+                      0.023000 , l = lh204 , angle = 0.018699                                  
+                oh204 : multipol , k1l = -0.0001107736797 ! -0.000106379                       
+                h204 : line = ( ih204 , bh204 , oh204 )                                        
+                                                                                               
+        80      ih206 : multipol , k1l = -0.0002171108035 ! -0.00021276                        
+                bh206 : sbend , typeaper = 1 , xapsize = 0.060000 , yapsize = &                
+                      0.023000 , l = lh206 , angle = 0.037400                                  
+                oh206 : multipol , k1l = -0.0002171108035 ! -0.00021276                        
+                h206 : line = ( ih206 , bh206 , oh206 )                                        
+        85                                                                                     
+                ih207 : multipol , k1l = 0                                                     
+                bh207 : sbend , typeaper = 1 , xapsize = 0.045000 , yapsize = &                
+                      0.025000 , l = lh207 , angle = 0.091254                                  
+                oh207 : multipol , k1l = 0                                                     
+        90      h207 : line = ( ih207 , bh207 , oh207 )                                        
+                                                                                               
+                ih208 : multipol , k1l = -0.0004841263074 ! -0.000478642                       
+                bh208 : sbend , typeaper = 1 , xapsize = 0.045000 , yapsize = &                
+                      0.025000 , l = lh208 , angle = 0.112200                                  
+        95      oh208 : multipol , k1l = -0.0004841263074 ! -0.000478642                       
+                h208 : line = ( ih208 , bh208 , oh208 )                                        
+                                                                                               
+                                                                                               
+               ! quads                                                                         
+       100                                                                                     
+               loq301 = 0.95         ! q301                                                    
+               lq301  = 0.899160                                                               
+               fq301  = loq301/lq301                                                           
+                                                                                               
+       105     loq302 = 0.6          ! q302                                                    
+               lq302  = 0.548640                                                               
+               fq302  = loq302/lq302                                                           
+                                                                                               
+               loquad = 0.6          ! quad                                                    
+       110     lquad  = 0.5588                                                                 
+               fquad  = loquad/lquad                                                           
+                                                                                               
+               loq348 = 0.6          ! q348                                                    
+               lq348  = 0.548640                                                               
+       115     fq348  = loq348/lq348                                                           
+                                                                                               
+               loq349 = 0.95         ! q349                                                    
+               lq349  = 0.899916                                                               
+               fq349  = loq349/lq349                                                           
+       120                                                                                     
+               qffake : multipol , type = xtun , k1l = 0.0 ! 0.0001                            
+               qdfake : multipol , type = ytun , k1l = 0.0 ! 0.0001                            
+                                                                                               
+               dqx = 0.0                                                                       
+       125     dqy = 0.0                                                                       
+               kf = 0.001 * (17.44 * dqx + 4.814 * dqy)                                        
+               kd = 0.001 * (4.726 * dqx + 18.1123 * dqy)                                      
+                                                                                               
+               kquad301 = 0.665606*fq301                                                       
+       130     !ang301 = 6.8659*2*pi/360                                                       
+                                                                                               
+               !f301 : drift , l = lq301/20                                                    
+                                                                                               
+               !q301e1 : quad , l = lq301/40 , k1 = 2*kquad301 , &                             
+       135     !      typeaper = 1 , xapsize &                                                 
+               !      = 0.052500 , yapsize = 0.025000 , tilt = -ang301                         
+               !q301e2 : quad , l = lq301/20 , k1 = 2*kquad301 , &                             
+               !      typeaper = 1 , xapsize &                                                 
+               !      = 0.052500 , yapsize = 0.025000 , tilt = -ang301                         
+       140                                                                                     
+                                                                                               
+               !sq301e : multipole , k1l = 0.0 , t1 , type = xpla                              
+                                                                                               
+               !fq301e1 : line = (f301 , q301e2)                                               
+       145     !fq301e2 : line = (q301e2 , f301)                                               
+                                                                                               
+               !q301e : line = (q301e1 , 4*fq301e1 , f301 , q301e1, sq301e , &                 
+               !        q301e1 , f301 , 4*fq301e2 , q301e1)                                    
+                                                                                               
+       150     !                                                                               
+               sq301 = 0.665606*fq301                                                          
+               a301  = 6.8659*2*pi/360                                                         
+               ir301 = 10                                                                      
+                                                                                               
+       155     m301w1  : marker                                                                
+               q301w1  : quad, l = 1.e-14, k1 = sq301*lq301/4/ir301/1.e-14, tilt = a301        
+               fq301w1 : drift, l = lq301/ir301/10                                             
+               fq301w2 : drift, l = 4*lq301/ir301/15                                           
+               q301wir : line = ( fq301w1, m301w1, q301w1, fq301w2, &                          
+       160     			    m301w1, q301w1, fq301w2, &                                               
+               			    m301w1, q301w1, fq301w2, &                                               
+                			    m301w1, q301w1, fq301w1,  m301w1)                                       
+               q301w   : line = (10*q301wir)                                                   
+                                                                                               
+       165     m301e1  : marker                                                                
+               q301e1  : quad, l = 1.e-14, k1 = sq301*lq301/4/ir301/1.e-14, tilt = -a301       
+               fq301e1 : drift, l = lq301/ir301/10                                             
+               fq301e2 : drift, l = 4*lq301/ir301/15                                           
+               q301eir : line = ( fq301e1, m301e1, q301e1, fq301e2, &                          
+       170     			    m301e1, q301e1, fq301e2, &                                               
+               			    m301e1, q301e1, fq301e2, &                                               
+                			    m301e1, q301e1, fq301e1,  m301e1)                                       
+               q301e   : line = (10*q301eir)                                                   
+                                                                                               
+       175     ang302 = 14.5544*2*pi/360                                                       
+               kquad302 = -0.232746*fq302                                                      
+                                                                                               
+               sq302 = -0.232746*fq302                                                         
+               a302  = 14.5544*2*pi/360                                                        
+       180     ir302 = 10                                                                      
+                                                                                               
+               m302w1  : marker                                                                
+               q302w1  : quad,  l = 1.e-14, k1 = sq302*lq302/4/ir302/1.e-14, tilt = a302       
+               fq302w1 : drift, l = lq302/ir302/10                                             
+       185     fq302w2 : drift, l = 4*lq302/ir302/15                                           
+               q302wir : line = ( fq302w1, m302w1, q302w1, fq302w2, &                          
+               			    m302w1, q302w1, fq302w2, &                                               
+               			    m302w1, q302w1, fq302w2, &                                               
+                			    m302w1, q302w1, fq302w1,  m302w1)                                       
+       190     q302w   : line = (10*q302wir)                                                   
+                                                                                               
+               m302e1  : marker                                                                
+               q302e1  : quad,  l = 1.e-14, k1 = sq302*lq302/4/ir302/1.e-14, tilt = -a302      
+               fq302e1 : drift, l = lq302/ir302/10                                             
+       195     fq302e2 : drift, l = 4*lq302/ir302/15                                           
+               q302eir : line = ( fq302e1, m302e1, q302e1, fq302e2, &                          
+               			    m302e1, q302e1, fq302e2, &                                               
+               			    m302e1, q302e1, fq302e2, &                                               
+                			    m302e1, q302e1, fq302e1,  m302e1)                                       
+       200     q302e   : line = (10*q302eir)                                                   
+                                                                                               
+               kquad303 = -0.296364*fquad                                                      
+               q303w : quad , l = lquad , k1 = kquad303 , typeaper = 1 , &                     
+                     xapsize = 0.045000 , yapsize = 0.025000 , type = ir                       
+       205     q303e : quad , l = lquad , k1 = kquad303 , typeaper = 1 , &                     
+                     xapsize = 0.045000 , yapsize = 0.025000 , type = ir                       
+                                                                                               
+               kquad304 = 0.410842*fquad                                                       
+               q304w : quad , l = lquad , k1 = kquad304 , typeaper = 1 , &                     
+       210           xapsize = 0.045000 , yapsize = 0.025000 , type = ir  ! ir2                
+               q304e : quad , l = lquad , k1 = kquad304 , typeaper = 1 , &                     
+                     xapsize = 0.045000 , yapsize = 0.025000 , type = ir  ! ir2                
+                                                                                               
+               kquad305 = -0.288915*fquad                                                      
+       215     q305w : quad , l = lquad , k1 = kquad305 , typeaper = 1 , &                     
+                     xapsize = 0.045000 , yapsize = 0.025000 , type = ir                       
+               q305e : quad , l = lquad , k1 = kquad305 , typeaper = 1 , &                     
+                     xapsize = 0.045000 , yapsize = 0.025000 , type = ir                       
+                                                                                               
+       220     kquad306 = 0.408156*fquad                                                       
+               q306w : quad , l = lquad , k1 = kquad306 , typeaper = 1 , &                     
+                     xapsize = 0.045000 , yapsize = 0.025000 , type = ir ! ir2                 
+               q306e : quad , l = lquad , k1 = kquad306 , typeaper = 1 , &                     
+                     xapsize = 0.045000 , yapsize = 0.025000 , type = ir ! ir2                 
+       225                                                                                     
+                                                                                               
+                dq307 : quad , l = lquad , k1 = -0.264821*fquad , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q307 : line = ( dq307 , qdfake )                                              
+       230      fq308 : quad , l = lquad , k1 = (0.141031 + kf)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q308 : line = ( fq308 , qffake )                                              
+                dq309 : quad , l = lquad , k1 = (-0.218935 - kd)*fquad , typeaper = 1 , &      
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       235       q309 : line = ( dq309 , qdfake )                                              
+                fq310 : quad , l = lquad , k1 = (0.229558 + kf)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q310 : line = ( fq310 , qffake )                                              
+                dq311 : quad , l = lquad , k1 = (-0.210051 -kd)*fquad , typeaper = 1 , &       
+       240            xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q311 : line = ( dq311 , qdfake )                                              
+                fq312 : quad , l = lquad , k1 = (0.228398 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q312 : line = ( fq312 , qffake )                                              
+       245      dq313 : quad , l = lquad , k1 = (-0.243352 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q313 : line = ( dq313 , qdfake )                                              
+                fq314 : quad , l = lquad , k1 = (0.271697 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       250       q314 : line = ( fq314 , qffake )                                              
+                dq315 : quad , l = lquad , k1 = (-0.232716 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q315 : line = ( dq315 , qdfake )                                              
+                fq316 : quad , l = lquad , k1 = (0.267593 +kf)*fquad , typeaper = 1 , &        
+       255            xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q316 : line = ( fq316 , qffake )                                              
+                dq317 : quad , l = lquad , k1 = (-0.261477 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q317 : line = ( dq317 , qdfake )                                              
+       260      fq318 : quad , l = lquad , k1 = (0.267542 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q318 : line = ( fq318 , qffake )                                              
+                dq319 : quad , l = lquad , k1 = (-0.328507 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       265       q319 : line = ( dq319 , qdfake )                                              
+                fq320 : quad , l = lquad , k1 = (0.245163 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q320 : line = ( fq320 , qffake )                                              
+                dq321 : quad , l = lquad , k1 = (-0.285077 -kd)*fquad , typeaper = 1 , &       
+       270            xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q321 : line = ( dq321 , qdfake )                                              
+                fq322 : quad , l = lquad , k1 = (0.256764 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q322 : line = ( fq322 , qffake )                                              
+       275      dq323 : quad , l = lquad , k1 = (-0.234584 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q323 : line = ( dq323 , qdfake )                                              
+                fq324 : quad , l = lquad , k1 = (0.244626 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       280       q324 : line = ( fq324 , qffake )                                              
+                dq325 : quad , l = lquad , k1 = (-0.294958 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q325 : line = ( dq325 , qdfake )                                              
+                fq326 : quad , l = lquad , k1 = (0.259367 +kf)*fquad , typeaper = 1 , &        
+       285            xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q326 : line = ( fq326 , qffake )                                              
+                dq327 : quad , l = lquad , k1 = (-0.293133 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q327 : line = ( dq327 , qdfake )                                              
+       290      fq328 : quad , l = lquad , k1 = (0.249048 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q328 : line = ( fq328 , qffake )                                              
+                dq329 : quad , l = lquad , k1 = (-0.228843 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       295       q329 : line = ( dq329 , qdfake )                                              
+                fq330 : quad , l = lquad , k1 = (0.257508 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q330 : line = ( fq330 , qffake )                                              
+                dq331 : quad , l = lquad , k1 = (-0.200739 -kd)*fquad , typeaper = 1 , &       
+       300            xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q331 : line = ( dq331 , qdfake )                                              
+                fq332 : quad , l = lquad , k1 = (0.207124 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q332 : line = ( fq332 , qffake )                                              
+       305      dq333 : quad , l = lquad , k1 = (-0.201227 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q333 : line = ( dq333 , qdfake )                                              
+                fq334 : quad , l = lquad , k1 = (0.250069 +kf)*fquad , type = ir               
+                 q334 : line = ( fq334 , qffake )                                              
+       310      dq335 : quad , l = lquad , k1 = (-0.182243 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q335 : line = ( dq335 , qdfake )                                              
+                fq336 : quad , l = lquad , k1 = (0.235810 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       315       q336 : line = ( fq336 , qffake )                                              
+                dq337 : quad , l = lquad , k1 = (-0.238413 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q337 : line = ( dq337 , qdfake )                                              
+                fq338 : quad , l = lquad , k1 = (0.260686 +kf)*fquad , typeaper = 1 , &        
+       320            xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q338 : line = ( fq338 , qffake )                                              
+                dq339 : quad , l = lquad , k1 = (-0.217470 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q339 : line = ( dq339 , qdfake )                                              
+       325      fq340 : quad , l = lquad , k1 = (0.255270 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q340 : line = ( fq340 , qffake )                                              
+                dq341 : quad , l = lquad , k1 = (-0.212221 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       330       q341 : line = ( dq341 , qdfake )                                              
+                fq342 : quad , l = lquad , k1 = (0.241472 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q342 : line = ( fq342 , qffake )                                              
+                dq343 : quad , l = lquad , k1 = (-0.190566 -kd)*fquad , typeaper = 1 , &       
+       335            xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q343 : line = ( dq343 , qdfake )                                              
+                fq344 : quad , l = lquad , k1 = (0.292308 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q344 : line = ( fq344 , qffake )                                              
+       340      dq345 : quad , l = lquad , k1 = (-0.271935 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q345 : line = ( dq345 , qdfake )                                              
+                fq346 : quad , l = lquad , k1 = (0.336803 +kf)*fquad , typeaper = 1 , &        
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+       345       q346 : line = ( fq346 , qffake )                                              
+                dq347 : quad , l = lquad , k1 = (-0.052574 -kd)*fquad , typeaper = 1 , &       
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q347 : line = ( dq347 , qdfake )                                              
+                fq348 : quad , l = lq348 , k1 = (0.546159 +kf)*fq348 , typeaper = 1 , &        
+       350            xapsize = 0.065000 , yapsize = 0.045500 , type = ir                      
+                 q348 : line = ( fq348 , qffake )                                              
+                                                                                               
+                dq349 : quad , l = lq349 , k1 = (-0.272314 -kd)*fq349 , typeaper = 1 , &       
+                      xapsize = 0.052500 , yapsize = 0.025000 , type = ir                      
+       355       q349 : line = ( dq349 , qdfake )                                              
+                                                                                               
+                dq350 : quad , l = 0.6000000 , k1 = -0.268153 , typeaper = 1 , &               
+                      xapsize = 0.045000 , yapsize = 0.025000 , type = ir                      
+                 q350 : line = ( dq350 , qdfake )                                              
+       360                                                                                     
+               !sol351a : solenoid , l = 0.04008 , ks = 2*0.085*0.9*solfac                     
+               !sol351b : solenoid , l = 1.5247999/20 , ks = 2*0.085*0.9*solfac                
+                                                                                               
+               !ang351 = 4.4884*2*pi/360                                                       
+       365     !q351e1 : quad , l = 1.5247999/40 , k1 = -2*0.837600 , typeaper = 1 , &         
+               !  xapsize = 0.045000 , yapsize = 0.025000 , tilt = -ang351                     
+               !q351e2 : quad , l = 1.5247999/20 , k1 = -2*0.837600 , typeaper = 1 , &         
+               !   xapsize = 0.045000 , yapsize = 0.025000 , tilt = -ang351                    
+               !sq351e : multipole , k1l = 0.0 , t1 , type = cplx                              
+       370     !f351a : drift , l = 0.03616                                                    
+               !f351b : drift , l = 1.5247999/20                                               
+               !dq351e : line = (sol351b , q351e2)                                             
+               !q351e : line = (q351e1 , 4*dq351e , sol351b , q351e1 , sq351e , &              
+               !        q351e1 , 3*dq351e , sol351a , f351a , q351e2 , f351b , q351e1)         
+       375     !                                                                               
+                                                                                               
+               lq351  = 1.5248                                                                 
+               sq351  = - 0.837600                                                             
+               a351   = 4.4884*2*pi/360                                                        
+       380     ir351  = 10                                                                     
+                                                                                               
+               m351w1   : marker                                                               
+               q351w1   : quad, l = 1.e-14, k1 = sq351*lq351/4/ir351/1.e-14 , tilt = a351      
+               sol351w1 : solenoid, l =   lq351/ir351/10, ks = -0.085*0.9                      
+       385     sol351w2 : solenoid, l = 4*lq351/ir351/15, ks = -0.085*0.9                      
+               q351wir  : line = (sol351w1, m351w1, q351w1, sol351w2, &                        
+               		             m351w1, q351w1, sol351w2, &                                      
+                                            m351w1, q351w1, sol351w2, &                        
+               			     m351w1, q351w1, sol351w1, m351w1)                                       
+       390     q351w   : line = (10*q351wir)                                                   
+                                                                                               
+               m351e1   : marker                                                               
+               q351e1   : quad, l = 1.e-14, k1 = sq351*lq351/4/ir351/1.e-14 , tilt = -a351     
+               sol351e1 : solenoid, l =   lq351/ir351/10, ks = -0.085*0.9                      
+       395     sol351e2 : solenoid, l = 4*lq351/ir351/15, ks = -0.085*0.9                      
+               q351eir  : line = (sol351e1, m351e1, q351e1, sol351e2, &                        
+               		             m351e1, q351e1, sol351e2, &                                      
+                                            m351e1, q351e1, sol351e2, &                        
+               			     m351e1, q351e1, sol351e1, m351e1)                                       
+       400     q351e   : line = (10*q351eir)                                                   
+                                                                                               
+               ! quads - old junk                                                              
+                                                                                               
+               ! fq334 : quad , l = 0.6000000 , k1 = 0.250069 +kf , typeaper = 1 , &           
+       405     !       xapsize = 0.045000 , yapsize = 0.025000 , type = ir                     
+                                                                                               
+               ! quads - new junk                                                              
+                                                                                               
+               ! dsq04w : line = (f101a , sq04w , f101b)                                       
+       410     ! dsq04e : line = (f101a , sq04e , f101b)                                       
+               ! dsq05w : line = (f101a , sq05w , f101b)                                       
+               ! dsq05e : line = (f101a , sq05e , f101b)                                       
+                                                                                               
+               ! fq300 : quad , l = 0.0000001 , k1 = 2100.000000 , typeaper = 1 , &            
+       415     !       xapsize = 0.045000 , yapsize = 0.025000 , type = ir                     
+               !  q300 : line = ( fq300 , qffake )                                             
+                                                                                               
+               ! fq301 : quad , l = 0.9500000 , k1 = 0.677784 , typeaper = 1 , xapsize &       
+               !       = 0.052500 , yapsize = 0.025000 , type = ir                             
+       420     ! q301 : line = ( fq301 , qffake )                                              
+               ! q301w1 : quad , l = lq301/40 , k1 = 2*kquad301 , &                            
+               !      typeaper = 1 , xapsize &                                                 
+               !      = 0.052500 , yapsize = 0.025000 , tilt = ang301                          
+               ! q301w2 : quad , l = lq301/20 , k1 = 2*kquad301 , &                            
+       425     !      typeaper = 1 , xapsize &                                                 
+               !      = 0.052500 , yapsize = 0.025000 , tilt = ang301                          
+               ! sq301w : multipole , k1l = 0.0 , t1 , type = xpla                             
+               ! fq301w1 : line = (f301 , q301w2)                                              
+               ! fq301w2 : line = (q301w2 , f301)                                              
+       430     ! q301w : line = (q301w1 , 4*fq301w1 , f301 , q301w1, sq301w , &                
+               !        q301w1 , f301 , 4*fq301w2 , q301w1)                                    
+                                                                                               
+               ! dq302 : quad , l = 0.6000000 , k1 = -0.247084 , typeaper = 1 , &              
+               !       xapsize = 0.065000 , yapsize = 0.045500 , type = ir                     
+       435     ! q302 : line = ( dq302 , qdfake )                                              
+               ! q302w1 : quad , l = lq302/40 , k1 = 2*kquad302 , &                            
+               !       typeaper = 1 , xapsize &                                                
+               !       = 0.065000 , yapsize = 0.025000 , tilt = ang302                         
+               ! q302w2 : quad , l = lq302/20 , k1 = 2*kquad302 , &                            
+       440     !       typeaper = 1 , xapsize &                                                
+               !      = 0.065000 , yapsize = 0.025000 , tilt = ang302                          
+               ! sq302w : multipole , k1l = 0.0 , t1 , type = xpla                             
+               ! fq302w1 : line = (f302 , q302w2)                                              
+               ! fq302w2 : line = (q302w2 , f302)                                              
+       445     ! q302w : line = (q302w1 , 4*fq302w1 , f302 , q302w1, sq302w , &                
+               !        q302w1 , f302 , 4*fq302w2 , q302w1)                                    
+                                                                                               
+               ! dq303 : quad , l = 0.6000000 , k1 = -0.298923 , typeaper = 1 , &              
+               !       xapsize = 0.045000 , yapsize = 0.025000 , type = ir                     
+       450     ! q303 : line = ( dq303 , qdfake )                                              
+                                                                                               
+               ! fq304 : quad , l = 0.6000000 , k1 = 0.414771 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000 , type = ir                             
+               ! q304 : line = ( fq304 , qffake )                                              
+       455                                                                                     
+               ! dq305 : quad , l = 0.6000000 , k1 = -0.275733 , typeaper = 1 , &              
+               !       xapsize = 0.045000 , yapsize = 0.025000 , type = ir                     
+               ! q305 : line = ( dq305 , qdfake )                                              
+                                                                                               
+       460     ! fq306 : quad , l = 0.6000000 , k1 = 0.400494 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000 , type = ir                             
+               ! q306 : line = ( fq306 , qffake )                                              
+                                                                                               
+               ! q351 : quad , l = 1.5247999 , k1 = -0.837600 , typeaper = 1 , xapsize &       
+       465     !       = 0.045000 , yapsize = 0.025000 , type = ir                             
+               ! q351w1 : quad , l = 1.5247999/40 , k1 = -2*0.837600 , typeaper = 1 , &        
+               !   xapsize = 0.045000 , yapsize = 0.025000 , tilt = ang351                     
+               ! q351w2 : quad , l = 1.5247999/20 , k1 = -2*0.837600 , typeaper = 1 , &        
+               !   xapsize = 0.045000 , yapsize = 0.025000 , tilt = ang351                     
+       470     ! sq351w : multipole , k1l = 0.0 , t1 , type = cplx                             
+               ! dq351w : line = (sol351b , q351w2)                                            
+               ! q351w : line = (q351w1 , 4*dq351w , sol351b , q351w1 , sq351w , &             
+               !        q351w1 , 3*dq351w , sol351a , f351a , q351w2 , f351b , q351w1)         
+                                                                                               
+       475                                                                                     
+               ! fq353 : quad , l = 0.0000010 , k1 = 0.000001 , typeaper = 1 , xapsize &       
+               !        = 0.045000 , yapsize = 0.025000 , type = ir                            
+               !  q353 : line = ( fq353 , qffake )                                             
+               ! fq354 : quad , l = 0.0000010 , k1 = 0.000001 , typeaper = 1 , xapsize &       
+       480     !       = 0.045000 , yapsize = 0.025000 , type = ir                             
+               !  q354 : line = ( fq354 , qffake )                                             
+                                                                                               
+               ! fq355 : quad , l = 0.0000010 , k1 = 0.000001 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000 , type = ir                             
+       485     !  q355 : line = ( fq355 , qffake )                                             
+                                                                                               
+               ! dq356 : quad , l = 0.0000010 , k1 = -0.138051 , typeaper = 1 , &              
+               !       xapsize = 0.045000 , yapsize = 0.025000 , type = ir                     
+               !  q356 : line = ( dq356 , qdfake )                                             
+       490                                                                                     
+               ! fq358 : quad , l = 0.0000010 , k1 = 0.000398 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000 , type = ir                             
+               !  q358 : line = ( fq358 , qffake )                                             
+                                                                                               
+       495     ! skew quads                                                                    
+                                                                                               
+               ! f129a : drift , l = 0.68862                                                   
+               ! f129b : drift , l = 0.1183001                                                 
+               ! f129c : drift , l = 0.42128 + (loh203 - lh203)/2.                             
+       500                                                                                     
+               f129a : drift , l = 1.732                                                       
+               f129b  : drift , l = 0.1073                                                     
+               f129be : drift , l = 0.1083                                                     
+               f129c : drift , l = 0.464897                                                    
+       505                                                                                     
+               sq02w : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &                    
+                        type = xpla                                                            
+               sq02e : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &                    
+                        type = xpla                                                            
+       510     sq03w : quadrupole , l = 0.1727 , k1 = 0.0240463 , tilt , &                     
+                        type = cpla                                                            
+               sq03e : quadrupole , l = 0.1727 , k1 = -0.0240463 , tilt , &                    
+                        type = cpla                                                            
+                                                                                               
+       515     dsq02w : line = (sq02w , f129b , sq03w )                                        
+               dsq02e : line = (sq02e , f129be, sq03e )                                        
+                                                                                               
+               sq04w : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &                    
+                       type = xpla                                                             
+       520     sq04e : quadrupole , l = 0.1727 , k1 = 0.0/0.1727 , tilt , &                    
+                       type = xpla                                                             
+               sq05w : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla                 
+               sq05e : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla                 
+                                                                                               
+       525     f101a : drift , l = 0.2272 + (loh202 - lh202)/2.                   ! 2,3        
+               f101b : drift , l = 0.3124 + (loquad - lquad)/2.                   ! 2,3        
+               dsq04e : line = (f101a , sq04e , f101b)                                         
+               dsq05e : line = (f101a , sq05e , f101b)                                         
+                                                                                               
+       530     f155a : drift , l = 0.0                                                         
+               f155b : drift , l = 0.4403000 - 0.1727                                          
+               sq06w : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla                 
+               sq06e : quadrupole , l = 0.1727 , k1 = 0.0 , tilt , type = xpla                 
+               !dsq06w : line = (f155a , sq06w , f155b)                                        
+       535     dsq06w : line = (f101a , sq06w , f101b)                                         
+               !dsq06e : line = (f155a , sq06e , f155b)                                        
+               dsq06e : line = (f101a, sq06e , f101b)                                          
+                                                                                               
+                ! adjust drifts so that skq47w appears at 366.319m in the "out" file           
+       540      ! listing. this is the value in the "master6.dat" file of feb 7, 1996.         
+                ! i am taking this to be the center of the element.                            
+                ! this may not be quite right since (as i recall) the values in                
+                ! "master6.dat" may refer to the north end of the element. unfortunately       
+                ! that would make f146a slightly negative.                                     
+       545      ! skq47e appears at 402.353m in the "out" file and at                          
+                !                   402.108m in "master6.dat"                                  
+                ! the fact that this discrepancy is close to the length of skq47e              
+                ! (which is 0.128m) supports the conjecture that all of                        
+                ! skq47w, skq47e, skq49w, and skq49e are wrong by half their lengths           
+       550      ! in this file 9feb96. however, these discrepancies are only comparable        
+                ! with the thin vs thick discrepancies.                                        
+                ! (in "master6.dat" the                                                        
+                ! element sph45w is said to be at 347.893m while                               
+                ! it appears (as element hsp45w) at 347.996m in "out/e9a242400.recomp").       
+       555      ! drifts for skq47e and skq49w(e) were adjusted the same way as skq47w         
+                                                                                               
+               dqkhz = 0.0                                                                     
+               skq47w : quad , l = 0.128 , k1 = 0.00950694*dqkhz , tilt                        
+               skq47e : quad , l = 0.128 , k1 = 0.00950694*dqkhz , tilt                        
+       560                                                                                     
+               skq49w : quad , l = 0.254 , k1 = -0.00353390*dqkhz , tilt                       
+               skq49e : quad , l = 0.254 , k1 = -0.00353390*dqkhz , tilt                       
+                                                                                               
+               ! sextupoles                                                                    
+       565                                                                                     
+                losext = 0.272                                                                 
+                lsext  = 0.128                                                                 
+                fsext  = losext/lsext                                                          
+                                                                                               
+       570     sffake : multipol , type = xchr , k2l = 0.0 ! 0.0001                            
+               sdfake : multipol , type = ychr , k2l = 0.0 ! 0.0001                            
+                                                                                               
+                fs408w  : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       575      s408w : line = (fs408w , sffake )                                              
+                ds409w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                s409w : line = ( ds409w , sdfake )                                             
+                fs410w : sext , l = lsext , k2 =  0.73076*fsext , typeaper = 1 , &             
+       580            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s410w : line = ( fs410w , sffake )                                            
+                ds411w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s411w : line = ( ds411w , sdfake )                                            
+       585      fs412w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s412w : line = ( fs412w , sffake )                                            
+                ds413w : sext , l = lsext , k2 = -0.86092*fsext, typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       590       s413w : line = ( ds413w , sdfake )                                            
+                fs414w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s414w : line = ( fs414w , sffake )                                            
+                ds415w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+       595            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s415w : line = ( ds415w , sdfake )                                            
+                fs416w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s416w : line = ( fs416w , sffake )                                            
+       600      ds417w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s417w : line = ( ds417w , sdfake )                                            
+                fs418w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       605       s418w : line = ( fs418w , sffake )                                            
+                ds419w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s419w : line = ( ds419w , sdfake )                                            
+                fs420w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+       610            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s420w : line = ( fs420w , sffake )                                            
+                ds421w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s421w : line = ( ds421w , sdfake )                                            
+       615      fs422w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s422w : line = ( fs422w , sffake )                                            
+                ds423w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       620       s423w : line = ( ds423w , sdfake )                                            
+                fs424w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s424w : line = ( fs424w , sffake )                                            
+                ds425w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+       625            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s425w : line = ( ds425w , sdfake )                                            
+                fs426w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s426w : line = ( fs426w , sffake )                                            
+       630      ds427w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s427w : line = ( ds427w , sdfake )                                            
+                fs428w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       635       s428w : line = ( fs428w , sffake )                                            
+                ds429w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s429w : line = ( ds429w , sdfake )                                            
+                fs430w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+       640            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s430w : line = ( fs430w , sffake )                                            
+                ds431w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s431w : line = ( ds431w , sdfake )                                            
+       645      fs432w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s432w : line = ( fs432w , sffake )                                            
+                ds433w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       650       s433w : line = ( ds433w , sdfake )                                            
+                fs434w : sext , l = lsext , k2 = 0.73076*fsext                                 
+                 s434w : line = ( fs434w , sffake )                                            
+                ds435w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       655       s435w : line = ( ds435w , sdfake )                                            
+                fs436w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s436w : line = ( fs436w , sffake )                                            
+                ds437w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+       660            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s437w : line = ( ds437w , sdfake )                                            
+                fs438w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s438w : line = ( fs438w , sffake )                                            
+       665      ds439w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s439w : line = ( ds439w , sdfake )                                            
+                fs440w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       670       s440w : line = ( fs440w , sffake )                                            
+                ds441w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s441w : line = ( ds441w , sdfake )                                            
+                fs442w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+       675            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s442w : line = ( fs442w , sffake )                                            
+                ds443w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s443w : line = ( ds443w , sdfake )                                            
+       680      fs444w : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s444w : line = ( fs444w , sffake )                                            
+                ds445w : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       685       s445w : line = ( ds445w , sdfake )                                            
+                ds445e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s445e : line = ( ds445e , sdfake )                                            
+                fs444e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+       690            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s444e : line = ( fs444e , sffake )                                            
+                ds443e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s443e : line = ( ds443e , sdfake )                                            
+       695      fs442e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s442e : line = ( fs442e , sffake )                                            
+                ds441e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       700       s441e : line = ( ds441e , sdfake )                                            
+                fs440e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s440e : line = ( fs440e , sffake )                                            
+                ds439e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+       705            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s439e : line = ( ds439e , sdfake )                                            
+                fs438e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s438e : line = ( fs438e , sffake )                                            
+       710      ds437e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s437e : line = ( ds437e , sdfake )                                            
+                fs436e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       715       s436e : line = ( fs436e , sffake )                                            
+                ds435e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s435e : line = ( ds435e , sdfake )                                            
+                fs434e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+       720            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s434e : line = ( fs434e , sffake )                                            
+                ds433e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s433e : line = ( ds433e , sdfake )                                            
+       725      fs432e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s432e : line = ( fs432e , sffake )                                            
+                ds431e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       730       s431e : line = ( ds431e , sdfake )                                            
+                fs430e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s430e : line = ( fs430e , sffake )                                            
+                ds429e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+       735            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s429e : line = ( ds429e , sdfake )                                            
+                fs428e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s428e : line = ( fs428e , sffake )                                            
+       740      ds427e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s427e : line = ( ds427e , sdfake )                                            
+                fs426e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       745       s426e : line = ( fs426e , sffake )                                            
+                ds425e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s425e : line = ( ds425e , sdfake )                                            
+                fs424e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+       750            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s424e : line = ( fs424e , sffake )                                            
+                ds423e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s423e : line = ( ds423e , sdfake )                                            
+       755      fs422e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s422e : line = ( fs422e , sffake )                                            
+                ds421e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       760       s421e : line = ( ds421e , sdfake )                                            
+                fs420e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s420e : line = ( fs420e , sffake )                                            
+                ds419e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+       765            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s419e : line = ( ds419e , sdfake )                                            
+                fs418e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s418e : line = ( fs418e , sffake )                                            
+       770      ds417e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s417e : line = ( ds417e , sdfake )                                            
+                fs416e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       775       s416e : line = ( fs416e , sffake )                                            
+                ds415e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s415e : line = ( ds415e , sdfake )                                            
+                fs414e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+       780            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s414e : line = ( fs414e , sffake )                                            
+                ds413e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s413e : line = ( ds413e , sdfake )                                            
+       785      fs412e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s412e : line = ( fs412e , sffake )                                            
+                ds411e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+       790       s411e : line = ( ds411e , sdfake )                                            
+                fs410e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s410e : line = ( fs410e , sffake )                                            
+                ds409e : sext , l = lsext , k2 = -0.86092*fsext , typeaper = 1 , &             
+       795            xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s409e : line = ( ds409e , sdfake )                                            
+                fs408e : sext , l = lsext , k2 = 0.73076*fsext , typeaper = 1 , &              
+                      xapsize = 0.045000 , yapsize = 0.025000                                  
+                 s408e : line = ( fs408e , sffake )                                            
+       800                                                                                     
+               ! sextupoles _ new junk                                                         
+                                                                                               
+               ! s401w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.052500 , yapsize = 0.025000                                         
+       805     ! s402w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.065000 , yapsize = 0.045500                                         
+               ! s403w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+               ! s404w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+       810     !       = 0.045000 , yapsize = 0.025000                                         
+               ! s405w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+                                                                                               
+               !  master6.dat has no sext at either 06 or 07                                   
+       815                                                                                     
+               ! s406w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+               ! s407w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+       820                                                                                     
+               ! s446w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+               ! s447w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+       825     ! s448w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.065000 , yapsize = 0.045500                                         
+               ! s449w : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.052500 , yapsize = 0.025000                                         
+               ! s449e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+       830     !       = 0.052500 , yapsize = 0.025000                                         
+               ! s448e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.065000 , yapsize = 0.045500                                         
+               ! s447e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+       835     ! s446e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+                                                                                               
+               ! s407e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+       840     ! s406e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+               ! s405e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+               ! s404e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+       845     !       = 0.045000 , yapsize = 0.025000                                         
+               ! s403e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.045000 , yapsize = 0.025000                                         
+               ! s402e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.065000 , yapsize = 0.045500                                         
+       850     ! s401e : sext , l = 0.27200001 , k2 = 0.00000 , typeaper = 1 , xapsize &       
+               !       = 0.052500 , yapsize = 0.025000                                         
+                                                                                               
+               ! sextupoles - old junk                                                         
+                                                                                               
+       855     !  master6.dat has no sext at either 06 or 07                                   
+                                                                                               
+               ! fs434w : sext , l = 0.27200001 , k2 = 0.73076 , typeaper = 1 , &              
+               !       xapsize = 0.045000 , yapsize = 0.025000                                 
+                                                                                               
+       860     ! hkikers                                                                       
+                                                                                               
+               cra = 0.0                                                                       
+                                                                                               
+               hsp8w : hkick , kick = 0.000068235 / 2.62 * cra                                 
+       865     hsp8e : hkick , kick = -0.000068235 / 2.62 * cra                                
+                                                                                               
+               hsp45w : hkick , kick = -0.000113144 / 2.62 * cra                               
+               hsp45e : hkick , kick = 0.000113144 / 2.62 * cra                                
+                                                                                               
+       870     lpbh = 0.2295                                                                   
+                                                                                               
+               ! longitudinal coordinate of bumper pbh26w should be 193.380305                 
+                                                                                               
+               f104wc : drift , l = lpbh/2. + 193.380305 - 193.436984                          
+       875     f104wd : drift , l = lpbh/2. - 193.380305 + 193.436984 ! + &                    
+               !   0.36454 + (loh201 - lh201)/2.                                               
+                                                                                               
+               pbh26w : hkick , kick = 0.0 , l = 0.0                                           
+               pb26w : line = ( f104wc , pbh26w , f104wd )                                     
+       880                                                                                     
+               ! longitudinal coordinate of bumper pbh28w should be 210.017989                 
+                                                                                               
+               f104we : drift , l = lpbh/2. + 210.017989 - 210.080737                          
+               f104wf : drift , l = lpbh/2. - 210.017989 + 210.080737 ! + &                    
+       885     !   0.360741 + (loh201 - lh201)/2.                                              
+                                                                                               
+               pbh28w : hkick , kick = 0.0 , l = 0.0                                           
+               pb28w : line = ( f104we , pbh28w , f104wf )                                     
+                                                                                               
+       890     ! longitudinal coordinate of pinger pih36w should be 275.4697                   
+                                                                                               
+               lpih = 0.229                                                                    
+                                                                                               
+               pih36w : hkick , kick = 0.0 , l = 0.0                                           
+       895     f135wa : drift , l = lpih/2. + 275.469715 - 275.553715                          
+               f135wb : drift , l = - 275.469715 + 275.553715                                  
+                                                                                               
+               ! longitudinal coordinate of bumper pbh36w should be 275.875115                 
+                                                                                               
+       900     lpbh35 = 0.225                                                                  
+                                                                                               
+               pbh36w : hkick , kick = 0.0 , l = 0.0                                           
+               f135wc : drift , l = lpih/2. + 0.1784  + lpbh35/2.                              
+                                                                                               
+       905     ! longitudinal coordinate of scraper msch36w should be 276.267615               
+                                                                                               
+               msch36w : marker                                                                
+               f135wd : drift , l = lpbh35/2. + 0.28                                           
+                                                                                               
+       910     ph36w : line = ( f135wa , pih36w , f135wc , pbh36w , &                          
+               f135wd , msch36w , f135wb )                                                     
+                                                                                               
+               ! longitudinal coordinate of bumper pbh26e should be 575.041403                 
+                                                                                               
+       915     lpbhe = 0.2286                                                                  
+                                                                                               
+               pbh26e : hkick , kick = 0.0 , l = 0.0                                           
+               f104ec : drift, l = lpbhe/2. - 575.041403 + 575.227403                          
+               f104ed : drift, l = lpbhe/2. + 575.041403 - 575.227403                          
+       920                                                                                     
+               pb26e : line = ( f104ec , pbh26e , f104ed )                                     
+                                                                                               
+               ! longitudinal coordinate of bumper pbh28e should be 558.405519                 
+                                                                                               
+       925     pbh28e : hkick , kick = 0.0 , l = 0.0                                           
+               f104ee : drift , l = lpbhe/2. - 558.405519 + 558.585519                         
+               f104ef : drift , l = lpbhe/2. + 558.405519 - 558.585519                         
+                                                                                               
+               pb28e : line = ( f104ee , pbh28e , f104ef )                                     
+       930                                                                                     
+               ! longitudinal coordinate of pinger pih36e should be 492.9402                   
+                                                                                               
+               lpihe = 0.5112                                                                  
+                                                                                               
+       935     pih36e : hkick , kick = 0.0 , l = 0.0                                           
+               f135ea : drift , l = lpihe/2. - 492.940243 + 493.099243                         
+               f135eb : drift , l = 492.940243 - 493.099243 + 0.1667                           
+                                                                                               
+               ! longitudinal coordinate of bumper pbh36e should be 492.450543                 
+       940                                                                                     
+               lpbh35e = 0.2302                                                                
+                                                                                               
+               pbh36e : hkick , kick = 0.0 , l = 0.0                                           
+               f135ec : drift , l = lpihe/2. + 0.119 + lpbh35e/2.                              
+       945                                                                                     
+               ! longitudinal coordinate of scraper msch36e should be 492.158843               
+                                                                                               
+               msch36e : marker                                                                
+               f135ed : drift , l = lpbh35e/2. + 0.1766                                        
+       950                                                                                     
+               ph36e : line = ( f135ea , pih36e , f135ec , pbh36e , &                          
+               f135ed , msch36e , f135eb )                                                     
+                                                                                               
+               ! -----------------------------------------------                               
+       955                                                                                     
+               ! hkikers - new junk                                                            
+                                                                                               
+               ! longitudinal coordinate of bumper pbh26w should be 193.380305                 
+               ! f104wc : drift , l = 193.380 - 193.044                                        
+       960     ! f104wd : drift , l = 0.8730400 - 193.380 + 193.044                            
+                                                                                               
+               ! longitudinal coordinate of bumper pbh28w should be 210.017989                 
+               ! f104we : drift , l = 210.017 - 209.684                                        
+               ! f104wf : drift , l = 0.8730400 - 210.017 + 209.684                            
+       965                                                                                     
+               ! longitudinal coordinate of pinger pih36w should be 275.4697                   
+               ! f135wa : drift , l = 275.4697 - (273.727+0.1571400)                           
+               ! f135wb : drift , l = 2.6137600 - 1.58556 - 0.8                                
+                                                                                               
+       970     ! longitudinal coordinate of bumper pbh36w should be 275.875115                 
+               ! f135wc : drift , l = 0.4                                                      
+                                                                                               
+               ! longitudinal coordinate of scraper msch36w should be 276.267615               
+               ! f135wd : drift , l = 0.4                                                      
+       975                                                                                     
+               ! longitudinal coordinate of bumper pbh26e should be 575.041403                 
+               ! f104ec : drift, l = 0.8730400 - 575.041 + 574.755                             
+               ! f104ed : drift, l = 575.041 - 574.755                                         
+                                                                                               
+       980     ! longitudinal coordinate of pinger pih36e should be 492.9402                   
+               ! f135ea : drift , l = 1.84736                                                  
+               ! f135eb : drift , l = 2.6137600 - 1.84736 - 0.8 - 0.019                        
+                                                                                               
+               ! longitudinal coordinate of bumper pbh36e should be 492.450543                 
+       985     ! f135ec : drift , l = 0.4 + 0.09                                               
+                                                                                               
+               ! longitudinal coordinate of scraper msch36e should be 492.158843               
+               ! f135ed : drift , l = 0.4 + 0.019 - 0.09                                       
+                                                                                               
+       990     ! vkikers                                                                       
+                                                                                               
+                 lpiv = 0.254                                                                  
+                                                                                               
+               ! longitudinal coordinate of pinger piv23w should be 168.5545                   
+       995                                                                                     
+                 f104a : drift , l = lpiv/2. + 168.554528 - 168.602104                         
+                 f104b : drift , l = lpiv/2. - 168.554528 + 168.602104  !+ &                   
+                 ! 0.339741 + (loh201 - lh201)/2.                                              
+                                                                                               
+      1000       piv23w : vkick , kick = 0.0 , l = 0.0                                         
+                 pv23w : line = ( f104a , piv23w , f104b )                                     
+                                                                                               
+                 vsp48w : vkick , kick = 0.0                                                   
+                 vsp48e : vkick , kick = 0.0                                                   
+      1005                                                                                     
+               ! --------------------------------------------                                  
+                                                                                               
+               ! vkikers - new junk                                                            
+                                                                                               
+      1010     ! longitudinal coordinate of pinger piv23w should be 168.5545                   
+               ! f104a : drift , l = 0.8730400 - 169.070 + 168.554528                          
+               ! f104b : drift , l = 169.070 - 168.554528                                      
+                                                                                               
+               ! kikers                                                                        
+      1015                                                                                     
+               ! longitudinal coordinate of shaker sbv23e & sbh23e should be 599.876330        
+                                                                                               
+               lsbvh = 0.23                                                                    
+                                                                                               
+      1020     sbv23e : vkick , kick = 0.0 , l = 0.0                                           
+               sbh23e : hkick , kick = 0.0 , l = 0.0                                           
+               f104eg : drift , l = lsbvh/2. - 599.876330 + 600.07133                          
+               f104eh : drift , l = lsbvh/2. + 599.876330 - 600.07133                          
+                                                                                               
+      1025     fsbhv23e : line = ( f104eg , sbv23e , sbh23e , f104eh )                         
+                                                                                               
+               ! kikers - new junk                                                             
+                                                                                               
+               ! longitudinal coordinate of shaker sbv23e & sbh23e should be 599.876330        
+      1030     ! f104eg : drift , l = 0.8730400 - 599.876 + 599.602                            
+               ! f104eh : drift , l = 599.876 - 599.602                                        
+                                                                                               
+               ! rf                                                                            
+                                                                                               
+      1035      rfw : drift, l = 2.* 1.8 + 2.09153                                             
+                ! rfw : rfcavity , l = 4.33 , volt = -0.0034 , freq = 1281 , lag = &           
+                !     0.00 , enrgloss = 0.0005                                                 
+                rfe : drift, l = 2.* 1.8 + 2.096                                               
+                !rfe : rfcavity , l = 4.33 ,  volt = -0.0034 , freq = 1281 , lag = &           
+      1040      !      0.00 , enrgloss = 0.0005                                                
+                                                                                               
+               ! rf - old junk                                                                 
+                                                                                               
+               ! rfw : drift , l = 4.330                                                       
+      1045     ! rfe : drift , l = 4.330                                                       
+                                                                                               
+               ! rf - new junk                                                                 
+                                                                                               
+                 f1rf : drift , l = 1.5120000                                                  
+      1050       f2rf : drift , l = 2.7543299                                                  
+                 f157w : line = (f1rf , rfw , f2rf)                                            
+                 f157e : line = (f1rf , rfe , f2rf)                                            
+                                                                                               
+               ! solenoid                                                                      
+      1055                                                                                     
+               mhvsip : marker                                                                 
+               msbpmw0 : marker                                                                
+               msbpme0 : marker                                                                
+                                                                                               
+      1060     solfac = -1.0                                                                   
+                                                                                               
+               sol110w0 : solenoid , l = 0.260001/2. , ks = 0.085*0.9*solfac                   
+               sol110w1 : solenoid , l = 0.362300/2. , ks = 0.085*0.9*solfac                   
+               sol110w2 : solenoid , l = 0.017700/2. , ks = 0.085*0.9*solfac                   
+      1065                                                                                     
+               sol110e0 : solenoid , l = 0.260004/2. , ks = 0.085*0.9*solfac                   
+               sol110e1 : solenoid , l = 0.362320/2. , ks = 0.085*0.9*solfac                   
+               sol110e2 : solenoid , l = 0.017700/2. , ks = 0.085*0.9*solfac                   
+                                                                                               
+      1070     !sol110cp : solenoid , l = 0.62/3 , ks = 0.085*0.9*solfac                       
+               ! sol110c : line = ( sol110cp , mhvsip )                                        
+                                                                                               
+               !sol110d : solenoid , l = 0.020001, ks = 0.085*0.9*solfac                       
+               !sol110de : solenoid , l = 0.020001 + 0.000023, ks = 0.085*0.9*solfac           
+      1075                                                                                     
+                                                                                               
+               ! septum                                                                        
+                                                                                               
+                ijs34w : marker                                                                
+      1080      ijs34e : marker                                                                
+                                                                                               
+               ! septum - old junk                                                             
+                                                                                               
+               ! ijs34w : marker                                                               
+      1085     ! ijs34e : xseptum , xthcknss = 0.003 , sup = -0.5075 , sdwn = 0.5075 , &       
+               !                    xin = -0.045                                               
+                                                                                               
+               ! septum - new junk                                                             
+                                                                                               
+      1090     ! ijs34w : xseptum , xthcknss = 0.003 , sup = -0.5075 , sdwn = 0.5075 , &       
+               !                   xin = -0.045, type=x1                                       
+                                                                                               
+               ! drifts                                                                        
+                                                                                               
+      1095       f102 : drift , l = 0.4951500 + (loquad - lquad)/2. + &                        
+               	(loh202 - lh202)/2. + 0.000001                               ! 4               
+                 f102a : drift , l = 0.4951500 + (loquad - lquad)/2. + &                       
+               	(loh202 - lh202)/2. + 0.0000005                              ! 5               
+                 f102b : drift , l = 0.4951500 + (loquad - lquad)/2. + &                       
+      1100     	(loh202 - lh202)/2.                                          ! 6               
+                 f103 : drift , l = 0.1571400 + (loquad - lquad)/2. + &                        
+               	  (loh201 -lh201)/2.                                         ! everythere      
+                 f104 : drift , l = 0.8730400                                       ! 29, 30, 3
+                 f107 : drift , l = 0.5017500 + (loh207 - lh207)/2.                 ! 47       
+      1105       f111 : drift , l = 0.78562                                         ! 0        
+                 f112 : drift , l = 1.5085                                          ! 1        
+                 f114 : drift , l = 0.3772100 + (loh203 - lh203)/2. + &                        
+                        (loh204 - lh204)/2.                                         ! 2        
+                 f115 : drift , l = 0.6094700 + (loh204 - lh204)/2. + &                        
+      1110              (loquad - lquad)/2.                                         ! 2        
+                 f116 : drift , l = 0.2353800 + (loquad - lquad)/2. + &                        
+               	(loh202 - lh202)/2.                                          ! 3               
+                 f118 : drift , l = 1.6799999 + (loquad - lquad)/2. + &                        
+                       0.0054001051                                                 ! 7        
+      1115       f119  : drift , l = 0.21 + 1.18 + 0.5 + 0.135078                   ! 49       
+                 f119e : drift , l = 0.2  + 1.19 + 0.5 + 0.135054                   ! 49e      
+                 f124 : drift , l = 0.2980100 + (loh202 - lh202)/2. + &                        
+                       (loquad - lquad)/2. - 0.0000005                              ! 6        
+                 f125 : drift , l = 1.4977000 + (loq302 - lq302)/2.                 ! 2        
+      1120       f128 : drift , l = 3.3399999 + (loquad - lquad)/2.                 ! 44       
+                 f140 : drift , l = 0.0000010                                                  
+                 f141 : drift , l = 0.225                                           ! 47       
+                                                                                               
+               ! adjust drifts so that vsp48w comes out at 376.901, which is the location      
+      1125     ! of spv48w in "master6.dat". unfortunately, then  vsp48e comes out at          
+               ! 391.771m in "out/e9a242400.recomp" when it should be at 391.525.              
+               ! these discrepancies are comparable with the thin vs thick discrepancies.      
+                                                                                               
+                 f143a : drift , l = 0.369288 + 2.647/2. + &                                   
+      1130     	376.901035 - 377.023035                                      ! 47              
+                 f143b : drift , l = 0.189  + 2.647/2 - &                                      
+               	376.901035 + 377.023035                                      ! 47              
+                                                                                               
+                 f143ae : drift , l = 0.369288 + 2.647/2. - &                                  
+      1135     	391.524723 + 391.646723                                      ! 47e             
+                 f143be : drift , l = 0.189  + 2.647/2 + &                                     
+               	391.524723 - 391.646723                                      ! 47e             
+                                                                                               
+                 f145 : drift , l = 0.8538000 + (loquad - lquad)/2. + &                        
+      1140     	(loh206 - lh206)/2.                                          ! 46              
+                                                                                               
+               ! adjust drifts so that skq47w appears at 366.319m                              
+                 f146a : drift , l = 0.155 + 366.319208 - 366.438208                ! 47       
+                 f146b : drift , l = 0.884636 - 366.319208 + 366.438208             ! 47       
+      1145                                                                                     
+                 f146ae : drift , l = 0.155 -  402.108050 + 402.23005               ! 47e      
+                 f146be : drift , l = 0.884636 + 402.108050 - 402.23005             ! 47e      
+                                                                                               
+                 f147 : drift , l = 0.7901300 + (loh203 - lh203)/2.                 ! 47       
+      1150                                                                                     
+                ! actually, from the "master6.dat" file, the two drifts should be:             
+                 f148a : drift , l = 0.1 + 0.254 + 0.121 + 0.065 + &                           
+                       0.381 + 0.538722 + 380.773897 - 380.895897                   ! 48       
+                 f148b : drift , l = 0.387 - 380.773897 + 380.895897                ! 48       
+      1155                                                                                     
+                 f148ae : drift, l = 0.042 + 0.254 + 0.204 + 0.11 + &                          
+                       0.381 + 0.465722 -  387.654861 + 387.776861                  ! 48e      
+                 f148be : drift, l = 0.14 + 0.25 + 387.654861 - 387.776861          ! 48e      
+                                                                                               
+      1160                                                                                     
+                 f151 : drift , l = 0.1826000 + (loquad - lquad)/2. + &                        
+               	(loh208 - lh208)/2.                                          ! 43              
+                 f153 : drift , l = 1.3260000 + (loquad - lquad)/2. + &                        
+               	(loh206 - lh206)/2.                                          ! 46              
+      1165       f156 : drift , l = 5.4374499 + (loquad - lquad)/2. + 0.2666000949  ! 7        
+                                                                                               
+                                                                                               
+                                                                                               
+                 f157a: drift , l = 1.5120000 + (loquad - lquad)/2. + &                        
+      1170               (losext - lsext)                                           ! 8 - f1rf 
+                 f157b: drift , l = 2.7543299 + (loquad - lquad)/2. + 0.00000009    ! 8 - f2rf 
+                                                                                               
+                 f158 : drift , l = 5.6385703 + (loquad - lquad) + &                           
+                         (losext -lsext) - 0.00000029 - lqs9                       ! 9         
+      1175                                                                                     
+                 fqe0  : drift, l = 0.32862 + 0.457                                            
+                                                                                               
+                 fqe1  : drift, l = 1.0878 + 0.248 + 0.1727                                    
+                                                                                               
+      1180       fqd2  : drift, l = 0.12 + 0.36 + 1.732                                        
+                 fdh2  : drift, l = 0.464897                                                   
+                 fhh2  : drift, l = 0.442409                                                   
+                 fhe2  : drift, l = 0.472652 + 0.11 + 0.08                                     
+                                                                                               
+      1185       fqh3  : drift, l = 0.2975365                                                  
+                 fhs3  : drift, l = 0.2687565                                                  
+                 fse3  : drift, l = 0.258 + 0.075                                              
+                                                                                               
+                 fqh4  : drift, l = 0.5573075                                                  
+      1190       fhs4  : drift, l = 0.2687565                                                  
+                 fse4  : drift, l = 0.2547 + 0.0783                                            
+                                                                                               
+                 fqh5  : drift, l = 0.557307                                                   
+                 fhs5  : drift, l = 0.2687565                                                  
+      1195       fse5  : drift, l = 0.2577 + 0.0753                                            
+                                                                                               
+                 fqh6  : drift, l = 0.5573065                                                  
+                 fhe6  : drift, l = 0.3601660                                                  
+                                                                                               
+      1200       fqh7  : drift, l = 0.121 + 0.057 + 0.539 + 0.35 + 0.11 + 0.087 + 0.35525 &    
+               	+ 0.127 + 2.355 + 0.25 + 0.1524 + 2.442/2.                                     
+                 fhe7  : drift, l = 2.442/2. + 0.485                                           
+                                                                                               
+                 fqs8  : drift, l = 0.154                                                      
+      1205       fsr8  : drift, l = 0.175 + 1.275                                              
+                 fre8  : drift, l = 1.461 + 0.025                                              
+                                                                                               
+                 fqs9  : drift, l = 0.162                                                      
+                 fse9  : drift, l = 0.39 + 0.005 + 1.075 + 0.31327 + 0.1845 &                  
+      1210     	+ 0.377 + 0.101 + 0.405 &                                                      
+               	+ 0.255 + 1.2785 + 1.2775                                                      
+                                                                                               
+                 fqs10 : drift, l = 0.1564 + 0.0006                                            
+                 fsh10 : drift, l = 0.1223 + 0.5206915  + 0.0006                               
+      1215       fhe10 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs11 : drift, l = 0.156                                                      
+                 fsh11 : drift, l = 0.1207 + 0.5238925                                         
+                 fhe11 : drift, l = 0.2126915                                                  
+      1220                                                                                     
+                 fqs12 : drift, l = 0.1567 + 0.00005                                           
+                 fsh12 : drift, l = 0.0985 + 0.3297 + 0.6755915 + 0.00005                      
+                 fhe12 : drift, l = 0.2126915                                                  
+                                                                                               
+      1225       fqs13 : drift, l = 0.1617 - 0.0006                                            
+                 fsh13 : drift, l = 0.1184 + 0.5216915 - 0.0006                                
+                 fhe13 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs14 : drift, l = 0.158 - 0.00025                                            
+      1230       fsh14 : drift, l = 0.0991 + 0.5574 + 0.3605 + 1.1385915 + 0.4075 - 0.00025    
+                 fhe14 : drift, l = 0.212691                                                   
+                                                                                               
+                 fqs15 : drift, l = 0.157 + 0.0005                                             
+                 fsh15 : drift, l = 0.1191 + 0.5234915 + 0.0005                                
+      1235       fhe15 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs16 : drift, l = 0.159 + 0.00025                                            
+                 fsh16 : drift, l = 0.1122 + 0.0003 + 0.2785925 + 0.25 + 0.00025               
+                 fhe16 : drift, l = 0.2126915                                                  
+      1240                                                                                     
+                 fqs17 : drift, l = 0.1555 + 0.0004                                            
+                 fsh17 : drift, l = 0.1218 + 0.5224915 + 0.0004                                
+                 fhe17 : drift, l = 0.2126915                                                  
+                                                                                               
+      1245       fqs18 : drift, l = 0.15 + 0.0002                                              
+                 fsh18 : drift, l = 0.1033 + 5.5797 + 0.0002                                   
+                 fhe18 : drift, l = 0.1398                                                     
+                                                                                               
+                 fqs19 : drift, l = 0.1556 - 0.0001                                            
+      1250       fsh19 : drift, l = 0.1136 + 0.5315915 - 0.0001                                
+                 fhe19 : drift, l = 0.212692                                                   
+                                                                                               
+                 fqs20 : drift, l = 0.1587 + 0.00025                                           
+                 fsh20 : drift, l = 0.1179 + 0.5234915 + 0.00025                               
+      1255       fhe20 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs21 : drift, l = 0.1567 - 0.00025                                           
+                 fsh21 : drift, l = 0.1209 + 0.5234915 - 0.00025                               
+                 fhe21 : drift, l = 0.2126915                                                  
+      1260                                                                                     
+                 fqs22 : drift, l = 0.159 - 0.0003                                             
+                 fsh22 : drift, l = 0.1179 + 0.5242915 - 0.0003                                
+                 fhe22 : drift, l = 0.2126915                                                  
+                                                                                               
+      1265       fqs23 : drift, l = 0.158                                                      
+                 fsp23 : drift, l = 0.0972 + 0.5548 + 1.0062 + 0.2272 + 0.1285                 
+                 fph23 : drift, l = 0.3746925                                                  
+                 fhe23 : drift, l = 0.2126915                                                  
+                                                                                               
+      1270       fqs24 : drift, l = 0.1564 - 0.00025                                           
+                 fsh24 : drift, l = 0.1208 + 0.5238915 - 0.00025                               
+                 fhe24 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs25 : drift, l = 0.158 - 0.0005                                             
+      1275       fsh25 : drift, l = 0.1197 + 0.5238915 - 0.0005                                
+                 fhe25 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs26 : drift, l = 0.1595                                                     
+                 fsp26 : drift, l = 0.0958 + 0.1413                                            
+      1280       fph26 : drift, l = 0.3994915                                                  
+                 fhe26 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs27 : drift, l = 0.16 - 0.00025                                             
+                 fsh27 : drift, l = 0.1202 + 0.5208915 - 0.00025                               
+      1285       fhe27 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs28 : drift, l = 0.1585                                                     
+                 fsp28 : drift, l = 0.0987 + 0.1432                                            
+                 fph28 : drift, l = 0.3956925                                                  
+      1290       fhe28 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs29 : drift, l = 0.158 - 0.00075                                            
+                 fsh29 : drift, l = 0.0993 + 0.7032 + 0.5135915 + 0.408 - 0.00075              
+                 fhe29 : drift, l = 0.2126915                                                  
+      1295                                                                                     
+                 fqs30 : drift, l = 0.1575 - 0.0005                                            
+                 fsh30 : drift, l = 0.0983 + 0.7707915 - 0.0005                                
+                 fhe30 : drift, l = 0.2126915                                                  
+                                                                                               
+      1300       fqs31 : drift, l = 0.1595 - 0.0005                                            
+                 fsh31 : drift, l = 0.1197 + 0.5223915 - 0.0005                                
+                 fhe31 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs32 : drift, l = 0.154 - 0.00025                                            
+      1305       fsh32 : drift, l = 0.0975 + 0.7745915 - 0.00025                               
+                 fhe32 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs33 : drift, l = 0.157                                                      
+                 fsi33 : drift, l = 0.0988 + 3.0707 + 0.6517 + 1.015/2.                        
+      1310       fie33 : drift, l = 1.015/2. + 0.29                                            
+                                                                                               
+                 fqs34 : drift, l = 0.1295                                                     
+                 fsh34 : drift, l = 0.3663515                                                  
+                 fhe34 : drift, l = 0.2126915                                                  
+      1315                                                                                     
+                 fqs35 : drift, l = 0.157 - 0.00025                                            
+                 fsh35 : drift, l = 0.1042 + 0.6923525 - 0.00025                               
+                 fhp35 : drift, l = 0.4437515 + 0.755 + 0.1164 + 0.1789 + 0.254                
+                 fpe35 : drift, l = 0.166                                                      
+      1320                                                                                     
+                 fqs36 : drift, l = 0.158 - 0.00025                                            
+                 fsh36 : drift, l = 0.0973 + 0.3562915 - 0.00025                               
+                 fhe36 : drift, l = 0.2126915                                                  
+                                                                                               
+      1325       fqs37 : drift, l = 0.1585 - 0.0005                                            
+                 fsh37 : drift, l = 0.1182 + 0.5248915 - 0.0005                                
+                 fhe37 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs38 : drift, l = 0.1565 - 0.0005                                            
+      1330       fsh38 : drift, l = 0.0993 + 0.7707915 - 0.0005                                
+                 fhe38 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs39 : drift, l = 0.156                                                      
+                 fsh39 : drift, l = 0.1207 + 0.5238915                                         
+      1335       fhe39 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs40 : drift, l = 0.1575                                                     
+                 fsh40 : drift, l = 0.1197 + 0.5233925                                         
+                 fhe40 : drift, l = 0.2126915                                                  
+      1340                                                                                     
+                 fqs41 : drift, l = 0.158                                                      
+                 fsh41 : drift, l = 0.1182 + 0.5243915                                         
+                 fhe41 : drift, l = 0.2126915                                                  
+                                                                                               
+      1345       fqs42 : drift, l = 0.1585                                                     
+                 fsh42 : drift, l = 0.0958 + 0.5462915                                         
+                 fhe42 : drift, l = 0.2126915                                                  
+                                                                                               
+                 fqs43 : drift, l = 0.1545 - 0.0005                                            
+      1350       fsh43 : drift, l = 0.1028 + 0.2165 + 0.2342 + 0.1682 &                        
+               	+ 1.7655 + 0.4438895 &                                                         
+               	+ 0.49 - 0.0005                                                                
+                 fhe43 : drift, l = 0.239589                                                   
+                                                                                               
+      1355       fqs44 : drift, l = 0.1557                                                     
+                 fsh44 : drift, l = 0.0991 + 0.853 + 2.3894/2.                                 
+                 fhe44 : drift, l = 2.3894/2. + 0.711810 + 1.063 + 0.381                       
+                                                                                               
+                 fqs45 : drift, l = 0.1573 - 0.0002                                            
+      1360       fsh45 : drift, l = 0.2001 + 0.4450305 - 0.0002                                
+                 fhe45 : drift, l = 0.2395895                                                  
+                                                                                               
+                 fqh46 : drift, l = 0.1131 + 0.4767 + 0.437546 + 0.352                         
+                 fhe46 : drift, l = 0.907145                                                   
+      1365                                                                                     
+                 fqs47 : drift, l = 0.155                                                      
+                 fsh47 : drift, l = 0.884636                                                   
+                 fhq47 : drift, l = 0.543146                                                   
+                 fqh47 : drift, l = 0.113747 + 0.709                                           
+      1370       fhv47 : drift, l = 0.369288 + 2.647/2.                                        
+                 fve47 : drift, l = 2.647/2. + 0.189 + 0.225                                   
+                                                                                               
+                 fqs48 : drift, l = 0.1 + 0.121 + 0.065 + 0.538722 &                           
+               	+ 0.254 + 0.381                                                                
+      1375       fse48 : drift, l = 0.387                                                      
+                                                                                               
+                 fqe49 : drift, l = 0.21 + 1.18 + 0.135078 + 0.5                               
+                                                                                               
+                 fqe0e  : drift, l = 0.36162 + 0.424                                           
+      1380                                                                                     
+                 fqe1e  : drift, l = 1.0968 + 0.239 + 0.1727                                   
+                                                                                               
+                 fqd2e  : drift, l = 0.116 + 0.349 + 1.747                                     
+                 fdh2e  : drift, l = 0.463897                                                  
+      1385       fhh2e  : drift, l = 0.442409                                                  
+                 fhe2e  : drift, l = 0.467152 + 0.116 + 0.0795                                 
+                                                                                               
+                 fqh3e  : drift, l = 0.297537                                                  
+                 fhs3e  : drift, l = 0.284756                                                  
+      1390       fse3e  : drift, l = 0.2423 + 0.0747                                           
+                                                                                               
+                 fqh4e  : drift, l = 0.557307                                                  
+                 fhs4e  : drift, l = 0.269057                                                  
+                 fse4e  : drift, l = 0.2507 + 0.082                                            
+      1395                                                                                     
+                 fqh5e  : drift, l = 0.557306                                                  
+                 fhs5e  : drift, l = 0.284757                                                  
+                 fse5e  : drift, l = 0.229 + 0.088                                             
+                                                                                               
+      1400       fqh6e  : drift, l = 0.557306                                                  
+                 fhe6e  : drift, l = 0.360167                                                  
+                                                                                               
+                 fqh7e  : drift, l = 0.237 + 0.048 + 0.2308 + 0.374 + 0.03 + 0.046  &          
+               	+ 0.40465 &                                                                    
+      1405     	+ 0.1262 + 0.254 + 2.355 + 0.245 + 0.152 + 2.442/2.                            
+                 fhe7e  : drift, l = 2.442/2. + 0.486                                          
+                                                                                               
+                 fqs8e  : drift, l = 0.1572                                                    
+                 fsr8e  : drift, l = 0.1698 + 0.005 + 1.02653 &                                
+      1410     	+ 0.255                                                                        
+                 fre8e  : drift, l = 1.342 + 0.13                                              
+                                                                                               
+                 fqs9e  : drift, l = 0.1565                                                    
+                 fse9e  : drift, l = 5.66727                                                   
+      1415                                                                                     
+                 fqs10e : drift, l = 0.1575 - 0.0009                                           
+                 fsh10e : drift, l = 0.1231 + 0.521791 - 0.0009                                
+                 fhe10e : drift, l = 0.212692                                                  
+                                                                                               
+      1420       fqs11e : drift, l = 0.1576 - 0.00025                                          
+                 fsh11e : drift, l = 0.1217 + 0.521792 - 0.00025                               
+                 fhe11e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs12e : drift, l = 0.156 - 0.00025                                           
+      1425       fsh12e : drift, l = 0.1007 + 1.004391 - 0.00025                               
+                 fhe12e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs13e : drift, l = 0.1572 - 0.00025                                          
+                 fsh13e : drift, l = 0.1221 + 0.521791 - 0.00025                               
+      1430       fhe13e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs14e : drift, l = 0.1563 - 0.0003                                           
+                 fsh14e : drift, l = 0.0985 + 0.5795 + 1.479091 &                              
+               	+ 0.4078 - 0.0003                                                              
+      1435       fhe14e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs15e : drift, l = 0.1549 - 0.0001                                           
+                 fsh15e : drift, l = 0.1214 + 0.524491 - 0.0001                                
+                 fhe15e : drift, l = 0.212692                                                  
+      1440                                                                                     
+                 fqs16e : drift, l = 0.1565 - 0.0001                                           
+                 fsh16e : drift, l = 0.1221 + 0.522192 - 0.0001                                
+                 fhe16e : drift, l = 0.212692                                                  
+                                                                                               
+      1445       fqs17e : drift, l = 0.1598 - 0.0003                                           
+                 fsh17e : drift, l = 0.1171 + 0.524291 - 0.0003                                
+                 fhe17e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs18e : drift, l = 0.1554 - 0.0001                                           
+      1450       fse18e : drift, l = 0.1003 + 5.5764 + 0.1413 - 0.0001                         
+                                                                                               
+                 fqs19e : drift, l = 0.1565 - 0.0009                                           
+                 fsh19e : drift, l = 0.0963 + 0.549591 - 0.0009                                
+                 fhe19e : drift, l = 0.212692                                                  
+      1455                                                                                     
+                 fqs20e : drift, l = 0.1603 - 0.0005                                           
+                 fsh20e : drift, l = 0.1193 + 0.521991 - 0.0005                                
+                 fhe20e : drift, l = 0.212692                                                  
+                                                                                               
+      1460       fqs21e : drift, l = 0.1595 + 0.0001                                           
+                 fsh21e : drift, l = 0.1174 + 0.523491 + 0.0001                                
+                 fhe21e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs22e : drift, l = 0.1577 - 0.0011                                           
+      1465       fsh22e : drift, l = 0.1232 + 0.521891 - 0.0011                                
+                 fhe22e : drift, l = 0.2126915                                                 
+                                                                                               
+                 fqs23e : drift, l = 0.1567 - 0.0005                                           
+                 fsf23e : drift, l = 0.1014 + 0.526 + 0.4057 + 0.6316 + 0.2322 &               
+      1470         + 0.1262 - 0.0005                                                           
+                 ffh23e : drift, l = 0.391793                                                  
+                 fhe23e : drift, l = 0.212691                                                  
+                                                                                               
+                 fqs24e : drift, l = 0.158 - 0.0003                                            
+      1475       fsh24e : drift, l = 0.1205 + 0.522692 - 0.0003                                
+                 fhe24e : drift, l = 0.2126915                                                 
+                                                                                               
+                 fqs25e : drift, l = 0.1577 - 0.0009                                           
+                 fsh25e : drift, l = 0.1235 + 0.521191 - 0.0009                                
+      1480       fhe25e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs26e : drift, l = 0.157  - 0.0009                                           
+                 fsp26e : drift, l = 0.1006 + 0.1453 - 0.0009                                  
+                 fph26e : drift, l = 0.395891                                                  
+      1485       fhe26e : drift, l = 0.2126915                                                 
+                                                                                               
+                 fqs27e : drift, l = 0.1577 - 0.0007                                           
+                 fsh27e : drift, l = 0.1229 + 0.521392 - 0.0007                                
+                 fhe27e : drift, l = 0.212691                                                  
+      1490                                                                                     
+                 fqs28e : drift, l = 0.1585 - 0.0009                                           
+                 fsp28e : drift, l = 0.0978 + 0.1486 - 0.0009                                  
+                 fph28e : drift, l = 0.393893                                                  
+                 fhe28e : drift, l = 0.2126915                                                 
+      1495                                                                                     
+                 fqs29e : drift, l = 0.1572 + 0.0001                                           
+                 fsh29e : drift, l = 0.0986 + 0.6749 + 0.541991 &                              
+               	+ 0.4077 + 0.0001                                                              
+                 fhe29e : drift, l = 0.2126915                                                 
+      1500                                                                                     
+                 fqs30e : drift, l = 0.1575 + 0.0001                                           
+                 fsh30e : drift, l = 0.0978 + 0.1372 + 0.378892 &                              
+               	+ 0.254 + 0.0001                                                               
+                 fhe30e : drift, l = 0.212691                                                  
+      1505                                                                                     
+                 fqs31e : drift, l = 0.1572 - 0.0003                                           
+                 fsh31e : drift, l = 0.12 + 0.5239915 - 0.0003                                 
+                 fhe31e : drift, l = 0.212692                                                  
+                                                                                               
+      1510       fqs32e : drift, l = 0.1537 + 0.0003                                           
+                 fsh32e : drift, l = 0.1012 + 0.1372 + 0.378891 &                              
+               	+ 0.254 + 0.0003                                                               
+                 fhe32e : drift, l = 0.212692                                                  
+                                                                                               
+      1515       fqs33e : drift, l = 0.1572 - 0.0003                                           
+                 fsi33e : drift, l = 0.0977 + 3.7239 + 1.015/2. - 0.0003                       
+                 fie33e : drift, l = 1.015/2. + 0.29                                           
+                                                                                               
+                 fqs34e : drift, l = 0.1359 - 0.0005                                           
+      1520       fsh34e : drift, l = 0.360951 - 0.0005                                         
+                 fhe34e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs35e : drift, l = 0.1544 - 0.00025                                          
+                 fsh35e : drift, l = 0.1088 + 0.690352 - 0.00025                               
+      1525       fhp35e : drift, l = 0.525252 + 0.1652 + 0.0923 &                              
+               	+ 0.3 + 0.54                                                                   
+                                                                                               
+                 fqs36e : drift, l = 0.157 - 0.0007                                            
+                 fsh36e : drift, l = 0.0989 + 0.356591 - 0.0007                                
+      1530       fhe36e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs37e : drift, l = 0.1572 - 0.0005                                           
+                 fsh37e : drift, l = 0.121 + 0.523391 - 0.0005                                 
+                 fhe37e : drift, l = 0.212692                                                  
+      1535                                                                                     
+                 fqs38e : drift, l = 0.1554 - 0.0011                                           
+                 fsh38e : drift, l = 0.1158 + 0.129 + 0.398591 &                               
+               	+ 0.229 - 0.0011                                                               
+                 fhe38e : drift, l = 0.212692                                                  
+      1540                                                                                     
+                 fqs39e : drift, l = 0.158 - 0.0001                                            
+                 fsh39e : drift, l = 0.1191 + 0.523691 - 0.0001                                
+                 fhe39e : drift, l = 0.212692                                                  
+                                                                                               
+      1545       fqs40e : drift, l = 0.158 - 0.0005                                            
+                 fsh40e : drift, l = 0.1199 + 0.523691 - 0.0005                                
+                 fhe40e : drift, l = 0.212693                                                  
+                                                                                               
+                 fqs41e : drift, l = 0.1565 - 0.0001                                           
+      1550       fsh41e : drift, l = 0.1208 + 0.523491 - 0.0001                                
+                 fhe41e : drift, l = 0.212692                                                  
+                                                                                               
+                 fqs42e : drift, l = 0.1539 - 0.0003                                           
+                 fsh42e : drift, l = 0.1097 + 0.5375915 - 0.0003                               
+      1555       fhe42e : drift, l = 0.2126915                                                 
+                                                                                               
+                 fqs43e : drift, l = 0.1567 - 0.0001                                           
+                 fsh43e : drift, l = 0.0985 + 0.2158 + 0.2272 + 0.1735 &                       
+               	+ 1.7655 + 0.44759 &                                                           
+      1560     	+ 0.49 - 0.0001                                                                
+                 fhe43e : drift, l = 0.239589                                                  
+                                                                                               
+                 fqs44e : drift, l = 0.157 - 0.0003                                            
+                 fsh44e : drift, l = 0.0983 + 0.83961 + 2.3894/2. - 0.0003                     
+      1565       fhe44e : drift, l = 2.3894/2. + 0.5203 + 1.268 + 0.381                        
+                                                                                               
+                 fqs45e : drift, l = 0.157 - 0.0005                                            
+                 fsh45e : drift, l = 0.1883 + 0.457729 - 0.0005                                
+                 fhe45e : drift, l = 0.239589                                                  
+      1570                                                                                     
+                 fqh46e : drift, l = 0.1093 + 1.270046                                         
+                 fhe46e : drift, l = 0.907147                                                  
+                                                                                               
+                 fqs47e : drift, l = 0.155 - (0.128 - 0.125)/2.                                
+      1575       fsh47e : drift, l = 0.887636 - (0.128 - 0.125)/2.                             
+                 fhq47e : drift, l = 0.543146                                                  
+                 fqh47e : drift, l = 0.120547 + 0.7022                                         
+                 fhv47e : drift, l = 0.369288 + 2.647/2.                                       
+                 fve47e : drift, l = 2.647/2. + 0.194 + 0.22                                   
+      1580                                                                                     
+                 fqs48e : drift, l = 0.042 + 0.204 + 0.11 + 0.465722 + 0.14 &                  
+               	+ 0.254 + 0.381                                                                
+                 fse48e : drift, l = 0.25                                                      
+                                                                                               
+      1585       fqe49e : drift, l = 0.2 + 1.19 + 0.135054 + 0.5                               
+                                                                                               
+                 f159 : drift , l = 0.6010400 + (loquad - lquad)/2. + &                        
+                         (losext -lsext) + (loh201 -lh201)/2.                       ! 10, 11, 1
+                 f159a : drift , l = 0.6010400 + (loquad - lquad)/2. + &                       
+      1590               (losext -lsext) + (loh208 -lh208)/2.                       ! 45       
+                 f160 : drift , l = 0.1880000 + (loquad - lquad)/2. + &                        
+               	  (losext -lsext) + (loh201 -lh201)/2.                       ! 12              
+                 f161 : drift , l = 1.6480000 + (loquad - lquad)/2. + &                        
+                         (losext -lsext) + (loh201 -lh201)/2.                       ! 14       
+      1595       f162 : drift , l = 5.7880001 + (loquad - lquad) + &                           
+                         (losext -lsext)                                            ! 18       
+                 f163 : drift , l = 2.0073 + (loquad - lquad)/2. + &                           
+                         (losext - lsext)                                           ! 23       
+                 f163e : drift , l = 0.1567 +  0.1014 + 0.526 + 0.4057 + &                     
+      1600               0.6316 + 0.2322 + 0.1262 + (0.127 - 0.128)                 ! 23e      
+                 f164 : drift , l = -0.047 + (loquad - lquad)/2. + &                           
+               	  (losext -lsext) + (loh201 -lh201)/2.                       ! 30, 32          
+                 f164a : drift , l = 0.232 + (loquad - lquad)/2. + &                           
+                         (losext - lsext)                                           ! 26       
+      1605       f164ae : drift , l = 0.157 +  0.1006 + 0.1453 + 0.1262 - 0.128     ! 26e      
+                 f164b : drift , l = 0.232 + (loquad - lquad)/2. + &                           
+                         (losext - lsext) + 0.0038                                  ! 28       
+                 f164be : drift , l = 0.1585 + 0.0978 + 0.1486 + 0.1262 - 0.128     ! 28e      
+                 f165 : drift , l = 0.808 + (loquad - lquad)/2. + &                            
+      1610     	  (losext -lsext) + (loh201 -lh201)/2.                       ! 29              
+                 f166a : drift , l = 4.3211 + (loquad - lquad)/2. + &                          
+               	  (losext -lsext)                                            ! 33              
+                 f166b : drift , l = 0.7769 + (loquad - lquad)/2.                   ! 33       
+                                                                                               
+      1615       f167 : drift , l = 0.2963000 + (loquad - lquad)/2. + &                        
+               	  (losext -lsext) + (loh201 -lh201)/2.                       ! 34              
+                 f168 : drift , l = 0.7535000 + (loquad - lquad)/2. + &                        
+                         (losext -lsext) + (loh201 -lh201)/2. + 0.000001            ! 35       
+                 f168a : drift, l = 1.7480515                                       ! 35       
+      1620       f168e : drift, l = 0.525252 + 0.3 + 0.1652 + 0.54 + 0.0923         ! 35e = 1.6
+                 f169 : drift , l = 0.4115400 + (loquad - lquad)/2. + &                        
+               	 (losext -lsext) + (loh201 -lh201)/2.                        ! 36              
+                 f170 : drift , l = 3.3736000 + (loquad - lquad)/2. + &                        
+               	 (losext -lsext) + (loh208 -lh208)/2.                        ! 43              
+      1625       f171 : drift , l = 2.1278100 + (loquad - lquad)/2. + &                        
+               	 (losext -lsext)                                             ! 44              
+                                                                                               
+               ! drifts - old junk                                                             
+                                                                                               
+      1630     !   f101 : drift , l = 0.7123000                                                
+               !   f110 : drift , l = 0.6400000                                                
+               !   f129 : drift , l = 1.5736001                                                
+               !   f143 : drift , l = 1.6520000                                                
+               !   f146 : drift , l = 1.1056401                                                
+      1635     !   f146a : drift , l = 366.319 - 366.242 - 0.128/2.0 ! 47                      
+               !   f146b : drift , l = 1.1056401 - 0.128 - 0.013     ! 47                      
+               !   f148 : drift , l = 2.0500000                                                
+               !   f148a : drift , l = 380.810 - 379.336 - 0.254/2.0 ! 48                      
+               !   f148b : drift , l = 2.0500000 - 0.254 - 1.347     ! 48                      
+      1640     !   f155 : drift , l = 0.4403000                                                
+                                                                                               
+               ! drifts - new junk                                                             
+                                                                                               
+               !  f105 : drift , l = 6.0599999                                                 
+      1645     !  f106 : drift , l = 5.3699999                                                 
+               !  f108 : drift , l = 8.8683300                                                 
+               !  f109 : drift , l = 5.9105701                                                 
+               !  f111 : drift , l = 0.7602000  +  (loq301 - lq301)/2.               ! 0       
+               !  f112 : drift , l = 1.4574000 + (loq301 - lq301)/2. + &                       
+      1650     !         (loq302 - lq302)/2.                                         ! 1       
+               !  f113 : drift , l = 3.0736001                                                 
+               !  f117 : drift , l = 5.7094498                                                 
+               !  f119 : drift , l = 2.0000000 ! 49                                            
+               !  f120 : drift , l = 0.4600000                                                 
+      1655     !  f121 : drift , l = 1.9200000                                                 
+               !  f122 : drift , l = 2.0000000                                                 
+               !  f123 : drift , l = 1.0800000                                                 
+               !  f126 : drift , l = 0.2250000                                                 
+               !  f127 : drift , l = 2.3998101                                                 
+      1660     !  f134 : drift , l = 0.5683000                                                 
+               !  f135 : drift , l = 2.6137600                                                 
+               !  f136 : drift , l = 0.6835400                                                 
+               !  f139 : drift , l = 1.0255001                                                 
+               !  f141 : drift , l = 1.7199900 ! 47                                            
+      1665     !  f142 : drift , l = 0.5000000                                                 
+               ! adjust drifts so that vsp48w comes out at 376.901, which is the location      
+               ! of spv48w in "master6.dat". unfortunately, then  vsp48e comes out at          
+               ! 391.771m in "out/e9a242400.recomp" when it should be at 391.525.              
+               ! these discrepancies are comparable with the thin vs thick discrepancies.      
+      1670     !  f143a : drift , l = 376.901 - 375.364                                        
+               !  f143b : drift , l = 1.6520000 - 1.537                                        
+               ! actually, from the "master6.dat" file, the two drifts should be:              
+               !  f146a : drift , l = 366.319208 - 365.820808 - 0.6/2 - 0.128/2 ! = 0.1344     
+               !  f146b : drift , l = 1.1056401 - 0.128 - 0.1344                               
+      1675     ! actually, from the "master6.dat" file, the two drifts should be:              
+               !  f148a : drift , l = 380.773897 - 378.912855 - 0.6/2 - 0.254/2 ! = 1.434042   
+               !  f148b : drift , l = 2.0500000 - 0.254 - 1.434042                             
+               !  f149 : drift , l = 0.6000000                                                 
+               !  f150 : drift , l = 3.6456001                                                 
+      1680     !  f152 : drift , l = 5.7398100                                                 
+               !  f154 : drift , l = 0.0001000                                                 
+               !  f163 : drift , l = 1.7280000                                                 
+               !  f166 : drift , l = 5.0980000                                                 
+                                                                                               
+      1685     ! markers                                                                       
+                                                                                               
+               mst : marker                                                                    
+                                                                                               
+               mnip : marker                                                                   
+      1690     msip : marker                                                                   
+                                                                                               
+               m303w : marker , type = cpld                                                    
+               m303e : marker , type = cpld                                                    
+               m304w : marker , type = cpld                                                    
+      1695     m304e : marker , type = cpld                                                    
+               m305w : marker , type = cpld                                                    
+               m305e : marker , type = cpld                                                    
+               m306w : marker , type = cpld                                                    
+               m306e : marker , type = cpld                                                    
+      1700     m307w : marker , type = cpld                                                    
+               m307e : marker , type = cpld                                                    
+               m308w : marker , type = cpld                                                    
+               m308e : marker , type = cpld                                                    
+               m309w : marker , type = cpld                                                    
+      1705     m309e : marker , type = cpld                                                    
+               m310w : marker , type = cpld                                                    
+               m310e : marker , type = cpld                                                    
+               m311w : marker , type = cpld                                                    
+               m311e : marker , type = cpld                                                    
+      1710     m312w : marker , type = cpld                                                    
+               m312e : marker , type = cpld                                                    
+               m313w : marker , type = cpld                                                    
+               m313e : marker , type = cpld                                                    
+               m314w : marker , type = cpld                                                    
+      1715     m314e : marker , type = cpld                                                    
+               m315w : marker , type = cpld                                                    
+               m315e : marker , type = cpld                                                    
+               m316w : marker , type = cpld                                                    
+               m316e : marker , type = cpld                                                    
+      1720     m317w : marker , type = cpld                                                    
+               m317e : marker , type = cpld                                                    
+               m318w : marker , type = cpld                                                    
+               m318e : marker , type = cpld                                                    
+               m319w : marker , type = cpld                                                    
+      1725     m319e : marker , type = cpld                                                    
+               m320w : marker , type = cpld                                                    
+               m320e : marker , type = cpld                                                    
+               m321w : marker , type = cpld                                                    
+               m321e : marker , type = cpld                                                    
+      1730     m322w : marker , type = cpld                                                    
+               m322e : marker , type = cpld                                                    
+               m323w : marker , type = cpld                                                    
+               m323e : marker , type = cpld                                                    
+               m324w : marker , type = cpld                                                    
+      1735     m324e : marker , type = cpld                                                    
+               m325w : marker , type = cpld                                                    
+               m325e : marker , type = cpld                                                    
+               m326w : marker , type = cpld                                                    
+               m326e : marker , type = cpld                                                    
+      1740     m327w : marker , type = cpld                                                    
+               m327e : marker , type = cpld                                                    
+               m328w : marker , type = cpld                                                    
+               m328e : marker , type = cpld                                                    
+               m329w : marker , type = cpld                                                    
+      1745     m329e : marker , type = cpld                                                    
+               m330w : marker , type = cpld                                                    
+               m330e : marker , type = cpld                                                    
+               m331w : marker , type = cpld                                                    
+               m331e : marker , type = cpld                                                    
+      1750     m332w : marker , type = cpld                                                    
+               m332e : marker , type = cpld                                                    
+               m333w : marker , type = cpld                                                    
+               m333e : marker , type = cpld                                                    
+               m334w : marker , type = cpld                                                    
+      1755     m334e : marker , type = cpld                                                    
+               m335w : marker , type = cpld                                                    
+               m335e : marker , type = cpld                                                    
+               m336w : marker , type = cpld                                                    
+               m336e : marker , type = cpld                                                    
+      1760     m337w : marker , type = cpld                                                    
+               m337e : marker , type = cpld                                                    
+               m338w : marker , type = cpld                                                    
+               m338e : marker , type = cpld                                                    
+               m339w : marker , type = cpld                                                    
+      1765     m339e : marker , type = cpld                                                    
+               m340w : marker , type = cpld                                                    
+               m340e : marker , type = cpld                                                    
+               m341w : marker , type = cpld                                                    
+               m341e : marker , type = cpld                                                    
+      1770     m342w : marker , type = cpld                                                    
+               m342e : marker , type = cpld                                                    
+               m343w : marker , type = cpld                                                    
+               m343e : marker , type = cpld                                                    
+               m344w : marker , type = cpld                                                    
+      1775     m344e : marker , type = cpld                                                    
+               m345w : marker , type = cpld                                                    
+               m345e : marker , type = cpld                                                    
+               m346w : marker , type = cpld                                                    
+               m346e : marker , type = cpld                                                    
+      1780     m347w : marker , type = cpld                                                    
+               m347e : marker , type = cpld                                                    
+               m348w : marker , type = cpld                                                    
+               m348e : marker , type = cpld                                                    
+               m349w : marker , type = cpld                                                    
+      1785     m349e : marker , type = cpld                                                    
+               m351 : marker                                                                   
+               mw1  : marker                                                                   
+               mw2  : marker                                                                   
+               mw3  : marker                                                                   
+      1790     mw4  : marker                                                                   
+               mw5  : marker                                                                   
+               mw6  : marker                                                                   
+               mw7  : marker                                                                   
+               mw8  : marker                                                                   
+      1795     mw9  : marker                                                                   
+               mw10 : marker                                                                   
+               mw11 : marker                                                                   
+               mw12 : marker                                                                   
+               mw13 : marker                                                                   
+      1800     mw14 : marker                                                                   
+               mw15 : marker                                                                   
+               mw16 : marker                                                                   
+               mw17 : marker                                                                   
+               mw18 : marker                                                                   
+      1805     mw19 : marker                                                                   
+               mw20 : marker                                                                   
+               mw21 : marker                                                                   
+               mw22 : marker                                                                   
+               mw23 : marker                                                                   
+      1810     mw24 : marker                                                                   
+               mw25 : marker                                                                   
+               mw26 : marker                                                                   
+               mw27 : marker                                                                   
+               mw28 : marker                                                                   
+      1815     mw29 : marker                                                                   
+               mw30 : marker                                                                   
+               mw31 : marker                                                                   
+               mw32 : marker                                                                   
+               mw33 : marker                                                                   
+      1820     mw34 : marker                                                                   
+               mw35 : marker                                                                   
+               mw36 : marker                                                                   
+               mw37 : marker                                                                   
+               mw38 : marker                                                                   
+      1825     mw39 : marker                                                                   
+               mw40 : marker                                                                   
+               mw41 : marker                                                                   
+               mw42 : marker                                                                   
+               mw43 : marker                                                                   
+      1830     mw44 : marker                                                                   
+               mw45 : marker                                                                   
+               mw46 : marker                                                                   
+               mw47 : marker                                                                   
+               mw48 : marker                                                                   
+      1835     mw49 : marker                                                                   
+                                                                                               
+                irsolw1 : line = &                                                             
+                        ( 2*sol110w0 , mhvsip , 2*sol110w1 , mhvsip , 2*sol110w2 , mhvsip )    
+                                                                                               
+      1840      ringw1 : line = ( &                                                            
+                m351, q351w , fqe0 , &                                      !    f111 -> fqe0  
+                mw1,  q301w , fqe1 , &                                      !  1 f112 -> fqe1  
+                mw2,  q302w , fqd2, dsq02w, fdh2, h203, fhh2, h204, fhe2, & !  2 f125 -> fqd2; 
+                mw3,  q303w , m303w , fqh3 ,  h202 , fhs3, sq04w, fse3,   & !  3 dsq04w -> (f10
+      1845      mw4,  q304w , m304w , fqh4 ,  h202 , fhs4, sq05w, fse4, &   !  4 dsq05w -> (f10
+                mw5,  q305w , m305w , fqh5 ,  h202 , fhs5, sq06w, fse5, &   !  5 f102   -> f102
+                mw6,  q306w , m306w , fqh6 ,  h202 , fhe6 , &               !  6 f102   -> f102
+                mw7,  q307 ,  m307w , fqh7 ,  hsp8w, fhe7 , &               !  7 (s407w , f156)
+                mw8,  q308 ,  m308w,  fqs8,   s408w, fsr8 , rfw, fre8, &    !  8 f157w  -> (f15
+      1850      mw9,  q309 ,  m309w,  fqs9,   s409w, fse9 , &               !  9 f159 -> fse9  
+                mw10, q310 ,  m310w,  fqs10,  s410w, fsh10, h201, fhe10 , & !  10 f159 -> fsh10
+                mw11, q311 ,  m311w,  fqs11,  s411w, fsh11, h201, fhe11 , & !  11 f159 -> fsh11
+                mw12, q312 ,  m312w,  fqs12,  s412w, fsh12, h201, fhe12 , & !  12 (f160, f104) 
+                mw13, q313 ,  m313w,  fqs13,  s413w, fsh13, h201, fhe13 , & !  13 f159 -> fsh13
+      1855      mw14, q314 ,  m314w,  fqs14,  s414w, fsh14, h201, fhe14 , & !  14 where is skq 
+                mw15, q315 ,  m315w,  fqs15,  s415w, fsh15, h201, fhe15 , & !  15 f159 -> fsh15
+                mw16, q316 ,  m316w,  fqs16,  s416w, fsh16, h201, fhe16 , & !  16 f159 -> fsh16
+                mw17, q317 ,  m317w,  fqs17,  s417w, fsh17, h201, fhe17 , & !  17 f159 -> fsh17
+                mw18, q318 ,  m318w,  fqs18,  s418w, fsh18,       fhe18 , & !  18 f162 -> (fsh1
+      1860      mw19, q319 ,  m319w,  fqs19,  s419w, fsh19, h201, fhe19 , & !  19 f159 -> fsh19
+                mw20, q320 ,  m320w,  fqs20,  s420w, fsh20, h201, fhe20 , & !  20 f159 -> fsh20
+                mw21, q321 ,  m321w,  fqs21,  s421w, fsh21, h201, fhe21 , & !  21 f159 -> fsh21
+                mw22, q322 ,  m322w,  fqs22,  s422w, fsh22, h201, fhe22 , & !  22 f159 -> fsh22
+                mw23, q323 ,  m323w,  fqs23,  s423w, fsp23, pv23w,fph23, &                     
+      1865            h201 , fhe23 , &                                      !  23  where is skx
+                mw24, q324 ,  m324w,  fqs24,  s424w, fsh24, h201, fhe24, &  !  24 f159 -> fsh24
+                mw25, q325 ,  m325w,  fqs25,  s425w, fsh25, h201, fhe25, &  !  25 f159 -> fsh25
+                mw26, q326 ,  m326w,  fqs26,  s426w, fsp26, pb26w,fph26, &                     
+                      h201 , fhe26 , &                                      !  26 f164 -> f164a
+      1870      mw27, q327 ,  m327w,  fqs27,  s427w, fsh27, h201, fhe27, &  !  27 f159 -> fsh27
+                mw28, q328 ,  m328w,  fqs28,  s428w, fsp28, pb28w,fph28, &                     
+                      h201 , fhe28 , &                                      !  28 f164 -> f164b
+                mw29, q329 ,  m329w,  fqs29,  s429w, fsh29, h201, fhe29 , & !  29 where is skq 
+                mw30, q330 ,  m330w,  fqs30,  s430w, fsh30, h201, fhe30 , & !  30  (f164 , f104
+      1875      mw31, q331 ,  m331w,  fqs31,  s431w, fsh31, h201, fhe31 , & !  31 f159 -> fsh31
+                mw32, q332 ,  m332w,  fqs32,  s432w, fsh32, h201, fhe32 , & !  32 (f164 , f104)
+                mw33, q333 ,  m333w,  fqs33,  s433w , fsi33)                !  33 f166a -> fsi3
+                                                                                               
+               ringw2 : line = ( ijs34w , fie33 , &                         !  33 f166b -> fie3
+      1880      mw34, q334 ,  m334w,  fqs34, s434w , fsh34, h201 , fhe34, & !  34 f167 -> fsh34
+                mw35, q335 ,  m335w,  fqs35, s435w , fsh35, h201 , fhp35, &                    
+                    ph36w, fpe35, &                                         !  35 f168 -> fsh35
+                mw36, q336 ,  m336w,  fqs36, s436w , fsh36, h201 , fhe36, & !  36 f169 -> fsh36
+                mw37, q337 ,  m337w,  fqs37, s437w , fsh37, h201 , fhe37, & !  37 f159 -> fsh37
+      1885      mw38, q338 ,  m338w,  fqs38, s438w , fsh38, h201 , fhe38, & !  38 (f164, f104) 
+                mw39, q339 ,  m339w,  fqs39, s439w , fsh39, h201 , fhe39, & !  39 f159 -> fsh39
+                mw40, q340 ,  m340w,  fqs40, s440w , fsh40, h201 , fhe40, & !  40 f159 -> fsh40
+                mw41, q341 ,  m341w,  fqs41, s441w , fsh41, h201 , fhe41, & !  41 f159 -> fsh41
+                mw42, q342 ,  m342w,  fqs42, s442w , fsh42, h201 , fhe42, & !  42 f159 -> fsh42
+      1890      mw43, q343 ,  m343w,  fqs43, s443w , fsh43, h208 , fhe43, & !  43 f170 -> fsh43
+                mw44, q344 ,  m344w,  fqs44, s444w , fsh44, hsp45w,fhe44, & !  44 f171 -> fsh44
+                mw45, q345 ,  m345w,  fqs45, s445w , fsh45, h208 , fhe45, & !  45 f159 -> f159a
+                mw46, q346 ,  m346w,  fqh46,  h206 , fhe46 , &              !  46 f153 -> fqh46
+                mw47, q347 ,  m347w,  fqs47, skq47w, fsh47, h207 , fhq47, & !     f146a -> fqs4
+      1895            q350 ,  fqh47 ,  h203, fhv47 , vsp48w , fve47, &      !     f147 -> fqh47
+                mw48, q348 ,  m348w,  fqs48 , skq49w , fse48, &             !  48 where is v48,
+                mw49, q349 ,  m349w,  fqe49  )                              !  49 (f119, q354, 
+                                                                                               
+               ! irsole1 : line = &                                                            
+      1900     !      ( sol110cp , mhvsip , sol110cp , mhvsip , sol110cp , mhvsip )            
+               ! irsole2 : line = ( sol110de )                                                 
+                                                                                               
+                irsole1 : line = &                                                             
+                        ( 2*sol110e0 , mhvsip , 2*sol110e1 , mhvsip , 2*sol110e2 , mhvsip )    
+      1905                                                                                     
+                ringe1 : line = ( &                                                            
+                m351, q351e, fqe0e , &                                      !   f111 -> fqe0e  
+                mw1,  q301e, fqe1e , &                                      ! 1 f112 -> fqe1e  
+                mw2,  q302e, fqd2e, dsq02e, fdh2e,h203,fhh2e, h204, fhe2e,& ! 2 f125 -> fqd2e; 
+      1910      mw3,  q303e, m303e, fqh3e,  h202 , fhs3e,  sq04e,fse3e, &   ! 3 f116 -> fqh3e; 
+                mw4,  q304e, m304e, fqh4e,  h202 , fhs4e,  sq05e,fse4e, &   ! 4 f102 -> fqh4e, 
+                mw5,  q305e, m305e, fqh5e,  h202 , fhs5e,  sq06e,fse5e, &   ! 5 f102 -> fqh5e; 
+                mw6,  q306e, m306e, fqh6e,  h202,  fhe6e, &                 ! 6 f102 -> fqh6e; 
+                mw7,  q307 , m307e, fqh7e,  hsp8e, fhe7e, &                 ! 7 (s407e , f156) 
+      1915      mw8,  q308 , m308e, fqs8e,  s408e, fsr8e,  rfe,  fre8e,  &  ! 8 f157e -> (f157a
+                mw9,  q309 , m309e, fqs9e,  s409e,               fse9e,  &  ! 9 f158 -> fse9e  
+                mw10, q310 , m310e, fqs10e, s410e, fsh10e, h201, fhe10e, &  ! 10 f159 -> fsh10e
+                mw11, q311 , m311e, fqs11e, s411e, fsh11e, h201, fhe11e, &  ! 11 f159 -> fsh11e
+                mw12, q312 , m312e, fqs12e, s412e, fsh12e, h201, fhe12e, &  ! 12 (f160, f104) -
+      1920      mw13, q313 , m313e, fqs13e, s413e, fsh13e, h201, fhe13e, &  ! 13 f159 -> fsh13e
+                mw14, q314 , m314e, fqs14e, s414e, fsh14e, h201, fhe14e, &  ! 14 where is skq ?
+                mw15, q315 , m315e, fqs15e, s415e, fsh15e, h201, fhe15e, &  ! 15 f159 -> fsh15e
+                mw16, q316 , m316e, fqs16e, s416e, fsh16e, h201, fhe16e, &  ! 16 f159 -> fsh16e
+                mw17, q317 , m317e, fqs17e, s417e, fsh17e, h201, fhe17e, &  ! 17 f159 -> fsh17e
+      1925      mw18, q318 , m318e, fqs18e, s418e,               fse18e , & ! 18 f162 -> fse18e
+                mw19, q319 , m319e, fqs19e, s419e, fsh19e, h201, fhe19e, &  ! 19 f159 -> fsh19e
+                mw20, q320 , m320e, fqs20e, s420e, fsh20e, h201, fhe20e, &  ! 20 f159 -> fsh20e
+                mw21, q321 , m321e, fqs21e, s421e, fsh21e, h201, fhe21e, &  ! 21 f159 -> fsh21e
+                mw22, q322 , m322e, fqs22e, s422e, fsh22e, h201, fhe22e, &  ! 22 f159 -> fsh22e
+      1930      mw23, q323 , m323e, fqs23e, s423e, fsf23e,fsbhv23e, ffh23e, &                  
+                      h201, fhe23e, &                                       ! 23 where is skx ?
+                mw24, q324 , m324e, fqs24e, s424e, fsh24e, h201, fhe24e, &  ! 24 f159 -> fsh24e
+                mw25, q325 , m325e, fqs25e, s425e, fsh25e, h201, fhe25e, &  ! 25 f159 -> fsh25e
+                mw26, q326 , m326e, fqs26e, s426e, fsp26e,pb26e, fph26e, &                     
+      1935            h201, fhe26e , &                                      ! 26 f164 -> f164a 
+                mw27, q327 , m327e, fqs27e, s427e, fsh27e, h201, fhe27e, &  ! 27 f159 -> fsh27e
+                mw28, q328 , m328e, fqs28e, s428e, fsp28e,pb28e, fph28e, &                     
+                      h201, fhe28e , &                                      ! 28 f164 -> f164be
+                mw29, q329 , m329e, fqs29e, s429e, fsh29e, h201, fhe29e, &  ! 29 where is skq ?
+      1940      mw30, q330 , m330e, fqs30e, s430e, fsh30e, h201, fhe30e, &  ! 30 (f164 , f104) 
+                mw31, q331 , m331e, fqs31e, s431e, fsh31e, h201, fhe31e, &  ! 31 f159 -> fsh31e
+                mw32, q332 , m332e, fqs32e, s432e, fsh32e, h201, fhe32e, &  ! 32 (f164 , f104) 
+                mw33, q333 , m333e, fqs33e, s433e, fsi33e)                  ! 33 f166a -> fsi33
+                                                                                               
+      1945     ringe2 : line = ( ijs34e , fie33e , &                        ! 33 f166b -> fie33
+                mw34, q334 , m334e, fqs34e, s434e, fsh34e, h201, fhe34e, &  ! 34 f167 -> fsh34e
+                mw35, q335 , m335e, fqs35e, s435e, fsh35e, h201, fhp35e, &                     
+                    ph36e, &                                                ! 35 f168 -> fsh35e
+                mw36, q336 , m336e, fqs36e, s436e, fsh36e, h201, fhe36e, &  ! 36 f169 -> fsh36e
+      1950      mw37, q337 , m337e, fqs37e, s437e, fsh37e, h201, fhe37e, &  ! 37 f159 -> fsh37e
+                mw38, q338 , m338e, fqs38e, s438e, fsh38e, h201, fhe38e, &  ! 38 where is pbh ?
+                mw39, q339 , m339e, fqs39e, s439e, fsh39e, h201, fhe39e, &  ! 39 f159 -> fsh39e
+                mw40, q340 , m340e, fqs40e, s440e, fsh40e, h201, fhe40e, &  ! 40 f159 -> fsh40e
+                mw41, q341 , m341e, fqs41e, s441e, fsh41e, h201, fhe41e, &  ! 41 f159 -> fsh41e
+      1955      mw42, q342 , m342e, fqs42e, s442e, fsh42e, h201, fhe42e, &  ! 42 f159 -> fsh42e
+                mw43, q343 , m343e, fqs43e, s443e, fsh43e, h208, fhe43e, &  ! 43 f170 -> fsh43e
+                mw44, q344 , m344e, fqs44e, s444e, fsh44e, hsp45e,fhe44e, & ! 44 f171 -> fsh44e
+                mw45, q345 , m345e, fqs45e, s445e, fsh45e, h208, fhe45e, &  ! 45 f159 -> f159a 
+                mw46, q346 , m346e, fqh46e, h206,  fhe46e , &               ! 46 f153 -> fqh46e
+      1960      mw47, q347 , m347e, fqs47e, skq47e,fsh47e, h207, fhq47e, &  !    f146a -> fqs47
+                      q350 , fqh47e, h203 , fhv47e, vsp48e , fve47e, &      !    f147 -> fqh47e
+                mw48, q348, m348e, fqs48e, skq49e, fse48e, &                ! 48 f148a ->  fqs4
+                mw49, q349, m349e, fqe49e )                                 ! 49 (f119, q354, f
+                                                                                               
+      1965       ring : line = ( msip , irsolw1 , msbpmw0 , &               ! (msbpmw0 , irsolw
+                                ringw1 , ringw2 , &                                            
+                                mnip , &                                                       
+                               -ringe2 , -ringe1 , &                                           
+                               -irsole1, -msbpme0, msip )                                      
+      1970                                                                                     
+                 cwring : line = ( msip , irsolw1 , msbpmw0 , irsolw2 , &                      
+                                ringw1 , ringw2 , &                                            
+                                mnip , &                                                       
+                               -ringe2 , -ringe1 , &                                           
+      1975                     -irsole2, -msbpme0 , -irsole1 )                                 
+                                                                                               
+                 ccwring : line = ( msip , irsole1 , msbpme0 , irsole2 , &                     
+                                    ringe1 , ringe2 , &                                        
+                                    mnip , &                                                   
+      1980                          -ringw2 , -ringw1 , &                                      
+                                    -irsolw2 , -msbpmw0 , -irsolw1 )                           
+                                                                                               
+                 posinj : line = ( ringw2 , mnip , &                                           
+                               -ringe2 , -ringe1 , &                                           
+      1985                     -irsole2, -msbpme0 , -irsole1 , &                               
+                                msip , irsolw1 , msbpmw0 , irsolw2 , &                         
+                                ringw1 )                                                       
+                                                                                               
+               ! lines - new junk                                                              
+      1990                                                                                     
+               ! irsolw1 : line = &                                                            
+               !         ( sol110cp , mhvsip , sol110cp , mhvsip , sol110cp , mhvsip )         
+               ! irsolw2 : line = ( sol110d )                                                  
+                                                                                               
+      1995                                                                                     
+                 use , ring                                                                    
+0... expansion of "ring" complete:      1996 elements,      2658 positions
+ 
+ ... end of "use" command, elapsed cpu time =       2.036 seconds
+ 
+                                                                                               
+                twiss !, print=elements                                                        
+ ... end of "matrix" command, elapsed cpu time =       2.100 seconds
+ 
+                makethin !, print=elements                                                     
+0... end of "survey" command, elapsed cpu time =       2.252 seconds
+ 
+      2000                                                                                     
+                writefile, slow                                                                
+                                                                                               
+                track, energy = 5., particle=electron ! , print1st                             
+  enter tracking module, elapsed cpu time =          8.693 seconds
+ 
+                start, x=-0.0011, px=-0.0012, y=-0.0013, py=-0.0014, dp=-0.001                 
+      2005      run, turns=1000                                                                
+  leave tracking module, elapsed cpu time =         55.465 seconds
+ 
+                                                                                               
+                stop                                                                           

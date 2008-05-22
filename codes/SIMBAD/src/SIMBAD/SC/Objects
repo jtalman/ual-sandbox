@@ -1,0 +1,6 @@
+OBJS +=	$(UAL_SIMBAD)/lib/$(UAL_ARCH)/obj/LFactors.o \
+	$(UAL_SIMBAD)/lib/$(UAL_ARCH)/obj/LSCCalculatorFFT.o \
+	$(UAL_SIMBAD)/lib/$(UAL_ARCH)/obj/TSCCalculatorFFT.o \
+	$(UAL_SIMBAD)/lib/$(UAL_ARCH)/obj/TSCPropagatorFFT.o 
+
+

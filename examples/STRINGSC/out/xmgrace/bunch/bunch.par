@@ -1,0 +1,41 @@
+
+with string
+ string on
+ string loctype view
+ string 0.05, 0.95
+ string color 1
+ string rot 0
+ string font 4
+ string just 0
+ string char size 0.7
+ string def "qtot(C): 1e-09,  SYMMETRIZED Np: 100,  Nturns: 1,  seed: -100,  ee(GeV): 5,  lstr(mm): 0.003,  strH(mu): 0.36,  LATT: chicaneR56q25"
+with string
+ string on
+ string loctype view
+ string 0.05, 0.93
+ string color 1
+ string rot 0
+ string font 4
+ string just 0
+ string char size 0.7
+ string def "xhW(micron): 63,  yhW(micron): 36,  cthW(mm): 0.2,  dehW(%): 0.0002,  d(1): -36,  d(2): 0, gaussian longit."
+with string
+ string on
+ string loctype view
+ string 0.05, 0.91
+ string color 1
+ string rot 0
+ string font 4
+ string just 0
+ string char size 0.7
+ string def "IN  :     betax(m): 40,    betay(m): 13,  p_epsx(m): 1e-10,  p_epsy(m): 1.03e-10,  de_rms(%): 0.698,  ct_rms(mm): 0.194"
+with string
+ string on
+ string loctype view
+ string 0.05, 0.89
+ string color 1
+ string rot 0
+ string font 4
+ string just 0
+ string char size 0.7
+ string def "OUT:  betaxp(m): 7.65,  betayp(m): 15.9,  p_epsx(m): 1.8e-10,  p_epsy(m): 1.03e-10,  de_rms(%): 0.689,  ct_rms(mm): 0.0189"

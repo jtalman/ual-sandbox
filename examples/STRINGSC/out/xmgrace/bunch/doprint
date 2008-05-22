@@ -1,0 +1,11 @@
+#!/bin/csh -f
+
+foreach dir(*)
+cd $dir
+lpr out
+lpr bunchin.ps
+lpr bunchout.ps
+lpr outhistogram.ps
+lpr bunchinout.ps
+cd ..
+end

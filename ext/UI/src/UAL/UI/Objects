@@ -1,0 +1,7 @@
+OBJS += $(UAL)/ext/UI/lib/$(UAL_ARCH)/obj/Argument.o \
+	$(UAL)/ext/UI/lib/$(UAL_ARCH)/obj/Arguments.o \
+	$(UAL)/ext/UI/lib/$(UAL_ARCH)/obj/ShellImp.o \
+	$(UAL)/ext/UI/lib/$(UAL_ARCH)/obj/OpticsCalculator.o \
+	$(UAL)/ext/UI/lib/$(UAL_ARCH)/obj/BunchGenerator.o \
+	$(UAL)/ext/UI/lib/$(UAL_ARCH)/obj/Shell.o 
+

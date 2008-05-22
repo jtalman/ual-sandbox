@@ -1,0 +1,5 @@
+OBJS +=	$(UAL_PAC)/lib/$(UAL_ARCH)/obj/BeamAttributes.o \
+	$(UAL_PAC)/lib/$(UAL_ARCH)/obj/Position.o \
+	$(UAL_PAC)/lib/$(UAL_ARCH)/obj/Spin.o \
+	$(UAL_PAC)/lib/$(UAL_ARCH)/obj/Particle.o  \
+	$(UAL_PAC)/lib/$(UAL_ARCH)/obj/Bunch.o

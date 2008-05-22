@@ -1,0 +1,7 @@
+<apdf>
+  <propagator id="simbad" accelerator="rng">
+     <create>
+        <link algorithm="SIMBAD::TSCPropagatorFFT" types="Default"/>
+     </create>
+  </propagator>
+</apdf>

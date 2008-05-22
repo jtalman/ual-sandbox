@@ -1,0 +1,30 @@
+
+prefix = @prefix@
+LIBDIR = @libdir@
+OBJDIR= $(prefix)/obj
+INCDIR= @includedir@
+
+DIRS =  ./src ./doc 
+
+compile:  
+	if [ ! -d $(LIBDIR)] ; \
+		then (mkdir $(LIBDIR) ); fi;
+	if [ ! -d $(OBJDIR)] ; \
+		then (mkdir $(OBJDIR) ); fi;
+	if [ ! -d $(INCDIR)] ; \
+		then (mkdir $(INCDIR) ); fi;
+	@for dir in $(DIRS); do \
+		(cd $$dir; if [ -f ./Makefile ]; then $(MAKE) compile; fi;); \
+	done
+
+clean: 
+	@for dir in $(DIRS) ; do \
+		(cd $$dir; if [ -f ./Makefile ]; then $(MAKE) clean; fi;); \
+	done
+	rm -rf lib
+	rm -rf include
+	rm -rf obj
+
+
+
+

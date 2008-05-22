@@ -1,0 +1,121 @@
+
+Echo input parameters.
+ qtot=1e-09 C, SYMMETRIZED Np=100, Nturns=1, seed = -100
+ ee = 5
+ xhW = 6.3e-05, yhW = 3.6e-05, cthW = 0.0002, dehW = 2e-06, ddeBydct = -36
+ gaussian longitudinal, lstr = 3e-06, betax0 = 40, alphax0 = 2.6, betay0 = 13, alphay0 = 1
+
+Define the space of Taylor maps.
+
+Read SXF file (lattice description) "../data/chicaneR56q25.sxf"
+echo file ./echo.sxf
+
+Select lattice.
+
+Set beam attributes.
+
+Read APDF file (propagator description). 
+Set Drift Kick _ring_0
+Set Drift Kick _ring_1
+Set Drift Kick _ring_2
+Set Drift Kick _ring_3
+
+Do survey. 
+suml = 15.0125
+
+Assign input twiss values. 
+  betaxin = 40, betayin = 13
+  alphaxin = 2.6, alphayin = 1
+
+Prepare a bunch of 100 particles. 
+(The second half will be overwritten later) 
+
+The quantities returned by 'bunchAnalyzer.getRMS' and labeled 'rmsx' and 'rmsy'
+ in 'main.cc' are not, in fact, rms., values.
+What is returned are 'emittance_x' and 'emittance_y'. 
+But 'rmsct' and 'rmsde' are truly r.m.s. values
+The 'p_' in 'p_epsx' and 'p_epsy' stands for 'pseudo'.
+
+desired: p_epsx = 9.9225e-11, p_epsy = 9.96923e-11
+
+Copy reflected first half bunch to second half
+
+Check emittances of full bunch 
+achieved: p_epsx = 1.00041e-10, p_epsy = 1.02519e-10
+achieved: p_epsx_n = 9.78806e-07, p_epsy_n = 1.00306e-06
+achieved: betax = 37.0261, betay = 15.2384
+achieved: de_rms = 2.08027e-06, ct_rms = 0.000194016
+
+Introduce 'de' as function of 'ct'. ddeBydct = -36, d2deBydct2 = 0
+achieved: de_rms = 0.00698443
+
+Check emittance calculation and save 'bunchin'. 
+input: avX = 2.11758e-21, avPX = 1.50216e-22
+input: avY = -5.29396e-22, avPY = 5.21447e-23
+input: avCT = -4.32986e-07, avE(MeV) = 5000.08
+
+input: epsxin = 1.00457e-10, epsyin = 1.04679e-10
+input: epsxin_n = 9.82879e-07, epsyin_n = 1.02419e-06
+
+Do linear analysis. 
+sbend b1i,k1 = 0,k2 = 0
+sbend b1,k1 = 0,k2 = 0
+sbend b1,k1 = 0,k2 = 0
+sbend b1,k1 = 0,k2 = 0
+sbend b1,k1 = 0,k2 = 0
+sbend b1,k1 = 0,k2 = 0
+sbend b1,k1 = 0,k2 = 0
+sbend b1o,k1 = 0,k2 = -0.0046834
+sbend b2i,k1 = -0.0046834,k2 = -0
+sbend b2,k1 = -0,k2 = -0
+sbend b2,k1 = -0,k2 = -0
+sbend b2,k1 = -0,k2 = -0
+sbend b2,k1 = -0,k2 = -0
+sbend b2,k1 = -0,k2 = -0
+sbend b2,k1 = -0,k2 = -0
+sbend b2o,k1 = -0,k2 = -0
+sbend b3i,k1 = -0,k2 = -0
+sbend b3,k1 = -0,k2 = -0
+sbend b3,k1 = -0,k2 = -0
+sbend b3,k1 = -0,k2 = -0
+sbend b3,k1 = -0,k2 = -0
+sbend b3,k1 = -0,k2 = -0
+sbend b3,k1 = -0,k2 = -0
+sbend b3o,k1 = -0,k2 = -0.0046834
+sbend b4i,k1 = -0.0046834,k2 = 0
+sbend b4,k1 = 0,k2 = 0
+sbend b4,k1 = 0,k2 = 0
+sbend b4,k1 = 0,k2 = 0
+sbend b4,k1 = 0,k2 = 0
+sbend b4,k1 = 0,k2 = 0
+sbend b4,k1 = 0,k2 = 0
+sbend b4o,k1 = 0,k2 = 0
+  qx = 0.240461, qy = 0.286574
+  betaxout = 5.67354, betayout = 16.6613
+  alphaxout = -0.317283, alphayout = -1.2574
+
+Define TEAPOT String SC Solver.
+strH: 3.6e-07
+
+Track it.
+_ring_0 drift kick , L = 5.00586, Ri = 0, sRi = 1
+_ring_1 drift kick , L = 1, Ri = 0, sRi = 1
+_ring_2 drift kick , L = 5.00586, Ri = 0, sRi = 1
+_ring_3 drift kick , L = 2, Ri = 0, sRi = 1
+Print results.
+
+output: avX = -1.51493e-06, avPX = 5.50329e-07
+output: avY = -3.88993e-08, avPY = 6.51743e-09
+output: avCT = -1.53057e-06, avE(MeV) = 4998.91
+
+output: epsxout = 1.88604e-10, epsyout = 1.0487e-10
+output: epsxout_n = 1.84531e-06, epsyout_n = 1.02606e-06
+output: p_epsx_n = 1.76492e-06, p_epsy_n = 1.0051e-06
+
+output: betaxp = 7.65257, betayp = 15.8843
+output: e_rms(MeV) = 34.4739, rmsct = 1.88692e-05
+
+Delta E(%) = 1000*e*(avDE-avDEin) = -1.16371 MeV
+Delta sigma E(%) = 1000*e*(rmsde-rmsdein) -0.448225 MeV
+
+chicaneR56q25	-1.086	34.47	1.765	1.005	0.01887	1.845	1.026	

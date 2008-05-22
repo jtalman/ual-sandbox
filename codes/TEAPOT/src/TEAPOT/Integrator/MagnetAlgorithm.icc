@@ -1,0 +1,92 @@
+// Library       : TEAPOT
+// File          : TEAPOT/Integrator/MagnetAlgorithm.icc
+// Copyright     : see Copyright file
+// Author        : L.Schachinger and R.Talman
+// C++ version   : N.Malitsky 
+
+#include "TEAPOT/Integrator/MagnetAlgorithm.hh"
+
+template<class Coordinate, class Coordinates> 
+TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::MagnetAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::~MagnetAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::passEntry(
+	const TEAPOT::MagnetData& mdata,
+	Coordinates& p)
+{
+  if(mdata.m_entryMlt) applyMltKick(mdata.m_entryMlt, 0, 1, p);
+}
+
+template<class Coordinate, class Coordinates>
+void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::passExit(
+	const TEAPOT::MagnetData& mdata,
+	Coordinates& p)
+{
+  if(mdata.m_exitMlt) applyMltKick(mdata.m_exitMlt, 0, 1, p);
+}
+
+template<class Coordinate, class Coordinates>
+void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
+	const TEAPOT::MagnetData& mdata,
+	double rkicks, 
+	Coordinates& p)
+{
+  applyMltKick(mdata.m_mlt, mdata.m_offset, rkicks, p);
+}
+
+template<class Coordinate, class Coordinates>
+void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
+	PacElemMultipole* mult, PacElemOffset* offset,
+	double rkicks, 
+	Coordinates& p)
+{
+
+  if(mult == 0) return;
+
+  Coordinate t0, x, y, px, py;
+
+  x = p[0]; //  xdif
+  y = p[2]; //  ydif
+
+  px = 0.0;
+  py = 0.0;
+
+  if(offset) {
+    x -= offset->dx();
+    y -= offset->dy();
+  }
+
+  if(mult){
+
+     int     index = mult->size();
+     double* data = mult->data();
+
+     double kl, ktl;	
+
+     if(index > 0){
+    	  do {
+	  	ktl = data[--index];
+	 	kl  = data[--index];
+          	t0  = x*px;
+          	t0 -= y*py - kl;
+          	py  = x*py;
+          	py += y*px + ktl;    
+          	px  = t0;
+       	  } while ( index > 0 ) ;
+     }
+     px *= rkicks;
+     py *= rkicks;
+  }
+
+  px *= -1;
+
+  p[1] += px;                              // px/p0
+  p[3] += py;                              // py/p0	
+}
