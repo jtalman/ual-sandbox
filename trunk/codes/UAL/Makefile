@@ -1,6 +1,6 @@
 include $(UAL)/env/$(UAL_ARCH)/Makefile.config
 
-DIRS = ./src ./doc ./api
+DIRS = ./src ./api # ./doc 
 
 compile:  
 	if [ ! -d ./lib ] ; then (mkdir ./lib; ); fi;
