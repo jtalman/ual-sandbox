@@ -41,8 +41,8 @@ using std::pair;
 
       ~PacRbTree() { }
 
-      typedef _Rb_tree_node<_Value> _Rb_tree_node;
-      typedef _Rb_tree_node* _Link_type;
+      // typedef _Rb_tree_node<_Value> _Rb_tree_node;
+      typedef _Rb_tree_node<_Value>* _Link_type;
 
       // Insert/erase.
 
