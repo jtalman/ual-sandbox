@@ -6,6 +6,7 @@
 
 // #include <String.h>
 #include "SMF/PacElemBucketKeys.h"
+#include <string.h>
 
 
 PacElemBucketKey::PacElemBucketKey(const char*  name, 
