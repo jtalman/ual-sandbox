@@ -4,6 +4,7 @@
 // Author      : Nikolay Malitsky
 
 #include "Survey/PacSurveySbend.h"
+#include <stdlib.h>
 
 void PacSurveySbend::define(double length, double angle, double rotation)
 {
