@@ -7,6 +7,7 @@
 #define SXF_DEF_H
 
 #include <string>
+#include <string.h>
 
 using namespace std;
 
