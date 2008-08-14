@@ -5,6 +5,7 @@
 // Author      : Nikolay Malitsky
 
 #include "SMF/PacLines.h"
+#include <string.h>
 
 
 static PacLine  __pacLine;
