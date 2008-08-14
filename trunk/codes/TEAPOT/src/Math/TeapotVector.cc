@@ -11,6 +11,7 @@
 
 
 #include "Math/TeapotVector.h"
+#include <string.h>
 
 
 // --------------- Static data members --------------------------
