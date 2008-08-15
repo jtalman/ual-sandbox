@@ -1,5 +1,5 @@
 
-#include <iostream.h>
+#include <iostream>
 #include "xercesc/sax2/Attributes.hpp"
 
 #include "SMF/PacGenElement.h"
