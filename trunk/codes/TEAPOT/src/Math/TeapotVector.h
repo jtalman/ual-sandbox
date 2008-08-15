@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <math.h>
+#include <string.h>
 
 class TeapotMatrix;
 
