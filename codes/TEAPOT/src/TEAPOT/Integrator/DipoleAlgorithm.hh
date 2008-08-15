@@ -25,7 +25,7 @@ namespace TEAPOT {
     ~DipoleAlgorithm();
 
     /** Propagates a probe coordinates through the bend*/
-    void passBend(const DipoleData& data, const MagnetData& data, Coordinates& p, Coordinates& tmp, double v0byc);
+    void passBend(const DipoleData& ddata, const MagnetData& mdata, Coordinates& p, Coordinates& tmp, double v0byc);
 
     /** Propagates a probe coordinates through the bend slice*/
     void passBendSlice(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
