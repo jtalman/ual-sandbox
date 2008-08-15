@@ -1,5 +1,5 @@
 
-#include <iostream.h>
+#include <iostream>
 
 #include "UAL/ADXF/Reader.hh"
 #include "UAL/ADXF/handlers/RcollimatorHandler.hh"
