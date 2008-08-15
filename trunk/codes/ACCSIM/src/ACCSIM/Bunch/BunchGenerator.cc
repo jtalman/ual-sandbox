@@ -5,6 +5,7 @@
 //# C++ version : N.Malitsky 
 
 #include "ACCSIM/Bunch/BunchGenerator.hh"
+#include <stdlib.h>
 
 // Constructor
 
