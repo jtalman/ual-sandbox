@@ -12,7 +12,7 @@
 #include "SMF/PacElemMultipole.h"
 
 #include "Math/TeapotMatrix.h"
-#include <iostream.h>
+#include <iostream>
 
 class Teapot;
 
