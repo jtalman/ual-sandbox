@@ -1,6 +1,6 @@
 include $(UAL)/env/$(UAL_ARCH)/Makefile.config
 
-DIRS = ./src ./api ./doc #./examples
+DIRS = ./src ./api # ./doc #./examples
 
 compile:  
 	@for dir in $(DIRS); do \
