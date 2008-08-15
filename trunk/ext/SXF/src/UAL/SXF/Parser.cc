@@ -3,6 +3,8 @@
 #include "UAL/SXF/Parser.hh"
 #include "UAL/SXF/AcceleratorReader.hh"
 
+#include <stdlib.h>
+
 extern FILE* yyin;
 extern int yyparse();
 
