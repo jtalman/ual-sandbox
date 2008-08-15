@@ -1,5 +1,6 @@
 #include <iomanip>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "UAL/ADXF/Writer.hh"
 #include "UAL/ADXF/ElementsWriter.hh"
