@@ -2,7 +2,8 @@
 #include <math.h>
 #include <sys/types.h>
 #include <stdio.h> 
-#include <iostream.h>
+#include <stdlib.h>
+#include <iostream>
 
 typedef unsigned short u_short;
 
