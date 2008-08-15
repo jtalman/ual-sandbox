@@ -8,6 +8,8 @@
 #include "Main/TeapotTwissService.h"
 #include "Main/Teapot.h"
 
+#include <stdlib.h>
+
 static int    TeapotTwissService_Dim = 4;
 static double Delta   = 1.e-8;
 static double DSTRENG = 4.e-4;
