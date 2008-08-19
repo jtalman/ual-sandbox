@@ -15,3 +15,6 @@ source $UAL/env/common/setup-ual-env
 source $UAL/env/$UAL_ARCH/setup-arch-env
 
 setenv XERCESCROOT $UAL/tools/tars/xerces-c-src_2_7_0
+
+unsetenv ROOTSYS
+
