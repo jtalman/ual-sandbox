@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<adxf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="file:/home/xslt/ADXF/adxf.xsd">
+  <elements>
+    <sbend name="bl" l="0.75" angle="0.0981747704247" />
+    <sbend name="bnd" l="1.5" angle="0.196349540849" />
+    <sbend name="br" l="0.75" angle="0.0981747704247" />
+    <drift name="ldas" l="0.55" />
+    <marker name="mcol1" />
+    <marker name="mcol2" />
+    <drift name="o1" l="6.85" />
+    <drift name="o11" l="1.7125" />
+    <drift name="o2" l="0.4" />
+    <drift name="o3" l="6.25" />
+    <drift name="o31" l="1.25" />
+    <drift name="oarc" l="1" />
+    <drift name="oq1" />
+    <drift name="oq2" />
+    <drift name="oq3" />
+    <drift name="orf" l="0.57" />
+    <drift name="oz" />
+    <quadrupole name="qdch" l="0.275" k1="-0.676269751258" />
+    <marker name="qdch1" />
+    <marker name="qdch2" />
+    <quadrupole name="qdh" l="0.25" k1="-0.729043116111" />
+    <marker name="qdh1" />
+    <marker name="qdh2" />
+    <quadrupole name="qdmh" l="0.25" k1="-0.503241213012" />
+    <marker name="qdmh1" />
+    <marker name="qdmh2" />
+    <quadrupole name="qfbh" l="0.25" k1="0.687492131512" />
+    <marker name="qfbh1" />
+    <marker name="qfbh2" />
+    <quadrupole name="qfh" l="0.25" k1="0.687492131512" />
+    <marker name="qfh1" />
+    <marker name="qfh2" />
+    <quadrupole name="qflh" l="0.35" k1="0.634115381156" />
+    <marker name="qflh1" />
+    <marker name="qflh2" />
+    <drift name="rf1" l="1.7" />
+    <drift name="rf2" l="1.7" />
+    <sextupole name="s1d" l="0.15" />
+    <sextupole name="s2f" l="0.15" />
+    <drift name="s30" l="0.3" />
+    <sextupole name="s3d" l="0.15" />
+    <sextupole name="s4f" l="0.15" />
+  </elements>
+  <sectors>
+    <sector name="qd" line="qdh1 qdh qdh qdh2" />
+    <sector name="qf" line="qfh1 qfh qfh qfh2" />
+    <sector name="qfb" line="qfbh1 qfbh qfbh qfbh2" />
+    <sector name="qdm" line="qdmh1 qdmh qdmh qdmh2" />
+    <sector name="qfl" line="qflh1 qflh qflh qflh2" />
+    <sector name="qdc" line="qdch1 qdch qdch qdch2" />
+    <sector name="ssx1d" line="s30 s1d ldas" />
+    <sector name="ssx2f" line="s30 s2f ldas" />
+    <sector name="ssx3d" line="ldas s3d s30" />
+    <sector name="ssx4f" line="ldas s4f s30" />
+    <sector name="ssx5d" line="ldas s1d s30" />
+    <sector name="rfl1" line="orf orf rf1 orf orf rf1 orf" />
+    <sector name="rfl2" line="orf rf1 orf orf rf2 orf orf" />
+    <sector name="sc" line="qdm o11 o11 o11 o11 qfl o2 qdc o31 o31 o31 o31 o31" />
+    <sector name="scm" line="o31 o31 o31 o31 o31 qdc o2 qfl o11 o11 o11 o11 qdm" />
+    <sector name="scol" line="qdm o11 o11 mcol1 o11 o11 qfl o2 qdc o31 o31 mcol2 o31 o31 o31" />
+    <sector name="scolm" line="o31 o31 o31 o31 o31 qdc o2 qfl o11 o11 mcol1 o11 o11 qdm" />
+    <sector name="scrf" line="qdm o11 o11 o11 o11 qfl o2 qdc rfl1" />
+    <sector name="scrfm" line="rfl2 qdc o2 qfl o11 o11 o11 o11 qdm" />
+    <sector name="acf" line="oarc bnd oarc qf" />
+    <sector name="acfm" line="oarc bnd oarc qd" />
+    <sector name="acs1" line="ssx1d bnd oarc qfb" />
+    <sector name="acs2" line="ssx2f bnd ssx3d qd" />
+    <sector name="acs3" line="oarc bnd ssx4f qfb" />
+    <sector name="acs4" line="oarc bnd ssx5d qd" />
+    <sector name="acfl" line="oarc bnd oarc" />
+    <sector name="arc" line="acf acfm acs1 acs2 acs3 acs4 acf acfl" />
+    <sector name="insert" line="sc oz scm" />
+    <sector name="insertc" line="scol oz scolm" />
+    <sector name="insertr" line="scrf oz scrfm" />
+    <sector name="sp" line="insert arc" />
+    <sector name="spc" line="insertc arc" />
+    <sector name="spr" line="insertr arc" />
+    <sector name="ring" line="sp sp sp sp" />
+  </sectors>
+</adxf>
