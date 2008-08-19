@@ -24,7 +24,7 @@ void UAL::ADXFSectorWriter::writeSector(ostream& out,
   for(int i=0; i < lattice.size(); i++){
     if(lattice[i].getType().size() != 0 ) {
       out << frameTab << "<frame" 
-	  << " ref=" << '\"' << lattice[i].getName() << '\"'
+	  << " ref=" << '\"' << lattice[i].getDesignName() << '\"'
 	  << " at=" << '\"' << at << '\"';
       out << " />" << std::endl; 
     }
