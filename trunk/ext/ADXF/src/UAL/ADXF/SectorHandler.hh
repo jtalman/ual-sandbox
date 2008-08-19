@@ -72,6 +72,8 @@ namespace UAL {
 
   protected:
 
+    static double s_diff;
+
     /** Pointer to the SMF lattice. */
     PacLattice* m_pLattice;
 
