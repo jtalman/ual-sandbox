@@ -242,6 +242,43 @@ void UAL::OpticsCalculator::calculateTwiss(const std::vector<int>& elems,
 
 }
 
+void UAL::OpticsCalculator::calculateTwiss(const std::vector<int>& elems,
+					   const std::vector<PacVTps>& maps,
+					   PacTwissData& tw,
+					   std::vector<PacTwissData>& twissVector)
+{
+  if(!m_teapot) return;
+
+
+  PAC::Position orbit;
+  m_teapot->clorbit(orbit, m_ba);
+
+  // PacChromData chrom;
+  // m_teapot->chrom(chrom, m_ba, orbit);
+
+  PacTwissData twiss = tw;
+
+  twissVector.resize(maps.size());
+
+  double mux = 0.0, muy = 0.0;
+  twiss.mu(0, mux);
+  twiss.mu(1, muy);
+  for(unsigned int it = 0; it < maps.size(); it++){
+
+    m_teapot->trackTwiss(twiss, maps[it]);
+
+    if((twiss.mu(0) - mux) < 0.0) twiss.mu(0, twiss.mu(0) + 1.0);
+    mux = twiss.mu(0);
+
+    if((twiss.mu(1) - muy) < 0.0) twiss.mu(1, twiss.mu(1) + 1.0);
+    muy = twiss.mu(1);
+
+    twissVector[it] = twiss;
+  }
+
+}
+
+
 void UAL::OpticsCalculator::tunefit(double tunex, double tuney,
 				    std::string& b1f, std::string& b1d)
 {
@@ -280,7 +317,8 @@ void UAL::OpticsCalculator::chromfit(double chromx, double chromy,
   std::vector<int> b2dVector;
   selectElementsByNames(b2d, b2dVector);
 
-  std::cout << "sextupole families: " << b2fVector.size() << " " << b2dVector.size() << std::endl;
+  std::cout << "sextupole families: " << b2fVector.size() 
+	    << " " << b2dVector.size() << std::endl;
 
   // const PacVector<int>& b2fs;
   // const PacVector<int>& b2ds;
@@ -308,7 +346,8 @@ void UAL::OpticsCalculator::selectElementsByNames(const std::string& names,
     TeapotElement& anode = m_teapot->element(i);
     std::string elname = anode.getDesignName();
 
-    //  std::cout << "name = " << anode.getName() << ", " << anode.getDesignName() <<std::endl;
+    //  std::cout << "name = " << anode.getName()
+    // << ", " << anode.getDesignName() <<std::endl;
 
     int rc = regexec(&preg, elname.c_str(), 1, pmatch, 0); 
     if(rc == 0) elemList.push_back(i);    
@@ -324,6 +363,156 @@ void UAL::OpticsCalculator::selectElementsByNames(const std::string& names,
   } 
 
 }
+
+void UAL::OpticsCalculator::writeTeapotTwissToFile(const std::string& accName,
+    const std::string& fileName, const std::string& elemNames)
+{
+
+  PacLattices::iterator latIterator = PacLattices::instance()->find(accName);
+  if(latIterator == PacLattices::instance()->end()){
+    std::cerr << "There is no " + accName << " accelerator " << endl;
+    return;
+  }
+
+  PacLattice& lattice = *latIterator; 
+
+  std::vector<int> elems;
+  selectElementsByNames(elemNames, elems);
+
+  std::vector<double> positions;
+  calculatePositions(elems, positions);
+
+  std::vector<PacVTps> maps;
+  calculateMaps(elems, maps, 1);
+
+  std::vector<PacTwissData> twiss;
+  calculateTwiss(elems, maps, twiss);
+
+  std::ofstream out(fileName.c_str());
+
+  std::vector<std::string> columns(11);
+  columns[0]  = "#";
+  columns[1]  = "name";
+  columns[2]  = "suml";
+  columns[3]  = "betax";
+  columns[4]  = "alfax";
+  columns[5]  = "qx";
+  columns[6]  = "dx";
+  columns[7]  = "betay";
+  columns[8]  = "alfay";
+  columns[9]  = "qy";
+  columns[10] = "dy";
+
+  char endLine = '\0';
+
+  double twopi = 2.0*UAL::pi;
+
+
+  out << "------------------------------------------------------------";
+  out << "------------------------------------------------------------" << std::endl; 
+
+  char line[200];
+  sprintf(line, "%-5s %-10s   %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%c", 
+	columns[0].c_str(),  columns[1].c_str(), columns[2].c_str(), columns[3].c_str(),  
+	columns[4].c_str(),
+	columns[5].c_str(), columns[6].c_str(), columns[7].c_str(), columns[8].c_str(),  
+	columns[9].c_str(), columns[10].c_str(), endLine);
+  out << line << std::endl;
+
+  out << "------------------------------------------------------------";
+  out << "------------------------------------------------------------" << std::endl; 
+
+  for(int i=0; i < lattice.size(); i++){
+
+    PacLattElement& el = lattice[i];
+
+    sprintf(line, "%5d %-10s %15.7e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e%c", 
+	    i, el.getDesignName().c_str(), positions[i], 
+	    twiss[i].beta(0), twiss[i].alpha(0), 
+	    twiss[i].mu(0)/twopi, twiss[i].d(0),
+	    twiss[i].beta(1), twiss[i].alpha(1), 
+	    twiss[i].mu(1)/twopi, twiss[i].d(1), endLine);
+    out << line << std::endl;
+  }
+
+  out.close();
+}
+
+void UAL::OpticsCalculator::writeTeapotTwissToFile(const std::string& accName,
+    const std::string& fileName, const std::string& elemNames, PacTwissData& tw)
+{
+
+  PacLattices::iterator latIterator = PacLattices::instance()->find(accName);
+  if(latIterator == PacLattices::instance()->end()){
+    std::cerr << "There is no " + accName << " accelerator " << endl;
+    return;
+  }
+
+  PacLattice& lattice = *latIterator; 
+
+  std::vector<int> elems;
+  selectElementsByNames(elemNames, elems);
+
+  std::vector<double> positions;
+  calculatePositions(elems, positions);
+
+  std::vector<PacVTps> maps;
+  calculateMaps(elems, maps, 1);
+
+  std::vector<PacTwissData> twiss;
+  calculateTwiss(elems, maps, tw, twiss);
+
+  std::ofstream out(fileName.c_str());
+
+  std::vector<std::string> columns(11);
+  columns[0]  = "#";
+  columns[1]  = "name";
+  columns[2]  = "suml";
+  columns[3]  = "betax";
+  columns[4]  = "alfax";
+  columns[5]  = "qx";
+  columns[6]  = "dx";
+  columns[7]  = "betay";
+  columns[8]  = "alfay";
+  columns[9]  = "qy";
+  columns[10] = "dy";
+
+  char endLine = '\0';
+
+  double twopi = 2.0*UAL::pi;
+
+
+  out << "------------------------------------------------------------";
+  out << "------------------------------------------------------------" << std::endl; 
+
+  char line[200];
+  sprintf(line, "%-5s %-10s   %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%c", 
+	columns[0].c_str(),  columns[1].c_str(), columns[2].c_str(), columns[3].c_str(),  
+	columns[4].c_str(),
+	columns[5].c_str(), columns[6].c_str(), columns[7].c_str(), columns[8].c_str(),  
+	columns[9].c_str(), columns[10].c_str(), endLine);
+  out << line << std::endl;
+
+  out << "------------------------------------------------------------";
+  out << "------------------------------------------------------------" << std::endl; 
+
+  for(int i=0; i < lattice.size(); i++){
+
+    PacLattElement& el = lattice[i];
+
+    sprintf(line, "%5d %-10s %15.7e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e%c", 
+	    i, el.getDesignName().c_str(), positions[i], 
+	    twiss[i].beta(0), twiss[i].alpha(0), 
+	    twiss[i].mu(0)/twopi, twiss[i].d(0),
+	    twiss[i].beta(1), twiss[i].alpha(1), 
+	    twiss[i].mu(1)/twopi, twiss[i].d(1), endLine);
+    out << line << std::endl;
+  }
+
+  out.close();
+}
+
+
 
 
 

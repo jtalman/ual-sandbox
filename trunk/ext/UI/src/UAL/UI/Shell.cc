@@ -14,8 +14,8 @@
 
 #include "Optics/PacTMap.h"
 
-// #include "UAL/ADXF/Reader.hh"
-// #include "UAL/ADXF/Writer.hh"
+#include "UAL/ADXF/Reader.hh"
+#include "UAL/ADXF/Writer.hh"
 
 #include "UAL/UI/Shell.hh"
 #include "UAL/UI/ShellImp.hh"
@@ -114,7 +114,6 @@ bool UAL::Shell::readADXF(const UAL::Arguments& arguments)
   }
   
   adxfFile = it->second->getString();
-  /*
 
   // Initialize the ADXF reader
   UAL::ADXFReader* reader = UAL::ADXFReader::getInstance();
@@ -143,10 +142,34 @@ bool UAL::Shell::readADXF(const UAL::Arguments& arguments)
   UAL::SXFParser writer;
   writer.write(echoFile.c_str());
 
-  */
+  return true;
+}
+
+bool UAL::Shell::writeADXF(const UAL::Arguments& arguments)
+{
+  std::map<std::string, UAL::Argument*>::const_iterator it;
+  const std::map<std::string, UAL::Argument*>& args = arguments.getMap();
+  
+  // "file"
+
+  std::string adxfFile;
+
+  it = args.find("file");
+  if(it == args.end()){
+    std::cerr << "writeADXF: adxf file is not defined " << std::endl;
+    return false;
+  }
+  
+  adxfFile = it->second->getString();
+
+  // Write data
+  
+  UAL::ADXFWriter adxfWriter;
+  adxfWriter.write(adxfFile.c_str());
 
   return true;
 }
+
 
 
 bool UAL::Shell::readSXF(const UAL::Arguments& arguments)
@@ -420,6 +443,7 @@ bool UAL::Shell::map(const UAL::Arguments& arguments)
 }
 
 
+
 bool UAL::Shell::readAPDF(const UAL::Arguments& arguments)
 {
   std::map<std::string, UAL::Argument*>::const_iterator it;
@@ -615,6 +639,69 @@ void UAL::Shell::getTwiss(const UAL::Arguments& arguments,
   optics.calculateTwiss(elems, maps, twiss);
 
 }
+
+bool UAL::Shell::twiss(const UAL::Arguments& arguments, PacTwissData& tw)
+{
+  std::map<std::string, UAL::Argument*>::const_iterator it;
+  const std::map<std::string, UAL::Argument*>& args = arguments.getMap(); 
+
+  // "print"
+
+  std::string fileName = "./twiss";
+
+  it = args.find("print");
+  if(it != args.end()){
+    fileName = it->second->getString();
+  }
+  
+  
+  // elements
+
+  std::string elemNames;
+
+  it = args.find("elements");
+  if(it != args.end()){
+    elemNames= it->second->getString();
+  }
+
+  UAL::OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
+  
+  optics.writeTeapotTwissToFile(m_accName, fileName, elemNames, tw);
+  
+  return true;
+}
+
+bool UAL::Shell::twiss(const UAL::Arguments& arguments)
+{
+  std::map<std::string, UAL::Argument*>::const_iterator it;
+  const std::map<std::string, UAL::Argument*>& args = arguments.getMap(); 
+
+  // "print"
+
+  std::string fileName = "./twiss";
+
+  it = args.find("print");
+  if(it != args.end()){
+    fileName = it->second->getString();
+  }
+  
+  
+  // elements
+
+  std::string elemNames;
+
+  it = args.find("elements");
+  if(it != args.end()){
+    elemNames= it->second->getString();
+  }
+
+  UAL::OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
+  
+  optics.writeTeapotTwissToFile(m_accName, fileName, elemNames);
+  
+  return true;
+}
+
 
 
 UAL::AcceleratorNode* UAL::Shell::getLattice(const std::string& accName)
