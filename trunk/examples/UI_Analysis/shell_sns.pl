@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-my $job_name   = "test";
+my $job_name   = "pl";
 
 use File::Path;
 mkpath(["./out/" . $job_name], 1, 0755);
@@ -86,6 +86,18 @@ $shell->use("lattice" => "ring");
 $shell->writeFTPOT("file" => "./out/" . $job_name . "/tpot");
 
 # ------------------------------------------------------
+# Write the lattice state to the SXF file
+# ------------------------------------------------------
+
+use lib ("$ENV{UAL_EXTRA}/ADXF/api");
+use UAL::ADXF::Parser;
+
+my $adxf_parser = new UAL::ADXF::Parser();
+
+
+$adxf_parser->write("./out/" . $job_name . "/ff_sext_latnat.adxf");
+
+# ------------------------------------------------------
 # Define beam parameters
 # ------------------------------------------------------
 
@@ -120,7 +132,7 @@ $shell->survey("elements" => "", "print" => "./out/" . $job_name . "/survey");
 # Calculate twiss
 print " twiss\n";
 
-$shell->twiss("elements" => "bnd", "print" => "./out/" . $job_name . "/twiss"); 
+$shell->twiss("elements" => "", "print" => "./out/" . $job_name . "/twiss"); 
 
 print "End", "\n";
 
