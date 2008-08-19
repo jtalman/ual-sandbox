@@ -73,9 +73,24 @@ namespace UAL {
     void calculateTwiss(const std::vector<int>& elems,
 			const std::vector<PacVTps>& maps,
 			std::vector<PacTwissData>& twiss); 
+    void calculateTwiss(const std::vector<int>& elems,
+			const std::vector<PacVTps>& maps,
+			PacTwissData& tw,
+			std::vector<PacTwissData>& twiss); 
 
     void selectElementsByNames(const std::string& names, 
 			       std::vector<int>& elemVector);   
+
+    void writeTeapotTwissToFile(const std::string& accName,
+                                const std::string& fileName, 
+                                const std::string& elemNames);   
+
+    void writeTeapotTwissToFile(const std::string& accName,
+                                const std::string& fileName, 
+                                const std::string& elemNames,
+				PacTwissData& tw);
+
+
 
   private:
 

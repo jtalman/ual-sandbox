@@ -35,7 +35,10 @@ namespace UAL {
     bool setBunch(const Arguments& args);
 
      /** Returns a bunch */
-    PAC::Bunch& getBunch();  
+    PAC::Bunch& getBunch();      
+
+    /** Writes ADXF file with the lattice description */
+    bool writeADXF(const Arguments& args);
 
     /** Reads ADXF file with the lattice description */
     bool readADXF(const Arguments& args);
@@ -66,6 +69,11 @@ namespace UAL {
 
     /** Make map */
     bool map(const Arguments& args);
+
+   /** Calculate twiss */
+    bool twiss(const Arguments& args);
+
+    bool twiss(const UAL::Arguments& arguments, PacTwissData& tw);
 
     const std::string& getLatticeName() { return m_accName; }
 
