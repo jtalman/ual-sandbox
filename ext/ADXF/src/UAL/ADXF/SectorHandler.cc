@@ -16,6 +16,8 @@
 
 XERCES_CPP_NAMESPACE_USE
 
+double UAL::ADXFSectorHandler::s_diff = 1.0e-5;
+
 UAL::ADXFSectorHandler::ADXFSectorHandler()
 {
 
@@ -135,12 +137,17 @@ void UAL::ADXFSectorHandler::addLatticeElement(const xercesc::Attributes& attrs)
     muParser.SetExpr(chAt);
     double at = muParser.Eval();
 
-    if(at > m_at) {
+    if(at  > m_at + s_diff) {
 
       PacLattElement drift;
       
       double driftL = at - m_at;
       m_DriftLength.l(driftL); 
+
+      std::cout << "addLatticeElement " 
+		<< "ref=" << ref 
+		<< ", at =" << at 
+		<< ", m_at = " << m_at << std::endl;
 
       char sCounter[5];
       sprintf(sCounter, "%d", m_iDriftCounter++);
@@ -152,7 +159,7 @@ void UAL::ADXFSectorHandler::addLatticeElement(const xercesc::Attributes& attrs)
 
       m_at = at;
       
-    } else if( at < m_at) {
+    } else if( (at + s_diff) < m_at) {
       std::cout << "problem at(" << at << ") < (" << m_at << ") " << std::endl;
     }
 
