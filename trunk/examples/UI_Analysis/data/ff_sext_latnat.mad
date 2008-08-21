@@ -262,6 +262,8 @@ MCOL2: MARKER
 !
 !  RING  : line = (SP,SPC,SP,SPR)
 
-RING  : line = (SP,SP,SP,SP)
+MEND : MARKER
+
+RING  : line = (SP,SP,SP,SP, MEND)
 
 
