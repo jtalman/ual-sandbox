@@ -1,40 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <adxf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="file:/home/xslt/ADXF/adxf.xsd">
+  <constants>
+    <constant name="brho" value="5.6573735" />
+    <constant name="qh" value="6.3" />
+    <constant name="qv" value="5.8" />
+    <constant name="muh" value="qh/4.0" />
+    <constant name="muv" value="qv/4.0" />
+    <constant name="bexd" value="2.428" />
+    <constant name="beyd" value="13.047" />
+    <constant name="o1l" value="6.85" />
+    <constant name="o3l"  value="6.25" />
+    <constant name="twopi" value="2*3.1415926536" />
+    <constant name="ang"  value="twopi/32" />
+    <constant name="ee" value="ang/2" />
+    <constant name="lbnd" value="1.5" />
+    <constant name="kf" value="4.66011/1.1981566" />
+    <constant name="kd" value="-4.94176/1.1981566" />
+    <constant name="kmat" value="-3.41118/1.1981566" />
+    <constant name="ks2" value="4.29830/1.1981566" />
+    <constant name="ks3" value="-4.58404/1.1981566" />
+    <constant name="lq" value="0.5" />
+    <constant name="lq1" value="0.25/2" />
+    <constant name="lq2" value="0.7" />
+    <constant name="lq3" value="0.55" />
+    <constant name="lref" value="1.7" />
+</constants>
   <elements>
-    <sbend name="bl" l="0.75" angle="0.0981747704247" />
-    <sbend name="bnd" l="1.5" angle="0.196349540849" />
-    <sbend name="br" l="0.75" angle="0.0981747704247" />
+    <sbend name="bl" l="lbnd/2" angle="ee" />
+    <sbend name="bnd" l="lbnd" angle="ang" />
+    <sbend name="br" l="lbnd/2" angle="ee" />
     <drift name="ldas" l="0.55" />
     <marker name="mcol1" />
     <marker name="mcol2" />
-    <drift name="o1" l="6.85" />
-    <drift name="o11" l="1.7125" />
+    <drift name="o1" l="o1l" />
+    <drift name="o11" l="o1l/4" />
     <drift name="o2" l="0.4" />
-    <drift name="o3" l="6.25" />
-    <drift name="o31" l="1.25" />
+    <drift name="o3" l="o3l" />
+    <drift name="o31" l="o3l/5" />
     <drift name="oarc" l="1" />
     <drift name="oq1" />
     <drift name="oq2" />
     <drift name="oq3" />
     <drift name="orf" l="0.57" />
     <drift name="oz" />
-    <quadrupole name="qdch" l="0.275" k1="-0.676269751258" />
+    <quadrupole name="qdch" l="lq3/2" k1="ks3/brho" />
     <marker name="qdch1" />
     <marker name="qdch2" />
-    <quadrupole name="qdh" l="0.25" k1="-0.729043116111" />
+    <quadrupole name="qdh" l="lq/2" k1="kd/brho" />
     <marker name="qdh1" />
     <marker name="qdh2" />
-    <quadrupole name="qdmh" l="0.25" k1="-0.503241213012" />
+    <quadrupole name="qdmh" l="lq/2" k1="kmat/brho" />
     <marker name="qdmh1" />
     <marker name="qdmh2" />
-    <quadrupole name="qfbh" l="0.25" k1="0.687492131512" />
+    <quadrupole name="qfbh" l="lq/2" k1="kf/brho" />
     <marker name="qfbh1" />
     <marker name="qfbh2" />
-    <quadrupole name="qfh" l="0.25" k1="0.687492131512" />
+    <quadrupole name="qfh" l="lq/2" k1="kf/brho" />
     <marker name="qfh1" />
     <marker name="qfh2" />
-    <quadrupole name="qflh" l="0.35" k1="0.634115381156" />
+    <quadrupole name="qflh" l="lq2/2" k1="ks2/brho" />
     <marker name="qflh1" />
     <marker name="qflh2" />
     <drift name="rf1" l="1.7" />
@@ -44,6 +69,7 @@
     <drift name="s30" l="0.3" />
     <sextupole name="s3d" l="0.15" />
     <sextupole name="s4f" l="0.15" />
+    <marker name="mend" />
   </elements>
   <sectors>
     <sector name="qd" line="qdh1 qdh qdh qdh2" />
@@ -79,6 +105,6 @@
     <sector name="sp" line="insert arc" />
     <sector name="spc" line="insertc arc" />
     <sector name="spr" line="insertr arc" />
-    <sector name="ring" line="sp sp sp sp" />
+    <sector name="ring" line="sp sp sp sp mend" />
   </sectors>
 </adxf>
