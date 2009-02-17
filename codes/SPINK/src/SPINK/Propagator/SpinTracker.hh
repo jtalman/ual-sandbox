@@ -20,6 +20,9 @@ namespace SPINK {
     /** Constructor */
     SpinTracker();
 
+   /** Copy constructor */
+    SpinTracker(const SpinTracker& st);
+
     /** Destructor */
     ~SpinTracker();
 
@@ -32,6 +35,9 @@ namespace SPINK {
     /** Propagates a bunch */
     void propagate(UAL::Probe& bunch);
 
+    /** Returns a deep copy of this object (inherited from UAL::PropagatorNode) */
+    UAL::PropagatorNode* clone();
+
   protected:
 
     /** Conventional tracker */
@@ -40,6 +46,17 @@ namespace SPINK {
     /** Buffer of positions used internally by spin trackers */
     static std::vector<PAC::Position> s_positions;
 
+  private:
+
+    void copy(const SpinTracker& st);
+
+  };
+
+  class SpinTrackerRegister
+  {
+    public:
+
+    SpinTrackerRegister();
   };
 
 
