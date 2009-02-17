@@ -46,12 +46,41 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
     m_tracker = nodePtr;
 
     m_tracker->setLatticeElements(sequence, is0, is1, attSet);
+
+    // vector<double> kls(3); <-- lattice[is0]
 }
 
 void SPINK::SpinTracker::propagate(UAL::Probe& b)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
+
+  // for (int is=0; is < nslices; is++) {
   m_tracker->propagate(bunch);
+  
+  /*
+  int size = bunch.size();
+  for(int i=0; i < size; i++){
+   if(bunch[i].isLost() ) continue;
+
+    PAC::Position& pos = bunch[i].getPosition();
+
+    x0  = pos.getX();
+    px0 = pos.getPX();
+    y0  = pos.getY();
+    py0 = pos.getPY();
+    ct0 = pos.getCT();
+    de0 = pos.getDE();
+
+   PAC::Spin& spin = bunch[i].getSpin();
+   
+   ...
+   
+   kls(3) -> take it
+
+  }
+   */
+// }
+
 }
 
 void SPINK::SpinTracker::copy(const SPINK::SpinTracker&)
