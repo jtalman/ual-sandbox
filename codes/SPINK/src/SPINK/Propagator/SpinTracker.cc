@@ -38,6 +38,9 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
     SPINK::SpinPropagator::setLatticeElements(sequence, is0, is1, attSet);
  
     const PacLattice& lattice      = (PacLattice&) sequence;
+
+    std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType() << std::endl;
+
     UAL::PropagatorNodePtr nodePtr = 
       TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
     m_tracker = nodePtr;
