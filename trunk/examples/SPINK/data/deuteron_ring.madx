@@ -1,0 +1,133 @@
+// TITLE " New EDM Deuteron Storage Ring proposed on April 2008"
+// setopts, echo
+// !------------  Physical costants -----------------------------
+Ed0    := 1.875612762;  //              ! deuteron mass [GeV]
+Ep0    := 0.93827;      //              ! proton mass [GeV]
+C      := 2.99792458e8; //              ! speed of light [m/sec]
+twopie := 6.28318531;   // 
+pie    := twopie/2;     // 
+
+// !
+// !------------  Beam parameters   -----------------------------
+BEAM  MASS=1.875612762, CHARGE=1, PC=1.0; 
+// !     EXN=1.E-6, EYN=1.E-6            !deuteron momentum [Gev] 
+
+// !                      
+// !------------  Machine parameters ---------------------------- 
+P     := 1.0;          //     include electric field effect
+R     := 8.406;        //     curv radius of the BE sections [m]
+Bv    := 0.482;        //      magnetic field [T]
+Er    := 12000000;      //     radial electric field [V/m]
+BETA  := P/Ed0/sqrt(1+P*P/(Ed0*Ed0)); 
+GAMMA := 1/sqrt(1-BETA*BETA);         
+BRHO  := 1.e9*P/C;                         
+B_eff := BRHO/R;                     
+an    := 3.301028/R;   
+Ggam  := -0.1429875554 * GAMMA;      
+// value BETA; value GAMMA; value BRHO; value B_eff; value Ggam
+// value an;
+
+// !
+// !------------  BE magnet --------------------------------------
+lenBE := 3.301028;
+ang   := lenBE/R;
+B1S   := 0.0 ;                        //   [T/m2]
+K2BS  := B1S/BRHO;
+SBENBE: sbend, L= 3.301028, angle= ang, K2= K2BS; //, K1= 0.003035;
+
+// !
+// !------------  Quads.in BE section ----------------------------
+BFQ     := 7.56373985663;          //  [T/m]
+BDQ     := -6.59252807097; 
+K1F     := BFQ/BRHO;  
+K1D     := BDQ/BRHO; 
+QUADFQ: quadrupole,  L=0.15,    K1=K1F;
+QUADDQ: quadrupole,  L=0.15,    K1=K1D;
+QUADFQ2: quadrupole,  L=0.075,  K1=K1F;
+
+// !
+// !------------  Sexts.in BE section ----------------------------- 
+BSXF    := -3.98; 
+BSXD    :=  2.865;
+K2SXF   := BSXF/BRHO;
+K2SXD   := BSXD/BRHO;
+SEXTSXF: sextupole,  L=0.15,   K2=K2SXF;
+SEXTSXD: sextupole,  L=0.15,   K2=K2SXD;
+SEXTSXF2: sextupole, L=0.075,  K2=K2SXF;
+
+// !
+// !------------  Drift in Bend magent  ----------------------------
+L1:= 0.4315 - 0.15; 
+DRIFDBE: drift, L= L1;        //    Drift between Bend and FQ(DQ)/SXF(SXD)
+
+// !
+// !------------  Quads in straight section  ------------------------
+BFQS     := 12.0794191741;    //       [T/m]
+K1FQS    := BFQS/BRHO; 
+QUADFQS: quadrupole,  L=0.375,   K1=K1FQS;                
+QUADDQS: quadrupole,  L=0.375,   K1=-K1FQS;
+QUADFQS2: quadrupole,  L=0.1875, K1=K1FQS;
+
+// !
+// !------------  Sexts.in straight section  --------------------------
+BSXS    := 0.0;
+K2SXS   := BSXS/BRHO;
+SEXTSXS: sextupole, L=0., K2=K2SXS;
+
+// !
+// !------------  RF cavity in straight section -----------------------
+//RFCARF: rfcavity, VOLT = 1.0, HARMON = 5.0;
+RFCARF: rfcavity;
+
+// !
+// !------------  Free Inter.in one straight section  ------------------
+DRIFDSS: drift, L= 0.8;            // ! [m]
+DRIFDSS1:drift, L= 0.3;            // ! 1.2 - 0.9
+
+// !
+// !------------  One straight section  --------------------------------
+LSSRF: line = ( QUADFQS2, DRIFDSS, QUADDQS, DRIFDSS,     
+              QUADFQS, DRIFDSS, QUADDQS, DRIFDSS, RFCARF, 
+              QUADFQS, DRIFDSS, QUADDQS, DRIFDSS,        
+              QUADFQS, DRIFDSS, QUADDQS, DRIFDSS, QUADFQS2 );
+
+// !
+// !------------  Two parts of BE magnet  --------------------------------
+BES1: line = ( QUADFQ2, SEXTSXF2, DRIFDBE, SBENBE, DRIFDBE,  
+               QUADDQ, SEXTSXD, DRIFDBE, SBENBE, DRIFDBE,    
+               QUADFQ, SEXTSXF, DRIFDBE, SBENBE, DRIFDBE,    
+               QUADDQ, SEXTSXD, DRIFDBE, SBENBE, DRIFDBE,    
+               QUADFQ, SEXTSXF, DRIFDBE, SBENBE, DRIFDBE,    
+               QUADDQ, SEXTSXD, DRIFDBE, SBENBE, DRIFDBE,    
+               QUADFQ, SEXTSXF, DRIFDBE, SBENBE, DRIFDBE,    
+               QUADDQ, SEXTSXD, DRIFDBE, SBENBE, DRIFDBE,    
+               SEXTSXF2, QUADFQ2 );
+// !
+// !------------  EDM lattice  -------------------------------------------
+mend: marker; 
+//EDM:  line = (LSSRF, BES1, LSSRF, BES1, mend);
+EDM:  line = (LSSRF, BES1, LSSRF, BES1, mend);
+//EDM:  line = (BES1, BES1);
+
+// !
+// !
+use, period=EDM;
+twiss, sequence=EDM;
+
+//select, flag=twiss_table, Range = #S/#E;
+select, flag=twiss_table, Range = #S/#E, column=NAME,KEYWORD,L,ANGLE,K1L,K2L,S;
+//select, flag=twiss_table, Range = #S/#E, column=NAME,KEYWORD,L,ANGLE,BETX,ALFX,BETY,ALFY,DX,DPX;
+
+twiss, table=twiss_table, file = "edm.4.8.twiss";
+
+//select, flag=twiss_table, column=s,betx,dx,dy,K1;
+//twiss,  table=twiss_table, file = "edm.4.8.twiss";
+
+plot, table=twiss_table vaxis1=betx,bety, vaxis2=dx,dy, haxis=s, colour=100, interpolate=true, title="EDM4.8", file="edm.4.8";
+
+sxfwrite, file = "edm.4.8.sxf";
+
+select,flag=SECTORMAP,clear;
+twiss,SECTORMAP,range=$S/$E;
+
+stop;
