@@ -4,6 +4,7 @@
 // Author        : A.Luccio
 // C++ version   : N.Malitsky 
 
+#include "UAL/APF/PropagatorFactory.hh"
 #include "PAC/Beam/Bunch.hh"
 #include "TEAPOT/Integrator/TrackerFactory.hh"
 #include "SPINK/Propagator/SpinTracker.hh"
@@ -15,8 +16,18 @@ SPINK::SpinTracker::SpinTracker()
 
 }
 
+SPINK::SpinTracker::SpinTracker(const SPINK::SpinTracker& st)
+{
+  copy(st);
+}
+
 SPINK::SpinTracker::~SpinTracker()
 {
+}
+
+UAL::PropagatorNode* SPINK::SpinTracker::clone()
+{
+  return new SPINK::SpinTracker(*this);
 }
 
 
@@ -39,5 +50,18 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
   m_tracker->propagate(bunch);
 }
+
+void SPINK::SpinTracker::copy(const SPINK::SpinTracker&)
+{
+}
+
+SPINK::SpinTrackerRegister::SpinTrackerRegister()
+{
+  UAL::PropagatorNodePtr driftPtr(new SPINK::SpinTracker());
+  UAL::PropagatorFactory::getInstance().add("SPINK::SpinTracker", driftPtr);
+}
+
+static SPINK::SpinTrackerRegister theSpinkSpinTrackerRegister;
+
 
 
