@@ -1,11 +1,10 @@
 include $(UAL_SPINK)/src/Makefile.config
 
-DIRS = ./Tracker ./SpinMapper
+DIRS = ./Propagator
 
 OBJS = 
 
-include ./Tracker/Objects
-include ./SpinMapper/Objects
+include ./Propagator/Objects
 
 compile : 
 	(if [ !  -d $(UAL_SPINK)/include/SPINK ]; then mkdir  $(UAL_SPINK)/include/SPINK; fi;)
