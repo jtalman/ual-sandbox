@@ -6,40 +6,47 @@ DLDFLAGS = -shared                   # Dynamic linker flags
 LD       = g++                       # Linker
 LDFLAGS  =                           # Linker flags
 
-INC += -I. 
-INC += -I$(UAL_SXF)/src 
-INC += -I$(UAL_TEAPOT)/src 
-INC += -I$(UAL_PAC)/src 
+INC += -I. -I./src
+INC += -I$(UAL)/ext/UI/include
+INC += -I$(UAL_SXF)/src
+INC += -I$(UAL_SPINK)/src
+INC += -I$(UAL_ACCSIM)/src
+INC += -I$(UAL_TEAPOT)/src
+INC += -I$(UAL_PAC)/src
 INC += -I$(UAL)/codes/UAL/include
 INC += -I$(UAL_ZLIB)/src
-INC += -I$(UAL)/tools/include 
-INC += -I$(SXF)/src 
-INC += -I$(XERCESCROOT)/include  
+INC += -I$(UAL)/tools/include
+INC += -I$(SXF)/src
+INC += -I/home/ual/tools/gsl/include
 
-LIBS += -L$(UAL_SPINK)/lib/$(UAL_ARCH) 		-lSpink
-LIBS += -L$(UAL_SXF)/lib/$(UAL_ARCH) 		-lUalSXF
-LIBS += -L$(UAL_TEAPOT)/lib/$(UAL_ARCH) 	-lTeapot 
+LIBS += -L$(UAL)/ext/UI/lib/$(UAL_ARCH)  	-lUalUI
+LIBS += -L$(UAL_SPINK)/lib/$(UAL_ARCH)  	-lSpink
+LIBS += -L$(UAL_TIBETAN)/lib/$(UAL_ARCH)  	-lTibetan
+LIBS += -L$(UAL_SXF)/lib/$(UAL_ARCH) 		-lUalSXF2
+LIBS += -L$(UAL_ACCSIM)/lib/$(UAL_ARCH) 	-lAccsim
+LIBS += -L$(UAL_TEAPOT)/lib/$(UAL_ARCH) 	-lTeapot
 LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)  		-lPacSMF -lPacOptics -lPac
 LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH) 		-lZTps
 LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH) 	-lUal
 LIBS += -L$(SXF)/lib/$(UAL_ARCH) 		-lSXF
-LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		-lpcre -lxml2
+LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		-lpcre -lxml2 -lrfftw -lfftw
 LIBS += 					-lm
 
-OBJS = $(UAL_ARCH)/obj/timer.o	
+SRC_DIR  = .
+OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-compile : ./$(UAL_ARCH)/tracker
+OBJS =
+
+
+compile : $(OBJS) ./tracker
 
 clean :
-	rm -rf ./$(UAL_ARCH)
+	rm -f $(OBJS) ./tracker
+
+./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
 
 
-$(UAL_ARCH)/tracker  :  $(UAL_ARCH)/obj/tracker.o $(OBJS) 
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJS) $(UAL_ARCH)/obj/tracker.o $(LIBS)
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
+	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
 
-$(UAL_ARCH)/obj/tracker.o  :  ./src/tracker.cc
-	if [ ! -d ./$(UAL_ARCH) ] ; then (mkdir ./$(UAL_ARCH); mkdir ./$(UAL_ARCH)/out;); fi;
-	if [ ! -d ./$(UAL_ARCH)/obj ] ; then (mkdir ./$(UAL_ARCH)/obj;); fi;	
-	$(CC) -o $@  $(CCFLAGS) $(INC) -c $< 
-$(UAL_ARCH)/obj/timer.o  :  ./src/timer.cc
-	$(CC) -o $@  $(CCFLAGS) $(INC) -c $<  
