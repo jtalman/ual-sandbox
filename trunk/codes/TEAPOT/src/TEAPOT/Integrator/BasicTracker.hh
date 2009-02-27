@@ -43,6 +43,9 @@ namespace TEAPOT {
     virtual void setLatticeElements(const UAL::AcceleratorNode& sequence, int i0, int i1, 
 				    const UAL::AttributeSet& attSet);
 
+    double getLength() { return m_l; }
+    int getN() { return m_n; }
+
   protected:
 
     /** i0 */
@@ -53,6 +56,9 @@ namespace TEAPOT {
 
     /** Element length */
     double m_l;
+
+    /** slicing number */
+    int m_n;
 
     /** Element s coordinate */
     float m_s;

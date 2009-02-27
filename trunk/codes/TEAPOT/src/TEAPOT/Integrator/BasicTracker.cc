@@ -39,6 +39,7 @@ void TEAPOT::BasicTracker::initialize()
   m_i1 = 0;
 
   m_l  = 0.0;
+  m_n  = 0.0
 
   m_aperture = 0;
   m_offset   = 0;
@@ -49,7 +50,8 @@ void TEAPOT::BasicTracker::copy(const TEAPOT::BasicTracker& bt)
   m_i0 = bt.m_i0;
   m_i1 = bt.m_i1;
 
-  m_l = bt.m_l;
+  m_l  = bt.m_l;
+  m_n  = bt.m_n;
 
   m_aperture = bt.m_aperture; 
   m_offset = bt.m_offset; 
@@ -75,7 +77,7 @@ void TEAPOT::BasicTracker::setLatticeElements(const UAL::AcceleratorNode& sequen
 void TEAPOT::BasicTracker::setLatticeElement(const PacLattElement& e)
 {
   m_l = e.getLength();
-
+  m_n = e.getN();
   
 
   // Body attributes
