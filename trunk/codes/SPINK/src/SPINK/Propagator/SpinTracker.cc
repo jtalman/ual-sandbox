@@ -47,7 +47,13 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
     m_tracker->setLatticeElements(sequence, is0, is1, attSet);
 
-  
+    TEAPOT::BasicTracker* bt =
+                static_cast<TEAPOT::BasicTracker*>(m_tracker.getPointer());
+
+    m_l  = bt->getLength();
+    m_n = bt->getN();
+
+    std::cout << lattice[is0].getName() << " " << m_l << " " << m_n << std::endl;
 }
 
 void SPINK::SpinTracker::propagate(UAL::Probe& b)
