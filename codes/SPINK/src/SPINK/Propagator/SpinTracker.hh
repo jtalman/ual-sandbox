@@ -50,6 +50,11 @@ namespace SPINK {
 
     void copy(const SpinTracker& st);
 
+  protected:
+
+    double m_l;    // length
+    int    m_n;    // slicing number
+
   };
 
   class SpinTrackerRegister
