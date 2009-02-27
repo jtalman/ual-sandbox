@@ -41,17 +41,29 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
     std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType() << std::endl;
 
+    m_l = lattice[is0].getLength();
+    m_n = lattice[is0].getN();
+
     UAL::PropagatorNodePtr nodePtr = 
       TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
     m_tracker = nodePtr;
 
-    m_tracker->setLatticeElements(sequence, is0, is1, attSet);
+    if(m_n) {
 
-    TEAPOT::BasicTracker* bt =
-                static_cast<TEAPOT::BasicTracker*>(m_tracker.getPointer());
+        PacLattElement* le = const_cast<PacLattElement*>(&lattice[is0]);
 
-    m_l  = bt->getLength();
-    m_n = bt->getN();
+        int ns = m_n*4;
+        double dl = m_l - m_l/ns;
+
+        le->addLength(-dl);
+        le->addN(-m_n);
+
+        m_tracker->setLatticeElements(sequence, is0, is1, attSet);
+        
+        le->addLength(dl);
+        le->addN(m_n);
+
+    }
 
     std::cout << lattice[is0].getName() << " " << m_l << " " << m_n << std::endl;
 }
@@ -60,8 +72,18 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
-  // for (int is=0; is < nslices; is++) {
-  m_tracker->propagate(bunch);
+  if(m_n == 0){
+      m_tracker->propagate(bunch);
+      // add spink
+      return;
+  }
+
+  int ns = m_n*4; // number of slices
+
+  for(int i=0; i < ns; i++) {
+    m_tracker->propagate(bunch);
+    // add spink
+  }
   
   /*
   int size = bunch.size();
@@ -85,7 +107,6 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 
   }
    */
-// }
 
 }
 
