@@ -89,7 +89,8 @@ setenv LD_LIBRARY_PATH $UAL/tools/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 set path=($UAL/tools/bin/$UAL_ARCH/ $path)
 
 # XERCESCROOT 
-setenv XERCESCROOT $UAL/tools/tars/xerces-c-src_2_6_0
+setenv XERCESCROOT $UAL/tools/tars/xerces-c-src_2_7_0
+
 
 # LIBXML2
 
@@ -105,11 +106,11 @@ setenv LD_LIBRARY_PATH $SXF/lib/$SXF_ARCH/:$LD_LIBRARY_PATH
 
 # MPI
 
-setenv UAL_MPI_PERL $UAL/tools/shortmpi
+# setenv UAL_MPI_PERL $UAL/tools/shortmpi
 
 # CORAANT - COmprehensive Root-based Accelerator ANalysis Toolkit
-setenv CORAANT $UAL/tools/coraant
-setenv LD_LIBRARY_PATH $CORAANT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv CORAANT $UAL/tools/coraant
+# setenv LD_LIBRARY_PATH $CORAANT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 ###########################################################
 # PGPLOT library
