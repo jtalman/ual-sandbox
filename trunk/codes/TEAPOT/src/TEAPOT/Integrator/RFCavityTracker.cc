@@ -57,7 +57,16 @@ void TEAPOT::RFCavityTracker::setLatticeElement(const PacLattElement& e)
 
   m_l = e.getLength();
 
+      m_V = 0.0;
+      m_lag = 0.0;
+      m_h = 0.0;
+
   PacElemAttributes* attributes = e.getBody(); 
+
+  if(attributes == 0) {
+    return;
+  }
+
   PacElemAttributes::iterator it = attributes->find(PAC_RFCAVITY);
   if(it != attributes->end()){
     PacElemRfCavity* rfSet = (PacElemRfCavity*) &(*it);
