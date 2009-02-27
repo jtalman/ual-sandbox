@@ -1,7 +1,7 @@
 <apdf>
-  <propagator id="spink" accelerator="yellow">
+  <propagator id="spink" accelerator="edm">
      <create>
-        <link algorithm="SPINK::DriftSpinMapper" types="Default"/>
+        <link algorithm="SPINK::SpinkTracker" types="Default"/>
      </create>
   </propagator>
 </apdf>
