@@ -6,15 +6,14 @@ if(!($?LD_LIBRARY_PATH)) setenv LD_LIBRARY_PATH
 # Paths to UAL Components
 ###########################################################
 
+unsetenv ROOTSYS
 source $UAL/env/common/setup-ual-env
 
 ###########################################################
 # System-Specific Variables
 ###########################################################
 
-source $UAL/env/$UAL_ARCH/setup-arch-env
+# source $UAL/env/$UAL_ARCH/setup-arch-env
 
-setenv XERCESCROOT $UAL/tools/tars/xerces-c-src_2_7_0
 
-unsetenv ROOTSYS
 
