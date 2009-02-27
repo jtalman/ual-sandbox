@@ -39,7 +39,7 @@ void TEAPOT::BasicTracker::initialize()
   m_i1 = 0;
 
   m_l  = 0.0;
-  m_n  = 0.0
+  m_n  = 0.0;
 
   m_aperture = 0;
   m_offset   = 0;
