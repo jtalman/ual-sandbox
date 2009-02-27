@@ -6,6 +6,7 @@
 
 #include "SMF/PacElemKeys.h"
 #include "SMF/PacElemComplexity.h"
+#include "SMF/PacElemLength.h"
 #include "SMF/PacLattElement.h"
 
 
@@ -83,6 +84,18 @@ double PacLattElement::getLength() const
   if(!body) { return 0.0; }
 
   return body->get(PAC_L);
+}
+
+void PacLattElement::addLength(double l)
+{
+  PacElemAttributes* body = getBody();
+
+  if(!body) return;
+
+  PacElemLength elemLength;
+  elemLength.l(l);
+
+  body->add(elemLength);
 }
 
 double PacLattElement::getN() const
