@@ -47,7 +47,7 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
     m_tracker->setLatticeElements(sequence, is0, is1, attSet);
 
-    // vector<double> kls(3); <-- lattice[is0]
+  
 }
 
 void SPINK::SpinTracker::propagate(UAL::Probe& b)
@@ -83,8 +83,10 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 
 }
 
-void SPINK::SpinTracker::copy(const SPINK::SpinTracker&)
+void SPINK::SpinTracker::copy(const SPINK::SpinTracker& st)
 {
+    m_l = st.m_l;
+    m_n = st.m_n;
 }
 
 SPINK::SpinTrackerRegister::SpinTrackerRegister()
