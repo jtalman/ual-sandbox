@@ -6,12 +6,12 @@ setenv UAL_CORE $UAL/codes/UAL
 setenv LD_LIBRARY_PATH $UAL_CORE/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 # OPTICALC - Fast tracking program
-setenv UAL_OPTICALC    $UAL/codes/OPTICALC
-setenv LD_LIBRARY_PATH $UAL_OPTICALC/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv UAL_OPTICALC    $UAL/codes/OPTICALC
+# setenv LD_LIBRARY_PATH $UAL_OPTICALC/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 # BETACOOL - Electron cooling program 
-setenv UAL_BETACOOL    $UAL/codes/BETACOOL
-setenv LD_LIBRARY_PATH $UAL_BETACOOL/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv UAL_BETACOOL    $UAL/codes/BETACOOL
+# setenv LD_LIBRARY_PATH $UAL_BETACOOL/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 # ZLIB - Numerical Library for Differential Algebra
 setenv UAL_ZLIB        $UAL/codes/ZLIB
@@ -26,15 +26,15 @@ setenv UAL_TEAPOT          $UAL/codes/TEAPOT
 setenv LD_LIBRARY_PATH $UAL_TEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 # ORBIT - objective ring injection and tracking code
-setenv UAL_ORBIT           $UAL/codes/ORBIT
-setenv LD_LIBRARY_PATH $UAL_ORBIT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv UAL_ORBIT           $UAL/codes/ORBIT
+# setenv LD_LIBRARY_PATH $UAL_ORBIT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 setenv UAL_ACCSIM          $UAL/codes/ACCSIM
 setenv LD_LIBRARY_PATH $UAL_ACCSIM/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 # Collection of Mike Blaskiewicz's algorithms 
-setenv UAL_ICE              $UAL/codes/ICE
-setenv LD_LIBRARY_PATH  $UAL_ICE/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv UAL_ICE              $UAL/codes/ICE
+# setenv LD_LIBRARY_PATH  $UAL_ICE/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 # SPINK - tracking code for polarized particles in a circular accelerator 
 setenv UAL_SPINK             $UAL/codes/SPINK
@@ -76,10 +76,10 @@ setenv LD_LIBRARY_PATH $UAL/ext/ADXF/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 # GUI
 ###########################################################
 
-setenv UAL_GUI $UAL/gui
-setenv LD_LIBRARY_PATH $UAL_GUI/QT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
-setenv LD_LIBRARY_PATH $UAL_GUI/ROOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
-setenv LD_LIBRARY_PATH $UAL_GUI/COIN3D/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv UAL_GUI $UAL/gui
+# setenv LD_LIBRARY_PATH $UAL_GUI/QT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv LD_LIBRARY_PATH $UAL_GUI/ROOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+# setenv LD_LIBRARY_PATH $UAL_GUI/COIN3D/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 ###########################################################
 # Tools
