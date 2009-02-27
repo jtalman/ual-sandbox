@@ -37,6 +37,9 @@ public:
    /** Returns a design name */
    const std::string& getDesignName() const { return genElement().name(); } 
 
+   /** Redefine a length */
+   void addLength(double l);
+
    /** Returns a length */
    double getLength() const;
 
