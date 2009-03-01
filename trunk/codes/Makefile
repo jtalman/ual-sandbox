@@ -1,8 +1,8 @@
-DIRS = ./UAL ./ZLIB ./PAC ./TEAPOT ./ACCSIM ./SPINK ./TIBETAN ./ICE ./AIM ./SIMBAD
+DIRS = ./UAL ./ZLIB ./PAC ./TEAPOT ./ACCSIM ./SPINK ./TIBETAN # ./ICE ./AIM ./SIMBAD
 
-ifdef BETACOOL
-DIRS += ./BETACOOL
-endif
+# ifdef BETACOOL
+# DIRS += ./BETACOOL
+# endif
 
 compile:  
 	@for dir in $(DIRS); do \
