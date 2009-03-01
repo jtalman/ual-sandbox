@@ -5,9 +5,6 @@
 setenv UAL_CORE $UAL/codes/UAL
 setenv LD_LIBRARY_PATH $UAL_CORE/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
-# OPTICALC - Fast tracking program
-# setenv UAL_OPTICALC    $UAL/codes/OPTICALC
-# setenv LD_LIBRARY_PATH $UAL_OPTICALC/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 # BETACOOL - Electron cooling program 
 # setenv UAL_BETACOOL    $UAL/codes/BETACOOL
@@ -24,10 +21,6 @@ setenv LD_LIBRARY_PATH $UAL_PAC/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 # TEAPOT - element by element tracker (with errors)
 setenv UAL_TEAPOT          $UAL/codes/TEAPOT
 setenv LD_LIBRARY_PATH $UAL_TEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
-
-# ORBIT - objective ring injection and tracking code
-# setenv UAL_ORBIT           $UAL/codes/ORBIT
-# setenv LD_LIBRARY_PATH $UAL_ORBIT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
 setenv UAL_ACCSIM          $UAL/codes/ACCSIM
 setenv LD_LIBRARY_PATH $UAL_ACCSIM/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
