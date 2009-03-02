@@ -7,6 +7,7 @@
 #include "SMF/PacElemKeys.h"
 #include "SMF/PacElemComplexity.h"
 #include "SMF/PacElemLength.h"
+#include "SMF/PacElemBend.h"
 #include "SMF/PacLattElement.h"
 
 
