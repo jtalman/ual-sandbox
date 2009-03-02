@@ -98,6 +98,27 @@ void PacLattElement::addLength(double l)
   body->add(elemLength);
 }
 
+double PacLattElement::getAngle() const
+{
+  PacElemAttributes* body = getBody();
+
+  if(!body) { return 0.0; }
+
+  return body->get(PAC_ANGLE);
+}
+
+void PacLattElement::addAngle(double angle)
+{
+  PacElemAttributes* body = getBody();
+
+  if(!body) return;
+
+  PacElemBend elemBend;
+  elemBend.angle() = angle;
+
+  body->add(elemBend);
+}
+
 double PacLattElement::getN() const
 {
   PacElemAttributes* body = getBody();

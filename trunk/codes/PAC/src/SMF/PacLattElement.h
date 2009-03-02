@@ -43,6 +43,16 @@ public:
    /** Returns a length */
    double getLength() const;
 
+   double getN() const;
+
+   void addN(double n);
+   
+   /** Redefine an angle */
+   void addAngle(double angle);
+
+   /** Returns an angle */
+   double getAngle() const;
+
    /** Returns a longitudinal position */
    double getPosition() const;
 
@@ -89,9 +99,6 @@ public:
    const PacGenElement& genElement() const { return _ptr->_genElement; }
    PacGenElement& genElement() { return _ptr->_genElement; }
 
-   double getN() const;
-
-   void addN(double n);
 
    PacElemAttributes* getBody() const { return _ptr->_parts[1]; }
    PacElemAttributes* setBody()       { return create(1); }
