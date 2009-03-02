@@ -40,6 +40,10 @@ namespace TEAPOT {
     /** Propagates a bunch of particles */
     void propagate(UAL::Probe& probe);
 
+    inline DipoleData& getDipoleData();
+
+    inline MagnetData& getMagnetData();
+
   protected:
 
     /** Sets the lattice element */
@@ -57,6 +61,16 @@ namespace TEAPOT {
     static DipoleAlgorithm<double, PAC::Position> s_algorithm;
 
   };
+
+  inline DipoleData& DipoleTracker::getDipoleData()
+  {
+      return m_data;
+  }
+
+  inline MagnetData& DipoleTracker::getMagnetData()
+  {
+      return m_mdata;
+  }
 
 }
 
