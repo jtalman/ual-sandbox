@@ -42,6 +42,8 @@ namespace TEAPOT {
     /** Propagates a bunch of particles */
     void propagate(UAL::Probe& probe);
 
+    inline MagnetData& getMagnetData();
+
   protected:
 
     /** Sets the lattice element */
@@ -67,6 +69,11 @@ namespace TEAPOT {
     void copy(const MltTracker& mt);
 
   };
+
+  inline MagnetData& MltTracker::getMagnetData()
+  {
+      return m_mdata;
+  }
 
 }
 
