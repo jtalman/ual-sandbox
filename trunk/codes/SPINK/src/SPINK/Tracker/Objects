@@ -1,3 +1,0 @@
-OBJS += $(UAL_SPINK)/lib/$(UAL_ARCH)/obj/BasicTracker.o \
-	$(UAL_SPINK)/lib/$(UAL_ARCH)/obj/MatrixTracker.o 
-
