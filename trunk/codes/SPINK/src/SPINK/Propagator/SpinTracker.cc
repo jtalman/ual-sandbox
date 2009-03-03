@@ -1,5 +1,5 @@
 // Library       : SPINK
-// File          : SPINK/SpinMapper/SpinMapper.cc
+// File          : SPINK/Propagator/SpinTracker.cc
 // Copyright     : see Copyright file
 // Author        : A.Luccio
 // C++ version   : N.Malitsky 
@@ -72,7 +72,7 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
       m_tracker->propagate(bunch);
       propagateSpin(b);
       m_tracker->propagate(bunch);
-        if(p_mlt) *p_mlt *= 2.;          // kl, kt
+      if(p_mlt) *p_mlt *= 2.;             // kl, kt
       return;
   }
 
@@ -178,15 +178,15 @@ void SPINK::SpinTracker::setConventionalTracker(const UAL::AcceleratorNode& sequ
 
 void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 {
-  /* How to get element data
+  /* getting element data
    if(p_length)     p_length->l()
    if(p_bend)       p_bend->angle()
-   if(p_mlt)        p_mlt->kl and p_mlt->ktl
+   if(p_mlt)        p_mlt->kl(order) and p_mlt->ktl(order)
    if(p_complexity) p_complexity->n()
    */
 
 
-  /* How to get positions and spins
+  /* getting positions and spins
   int size = bunch.size();
 
   for(int i=0; i < size; i++){
