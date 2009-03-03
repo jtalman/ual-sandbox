@@ -57,6 +57,8 @@ namespace SPINK {
 
     void setElementData(const PacLattElement& e);
 
+    std::string m_name;
+
     PacElemMultipole* p_entryMlt;
     PacElemMultipole* p_exitMlt;
 

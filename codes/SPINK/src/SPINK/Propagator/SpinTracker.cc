@@ -52,6 +52,8 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
     setElementData(lattice[is0]);
     setConventionalTracker(sequence, is0, is1, attSet);
 
+    m_name = lattice[is0].getName();
+
     /*
    std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
    if(p_complexity) std::cout << " n = " << p_complexity->n()  << std::endl;
@@ -184,6 +186,9 @@ void SPINK::SpinTracker::setConventionalTracker(const UAL::AcceleratorNode& sequ
 
 void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 {
+   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
+
+   std::cout << m_name << " " << bunch[0].getSpin()->getSX() << std::endl;
   /* getting element data
    if(p_length)     p_length->l()
    if(p_bend)       p_bend->angle()
@@ -210,7 +215,10 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 
     PAC::Spin& spin = bunch[i].getSpin();
 
+   spin.getSX();
    ...
+   spin.setSX(...);
+
 
   }
   */
@@ -218,7 +226,9 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 }
 
 void SPINK::SpinTracker::copy(const SPINK::SpinTracker& st)
-{    
+{
+    m_name       = st.m_name;
+
     p_entryMlt   = st.p_entryMlt;
     p_exitMlt    = st.p_exitMlt;
 
