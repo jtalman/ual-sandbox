@@ -30,10 +30,10 @@ int main(){
   // ************************************************************************
 
   shell.addSplit(Args() << Arg("lattice", "edm") << Arg("types", "Sbend")
-		 << Arg("ir", 2));
+		 << Arg("ir", 32));
 
   shell.addSplit(Args() << Arg("lattice", "edm") << Arg("types", "Quadrupole")
-		 << Arg("ir", 2));
+		 << Arg("ir", 32));
 
   // ************************************************************************
   std::cout << "Select lattice." << std::endl;
