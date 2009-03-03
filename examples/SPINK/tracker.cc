@@ -116,9 +116,14 @@ int main(){
 
   // define the intial distribution for your application
 
+  PAC::Spin spin;
+  spin.setSX(1.0);
+
+
   int ip;
   for(ip=0; ip < bunch.size(); ip++){
     bunch[ip].getPosition().set(1.e-5*(ip+1), 0.0, 1.e-5*(ip+1), 0.0, 0.0, 1.e-5*(ip+1));
+    bunch[ip].setSpin(spin);
   }
 
   std::cout << "\nTeapot Tracker " << endl;
@@ -146,6 +151,7 @@ int main(){
 
   for(ip=0; ip < bunch.size(); ip ++){
     bunch[ip].getPosition().set(1.e-5*(ip+1), 0.0, 1.e-5*(ip+1), 0.0, 0.0, 1.e-5*(ip+1));
+    bunch[ip].setSpin(spin);
   }
 
   std::cout << "\nSpink tracker " << endl;
