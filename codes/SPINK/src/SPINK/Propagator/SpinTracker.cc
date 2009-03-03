@@ -9,11 +9,21 @@
 #include "TEAPOT/Integrator/TrackerFactory.hh"
 #include "SPINK/Propagator/SpinTracker.hh"
 
-std::vector<PAC::Position> SPINK::SpinTracker::s_positions(64);
 
 SPINK::SpinTracker::SpinTracker()
 {
+  p_entryMlt = 0;
+  p_exitMlt = 0;
 
+  p_length = 0;
+  p_bend = 0;
+  p_mlt = 0;
+  p_offset = 0;
+  p_rotation = 0;
+  // p_aperture = 0;
+  p_complexity = 0;
+  // p_solenoid = 0;
+  // p_rf = 0;
 }
 
 SPINK::SpinTracker::SpinTracker(const SPINK::SpinTracker& st)
@@ -37,58 +47,151 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 {
     SPINK::SpinPropagator::setLatticeElements(sequence, is0, is1, attSet);
  
-    const PacLattice& lattice      = (PacLattice&) sequence;
+    const PacLattice& lattice = (PacLattice&) sequence;
 
-    std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType() << std::endl;
+    setElementData(lattice[is0]);
+    setConventionalTracker(sequence, is0, is1, attSet);
 
-    m_l = lattice[is0].getLength();
-    m_n = lattice[is0].getN();
+    /*
+   std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
+   if(p_complexity) std::cout << " n = " << p_complexity->n()  << std::endl;
+   if(p_length)  std::cout << " l = " << p_length->l() << std::endl;
+   if(p_bend)   std::cout <<  " angle = " << p_bend->angle() << std::endl;
+   if(p_mlt)    std::cout << " kl1 = "  << p_mlt->kl(1) << std::endl;
+   std::cout << std::endl;
+     **/
 
-    UAL::PropagatorNodePtr nodePtr = 
-      TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
-    m_tracker = nodePtr;
-
-    if(m_n) {
-
-        PacLattElement* le = const_cast<PacLattElement*>(&lattice[is0]);
-
-        int ns = m_n*4;
-        double dl = m_l - m_l/ns;
-
-        le->addLength(-dl);
-        le->addN(-m_n);
-
-        m_tracker->setLatticeElements(sequence, is0, is1, attSet);
-        
-        le->addLength(dl);
-        le->addN(m_n);
-
-    }
-
-    std::cout << lattice[is0].getName() << " " << m_l << " " << m_n << std::endl;
 }
 
 void SPINK::SpinTracker::propagate(UAL::Probe& b)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
-  if(m_n == 0){
+  if(!p_complexity){
+      if(p_mlt) *p_mlt /= 2.;             // kl, kt
       m_tracker->propagate(bunch);
-      // add spink
+      propagateSpin(b);
+      m_tracker->propagate(bunch);
+        if(p_mlt) *p_mlt *= 2.;          // kl, kt
       return;
   }
 
-  int ns = m_n*4; // number of slices
+  int ns = 4*p_complexity->n(); 
+
+  if(p_mlt) *p_mlt /= (2*ns);             // kl, kt
 
   for(int i=0; i < ns; i++) {
     m_tracker->propagate(bunch);
-    // add spink
+    propagateSpin(b);
+    m_tracker->propagate(bunch);
   }
+
+  if(p_mlt) *p_mlt *= (2*ns);             // kl, kt
   
-  /*
+}
+
+void SPINK::SpinTracker::setElementData(const PacLattElement& e)
+{
+ 
+  // Entry multipole
+  PacElemAttributes* front  = e.getFront();
+  if(front){
+     PacElemAttributes::iterator it = front->find(PAC_MULTIPOLE);
+     if(it != front->end()) p_entryMlt = (PacElemMultipole*) &(*it);
+  }
+
+  // Exit multipole
+  PacElemAttributes* end  = e.getEnd();
+  if(end){
+     PacElemAttributes::iterator it = end->find(PAC_MULTIPOLE);
+     if(it != end->end()) p_exitMlt = (PacElemMultipole*) &(*it);
+  }
+
+  // Body attributes
+  PacElemAttributes* attributes = e.getBody();
+
+  if(attributes){
+    for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+      switch((*it).key()){
+       case PAC_LENGTH:                          // 1: l
+            p_length = (PacElemLength*) &(*it);
+            break;
+       case PAC_BEND:                            // 2: angle, fint
+            p_bend = (PacElemBend*) &(*it);
+            break;
+       case PAC_MULTIPOLE:                       // 3: kl, ktl
+            p_mlt = (PacElemMultipole*) &(*it);
+            break;
+       case PAC_OFFSET:                          // 4: dx, dy, ds
+            p_offset = (PacElemOffset*) &(*it);
+            break;
+       case PAC_ROTATION:                        // 5: dphi, dtheta, tilt
+            p_rotation = (PacElemRotation*) &(*it);
+            break;
+       case PAC_APERTURE:                        // 6: shape, xsize, ysize
+	    // p_aperture = (PacElemAperture*) &(*it);
+	    break;
+       case PAC_COMPLEXITY:                     // 7: n
+            p_complexity = (PacElemComplexity* ) &(*it);
+            break;
+       case PAC_SOLENOID:                       // 8: ks
+            // p_solenoid = (PacElemSolenoid* ) &(*it);
+            break;
+       case PAC_RFCAVITY:                       // 9: volt, lag, harmon
+           // p_rf = (PacElemRfCavity* ) &(*it);
+           break;
+      default:
+	break;
+      }
+    }
+  }
+
+}
+
+void SPINK::SpinTracker::setConventionalTracker(const UAL::AcceleratorNode& sequence,
+                                                int is0, int is1,
+                                                const UAL::AttributeSet& attSet)
+{
+    const PacLattice& lattice = (PacLattice&) sequence;
+
+
+    double ns = 2;
+    if(p_complexity) ns = 8*p_complexity->n();
+
+
+    UAL::PropagatorNodePtr nodePtr =
+      TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
+
+     m_tracker = nodePtr;
+
+     if(p_complexity) p_complexity->n() = 0;   // ir
+     if(p_length)    *p_length /= ns;          // l
+     if(p_bend)      *p_bend /= ns;            // angle, fint
+ 
+     m_tracker->setLatticeElements(sequence, is0, is1, attSet);
+
+     if(p_bend)      *p_bend *= ns;
+     if(p_length)    *p_length *= ns;
+     if(p_complexity) p_complexity->n() = ns/8;
+
+}
+
+void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
+{
+  /* How to get element data
+   if(p_length)     p_length->l()
+   if(p_bend)       p_bend->angle()
+   if(p_mlt)        p_mlt->kl and p_mlt->ktl
+   if(p_complexity) p_complexity->n()
+   */
+
+
+  /* How to get positions and spins
   int size = bunch.size();
+
   for(int i=0; i < size; i++){
-   if(bunch[i].isLost() ) continue;
+
+    if(bunch[i].isLost() ) continue;
 
     PAC::Position& pos = bunch[i].getPosition();
 
@@ -99,21 +202,29 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
     ct0 = pos.getCT();
     de0 = pos.getDE();
 
-   PAC::Spin& spin = bunch[i].getSpin();
-   
+    PAC::Spin& spin = bunch[i].getSpin();
+
    ...
-   
-   kls(3) -> take it
 
   }
-   */
+  */
 
 }
 
 void SPINK::SpinTracker::copy(const SPINK::SpinTracker& st)
-{
-    m_l = st.m_l;
-    m_n = st.m_n;
+{    
+    p_entryMlt   = st.p_entryMlt;
+    p_exitMlt    = st.p_exitMlt;
+
+    p_length     = st.p_length;
+    p_bend       = st.p_bend;
+    p_mlt        = st.p_mlt;
+    p_offset     = st.p_offset;
+    p_rotation   = st.p_rotation;
+    // p_aperture = st.p_aperture;
+    p_complexity = st.p_complexity;
+    // p_solenoid = st.p_solenoid;
+    // p_rf = st.p_rf;
 }
 
 SPINK::SpinTrackerRegister::SpinTrackerRegister()

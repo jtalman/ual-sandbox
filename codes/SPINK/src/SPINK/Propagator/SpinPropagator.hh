@@ -50,6 +50,10 @@ namespace SPINK {
 
   protected:
 
+    virtual void propagateSpin(UAL::Probe& bunch) = 0;
+
+  protected:
+
     /**  Front node */
     PacLattElement m_frontNode;
 
