@@ -23,7 +23,7 @@
 
 namespace SPINK {
 
-  /** Basis class of different spin tracker */
+  /** Basis class of different spin trackers */
 
   class SpinTracker : public SpinPropagator {
 
