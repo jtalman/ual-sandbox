@@ -1,6 +1,6 @@
 setenv UAL_ARCH linux
 
-if(!($?LD_LIBRARY_PATH)) setenv LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH
 
 ###########################################################
 # Paths to UAL Components
