@@ -188,7 +188,7 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 {
    PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
-   std::cout << m_name << " " << bunch[0].getSpin()->getSX() << std::endl;
+   // std::cout << m_name << " " << bunch[0].getSpin()->getSX() << std::endl;
   /* getting element data
    if(p_length)     p_length->l()
    if(p_bend)       p_bend->angle()
