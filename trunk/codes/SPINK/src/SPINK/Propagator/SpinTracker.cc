@@ -70,7 +70,9 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
   if(!p_complexity){
       if(p_mlt) *p_mlt /= 2.;             // kl, kt
       m_tracker->propagate(bunch);
+      if(p_mlt) *p_mlt *= 2.;             // kl, kt
       propagateSpin(b);
+      if(p_mlt) *p_mlt /= 2.;             // kl, kt
       m_tracker->propagate(bunch);
       if(p_mlt) *p_mlt *= 2.;             // kl, kt
       return;
@@ -78,15 +80,19 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 
   int ns = 4*p_complexity->n(); 
 
-  if(p_mlt) *p_mlt /= (2*ns);             // kl, kt
+
 
   for(int i=0; i < ns; i++) {
+    if(p_mlt) *p_mlt /= (2*ns);             // kl, kt
     m_tracker->propagate(bunch);
+    if(p_mlt) *p_mlt *= (2*ns);             // kl, kt
     propagateSpin(b);
+    if(p_mlt) *p_mlt /= (2*ns);             // kl, kt
     m_tracker->propagate(bunch);
+    if(p_mlt) *p_mlt *= (2*ns);             // kl, kt
   }
 
-  if(p_mlt) *p_mlt *= (2*ns);             // kl, kt
+
   
 }
 
