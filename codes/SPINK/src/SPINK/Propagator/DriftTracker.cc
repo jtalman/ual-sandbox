@@ -41,8 +41,7 @@ void SPINK::DriftTracker::setLatticeElements(const UAL::AcceleratorNode& sequenc
 
 void SPINK::DriftTracker::propagate(UAL::Probe& b)
 {
-  PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
-  m_tracker->propagate(bunch);
+  SPINK::SpinTracker::propagte(b);
 }
 
 
