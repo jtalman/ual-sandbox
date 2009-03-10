@@ -1,8 +1,10 @@
-
+#include <iostream>
+#include <fstream>
 
 #include "UAL/APDF/APDF_Builder.hh"
 #include "PAC/Beam/Position.hh"
 #include "SMF/PacSmf.h"
+#include "PAC/Beam/Bunch.hh"
 #include "Main/Teapot.h"
 #include "UAL/UI/Shell.hh"
 
@@ -23,37 +25,40 @@ int main(){
   std::cout << "\nBuild lattice." << std::endl;
   // ************************************************************************
 
-  shell.readSXF(Args() << Arg("file",  "./data/proton_ring.sxf"));
+  shell.readSXF(Args() << Arg("file",  "./data/muon.sxf"));
 
   // ************************************************************************
   std::cout << "\nAdd split ." << std::endl;
   // ************************************************************************
 
-  shell.addSplit(Args() << Arg("lattice", "edm") << Arg("types", "Sbend")
+  shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Sbend")
 		 << Arg("ir", 32));
 
-  shell.addSplit(Args() << Arg("lattice", "edm") << Arg("types", "Quadrupole")
+  shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Quadrupole")
 		 << Arg("ir", 32));
 
   // ************************************************************************
   std::cout << "Select lattice." << std::endl;
   // ************************************************************************
 
-  shell.use(Args() << Arg("lattice", "edm"));
+  shell.use(Args() << Arg("lattice", "muon"));
 
   // ************************************************************************
   std::cout << "\nWrite ADXF file ." << std::endl;
   // ************************************************************************
 
-  shell.writeSXF(Args() << Arg("file",  "./out/cpp/proton_ring.sxf"));
+  shell.writeSXF(Args() << Arg("file",  "./out/cpp/muon.sxf"));
 
 
   // ************************************************************************
   std::cout << "\nDefine beam parameters." << std::endl;
   // ************************************************************************
 
-  shell.setBeamAttributes(Args() << Arg("energy", 1.93827231)
-			  << Arg("mass", 0.93827231));
+  //  shell.setBeamAttributes(Args() << Arg("energy", 1.171064622)
+  //			  << Arg("mass", 0.93827231));
+
+  shell.setBeamAttributes(Args() << Arg("energy", 0.145477474)
+			  << Arg("mass", 0.10565839));
 
   // ************************************************************************
   std::cout << "\nLinear analysis." << std::endl;
@@ -65,16 +70,15 @@ int main(){
   shell.map(Args() << Arg("order", 1) << Arg("print", "./out/cpp/map1"));
 
   // Calculate twiss
-  std::cout << " twiss (edm )" << std::endl;
+  std::cout << " twiss (muon )" << std::endl;
 
-  shell.twiss(Args() << Arg("print", "./out/cpp/edm.twiss"));
+  //  shell.twiss(Args() << Arg("print", "./out/cpp/muon.twiss"));
 
   // ************************************************************************
   std::cout << "2. Beam Part." << std::endl;
   // ************************************************************************
 
-  PAC::BeamAttributes ba;
-  ba.setEnergy(250.0);
+  PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
   // ************************************************************************
   std::cout << "3. Algorithm Part. " << std::endl;
@@ -96,7 +100,7 @@ int main(){
   std::cout << "4. Tracking. " << std::endl;
   // ************************************************************************
 
-  string accName = "edm";
+  string accName = "muon";
 
   PacLattices::iterator latIterator = PacLattices::instance()->find(accName);
   if(latIterator == PacLattices::instance()->end()){
@@ -106,50 +110,20 @@ int main(){
 
   PacLattice lattice = *latIterator;
 
-  // double t; // time variable
-  int lsize = lattice.size();
-
-  PAC::Bunch bunch(100);
+  PAC::Bunch bunch(1);
   bunch.setBeamAttributes(ba);
 
-  // 3.1 Teapot Tracker
-
+  //  Spink tracker
   // define the intial distribution for your application
 
   PAC::Spin spin;
-  spin.setSX(1.0);
-
+  spin.setSX(0.0);
+  spin.setSY(0.0);
+  spin.setSZ(1.0);
 
   int ip;
+
   for(ip=0; ip < bunch.size(); ip++){
-    bunch[ip].getPosition().set(1.e-5*(ip+1), 0.0, 1.e-5*(ip+1), 0.0, 0.0, 1.e-5*(ip+1));
-    bunch[ip].setSpin(spin);
-  }
-
-  std::cout << "\nTeapot Tracker " << endl;
-  std::cout << "size : " << lattice.size() << " elements " <<  endl;
-
-  Teapot teapot(lattice);
-
-  // start_ms();
-  teapot.track(bunch, 0, lsize);
-  // t = (end_ms());
-  // std::cout << "time  = " << t << " ms" << endl;
-
-  for(ip=0; ip < bunch.size(); ip += 10){
-    PAC::Position& pos = bunch[ip].getPosition();
-    std::cout << ip
-	      << " : x = " << pos.getX()
-	      << ", px = " << pos.getPX()
-	      << ", y = "  << pos.getY()
-	      << ", py = " << pos.getPY() << endl;
-  }
-
-  // 3.2 Spink tracker
-
-  // define the intial distribution for your application
-
-  for(ip=0; ip < bunch.size(); ip ++){
     bunch[ip].getPosition().set(1.e-5*(ip+1), 0.0, 1.e-5*(ip+1), 0.0, 0.0, 1.e-5*(ip+1));
     bunch[ip].setSpin(spin);
   }
@@ -157,23 +131,19 @@ int main(){
   std::cout << "\nSpink tracker " << endl;
   std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
 
-  // start_ms();
-
-  // int counter = 0;
   ap->propagate(bunch);
 
-  // t = (end_ms());
-  // std::cout << "time  = " << t << " ms" << endl;
-
-  for(ip=0; ip < bunch.size(); ip += 10){
+  /*
+  for(ip=0; ip < bunch.size(); ip += 1){
     PAC::Position& pos = bunch[ip].getPosition();
     std::cout << ip
-	      << " : x = " << pos.getX()
-	      << ", px = " << pos.getPX()
-	      << ", y = "  << pos.getY()
-	      << ", py = " << pos.getPY() << endl;
+  	      << " : x = " << pos.getX()
+  	      << ", px = " << pos.getPX()
+  	      << ", y  = " << pos.getY()
+  	      << ", py = " << pos.getPY() 
+	      << endl;
   }
-
+  */
   return 1;
 }
 
