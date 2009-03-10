@@ -1,5 +1,5 @@
 <apdf>
-  <propagator id="spink" accelerator="edm">
+  <propagator id="spink" accelerator="muon">
      <create>
         <link algorithm="SPINK::SpinTracker" types="Default"/>
      </create>
