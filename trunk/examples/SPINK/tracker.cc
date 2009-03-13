@@ -72,16 +72,16 @@ int main(){
   // Calculate twiss
   std::cout << " twiss (muon )" << std::endl;
 
-  //  shell.twiss(Args() << Arg("print", "./out/cpp/muon.twiss"));
+  shell.twiss(Args() << Arg("print", "./out/cpp/muon.twiss"));
 
   // ************************************************************************
-  std::cout << "2. Beam Part." << std::endl;
+  std::cout << "\n Beam Part." << std::endl;
   // ************************************************************************
 
   PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
   // ************************************************************************
-  std::cout << "3. Algorithm Part. " << std::endl;
+  std::cout << "\n Algorithm Part. " << std::endl;
   // ************************************************************************
 
   std::string xmlFile = "data/spink.apdf";
@@ -97,7 +97,7 @@ int main(){
   }
 
  // ************************************************************************
-  std::cout << "4. Tracking. " << std::endl;
+  std::cout << "\n Tracking. " << std::endl;
   // ************************************************************************
 
   string accName = "muon";
@@ -112,6 +112,8 @@ int main(){
 
   PAC::Bunch bunch(1);
   bunch.setBeamAttributes(ba);
+
+  ba.setG(1.0);
 
   //  Spink tracker
   // define the intial distribution for your application
