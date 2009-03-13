@@ -80,6 +80,7 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
       if(p_mlt) *p_mlt /= 2.;             // kl, kt
       m_tracker->propagate(bunch);
       if(p_mlt) *p_mlt *= 2.;             // kl, kt
+
       /*  
       double sx = bunch[0].getSpin()->getSX();
       double sy = bunch[0].getSpin()->getSY();
@@ -89,6 +90,7 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
       double y  = pos.getY();
       double py = pos.getPY();
       */
+
       return;
   }
 
@@ -105,6 +107,7 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= (2*ns);             // kl, kt
   }
+
   /*  
   double sx = bunch[0].getSpin()->getSX();
   double sy = bunch[0].getSpin()->getSY();
@@ -113,8 +116,8 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
   double px = pos.getPX();
   double y  = pos.getY();
   double py = pos.getPY();
+  */
 
-  */ 
 }
 
 void SPINK::SpinTracker::setElementData(const PacLattElement& e)
@@ -213,31 +216,34 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
    bunch[0].getSpin()->setSX(sx);
    */
 
-   double length = 0, ang = 0, kl1 = 0, kl2 = 0;
+   double length = 0;
+   double ang = 0;
    double k1 = 0.0, k2 = 0.0;
    
    //  getting element data
+
    if(p_length)     length = p_length->l();
    if(p_bend)       ang    = p_bend->angle();
-   // if(p_mlt)        p_mlt->kl(order) and p_mlt->ktl(order); // originally given by N.Malitsky
+
    if(p_mlt){
-     kl1   = p_mlt->kl(1); 
-     k1    = kl1 / length;
-     kl2   = p_mlt->kl(2);
-     k2    = 2.0 * kl2 / length; 
+     k1   = p_mlt->kl(1)/length;
+     k2   = 2.0*p_mlt->kl(2)/length;
    }
-   if(p_complexity) p_complexity->n();
+
+   // if(p_complexity) p_complexity->n();
 
     
    PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+
    double es      = ba.getEnergy(),     m0      = ba.getMass();  
-   double GG      = ba.getG(); //,      EDM_eta = ba.getEDMeta();
-   double EDM_eta = 0.0;
+   double GG      = ba.getG(); 
+   double EDM_eta = 0.0;  // = ba.getEDMeta();
    double ps      = sqrt(es*es - m0*m0);
    double beta_s  = ps/es,          gam_s   = es/m0;
    double Ggam_s  = GG*gam_s;
     
    double cc      = 2.99792458E+8;
+
    //double Gm    = 0.0011659230;
    //double Gd    = -0.1429875554;
    //double Gp    = 1.7928456;
@@ -258,7 +264,6 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     PAC::Particle& prt = bunch[i];
 
     PAC::Position& pos = prt.getPosition();
-
     xw   = pos.getX(),  pxw  = pos.getPX();
     yw   = pos.getY(),  pyw  = pos.getPY();
     ctw  = pos.getCT(), dew  = pos.getDE();
@@ -280,6 +285,7 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     brho   = 1.0E+9*ps/cc; 
         
     // For a general magnetic field, not including skew quads, solenoid, snake etc.
+
     Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
     By     = brho*(1.0/rho + k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw));
     Bz     = 0.0;
@@ -313,7 +319,8 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     a2 = (a2 - 1.0/rho ) / omega;
     a3 = a3 / omega;
 
-    double s_mat[3][3];  
+    double s_mat[3][3];
+    
     for(int j=0; j <3; j++){
       for(int k=0; k <3; k++){
         s_mat[j][k] = 0.0;
