@@ -29,7 +29,7 @@ void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
  if(!data.m_ir){
    passBendSlice(data.m_slices[0], p, tmp, v0byc);
    applyMltKick(mdata, 1, p); 
-   applyThinBendKick(data, p, v0byc);
+   applyThinBendKick(data, mdata, 1, p, v0byc);
    makeVelocity(p, tmp, v0byc);	
    passBendSlice(data.m_slices[1], p, tmp, v0byc);
    return;
@@ -46,7 +46,7 @@ void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
      counter++;
      passBendSlice(data.m_slices[counter], p, tmp, v0byc);
      applyMltKick(mdata, rkicks, p); 
-     applyThinBendKick(data, p, v0byc);
+     applyThinBendKick(data, mdata, rkicks, p, v0byc);
      makeVelocity(p, tmp, v0byc);	
    }
    counter++;
@@ -173,21 +173,43 @@ void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::deltaPath(
 	
 template<class Coordinate, class Coordinates>
 void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
-  const TEAPOT::DipoleData& data, 
+  const TEAPOT::DipoleData& data,
+  const TEAPOT::MagnetData& mdata, double rkicks,
   Coordinates& p, double v0byc)
 {
   Coordinate x, px, y, py;
+
+
+  PacElemMultipole* mult = mdata.m_mlt;
+  PacElemOffset* offset = mdata.m_offset;
 
   x = p[0]; //  xdif
   y = p[2]; //  ydif
 
   px = 0.0;
-  py = 0.0;	
+  py = 0.0;
+
+  if(offset) {
+    x -= offset->dx();
+    y -= offset->dy();
+  }
+
+  double kl1 = 0.0;
+
+  if(mult){
+     int order = mult->order();
+     if(order > 0) kl1 = mult->kl(1);
+  }
 
   if(data.m_l){
+
+   double rho = data.m_l/data.m_angle;
+
 	// std::cerr << "btw00 = " << data.m_btw00 << ", btw01 = " << data.m_btw01 << endl;
   	px -= x*data.m_btw01;
   	px -= data.m_btw00;
+
+    px += y*y*kl1*rkicks/rho/2.0;  // K.Brown
 
   	py += y*data.m_atw01;
   	py += data.m_atw00;
@@ -201,6 +223,8 @@ void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
 
   p[1] += px;                              // px/p0
   p[3] += py;                              // py/p0
+
+
 }
 
 

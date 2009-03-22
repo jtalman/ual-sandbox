@@ -31,7 +31,9 @@ namespace TEAPOT {
     void passBendSlice(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
 
     /** Applies a thin bend kick*/
-    void applyThinBendKick(const DipoleData& data, Coordinates& p, double v0byc);
+    void applyThinBendKick(const DipoleData& data, 
+                           const MagnetData& mdata, double rkicks,
+                           Coordinates& p, double v0byc);
 
     /** Calculates the delta path*/
     void deltaPath(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
