@@ -149,7 +149,7 @@ void TEAPOT::DipoleStringSCKick::propagateSimpleElement(PAC::Bunch& bunch, doubl
 
     s_algorithm.passBendSlice(m_data.m_slices[0], p, tmp, v0byc);
     s_algorithm.applyMltKick(m_mdata, 1, p); 
-    s_algorithm.applyThinBendKick(m_data, p, v0byc);
+    s_algorithm.applyThinBendKick(m_data, m_mdata, 1, p, v0byc);
 
   }
 
@@ -240,7 +240,7 @@ void TEAPOT::DipoleStringSCKick::propagateComplexElement(PAC::Bunch& bunch, doub
 	s_algorithm.makeRV(p, tmp, e0, p0, m0);
 	s_algorithm.passBendSlice(m_data.m_slices[counter], p, tmp, v0byc);
 	s_algorithm.applyMltKick(m_mdata, rkicks, p); 
-	s_algorithm.applyThinBendKick(m_data, p, v0byc);
+	s_algorithm.applyThinBendKick(m_data, m_mdata, rkicks, p, v0byc);
      
       }
 
