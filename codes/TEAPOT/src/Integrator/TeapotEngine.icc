@@ -544,9 +544,11 @@ void TeapotEngine<Coordinate, Position>::passMltKick(
     y -=  x1*stilt;
   }
 
+  double rkicks = 1.;
+
   if(_mult){
 
-     double rkicks = _kicks[iKick]*_rIr;
+     rkicks = _kicks[iKick]*_rIr;
 
      int     index = _mult->size();
      double* data = _mult->data();
@@ -602,10 +604,14 @@ void TeapotEngine<Coordinate, Position>::passMltKick(
   }
 
   if(_bend){
+
+
    double btw01 = _bend->btw(1);
    double atw01 = _bend->atw(1);
    double btw00 = _bend->btw(0);
    double atw00 = _bend->atw(0);
+
+
     if(_rotation) { 
       double ctilt2 = cos(2*tilt);
       double stilt2 = sin(2*tilt);
@@ -614,12 +620,25 @@ void TeapotEngine<Coordinate, Position>::passMltKick(
       btw00 = btw00*ctilt + atw00*stilt;
       atw00 = atw00*ctilt - _bend->btw(0)*stilt;
     }
-    if(te.l()){
-  	px -= x*btw01;
-  	px -= btw00;
 
-  	py += y*atw01;
-  	py += atw00;
+    double kl1 = 0;
+
+    if(_mult){
+        int order = _mult->order();
+        if(order > 0) kl1 = _mult->kl(1);
+    }
+
+    if(te.l()){
+
+        double rho = te.l()/_bend->angle();
+
+        px -= x*btw01;
+        px -= btw00;
+
+        px += y*y*kl1*rkicks/rho/2.0;  // K.Brown
+
+        py += y*atw01;
+        py += atw00;
     }
     else {
 	// MAD thin dipole
