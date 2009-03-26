@@ -7,6 +7,7 @@
 #include "PAC/Beam/Bunch.hh"
 #include "Main/Teapot.h"
 #include "UAL/UI/Shell.hh"
+#include "SPINK/SpinTracker.hh"
 
 using namespace UAL;
 
@@ -164,14 +165,17 @@ int main(){
 
   // define the intial distribution for your application
 
-  std::ofstream out("spin.out");
+  std::ofstream out1("orbit.dat");
+  std::ofstream out2("spin.dat");
   char endLine = '\0';
-  char line[200];
+  char line1[200];
+  char line2[200];
 
-  int turns = 1;
+  int turns = 5000;
 
   for(ip=0; ip < bunch.size(); ip ++){
     //    bunch[ip].getPosition().set(1.e-5*(ip+1), 0.0, 1.e-5*(ip+1), 0.0, 0.0, 1.e-5*(ip+1));
+    //    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
     bunch[ip].setSpin(spin);
   }
@@ -192,20 +196,31 @@ int main(){
     
     for(ip=0; ip < bunch.size(); ip += 1){
       PAC::Position& pos = bunch[ip].getPosition();
+
+      SPINK::SpinTracker& wptime = wp_time;
+      std::cout << wptime << endl;
       /*
-      std::cout << " bunch " << ip 
-		<< ", turn  " << iturn
-		<< ": x = " << pos.getX()
-		<< ", px = " << pos.getPX()
-		<< ", y =  " << pos.getY()
-		<< ", py = " << pos.getPY() << endl;
-      */  
-      /*
-      sprintf(line, "%5d %8d    %-15.7e %-15.7e %-15.7e %-15.7e %-16.8e %-16.8e %-16.8e %c", 
-	      ip,iturn,pos.getX(),pos.getPX(),pos.getY(),pos.getPY(),bunch[ip].getSpin()->getSX(),
-	      bunch[ip].getSpin()->getSY(),bunch[ip].getSpin()->getSZ(),endLine);
-      out << line << std::endl;
+      std::cout << " bunch " << ip           << ", turn  " << iturn
+		<< ": x = " << pos.getX()    << ", px = " << pos.getPX()
+		<< ", y =  " << pos.getY()   << ", py = " << pos.getPY()
+		<< ", cdt =  " << pos.getCT()<< ", de = " << pos.getDE()
+		<< ", sx = " << bunch[ip].getSpin()->getSX()
+		<< ", sy = " << bunch[ip].getSpin()->getSY()
+		<< ", sz = " << bunch[ip].getSpin()->getSZ() << endl;
       */
+
+      sprintf(line1, "%1d %7d    %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %c", 
+	      ip,iturn,pos.getX(),pos.getPX(),pos.getY(),pos.getPY(),pos.getCT(),pos.getDE(),endLine);
+
+      sprintf(line2, "%1d %7d    %-16.7e %-16.7e %-16.7e %-16.7e %-16.7e %c", 
+	      ip,iturn,bunch[ip].getSpin()->getSX(),bunch[ip].getSpin()->getSY(),
+	      bunch[ip].getSpin()->getSZ(),endLine);
+
+      out1 << line1 << std::endl;
+
+      out2 << line2 << std::endl;
+
+
     }
   }
   out.close();
