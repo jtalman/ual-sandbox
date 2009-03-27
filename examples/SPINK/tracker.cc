@@ -72,8 +72,8 @@ int main(){
   std::cout << " twiss (muon )" << std::endl;
   shell.twiss(Args() << Arg("print", "./out/cpp/muon.twiss"));
 
-  // std::cout << " calculate suml" << std::endl;
-  // shell.analysis(Args());
+  std::cout << " calculate suml" << std::endl;
+  shell.analysis(Args());
 
   // ************************************************************************
   std::cout << "\n Beam Part." << std::endl;
