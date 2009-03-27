@@ -27,7 +27,6 @@ SPINK::SpinTracker::SpinTracker()
   p_complexity = 0;
   // p_solenoid = 0;
   // p_rf = 0;
-  wp_time = 0;
 }
 
 SPINK::SpinTracker::SpinTracker(const SPINK::SpinTracker& st)
@@ -87,7 +86,22 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
   double de = pos.getDE();
   */
 
+  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+
+  double energy = ba.getEnergy();
+  double mass   = ba.getMass();
+
+  double p = sqrt(energy*energy - mass*mass);
+  double v = p/mass*UAL::clight;
+
+  double t0 = ba.getElapsedTime();
+
+  double length = 0;
+  if(p_length)     length = p_length->l();
+
   if(!p_complexity){
+
+      length /= 2;
 
     m_bunch1 = bunch;
 
@@ -95,11 +109,17 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= 2.;             // kl, kt
 
+    t0 += length/v;
+    ba.setElapsedTime(t0);
+
     m_bunch2 = bunch;
 
     if(p_mlt) *p_mlt /= 2.;             // kl, kt
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= 2.;             // kl, kt
+
+    t0 += length/v;
+    ba.setElapsedTime(t0);
 
     m_bunch3 = bunch;
 
@@ -130,7 +150,9 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
     return;
   }
 
-  int ns = 4*p_complexity->n(); 
+  int ns = 4*p_complexity->n();
+
+  length /= 2*ns;
 
   for(int i=0; i < ns; i++) {
 
@@ -140,11 +162,17 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
 
+    t0 += length/v;
+    ba.setElapsedTime(t0);
+
     m_bunch2 = bunch;
 
     if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
+
+    t0 += length/v;
+    ba.setElapsedTime(t0);
 
     m_bunch3 = bunch;
 
@@ -250,13 +278,13 @@ void SPINK::SpinTracker::setConventionalTracker(const UAL::AcceleratorNode& sequ
     
     if(p_complexity) p_complexity->n() = 0;   // ir
     if(p_length)    *p_length /= ns;          // l
-     if(p_bend)      *p_bend /= ns;            // angle, fint
+    if(p_bend)      *p_bend /= ns;            // angle, fint
      
-     m_tracker->setLatticeElements(sequence, is0, is1, attSet);
+    m_tracker->setLatticeElements(sequence, is0, is1, attSet);
      
-     if(p_bend)      *p_bend *= ns;
-     if(p_length)    *p_length *= ns;
-     if(p_complexity) p_complexity->n() = ns/8;
+    if(p_bend)      *p_bend *= ns;
+    if(p_length)    *p_length *= ns;
+    if(p_complexity) p_complexity->n() = ns/8;
 
 }
 
@@ -280,6 +308,8 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
   double ang = 0;
   double k1 = 0.0, k2 = 0.0;
   int ns = 0;
+
+  double t0 = m_bunch2.getBeamAttributes().getElapsedTime();
   
   //  getting element data
 
@@ -383,7 +413,7 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     omega = sqrt( a1*a1 + (a2 - 1.0/rho)*(a2 - 1.0/rho) + a3*a3 );
     mu    = omega * beta_s * (-ctw3 + ctw1 + length/ns/beta_s) * abs(GG)/GG;
 
-    wp_time = wp_time + (-ctw3 + ctw1 + length/ns/beta_s) / cc; 
+    double wp_time = t0 + (-ctw3 + ctw1 + length/ns/beta_s) / cc;
     
     a1 = a1 / omega;
     a2 = (a2 - 1.0/rho ) / omega;
