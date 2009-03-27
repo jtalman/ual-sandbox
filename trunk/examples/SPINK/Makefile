@@ -35,7 +35,7 @@ LIBS += 					-lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-OBJS =
+OBJS = $(OBJ_DIR)/timer.o
 
 
 compile : $(OBJS) ./tracker
