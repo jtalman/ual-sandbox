@@ -7,7 +7,8 @@
 #include "PAC/Beam/Bunch.hh"
 #include "Main/Teapot.h"
 #include "UAL/UI/Shell.hh"
-#include "SPINK/SpinTracker.hh"
+
+#include "timer.h"
 
 using namespace UAL;
 
@@ -33,10 +34,10 @@ int main(){
   // ************************************************************************
 
   shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Sbend")
-		 << Arg("ir", 32));
+		 << Arg("ir", 4));
 
   shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Quadrupole")
-		 << Arg("ir", 32));
+		 << Arg("ir", 4));
 
   // ************************************************************************
   std::cout << "Select lattice." << std::endl;
@@ -50,17 +51,14 @@ int main(){
 
   shell.writeSXF(Args() << Arg("file",  "./out/cpp/muon.sxf"));
 
-
   // ************************************************************************
   std::cout << "\nDefine beam parameters." << std::endl;
   // ************************************************************************
 
-  //  shell.setBeamAttributes(Args() << Arg("energy", 1.171064622)
-  //			  << Arg("mass", 0.93827231));
+  double energy = 0.145477474;
+  double mass   = 0.10565839;
 
-  shell.setBeamAttributes(Args() << Arg("energy", 0.145477474)
-			  << Arg("mass", 0.10565839)
-			  << Arg("G", 0.0011659230));
+  shell.setBeamAttributes(Args() << Arg("energy", energy) << Arg("mass", mass));
 
   // ************************************************************************
   std::cout << "\nLinear analysis." << std::endl;
@@ -68,19 +66,21 @@ int main(){
 
   // Make linear matrix
   std::cout << " matrix" << std::endl;
-
   shell.map(Args() << Arg("order", 1) << Arg("print", "./out/cpp/map1"));
 
   // Calculate twiss
   std::cout << " twiss (muon )" << std::endl;
-
   shell.twiss(Args() << Arg("print", "./out/cpp/muon.twiss"));
+
+  // std::cout << " calculate suml" << std::endl;
+  // shell.analysis(Args());
 
   // ************************************************************************
   std::cout << "\n Beam Part." << std::endl;
   // ************************************************************************
 
   PAC::BeamAttributes& ba = shell.getBeamAttributes();
+  ba.setG(0.0011659230);
 
   // ************************************************************************
   std::cout << "\n Algorithm Part. " << std::endl;
@@ -92,9 +92,7 @@ int main(){
 
   apBuilder.setBeamAttributes(ba);
 
-
   UAL::AcceleratorPropagator* ap = apBuilder.parse(xmlFile);
-
 
   if(ap == 0) {
     std::cout << "Accelerator Propagator has not been created " << std::endl;
@@ -115,13 +113,10 @@ int main(){
 
   PacLattice lattice = *latIterator;
 
-  // double t; // time variable
-  int lsize = lattice.size();
+  double t; // time variable
 
   PAC::Bunch bunch(1);
   bunch.setBeamAttributes(ba);
-
-  ba.setG(0.0011659230);
 
   PAC::Spin spin;
   spin.setSX(0.0);
@@ -130,13 +125,11 @@ int main(){
 
   int ip;
 
-  /*
   // 3.1 Teapot Tracker
 
   // define the intial distribution for your application
 
   for(ip=0; ip < bunch.size(); ip++){
-    //    bunch[ip].getPosition().set(1.e-5*(ip+1), 0.0, 1.e-5*(ip+1), 0.0, 0.0, 1.e-5*(ip+1));
     bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-03, 0.0, 0.0);
     bunch[ip].setSpin(spin);
   }
@@ -146,10 +139,15 @@ int main(){
 
   Teapot teapot(lattice);
 
-  // start_ms();
-  teapot.track(bunch, 0, lsize);
-  // t = (end_ms());
-  // std::cout << "time  = " << t << " ms" << endl;
+  start_ms();
+
+  for(int iturn = 1; iturn <= 100; iturn++){
+    teapot.track(bunch, 0, lattice.size());
+  }
+
+  t = (end_ms());
+
+  std::cout << "teapot tracker's time  = " << t << " ms" << endl;
 
   for(ip=0; ip < bunch.size(); ip += 1){
     PAC::Position& pos = bunch[ip].getPosition();
@@ -159,7 +157,6 @@ int main(){
 	      << ", y = "  << pos.getY()
 	      << ", py = " << pos.getPY() << endl;
   }
-  */
 
   // 3.2 Spink tracker
 
@@ -167,15 +164,14 @@ int main(){
 
   std::ofstream out1("orbit.dat");
   std::ofstream out2("spin.dat");
+
   char endLine = '\0';
   char line1[200];
   char line2[200];
 
-  int turns = 5000;
+  int turns = 1; // 5000
 
   for(ip=0; ip < bunch.size(); ip ++){
-    //    bunch[ip].getPosition().set(1.e-5*(ip+1), 0.0, 1.e-5*(ip+1), 0.0, 0.0, 1.e-5*(ip+1));
-    //    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
     bunch[ip].setSpin(spin);
   }
@@ -183,23 +179,38 @@ int main(){
   std::cout << "\nSpink tracker " << endl;
   std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
 
-  // start_ms();
+  // set wp time
 
+  double wp_time = 0.0;
+  bunch.getBeamAttributes().setElapsedTime(wp_time);
+
+  double p  = sqrt(energy*energy - mass*mass);
+  double v = p/energy*UAL::clight;
+
+  // length of accelerator
+  double suml = OpticsCalculator::getInstance().suml;
+  std::cout << "suml = " << suml << std::endl;
 
   for(int iturn = 1; iturn <= turns; iturn++){
 
-    // int counter = 0;
+    start_ms();
+  for(int it = 1; it <= 100; it++){
     ap->propagate(bunch);
+  }
 
-    // t = (end_ms());
-    // std::cout << "time  = " << t << " ms" << endl;
+    t = (end_ms());
+    std::cout << "spink tracker' time  = " << t << " ms" << endl;
+
+    // print global time
+
+    wp_time = bunch.getBeamAttributes().getElapsedTime();
+
+    std::cout << "global time: " << wp_time << std::endl;
     
     for(ip=0; ip < bunch.size(); ip += 1){
+
       PAC::Position& pos = bunch[ip].getPosition();
 
-      SPINK::SpinTracker& wptime = wp_time;
-      std::cout << wptime << endl;
-      /*
       std::cout << " bunch " << ip           << ", turn  " << iturn
 		<< ": x = " << pos.getX()    << ", px = " << pos.getPX()
 		<< ", y =  " << pos.getY()   << ", py = " << pos.getPY()
@@ -207,7 +218,6 @@ int main(){
 		<< ", sx = " << bunch[ip].getSpin()->getSX()
 		<< ", sy = " << bunch[ip].getSpin()->getSY()
 		<< ", sz = " << bunch[ip].getSpin()->getSZ() << endl;
-      */
 
       sprintf(line1, "%1d %7d    %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %c", 
 	      ip,iturn,pos.getX(),pos.getPX(),pos.getY(),pos.getPY(),pos.getCT(),pos.getDE(),endLine);
@@ -217,13 +227,14 @@ int main(){
 	      bunch[ip].getSpin()->getSZ(),endLine);
 
       out1 << line1 << std::endl;
-
       out2 << line2 << std::endl;
-
 
     }
   }
-  out.close();
+
+  out1.close();
+  out2.close();
+
   return 1;
 }
 
