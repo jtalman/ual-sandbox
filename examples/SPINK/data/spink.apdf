@@ -1,7 +1,8 @@
 <apdf>
   <propagator id="spink" accelerator="muon">
      <create>
-        <link algorithm="SPINK::SpinTracker" types="Default"/>
+       <link algorithm="SPINK::SpinTracker" types="Default"/>
+       <link algorithm="SPINK::DipoleErTracker" types="Sbend"/>
      </create>
   </propagator>
 </apdf>
