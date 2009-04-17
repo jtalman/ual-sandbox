@@ -1,6 +1,7 @@
 OBJS += $(UAL_SPINK)/lib/$(UAL_ARCH)/obj/SpinPropagator.o \
         $(UAL_SPINK)/lib/$(UAL_ARCH)/obj/SpinTracker.o \
        	$(UAL_SPINK)/lib/$(UAL_ARCH)/obj/SpinTrackerWriter.o \
-       	$(UAL_SPINK)/lib/$(UAL_ARCH)/obj/DipoleErTracker.o
+       	$(UAL_SPINK)/lib/$(UAL_ARCH)/obj/DipoleErTracker.o \
+  	    $(UAL_SPINK)/lib/$(UAL_ARCH)/obj/RFCavityTracker.o
 
 
