@@ -8,6 +8,8 @@
 #include "PAC/Beam/Bunch.hh"
 #include "TEAPOT/Integrator/TrackerFactory.hh"
 #include "SPINK/Propagator/SpinTracker.hh"
+#include "SPINK/Propagator/SpinTrackerWriter.hh"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <cmath>
@@ -57,8 +59,9 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
     m_name = lattice[is0].getName();
 
-    /*
    std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
+
+   /*
    if(p_complexity) std::cout << " n = " << p_complexity->n()  << std::endl;
    if(p_length)  std::cout << " l = " << p_length->l() << std::endl;
    if(p_bend)   std::cout <<  " angle = " << p_bend->angle() << std::endl;
@@ -70,7 +73,12 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
 void SPINK::SpinTracker::propagate(UAL::Probe& b)
 {
+
+  SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
+
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
+
+  stw->write(bunch.getBeamAttributes().getElapsedTime());
 
   /*
   PAC::Position& pos = bunch[0].getPosition();
@@ -90,9 +98,10 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 
   double energy = ba.getEnergy();
   double mass   = ba.getMass();
+  double gam    = energy/mass;
 
   double p = sqrt(energy*energy - mass*mass);
-  double v = p/mass*UAL::clight;
+  double v = p/gam/mass*UAL::clight;
 
   double t0 = ba.getElapsedTime();
 
@@ -138,6 +147,8 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
     double ct = pos2.getCT();
     double de = pos2.getDE();
 
+    double wp_time = t0 + (-ctw3 / cc);
+
     cout.precision(15);
     std::cout << m_name << " x = " << x << ", px = " << px
 	      << ", y  = " << y << ", py = " << py
@@ -145,6 +156,11 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
       	      << ", sx = " << sx <<", sy = " << sy
       	      << ", sz = " << sz 
 	      << endl;
+    */
+    /*
+    sprintf(line, "%-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e%c", 
+	    Bx,By,Bz,a1,a2,a3,endLine);
+    out << line << std::endl;
     */
 
     return;
@@ -192,6 +208,8 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
   double py = pos2.getPY();
   double ct = pos2.getCT();
   double de = pos2.getDE();
+
+  double wp_time = t0 + (-ctw3 / cc);
   
   cout.precision(15);
   std::cout << m_name << " x = " << x << ", px = " << px
@@ -200,6 +218,11 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 	    << ", sx = " << sx <<", sy = " << sy
 	    << ", sz = " << sz 
 	    << endl;
+  */
+  /*
+  sprintf(line, "%-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e%c", 
+	  Bx,By,Bz,a1,a2,a3,endLine);
+  out << line << std::endl;
   */
 
 }
@@ -340,7 +363,7 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
   //double Gp    = 1.7928456;
 
   double xw, pxw, yw, pyw, ctw, dew, ctw1, ctw3;
-  double Bx = 0.0, By = 0.0, Bz = 0.0, rp_dot_B = 0.0, cof = 0.0; 
+  double Bx = 0.0, By = 0.0, Bz = 0.0, rp_dot_B = 0.0, cof = 0.0, v2 = 0.0; 
   double a1 = 0.0, a2 = 0.0, a3 = 0.0;
   double Ex = 0.0, Ey = 0.0, Ez = 0.0, Er = 0.0, Ev = 0.0, El = 0.0;
   double rho=1.0E+12, brho = 0.0, omega = 0.0, mu = 0.0;
@@ -349,8 +372,6 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
   int size = bunch.size();
    
   for(int i=0; i < size; i++){
-    
-    //    if(bunch[i].isLost() ) continue;
     
     if(bunch[i].isLost() ) continue;
     
@@ -366,8 +387,6 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 
     ctw1 = pos1.getCT(), ctw3 = pos3.getCT();
 
-    //    std::cout<< " aaa " << ctw1 << " " << ctw << " " << ctw3 << endl;
-    
     double ew     = es + dew*ps;
     double pw     = sqrt(ew*ew - m0*m0);
     double beta_w = pw/ew,    gam_w  = ew/m0;
@@ -379,7 +398,7 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
       Ey   = Ev;
       Ez   = El;
     }
-    
+
     brho   = 1.0E+9*ps/cc; 
     
     // For a general magnetic field, not including skew quads, solenoid, snake etc.
@@ -394,35 +413,34 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     spin0[1] = prt.getSpin()-> getSY();
     spin0[2] = prt.getSpin()-> getSZ();
 
-    rp_dot_B = pxw*Bx + pyw*By + Bz*sqrt(1-pxw*pxw-pyw*pyw);
+    //    rp_dot_B = pxw*Bx + pyw*By + Bz*sqrt(1-pxw*pxw-pyw*pyw);
+    rp_dot_B = pxw*Bx + pyw*By + Bz*(1.0+xw/rho);
+    v2       = pxw*pxw+pyw*pyw+(1.0+xw/rho)*(1.0+xw/rho);
+
     cof      = sqrt(pxw*pxw + pyw*pyw + ( 1.0 + xw/rho)*(1.0 + xw/rho)) / (1.0E+9 * pw/cc);
+
+    //    cout.precision(15);        
+    //    std::cout<<cof<<endl;
     
-    
-    a1 = cof*((1 + Ggam_w)*Bx - (Ggam_w - GG)*rp_dot_B * pxw 
+    a1 = cof*((1 + Ggam_w)*Bx - (Ggam_w - GG)*rp_dot_B * pxw / v2 
 	       + (Ggam_w + gam_w/(1.0 + gam_w)) * (Ey*sqrt(1.0-pxw*pxw-pyw*pyw)-Ez*pyw)*beta_s/cc)
                + EDM_eta/beta_s/cc*(Ex + cc * beta_s *(pyw*Bz - sqrt(1.0-pxw*pxw-pyw*pyw)*By));
      
-    a2 = cof*((1 + Ggam_w)*By - (Ggam_w - GG)*rp_dot_B * pyw
+    a2 = cof*((1 + Ggam_w)*By - (Ggam_w - GG)*rp_dot_B * pyw / v2
 	       + (Ggam_w + gam_w/(1.0 + gam_w))*(Ez*pxw-Ex*sqrt(1.0-pxw*pxw-pyw*pyw))*beta_s/cc)
                + EDM_eta/beta_s/cc*(Ey + cc * beta_s *(sqrt(1.0-pxw*pxw-pyw*pyw)*Bx - pyw*Bz));
      
-    a3 = cof*((1 + Ggam_w)*Bz - (Ggam_w - GG)*rp_dot_B * ( 1.0 + xw/rho )
+    a3 = cof*((1 + Ggam_w)*Bz - (Ggam_w - GG)*rp_dot_B * (1.0+xw/rho) / v2
 	       + (Ggam_w + gam_w/(1 + gam_w)) * (Ex*pyw - Ey*pxw)*beta_s/cc)
                + EDM_eta/beta_s/cc*(Ez + cc * beta_s *(pxw*By - pyw*Bx)) ;
      
     omega = sqrt( a1*a1 + (a2 - 1.0/rho)*(a2 - 1.0/rho) + a3*a3 );
-    mu    = omega * beta_s * (-ctw3 + ctw1 + length/ns/beta_s) * abs(GG)/GG;
-
-    double wp_time = t0 + (-ctw3 + ctw1 + length/ns/beta_s) / cc;
+    //    mu    = omega * beta_s * (-ctw3 + ctw1 + length/ns/beta_s) * abs(GG)/GG;
+    mu    = omega * length / ns * abs(GG) / GG;
     
     a1 = a1 / omega;
     a2 = (a2 - 1.0/rho ) / omega;
     a3 = a3 / omega;
-    /*
-    sprintf(line, "%-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e%c", 
-	    Bx,By,Bz,a1,a2,a3,endLine);
-    out << line << std::endl;
-    */
 
     double s_mat[3][3];
      
@@ -456,6 +474,22 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     prt.getSpin()->setSY(spin[1]);
     prt.getSpin()->setSZ(spin[2]);
 
+    /*    
+    for(int j=0; j <3; j++){
+      for(int k=0; k <3; k++){
+	OTSMat0[j][k] = OTSMat[j][k];
+      }
+    }
+     
+    for(int j=0; j <3; j++){
+      for(int k=0; k <3; k++){
+	OTSMat[j][k] = 0.0;
+	for(int l=0; l<3; l++){
+	OTSMat[j][k] = OTSMat[j][k] + s_mat[j][l] * OTSMat0[l][k];
+	}
+      }
+    }
+    */
     
   }
      
