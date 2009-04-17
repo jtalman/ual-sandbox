@@ -3,6 +3,7 @@
      <create>
        <link algorithm="SPINK::SpinTracker" types="Default"/>
        <link algorithm="SPINK::DipoleErTracker" types="Sbend"/>
+       <link algorithm="SPINK::RFCavityTracker" types="RfCavity"/>
      </create>
   </propagator>
 </apdf>
