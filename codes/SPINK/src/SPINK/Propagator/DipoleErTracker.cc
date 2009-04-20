@@ -16,6 +16,8 @@
 #include <iostream>
 #include <fstream>
 
+double SPINK::DipoleErTracker::s_er = 0;
+
 SPINK::DipoleErTracker::DipoleErTracker()
 {
   p_entryMlt = 0;
@@ -121,6 +123,8 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
     t0 += length/v;
     ba.setElapsedTime(t0);
 
+    addErKick(bunch);                   // add electric field
+
     m_bunch2 = bunch;
 
     if(p_mlt) *p_mlt /= 2.;             // kl, kt
@@ -181,6 +185,8 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
     t0 += length/v;
     ba.setElapsedTime(t0);
 
+    addErKick(bunch);                   // add electric field
+
     m_bunch2 = bunch;
 
     if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
@@ -224,6 +230,70 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 	  Bx,By,Bz,a1,a2,a3,endLine);
   out << line << std::endl;
   */
+
+}
+
+void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
+{
+     // beam data
+
+    PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+
+    double energy = ba.getEnergy();
+    double mass   = ba.getMass();
+    double charge = ba.getCharge();
+
+    double p = sqrt(energy*energy - mass*mass);
+    double v0byc = p/energy
+
+    //  getting element data
+
+    double length = 0;
+    double ang    = 0;
+
+    if(p_length)     length = p_length->l();
+    if(p_bend)       ang    = p_bend->angle();
+
+    int ns = 1;
+    if(p_complexity) ns = 4*p_complexity->n();
+
+    double h0     = 0; // 1/rho
+    if(length) h0 = ang/length;
+    
+    int size = bunch.size();
+
+    for(int i=0; i < size; i++){
+
+        if(bunch[i].isLost() ) continue;
+
+        PAC::Particle& prt = bunch[i];
+        PAC::Position& pos = prt.getPosition();
+    
+        double x   = pos.getX();
+        double px  = pos.getPX();
+    
+        double y   = pos.getY();
+        double py  = pos.getPY();
+
+        // ex
+
+        double ex = s_er/(1. + h0*x) - s_er;
+        double ey = 0;
+
+        ex *= charge/v0byc/ns;
+        ey *= charge/v0byc/ns;
+ 
+        # 1 + x/R
+
+        double dxR       = (1. + h0*x);
+
+        px += ex*dxR;
+        py += ey*dxR;
+
+        pos.setPX(px);
+        pos.setPY(py);
+
+    }
 
 }
 
