@@ -50,6 +50,16 @@ namespace SPINK {
     /** Returns a deep copy of this object (inherited from UAL::PropagatorNode) */
     UAL::PropagatorNode* clone();
 
+    static void setER(double er) { s_er = er; }
+
+    static double getER() { return s_er; }
+
+  protected:
+
+      void addErKick(PAC::Bunch& bunch);
+
+      static double s_er; // ER(GV/m)/pc(GV)
+
 
   protected:
 
