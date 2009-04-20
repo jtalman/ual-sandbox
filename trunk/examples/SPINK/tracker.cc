@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 #include "UAL/APDF/APDF_Builder.hh"
 #include "PAC/Beam/Position.hh"
@@ -7,6 +8,9 @@
 #include "PAC/Beam/Bunch.hh"
 #include "Main/Teapot.h"
 #include "UAL/UI/Shell.hh"
+
+#include "SPINK/Propagator/DipoleErTracker.hh"
+#include "SPINK/Propagator/SpinTrackerWriter.hh"
 
 #include "timer.h"
 
@@ -34,10 +38,10 @@ int main(){
   // ************************************************************************
 
   shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Sbend")
-		 << Arg("ir", 4));
+		 << Arg("ir", 32));
 
   shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Quadrupole")
-		 << Arg("ir", 4));
+		 << Arg("ir", 32));
 
   // ************************************************************************
   std::cout << "Select lattice." << std::endl;
@@ -99,6 +103,15 @@ int main(){
     return 1;
   }
 
+  // ************************************************************************
+  std::cout << "\n Electric field. " << std::endl;
+  // ************************************************************************
+
+  double ER  = 0.012; // GV/m
+  double pc = sqrt(energy*energy - mass*mass);
+  
+  SPINK::DipoleErTracker::setER(ER/pc);
+
  // ************************************************************************
   std::cout << "\n Tracking. " << std::endl;
   // ************************************************************************
@@ -123,8 +136,11 @@ int main(){
   spin.setSY(0.0);
   spin.setSZ(1.0);
 
+  double cc  = 2.99792458E+8;
+
   int ip;
 
+  /*
   // 3.1 Teapot Tracker
 
   // define the intial distribution for your application
@@ -157,6 +173,7 @@ int main(){
 	      << ", y = "  << pos.getY()
 	      << ", py = " << pos.getPY() << endl;
   }
+  */
 
   // 3.2 Spink tracker
 
@@ -164,17 +181,34 @@ int main(){
 
   std::ofstream out1("orbit.dat");
   std::ofstream out2("spin.dat");
+//  ifstream inFile("pop.dat");
 
   char endLine = '\0';
   char line1[200];
   char line2[200];
+//  char line0[200];
 
-  int turns = 1; // 5000
+  int turns = 1;
+
+  SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
+  
+  stw->setFileName("spin_finestep.dat");
 
   for(ip=0; ip < bunch.size(); ip ++){
-    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
+    //    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
+    //    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    bunch[ip].getPosition().set(0.0, 0.0, 1.0E-3, 0.0, 0.0, 0.0);
     bunch[ip].setSpin(spin);
   }
+
+  /*
+  while(inFile){
+    inFile.getline(line0);
+    line0>>x>>line0>>xp;
+    cout<<x<<xp<<endl;
+  }
+   **/
+
 
   std::cout << "\nSpink tracker " << endl;
   std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
@@ -184,8 +218,11 @@ int main(){
   double wp_time = 0.0;
   bunch.getBeamAttributes().setElapsedTime(wp_time);
 
-  double p  = sqrt(energy*energy - mass*mass);
-  double v = p/energy*UAL::clight;
+  double t0  = bunch.getBeamAttributes().getElapsedTime();
+
+  double gam = energy/mass;
+  double p   = sqrt(energy*energy - mass*mass);
+  double v   = p/gam/energy*UAL::clight;
 
   // length of accelerator
   double suml = OpticsCalculator::getInstance().suml;
@@ -193,6 +230,7 @@ int main(){
 
   for(int iturn = 1; iturn <= turns; iturn++){
 
+    /*
     start_ms();
   for(int it = 1; it <= 100; it++){
     ap->propagate(bunch);
@@ -200,17 +238,21 @@ int main(){
 
     t = (end_ms());
     std::cout << "spink tracker' time  = " << t << " ms" << endl;
+    */
 
     // print global time
 
-    wp_time = bunch.getBeamAttributes().getElapsedTime();
+    t0 = bunch.getBeamAttributes().getElapsedTime();
 
-    std::cout << "global time: " << wp_time << std::endl;
+    //    std::cout << "global time: " << wp_time << std::endl;
     
     for(ip=0; ip < bunch.size(); ip += 1){
 
       PAC::Position& pos = bunch[ip].getPosition();
 
+      ap -> propagate(bunch);
+
+      /*
       std::cout << " bunch " << ip           << ", turn  " << iturn
 		<< ": x = " << pos.getX()    << ", px = " << pos.getPX()
 		<< ", y =  " << pos.getY()   << ", py = " << pos.getPY()
@@ -218,13 +260,29 @@ int main(){
 		<< ", sx = " << bunch[ip].getSpin()->getSX()
 		<< ", sy = " << bunch[ip].getSpin()->getSY()
 		<< ", sz = " << bunch[ip].getSpin()->getSZ() << endl;
+      */
 
-      sprintf(line1, "%1d %7d    %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %c", 
-	      ip,iturn,pos.getX(),pos.getPX(),pos.getY(),pos.getPY(),pos.getCT(),pos.getDE(),endLine);
+      double sx = bunch[ip].getSpin()->getSX();
+      double sy = bunch[ip].getSpin()->getSY();
+      double sz = bunch[ip].getSpin()->getSZ();
+      double x  = pos.getX();
+      double px = pos.getPX();
+      double y  = pos.getY();
+      double py = pos.getPY();
+      double ct = pos.getCT();
+      double de = pos.getDE();
 
-      sprintf(line2, "%1d %7d    %-16.7e %-16.7e %-16.7e %-16.7e %-16.7e %c", 
-	      ip,iturn,bunch[ip].getSpin()->getSX(),bunch[ip].getSpin()->getSY(),
-	      bunch[ip].getSpin()->getSZ(),endLine);
+      double wp_time = t0 + (-ct / cc );
+
+      //      double spin_g2 = (sx*px+sy*py+sz*sqrt(1.0-px*px-py*py))/sqrt(sx*sx+sy*sy+sz*sz);
+
+      double spin_g2 = (sx*px+sy*py+sz*(1.0+x/5.0))/sqrt(sx*sx+sy*sy+sz*sz)/sqrt(px*px+py*py+(1.0+x/5.0)*(1.0+x/5.0));
+
+      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %c", 
+	      ip,iturn,wp_time,x,px,y,py,ct,de,endLine);
+
+      sprintf(line2, "%1d %7d    %-15.9e %-16.7e %-16.7e %-16.7e %-16.7e %c", 
+	      ip,iturn,wp_time,sx,sy,sz,spin_g2,endLine);
 
       out1 << line1 << std::endl;
       out2 << line2 << std::endl;
