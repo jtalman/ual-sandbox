@@ -72,7 +72,7 @@ void SPINK::RFCavityTracker::setLatticeElement(const PacLattElement& e)
       m_h = rfSet->harmon(0);
     }
   }
-  // cerr << "V = " << m_V << " lag = " << m_lag << " harmon = " << m_h << "\n";
+   cerr << "V = " << m_V << " lag = " << m_lag << " harmon = " << m_h << "\n";
 }
 
 void SPINK::RFCavityTracker::propagate(UAL::Probe& probe)
