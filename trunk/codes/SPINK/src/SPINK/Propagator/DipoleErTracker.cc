@@ -244,7 +244,7 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
     double charge = ba.getCharge();
 
     double p = sqrt(energy*energy - mass*mass);
-    double v0byc = p/energy
+    double v0byc = p/energy;
 
     //  getting element data
 
@@ -283,7 +283,7 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
         ex *= charge/v0byc/ns;
         ey *= charge/v0byc/ns;
  
-        # 1 + x/R
+        // 1 + x/R
 
         double dxR       = (1. + h0*x);
 
