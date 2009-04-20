@@ -5,6 +5,12 @@ muon sequence
      rfcavity {
          tag = rf
          at = 0
+         body = {
+                 volt = 0.0003
+                 lag  = 0.0
+                 harmon = 1
+
+                }
          };
    sbenbe
      sbend {
