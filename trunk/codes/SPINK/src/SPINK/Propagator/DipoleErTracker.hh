@@ -9,6 +9,7 @@
 
 #include "SMF/PacLattElement.h"
 
+
 #include "SMF/PacElemLength.h"
 #include "SMF/PacElemBend.h"
 #include "SMF/PacElemMultipole.h"
@@ -51,15 +52,21 @@ namespace SPINK {
     UAL::PropagatorNode* clone();
 
     static void setER(double er) { s_er = er; }
-
     static double getER() { return s_er; }
+
+    static void setEV(double ev) { s_ev = ev; }
+    static double getEv() { return s_ev; }
+
+    static void setEL(double el) { s_el = el; }
+    static double getEL() { return s_el; }
 
   protected:
 
       void addErKick(PAC::Bunch& bunch);
 
       static double s_er; // ER(GV/m)/pc(GV)
-
+      static double s_ev; // EV(GV/m)/pc(GV)
+      static double s_el; // EL(GV/m)/pc(GV)
 
   protected:
 
