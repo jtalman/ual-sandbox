@@ -85,20 +85,6 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 
   stw->write(bunch.getBeamAttributes().getElapsedTime());
 
-  /*
-  PAC::Position& pos = bunch[0].getPosition();
-
-  double sx = bunch[0].getSpin()->getSX();
-  double sy = bunch[0].getSpin()->getSY();
-  double sz = bunch[0].getSpin()->getSZ();
-  double x  = pos.getX();
-  double px = pos.getPX();
-  double y  = pos.getY();
-  double py = pos.getPY();
-  double ct = pos.getCT();
-  double de = pos.getDE();
-  */
-
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
 
   double energy = ba.getEnergy();
@@ -164,11 +150,6 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
       	      << ", sz = " << sz 
 	      << endl;
     */
-    /*
-    sprintf(line, "%-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e%c", 
-	    Bx,By,Bz,a1,a2,a3,endLine);
-    out << line << std::endl;
-    */
 
     return;
   }
@@ -228,11 +209,7 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 	    << ", sz = " << sz 
 	    << endl;
   */
-  /*
-  sprintf(line, "%-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e%c", 
-	  Bx,By,Bz,a1,a2,a3,endLine);
-  out << line << std::endl;
-  */
+
 
 }
 
@@ -390,18 +367,6 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
-  // Test print Sx by Nikolay March 3 2009
-  /*
-    double sx = bunch[0].getSpin()->getSX();
-    std::cout << m_name << " " << sx << std::endl;
-    sx *= 0.9999;
-    bunch[0].getSpin()->setSX(sx);
-  */
-  /*
-  std::ofstream out("spin.out");
-  char endLine = '\0';
-  char line[200];
-  */
   double length = 0;
   double ang = 0;
   double k1 = 0.0, k2 = 0.0;
@@ -493,7 +458,6 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
     spin0[1] = prt.getSpin()-> getSY();
     spin0[2] = prt.getSpin()-> getSZ();
 
-    //    rp_dot_B = pxw*Bx + pyw*By + Bz*sqrt(1-pxw*pxw-pyw*pyw);
     rp_dot_B = pxw*Bx + pyw*By + Bz*(1.0+xw/rho);
     v2       = pxw*pxw+pyw*pyw+(1.0+xw/rho)*(1.0+xw/rho);
 
