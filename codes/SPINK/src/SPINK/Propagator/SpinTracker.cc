@@ -157,11 +157,6 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
       	      << ", sz = " << sz 
 	      << endl;
     */
-    /*
-    sprintf(line, "%-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e%c", 
-	    Bx,By,Bz,a1,a2,a3,endLine);
-    out << line << std::endl;
-    */
 
     return;
   }
@@ -218,11 +213,6 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 	    << ", sx = " << sx <<", sy = " << sy
 	    << ", sz = " << sz 
 	    << endl;
-  */
-  /*
-  sprintf(line, "%-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e%c", 
-	  Bx,By,Bz,a1,a2,a3,endLine);
-  out << line << std::endl;
   */
 
 }
@@ -322,11 +312,7 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     sx *= 0.9999;
     bunch[0].getSpin()->setSX(sx);
   */
-  /*
-  std::ofstream out("spin.out");
-  char endLine = '\0';
-  char line[200];
-  */
+
   double length = 0;
   double ang = 0;
   double k1 = 0.0, k2 = 0.0;
@@ -419,9 +405,7 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 
     cof      = sqrt(pxw*pxw + pyw*pyw + ( 1.0 + xw/rho)*(1.0 + xw/rho)) / (1.0E+9 * pw/cc);
 
-    //    cout.precision(15);        
-    //    std::cout<<cof<<endl;
-    
+   
     a1 = cof*((1 + Ggam_w)*Bx - (Ggam_w - GG)*rp_dot_B * pxw / v2 
 	       + (Ggam_w + gam_w/(1.0 + gam_w)) * (Ey*sqrt(1.0-pxw*pxw-pyw*pyw)-Ez*pyw)*beta_s/cc)
                + EDM_eta/beta_s/cc*(Ex + cc * beta_s *(pyw*Bz - sqrt(1.0-pxw*pxw-pyw*pyw)*By));
