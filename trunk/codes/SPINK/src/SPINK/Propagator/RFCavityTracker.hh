@@ -72,7 +72,6 @@ namespace SPINK {
       RFCavityTrackerRegister();
   };
 
-
 }
 
 #endif
