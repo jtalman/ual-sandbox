@@ -16,7 +16,10 @@
 #include <iostream>
 #include <fstream>
 
+
 double SPINK::DipoleErTracker::s_er = 0;
+double SPINK::DipoleErTracker::s_ev = 0;
+double SPINK::DipoleErTracker::s_el = 0;
 
 SPINK::DipoleErTracker::DipoleErTracker()
 {
@@ -74,7 +77,7 @@ void SPINK::DipoleErTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 
 void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 {
-    std::cout << "DipoleErTracker " << m_name << std::endl;
+  //    std::cout << "DipoleErTracker " << m_name << std::endl;
 
   SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
 
@@ -243,8 +246,8 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
     double mass   = ba.getMass();
     double charge = ba.getCharge();
 
-    double p = sqrt(energy*energy - mass*mass);
-    double v0byc = p/energy;
+    double pc    = sqrt(energy*energy - mass*mass);
+    double v0byc = pc/energy;
 
     //  getting element data
 
@@ -278,17 +281,19 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
         // ex
 
         double ex = s_er/(1. + h0*x) - s_er;
-        double ey = 0;
+        double ey = s_ev;
+	double ez = s_el;
 
         ex *= charge/v0byc/ns;
         ey *= charge/v0byc/ns;
+	ez *= charge/v0byc/ns;
  
         // 1 + x/R
 
-        double dxR       = (1. + h0*x);
+        double dxRbypc = (1. + h0*x)/pc;
 
-        px += ex*dxR;
-        py += ey*dxR;
+        px += ex*dxRbypc;
+        py += ey*dxRbypc;
 
         pos.setPX(px);
         pos.setPY(py);
@@ -408,6 +413,8 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
 
   if(p_length)     length = p_length->l();
   if(p_bend)       ang    = p_bend->angle();
+
+  cout<<"angle"<<ang<<endl;
   
   if(p_mlt){
     k1   = p_mlt->kl(1)/length;
@@ -464,9 +471,9 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
     
     if(ang){
       rho  = length / ang;
-      Ex   = Er / (1.0 + xw / rho);
-      Ey   = Ev;
-      Ez   = El;
+      Ex   = s_er / (1.0 + xw / rho);
+      Ey   = s_ev;
+      Ez   = s_el;
     }
 
     brho   = 1.0E+9*ps/cc; 
@@ -474,9 +481,12 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
     // For a general magnetic field, not including skew quads, solenoid, snake etc.
 
     Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
-    By     = brho*(1.0/rho + k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw));
+    By     = brho*(1.0/rho + k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw)) 
+             + (sqrt(1.0-pxw*pxw-pyw*pyw)*s_er - pxw*s_el)/(beta_w);
     Bz     = 0.0;
-     
+
+    //    cout<<brho<<"  "<<rho<<"  "<<By<<endl;
+
     vector<double> spin0(3, 0.0), spin(3, 0.0);   
      
     spin0[0] = prt.getSpin()-> getSX();
