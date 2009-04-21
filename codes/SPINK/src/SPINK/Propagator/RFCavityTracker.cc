@@ -77,10 +77,11 @@ void SPINK::RFCavityTracker::setLatticeElement(const PacLattElement& e)
 
 void SPINK::RFCavityTracker::propagate(UAL::Probe& probe)
 {
-   std::cout << "SPINK::RFCavityTracker " << m_name << std::endl;
+  //   std::cout << "SPINK::RFCavityTracker " << m_name << std::endl;
 
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
 
+  
   // cerr << "V = " << m_V << ", lag = " << m_lag << ", harmon = " << m_h << ", l = " << m_l << "\n";
   
   // Old beam attributes
