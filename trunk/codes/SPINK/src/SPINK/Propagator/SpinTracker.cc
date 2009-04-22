@@ -59,7 +59,7 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
     m_name = lattice[is0].getName();
 
-   std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
+//   std::cout << "SpinTracker  "<<is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
 
    /*
    if(p_complexity) std::cout << " n = " << p_complexity->n()  << std::endl;
@@ -80,6 +80,7 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 
   stw->write(bunch.getBeamAttributes().getElapsedTime());
 
+  std::cout << "SpinTrackers  "<< m_name  << std::endl;
   /*
   PAC::Position& pos = bunch[0].getPosition();
 
@@ -377,14 +378,15 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     double pw     = sqrt(ew*ew - m0*m0);
     double beta_w = pw/ew,    gam_w  = ew/m0;
     double Ggam_w = GG*gam_w;
-    
+
+    /*
     if(ang){
       rho  = length / ang;
       Ex   = Er / (1.0 + xw / rho);
       Ey   = Ev;
       Ez   = El;
     }
-
+    */
     brho   = 1.0E+9*ps/cc; 
     
     // For a general magnetic field, not including skew quads, solenoid, snake etc.
@@ -405,19 +407,18 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
 
     cof      = sqrt(pxw*pxw + pyw*pyw + ( 1.0 + xw/rho)*(1.0 + xw/rho)) / (1.0E+9 * pw/cc);
 
-   
-    a1 = cof*((1 + Ggam_w)*Bx - (Ggam_w - GG)*rp_dot_B * pxw / v2 
-	       + (Ggam_w + gam_w/(1.0 + gam_w)) * (Ey*sqrt(1.0-pxw*pxw-pyw*pyw)-Ez*pyw)*beta_s/cc)
-               + EDM_eta/beta_s/cc*(Ex + cc * beta_s *(pyw*Bz - sqrt(1.0-pxw*pxw-pyw*pyw)*By));
-     
+    a1 = cof*((1 + Ggam_w)*Bx - (Ggam_w - GG)*rp_dot_B * pxw / v2
+	       + (Ggam_w + gam_w/(1.0 + gam_w)) * (Ey*(1.0+xw/rho)-Ez*pyw)*beta_w/cc)
+               + EDM_eta/beta_w/cc*(Ex + cc * beta_w *(pyw*Bz - (1.0+xw/rho)*By));
+
     a2 = cof*((1 + Ggam_w)*By - (Ggam_w - GG)*rp_dot_B * pyw / v2
-	       + (Ggam_w + gam_w/(1.0 + gam_w))*(Ez*pxw-Ex*sqrt(1.0-pxw*pxw-pyw*pyw))*beta_s/cc)
-               + EDM_eta/beta_s/cc*(Ey + cc * beta_s *(sqrt(1.0-pxw*pxw-pyw*pyw)*Bx - pyw*Bz));
-     
+	       + (Ggam_w + gam_w/(1.0 + gam_w))*(Ez*pxw-Ex*(1.0+xw/rho))*beta_w/cc)
+               + EDM_eta/beta_w/cc*(Ey + cc * beta_w *((1.0+xw/rho)*Bx - pyw*Bz));
+
     a3 = cof*((1 + Ggam_w)*Bz - (Ggam_w - GG)*rp_dot_B * (1.0+xw/rho) / v2
-	       + (Ggam_w + gam_w/(1 + gam_w)) * (Ex*pyw - Ey*pxw)*beta_s/cc)
-               + EDM_eta/beta_s/cc*(Ez + cc * beta_s *(pxw*By - pyw*Bx)) ;
-     
+	       + (Ggam_w + gam_w/(1 + gam_w)) * (Ex*pyw - Ey*pxw)*beta_w/cc)
+               + EDM_eta/beta_w/cc*(Ez + cc * beta_w *(pxw*By - pyw*Bx)) ;
+  
     omega = sqrt( a1*a1 + (a2 - 1.0/rho)*(a2 - 1.0/rho) + a3*a3 );
     //    mu    = omega * beta_s * (-ctw3 + ctw1 + length/ns/beta_s) * abs(GG)/GG;
     mu    = omega * length / ns * abs(GG) / GG;
