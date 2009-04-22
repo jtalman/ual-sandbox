@@ -107,6 +107,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 11.482014
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq
      quadrupole {
@@ -128,6 +131,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 15.646042
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quadfq
      quadrupole {
@@ -149,6 +155,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 19.81007
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq.2
      quadrupole {
@@ -170,6 +179,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 23.974098
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quadfq.2
      quadrupole {
@@ -191,6 +203,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 28.138126
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq.3
      quadrupole {
@@ -212,6 +227,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 32.302154
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quadfq.3
      quadrupole {
@@ -233,6 +251,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 36.466182
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq.4
      quadrupole {
@@ -254,6 +275,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 40.63021
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    sextsxf2.2
      sextupole {
@@ -376,6 +400,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 54.194238
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq.5
      quadrupole {
@@ -397,6 +424,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 58.358266
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quadfq.4
      quadrupole {
@@ -418,6 +448,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 62.522294
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq.6
      quadrupole {
@@ -439,6 +472,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 66.686322
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quadfq.5
      quadrupole {
@@ -460,6 +496,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 70.85035
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq.7
      quadrupole {
@@ -481,6 +520,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 75.014378
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quadfq.6
      quadrupole {
@@ -502,6 +544,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 79.178406
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    quaddq.8
      quadrupole {
@@ -523,6 +568,9 @@ edm sequence
          tag = sbenbe
          arc = 3.301028
          at = 83.342434
+         body = {
+                 kl = [ 0.392699024506]
+                }
          };
    sextsxf2.4
      sextupole {
