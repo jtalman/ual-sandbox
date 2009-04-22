@@ -33,7 +33,7 @@ lenBE := 3.301028;
 ang   := lenBE/R;
 B1S   := 0.0 ;                        //   [T/m2]
 K2BS  := B1S/BRHO;
-SBENBE: sbend, L= 3.301028, angle= ang, K2= K2BS; //, K1= 0.003035;
+SBENBE: sbend, L= 3.301028, angle= ang; //, K2= K2BS; //, K1= 0.003035;
 
 // !
 // !------------  Quads.in BE section ----------------------------
