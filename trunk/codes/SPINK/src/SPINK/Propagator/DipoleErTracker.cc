@@ -64,8 +64,10 @@ void SPINK::DipoleErTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 
     m_name = lattice[is0].getName();
 
+
+ //   std::cout << "DipoleEr  "<<is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
+
     /*
-   std::cout << is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
    if(p_complexity) std::cout << " n = " << p_complexity->n()  << std::endl;
    if(p_length)  std::cout << " l = " << p_length->l() << std::endl;
    if(p_bend)   std::cout <<  " angle = " << p_bend->angle() << std::endl;
@@ -86,6 +88,8 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
   stw->write(bunch.getBeamAttributes().getElapsedTime());
 
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+
+  std::cout << "DipoleEr  "<< m_name  << std::endl;
 
   double energy = ba.getEnergy();
   double mass   = ba.getMass();
@@ -122,6 +126,8 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 
     t0 += length/v;
     ba.setElapsedTime(t0);
+
+    addErKick(bunch);                   // add electric field
 
     m_bunch3 = bunch;
 
@@ -179,6 +185,8 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 
     t0 += length/v;
     ba.setElapsedTime(t0);
+
+    addErKick(bunch);                   // add electric field
 
     m_bunch3 = bunch;
 
@@ -379,8 +387,6 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
   if(p_length)     length = p_length->l();
   if(p_bend)       ang    = p_bend->angle();
 
-  cout<<"angle"<<ang<<endl;
-  
   if(p_mlt){
     k1   = p_mlt->kl(1)/length;
     k2   = 2.0*p_mlt->kl(2)/length;
@@ -447,7 +453,7 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
 
     Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
     By     = brho*(1.0/rho + k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw)) 
-             + (sqrt(1.0-pxw*pxw-pyw*pyw)*s_er - pxw*s_el)/(beta_w);
+             + s_er/ (1.0 + xw / rho)/(beta_w*cc);
     Bz     = 0.0;
 
     //    cout<<brho<<"  "<<rho<<"  "<<By<<endl;
@@ -467,16 +473,16 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
     //    std::cout<<cof<<endl;
     
     a1 = cof*((1 + Ggam_w)*Bx - (Ggam_w - GG)*rp_dot_B * pxw / v2 
-	       + (Ggam_w + gam_w/(1.0 + gam_w)) * (Ey*sqrt(1.0-pxw*pxw-pyw*pyw)-Ez*pyw)*beta_s/cc)
-               + EDM_eta/beta_s/cc*(Ex + cc * beta_s *(pyw*Bz - sqrt(1.0-pxw*pxw-pyw*pyw)*By));
+	       + (Ggam_w + gam_w/(1.0 + gam_w)) * (Ey*(1.0+xw/rho)-Ez*pyw)*beta_w/cc)
+               + EDM_eta/beta_w/cc*(Ex + cc * beta_w *(pyw*Bz - (1.0+xw/rho)*By));
      
     a2 = cof*((1 + Ggam_w)*By - (Ggam_w - GG)*rp_dot_B * pyw / v2
-	       + (Ggam_w + gam_w/(1.0 + gam_w))*(Ez*pxw-Ex*sqrt(1.0-pxw*pxw-pyw*pyw))*beta_s/cc)
-               + EDM_eta/beta_s/cc*(Ey + cc * beta_s *(sqrt(1.0-pxw*pxw-pyw*pyw)*Bx - pyw*Bz));
+	       + (Ggam_w + gam_w/(1.0 + gam_w))*(Ez*pxw-Ex*(1.0+xw/rho))*beta_w/cc)
+               + EDM_eta/beta_w/cc*(Ey + cc * beta_w *((1.0+xw/rho)*Bx - pyw*Bz));
      
     a3 = cof*((1 + Ggam_w)*Bz - (Ggam_w - GG)*rp_dot_B * (1.0+xw/rho) / v2
-	       + (Ggam_w + gam_w/(1 + gam_w)) * (Ex*pyw - Ey*pxw)*beta_s/cc)
-               + EDM_eta/beta_s/cc*(Ez + cc * beta_s *(pxw*By - pyw*Bx)) ;
+	       + (Ggam_w + gam_w/(1 + gam_w)) * (Ex*pyw - Ey*pxw)*beta_w/cc)
+               + EDM_eta/beta_w/cc*(Ez + cc * beta_w *(pxw*By - pyw*Bx)) ;
      
     omega = sqrt( a1*a1 + (a2 - 1.0/rho)*(a2 - 1.0/rho) + a3*a3 );
     //    mu    = omega * beta_s * (-ctw3 + ctw1 + length/ns/beta_s) * abs(GG)/GG;
