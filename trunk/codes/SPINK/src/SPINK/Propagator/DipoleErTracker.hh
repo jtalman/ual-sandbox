@@ -9,7 +9,6 @@
 
 #include "SMF/PacLattElement.h"
 
-
 #include "SMF/PacElemLength.h"
 #include "SMF/PacElemBend.h"
 #include "SMF/PacElemMultipole.h"
@@ -105,6 +104,8 @@ namespace SPINK {
   protected:
 
     void propagateSpin(UAL::Probe& b);
+    double get_psp0(PAC::Position& p, double v0byc);
+
 
   private:
 
