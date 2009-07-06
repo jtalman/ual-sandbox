@@ -266,13 +266,17 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
         PAC::Particle& prt = bunch[i];
         PAC::Position& pos = prt.getPosition();
     
-        double x   = pos.getX();
-        double px  = pos.getPX();
+        double x     = pos.getX();
+        double px    = pos.getPX();
     
-        double y   = pos.getY();
-        double py  = pos.getPY();
+        double y     = pos.getY();
+        double py    = pos.getPY();
 
-/*
+	double de    = pos.getDE();
+	double ew0   = energy + de;
+
+
+	/*
         // ex
 
         double ex = s_er/(1. + h0*x) - s_er;
@@ -292,7 +296,7 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
 
         pos.setPX(px);
         pos.setPY(py);
- */
+	*/
 
 
         //ssh 1 + x/R
@@ -312,11 +316,20 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
         ey *= charge/v0byc/ns;
 	ez *= charge/v0byc/ns;
 
-        pos.setPX(px);
+        px += ex;
+        py += ey;
+
+	pos.setPX(px);
         pos.setPY(py);
 
-    }
+	double pcw   = pc*sqrt(psp0*psp0 + px*px + py*py);
+	double ew    = sqrt(pcw*pcw + mass*mass);
 
+	de           = (ew - energy)/pc;
+	pos.setDE(de);
+
+    }
+    
 }
 
 void SPINK::DipoleErTracker::setElementData(const PacLattElement& e)
@@ -475,29 +488,29 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
     if(ang){
       rho  = length / ang;
       Ex   = s_er * 1.0E+9 / (1.0 + xw / rho);
-      //      Ex   = s_er / (1.0 + xw / rho);
-      Ey   = s_ev;
-      Ez   = s_el;
+      Ey   = s_ev * 1.0E+9;
+      Ez   = s_el * 1.0E+9;
     }
 
 
     brho   = 1.0E+9*ps/cc; 
     
     // For a general magnetic field, not including skew quads, solenoid, snake etc.
-    /*
+
     Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
     By     = brho*(1.0/rho + k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw)) 
              + Ex*1.0E+9/(beta_w*cc);
     Bz     = 0.0;
-    */
 
 
+
+    /*
     // For proton EDM, only radial electric field in the dipole area
 
     Bx     = 0.0;
     By     = 0.0;
     Bz     = 0.0;
-
+    */
 
     //    cout<<brho<<"  "<<rho<<"  "<<By<<endl;
 
