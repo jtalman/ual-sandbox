@@ -1,7 +1,7 @@
 // Library       : SPINK
 // File          : SPINK/Propagator/SpinTracker.cc
 // Copyright     : see Copyright file
-// Author        : A.Luccio
+// Author        : F.Lin
 // C++ version   : N.Malitsky 
 
 #include "UAL/APF/PropagatorFactory.hh"
@@ -59,15 +59,15 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
     m_name = lattice[is0].getName();
 
-//   std::cout << "SpinTracker  "<<is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
+    /*
+    std::cout << "SpinTracker  "<<is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
 
-   /*
    if(p_complexity) std::cout << " n = " << p_complexity->n()  << std::endl;
    if(p_length)  std::cout << " l = " << p_length->l() << std::endl;
    if(p_bend)   std::cout <<  " angle = " << p_bend->angle() << std::endl;
    if(p_mlt)    std::cout << " kl1 = "  << p_mlt->kl(1) << std::endl;
    std::cout << std::endl;
-   */
+    */
 
 }
 
@@ -80,7 +80,6 @@ void SPINK::SpinTracker::propagate(UAL::Probe& b)
 
   stw->write(bunch.getBeamAttributes().getElapsedTime());
 
-  std::cout << "SpinTrackers  "<< m_name  << std::endl;
   /*
   PAC::Position& pos = bunch[0].getPosition();
 
@@ -379,14 +378,15 @@ void SPINK::SpinTracker::propagateSpin(UAL::Probe& b)
     double beta_w = pw/ew,    gam_w  = ew/m0;
     double Ggam_w = GG*gam_w;
 
-    /*
+    /*    
     if(ang){
       rho  = length / ang;
-      Ex   = Er / (1.0 + xw / rho);
-      Ey   = Ev;
-      Ez   = El;
+      Ex   = s_er * 1.0E+9 / (1.0 + xw / rho);
+      Ey   = s_ev * 1.0E+9;
+      Ez   = s_el * 1.0E+9;
     }
     */
+
     brho   = 1.0E+9*ps/cc; 
     
     // For a general magnetic field, not including skew quads, solenoid, snake etc.
