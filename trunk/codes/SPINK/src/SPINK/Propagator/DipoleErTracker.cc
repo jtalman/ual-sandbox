@@ -110,7 +110,7 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
     t0 += length/v;
     ba.setElapsedTime(t0);
 
-    addErKick(bunch);                   // add electric field
+    // addErKick(bunch);                   // add electric field
 
     m_bunch2 = bunch;
 
@@ -121,35 +121,9 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
     t0 += length/v;
     ba.setElapsedTime(t0);
 
-    addErKick(bunch);                   // add electric field
-
     m_bunch3 = bunch;
 
     propagateSpin(b);                    // calculate spin motin using m_bunch2
-
-    /*    
-    PAC::Position& pos2 = m_bunch2[0].getPosition();
-
-    double sx = m_bunch2[0].getSpin()->getSX();
-    double sy = m_bunch2[0].getSpin()->getSY();
-    double sz = m_bunch2[0].getSpin()->getSZ();
-    double x  = pos2.getX();
-    double px = pos2.getPX();
-    double y  = pos2.getY();
-    double py = pos2.getPY();
-    double ct = pos2.getCT();
-    double de = pos2.getDE();
-
-    double wp_time = t0 + (-ctw3 / cc);
-
-    cout.precision(15);
-    std::cout << m_name << " x = " << x << ", px = " << px
-	      << ", y  = " << y << ", py = " << py
-      //	      << ", ct = " << ct<< ", dE = " << de
-      	      << ", sx = " << sx <<", sy = " << sy
-      	      << ", sz = " << sz 
-	      << endl;
-    */
 
     return;
   }
@@ -179,8 +153,6 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 
     t0 += length/v;
     ba.setElapsedTime(t0);
-
-    //    addErKick(bunch);                   // add electric field
 
     m_bunch3 = bunch;
 
@@ -275,6 +247,11 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
 	double de    = pos.getDE();
 	double ew0   = energy + de;
 
+	/*
+	cout.precision(15);
+	std::cout << " ew0 = " <<  ew0 << endl;
+	std::cout << " de = " <<  de << endl;
+	*/
 
 	/*
         // ex
@@ -283,9 +260,9 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
         double ey = s_ev;
 	double ez = s_el;
 
-        ex *= charge/v0byc/ns;
-        ey *= charge/v0byc/ns;
-	ez *= charge/v0byc/ns;
+        ex *= charge/v0byc*(length/ns);
+        ey *= charge/v0byc*(length/ns);
+	ez *= charge/v0byc*(length/ns);
  
         // 1 + x/R
 
@@ -308,13 +285,14 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
 
         // ex
 
-        double ex = s_er/(1. + h0*x)*dxR_by_ps - s_er*dxR;
+	//        double ex = s_er/(1. + h0*x)*dxR_by_ps - s_er*dxR;
+        double ex = s_er*dxR_by_ps - s_er*dxR;
         double ey = s_ev;
 	double ez = s_el;
 
-        ex *= charge/v0byc/ns;
-        ey *= charge/v0byc/ns;
-	ez *= charge/v0byc/ns;
+        ex *= charge/v0byc*(length/ns);
+        ey *= charge/v0byc*(length/ns);
+	ez *= charge/v0byc*(length/ns);
 
         px += ex;
         py += ey;
@@ -325,9 +303,17 @@ void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
 	double pcw   = pc*sqrt(psp0*psp0 + px*px + py*py);
 	double ew    = sqrt(pcw*pcw + mass*mass);
 
+	
+
 	de           = (ew - energy)/pc;
 	pos.setDE(de);
 
+	/*
+	cout.precision(15);
+	std::cout << " psp0 = " <<  psp0  << endl;
+	//	std::cout << " ew = " <<  ew << endl;
+	//s	std::cout << " de = " <<  de << endl;
+	*/
     }
     
 }
@@ -488,31 +474,34 @@ void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
     if(ang){
       rho  = length / ang;
       Ex   = s_er * 1.0E+9 / (1.0 + xw / rho);
+      //      Ex   = s_er * 1.0E+9;
       Ey   = s_ev * 1.0E+9;
       Ez   = s_el * 1.0E+9;
     }
 
 
     brho   = 1.0E+9*ps/cc; 
-    
+
+
     // For a general magnetic field, not including skew quads, solenoid, snake etc.
+
 
     Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
     By     = brho*(1.0/rho + k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw)) 
              + Ex*1.0E+9/(beta_w*cc);
     Bz     = 0.0;
 
-
-
-    /*
+ 
     // For proton EDM, only radial electric field in the dipole area
 
-    Bx     = 0.0;
-    By     = 0.0;
+    /*
+    Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
+    By     = brho*(k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw)) 
+             + Ex*1.0E+9/(beta_w*cc);
     Bz     = 0.0;
     */
 
-    //    cout<<brho<<"  "<<rho<<"  "<<By<<endl;
+    //    std::cout<<brho<<"  "<<rho<<"  "<<" "<<k1<<" "<<ps<<endl;
 
     vector<double> spin0(3, 0.0), spin(3, 0.0);   
      
