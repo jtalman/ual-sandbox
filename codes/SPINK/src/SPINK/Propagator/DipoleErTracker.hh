@@ -101,7 +101,9 @@ namespace SPINK {
     /** Conventional tracker (body) */
     UAL::PropagatorNodePtr m_tracker;
 
-  protected:
+    //  protected:
+
+  public:
 
     void propagateSpin(UAL::Probe& b);
     double get_psp0(PAC::Position& p, double v0byc);
