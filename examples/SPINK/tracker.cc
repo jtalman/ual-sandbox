@@ -31,7 +31,7 @@ int main(){
   std::cout << "\nBuild lattice." << std::endl;
   // ************************************************************************
 
-  shell.readSXF(Args() << Arg("file",  "./data/muon.sxf"));
+  shell.readSXF(Args() << Arg("file",  "./data/muon_R100m.sxf"));
 
   // ************************************************************************
   std::cout << "\nAdd split ." << std::endl;
@@ -53,14 +53,14 @@ int main(){
   std::cout << "\nWrite ADXF file ." << std::endl;
   // ************************************************************************
 
-  shell.writeSXF(Args() << Arg("file",  "./out/cpp/muon.sxf"));
+  shell.writeSXF(Args() << Arg("file",  "./out/cpp/muon_R100m.sxf"));
 
   // ************************************************************************
   std::cout << "\nDefine beam parameters." << std::endl;
   // ************************************************************************
 
   double energy = 0.145477474;
-  double mass   = 0.10565839;
+  double mass   = 0.10565839;           // muon rest mass
 
   shell.setBeamAttributes(Args() << Arg("energy", energy) << Arg("mass", mass));
 
@@ -84,7 +84,7 @@ int main(){
   // ************************************************************************
 
   PAC::BeamAttributes& ba = shell.getBeamAttributes();
-  ba.setG(0.0011659230);
+  ba.setG(0.0011659230);             // muon G factor
 
   // ************************************************************************
   std::cout << "\n Algorithm Part. " << std::endl;
@@ -107,10 +107,13 @@ int main(){
   std::cout << "\n Electric field. " << std::endl;
   // ************************************************************************
 
-  double ER  = 0.012; // GV/m
+  //  double ER  = 0.012; // GV/m
+  double ER  = 0.0, EV = 0.0, EL = 0.0; // GV/m
   double pc = sqrt(energy*energy - mass*mass);
   
-  SPINK::DipoleErTracker::setER(ER/pc);
+  SPINK::DipoleErTracker::setER(ER);
+  SPINK::DipoleErTracker::setEV(EV);
+  SPINK::DipoleErTracker::setEL(EL);
 
  // ************************************************************************
   std::cout << "\n Tracking. " << std::endl;
@@ -188,7 +191,7 @@ int main(){
   char line2[200];
 //  char line0[200];
 
-  int turns = 1;
+  int turns = 1000000;
 
   SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
   
@@ -196,8 +199,8 @@ int main(){
 
   for(ip=0; ip < bunch.size(); ip ++){
     //    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
-    //    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-    bunch[ip].getPosition().set(0.0, 0.0, 1.0E-3, 0.0, 0.0, 0.0);
+    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    //    bunch[ip].getPosition().set(0.0, 0.0, 1.0E-3, 0.0, 0.0, 0.0);
     bunch[ip].setSpin(spin);
   }
 
@@ -223,6 +226,7 @@ int main(){
   double gam = energy/mass;
   double p   = sqrt(energy*energy - mass*mass);
   double v   = p/gam/energy*UAL::clight;
+  double v0byc = p/energy;
 
   // length of accelerator
   double suml = OpticsCalculator::getInstance().suml;
@@ -272,14 +276,24 @@ int main(){
       double ct = pos.getCT();
       double de = pos.getDE();
 
+      SPINK::DipoleErTracker psbyp0;
+      
+      double psp0 = psbyp0.get_psp0(pos, v0byc);
+
       double wp_time = t0 + (-ct / cc );
+      
+      double ew   = de * p + energy;
 
       //      double spin_g2 = (sx*px+sy*py+sz*sqrt(1.0-px*px-py*py))/sqrt(sx*sx+sy*sy+sz*sz);
 
-      double spin_g2 = (sx*px+sy*py+sz*(1.0+x/5.0))/sqrt(sx*sx+sy*sy+sz*sz)/sqrt(px*px+py*py+(1.0+x/5.0)*(1.0+x/5.0));
+      //      double spin_g2 = (sx*px+sy*py+sz*(1.0+x/20.0))/sqrt(sx*sx+sy*sy+sz*sz)/sqrt(px*px+py*py+(1.0+x/20.0)*(1.0+x/20.0));
 
-      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %c", 
-	      ip,iturn,wp_time,x,px,y,py,ct,de,endLine);
+      //      double spin_g2 = (sx*px+sy*py+sz*(1.0+x/5.0))/sqrt(sx*sx+sy*sy+sz*sz)/sqrt(px*px+py*py+(1.0+x/5.0)*(1.0+x/5.0));
+
+      double spin_g2 = (sx*px+sy*py+sz*(1.0+x/100.0))/sqrt(sx*sx+sy*sy+sz*sz)/sqrt(px*px+py*py+(1.0+x/100.0)*(1.0+x/100.0));
+
+      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c", 
+	      ip,iturn,wp_time,x,px,y,py,ct,de,psp0,ew,endLine);
 
       sprintf(line2, "%1d %7d    %-15.9e %-16.7e %-16.7e %-16.7e %-16.7e %c", 
 	      ip,iturn,wp_time,sx,sy,sz,spin_g2,endLine);
