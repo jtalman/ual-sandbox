@@ -86,29 +86,14 @@ void SPINK::FringeTracker::propagate(UAL::Probe& b)
 
   int ns = 4*p_complexity->n();
 
-  length /= 2*ns;
+  length /= ns;
 
   for(int i=0; i < ns; i++) {
 
-    m_bunch1 = bunch;
-
-    if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
     m_tracker->propagate(bunch);
-    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
 
     t0 += length/v;
     ba.setElapsedTime(t0);
-
-    m_bunch2 = bunch;
-
-    if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
-    m_tracker->propagate(bunch);
-    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
-
-    t0 += length/v;
-    ba.setElapsedTime(t0);
-
-    m_bunch3 = bunch;
 
     addErKick(bunch,i);                   // add electric field
 
@@ -149,6 +134,7 @@ void SPINK::FringeTracker::addErKick(PAC::Bunch& bunch, int ii)
     //  getting element data
 
     double length = 0;
+    double h0     = 0; // 1/rho
 
     if(p_length)     length = p_length->l();
 
@@ -161,11 +147,9 @@ void SPINK::FringeTracker::addErKick(PAC::Bunch& bunch, int ii)
 
         if(bunch[i].isLost() ) continue;
 
-	//        PAC::Particle& prt = bunch[i];
-	//        PAC::Position& pos = prt.getPosition();
+	PAC::Particle& prt = bunch[i];
+	PAC::Position& pos = prt.getPosition();
 
-	PAC::Position& pos = m_bunch2[i].getPosition();
-    
         double x     = pos.getX();
         double px    = pos.getPX();
     
@@ -175,18 +159,9 @@ void SPINK::FringeTracker::addErKick(PAC::Bunch& bunch, int ii)
 	double de    = pos.getDE();
 	double ew0   = energy + de;
 
-	PAC::Position& pos1 = m_bunch1[i].getPosition();
-	PAC::Position& pos3 = m_bunch3[i].getPosition();
-
-	double x1    = pos1.getX();
-	double x3    = pos3.getX();
-
-	double y1    = pos1.getY();
-	double y3    = pos3.getY();
-
         // ex,ey,ez
 
-	leng   = length / ns * ii + length / ns / 2;
+	leng   = length / ns * ii;
 	sigm   = 0.02;
 	sigm2  = sigma**2;
 	sigm4  = sigma2**2;
@@ -221,7 +196,7 @@ void SPINK::FringeTracker::addErKick(PAC::Bunch& bunch, int ii)
 	pos.setPX(px);
         pos.setPY(py);
 
-	de  = charge*(ext*(x3-x1)+eyt*(y3-y1)+eyz*(length/ns));
+	de  = charge/pc*(ext*px+eyt*py+eyz*(1.+h0*x))*(length/ns);
 	pos.setDE(de);
 
     }
@@ -320,8 +295,6 @@ void SPINK::FringeTracker::propagateSpin(UAL::Probe& b, int ii)
   double k1 = 0.0, k2 = 0.0;
   int ns = 0;
 
-  double t0 = m_bunch2.getBeamAttributes().getElapsedTime();
-  
   //  getting element data
 
   if(p_length)     length = p_length->l();
@@ -364,21 +337,16 @@ void SPINK::FringeTracker::propagateSpin(UAL::Probe& b, int ii)
     
     PAC::Particle& prt = bunch[i];
 
-    PAC::Position& pos1 = m_bunch1[i].getPosition();
-    PAC::Position& pos2 = m_bunch2[i].getPosition();
-    PAC::Position& pos3 = m_bunch3[i].getPosition();
+    PAC::Position& pos = prt.getPosition();
 
-    xw   = pos2.getX(),  pxw  = pos2.getPX();
-    yw   = pos2.getY(),  pyw  = pos2.getPY();
-    ctw  = pos2.getCT(), dew  = pos2.getDE();
-
-    ctw1 = pos1.getCT(), ctw3 = pos3.getCT();
+    xw   = pos.getX(),  pxw  = pos.getPX();
+    yw   = pos.getY(),  pyw  = pos.getPY();
+    ctw  = pos.getCT(), dew  = pos.getDE();
 
     double ew     = es + dew*ps;
     double pw     = sqrt(ew*ew - m0*m0);
     double beta_w = pw/ew,    gam_w  = ew/m0;
     double Ggam_w = GG*gam_w;
-
     
     // ex,ey,ez
 
@@ -443,7 +411,6 @@ void SPINK::FringeTracker::propagateSpin(UAL::Probe& b, int ii)
                + EDM_eta/beta_w/cc*(Ez + cc * beta_w *(pxw*By - pyw*Bx)) ;
      
     omega = sqrt( a1*a1 + (a2 - 1.0/rho)*(a2 - 1.0/rho) + a3*a3 );
-    //    mu    = omega * beta_s * (-ctw3 + ctw1 + length/ns/beta_s) * abs(GG)/GG;
     mu    = omega * length / ns * abs(GG) / GG;
     
     a1 = a1 / omega;
