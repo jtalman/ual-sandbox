@@ -72,6 +72,8 @@ namespace SPINK {
     // PacElemSolenoid* p_solenoid;    // 8: ks
     // PacElemRfCavity* p_rf;          // 9: volt, lag, harmon
 
+    PAC::Bunch m_bunch1, m_bunch2, m_bunch3;
+
   protected:
 
     // TEAPOT trackers
@@ -86,9 +88,6 @@ namespace SPINK {
   protected:
 
     void propagateSpin(UAL::Probe& b);
-    void propagateSpin(PAC::BeamAttributes& ba, PAC::Particle& prt);
-
-    double get_psp0(PAC::Position& p, double v0byc);
 
   private:
 
