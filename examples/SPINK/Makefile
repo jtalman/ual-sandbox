@@ -35,7 +35,9 @@ LIBS += 					-lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-OBJS = $(OBJ_DIR)/timer.o
+OBJS = $(OBJ_DIR)/timer.o \
+	   $(OBJ_DIR)/PositionPrinter.o \
+	   $(OBJ_DIR)/SpinPrinter.o 
 
 
 compile : $(OBJS) ./tracker
@@ -48,5 +50,8 @@ clean :
 
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
+	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
 
