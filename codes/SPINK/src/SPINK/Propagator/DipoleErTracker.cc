@@ -76,11 +76,10 @@ void SPINK::DipoleErTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 
 void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 {
-
-  SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
-
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
+
+  SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
   stw->write(bunch.getBeamAttributes().getElapsedTime());
 
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
@@ -101,8 +100,6 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 
     length /= 2;
 
-    m_bunch1 = bunch;
-
     if(p_mlt) *p_mlt /= 2.;             // kl, kt
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= 2.;             // kl, kt
@@ -111,8 +108,7 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
     ba.setElapsedTime(t0);
 
     // addErKick(bunch);                   // add electric field
-
-    m_bunch2 = bunch;
+    propagateSpin(bunch);
 
     if(p_mlt) *p_mlt /= 2.;             // kl, kt
     m_tracker->propagate(bunch);
@@ -120,10 +116,6 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 
     t0 += length/v;
     ba.setElapsedTime(t0);
-
-    m_bunch3 = bunch;
-
-    propagateSpin(b);                    // calculate spin motin using m_bunch2
 
     return;
   }
@@ -134,8 +126,6 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
 
   for(int i=0; i < ns; i++) {
 
-    m_bunch1 = bunch;
-
     if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
@@ -144,8 +134,7 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
     ba.setElapsedTime(t0);
 
     //    addErKick(bunch);                   // add electric field
-
-    m_bunch2 = bunch;
+    propagateSpin(bunch);
 
     if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
     m_tracker->propagate(bunch);
@@ -154,37 +143,7 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
     t0 += length/v;
     ba.setElapsedTime(t0);
 
-    m_bunch3 = bunch;
-
-    propagateSpin(b);                     // calculate spin motin using m_bunch2
-
   }
-
-  /*
-  PAC::Position& pos2 = m_bunch2[0].getPosition();
-  
-  double sx = m_bunch2[0].getSpin()->getSX();
-  double sy = m_bunch2[0].getSpin()->getSY();
-  double sz = m_bunch2[0].getSpin()->getSZ();
-  double x  = pos2.getX();
-  double px = pos2.getPX();
-  double y  = pos2.getY();
-  double py = pos2.getPY();
-  double ct = pos2.getCT();
-  double de = pos2.getDE();
-
-  double wp_time = t0 + (-ctw3 / cc);
-  
-  cout.precision(15);
-  std::cout << m_name << " x = " << x << ", px = " << px
-	    << ", y  = " << y << ", py = " << py
-    //    	    << ", ct = " << ct<< ", dE = " << de
-	    << ", sx = " << sx <<", sy = " << sy
-	    << ", sz = " << sz 
-	    << endl;
-  */
-
-
 }
 
 double SPINK::DipoleErTracker::get_psp0(PAC::Position& p, double v0byc)
@@ -202,121 +161,6 @@ double SPINK::DipoleErTracker::get_psp0(PAC::Position& p, double v0byc)
     return psp0;
 }
 
-void SPINK::DipoleErTracker::addErKick(PAC::Bunch& bunch)
-{
-     // beam data
-
-    PAC::BeamAttributes& ba = bunch.getBeamAttributes();
-
-    double energy = ba.getEnergy();
-    double mass   = ba.getMass();
-    double charge = ba.getCharge();
-
-    double pc    = sqrt(energy*energy - mass*mass);
-    double v0byc = pc/energy;
-
-    //  getting element data
-
-    double length = 0;
-    double ang    = 0;
-
-    if(p_length)     length = p_length->l();
-    if(p_bend)       ang    = p_bend->angle();
-
-    int ns = 1;
-    if(p_complexity) ns = 4*p_complexity->n();
-
-    double h0     = 0; // 1/rho
-    if(length) h0 = ang/length;
-    
-    int size = bunch.size();
-
-    for(int i=0; i < size; i++){
-
-        if(bunch[i].isLost() ) continue;
-
-        PAC::Particle& prt = bunch[i];
-        PAC::Position& pos = prt.getPosition();
-    
-        double x     = pos.getX();
-        double px    = pos.getPX();
-    
-        double y     = pos.getY();
-        double py    = pos.getPY();
-
-	double de    = pos.getDE();
-	double ew0   = energy + de;
-
-	/*
-	cout.precision(15);
-	std::cout << " ew0 = " <<  ew0 << endl;
-	std::cout << " de = " <<  de << endl;
-	*/
-
-	/*
-        // ex
-
-        double ex = s_er/(1. + h0*x) - s_er;
-        double ey = s_ev;
-	double ez = s_el;
-
-        ex *= charge/v0byc*(length/ns);
-        ey *= charge/v0byc*(length/ns);
-	ez *= charge/v0byc*(length/ns);
- 
-        // 1 + x/R
-
-        double dxRbypc = (1. + h0*x)/pc;
-
-        px += ex*dxRbypc;
-        py += ey*dxRbypc;
-
-        pos.setPX(px);
-        pos.setPY(py);
-	*/
-
-
-        //ssh 1 + x/R
-
-        double dxR       = (1. + h0*x);
-
-        double psp0      = get_psp0(pos, v0byc);
-        double dxR_by_ps = dxR/psp0;
-
-        // ex
-
-	//        double ex = s_er/(1. + h0*x)*dxR_by_ps - s_er*dxR;
-        double ex = s_er*dxR_by_ps - s_er*dxR;
-        double ey = s_ev;
-	double ez = s_el;
-
-        ex *= charge/v0byc*(length/ns);
-        ey *= charge/v0byc*(length/ns);
-	ez *= charge/v0byc*(length/ns);
-
-        px += ex;
-        py += ey;
-
-	pos.setPX(px);
-        pos.setPY(py);
-
-	double pcw   = pc*sqrt(psp0*psp0 + px*px + py*py);
-	double ew    = sqrt(pcw*pcw + mass*mass);
-
-	
-
-	de           = (ew - energy)/pc;
-	pos.setDE(de);
-
-	/*
-	cout.precision(15);
-	std::cout << " psp0 = " <<  psp0  << endl;
-	//	std::cout << " ew = " <<  ew << endl;
-	//s	std::cout << " de = " <<  de << endl;
-	*/
-    }
-    
-}
 
 void SPINK::DipoleErTracker::setElementData(const PacLattElement& e)
 {
@@ -404,190 +248,92 @@ void SPINK::DipoleErTracker::setConventionalTracker(const UAL::AcceleratorNode& 
 
 void SPINK::DipoleErTracker::propagateSpin(UAL::Probe& b)
 {
-  PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
+    PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
+    
+    PAC::BeamAttributes& ba = bunch.getBeamAttributes();
 
-  double length = 0;
-  double ang = 0;
-  double k1 = 0.0, k2 = 0.0;
-  int ns = 0;
+    for(int i=0; i < bunch.size(); i++){
+        propagateSpin(ba, bunch[i]);
+    }
+}
 
-  double t0 = m_bunch2.getBeamAttributes().getElapsedTime();
-  
+void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle& prt)
+{
+  // beam attributes
+
+  double e0    = ba.getEnergy();
+  double m0    = ba.getMass();
+  double GG    = ba.getG();
+
+  double p0    = sqrt(e0*e0 - m0*m0);
+  double v0byc = p0/e0;
+  double gamma = e0/m0;
+
+  // position
+
+  PAC::Position& pos = prt.getPosition();
+
+  double x   = pos.getX();
+  double px  = pos.getPX();
+  double y   = pos.getY();
+  double py  = pos.getPY();
+  // double ct  = pos.getCT();
+  double de  = pos.getDE();
+
+  double pz = get_psp0(pos, v0byc);
+
+  double e = de*p0 + e0;
+  double p = sqrt(e*e - m0*m0);
+
   //  getting element data
 
-  if(p_length)     length = p_length->l();
-  if(p_bend)       ang    = p_bend->angle();
-
-  if(p_mlt){
-    k1   = p_mlt->kl(1)/length;
-    k2   = 2.0*p_mlt->kl(2)/length;
-  }
-  
+  int ns = 1;
   if(p_complexity) ns = 4*p_complexity->n();
-  if(!p_complexity)ns = 1;   
 
-  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+  double length = 0.0;
+  if(p_length) length = p_length->l()/ns;
 
-  double es      = ba.getEnergy(),     m0      = ba.getMass();  
-  double GG      = ba.getG(); 
-  double EDM_eta = 0.0;  // = ba.getEDMeta();
-  double ps      = sqrt(es*es - m0*m0);
-  double beta_s  = ps/es,              gam_s   = es/m0;
-  double Ggam_s  = GG*gam_s;
-  
-  double cc      = 2.99792458E+8;
-  
-  //double Gm    = 0.0011659230;
-  //double Gd    = -0.1429875554;
-  //double Gp    = 1.7928456;
-
-  double xw, pxw, yw, pyw, ctw, dew, ctw1, ctw3;
-  double Bx = 0.0, By = 0.0, Bz = 0.0, rp_dot_B = 0.0, cof = 0.0, v2 = 0.0; 
-  double a1 = 0.0, a2 = 0.0, a3 = 0.0;
-  double Ex = 0.0, Ey = 0.0, Ez = 0.0, Er = 0.0, Ev = 0.0, El = 0.0;
-  double rho=1.0E+12, brho = 0.0, omega = 0.0, mu = 0.0;
-  
-  //   getting positions and spins
-  int size = bunch.size();
-   
-  for(int i=0; i < size; i++){
-    
-    if(bunch[i].isLost() ) continue;
-    
-    PAC::Particle& prt = bunch[i];
-
-    PAC::Position& pos1 = m_bunch1[i].getPosition();
-    PAC::Position& pos2 = m_bunch2[i].getPosition();
-    PAC::Position& pos3 = m_bunch3[i].getPosition();
-
-    xw   = pos2.getX(),  pxw  = pos2.getPX();
-    yw   = pos2.getY(),  pyw  = pos2.getPY();
-    ctw  = pos2.getCT(), dew  = pos2.getDE();
-
-    ctw1 = pos1.getCT(), ctw3 = pos3.getCT();
-
-    double ew     = es + dew*ps;
-    double pw     = sqrt(ew*ew - m0*m0);
-    double beta_w = pw/ew,    gam_w  = ew/m0;
-    double Ggam_w = GG*gam_w;
-    
-    if(ang){
-      rho  = length / ang;
-      Ex   = s_er * 1.0E+9 / (1.0 + xw / rho);
-      //      Ex   = s_er * 1.0E+9;
-      Ey   = s_ev * 1.0E+9;
-      Ez   = s_el * 1.0E+9;
-    }
-
-
-    brho   = 1.0E+9*ps/cc; 
-
-
-    // For a general magnetic field, not including skew quads, solenoid, snake etc.
-
-
-    Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
-    By     = brho*(1.0/rho + k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw)) 
-             + Ex*1.0E+9/(beta_w*cc);
-    Bz     = 0.0;
-
- 
-    // For proton EDM, only radial electric field in the dipole area
-
-    /*
-    Bx     = brho*(k1*yw + 2.0*k2*xw*yw);
-    By     = brho*(k1*xw - k1*yw*yw/2.0/rho + k2*(xw*xw - yw*yw)) 
-             + Ex*1.0E+9/(beta_w*cc);
-    Bz     = 0.0;
-    */
-
-    //    std::cout<<brho<<"  "<<rho<<"  "<<" "<<k1<<" "<<ps<<endl;
-
-    vector<double> spin0(3, 0.0), spin(3, 0.0);   
-     
-    spin0[0] = prt.getSpin()-> getSX();
-    spin0[1] = prt.getSpin()-> getSY();
-    spin0[2] = prt.getSpin()-> getSZ();
-
-    rp_dot_B = pxw*Bx + pyw*By + Bz*(1.0+xw/rho);
-    v2       = pxw*pxw+pyw*pyw+(1.0+xw/rho)*(1.0+xw/rho);
-
-    cof      = sqrt(pxw*pxw + pyw*pyw + ( 1.0 + xw/rho)*(1.0 + xw/rho)) / (1.0E+9 * pw/cc);
-
-    //    cout.precision(15);        
-    //    std::cout<<cof<<endl;
-    
-    a1 = cof*((1 + Ggam_w)*Bx - (Ggam_w - GG)*rp_dot_B * pxw / v2 
-	       + (Ggam_w + gam_w/(1.0 + gam_w)) * (Ey*(1.0+xw/rho)-Ez*pyw)*beta_w/cc)
-               + EDM_eta/beta_w/cc*(Ex + cc * beta_w *(pyw*Bz - (1.0+xw/rho)*By));
-     
-    a2 = cof*((1 + Ggam_w)*By - (Ggam_w - GG)*rp_dot_B * pyw / v2
-	       + (Ggam_w + gam_w/(1.0 + gam_w))*(Ez*pxw-Ex*(1.0+xw/rho))*beta_w/cc)
-               + EDM_eta/beta_w/cc*(Ey + cc * beta_w *((1.0+xw/rho)*Bx - pyw*Bz));
-     
-    a3 = cof*((1 + Ggam_w)*Bz - (Ggam_w - GG)*rp_dot_B * (1.0+xw/rho) / v2
-	       + (Ggam_w + gam_w/(1 + gam_w)) * (Ex*pyw - Ey*pxw)*beta_w/cc)
-               + EDM_eta/beta_w/cc*(Ez + cc * beta_w *(pxw*By - pyw*Bx)) ;
-     
-    omega = sqrt( a1*a1 + (a2 - 1.0/rho)*(a2 - 1.0/rho) + a3*a3 );
-    //    mu    = omega * beta_s * (-ctw3 + ctw1 + length/ns/beta_s) * abs(GG)/GG;
-    mu    = omega * length / ns * abs(GG) / GG;
-    
-    a1 = a1 / omega;
-    a2 = (a2 - 1.0/rho ) / omega;
-    a3 = a3 / omega;
-
-    double s_mat[3][3];
-     
-    for(int j=0; j <3; j++){
-      for(int k=0; k <3; k++){
-	s_mat[j][k] = 0.0;
-      }
-    }
-
-    double sn  = sin(mu);
-    double cs  = 1.0 - cos(mu);
-    
-    s_mat[0][0] = 1.0 -( a2 * a2 + a3 * a3 ) * cs;
-    s_mat[0][1] =         a1 * a2 * cs + a3 * sn;
-    s_mat[0][2] =         a1 * a3 * cs - a2 * sn;
-    s_mat[1][0] =         a1 * a2 * cs - a3 * sn;
-    s_mat[1][1] = 1.0 -( a1 * a1 + a3 * a3 ) * cs;
-    s_mat[1][2] =         a2 * a3 * cs + a1 * sn;
-    s_mat[2][0] =         a1 * a3 * cs + a2 * sn;
-    s_mat[2][1] =         a2 * a3 * cs - a1 * sn;
-    s_mat[2][2] = 1.0 -( a1 * a1 + a2 * a2 ) * cs;
-    
-    for(int j=0; j <3; j++){
-      spin[j] = 0.0;
-      for(int k=0; k <3; k++){
-	spin[j] = spin[j] + s_mat[j][k] * spin0[k];
-      }
-    }
-
-    prt.getSpin()->setSX(spin[0]);
-    prt.getSpin()->setSY(spin[1]);
-    prt.getSpin()->setSZ(spin[2]);
-
-    /*    
-    for(int j=0; j <3; j++){
-      for(int k=0; k <3; k++){
-	OTSMat0[j][k] = OTSMat[j][k];
-      }
-    }
-     
-    for(int j=0; j <3; j++){
-      for(int k=0; k <3; k++){
-	OTSMat[j][k] = 0.0;
-	for(int l=0; l<3; l++){
-	OTSMat[j][k] = OTSMat[j][k] + s_mat[j][l] * OTSMat0[l][k];
-	}
-      }
-    }
-    */
-    
+  double ang = 0.0, h = 0.0;
+  if(p_bend)  {
+      ang    = p_bend->angle()/ns;
+      h      = ang/length;
   }
-     
+
+  double k1l = 0.0, k2l = 0.0;
+  if(p_mlt){
+    k1l   = p_mlt->kl(1)/ns;
+    k2l   = p_mlt->kl(2)/ns;
+  }
+
+  double Bx     = k1l*y + 2.0*k2l*x*y;
+  double By     = h*length + k1l*x + k1l*y*y/2.0*h + k2l*(x*x - y*y);
+
+  // f
+  
+  double vB = (px*Bx + py*By)/(p/p0);
+
+  double fx = (1.0 + GG*gamma)*Bx - GG*(gamma - 1.0)*vB*px/(p/p0);
+  double fy = (1.0 + GG*gamma)*By - GG*(gamma - 1.0)*vB*py/(p/p0);
+  double fz = GG*(gamma - 1.0)*vB*pz/(p/p0);
+
+  double dt_by_ds = (1 + h*x)/pz;
+
+  fx *= dt_by_ds;
+  fy *= dt_by_ds;
+  fz *= dt_by_ds;
+
+  double sx0 = prt.getSpin()-> getSX();
+  double sy0 = prt.getSpin()-> getSY();
+  double sz0 = prt.getSpin()-> getSZ();
+
+  double sx1 = sx0 + fz*sy0 - fy*sz0 + h*length*sz0;
+  double sy1 = sy0 + fx*sz0 - fz*sx0;
+  double sz1 = sz0 + fy*sx0 - fx*sy0 - h*length*sx0;
+
+  prt.getSpin()-> setSX(sx1);
+  prt.getSpin()-> setSY(sy1);
+  prt.getSpin()-> setSZ(sz1);
+
 }
 
 void SPINK::DipoleErTracker::copy(const SPINK::DipoleErTracker& st)
