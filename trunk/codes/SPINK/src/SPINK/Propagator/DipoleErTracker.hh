@@ -2,7 +2,7 @@
 // File          : SPINK/Propagator/DipoleErTracker.hh
 // Copyright     : see Copyright file
 // Author        : A.Luccio
-// C++ version   : N.Malitsky 
+// C++ version   : F.Lin, N.Malitsky
 
 #ifndef UAL_SPINK_DIPOLEER_TRACKER_HH
 #define UAL_SPINK_DIPOLEER_TRACKER_HH
