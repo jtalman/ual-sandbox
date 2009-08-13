@@ -33,7 +33,7 @@ int main(){
   std::cout << "\nBuild lattice." << std::endl;
   // ************************************************************************
 
-  shell.readSXF(Args() << Arg("file",  "./data/muon_R100m.sxf"));
+  shell.readSXF(Args() << Arg("file",  "./data/muon0.13_R5m.sxf"));
 
   // ************************************************************************
   std::cout << "\nAdd split ." << std::endl;
@@ -55,14 +55,15 @@ int main(){
   std::cout << "\nWrite ADXF file ." << std::endl;
   // ************************************************************************
 
-  shell.writeSXF(Args() << Arg("file",  "./out/cpp/muon_R100m.sxf"));
+  shell.writeSXF(Args() << Arg("file",  "./out/cpp/muon0.13_R5m.sxf"));
 
   // ************************************************************************
   std::cout << "\nDefine beam parameters." << std::endl;
   // ************************************************************************
 
-  double energy = 0.145477474;
-  double mass   = 0.10565839;           // muon rest mass
+
+  double mass   = 0.10565839; // muon rest mass
+  double energy = sqrt(mass*mass + 0.7*0.7); // 0.145477474;
 
   shell.setBeamAttributes(Args() << Arg("energy", energy) << Arg("mass", mass));
 
@@ -84,7 +85,7 @@ int main(){
   shell.analysis(Args());
 
   // ************************************************************************
-  std::cout << "\n Algorithm Part. " << std::endl;
+  std::cout << "\nAlgorithm Part. " << std::endl;
   // ************************************************************************
 
   std::string apdfFile = "data/spink.apdf";
@@ -100,23 +101,25 @@ int main(){
     return 1;
   }
 
-  std::cout << "\nSpink tracker, ";
+  std::cout << "\n Spink tracker, ";
   std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
 
   // ************************************************************************
-  std::cout << "\n Electric field. " << std::endl;
+  std::cout << "\nElectric field. " << std::endl;
   // ************************************************************************
 
   //  double ER  = 0.012; // GV/m
   double ER  = 0.0, EV = 0.0, EL = 0.0; // GV/m
   double pc = sqrt(energy*energy - mass*mass);
+
+  std::cout << "pc = " << pc << std::endl;
   
   SPINK::DipoleErTracker::setER(ER);
   SPINK::DipoleErTracker::setEV(EV);
   SPINK::DipoleErTracker::setEL(EL);
 
   // ************************************************************************
-  std::cout << "\n Bunch Part." << std::endl;
+  std::cout << "\nBunch Part." << std::endl;
   // ************************************************************************
 
   ba.setG(0.0011659230);             // adds muon G factor
@@ -130,17 +133,18 @@ int main(){
   spin.setSZ(1.0);
 
   for(int ip=0; ip < bunch.size(); ip ++){
-    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
+    // bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
+    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0E-3, 0.0, 0.0);
     bunch[ip].setSpin(spin);
   }
 
  // ************************************************************************
-  std::cout << "\n Tracking. " << std::endl;
+  std::cout << "\nTracking. " << std::endl;
   // ************************************************************************
 
   double t; // time variable
 
-  int turns = 1000000;
+  int turns = 1000; // 1000000;
 
   SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance(); 
   stw->setFileName("spin_finestep.dat");
