@@ -3,6 +3,8 @@
 // Copyright   : see Copyright file
 // Author      : Nikolay Malitsky
 
+#include <iostream>
+
 #include "UAL/Common/Def.hh"
 #include "PAC/Common/PacException.h"
 #include "PAC/Beam/BeamAttributes.hh"
@@ -116,11 +118,12 @@ void PAC::BeamAttributes::initialize()
 
 void PAC::BeamAttributes::define(const PAC::BeamAttributes& ba)
 {
-  m_energy = ba.m_energy;
-  m_mass = ba.m_mass;
-  m_charge = ba.m_charge;
-  m_revfreq = ba.m_revfreq;
+  m_energy    = ba.m_energy;
+  m_mass      = ba.m_mass;
+  m_charge    = ba.m_charge;
+  m_revfreq   = ba.m_revfreq;
   m_macrosize = ba.m_macrosize;
+  m_G         = ba.m_G;
 }
 
 
