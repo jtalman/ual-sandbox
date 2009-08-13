@@ -316,7 +316,7 @@ void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particl
   double fy = (1.0 + GG*gamma)*KLy - GG*(gamma - 1.0)*vKL*py/(p/p0);
   double fz = GG*(gamma - 1.0)*vKL*pz/(p/p0);
 
-  double dt_by_ds = (1 + h*x)/pz/v0byc/UAL::clight;
+  double dt_by_ds = (1 + h*x)/pz;
 
   fx *= dt_by_ds;
   fy *= dt_by_ds;
@@ -324,7 +324,8 @@ void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particl
 
   double omega = sqrt(fx*fx + (fy - h*length)*(fy - h*length) + fz*fz);
 
-  // std::cout << "omega=" << omega << std::endl;
+  // std::cout << "omega=" << omega << ", GG = " << GG << ", gamma " << gamma
+  //          << ", r= " << omega/length << std::endl;
 
   double c = 1.0 - cos(omega);
   double s = sin(omega);
