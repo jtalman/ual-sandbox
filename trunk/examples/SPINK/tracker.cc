@@ -40,10 +40,10 @@ int main(){
   // ************************************************************************
 
   shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Sbend")
-		 << Arg("ir", 32));
+		 << Arg("ir", 4));
 
   shell.addSplit(Args() << Arg("lattice", "muon") << Arg("types", "Quadrupole")
-		 << Arg("ir", 32));
+		 << Arg("ir", 4));
 
   // ************************************************************************
   std::cout << "Select lattice." << std::endl;
@@ -63,7 +63,7 @@ int main(){
 
 
   double mass   = 0.10565839; // muon rest mass
-  double energy = sqrt(mass*mass + 0.7*0.7); // 0.145477474;
+  double energy = sqrt(mass*mass + 0.1*0.1);
 
   shell.setBeamAttributes(Args() << Arg("energy", energy) << Arg("mass", mass));
 
@@ -109,11 +109,7 @@ int main(){
   // ************************************************************************
 
   //  double ER  = 0.012; // GV/m
-  double ER  = 0.0, EV = 0.0, EL = 0.0; // GV/m
-  double pc = sqrt(energy*energy - mass*mass);
-
-  std::cout << "pc = " << pc << std::endl;
-  
+  double ER  = 0.0, EV = 0.0, EL = 0.0; // GV/m  
   SPINK::DipoleErTracker::setER(ER);
   SPINK::DipoleErTracker::setEV(EV);
   SPINK::DipoleErTracker::setEL(EL);
@@ -133,8 +129,8 @@ int main(){
   spin.setSZ(1.0);
 
   for(int ip=0; ip < bunch.size(); ip ++){
-    // bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
-    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0E-3, 0.0, 0.0);
+    bunch[ip].getPosition().set(0.0, 0.0, 0.0, 1.0E-3, 0.0, 0.0);
+    // bunch[ip].getPosition().set(0.0, 0.0, 0.0, 0.0E-3, 0.0, 0.0);
     bunch[ip].setSpin(spin);
   }
 
@@ -144,7 +140,7 @@ int main(){
 
   double t; // time variable
 
-  int turns = 1000; // 1000000;
+  int turns = 1000000;
 
   SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance(); 
   stw->setFileName("spin_finestep.dat");
