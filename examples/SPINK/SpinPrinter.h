@@ -21,12 +21,23 @@ public:
 
     void write(int iturn, int ip, PAC::Bunch& bunch);
 
+    void calculateOmega();
+
     /** close file */
     void close();
 
  protected:
 
+    double get_psp0(PAC::Position& p, double v0byc);
+
+ protected:
+
     std::ofstream output;
+
+    double m_vs0;
+
+    int    m_turn0;
+    double m_phase0;
 
 };
 
