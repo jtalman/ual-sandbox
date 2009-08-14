@@ -43,7 +43,7 @@ OBJS = $(OBJ_DIR)/timer.o \
 compile : $(OBJS) ./tracker
 
 clean :
-	rm -f $(OBJS) ./tracker
+	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker
 
 ./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
