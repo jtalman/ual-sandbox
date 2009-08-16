@@ -33,6 +33,7 @@ int main(){
   std::cout << "\nBuild lattice." << std::endl;
   // ************************************************************************
 
+  // shell.readSXF(Args() << Arg("file",  "./data/muon_R5m.sxf"));
   shell.readSXF(Args() << Arg("file",  "./data/muon0.13_R5m.sxf"));
 
   // ************************************************************************
