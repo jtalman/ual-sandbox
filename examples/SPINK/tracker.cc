@@ -33,8 +33,8 @@ int main(){
   std::cout << "\nBuild lattice." << std::endl;
   // ************************************************************************
 
-  // shell.readSXF(Args() << Arg("file",  "./data/muon_R5m.sxf"));
-  shell.readSXF(Args() << Arg("file",  "./data/muon0.13_R5m.sxf"));
+  shell.readSXF(Args() << Arg("file",  "./data/muon_R5m.sxf"));
+  // shell.readSXF(Args() << Arg("file",  "./data/muon0.13_R5m.sxf"));
 
   // ************************************************************************
   std::cout << "\nAdd split ." << std::endl;
@@ -143,8 +143,8 @@ int main(){
 
   int turns = 1000000;
 
-  SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance(); 
-  stw->setFileName("spin_finestep.dat");
+  // SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
+  // stw->setFileName("spin_finestep.dat");
 
   PositionPrinter positionPrinter;
   positionPrinter.open("orbit.dat");
@@ -154,16 +154,20 @@ int main(){
 
   ba.setElapsedTime(0.0);
 
-  for(int iturn = 1; iturn <= turns; iturn++){   
+  start_ms();
+
+  for(int iturn = 1; iturn <= turns; iturn++){
+
+    ap -> propagate(bunch);
+
     for(int ip=0; ip < bunch.size(); ip++){
-
-      ap -> propagate(bunch);
-
-      positionPrinter.write(iturn, ip, bunch);
-      spinPrinter.write(iturn, ip, bunch);
-
+       positionPrinter.write(iturn, ip, bunch);
+       spinPrinter.write(iturn, ip, bunch);
     }
   }
+
+  t = (end_ms());
+  std::cout << "time  = " << t << " ms" << endl;
 
   positionPrinter.close();
   spinPrinter.close();
