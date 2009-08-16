@@ -22,19 +22,24 @@ int main(){
 
   UAL::Shell shell;
 
+  // std::string variantName = "muon_R5m";
+  std::string variantName = "muon0.13_R5m";
+
   // ************************************************************************
   std::cout << "\nDefine the space of Taylor maps." << std::endl;
   // ************************************************************************
 
   shell.setMapAttributes(Args() << Arg("order", 5));
 
-
   // ************************************************************************
   std::cout << "\nBuild lattice." << std::endl;
   // ************************************************************************
 
-  shell.readSXF(Args() << Arg("file",  "./data/muon_R5m.sxf"));
-  // shell.readSXF(Args() << Arg("file",  "./data/muon0.13_R5m.sxf"));
+  std::string sxfFile = "./data/";
+  sxfFile += variantName;
+  sxfFile += ".sxf";
+
+  shell.readSXF(Args() << Arg("file",  sxfFile.c_str()));
 
   // ************************************************************************
   std::cout << "\nAdd split ." << std::endl;
@@ -56,12 +61,15 @@ int main(){
   std::cout << "\nWrite ADXF file ." << std::endl;
   // ************************************************************************
 
-  shell.writeSXF(Args() << Arg("file",  "./out/cpp/muon0.13_R5m.sxf"));
+  std::string outputFile = "./out/cpp/";
+  outputFile += variantName;
+  outputFile += ".sxf";
+
+  shell.writeSXF(Args() << Arg("file",  outputFile.c_str()));
 
   // ************************************************************************
   std::cout << "\nDefine beam parameters." << std::endl;
   // ************************************************************************
-
 
   double mass   = 0.10565839; // muon rest mass
   double energy = sqrt(mass*mass + 0.1*0.1);
@@ -73,14 +81,25 @@ int main(){
   // ************************************************************************
   std::cout << "\nLinear analysis." << std::endl;
   // ************************************************************************
-
+  
   // Make linear matrix
+
+  std::string mapFile = "./out/cpp/";
+  mapFile += variantName;
+  mapFile += ".map1";
+
   std::cout << " matrix" << std::endl;
-  shell.map(Args() << Arg("order", 1) << Arg("print", "./out/cpp/map1"));
+  shell.map(Args() << Arg("order", 1) << Arg("print", mapFile.c_str()));
 
   // Calculate twiss
+  
+  std::string twissFile = "./out/cpp/";
+  twissFile += variantName;
+  twissFile += ".twiss";
+
   std::cout << " twiss (muon )" << std::endl;
-  shell.twiss(Args() << Arg("print", "./out/cpp/muon.twiss"));
+
+  shell.twiss(Args() << Arg("print", twissFile.c_str()));
 
   std::cout << " calculate suml" << std::endl;
   shell.analysis(Args());
@@ -89,7 +108,7 @@ int main(){
   std::cout << "\nAlgorithm Part. " << std::endl;
   // ************************************************************************
 
-  std::string apdfFile = "data/spink.apdf";
+  std::string apdfFile = "./data/spink.apdf";
 
   UAL::APDF_Builder apBuilder;
 
@@ -146,11 +165,19 @@ int main(){
   // SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
   // stw->setFileName("spin_finestep.dat");
 
+  std::string orbitFile = "./out/cpp/";
+  orbitFile += variantName;
+  orbitFile += ".orbit";
+
   PositionPrinter positionPrinter;
-  positionPrinter.open("orbit.dat");
+  positionPrinter.open(orbitFile.c_str());
+
+  std::string spinFile = "./out/cpp/";
+  spinFile += variantName;
+  spinFile += ".spin";
   
   SpinPrinter spinPrinter;
-  spinPrinter.open("spin.dat");
+  spinPrinter.open(spinFile.c_str());
 
   ba.setElapsedTime(0.0);
 
