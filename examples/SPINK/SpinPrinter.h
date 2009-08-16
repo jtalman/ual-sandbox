@@ -16,6 +16,8 @@ public:
     /** Constructor */
     SpinPrinter();
 
+    void setLength(double suml);
+
     /** open file*/
     void open(const char* filename);
 
@@ -38,6 +40,7 @@ public:
 
     int    m_turn0;
     double m_phase0;
+    double m_ct0;
 
 };
 
