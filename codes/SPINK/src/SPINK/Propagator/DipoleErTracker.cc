@@ -306,8 +306,8 @@ void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particl
   }
 
   double KLx     = k1l*y + 2.0*k2l*x*y;
-  double KLy     = h*length + k1l*x - k1l*y*y/2.0*h + k2l*(x*x - y*y);
-  // double KLy     = h*length + k1l*x + k2l*(x*x - y*y);
+  // double KLy     = h*length + k1l*x - k1l*y*y/2.0*h + k2l*(x*x - y*y);
+  double KLy     = h*length + k1l*x + k2l*(x*x - y*y);
 
   // f
 
@@ -315,7 +315,7 @@ void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particl
 
   double fx = (1.0 + GG*gamma)*KLx - GG*(gamma - 1.0)*vKL*px/(p/p0);
   double fy = (1.0 + GG*gamma)*KLy - GG*(gamma - 1.0)*vKL*py/(p/p0);
-  double fz = GG*(gamma - 1.0)*vKL*pz/(p/p0);
+  double fz = -GG*(gamma - 1.0)*vKL*pz/(p/p0);
 
   double dt_by_ds = (1 + h*x)/pz;
 
