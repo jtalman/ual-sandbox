@@ -67,9 +67,6 @@ void SpinPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
       if(m_vs0 > 0 && spin_g2 < 0) {
 
           double suml = UAL::OpticsCalculator::getInstance().suml;
-
-          std::cout << "suml = " << suml << std::endl;
-
           double phase = acos(spin_g2)/2./UAL::pi;
 
           if(m_turn0 > 0 ) {
