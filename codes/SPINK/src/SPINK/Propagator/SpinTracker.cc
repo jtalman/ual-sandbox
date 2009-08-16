@@ -59,10 +59,10 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 
     m_name = lattice[is0].getName();
 
-    std::cout << "SpinTracker  "<<is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
+    // std::cout << "SpinTracker  "<<is0 << " " << lattice[is0].getName() << " " << lattice[is0].getType()  << std::endl;
 
    // if(p_complexity) std::cout << " n = " << p_complexity->n()  << std::endl;
-   if(p_length)  std::cout << " l = " << p_length->l() << std::endl;
+   // if(p_length)  std::cout << " l = " << p_length->l() << std::endl;
    // if(p_bend)   std::cout <<  " angle = " << p_bend->angle() << std::endl;
    // if(p_mlt)    std::cout << " kl1 = "  << p_mlt->kl(1) << std::endl;
    // std::cout << std::endl;
@@ -72,11 +72,11 @@ void SPINK::SpinTracker::setLatticeElements(const UAL::AcceleratorNode& sequence
 void SPINK::SpinTracker::propagate(UAL::Probe& b)
 {
 
-  SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
+  // SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
 
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
-  stw->write(bunch.getBeamAttributes().getElapsedTime());
+  // stw->write(bunch.getBeamAttributes().getElapsedTime());
 
   /*
   PAC::Position& pos = bunch[0].getPosition();
