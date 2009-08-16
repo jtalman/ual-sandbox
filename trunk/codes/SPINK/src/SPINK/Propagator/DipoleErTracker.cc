@@ -79,8 +79,8 @@ void SPINK::DipoleErTracker::propagate(UAL::Probe& b)
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
 
-  SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
-  stw->write(bunch.getBeamAttributes().getElapsedTime());
+  // SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
+  // stw->write(bunch.getBeamAttributes().getElapsedTime());
 
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
 
@@ -307,7 +307,6 @@ void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particl
 
   double KLx     = k1l*y + 2.0*k2l*x*y;
   double KLy     = h*length + k1l*x - k1l*y*y/2.0*h + k2l*(x*x - y*y);
-  // double KLy     = h*length + k1l*x + k2l*(x*x - y*y);
 
   // f
 
@@ -367,94 +366,6 @@ void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particl
   prt.getSpin()-> setSZ(sz1);
 
 }
-
-/*
-
-void SPINK::DipoleErTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle& prt)
-{
-  // beam attributes
-
-  double e0    = ba.getEnergy();
-  double m0    = ba.getMass();
-  double GG    = ba.getG();
-
-  double p0    = sqrt(e0*e0 - m0*m0);
-  double v0byc = p0/e0;
-  double gamma = e0/m0;
-
-  // position
-
-  PAC::Position& pos = prt.getPosition();
-
-  double x   = pos.getX();
-  double px  = pos.getPX();
-  double y   = pos.getY();
-  double py  = pos.getPY();
-  // double ct  = pos.getCT();
-  double de  = pos.getDE();
-
-  double pz = get_psp0(pos, v0byc);
-
-  double e = de*p0 + e0;
-  double p = sqrt(e*e - m0*m0);
-
-  //  getting element data
-
-  int ns = 1;
-  if(p_complexity) ns = 4*p_complexity->n();
-
-  double length = 0.0;
-  if(p_length) length = p_length->l()/ns;
-
-  double ang = 0.0, h = 0.0;
-  if(p_bend)  {
-      ang    = p_bend->angle()/ns;
-      h      = ang/length;
-  }
-
-  double k1l = 0.0, k2l = 0.0;
-  if(p_mlt){
-   if(p_mlt->order() > 0) k1l   = p_mlt->kl(1)/ns;
-   if(p_mlt->order() > 1) k2l   = p_mlt->kl(2)/ns;
-  }
-
-  double KLx     = k1l*y + 2.0*k2l*x*y;
-  double KLy     = h*length + k1l*x + k1l*y*y/2.0*h + k2l*(x*x - y*y);
-
-  // f
-  
-  double vKL = (px*KLx + py*KLy)/(p/p0);
-
-  double fx = (1.0 + GG*gamma)*KLx - GG*(gamma - 1.0)*vKL*px/(p/p0);
-  double fy = (1.0 + GG*gamma)*KLy - GG*(gamma - 1.0)*vKL*py/(p/p0);
-  double fz = GG*(gamma - 1.0)*vKL*pz/(p/p0);
-
-  double dt_by_ds = (1 + h*x)/pz/v0byc/UAL::clight;
-
-  fx *= dt_by_ds;
-  fy *= dt_by_ds;
-  fz *= dt_by_ds;
-
-  double sx0 = prt.getSpin()-> getSX();
-  double sy0 = prt.getSpin()-> getSY();
-  double sz0 = prt.getSpin()-> getSZ();
-
-  double sx1 = sx0 + fz*sy0 - fy*sz0 + h*length*sz0;
-  double sy1 = sy0 + fx*sz0 - fz*sx0;
-  double sz1 = sz0 + fy*sx0 - fx*sy0 - h*length*sx0;
-
-  double s2 = sx1*sx1 + sy1*sy1 + sz1*sz1;
-
-  std::cout << "f: " << fx << ", " << fy << ", " << fz << std::endl;
-
-  std::cout << "s: " << sx1 << ", " << sy1 << ", " << sz1 << ", " << s2 << std::endl;
-
-  prt.getSpin()-> setSX(sx1);
-  prt.getSpin()-> setSY(sy1);
-  prt.getSpin()-> setSZ(sz1);
-
-}
- **/
 
 void SPINK::DipoleErTracker::copy(const SPINK::DipoleErTracker& st)
 {
