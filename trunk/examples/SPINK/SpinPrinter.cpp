@@ -5,6 +5,10 @@ SpinPrinter::SpinPrinter()
 {
 }
 
+void SpinPrinter::setLength(double suml)
+{
+}
+
 void SpinPrinter::open(const char* fileName)
 {
     output.open(fileName);
@@ -12,6 +16,7 @@ void SpinPrinter::open(const char* fileName)
 
     m_turn0  = 0.0;
     m_phase0 = 0.0;
+    m_ct0    = 0.0;
 }
 
 void SpinPrinter::close()
@@ -61,11 +66,19 @@ void SpinPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
 
       if(m_vs0 > 0 && spin_g2 < 0) {
 
+          double suml = UAL::OpticsCalculator::getInstance().suml;
+
+          std::cout << "suml = " << suml << std::endl;
+
           double phase = acos(spin_g2)/2./UAL::pi;
 
           if(m_turn0 > 0 ) {
 
-              double omega = (1 + phase - m_phase0)/(iturn - m_turn0 + 0.0);
+              double T0  = (iturn - m_turn0)*suml/v0byc;
+              double dT  = -ct + m_ct0;
+              double T   = (iturn - m_turn0)*(1 + dT/T0);
+
+              double omega = (1 + phase - m_phase0)/T;
 
               std::cout.precision(10);
           
@@ -76,6 +89,7 @@ void SpinPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
 
           m_turn0  = iturn;
           m_phase0 = phase;
+          m_ct0    = ct;
       }
 
       m_vs0 = spin_g2;
