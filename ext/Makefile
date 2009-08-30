@@ -1,4 +1,4 @@
-DIRS = ./PAC ./SXF ./ADXF ./UI
+DIRS = ./SXF ./ADXF ./UI
 
 # ifdef ROOTSYS
 #	DIRS += ./ROOT
