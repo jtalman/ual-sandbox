@@ -39,10 +39,10 @@ namespace SPINK {
     ~DipoleErTracker();
 
     /** Defines the lattice elemements (PropagatorNode method)
-	Note: integers i0 and i1 will be replaced by AcceleratorNode's 
+        Note: integers i0 and i1 will be replaced by AcceleratorNode's 
     */
     virtual void setLatticeElements(const UAL::AcceleratorNode& sequence, int i0, int i1, 
-				    const UAL::AttributeSet& attSet);
+                                    const UAL::AttributeSet& attSet);
 
     /** Propagates a bunch */
     void propagate(UAL::Probe& bunch);
@@ -60,6 +60,8 @@ namespace SPINK {
     static double getEL() { return s_el; }
 
   protected:
+
+      void addErKick(PAC::Bunch& bunch);
 
       static double s_er; // ER(GV/m)/pc(GV)
       static double s_ev; // EV(GV/m)/pc(GV)
@@ -124,3 +126,4 @@ namespace SPINK {
 }
 
 #endif
+
