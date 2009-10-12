@@ -1,0 +1,189 @@
+// 
+muon sequence { 
+  rf rfcavity { tag = rf
+  };
+  sbenbe sbend { tag = sbenbe at = 0.436332312999 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.2 sbend { tag = sbenbe at = 1.308996939 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.3 sbend { tag = sbenbe at = 2.18166156499 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.4 sbend { tag = sbenbe at = 3.05432619099 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.5 sbend { tag = sbenbe at = 3.92699081699 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.6 sbend { tag = sbenbe at = 4.79965544298 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.7 sbend { tag = sbenbe at = 5.67232006898 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.8 sbend { tag = sbenbe at = 6.54498469498 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.9 sbend { tag = sbenbe at = 7.41764932097 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.10 sbend { tag = sbenbe at = 8.29031394697 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.11 sbend { tag = sbenbe at = 9.16297857297 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.12 sbend { tag = sbenbe at = 10.035643199 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.13 sbend { tag = sbenbe at = 10.908307825 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.14 sbend { tag = sbenbe at = 11.780972451 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.15 sbend { tag = sbenbe at = 12.653637077 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.16 sbend { tag = sbenbe at = 13.526301703 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.17 sbend { tag = sbenbe at = 14.398966329 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.18 sbend { tag = sbenbe at = 15.2716309549 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.19 sbend { tag = sbenbe at = 16.1442955809 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.20 sbend { tag = sbenbe at = 17.0169602069 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.21 sbend { tag = sbenbe at = 17.8896248329 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.22 sbend { tag = sbenbe at = 18.7622894589 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.23 sbend { tag = sbenbe at = 19.6349540849 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.24 sbend { tag = sbenbe at = 20.5076187109 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.25 sbend { tag = sbenbe at = 21.3802833369 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.26 sbend { tag = sbenbe at = 22.2529479629 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.27 sbend { tag = sbenbe at = 23.1256125889 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.28 sbend { tag = sbenbe at = 23.9982772149 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.29 sbend { tag = sbenbe at = 24.8709418409 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.30 sbend { tag = sbenbe at = 25.7436064669 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.31 sbend { tag = sbenbe at = 26.6162710929 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.32 sbend { tag = sbenbe at = 27.4889357189 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.33 sbend { tag = sbenbe at = 28.3616003449 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.34 sbend { tag = sbenbe at = 29.2342649709 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.35 sbend { tag = sbenbe at = 30.1069295969 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  sbenbe.36 sbend { tag = sbenbe at = 30.9795942229 l = 0.872664625997 n = 4
+    body = { kl = [ 0.174532925199]}
+    body.dev = { kl = [ 0 -0.00453785605519 ] kls = [ 0 0 ] 
+    }
+  };
+  mend marker { tag = mend at = 31.4159265359
+  };
+
+endsequence at = 31.4159265359
+}

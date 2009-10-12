@@ -1,0 +1,9 @@
+<apdf>
+  <propagator id="SXF_Tracker" accelerator="muon">
+     <create>
+       <link algorithm="SXF_TRACKER::driftOrDefault" types="Default"/>
+       <link algorithm="SXF_TRACKER::dipole" types="Sbend"/>
+       <link algorithm="SXF_TRACKER::rfCavity" types="RfCavity"/>
+     </create>
+  </propagator>
+</apdf>
