@@ -1,0 +1,9 @@
+<apdf>
+  <propagator id="thinspin" accelerator="muon">
+     <create>
+       <link algorithm="SXF_TRACKER::driftOrDefault" types="Default"/>
+       <link algorithm="THINSPIN::bendAndMultipole" types="Sbend"/>
+       <link algorithm="SXF_TRACKER::rfCavity" types="RfCavity"/>
+     </create>
+  </propagator>
+</apdf>
