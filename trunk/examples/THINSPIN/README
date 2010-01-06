@@ -1,0 +1,60 @@
+Pre Build:
+   make clean
+   make external
+
+   Output:
+      ./lib/linux/obj/driftOrDefault.o
+      ./lib/linux/obj/positionPrinter.o
+      ./lib/linux/obj/rfCavity.o
+      ./lib/linux/obj/timer.o
+
+Build:
+   make
+
+   Output:
+      ./lib/linux/obj/bendAndMultipole.o
+      ./lib/linux/obj/fourVector.o
+      ./lib/linux/obj/threeVector.o
+      ./lib/linux/obj/tracker.o
+
+      ./tracker
+
+   Notes:
+      The external build step identifies the files external to THINSPIN, but included
+      so that it is self contained. make, alone, is sufficient. Furthemore, fourVector
+      and threeVector are likely to be static as well.
+
+      Class fourTensor (likely to be static) is compiled via its included header, so
+      any changes to it need to be explicitly compiled in.
+
+      It is pretty quick to type make clean, then make at each change.
+
+
+Run:
+   ./tracker
+
+   Notes:
+      Environmental variables provide some configurability, e.g.
+         setenv GSL_RNG_TYPE "taus"
+         setenv GSL_RNG_SEED 123
+
+
+Output:
+   ./out/cpp/muon0.13_R5m.map1
+   ./out/cpp/muon0.13_R5m.orbit
+   ./out/cpp/muon0.13_R5m.sxf
+   ./out/cpp/muon0.13_R5m.twiss
+
+   stdout
+   stderr
+
+Notes:
+   tracker implicitly uses
+      ./data/thinspin.apdf
+      ./data/muon0.13_R5m.sxf
+
+   The current sxf file, muon0.13_R5m.sxf, doesn't require the external
+   element/propagator/evolver files
+
+   The current apdf file, thinspin.apdf, specifies algorithms, but seems
+   incomplete/irrelevant?
