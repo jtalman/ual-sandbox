@@ -2,7 +2,7 @@
 // File          : examples/THINSPIN/fourTensor.hh
 // Copyright     : see Copyright file
 // Author        :
-// C++ version   : J.Talman
+// C++ version   : J.Talman, test
 
 #include <string>
 #include <iostream>
