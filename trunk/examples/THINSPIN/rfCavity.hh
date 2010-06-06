@@ -1,108 +1,82 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/threeVector.hh
+// Library       : SXF_TRACKER
+// File          : examples/SXF_TRACKER/rfCavity.hh
 // Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
+// Author        : 
+// C++ version   : J.Talman, N.Malitsky
 
-#ifndef THINSPIN_THREE_VECTOR_HH
-#define THINSPIN_THREE_VECTOR_HH
+#ifndef UAL_RFCAVITY_HH
+#define UAL_RFCAVITY_HH
 
-#include <string>
-#include <iostream>
-#include <ctime>
-#include <vector>
+#include "PAC/Beam/Position.hh"
+#include "SMF/PacLattElement.h"
+#include "TEAPOT/Integrator/BasicTracker.hh"
 
-namespace THINSPIN {
-   class threeVector {
+namespace SXF_TRACKER {
+
+  /** SXF_Tracker-specific RF Cavity Tracker */
+
+  class rfCavity : public TEAPOT::BasicTracker {
+
+  public:
+
+    /** Constructor */
+    rfCavity();
+
+    /** Copy Constructor */
+    rfCavity(const rfCavity& rft);
+
+    /** Destructor */
+    virtual ~rfCavity();
+
+    /** Returns a deep copy of this object (inherited from UAL::PropagatorNode) */
+    UAL::PropagatorNode* clone();
+
+    /** Set lattice elements (inherited from UAL::PropagatorNode */
+    void setLatticeElements(const UAL::AcceleratorNode& lattice, int i0, int i1, 
+			    const UAL::AttributeSet& beamAttributes);
+
+    /** Propagates a bunch of particles */
+    void propagate(UAL::Probe& probe);
+
+    /** Sets Rf patameters */
+    void setRF(double V, double harmon, double lag);
+
+  protected:
+
+    /** Sets the lattice element */
+    void setLatticeElement(const PacLattElement& e);
+
+    /** Propagates the particle through a drift */
+    void passDrift(double l, PAC::Position& p, double v0byc, double vbyc);
+
+  protected:
+
+    /** Element length */
+    double m_l;
+
+    /** Peak RF voltage [GeV] */ 
+    double m_V;
+
+    /** Phase lag in multiples of 2 pi */
+    double m_lag;
+
+    /** Harmonic number */
+    double m_h;
+
+  private:
+
+    void init();
+    void copy(const rfCavity& rft);
+    
+  };
+
+  class rfCavityRegister
+  {
     public:
-      // Constructors &  destructor
 
-      /** Constructor */
-      threeVector();
+      rfCavityRegister();
+  };
 
-      /** Copy constructor */
-      threeVector(const threeVector& p);
-
-      /** Destructor */
-      virtual ~threeVector();
-
-      /** Copy operator */
-      const threeVector& operator =(const threeVector& p);
-
-      // Access methods
-
-      /** Returns the x-coordinate [m] */
-      double  getX() const;
-
-      /** Sets the x-coordinate [m] */
-      void    setX(double v);
-
-      /** Returns the y-coordinate [m]. */
-      double  getY() const;
-
-      /** Sets the y-coordinate [m]. */
-      void    setY(double v);
-
-      /** Returns the y-axis momentum of particle [rad]. */
-      double  getZ() const;
-
-      /** Sets the y-axis momentum of particle [m]. */
-      void  setZ(double v);
-
-      /** Sets 3D canonical coordinates.*/
-      void set(double x, double y, double z);
-
-      /** Returns the coordinate specified by index */
-      double&  operator[](int index);
-
-      /** Returns the coordinate specified by index */
-      double  operator[](int index) const;
-
-      /** Sets the i-th coordinate */
-      void setCoordinate(int i, double v);
-
-      /** Returns the number of coordinates */
-      int size() const;
-
-      // Assignment operators
-
-      /** (Deprecated) Adds the threeVector object p to this object */
-      const threeVector& operator+=(const threeVector& p);
-
-      /** (Deprecated) Subtracts the threeVector object p from this object */
-      const threeVector& operator-=(const threeVector& p);
-
-      /** (Deprecated) Multiplies all coordinates of this object by the value v */
-      const threeVector& operator*=(double v);
-
-      /** (Deprecated) Divides all coordinates of this object by the value v */
-      const threeVector& operator/=(double v);
-
-      /** (Deprecated) Sums two threeVector objects . */
-      threeVector  operator+(const threeVector& p);
-
-      /** (Deprecated) Subtracts the threeVector object p from this object.*/
-      threeVector  operator-(const threeVector& p);
-
-      /** (Deprecated) Multiplies all coordinates of this object by the value v. */
-      threeVector  operator*(double v);
-
-      /** (Deprecated) Divides all coordinates of this object by the value. */
-      threeVector  operator/(double v);
-
-      /** (Deprecated) Subtracts the threeVector object p from this object. */
-      // friend threeVector operator-(const threeVector& p);
-
-      /** (Deprecated) Multiplies all coordinates of this object by the value v. */
-      // friend threeVector operator*(double v, const threeVector& p);
-
-    protected:
-
-      /** Vector of coordinates */
-      std::vector<double> m_data;
-
-    };
 }
 
 #endif
-
