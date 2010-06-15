@@ -15,7 +15,10 @@ FFTW_FLAGS   =  --enable-shared --with-gcc --disable-fortran --enable-static=no
 PCRE_TARGETS =  --libdir=$(UAL)/tools/lib/$(UAL_ARCH) \
 		--includedir=$(UAL)/tools/include \
 		--bindir=$(UAL)/tools/bin/$(UAL_ARCH) \
-		--mandir=$(UAL)/tools/man 
+		--mandir=$(UAL)/tools/man \
+		--sharedstatedir=$(UAL)/tools/man \
+		--docdir=$(UAL)/tools/man
+
 PCRE_FLAGS   =
 
 XML2_TARGETS = 	--bindir=$(UAL)/tools/bin/$(UAL_ARCH) \
@@ -60,12 +63,12 @@ compile:
 	make; \
 	make install;) 
 	rm -rf gperf-2.7.2
-	gzip -d -c pcre-4.1.tar.gz | tar xvf -
-	(cd pcre-4.1; \
+	gzip -d -c pcre-8.02.tar.gz | tar xvf -
+	(cd pcre-8.02; \
 	./configure  $(PCRE_TARGETS) $(PCRE_FLAGS); \
 	make; \
 	make install;) 
-	rm -rf pcre-4.1
+	rm -rf pcre-8.02
 	gzip -d -c libxml2-sources-2.6.22.tar.gz | tar xvf -
 	(cd libxml2-2.6.22; \
 	./configure  $(XML2_TARGETS) $(XML2_FLAGS); \
