@@ -1,10 +1,10 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/magnetAlgoritm.icc
+// Library       :
+// File          :
 // Copyright     : see Copyright file
 // Author        :
-// C++ version   : N.Malitsky and J.Talman
+// C++ version   :
 
-template<class Coordinate, class Coordinates>
+template<class Coordinate, class Coordinates> 
 THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::magnetAlgorithm()
 {
 }
@@ -33,7 +33,7 @@ void THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::passExit(
 template<class Coordinate, class Coordinates>
 void THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
 	const TEAPOT::MagnetData& mdata,
-	double rkicks,
+	double rkicks, 
 	Coordinates& p)
 {
   applyMltKick(mdata.m_mlt, mdata.m_offset, rkicks, p);
@@ -42,7 +42,7 @@ void THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
 template<class Coordinate, class Coordinates>
 void THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
 	PacElemMultipole* mult, PacElemOffset* offset,
-	double rkicks,
+	double rkicks, 
 	Coordinates& p)
 {
 
@@ -66,7 +66,7 @@ void THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
      int     index = mult->size();
      double* data = mult->data();
 
-     double kl, ktl;
+     double kl, ktl;	
 
      if(index > 0){
     	  do {
@@ -75,7 +75,7 @@ void THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
           	t0  = x*px;
           	t0 -= y*py - kl;
           	py  = x*py;
-          	py += y*px + ktl;
+          	py += y*px + ktl;    
           	px  = t0;
        	  } while ( index > 0 ) ;
      }
@@ -86,6 +86,5 @@ void THINSPIN::magnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
   px *= -1;
 
   p[1] += px;                              // px/p0
-  p[3] += py;                              // py/p0
+  p[3] += py;                              // py/p0	
 }
-

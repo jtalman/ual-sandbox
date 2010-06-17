@@ -1,8 +1,7 @@
-
 // Library       : SXF_TRACKER
 // File          : examples/SXF_TRACKER/rfCavity.cc
 // Copyright     : see Copyright file
-// Author        :
+// Author        : 
 // C++ version   : J.Talman, N.Malitsky
 
 #include "UAL/Common/Def.hh"
@@ -43,7 +42,7 @@ UAL::PropagatorNode* SXF_TRACKER::rfCavity::clone()
 }
 
 void SXF_TRACKER::rfCavity::setLatticeElements(const UAL::AcceleratorNode& sequence,
-						  int is0,
+						  int is0, 
 						  int is1,
 						  const UAL::AttributeSet& attSet)
 {
@@ -63,7 +62,7 @@ void SXF_TRACKER::rfCavity::setLatticeElement(const PacLattElement& e)
       m_lag = 0.0;
       m_h = 0.0;
 
-  PacElemAttributes* attributes = e.getBody();
+  PacElemAttributes* attributes = e.getBody(); 
 
   if(attributes == 0) {
     return;
@@ -87,9 +86,9 @@ void SXF_TRACKER::rfCavity::propagate(UAL::Probe& probe)
 
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
 
-
+  
   // cerr << "V = " << m_V << ", lag = " << m_lag << ", harmon = " << m_h << ", l = " << m_l << "\n";
-
+  
   // Old beam attributes
 
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
@@ -103,7 +102,7 @@ void SXF_TRACKER::rfCavity::propagate(UAL::Probe& probe)
   double t_old       = ba.getElapsedTime();
 
   // RF attributes
-
+  
   double V   = m_V;
   double lag = m_lag;
   double h   = m_h;
@@ -138,7 +137,7 @@ void SXF_TRACKER::rfCavity::propagate(UAL::Probe& probe)
     // RF
 
     phase = h*revfreq_old*(p.getCT()/UAL::clight);
-    de    = q*V*sin(2.*UAL::pi*(lag - phase));
+    de    = q*V*sin(2.*UAL::pi*(lag - phase)); 
 
     e_new = e_old + de;
     p.setDE((e_new - e0_new)/p0_new);
@@ -149,7 +148,7 @@ void SXF_TRACKER::rfCavity::propagate(UAL::Probe& probe)
     vbyc  = p_new/e_new;
 
     passDrift(m_l/2., p, v0byc_new, vbyc);
-
+    
   }
 
   ba.setElapsedTime(t_old + (m_l/v0byc_old + m_l/v0byc_new)/2./UAL::clight);
@@ -181,26 +180,26 @@ void SXF_TRACKER::rfCavity::passDrift(double l, PAC::Position& p, double v0byc, 
   double px_by_ps = p[1]*t0;
   double py_by_ps = p[3]*t0;
 
-  p[0] += (l*px_by_ps);
+  p[0] += (l*px_by_ps);                
   p[2] += (l*py_by_ps);
 
   // Longitudinal part
 
-  // ct = L/(v/c) - Lo/(vo/c) = (L - Lo)/(v/c) + Lo*(c/v - c/vo) =
+  // ct = L/(v/c) - Lo/(vo/c) = (L - Lo)/(v/c) + Lo*(c/v - c/vo) = 
   //                          = cdt_circ       + cdt_vel
 
   // 1. cdt_circ = (c/v)(L - Lo) = (c/v)(L**2 - Lo**2)/(L + Lo)
 
   double dl2_by_lo2  = px_by_ps*px_by_ps + py_by_ps*py_by_ps; // (L**2 - Lo**2)/Lo**2
   double l_by_lo     = sqrt(1. + dl2_by_lo2);                 // L/Lo
-
+  
   double cdt_circ = dl2_by_lo2*l/(1 + l_by_lo)/vbyc;
 
   // 2. cdt_vel = Lo*(c/v - c/vo)
 
   double cdt_vel = l*(1./vbyc - 1./v0byc);
 
-  // MAD longitudinal coordinate = -ct
+  // MAD longitudinal coordinate = -ct 
 
   p[4] -= cdt_vel + cdt_circ;
 
@@ -214,7 +213,6 @@ SXF_TRACKER::rfCavityRegister::rfCavityRegister()
 }
 
 static SXF_TRACKER::rfCavityRegister therfCavityRegister;
-
 
 
 

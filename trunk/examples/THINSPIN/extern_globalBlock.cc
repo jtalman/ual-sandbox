@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/extern_globalBlock.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 #include "threeVector.hh"
 #include "fourVector.hh"
 #include "fourTensor.hh"
@@ -22,7 +16,7 @@ extern THINSPIN::fourVector sl;                         // spin lab  frame 4 vec
 extern THINSPIN::fourVector sr;                         // spin rest frame 4 vector has sr0 = 0
 
 extern THINSPIN::fourVector SL[];            // (implicitly covariant) spin lab  frame 4 vector
-extern THINSPIN::fourVector SR[];            // (implicitly covariant) spin rest frame 4 vector has sr0 = 0
+extern THINSPIN::fourVector SR[];            // (implicitly covariant) spin rest frame 4 vector has sr0 = 0 
 
                                                //              note that current means before spin kick/update
 extern THINSPIN::fourVector ul;                // (implicitly covariant) current lab 4 velocity (reused by each bunch particle in its propagate loop)
@@ -45,4 +39,3 @@ extern double SR0[];
 extern double SR1[];
 extern double SR2[];
 extern double SR3[];
-

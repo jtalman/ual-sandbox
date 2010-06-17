@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/getB1tw.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 void getB1tw(PacElemMultipole* mult, const PacElemOffset* offset, const double rkicks, const double in1, const double in2, double& B1tw){
   double t0, x, y, dpx, dpy;
 
@@ -25,7 +19,7 @@ void getB1tw(PacElemMultipole* mult, const PacElemOffset* offset, const double r
      int     index = mult->size();
      double* data = mult->data();
 
-     double kl, ktl;
+     double kl, ktl;    
 
 //const Coordinates pos = p;
 //#include "set_betalBefore.cc"
@@ -36,7 +30,7 @@ void getB1tw(PacElemMultipole* mult, const PacElemOffset* offset, const double r
                 t0  = x*dpx;
                 t0 -= y*dpy - kl;
                 dpy  = x*dpy;
-                dpy += y*dpx + ktl;
+                dpy += y*dpx + ktl;    
                 dpx  = t0;
           } while ( index > 0 ) ;
      }
@@ -55,4 +49,3 @@ void getB1tw(PacElemMultipole* mult, const PacElemOffset* offset, const double r
 //p[3] += dpy;                              // py/p0
 
 }
-

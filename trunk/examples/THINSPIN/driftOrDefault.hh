@@ -1,7 +1,7 @@
 // Library       : SXF_TRACKER
 // File          : examples/SXF_TRACKER/driftOrDefault.hh
 // Copyright     : see Copyright file
-// Author        :
+// Author        : 
 // C++ version   : J.Talman, N.Malitsky
 
 #ifndef UAL_DRIFT_OR_DEFAULT_HH
@@ -38,9 +38,9 @@ namespace SXF_TRACKER {
     bool isSequence() { return false; }
 
     /** Defines the lattice elemements (PropagatorNode method)
-	Note: integers i0 and i1 will be replaced by AcceleratorNode's
+	Note: integers i0 and i1 will be replaced by AcceleratorNode's 
     */
-    virtual void setLatticeElements(const UAL::AcceleratorNode& sequence, int i0, int i1,
+    virtual void setLatticeElements(const UAL::AcceleratorNode& sequence, int i0, int i1, 
 				    const UAL::AttributeSet& attSet);
 
 UAL::AcceleratorNode& getFrontAcceleratorNode()
@@ -104,10 +104,10 @@ UAL::AcceleratorNode& getBackAcceleratorNode()
 
   protected:
 
-    /**  Front node */
+    /**  Front node */ 
     PacLattElement m_frontNode;
 
-    /** Back node */
+    /** Back node */ 
     PacLattElement m_backNode;
 
   };
@@ -123,4 +123,3 @@ UAL::AcceleratorNode& getBackAcceleratorNode()
 }
 
 #endif
-

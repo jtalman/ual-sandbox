@@ -1,8 +1,7 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/fourVector.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
+// Program     :
+// File        :
+// Copyright   : see Copyright file
+// Author      : 
 
 #include "fourVector.hh"
 
@@ -30,14 +29,14 @@ const THINSPIN::fourVector& THINSPIN::fourVector::operator=(const THINSPIN::four
   return *this;
 }
 
-// Access
+// Access 
 
 void THINSPIN::fourVector::set(double v0, double v1, double v2, double v3)
 {
-  set0(v0);
-  set1(v1);
-  set2(v2);
-  set3(v3);
+  set0(v0); 
+  set1(v1); 
+  set2(v2); 
+  set3(v3); 
 }
 
 double  THINSPIN::fourVector::get0() const { return m_data[0]; }
@@ -116,4 +115,3 @@ THINSPIN::fourVector THINSPIN::fourVector::operator/(double v)
   tmp /= v;
   return tmp;
 }
-

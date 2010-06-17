@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/lorentzTransformForTracker.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 #ifndef THINSPIN_LORENTZ_TRANSFORM_FOR_TRACKER_CC
 #define THINSPIN_LORENTZ_TRANSFORM_FOR_TRACKER_CC
 
@@ -20,4 +14,3 @@ void lorentzTransformForTracker(const THINSPIN::fourVector& in, const THINSPIN::
 }
 
 #endif
-

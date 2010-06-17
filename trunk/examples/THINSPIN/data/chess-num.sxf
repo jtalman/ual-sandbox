@@ -1,0 +1,2883 @@
+// 
+ring sequence { 
+   marker { tag = ip_l0
+  };
+   drift { tag = d001 at = 0.2145 l = 0.429
+  };
+   quadrupole { tag = q00w at = 0.521 l = 0.184
+    body = { kl = [ 0 -0.33304 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d002 at = 0.644125 l = 0.06225
+  };
+   marker { tag = det_00w at = 0.67525
+  };
+   drift { tag = d003 at = 0.75575 l = 0.161
+  };
+   quadrupole { tag = sc_q01w at = 1.167 l = 0.6615
+    body = { kl = [ 0 -1.50656625 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d004 at = 1.623 l = 0.2505
+  };
+   quadrupole { tag = sc_q02w at = 2.079 l = 0.6615
+    body = { kl = [ 0 0.872273745 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d005 at = 3.00575 l = 1.192
+  };
+   marker { tag = det_01w at = 3.60175
+  };
+   drift { tag = d006 at = 4.497698 l = 1.791896
+  };
+   kicker { tag = hvkick_01w at = 5.479996 l = 0.1727
+  };
+   drift { tag = d007 at = 5.973846 l = 0.815
+  };
+   marker { tag = det_02w at = 6.381346
+  };
+   drift { tag = d008 at = 7.256496 l = 1.7503
+  };
+   quadrupole { tag = sk_q02w at = 8.217996 l = 0.1727
+    body = { kl = [ 0 -0.0076910218 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d009 at = 8.355996 l = 0.1033
+  };
+   quadrupole { tag = sk_q03w at = 8.493996 l = 0.1727
+    body = { kl = [ 0 -0.0076910218 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d010 at = 8.7920375 l = 0.423383
+  };
+   quadrupole { tag = b03win at = 9.0037295 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b03wmod at = 10.4764139169 l = 2.94536783384
+    body = { kl = [ 0.020944245]}
+  };
+   quadrupole { tag = b03wout at = 11.9490983338 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d011 at = 12.1377233338 l = 0.377249
+  };
+   quadrupole { tag = b03awin at = 12.3263483338 l = 1e-06
+    body = { kl = [ 0 -0.000106375035616 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b03awmod at = 13.1481228065 l = 1.64354794536
+    body = { kl = [ 0.01869933]}
+  };
+   quadrupole { tag = b03awout at = 13.9698972792 l = 1e-06
+    body = { kl = [ 0 -0.000106375035616 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d012 at = 14.0769937792 l = 0.214192
+  };
+   marker { tag = det_03w at = 14.1840897792
+  };
+   drift { tag = d013 at = 14.2707897792 l = 0.1734
+  };
+   quadrupole { tag = q03w at = 14.6574897792 l = 0.6
+    body = { kl = [ 0 -0.1245216 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d014 at = 15.1861247792 l = 0.45727
+  };
+   quadrupole { tag = b04win at = 15.4147602792 l = 1e-06
+  };
+   sbend { tag = b04wmod at = 17.0337122792 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b04wout at = 18.6526642792 l = 1e-06
+  };
+   drift { tag = d015 at = 18.7714132792 l = 0.237497
+  };
+   quadrupole { tag = sk_q04w at = 18.9663617792 l = 0.1524
+  };
+   drift { tag = d016 at = 19.2037617792 l = 0.3224
+  };
+   quadrupole { tag = q04w at = 19.6649617792 l = 0.6
+    body = { kl = [ 0 0.26646 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d017 at = 20.0461617792 l = 0.1624
+  };
+   marker { tag = det_04w at = 20.1273617792
+  };
+   drift { tag = d018 at = 20.2937367792 l = 0.33275
+  };
+   quadrupole { tag = b05win at = 20.4601122792 l = 1e-06
+  };
+   sbend { tag = b05wmod at = 22.0790642792 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b05wout at = 23.6980162792 l = 1e-06
+  };
+   drift { tag = d019 at = 23.8057662792 l = 0.215499
+  };
+   quadrupole { tag = sk_q05w at = 23.9897157792 l = 0.1524
+  };
+   drift { tag = d020 at = 24.2381157792 l = 0.3444
+  };
+   quadrupole { tag = q05w at = 24.7103157792 l = 0.6
+    body = { kl = [ 0 -0.200808 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d021 at = 25.0955157792 l = 0.1704
+  };
+   marker { tag = det_05w at = 25.1807157792
+  };
+   drift { tag = d022 at = 25.3430917792 l = 0.324752
+  };
+   quadrupole { tag = b06win at = 25.5054682792 l = 1e-06
+  };
+   sbend { tag = b06wmod at = 27.1244202792 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b06wout at = 28.7433722792 l = 1e-06
+  };
+   drift { tag = d023 at = 28.8541217792 l = 0.221498
+  };
+   quadrupole { tag = sk_q06w at = 29.0410707792 l = 0.1524
+  };
+   drift { tag = d024 at = 29.2512707792 l = 0.268
+  };
+   marker { tag = det_06w1 at = 29.3852707792
+  };
+   drift { tag = d025 at = 29.4204707792 l = 0.0704
+  };
+   quadrupole { tag = q06w at = 29.7556707792 l = 0.6
+    body = { kl = [ 0 0.2812938 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d026 at = 30.1438707792 l = 0.1764
+  };
+   marker { tag = det_06w at = 30.2320707792
+  };
+   drift { tag = d027 at = 30.3914452792 l = 0.318749
+  };
+   quadrupole { tag = b07win at = 30.5508202792 l = 1e-06
+  };
+   sbend { tag = b07wmod at = 32.1697722792 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b07wout at = 33.7887242792 l = 1e-06
+  };
+   drift { tag = d028 at = 33.9377277792 l = 0.298006
+  };
+   quadrupole { tag = q07w at = 34.3867307792 l = 0.6
+    body = { kl = [ 0 -0.1896594 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d029 at = 34.7359307792 l = 0.0984
+  };
+   marker { tag = det_07w at = 34.7851307792
+  };
+   drift { tag = d030 at = 34.8336307792 l = 0.097
+  };
+   kicker { tag = hkick_07w at = 34.9041307792 l = 0.044
+  };
+   drift { tag = d031 at = 35.3686307792 l = 0.885
+  };
+   quadrupole { tag = sk_q07w at = 35.8871307792 l = 0.152
+  };
+   drift { tag = d032 at = 36.0821307792 l = 0.238
+  };
+   sextupole { tag = sk_sex_07w at = 36.2651307792 l = 0.128
+  };
+   drift { tag = d033 at = 36.5516307792 l = 0.445
+  };
+   drift { tag = h_sep_08w at = 37.9951307792 l = 2.442
+  };
+   drift { tag = d034 at = 39.4629292792 l = 0.493597
+  };
+   quadrupole { tag = q08w at = 40.0097277792 l = 0.6
+    body = { kl = [ 0 0.1221714 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d035 at = 40.3404277792 l = 0.0614
+  };
+   sextupole { tag = sex_08w at = 40.5071277792 l = 0.272
+    body = { kl = [ 0 0 -0.030171872 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d036 at = 40.7891277792 l = 0.292
+  };
+   marker { tag = det_08w at = 40.9351277792
+  };
+   drift { tag = d037 at = 41.3128427792 l = 0.75543
+  };
+   drift { tag = rf_w1 at = 42.5905577792 l = 1.8
+  };
+   drift { tag = d038 at = 44.0904777792 l = 1.19984
+  };
+   drift { tag = rf_w2 at = 45.5903977792 l = 1.8
+  };
+   drift { tag = d039 at = 46.8603607792 l = 0.739926
+  };
+   marker { tag = det_08aw at = 47.2303237792
+  };
+   drift { tag = d040 at = 47.2320737792 l = 0.0035
+  };
+   kicker { tag = vkick_08wa at = 47.2655737792 l = 0.0635
+  };
+   drift { tag = d041 at = 47.3505237792 l = 0.1064
+  };
+   quadrupole { tag = q08aw at = 47.7037237792 l = 0.6
+    body = { kl = [ 0 -0.00990984 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d042 at = 48.0954237792 l = 0.1834
+  };
+   drift { tag = wig_w at = 49.6871237792 l = 3
+  };
+   drift { tag = d043 at = 51.3166147792 l = 0.258982
+  };
+   marker { tag = det_09w at = 51.4461057792
+  };
+   drift { tag = d044 at = 51.4953057792 l = 0.0984
+  };
+   quadrupole { tag = q09w at = 51.8445057792 l = 0.6
+    body = { kl = [ 0 -0.1167954 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d045 at = 52.1772057792 l = 0.0654
+  };
+   sextupole { tag = sex_09w at = 52.3459057792 l = 0.272
+    body = { kl = [ 0 0 -0.015704872 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d046 at = 53.2489057792 l = 1.534
+  };
+   quadrupole { tag = sk_q09w at = 54.0919057792 l = 0.152
+  };
+   drift { tag = d047 at = 56.1114892792 l = 3.887167
+  };
+   quadrupole { tag = q10w at = 58.3550727792 l = 0.6
+    body = { kl = [ 0 0.154239 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d048 at = 58.6872727792 l = 0.0644
+  };
+   sextupole { tag = sex_10w at = 58.8554727792 l = 0.272
+    body = { kl = [ 0 0 0.109420704 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d049 at = 59.0464727792 l = 0.11
+  };
+   marker { tag = det_10w at = 59.1014727792
+  };
+   drift { tag = d050 at = 59.3147922792 l = 0.426639
+  };
+   quadrupole { tag = b11win at = 59.5281122792 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b11wmod at = 62.8152437792 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b11wout at = 66.1023752792 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d051 at = 66.2203602792 l = 0.235969
+  };
+   marker { tag = det_11w at = 66.3383447792
+  };
+   drift { tag = d052 at = 66.4335447792 l = 0.1904
+  };
+   quadrupole { tag = q11w at = 66.8287447792 l = 0.6
+    body = { kl = [ 0 -0.1240692 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d053 at = 67.1604447792 l = 0.0634
+  };
+   sextupole { tag = sex_11w at = 67.3281447792 l = 0.272
+    body = { kl = [ 0 0 0.214649072 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d054 at = 67.5983517792 l = 0.268414
+  };
+   quadrupole { tag = b12win at = 67.7325592792 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b12wmod at = 71.0196907792 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b12wout at = 74.3068222792 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d055 at = 74.4154732792 l = 0.217301
+  };
+   sextupole { tag = sk_sex_12w at = 74.5881237792 l = 0.128
+  };
+   drift { tag = d056 at = 75.0431237792 l = 0.782
+  };
+   marker { tag = det_12w1 at = 75.4341237792
+  };
+   drift { tag = d057 at = 75.5301237792 l = 0.192
+  };
+   marker { tag = det_12w2 at = 75.6261237792
+  };
+   drift { tag = d058 at = 75.9301237792 l = 0.608
+  };
+   marker { tag = det_12w at = 76.2341237792
+  };
+   drift { tag = d059 at = 76.2793237792 l = 0.0904
+  };
+   quadrupole { tag = q12w at = 76.6245237792 l = 0.6
+    body = { kl = [ 0 0.1617342 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d060 at = 76.9557487792 l = 0.06245
+  };
+   sextupole { tag = sex_12w at = 77.1229737792 l = 0.272
+    body = { kl = [ 0 0 0.62344032 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d061 at = 77.5602847792 l = 0.602622
+  };
+   quadrupole { tag = b13win at = 77.8615962792 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b13wmod at = 81.1492412792 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b13wout at = 84.4368862792 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d062 at = 84.5315142792 l = 0.189255
+  };
+   quadrupole { tag = q13w at = 84.9261417792 l = 0.6
+    body = { kl = [ 0 -0.1335858 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d063 at = 85.2575417792 l = 0.0628
+  };
+   sextupole { tag = sex_13w at = 85.4249417792 l = 0.272
+    body = { kl = [ 0 0 -0.53971056 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d064 at = 85.5707417792 l = 0.0196
+  };
+   marker { tag = det_13w at = 85.5805417792
+  };
+   drift { tag = d065 at = 85.8790417792 l = 0.597
+  };
+   drift { tag = wig1_14w at = 86.9775417792 l = 1.6
+  };
+   drift { tag = d066 at = 88.0245417792 l = 0.494
+  };
+   drift { tag = wig2_14w at = 89.0715417792 l = 1.6
+  };
+   drift { tag = d067 at = 90.6868207792 l = 1.630558
+  };
+   marker { tag = det_14w at = 91.5020997792
+  };
+   drift { tag = d068 at = 91.5162997792 l = 0.0284
+  };
+   quadrupole { tag = q14w at = 91.8304997792 l = 0.6
+    body = { kl = [ 0 0.1691394 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d069 at = 92.1630747792 l = 0.06515
+  };
+   sextupole { tag = sex_14w at = 92.3316497792 l = 0.272
+    body = { kl = [ 0 0 0.194343184 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d070 at = 92.5459767792 l = 0.156654
+  };
+   quadrupole { tag = b15win at = 92.6243042792 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b15wmod at = 95.9119492792 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b15wout at = 99.1995942792 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d071 at = 99.3898452792 l = 0.380501
+  };
+   drift { tag = wig_15w at = 100.380095779 l = 1.6
+  };
+   drift { tag = d072 at = 101.287595779 l = 0.215
+  };
+   marker { tag = det_15w at = 101.395095779
+  };
+   drift { tag = d073 at = 101.428795779 l = 0.0674
+  };
+   quadrupole { tag = q15w at = 101.762495779 l = 0.6
+    body = { kl = [ 0 -0.1237122 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d074 at = 102.094945779 l = 0.0649
+  };
+   sextupole { tag = sex_15w at = 102.263395779 l = 0.272
+    body = { kl = [ 0 0 -0.54859408 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d075 at = 102.667469779 l = 0.536148
+  };
+   quadrupole { tag = b16win at = 102.935544279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b16wmod at = 106.222675779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b16wout at = 109.509807279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d076 at = 109.588379279 l = 0.157143
+  };
+   quadrupole { tag = q16w at = 109.966950779 l = 0.6
+    body = { kl = [ 0 0.1490346 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d077 at = 110.300275779 l = 0.06665
+  };
+   sextupole { tag = sex_16w at = 110.469600779 l = 0.272
+    body = { kl = [ 0 0 0.27793504 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d078 at = 110.624475779 l = 0.03775
+  };
+   marker { tag = det_16w at = 110.643350779
+  };
+   drift { tag = d079 at = 110.647850779 l = 0.009
+  };
+   kicker { tag = vkick_16w at = 110.777350779 l = 0.25
+  };
+   drift { tag = d080 at = 111.021170279 l = 0.237639
+  };
+   quadrupole { tag = b17win at = 111.139990279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b17wmod at = 114.427121779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b17wout at = 117.714253279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d081 at = 117.792825279 l = 0.157143
+  };
+   quadrupole { tag = q17w at = 118.171396779 l = 0.6
+    body = { kl = [ 0 -0.140562 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d082 at = 118.503046779 l = 0.0633
+  };
+   sextupole { tag = sex_17w at = 118.670696779 l = 0.272
+    body = { kl = [ 0 0 -0.30778432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d083 at = 118.831796779 l = 0.0502
+  };
+   marker { tag = det_17w at = 118.856896779
+  };
+   drift { tag = d084 at = 119.100670279 l = 0.487547
+  };
+   quadrupole { tag = b18win at = 119.344444279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b18wmod at = 122.631575779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b18wout at = 125.918707279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d085 at = 125.997279279 l = 0.157143
+  };
+   quadrupole { tag = q18w at = 126.375850779 l = 0.6
+    body = { kl = [ 0 0.1442778 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d086 at = 126.704650779 l = 0.0576
+  };
+   sextupole { tag = sex_18w at = 126.869450779 l = 0.272
+    body = { kl = [ 0 0 0.31993184 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d087 at = 127.019350779 l = 0.0278
+  };
+   marker { tag = det_18w at = 127.033250779
+  };
+   drift { tag = d088 at = 127.212250779 l = 0.358
+  };
+   drift { tag = wig1_18w at = 128.191250779 l = 1.6
+  };
+   drift { tag = d089 at = 129.055250779 l = 0.128
+  };
+   drift { tag = wig2_18w at = 129.919250779 l = 1.6
+  };
+   drift { tag = d090 at = 130.783250779 l = 0.128
+  };
+   drift { tag = wig3_18w at = 131.647250779 l = 1.6
+  };
+   drift { tag = d091 at = 132.555354279 l = 0.216207
+  };
+   marker { tag = det_19w at = 132.663457779
+  };
+   drift { tag = d092 at = 132.699657779 l = 0.0724
+  };
+   quadrupole { tag = q19w at = 133.035857779 l = 0.6
+    body = { kl = [ 0 -0.1794594 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d093 at = 133.367307779 l = 0.0629
+  };
+   sextupole { tag = sex_19w at = 133.534757779 l = 0.272
+    body = { kl = [ 0 0 -0.47622848 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d094 at = 133.939833779 l = 0.538152
+  };
+   quadrupole { tag = b20win at = 134.208910279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b20wmod at = 137.496041779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b20wout at = 140.783173279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d095 at = 140.861743279 l = 0.157139
+  };
+   quadrupole { tag = q20w at = 141.240312779 l = 0.6
+    body = { kl = [ 0 0.1380222 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d096 at = 141.573487779 l = 0.06635
+  };
+   sextupole { tag = sex_20w at = 141.742662779 l = 0.272
+    body = { kl = [ 0 0 0.0538084 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d097 at = 141.901737779 l = 0.04615
+  };
+   marker { tag = det_20w at = 141.924812779
+  };
+   drift { tag = d098 at = 142.169080779 l = 0.488536
+  };
+   quadrupole { tag = b21win at = 142.413349279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b21wmod at = 145.700480779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b21wout at = 148.987612279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d099 at = 149.066182279 l = 0.157139
+  };
+   quadrupole { tag = q21w at = 149.444751779 l = 0.6
+    body = { kl = [ 0 -0.169257 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d100 at = 149.776676779 l = 0.06385
+  };
+   sextupole { tag = sex_21w at = 149.944601779 l = 0.272
+    body = { kl = [ 0 0 -0.54410064 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d101 at = 150.104926779 l = 0.04865
+  };
+   marker { tag = det_21w at = 150.129251779
+  };
+   drift { tag = d102 at = 150.373519779 l = 0.488536
+  };
+   quadrupole { tag = b22win at = 150.617788279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b22wmod at = 153.904919779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b22wout at = 157.192051279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d103 at = 157.270621279 l = 0.157139
+  };
+   quadrupole { tag = q22w at = 157.649190779 l = 0.6
+    body = { kl = [ 0 0.1552584 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d104 at = 157.982240779 l = 0.0661
+  };
+   sextupole { tag = sex_22w at = 158.151290779 l = 0.272
+    body = { kl = [ 0 0 -0.00194068736 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d105 at = 158.310090779 l = 0.0456
+  };
+   marker { tag = det_22w at = 158.332890779
+  };
+   drift { tag = d106 at = 158.577559279 l = 0.489337
+  };
+   quadrupole { tag = b23win at = 158.822228279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b23wmod at = 162.109359779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b23wout at = 165.396491279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d107 at = 165.475061279 l = 0.157139
+  };
+   quadrupole { tag = q23w at = 165.853630779 l = 0.6
+    body = { kl = [ 0 -0.1507992 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d108 at = 166.186330779 l = 0.0654
+  };
+   sextupole { tag = sex_23w at = 166.355030779 l = 0.272
+    body = { kl = [ 0 0 -0.202699296 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d109 at = 166.503630779 l = 0.0252
+  };
+   marker { tag = det_23w at = 166.516230779
+  };
+   drift { tag = d110 at = 166.793630779 l = 0.5548
+  };
+   sextupole { tag = sk_sex_23w at = 167.135280779 l = 0.1285
+  };
+   drift { tag = d111 at = 168.113106279 l = 1.827151
+  };
+   quadrupole { tag = b24win at = 169.026682279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b24wmod at = 172.313813779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b24wout at = 175.600945279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d112 at = 175.679515279 l = 0.157139
+  };
+   quadrupole { tag = q24w at = 176.058084779 l = 0.6
+    body = { kl = [ 0 0.147063 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d113 at = 176.389859779 l = 0.06355
+  };
+   sextupole { tag = sex_24w at = 176.557634779 l = 0.272
+    body = { kl = [ 0 0 0.000235926544 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d114 at = 176.717909779 l = 0.04855
+  };
+   marker { tag = det_24w at = 176.742184779
+  };
+   drift { tag = d115 at = 176.986660779 l = 0.488952
+  };
+   quadrupole { tag = b25win at = 177.231137279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b25wmod at = 180.518268779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b25wout at = 183.805400279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d116 at = 183.883970279 l = 0.157139
+  };
+   quadrupole { tag = q25w at = 184.262539779 l = 0.6
+    body = { kl = [ 0 -0.1856934 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d117 at = 184.594989779 l = 0.0649
+  };
+   sextupole { tag = sex_25w at = 184.763439779 l = 0.272
+    body = { kl = [ 0 0 -0.156164992 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d118 at = 184.923039779 l = 0.0472
+  };
+   marker { tag = det_25w at = 184.946639779
+  };
+   drift { tag = d119 at = 185.191107779 l = 0.488936
+  };
+   quadrupole { tag = b26win at = 185.435576279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b26wmod at = 188.722707779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b26wout at = 192.009839279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d120 at = 192.088409279 l = 0.157139
+  };
+   quadrupole { tag = q26w at = 192.466978779 l = 0.6
+    body = { kl = [ 0 0.1589526 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d121 at = 192.800428779 l = 0.0669
+  };
+   sextupole { tag = sex_26w at = 192.969878779 l = 0.272
+    body = { kl = [ 0 0 0.176812784 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d122 at = 193.117778779 l = 0.0238
+  };
+   marker { tag = det_26w at = 193.129678779
+  };
+   drift { tag = d123 at = 193.200328779 l = 0.1413
+  };
+   kicker { tag = bump_26w at = 193.385728779 l = 0.2295
+  };
+   drift { tag = d124 at = 193.682749779 l = 0.364542
+  };
+   quadrupole { tag = b27win at = 193.865021279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b27wmod at = 197.152152779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b27wout at = 200.439284279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d125 at = 200.517854279 l = 0.157139
+  };
+   quadrupole { tag = q27w at = 200.896423779 l = 0.6
+    body = { kl = [ 0 -0.1896036 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d126 at = 201.229998779 l = 0.06715
+  };
+   sextupole { tag = sex_27w at = 201.399573779 l = 0.272
+    body = { kl = [ 0 0 0.04211648 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d127 at = 201.559548779 l = 0.04795
+  };
+   marker { tag = det_27w at = 201.583523779
+  };
+   drift { tag = d128 at = 201.826499779 l = 0.485952
+  };
+   quadrupole { tag = b28win at = 202.069476279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b28wmod at = 205.356607779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b28wout at = 208.643739279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d129 at = 208.722309279 l = 0.157139
+  };
+   quadrupole { tag = q28w at = 209.100878779 l = 0.6
+    body = { kl = [ 0 0.144843 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d130 at = 209.433828779 l = 0.0659
+  };
+   sextupole { tag = sex_28w at = 209.602778779 l = 0.272
+    body = { kl = [ 0 0 0.103423376 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d131 at = 209.752128779 l = 0.0267
+  };
+   marker { tag = det_28w at = 209.765478779
+  };
+   drift { tag = d132 at = 209.837078779 l = 0.1432
+  };
+   kicker { tag = bump_28w at = 210.023428779 l = 0.2295
+  };
+   drift { tag = d133 at = 210.318565279 l = 0.360773
+  };
+   quadrupole { tag = b29win at = 210.498952279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b29wmod at = 213.786083779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b29wout at = 217.073215279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d134 at = 217.151785279 l = 0.157139
+  };
+   quadrupole { tag = q29w at = 217.530354779 l = 0.6
+    body = { kl = [ 0 -0.1476336 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d135 at = 217.862679779 l = 0.06465
+  };
+   sextupole { tag = sex_29w at = 218.031004779 l = 0.272
+    body = { kl = [ 0 0 -0.220143472 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d136 at = 218.180279779 l = 0.02655
+  };
+   marker { tag = det_29w at = 218.193554779
+  };
+   drift { tag = d137 at = 218.674654779 l = 0.9622
+  };
+   sextupole { tag = sk_sex_29w at = 219.219504779 l = 0.1275
+  };
+   drift { tag = d138 at = 219.533331279 l = 0.500153
+  };
+   quadrupole { tag = b30win at = 219.783408279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b30wmod at = 223.070539779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b30wout at = 226.357671279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d139 at = 226.436241279 l = 0.157139
+  };
+   quadrupole { tag = q30w at = 226.814810779 l = 0.6
+    body = { kl = [ 0 0.1493316 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d140 at = 227.147010779 l = 0.0644
+  };
+   sextupole { tag = sex_30w at = 227.315210779 l = 0.272
+    body = { kl = [ 0 0 0.055708048 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d141 at = 227.464110779 l = 0.0258
+  };
+   marker { tag = det_30w at = 227.477010779
+  };
+   drift { tag = d142 at = 227.844939779 l = 0.735858
+  };
+   quadrupole { tag = b31win at = 228.212869279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b31wmod at = 231.500000779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b31wout at = 234.787132279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d143 at = 234.865702279 l = 0.157139
+  };
+   quadrupole { tag = q31w at = 235.244271779 l = 0.6
+    body = { kl = [ 0 -0.1367358 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d144 at = 235.577471779 l = 0.0664
+  };
+   sextupole { tag = sex_31w at = 235.746671779 l = 0.272
+    body = { kl = [ 0 0 -0.4589728 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d145 at = 235.906271779 l = 0.0472
+  };
+   marker { tag = det_31w at = 235.929871779
+  };
+   drift { tag = d146 at = 236.173597279 l = 0.487451
+  };
+   quadrupole { tag = b32win at = 236.417323279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b32wmod at = 239.704454779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b32wout at = 242.991586279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d147 at = 243.070156279 l = 0.157139
+  };
+   quadrupole { tag = q32w at = 243.448725779 l = 0.6
+    body = { kl = [ 0 0.1193226 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d148 at = 243.779300779 l = 0.06115
+  };
+   sextupole { tag = sex_32w at = 243.945875779 l = 0.272
+    body = { kl = [ 0 0 0.46894432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d149 at = 244.094500779 l = 0.02525
+  };
+   marker { tag = det_32w at = 244.107125779
+  };
+   drift { tag = d150 at = 244.476954779 l = 0.739658
+  };
+   quadrupole { tag = b33win at = 244.846784279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b33wmod at = 248.133915779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b33wout at = 251.421047279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d151 at = 251.499617279 l = 0.157139
+  };
+   quadrupole { tag = q33w at = 251.878186779 l = 0.6
+    body = { kl = [ 0 -0.122127 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d152 at = 252.210386779 l = 0.0644
+  };
+   sextupole { tag = sex_33w at = 252.378586779 l = 0.272
+    body = { kl = [ 0 0 -0.3941144 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d153 at = 252.527986779 l = 0.0268
+  };
+   marker { tag = det_33w at = 252.541386779
+  };
+   drift { tag = d154 at = 254.076744779 l = 3.070716
+  };
+   marker { tag = det_34w at = 255.612102779
+  };
+   drift { tag = d155 at = 256.580152779 l = 1.9361
+  };
+   quadrupole { tag = q34w at = 257.848202779 l = 0.6
+    body = { kl = [ 0 0.1349616 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d156 at = 258.166652779 l = 0.0369
+  };
+   sextupole { tag = sex_34w at = 258.321102779 l = 0.272
+    body = { kl = [ 0 0 0.232228432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d157 at = 258.586800779 l = 0.259396
+  };
+   quadrupole { tag = b35win at = 258.716499279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b35wmod at = 262.003630779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b35wout at = 265.290762279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d158 at = 265.369328279 l = 0.157131
+  };
+   quadrupole { tag = q35w at = 265.747893779 l = 0.6
+    body = { kl = [ 0 -0.0971028 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d159 at = 266.079968779 l = 0.06415
+  };
+   sextupole { tag = sex_35w at = 266.248043779 l = 0.272
+    body = { kl = [ 0 0 -0.074482576 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d160 at = 266.400018779 l = 0.03195
+  };
+   marker { tag = det_35w at = 266.415993779
+  };
+   drift { tag = d161 at = 266.744698779 l = 0.65741
+  };
+   quadrupole { tag = b36win at = 267.073404279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b36wmod at = 270.360535779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b36wout at = 273.647667279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d162 at = 274.290933279 l = 1.286531
+  };
+   kicker { tag = pinger_36w at = 275.262198779 l = 0.656
+  };
+   drift { tag = d163 at = 275.679198779 l = 0.178
+  };
+   kicker { tag = bump_36w at = 275.880698779 l = 0.225
+  };
+   drift { tag = d164 at = 276.205898779 l = 0.4254
+  };
+   quadrupole { tag = q36w at = 276.718598779 l = 0.6
+    body = { kl = [ 0 0.1134132 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d165 at = 277.051173779 l = 0.06515
+  };
+   sextupole { tag = sex_36w at = 277.219748779 l = 0.272
+    body = { kl = [ 0 0 -0.0042631648 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d166 at = 277.368273779 l = 0.02505
+  };
+   marker { tag = det_36w at = 277.380798779
+  };
+   drift { tag = d167 at = 277.541478779 l = 0.32136
+  };
+   quadrupole { tag = b37win at = 277.702159279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b37wmod at = 280.989290779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b37wout at = 284.276422279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d168 at = 284.354988779 l = 0.157132
+  };
+   quadrupole { tag = q37w at = 284.733554779 l = 0.6
+    body = { kl = [ 0 -0.1244952 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d169 at = 285.066254779 l = 0.0654
+  };
+   sextupole { tag = sex_37w at = 285.234954779 l = 0.272
+    body = { kl = [ 0 0 -0.25699512 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d170 at = 285.393804779 l = 0.0457
+  };
+   marker { tag = det_37w at = 285.416654779
+  };
+   drift { tag = d171 at = 285.661611279 l = 0.489913
+  };
+   quadrupole { tag = b38win at = 285.906568279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b38wmod at = 289.193699779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b38wout at = 292.480831279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d172 at = 292.559397279 l = 0.157131
+  };
+   quadrupole { tag = q38w at = 292.937962779 l = 0.6
+    body = { kl = [ 0 0.136515 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d173 at = 293.269662779 l = 0.0634
+  };
+   sextupole { tag = sex_38w at = 293.437362779 l = 0.272
+    body = { kl = [ 0 0 0.36084608 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d174 at = 293.586762779 l = 0.0268
+  };
+   marker { tag = det_38w at = 293.600162779
+  };
+   drift { tag = d175 at = 293.968072779 l = 0.73582
+  };
+   quadrupole { tag = b39win at = 294.335983279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b39wmod at = 297.623114779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b39wout at = 300.910246279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d176 at = 300.988812279 l = 0.157131
+  };
+   quadrupole { tag = q39w at = 301.367377779 l = 0.6
+    body = { kl = [ 0 -0.1483938 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d177 at = 301.699077779 l = 0.0634
+  };
+   sextupole { tag = sex_39w at = 301.866777779 l = 0.272
+    body = { kl = [ 0 0 -0.56860512 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d178 at = 302.027127779 l = 0.0487
+  };
+   marker { tag = det_39w at = 302.051477779
+  };
+   drift { tag = d179 at = 302.295949779 l = 0.488944
+  };
+   quadrupole { tag = b40win at = 302.540422279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b40wmod at = 305.827553779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b40wout at = 309.114685279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d180 at = 309.193251779 l = 0.157132
+  };
+   quadrupole { tag = q40w at = 309.571817779 l = 0.6
+    body = { kl = [ 0 0.1558974 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d181 at = 309.904267779 l = 0.0649
+  };
+   sextupole { tag = sex_40w at = 310.072717779 l = 0.272
+    body = { kl = [ 0 0 0.14347048 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d182 at = 310.232567779 l = 0.0477
+  };
+   marker { tag = det_40w at = 310.256417779
+  };
+   drift { tag = d183 at = 310.500638779 l = 0.488442
+  };
+   quadrupole { tag = b41win at = 310.744860279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b41wmod at = 314.031991779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b41wout at = 317.319123279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d184 at = 317.397689779 l = 0.157132
+  };
+   quadrupole { tag = q41w at = 317.776255779 l = 0.6
+    body = { kl = [ 0 -0.1612536 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d185 at = 318.108955779 l = 0.0654
+  };
+   sextupole { tag = sex_41w at = 318.277655779 l = 0.272
+    body = { kl = [ 0 0 0.104317712 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d186 at = 318.436755779 l = 0.0462
+  };
+   marker { tag = det_41w at = 318.459855779
+  };
+   drift { tag = d187 at = 318.704577779 l = 0.489444
+  };
+   quadrupole { tag = b42win at = 318.949300279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b42wmod at = 322.236431779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b42wout at = 325.523563279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d188 at = 325.602129279 l = 0.157131
+  };
+   quadrupole { tag = q42w at = 325.980694779 l = 0.6
+    body = { kl = [ 0 0.1306386 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d189 at = 326.313644779 l = 0.0659
+  };
+   sextupole { tag = sex_42w at = 326.482594779 l = 0.272
+    body = { kl = [ 0 0 -0.03502 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d190 at = 326.630494779 l = 0.0238
+  };
+   marker { tag = det_42w at = 326.642394779
+  };
+   drift { tag = d191 at = 326.898066779 l = 0.511344
+  };
+   quadrupole { tag = b43win at = 327.153739279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b43wmod at = 330.440870779 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b43wout at = 333.728002279 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d192 at = 333.806568279 l = 0.157131
+  };
+   quadrupole { tag = q43w at = 334.185133779 l = 0.6
+    body = { kl = [ 0 -0.1652508 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d193 at = 334.515833779 l = 0.0614
+  };
+   sextupole { tag = sex_43w at = 334.682533779 l = 0.272
+    body = { kl = [ 0 0 -0.167211728 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d194 at = 334.833683779 l = 0.0303
+  };
+   marker { tag = det_43w at = 334.848833779
+  };
+   drift { tag = d195 at = 335.964884279 l = 2.232101
+  };
+   quadrupole { tag = q43aw at = 337.380934779 l = 0.6
+    body = { kl = [ 0 0.1609062 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d196 at = 337.905850279 l = 0.449831
+  };
+   quadrupole { tag = b44win at = 338.130766279 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b44wmod at = 341.418411279 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b44wout at = 344.706056279 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d197 at = 344.797351279 l = 0.182589
+  };
+   quadrupole { tag = q44w at = 345.188645779 l = 0.6
+    body = { kl = [ 0 -0.1212402 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d198 at = 345.520195779 l = 0.0631
+  };
+   sextupole { tag = sex_44w at = 345.687745779 l = 0.272
+    body = { kl = [ 0 0 -0.104184432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d199 at = 345.837295779 l = 0.0271
+  };
+   marker { tag = det_44w at = 345.850845779
+  };
+   drift { tag = d200 at = 346.277345779 l = 0.853
+  };
+   drift { tag = h_sep_45w at = 347.898545779 l = 2.3894
+  };
+   drift { tag = d201 at = 349.353167779 l = 0.519844
+  };
+   drift { tag = oct_45w at = 349.803589779 l = 0.381
+  };
+   drift { tag = d202 at = 350.581089779 l = 1.174
+  };
+   marker { tag = det_45w at = 351.168089779
+  };
+   drift { tag = d203 at = 351.198289779 l = 0.0604
+  };
+   quadrupole { tag = q45w at = 351.528489779 l = 0.6
+    body = { kl = [ 0 0.1911876 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d204 at = 351.860739779 l = 0.0645
+  };
+   sextupole { tag = sex_45w at = 352.028989779 l = 0.272
+    body = { kl = [ 0 0 0.153045968 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d205 at = 352.433263779 l = 0.536548
+  };
+   quadrupole { tag = b46win at = 352.701538279 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b46wmod at = 355.989183279 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b46wout at = 359.276828279 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d206 at = 359.368122779 l = 0.182588
+  };
+   quadrupole { tag = q46w at = 359.759416779 l = 0.6
+    body = { kl = [ 0 -0.1484478 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d207 at = 360.098116779 l = 0.0774
+  };
+   marker { tag = det_46w at = 360.136816779
+  };
+   drift { tag = d208 at = 360.761158779 l = 1.248684
+  };
+   quadrupole { tag = b47win at = 361.385501279 l = 1e-06
+    body = { kl = [ 0 -0.000212754085355 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b47wmod at = 363.029183077 l = 3.28736259505
+    body = { kl = [ 0.03740053]}
+  };
+   quadrupole { tag = b47wout at = 364.672864874 l = 1e-06
+    body = { kl = [ 0 -0.000212754085355 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d209 at = 364.844107874 l = 0.342485
+  };
+   quadrupole { tag = sk_q47w at = 365.091350374 l = 0.152
+  };
+   drift { tag = d210 at = 365.347050374 l = 0.3594
+  };
+   quadrupole { tag = q47w at = 365.826750374 l = 0.6
+    body = { kl = [ 0 0.2743752 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d211 at = 366.167700374 l = 0.0819
+  };
+   sextupole { tag = sex_47w at = 366.344650374 l = 0.272
+    body = { kl = [ 0 0 0.111345104 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d212 at = 366.856510874 l = 0.751721
+  };
+   quadrupole { tag = b47awin at = 367.232371874 l = 1e-06
+  };
+   sbend { tag = b47awmod at = 368.820983374 l = 3.177222
+    body = { kl = [ 0.09125466]}
+  };
+   quadrupole { tag = b47awout at = 370.409594874 l = 1e-06
+  };
+   drift { tag = d213 at = 370.660464874 l = 0.501739
+  };
+   quadrupole { tag = q47aw at = 371.211334374 l = 0.6
+    body = { kl = [ 0 -0.1990656 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d214 at = 371.568209374 l = 0.11375
+  };
+   marker { tag = det_47w at = 371.625084374
+  };
+   drift { tag = d215 at = 371.963275874 l = 0.676383
+  };
+   quadrupole { tag = b48win at = 372.301467874 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b48wmod at = 373.774152291 l = 2.94536783384
+    body = { kl = [ 0.020944245]}
+  };
+   quadrupole { tag = b48wout at = 375.246836708 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d216 at = 375.415183208 l = 0.336692
+  };
+   drift { tag = v_sep_48w at = 376.907029208 l = 2.647
+  };
+   drift { tag = d217 at = 378.325029208 l = 0.189
+  };
+   marker { tag = det_48w at = 378.419529208
+  };
+   drift { tag = d218 at = 378.519189208 l = 0.19932
+  };
+   quadrupole { tag = q48w at = 378.918849208 l = 0.6
+    body = { kl = [ 0 0.3106098 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d219 at = 379.335009208 l = 0.23232
+  };
+   kicker { tag = vkick_48w at = 379.514669208 l = 0.127
+  };
+   drift { tag = d220 at = 379.648169208 l = 0.14
+  };
+   kicker { tag = hkick_49w at = 379.781669208 l = 0.127
+  };
+   drift { tag = d221 at = 379.909169208 l = 0.128
+  };
+   drift { tag = oct_48w at = 380.163669208 l = 0.381
+  };
+   drift { tag = d222 at = 380.492557708 l = 0.276777
+  };
+   quadrupole { tag = sk_q48w at = 380.757946208 l = 0.254
+  };
+   drift { tag = d223 at = 381.065925208 l = 0.361958
+  };
+   quadrupole { tag = q49w at = 381.721904208 l = 0.95
+    body = { kl = [ 0 -0.37877165 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d224 at = 382.327383208 l = 0.260958
+  };
+   marker { tag = det_49w at = 382.457862208
+  };
+   drift { tag = d225 at = 383.053862208 l = 1.192
+  };
+   quadrupole { tag = q49aw at = 383.869862208 l = 0.44
+    body = { kl = [ 0 0.13973124 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d226 at = 384.151580208 l = 0.123436
+  };
+   marker { tag = ip_l3 at = 384.213298208
+  };
+   drift { tag = d227 at = 384.284146708 l = 0.141697
+  };
+   quadrupole { tag = q49ae at = 384.574995208 l = 0.44
+    body = { kl = [ 0 0.13973124 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d228 at = 385.384495208 l = 1.179
+  };
+   marker { tag = det_49e at = 385.973995208
+  };
+   drift { tag = d229 at = 386.107474208 l = 0.266958
+  };
+   quadrupole { tag = q49e at = 386.715953208 l = 0.95
+    body = { kl = [ 0 -0.37877165 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d230 at = 387.344932208 l = 0.307958
+  };
+   quadrupole { tag = sk_q48e at = 387.625911208 l = 0.254
+  };
+   drift { tag = d231 at = 387.903299708 l = 0.300777
+  };
+   drift { tag = oct_48e at = 388.244188208 l = 0.381
+  };
+   drift { tag = d232 at = 388.509438208 l = 0.1495
+  };
+   kicker { tag = hkick_49e at = 388.647688208 l = 0.127
+  };
+   drift { tag = d233 at = 388.785188208 l = 0.148
+  };
+   kicker { tag = vkick_48e at = 388.922688208 l = 0.127
+  };
+   drift { tag = d234 at = 389.102598208 l = 0.23282
+  };
+   quadrupole { tag = q48e at = 389.519008208 l = 0.6
+    body = { kl = [ 0 0.3106098 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d235 at = 389.914168208 l = 0.19032
+  };
+   marker { tag = det_48e at = 390.009328208
+  };
+   drift { tag = d236 at = 390.108328208 l = 0.198
+  };
+   drift { tag = v_sep_48e at = 391.530828208 l = 2.647
+  };
+   drift { tag = d237 at = 393.022673708 l = 0.336691
+  };
+   quadrupole { tag = b48ein at = 393.191019708 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b48emod at = 394.663704125 l = 2.94536783384
+    body = { kl = [ 0.020944245]}
+  };
+   quadrupole { tag = b48eout at = 396.136388542 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d238 at = 396.471180542 l = 0.669583
+  };
+   marker { tag = det_47e at = 396.805972042
+  };
+   drift { tag = d239 at = 396.866262542 l = 0.120581
+  };
+   quadrupole { tag = q47ae at = 397.226553042 l = 0.6
+    body = { kl = [ 0 -0.1990656 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d240 at = 397.777422542 l = 0.501739
+  };
+   quadrupole { tag = b47aein at = 398.028292542 l = 1e-06
+  };
+   sbend { tag = b47aemod at = 399.616904042 l = 3.177222
+    body = { kl = [ 0.09125466]}
+  };
+   quadrupole { tag = b47aeout at = 401.205515542 l = 1e-06
+  };
+   drift { tag = d241 at = 401.589392042 l = 0.767752
+  };
+   sextupole { tag = sex_47e at = 402.109268042 l = 0.272
+    body = { kl = [ 0 0 0.111345104 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d242 at = 402.278218042 l = 0.0659
+  };
+   quadrupole { tag = q47e at = 402.611168042 l = 0.6
+    body = { kl = [ 0 0.2743752 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d243 at = 403.100868042 l = 0.3794
+  };
+   quadrupole { tag = sk_q47e at = 403.366568042 l = 0.152
+  };
+   drift { tag = d244 at = 403.603810042 l = 0.322484
+  };
+   quadrupole { tag = b47ein at = 403.765052542 l = 1e-06
+    body = { kl = [ 0 -0.000212754085355 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b47emod at = 405.408734339 l = 3.28736259505
+    body = { kl = [ 0.03740053]}
+  };
+   quadrupole { tag = b47eout at = 407.052416137 l = 1e-06
+    body = { kl = [ 0 -0.000212754085355 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d245 at = 407.671123637 l = 1.237414
+  };
+   marker { tag = det_46e at = 408.289830637
+  };
+   drift { tag = d246 at = 408.334180637 l = 0.0887
+  };
+   quadrupole { tag = q46e at = 408.678530637 l = 0.6
+    body = { kl = [ 0 -0.1484478 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d247 at = 409.069825137 l = 0.182589
+  };
+   quadrupole { tag = b46ein at = 409.161120137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b46emod at = 412.448765137 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b46eout at = 415.736410137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d248 at = 416.004985137 l = 0.537149
+  };
+   sextupole { tag = sex_45e at = 416.409559637 l = 0.272
+    body = { kl = [ 0 0 0.153045968 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d249 at = 416.577509637 l = 0.0639
+  };
+   quadrupole { tag = q45e at = 416.909459637 l = 0.6
+    body = { kl = [ 0 0.1911876 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d250 at = 417.245159637 l = 0.0714
+  };
+   marker { tag = det_45e at = 417.280859637
+  };
+   drift { tag = d251 at = 417.866359637 l = 1.171
+  };
+   drift { tag = oct_45e at = 418.642359637 l = 0.381
+  };
+   drift { tag = d252 at = 419.095509637 l = 0.5253
+  };
+   drift { tag = h_sep_45e at = 420.552859637 l = 2.3894
+  };
+   drift { tag = d253 at = 422.167366637 l = 0.839614
+  };
+   marker { tag = det_44e at = 422.587173637
+  };
+   drift { tag = d254 at = 422.600173637 l = 0.026
+  };
+   sextupole { tag = sex_44e at = 422.749173637 l = 0.272
+    body = { kl = [ 0 0 -0.104184432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d255 at = 422.917223637 l = 0.0641
+  };
+   quadrupole { tag = q44e at = 423.249273637 l = 0.6
+    body = { kl = [ 0 -0.1212402 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d256 at = 423.640568137 l = 0.182589
+  };
+   quadrupole { tag = b44ein at = 423.731863137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b44emod at = 427.019508137 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b44eout at = 430.307153137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d257 at = 430.532526637 l = 0.450746
+  };
+   quadrupole { tag = q43ae at = 431.057899637 l = 0.6
+    body = { kl = [ 0 0.1609062 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d258 at = 432.469627137 l = 2.223455
+  };
+   marker { tag = det_43e at = 433.581354637
+  };
+   drift { tag = d259 at = 433.599054637 l = 0.0354
+  };
+   sextupole { tag = sex_43e at = 433.752754637 l = 0.272
+    body = { kl = [ 0 0 -0.167211728 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d260 at = 433.920754637 l = 0.064
+  };
+   quadrupole { tag = q43e at = 434.252754637 l = 0.6
+    body = { kl = [ 0 -0.1652508 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d261 at = 434.631320637 l = 0.157132
+  };
+   quadrupole { tag = b43ein at = 434.709887137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b43emod at = 437.997018637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b43eout at = 441.284150137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d262 at = 441.535487137 l = 0.502673
+  };
+   marker { tag = det_42e at = 441.786823637
+  };
+   drift { tag = d263 at = 441.805523637 l = 0.0374
+  };
+   sextupole { tag = sex_42e at = 441.960223637 l = 0.272
+    body = { kl = [ 0 0 -0.03502 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d264 at = 442.126723637 l = 0.061
+  };
+   quadrupole { tag = q42e at = 442.457223637 l = 0.6
+    body = { kl = [ 0 0.1306386 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d265 at = 442.835789637 l = 0.157132
+  };
+   quadrupole { tag = b42ein at = 442.914356137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b42emod at = 446.201487637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b42eout at = 449.488619137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d266 at = 449.732891637 l = 0.488544
+  };
+   marker { tag = det_41e at = 449.977163637
+  };
+   drift { tag = d267 at = 450.001513637 l = 0.0487
+  };
+   sextupole { tag = sex_41e at = 450.161863637 l = 0.272
+    body = { kl = [ 0 0 0.104317712 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d268 at = 450.329763637 l = 0.0638
+  };
+   quadrupole { tag = q41e at = 450.661663637 l = 0.6
+    body = { kl = [ 0 -0.1612536 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d269 at = 451.040229137 l = 0.157131
+  };
+   quadrupole { tag = b41ein at = 451.118795137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b41emod at = 454.405926637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b41eout at = 457.693058137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d270 at = 457.937430137 l = 0.488743
+  };
+   marker { tag = det_40e at = 458.181801637
+  };
+   drift { tag = d271 at = 458.205501637 l = 0.0474
+  };
+   sextupole { tag = sex_40e at = 458.365201637 l = 0.272
+    body = { kl = [ 0 0 0.14347048 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d272 at = 458.533651637 l = 0.0649
+  };
+   quadrupole { tag = q40e at = 458.866101637 l = 0.6
+    body = { kl = [ 0 0.1558974 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d273 at = 459.244667637 l = 0.157132
+  };
+   quadrupole { tag = b40ein at = 459.323234137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b40emod at = 462.610365637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b40eout at = 465.897497137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d274 at = 466.141869137 l = 0.488743
+  };
+   marker { tag = det_39e at = 466.386240637
+  };
+   drift { tag = d275 at = 466.409740637 l = 0.047
+  };
+   sextupole { tag = sex_39e at = 466.569240637 l = 0.272
+    body = { kl = [ 0 0 -0.56860512 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d276 at = 466.737890637 l = 0.0653
+  };
+   quadrupole { tag = q39e at = 467.070540637 l = 0.6
+    body = { kl = [ 0 -0.1483938 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d277 at = 467.449106637 l = 0.157132
+  };
+   quadrupole { tag = b39ein at = 467.527673137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b39emod at = 470.814804637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b39eout at = 474.101936137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d278 at = 474.283761137 l = 0.363649
+  };
+   kicker { tag = bump_38e at = 474.580085637 l = 0.229
+  };
+   drift { tag = d279 at = 474.759085637 l = 0.129
+  };
+   marker { tag = det_38e at = 474.823585637
+  };
+   drift { tag = d280 at = 474.844935637 l = 0.0427
+  };
+   sextupole { tag = sex_38e at = 475.002285637 l = 0.272
+    body = { kl = [ 0 0 0.36084608 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d281 at = 475.169135637 l = 0.0617
+  };
+   quadrupole { tag = q38e at = 475.499985637 l = 0.6
+    body = { kl = [ 0 0.136515 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d282 at = 475.878551637 l = 0.157132
+  };
+   quadrupole { tag = b38ein at = 475.957118137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b38emod at = 479.244249637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b38eout at = 482.531381137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d283 at = 482.775588137 l = 0.488413
+  };
+   marker { tag = det_37e at = 483.019794637
+  };
+   drift { tag = d284 at = 483.044044637 l = 0.0485
+  };
+   sextupole { tag = sex_37e at = 483.204294637 l = 0.272
+    body = { kl = [ 0 0 -0.25699512 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d285 at = 483.372344637 l = 0.0641
+  };
+   quadrupole { tag = q37e at = 483.704394637 l = 0.6
+    body = { kl = [ 0 -0.1244952 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d286 at = 484.082960637 l = 0.157132
+  };
+   quadrupole { tag = b37ein at = 484.161527137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b37emod at = 487.448658637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b37eout at = 490.735790137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d287 at = 490.896620637 l = 0.32166
+  };
+   marker { tag = det_36e at = 491.057450637
+  };
+   drift { tag = d288 at = 491.070550637 l = 0.0262
+  };
+   sextupole { tag = sex_36e at = 491.219650637 l = 0.272
+    body = { kl = [ 0 0 -0.0042631648 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d289 at = 491.387500637 l = 0.0637
+  };
+   quadrupole { tag = q36e at = 491.719350637 l = 0.6
+    body = { kl = [ 0 0.1134132 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d290 at = 492.180700637 l = 0.3227
+  };
+   kicker { tag = bump_36e at = 492.457150637 l = 0.2302
+  };
+   drift { tag = d291 at = 492.631750637 l = 0.119
+  };
+   kicker { tag = pinger_36e at = 492.946850637 l = 0.5112
+  };
+   drift { tag = d292 at = 493.996336137 l = 1.587771
+  };
+   quadrupole { tag = b36ein at = 494.790222137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b36emod at = 498.077353637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b36eout at = 501.364485137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d293 at = 501.692251137 l = 0.655531
+  };
+   marker { tag = det_35e at = 502.020016637
+  };
+   drift { tag = d294 at = 502.038291637 l = 0.03655
+  };
+   sextupole { tag = sex_35e at = 502.192566637 l = 0.272
+    body = { kl = [ 0 0 -0.074482576 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d295 at = 502.359341637 l = 0.06155
+  };
+   quadrupole { tag = q35e at = 502.690116637 l = 0.6
+    body = { kl = [ 0 -0.0971028 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d296 at = 503.068682637 l = 0.157132
+  };
+   quadrupole { tag = b35ein at = 503.147249137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b35emod at = 506.434380637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b35eout at = 509.721512137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d297 at = 509.848260137 l = 0.253495
+  };
+   sextupole { tag = sex_34e at = 510.111007637 l = 0.272
+    body = { kl = [ 0 0 0.232228432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d298 at = 510.268407637 l = 0.0428
+  };
+   quadrupole { tag = q34e at = 510.589807637 l = 0.6
+    body = { kl = [ 0 0.1349616 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d299 at = 513.393904637 l = 5.008194
+  };
+   marker { tag = det_33e at = 515.898001637
+  };
+   drift { tag = d300 at = 515.910701637 l = 0.0254
+  };
+   sextupole { tag = sex_33e at = 516.059401637 l = 0.272
+    body = { kl = [ 0 0 -0.3941144 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d301 at = 516.227551637 l = 0.0643
+  };
+   quadrupole { tag = q33e at = 516.559701637 l = 0.6
+    body = { kl = [ 0 -0.122127 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d302 at = 516.938282637 l = 0.157162
+  };
+   quadrupole { tag = b33ein at = 517.016864137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b33emod at = 520.303995637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b33eout at = 523.591127137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d303 at = 523.958687637 l = 0.73512
+  };
+   marker { tag = det_32e at = 524.326247637
+  };
+   drift { tag = d304 at = 524.340997637 l = 0.0295
+  };
+   sextupole { tag = sex_32e at = 524.491747637 l = 0.272
+    body = { kl = [ 0 0 0.46894432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d305 at = 524.658447637 l = 0.0614
+  };
+   quadrupole { tag = q32e at = 524.989147637 l = 0.6
+    body = { kl = [ 0 0.1193226 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d306 at = 525.367728637 l = 0.157162
+  };
+   quadrupole { tag = b32ein at = 525.446310137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b32emod at = 528.733441637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b32eout at = 532.020573137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d307 at = 532.265064637 l = 0.488982
+  };
+   marker { tag = det_31e at = 532.509555637
+  };
+   drift { tag = d308 at = 532.533405637 l = 0.0477
+  };
+   sextupole { tag = sex_31e at = 532.693255637 l = 0.272
+    body = { kl = [ 0 0 -0.4589728 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d309 at = 532.861405637 l = 0.0643
+  };
+   quadrupole { tag = q31e at = 533.193555637 l = 0.6
+    body = { kl = [ 0 -0.1367358 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d310 at = 533.572136637 l = 0.157162
+  };
+   quadrupole { tag = b31ein at = 533.650718137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b31emod at = 536.937849637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b31eout at = 540.224981137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d311 at = 540.592541637 l = 0.73512
+  };
+   marker { tag = det_30e at = 540.960101637
+  };
+   drift { tag = d312 at = 540.973051637 l = 0.0259
+  };
+   sextupole { tag = sex_30e at = 541.122001637 l = 0.272
+    body = { kl = [ 0 0 0.055708048 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d313 at = 541.290501637 l = 0.065
+  };
+   quadrupole { tag = q30e at = 541.623001637 l = 0.6
+    body = { kl = [ 0 0.1493316 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d314 at = 542.001582637 l = 0.157162
+  };
+   quadrupole { tag = b30ein at = 542.080164137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b30emod at = 545.367295637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b30eout at = 548.654427137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d315 at = 548.902527137 l = 0.496199
+  };
+   sextupole { tag = sk_sex_29e at = 549.214326637 l = 0.1274
+  };
+   drift { tag = d316 at = 549.761026637 l = 0.966
+  };
+   marker { tag = det_29e at = 550.244026637
+  };
+   drift { tag = d317 at = 550.257376637 l = 0.0267
+  };
+   sextupole { tag = sex_29e at = 550.406726637 l = 0.272
+    body = { kl = [ 0 0 -0.220143472 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d318 at = 550.575076637 l = 0.0647
+  };
+   quadrupole { tag = q29e at = 550.907426637 l = 0.6
+    body = { kl = [ 0 -0.1476336 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d319 at = 551.286008137 l = 0.157163
+  };
+   quadrupole { tag = b29ein at = 551.364590137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b29emod at = 554.651721637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b29eout at = 557.938853137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d320 at = 558.118313137 l = 0.358919
+  };
+   kicker { tag = bump_28e at = 558.412072637 l = 0.2286
+  };
+   drift { tag = d321 at = 558.600672637 l = 0.1486
+  };
+   marker { tag = det_28e at = 558.674972637
+  };
+   drift { tag = d322 at = 558.687422637 l = 0.0249
+  };
+   sextupole { tag = sex_28e at = 558.835872637 l = 0.272
+    body = { kl = [ 0 0 0.103423376 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d323 at = 559.004372637 l = 0.065
+  };
+   quadrupole { tag = q28e at = 559.336872637 l = 0.6
+    body = { kl = [ 0 0.144843 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d324 at = 559.715453637 l = 0.157162
+  };
+   quadrupole { tag = b28ein at = 559.794035137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b28emod at = 563.081166637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b28eout at = 566.368298137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d325 at = 566.611490137 l = 0.486383
+  };
+   marker { tag = det_27e at = 566.854681637
+  };
+   drift { tag = d326 at = 566.879781637 l = 0.0502
+  };
+   sextupole { tag = sex_27e at = 567.040881637 l = 0.272
+    body = { kl = [ 0 0 0.04211648 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d327 at = 567.209081637 l = 0.0644
+  };
+   quadrupole { tag = q27e at = 567.541281637 l = 0.6
+    body = { kl = [ 0 -0.1896036 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d328 at = 567.919862637 l = 0.157162
+  };
+   quadrupole { tag = b27ein at = 567.998444137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b27emod at = 571.285575637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b27eout at = 574.572707137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d329 at = 574.753167137 l = 0.360919
+  };
+   kicker { tag = bump_26e at = 575.047926637 l = 0.2286
+  };
+   drift { tag = d330 at = 575.234876637 l = 0.1453
+  };
+   marker { tag = det_26e at = 575.307526637
+  };
+   drift { tag = d331 at = 575.321376637 l = 0.0277
+  };
+   sextupole { tag = sex_26e at = 575.471226637 l = 0.272
+    body = { kl = [ 0 0 0.176812784 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d332 at = 575.638976637 l = 0.0635
+  };
+   quadrupole { tag = q26e at = 575.970726637 l = 0.6
+    body = { kl = [ 0 0.1589526 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d333 at = 576.349307637 l = 0.157162
+  };
+   quadrupole { tag = b26ein at = 576.427889137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b26emod at = 579.715020637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b26eout at = 583.002152137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d334 at = 583.245274637 l = 0.486244
+  };
+   marker { tag = det_25e at = 583.488396637
+  };
+   drift { tag = d335 at = 583.513696637 l = 0.0506
+  };
+   sextupole { tag = sex_25e at = 583.674996637 l = 0.272
+    body = { kl = [ 0 0 -0.156164992 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d336 at = 583.843096637 l = 0.0642
+  };
+   quadrupole { tag = q25e at = 584.175196637 l = 0.6
+    body = { kl = [ 0 -0.1856934 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d337 at = 584.553777637 l = 0.157162
+  };
+   quadrupole { tag = b25ein at = 584.632359137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b25emod at = 587.919490637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b25eout at = 591.206622137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d338 at = 591.450494137 l = 0.487743
+  };
+   marker { tag = det_24e at = 591.694365637
+  };
+   drift { tag = d339 at = 591.718465637 l = 0.0482
+  };
+   sextupole { tag = sex_24e at = 591.878565637 l = 0.272
+    body = { kl = [ 0 0 0.000235926544 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d340 at = 592.047115637 l = 0.0651
+  };
+   quadrupole { tag = q24e at = 592.379665637 l = 0.6
+    body = { kl = [ 0 0.147063 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d341 at = 592.758247137 l = 0.157163
+  };
+   quadrupole { tag = b24ein at = 592.836829137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b24emod at = 596.123960637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b24eout at = 599.411092137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d342 at = 600.334783637 l = 1.847382
+  };
+   sextupole { tag = sk_sex_23e at = 601.321574637 l = 0.1262
+  };
+   drift { tag = d343 at = 601.652124637 l = 0.5349
+  };
+   marker { tag = det_23e at = 601.919574637
+  };
+   drift { tag = d344 at = 601.934024637 l = 0.0289
+  };
+   sextupole { tag = sex_23e at = 602.084474637 l = 0.272
+    body = { kl = [ 0 0 -0.202699296 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d345 at = 602.252274637 l = 0.0636
+  };
+   quadrupole { tag = q23e at = 602.584074637 l = 0.6
+    body = { kl = [ 0 -0.1507992 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d346 at = 602.962655637 l = 0.157162
+  };
+   quadrupole { tag = b23ein at = 603.041237137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b23emod at = 606.328368637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b23eout at = 609.615500137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d347 at = 609.858972637 l = 0.486944
+  };
+   marker { tag = det_22e at = 610.102444637
+  };
+   drift { tag = d348 at = 610.127494637 l = 0.0501
+  };
+   sextupole { tag = sex_22e at = 610.288544637 l = 0.272
+    body = { kl = [ 0 0 -0.00194068736 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d349 at = 610.456544637 l = 0.064
+  };
+   quadrupole { tag = q22e at = 610.788544637 l = 0.6
+    body = { kl = [ 0 0.1552584 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d350 at = 611.167125637 l = 0.157162
+  };
+   quadrupole { tag = b22ein at = 611.245707137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b22emod at = 614.532838637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b22eout at = 617.819970137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d351 at = 618.064212137 l = 0.488483
+  };
+   marker { tag = det_21e at = 618.308453637
+  };
+   drift { tag = d352 at = 618.331203637 l = 0.0455
+  };
+   sextupole { tag = sex_21e at = 618.489953637 l = 0.272
+    body = { kl = [ 0 0 -0.54410064 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d353 at = 618.659453637 l = 0.067
+  };
+   quadrupole { tag = q21e at = 618.992953637 l = 0.6
+    body = { kl = [ 0 -0.169257 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d354 at = 619.371534637 l = 0.157162
+  };
+   quadrupole { tag = b21ein at = 619.450116137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b21emod at = 622.737247637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b21eout at = 626.024379137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d355 at = 626.267901637 l = 0.487044
+  };
+   marker { tag = det_20e at = 626.511423637
+  };
+   drift { tag = d356 at = 626.534823637 l = 0.0468
+  };
+   sextupole { tag = sex_20e at = 626.694223637 l = 0.272
+    body = { kl = [ 0 0 0.0538084 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d357 at = 626.863823637 l = 0.0672
+  };
+   quadrupole { tag = q20e at = 627.197423637 l = 0.6
+    body = { kl = [ 0 0.1380222 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d358 at = 627.576004637 l = 0.157162
+  };
+   quadrupole { tag = b20ein at = 627.654586137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b20emod at = 630.941717637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b20eout at = 634.228849137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d359 at = 634.497840637 l = 0.537982
+  };
+   sextupole { tag = sex_19e at = 634.902831637 l = 0.272
+    body = { kl = [ 0 0 -0.47622848 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d360 at = 635.070331637 l = 0.063
+  };
+   quadrupole { tag = q19e at = 635.401831637 l = 0.6
+    body = { kl = [ 0 -0.1794594 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d361 at = 635.773531637 l = 0.1434
+  };
+   marker { tag = det_19e at = 635.845231637
+  };
+   drift { tag = d362 at = 635.898736637 l = 0.10701
+  };
+   drift { tag = wig3_18e at = 636.752241637 l = 1.6
+  };
+   drift { tag = d363 at = 637.616086637 l = 0.12769
+  };
+   drift { tag = wig2_18e at = 638.479931637 l = 1.6
+  };
+   drift { tag = d364 at = 639.343776637 l = 0.12769
+  };
+   drift { tag = wig1_18e at = 640.207621637 l = 1.6
+  };
+   drift { tag = d365 at = 641.203202137 l = 0.391161
+  };
+   marker { tag = det_18e at = 641.398782637
+  };
+   drift { tag = d366 at = 641.412882637 l = 0.0282
+  };
+   sextupole { tag = sex_18e at = 641.562982637 l = 0.272
+    body = { kl = [ 0 0 0.31993184 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d367 at = 641.730332637 l = 0.0627
+  };
+   quadrupole { tag = q18e at = 642.061682637 l = 0.6
+    body = { kl = [ 0 0.1442778 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d368 at = 642.440263637 l = 0.157162
+  };
+   quadrupole { tag = b18ein at = 642.518845137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b18emod at = 645.805976637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b18eout at = 649.093108137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d369 at = 649.337750137 l = 0.489283
+  };
+   marker { tag = det_17e at = 649.582391637
+  };
+   drift { tag = d370 at = 649.604791637 l = 0.0448
+  };
+   sextupole { tag = sex_17e at = 649.763191637 l = 0.272
+    body = { kl = [ 0 0 -0.30778432 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d371 at = 649.932641637 l = 0.0669
+  };
+   quadrupole { tag = q17e at = 650.266091637 l = 0.6
+    body = { kl = [ 0 -0.140562 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d372 at = 650.644672637 l = 0.157162
+  };
+   quadrupole { tag = b17ein at = 650.723254137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b17emod at = 654.010385637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b17eout at = 657.297517137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d373 at = 657.541109137 l = 0.487183
+  };
+   marker { tag = det_16e at = 657.784700637
+  };
+   drift { tag = d374 at = 657.809700637 l = 0.05
+  };
+   sextupole { tag = sex_16e at = 657.970700637 l = 0.272
+    body = { kl = [ 0 0 0.27793504 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d375 at = 658.138600637 l = 0.0638
+  };
+   quadrupole { tag = q16e at = 658.470500637 l = 0.6
+    body = { kl = [ 0 0.1490346 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d376 at = 658.849081637 l = 0.157162
+  };
+   quadrupole { tag = b16ein at = 658.927663137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b16emod at = 662.214794637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b16eout at = 665.501926137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d377 at = 665.771348637 l = 0.538844
+  };
+   sextupole { tag = sex_15e at = 666.176770637 l = 0.272
+    body = { kl = [ 0 0 -0.54859408 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d378 at = 666.343870637 l = 0.0622
+  };
+   quadrupole { tag = q15e at = 666.674970637 l = 0.6
+    body = { kl = [ 0 -0.1232004 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d379 at = 667.004670637 l = 0.0594
+  };
+   marker { tag = det_15e at = 667.034370637
+  };
+   drift { tag = d380 at = 667.090760637 l = 0.11278
+  };
+   drift { tag = wig_15e at = 667.947150637 l = 1.6
+  };
+   drift { tag = d381 at = 668.992409137 l = 0.490517
+  };
+   quadrupole { tag = b15ein at = 669.237668137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b15emod at = 672.525313137 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b15eout at = 675.812958137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d382 at = 675.891796637 l = 0.157676
+  };
+   sextupole { tag = sex_14e at = 676.106634637 l = 0.272
+    body = { kl = [ 0 0 0.194343184 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d383 at = 676.274684637 l = 0.0641
+  };
+   quadrupole { tag = q14e at = 676.606734637 l = 0.6
+    body = { kl = [ 0 0.1690602 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d384 at = 676.924934637 l = 0.0364
+  };
+   marker { tag = det_14e at = 676.943134637
+  };
+   drift { tag = d385 at = 677.754334637 l = 1.6224
+  };
+   drift { tag = wig2_14e at = 679.365534637 l = 1.6
+  };
+   drift { tag = d386 at = 680.275552637 l = 0.220036
+  };
+   quadrupole { tag = sk_q14e at = 680.460570637 l = 0.15
+  };
+   drift { tag = d387 at = 680.597277637 l = 0.123414
+  };
+   drift { tag = wig1_14e at = 681.458984637 l = 1.6
+  };
+   drift { tag = d388 at = 682.561277637 l = 0.604586
+  };
+   marker { tag = det_13e at = 682.863570637
+  };
+   drift { tag = d389 at = 682.870195637 l = 0.01325
+  };
+   sextupole { tag = sex_13e at = 683.012820637 l = 0.272
+    body = { kl = [ 0 0 -0.53971056 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d390 at = 683.179895637 l = 0.06215
+  };
+   quadrupole { tag = q13e at = 683.510970637 l = 0.6
+    body = { kl = [ 0 -0.1351704 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d391 at = 683.905606637 l = 0.189272
+  };
+   quadrupole { tag = b13ein at = 684.000243137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b13emod at = 687.287888137 l = 6.575289
+    body = { kl = [ 0.11220022]}
+  };
+   quadrupole { tag = b13eout at = 690.575533137 l = 1e-06
+    body = { kl = [ 0 -0.000478643017972 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d392 at = 690.877965637 l = 0.604864
+  };
+   sextupole { tag = sex_12e at = 691.316397637 l = 0.272
+    body = { kl = [ 0 0 0.62344032 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d393 at = 691.482472637 l = 0.06015
+  };
+   quadrupole { tag = q12e at = 691.812547637 l = 0.6
+    body = { kl = [ 0 0.152859 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d394 at = 692.559747637 l = 0.8944
+  };
+   marker { tag = det_12e at = 693.006947637
+  };
+   drift { tag = d395 at = 693.393947637 l = 0.774
+  };
+   sextupole { tag = sk_sex_12e at = 693.843947637 l = 0.126
+  };
+   drift { tag = d396 at = 694.018596137 l = 0.223297
+  };
+   quadrupole { tag = b12ein at = 694.130245137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b12emod at = 697.417376637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b12eout at = 700.704508137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d397 at = 700.947899637 l = 0.486782
+  };
+   marker { tag = det_11e at = 701.191290637
+  };
+   drift { tag = d398 at = 701.216015637 l = 0.04945
+  };
+   sextupole { tag = sex_11e at = 701.376740637 l = 0.272
+    body = { kl = [ 0 0 0.214649072 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d399 at = 701.545115637 l = 0.06475
+  };
+   quadrupole { tag = q11e at = 701.877490637 l = 0.6
+    body = { kl = [ 0 -0.127359 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d400 at = 702.256071637 l = 0.157162
+  };
+   quadrupole { tag = b11ein at = 702.334653137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b11emod at = 705.621784637 l = 6.574262
+    body = { kl = [ 0.074799746]}
+  };
+   quadrupole { tag = b11eout at = 708.908916137 l = 1e-06
+    body = { kl = [ 0 -0.000212761605457 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d401 at = 709.152308137 l = 0.486783
+  };
+   marker { tag = det_10e at = 709.395699637
+  };
+   drift { tag = d402 at = 709.420799637 l = 0.0502
+  };
+   sextupole { tag = sex_10e at = 709.581899637 l = 0.272
+    body = { kl = [ 0 0 0.109420704 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d403 at = 709.749899637 l = 0.064
+  };
+   quadrupole { tag = q10e at = 710.081899637 l = 0.6
+    body = { kl = [ 0 0.1592034 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d404 at = 711.747948637 l = 2.732098
+  };
+   quadrupole { tag = sk_q09e at = 713.189997637 l = 0.152
+  };
+   drift { tag = d405 at = 714.376497637 l = 2.221
+  };
+   kicker { tag = vkick_09e at = 715.537997637 l = 0.102
+  };
+   drift { tag = d406 at = 715.772747637 l = 0.3675
+  };
+   sextupole { tag = sex_09e at = 716.092497637 l = 0.272
+    body = { kl = [ 0 0 -0.015704872 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d407 at = 716.260447637 l = 0.0639
+  };
+   quadrupole { tag = q09e at = 716.592397637 l = 0.6
+    body = { kl = [ 0 -0.1340682 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d408 at = 716.947097637 l = 0.1094
+  };
+   marker { tag = det_09e at = 717.001797637
+  };
+   drift { tag = d409 at = 717.824669137 l = 1.645743
+  };
+   drift { tag = rf_e1 at = 719.547540637 l = 1.8
+  };
+   drift { tag = d410 at = 721.047240637 l = 1.1994
+  };
+   drift { tag = rf_e2 at = 722.546940637 l = 1.8
+  };
+   drift { tag = d411 at = 723.827290637 l = 0.7607
+  };
+   kicker { tag = vkick_08e at = 724.239390637 l = 0.0635
+  };
+   drift { tag = d412 at = 724.634890637 l = 0.7275
+  };
+   kicker { tag = hkick_08e at = 725.030390637 l = 0.0635
+  };
+   drift { tag = d413 at = 725.194140637 l = 0.264
+  };
+   marker { tag = det_08e at = 725.326140637
+  };
+   drift { tag = d414 at = 725.358040637 l = 0.0638
+  };
+   sextupole { tag = sex_08e at = 725.525940637 l = 0.272
+    body = { kl = [ 0 0 -0.030171872 ] kls = [ 0 0 0 ] 
+    }
+  };
+   drift { tag = d415 at = 725.694240637 l = 0.0646
+  };
+   quadrupole { tag = q08e at = 726.026540637 l = 0.6
+    body = { kl = [ 0 0.0977256 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d416 at = 726.576240637 l = 0.4994
+  };
+   drift { tag = h_sep_08e at = 728.046940637 l = 2.442
+  };
+   drift { tag = d417 at = 729.443440637 l = 0.351
+  };
+   quadrupole { tag = sk_q07e at = 729.694940637 l = 0.152
+  };
+   drift { tag = d418 at = 729.806440637 l = 0.071
+  };
+   kicker { tag = vkick_07e at = 729.873940637 l = 0.064
+  };
+   drift { tag = d419 at = 730.025759637 l = 0.239638
+  };
+   drift { tag = wig_e at = 731.323078637 l = 2.355
+  };
+   drift { tag = d420 at = 732.929478637 l = 0.8578
+  };
+   sextupole { tag = sk_sex_07e at = 733.421478637 l = 0.1262
+  };
+   drift { tag = d421 at = 733.509078637 l = 0.049
+  };
+   marker { tag = det_07e at = 733.533578637
+  };
+   drift { tag = d422 at = 733.641778637 l = 0.2164
+  };
+   quadrupole { tag = q07e at = 734.049978637 l = 0.6
+    body = { kl = [ 0 -0.1602894 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d423 at = 734.498993137 l = 0.298029
+  };
+   quadrupole { tag = b07ein at = 734.648008137 l = 1e-06
+  };
+   sbend { tag = b07emod at = 736.266960137 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b07eout at = 737.885912137 l = 1e-06
+  };
+   drift { tag = d424 at = 738.133498137 l = 0.495171
+  };
+   quadrupole { tag = q06e at = 738.681083637 l = 0.6
+    body = { kl = [ 0 0.28662 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d425 at = 739.014783637 l = 0.0674
+  };
+   marker { tag = det_06e at = 739.048483637
+  };
+   drift { tag = d426 at = 739.167483637 l = 0.238
+  };
+   quadrupole { tag = sk_q06e at = 739.362683637 l = 0.1524
+  };
+   drift { tag = d427 at = 739.566121137 l = 0.254475
+  };
+   quadrupole { tag = b06ein at = 739.693359137 l = 1e-06
+  };
+   sbend { tag = b06emod at = 741.312311137 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b06eout at = 742.931263137 l = 1e-06
+  };
+   drift { tag = d428 at = 743.178849637 l = 0.495172
+  };
+   quadrupole { tag = q05e at = 743.726435637 l = 0.6
+    body = { kl = [ 0 -0.201543 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d429 at = 744.057135637 l = 0.0614
+  };
+   marker { tag = det_05e at = 744.087835637
+  };
+   drift { tag = d430 at = 744.225335637 l = 0.275
+  };
+   quadrupole { tag = sk_q05e at = 744.439035637 l = 0.1524
+  };
+   drift { tag = d431 at = 744.627003637 l = 0.223536
+  };
+   quadrupole { tag = b05ein at = 744.738772137 l = 1e-06
+  };
+   sbend { tag = b05emod at = 746.357724137 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b05eout at = 747.976676137 l = 1e-06
+  };
+   drift { tag = d432 at = 748.224262637 l = 0.495172
+  };
+   quadrupole { tag = q04e at = 748.771848637 l = 0.6
+    body = { kl = [ 0 0.266559 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d433 at = 749.098898637 l = 0.0541
+  };
+   marker { tag = det_04e at = 749.125948637
+  };
+   drift { tag = d434 at = 749.245598637 l = 0.2393
+  };
+   quadrupole { tag = sk_q04e at = 749.441448637 l = 0.1524
+  };
+   drift { tag = d435 at = 749.650886137 l = 0.266475
+  };
+   quadrupole { tag = b04ein at = 749.784124137 l = 1e-06
+  };
+   sbend { tag = b04emod at = 751.403076137 l = 3.237903
+    body = { kl = [ 0.10228927]}
+  };
+   quadrupole { tag = b04eout at = 753.022028137 l = 1e-06
+  };
+   drift { tag = d436 at = 753.139701637 l = 0.235346
+  };
+   quadrupole { tag = q03e at = 753.557374637 l = 0.6
+    body = { kl = [ 0 -0.1246176 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d437 at = 753.886824637 l = 0.0589
+  };
+   marker { tag = det_03e at = 753.916274637
+  };
+   drift { tag = d438 at = 754.191574637 l = 0.5506
+  };
+   quadrupole { tag = b03aein at = 754.466875137 l = 1e-06
+    body = { kl = [ 0 -0.000106375035616 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b03aemod at = 755.28864961 l = 1.64354794536
+    body = { kl = [ 0.01869933]}
+  };
+   quadrupole { tag = b03aeout at = 756.110424082 l = 1e-06
+    body = { kl = [ 0 -0.000106375035616 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d439 at = 756.299045582 l = 0.377242
+  };
+   quadrupole { tag = b03ein at = 756.487667082 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   sbend { tag = b03emod at = 757.960351499 l = 2.94536783384
+    body = { kl = [ 0.020944245]}
+  };
+   quadrupole { tag = b03eout at = 759.433035916 l = 1e-06
+    body = { kl = [ 0 -7.44663185325e-05 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d440 at = 759.644227916 l = 0.422383
+  };
+   quadrupole { tag = sk_q03e at = 759.941769416 l = 0.1727
+    body = { kl = [ 0 0.0076910218 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d441 at = 760.079269416 l = 0.1023
+  };
+   quadrupole { tag = sk_q02e at = 760.216769416 l = 0.1727
+    body = { kl = [ 0 0.0076910218 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d442 at = 761.179269416 l = 1.7523
+  };
+   marker { tag = det_02e at = 762.055419416
+  };
+   drift { tag = d443 at = 762.462919416 l = 0.815
+  };
+   kicker { tag = hvkick_01e at = 762.956769416 l = 0.1727
+  };
+   drift { tag = d444 at = 763.939064916 l = 1.791891
+  };
+   marker { tag = det_01e at = 764.835010416
+  };
+   drift { tag = d445 at = 765.129010416 l = 0.588
+  };
+   sextupole { tag = sk_sex_02e at = 765.459010416 l = 0.072
+  };
+   drift { tag = d446 at = 765.761010416 l = 0.532
+  };
+   quadrupole { tag = sc_q02e at = 766.357760416 l = 0.6615
+    body = { kl = [ 0 0.872273745 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d447 at = 766.813760416 l = 0.2505
+  };
+   quadrupole { tag = sc_q01e at = 767.269760416 l = 0.6615
+    body = { kl = [ 0 -1.50656625 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d448 at = 767.681010416 l = 0.161
+  };
+   marker { tag = det_00e at = 767.761510416
+  };
+   drift { tag = d449 at = 767.792635416 l = 0.06225
+  };
+   quadrupole { tag = q00e at = 767.915760416 l = 0.184
+    body = { kl = [ 0 -0.33304 ] kls = [ 0 0 ] 
+    }
+  };
+   drift { tag = d450 at = 768.222260416 l = 0.429
+  };
+   marker { tag = ip_l0_end at = 768.436760416
+  };
+
+endsequence at = 768.436760416
+}

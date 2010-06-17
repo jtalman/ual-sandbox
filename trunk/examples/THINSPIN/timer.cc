@@ -1,4 +1,3 @@
-
 #include "timer.h"
 
 struct timeb	tb1, tb2;

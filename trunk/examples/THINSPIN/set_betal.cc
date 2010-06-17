@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/set_betal.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 double e = e0 + pos.getDE() * p0;
 double pp = sqrt(e*e - m0*m0);
 double gamma = e / m0;
@@ -18,4 +12,3 @@ betal.setY(pY / gamma / m0);
 betal.setZ(pZ / gamma / m0);
 
 double beta = sqrt(betal.getX()*betal.getX() + betal.getY()*betal.getY() + betal.getZ()*betal.getZ());
-

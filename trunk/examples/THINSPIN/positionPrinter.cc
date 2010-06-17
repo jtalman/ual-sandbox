@@ -1,8 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/positionPrinter.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
 
 #include "positionPrinter.hh"
 
@@ -22,9 +17,9 @@ void positionPrinter::close()
 
 void positionPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
 {
-
+    
       PAC::BeamAttributes& ba = bunch.getBeamAttributes();
-
+      
       double energy = ba.getEnergy();
       double mass   = ba.getMass();
 
@@ -51,7 +46,7 @@ void positionPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
 
       char endLine = '\0';
       char line1[200];
-
+      
       sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c",
 	      ip, iturn, wp_time, x, px, y, py, ct, de, psp0, ew, endLine);
 
@@ -73,5 +68,4 @@ double positionPrinter::get_psp0(PAC::Position& p, double v0byc)
 
     return psp0;
 }
-
 

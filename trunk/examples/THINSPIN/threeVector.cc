@@ -1,8 +1,7 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/threeVector.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
+// Program     :
+// File        : 
+// Copyright   : see Copyright file
+// Author      : 
 
 #include "threeVector.hh"
 
@@ -30,12 +29,12 @@ const THINSPIN::threeVector& THINSPIN::threeVector::operator=(const THINSPIN::th
   return *this;
 }
 
-// Access
+// Access 
 
 void THINSPIN::threeVector::set(double xi, double yi, double zi)
 {
-  setX(xi);
-  setY(yi);
+  setX(xi); 
+  setY(yi); 
   setZ(zi);
 }
 
@@ -112,4 +111,3 @@ THINSPIN::threeVector THINSPIN::threeVector::operator/(double v)
   tmp /= v;
   return tmp;
 }
-

@@ -1,5 +1,4 @@
-// SXF version 2.0
-muon sequence
+ring sequence
  {
    rf
      rfcavity {
@@ -373,4 +372,3 @@ muon sequence
          };
  endsequence at = 31.4159265359
 }
-// SXF end

@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/deltaSLsecondTerm.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 double deltap0byp0=0;
 double deltapxbyp0=-Bytw;
 double deltapybyp0= Bxtw;
@@ -30,4 +24,3 @@ double fac2        = sl.get1()*deltapxbyp0+sl.get2()*deltapybyp0+sl.get3()*delta
        deltaSLsecond.set3(-deltaslCon3);
 
 //     SL[ip]+=deltaSL;
-

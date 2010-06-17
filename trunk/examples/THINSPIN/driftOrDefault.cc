@@ -1,7 +1,7 @@
 // Library       : SXF_TRACKER
 // File          : examples/SXF_TRACKER/driftOrDefault.cc
 // Copyright     : see Copyright file
-// Author        :
+// Author        : 
 // C++ version   : J.Talman, N.Malitsky
 
 #include "UAL/APF/PropagatorFactory.hh"
@@ -53,9 +53,9 @@ void SXF_TRACKER::driftOrDefault::setLatticeElements(const UAL::AcceleratorNode&
 
   if(is0 < sequence.getNodeCount())
     m_frontNode = *((PacLattElement*) sequence.getNodeAt(is0));
-  if(is1 < sequence.getNodeCount())
+  if(is1 < sequence.getNodeCount()) 
     m_backNode  = *((PacLattElement*) sequence.getNodeAt(is1));
-
+ 
     const PacLattice& lattice = (PacLattice&) sequence;
 
     setElementData(lattice[is0]);
@@ -162,7 +162,7 @@ void SXF_TRACKER::driftOrDefault::propagate(UAL::Probe& b)
 
 double SXF_TRACKER::driftOrDefault::get_psp0(PAC::Position& p, double v0byc)
 {
-    double psp0  = 1.0;
+    double psp0  = 1.0;  
 
     psp0 -= p.getPX()*p.getPX();
     psp0 -= p.getPY()*p.getPY();
@@ -177,7 +177,7 @@ double SXF_TRACKER::driftOrDefault::get_psp0(PAC::Position& p, double v0byc)
 
 void SXF_TRACKER::driftOrDefault::setElementData(const PacLattElement& e)
 {
-
+ 
   // Entry multipole
   PacElemAttributes* front  = e.getFront();
   if(front){
@@ -246,13 +246,13 @@ void SXF_TRACKER::driftOrDefault::setConventionalTracker(const UAL::AcceleratorN
       TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
 
     m_tracker = nodePtr;
-
+    
     if(p_complexity) p_complexity->n() = 0;   // ir
     if(p_length)    *p_length /= ns;          // l
     if(p_bend)      *p_bend /= ns;            // angle, fint
-
+     
     m_tracker->setLatticeElements(sequence, is0, is1, attSet);
-
+     
     if(p_bend)      *p_bend *= ns;
     if(p_length)    *p_length *= ns;
     if(p_complexity) p_complexity->n() = ns/8;
@@ -291,7 +291,7 @@ void SXF_TRACKER::driftOrDefault::copy(const SXF_TRACKER::driftOrDefault& st)
     // p_solenoid = st.p_solenoid;
     // p_rf = st.p_rf;
 }
-
+  
 SXF_TRACKER::driftOrDefaultRegister::driftOrDefaultRegister()
 {
   UAL::PropagatorNodePtr driftOrDefaultPtr((UAL::PropagatorNode*)new driftOrDefault());
@@ -299,4 +299,3 @@ SXF_TRACKER::driftOrDefaultRegister::driftOrDefaultRegister()
 }
 
 static SXF_TRACKER::driftOrDefaultRegister thedriftOrDefaultRegister;
-
