@@ -2,7 +2,7 @@
 // File          : 
 // Copyright     : see Copyright file
 // Author        : 
-// C++ version   :  
+// C++ version   : N.Malitsky and J.Talman
 
 #ifndef THINSPIN_SPIN_MAGNET_ALGORITHM_HH
 #define THINSPIN_SPIN_MAGNET_ALGORITHM_HH

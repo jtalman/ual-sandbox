@@ -2,7 +2,7 @@
 // File        : 
 // Copyright   : see Copyright file
 // Description : 
-// Author      : 
+// Author      : J.Talman
 
 #ifndef THINSPIN_THREE_VECTOR_HH
 #define THINSPIN_THREE_VECTOR_HH
