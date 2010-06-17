@@ -1,7 +1,7 @@
 // Program     :
 // File        : 
 // Copyright   : see Copyright file
-// Author      : 
+// Author      : J. Talman
 
 #include "threeVector.hh"
 
