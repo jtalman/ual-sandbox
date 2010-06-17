@@ -1,8 +1,8 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/magnetAlgorithm.hh
+// Library       : 
+// File          : 
 // Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman    :
+// Author        : 
+// C++ version   :  
 
 #ifndef THINSPIN_SPIN_MAGNET_ALGORITHM_HH
 #define THINSPIN_SPIN_MAGNET_ALGORITHM_HH
@@ -13,10 +13,10 @@
 #include "extern_globalBlock.cc"
 
 namespace THINSPIN {
-
+ 
   /** A template of the common methods used by the magnet conventional tracker and DA integrator */
 
-  template<class Coordinate, class Coordinates> class magnetAlgorithm
+  template<class Coordinate, class Coordinates> class magnetAlgorithm 
     : public commonAlgorithm<Coordinate, Coordinates> {
 
   public:
@@ -28,16 +28,16 @@ namespace THINSPIN {
     ~magnetAlgorithm();
 
     /** Passes the element entry  */
-    void passEntry(const TEAPOT::MagnetData& mdata, Coordinates& p);
+    void passEntry(const TEAPOT::MagnetData& mdata, Coordinates& p); 
 
     /** Passes the element exit  */
-    void passExit(const TEAPOT::MagnetData& mdata, Coordinates& p);
+    void passExit(const TEAPOT::MagnetData& mdata, Coordinates& p); 
 
    /** Applies the multipole kick */
    void applyMltKick(const TEAPOT::MagnetData& mdata, double rkicks, Coordinates& p);
 
   protected:
-
+   
     /** Applies the multipole kick */
     void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p);
 

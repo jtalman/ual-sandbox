@@ -2,7 +2,7 @@
 // File          : TEAPOT/Integrator/bendAndMultipole.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky and J.Talman
+// C++ version   : N.Malitsky 
 
 #ifndef UAL_THINSPIN_BEND_AND_MULTIPOLE_HH
 #define UAL_THINSPIN_BEND_AND_MULTIPOLE_HH
@@ -37,7 +37,7 @@ namespace THINSPIN {
 
 
     /** Set lattice elements (inherited from UAL::PropagatorNode */
-    void setLatticeElements(const UAL::AcceleratorNode& lattice, int i0, int i1,
+    void setLatticeElements(const UAL::AcceleratorNode& lattice, int i0, int i1, 
 			    const UAL::AttributeSet& beamAttributes);
 
     /** Propagates a bunch of particles */
@@ -67,7 +67,7 @@ namespace THINSPIN {
 
   class bendAndMultipoleRegister
   {
-    public:
+    public: 
 
     bendAndMultipoleRegister();
   };
@@ -85,4 +85,3 @@ namespace THINSPIN {
 }
 
 #endif
-

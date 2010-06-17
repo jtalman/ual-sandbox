@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/lorentzTransformForBend.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 #ifndef THINSPIN_LORENTZ_TRANSFORM_FOR_BEND_CC
 #define THINSPIN_LORENTZ_TRANSFORM_FOR_BEND_CC
 
@@ -20,4 +14,3 @@ void lorentzTransformForBend(const THINSPIN::fourVector& in, const THINSPIN::thr
 }
 
 #endif
-

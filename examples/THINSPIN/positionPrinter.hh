@@ -1,8 +1,4 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/positionPrinter.hh
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
+
 
 #ifndef _POSITIONPRINTER_H
 #define	_POSITIONPRINTER_H
@@ -41,5 +37,4 @@ public:
 
 
 #endif	/* _OUTPUTPRINTER_H */
-
 

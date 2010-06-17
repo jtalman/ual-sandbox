@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/tracker.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman, N.Malitsky
-
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -41,9 +35,23 @@ using namespace UAL;
 
 int main(int argc,char * argv[]){
 
-  UAL::Shell shell;
+  // Input parameters
 
-  std::string variantName = "muon0.13_R5m";
+  // ************************************************************************
+  std::cout << "\nEcho input parameters." << std::endl;
+  // ************************************************************************
+
+  if(argc < 3) {
+    std::cout << "Usage : ./tracker <InputFile, e.g. muon0.13_R5m-mod> <BendSplit, e.g. 1> <QuadSplit, e.g. 4>" << std::endl;
+    std::cout << "All units are M.K.S. except ee which is in GeV" << std::endl;
+    exit(1);
+  }
+
+  std::string variantName = argv[1];    // std::string sxfInputFile   = "../sxf/muon0.13_R5m.sxf";
+  int bendsplit = atof(argv[2]);        // std::integer bendslit = 1;
+  int quadsplit = atof(argv[3]);        // std::integer quadsplit = 4;
+
+  UAL::Shell shell;
 
   // ************************************************************************
   std::cout << "\nDefine the space of Taylor maps." << std::endl;
@@ -55,7 +63,7 @@ int main(int argc,char * argv[]){
   std::cout << "\nBuild lattice." << std::endl;
   // ************************************************************************
 
-  std::string sxfFile = "./data/";
+  std::string sxfFile = "./sxf/";
   sxfFile += variantName;
   sxfFile += ".sxf";
 
@@ -65,19 +73,19 @@ int main(int argc,char * argv[]){
   std::cout << "\nAdd split ." << std::endl;
   // ************************************************************************
 
+  
+  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sbend")
+		 << UAL::Arg("ir", bendsplit));
 
-  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "muon") << UAL::Arg("types", "Sbend")
-		 << UAL::Arg("ir", 1));
-
-  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "muon") << UAL::Arg("types", "Quadrupole")
-		 << UAL::Arg("ir", 4));
-
+  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Quadrupole")
+		 << UAL::Arg("ir", quadsplit));
+  
 
   // ************************************************************************
   std::cout << "Select lattice." << std::endl;
   // ************************************************************************
 
-  shell.use(UAL::Args() << UAL::Arg("lattice", "muon"));
+  shell.use(UAL::Args() << UAL::Arg("lattice", "ring"));
 
   // ************************************************************************
   std::cout << "\nWrite SXF file ." << std::endl;
@@ -112,7 +120,7 @@ int main(int argc,char * argv[]){
   // ************************************************************************
   std::cout << "\nLinear analysis." << std::endl;
   // ************************************************************************
-
+  
   // Make linear matrix
 
   std::string mapFile = "./out/cpp/";
@@ -123,12 +131,12 @@ int main(int argc,char * argv[]){
   shell.map(UAL::Args() << UAL::Arg("order", 1) << UAL::Arg("print", mapFile.c_str()));
 
   // Calculate twiss
-
+  
   std::string twissFile = "./out/cpp/";
   twissFile += variantName;
   twissFile += ".twiss";
 
-  std::cout << " twiss (muon )" << std::endl;
+  std::cout << " twiss (ring )" << std::endl;
 
   shell.twiss(UAL::Args() << UAL::Arg("print", twissFile.c_str()));
 
@@ -140,7 +148,7 @@ int main(int argc,char * argv[]){
   // ************************************************************************
 
 //std::string apdfFile = argv[1];
-  std::string apdfFile = "./data/thinspin.apdf";
+  std::string apdfFile = "./apdf/thinspin.apdf";
 
   UAL::APDF_Builder apBuilder;
 
@@ -193,7 +201,7 @@ std::cout << "phi " << phi << "\n";
     spin.setSX(sin(theta)*cos(phi));
     spin.setSY(sin(theta)*sin(phi));
     spin.setSZ(cos(theta));
-
+ 
     bunch[ip].setSpin(spin);
 
     SR[ip].set0(0);
@@ -202,7 +210,7 @@ std::cout << "phi " << phi << "\n";
     SR[ip].set3(spin.getSZ());
 
 //  SR[ip].set(sr0,sr1,sr2,sr3);
-
+ 
     lorentzTransformForTracker(SR[ip], betal*=(-1), gamma, SL[ip]);
 std::cout << "SR: SR0 " << SR[ip].get0() << " SR1 " << SR[ip].get1() << " SR2 " << SR[ip].get2() << " SR3 " << SR[ip].get3() << "\n";
 std::cout << "SL: SR0 " << SL[ip].get0() << " SL1 " << SL[ip].get1() << " SL2 " << SL[ip].get2() << " SL3 " << SL[ip].get3() << "\n";
@@ -262,5 +270,4 @@ std::cout << "sl: sl0 " << sl0 << " sl1 " << sl1 << " sl2 " << sl2 << " sl3 " <<
 
   return 1;
 }
-
 

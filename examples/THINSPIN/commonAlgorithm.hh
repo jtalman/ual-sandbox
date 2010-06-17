@@ -1,8 +1,8 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/commonAlgorithm.hh
+// Library       :
+// File          : 
 // Copyright     : see Copyright file
 // Author        :
-// C++ version   : J.Talman
+// C++ version   :  
 
 #ifndef THINSPIN_SPIN_COMMON_ALGORITHM_HH
 #define THINSPIN_SPIN_COMMON_ALGORITHM_HH
@@ -10,7 +10,7 @@
 #include "extern_globalBlock.cc"
 
 namespace THINSPIN {
-
+ 
   /** Template of the common methods used by THINSPIN propagators */
 
   template<class Coordinate, class Coordinates> class commonAlgorithm {

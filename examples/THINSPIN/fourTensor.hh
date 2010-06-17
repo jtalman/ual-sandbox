@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/fourTensor.hh
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 #include <string>
 #include <iostream>
 
@@ -40,10 +34,9 @@ namespace THINSPIN {
 
          void print(){
             std::cout << "THINSPIN::fourTensor " << name << "\n";
-            std::cout << "typeid(this).name()  " << typeid(this).name() << "\n";
+	    //            std::cout << "typeid(this).name()  " << typeid(this).name() << "\n";
          }
    };
 }
 
 #endif
-

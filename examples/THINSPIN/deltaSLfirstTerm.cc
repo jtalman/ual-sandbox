@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/deltaSLfirstTerm.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 THINSPIN::fourVector sl;        // for legibility of formulae
 
 sl = SL[ip];
@@ -28,10 +22,10 @@ double FLtw_times_sl1 = FLtw.comp10*sl.get0() + FLtw.comp11*sl.get1() + FLtw.com
 double FLtw_times_sl2 = FLtw.comp20*sl.get0() + FLtw.comp21*sl.get1() + FLtw.comp22*sl.get2() + FLtw.comp23*sl.get3();
 double FLtw_times_sl3 = FLtw.comp30*sl.get0() + FLtw.comp31*sl.get1() + FLtw.comp32*sl.get2() + FLtw.comp33*sl.get3();
 
-double deltaslCon0 = fac*FLtw_times_sl0;
-double deltaslCon1 = fac*FLtw_times_sl1;
-double deltaslCon2 = fac*FLtw_times_sl2;
-double deltaslCon3 = fac*FLtw_times_sl3;
+double deltaslCon0 = fac*FLtw_times_sl0; 
+double deltaslCon1 = fac*FLtw_times_sl1; 
+double deltaslCon2 = fac*FLtw_times_sl2; 
+double deltaslCon3 = fac*FLtw_times_sl3; 
 
 //THINSPIN::fourVector deltaSL;
 deltaSLfirst.set0( deltaslCon0);
@@ -40,4 +34,3 @@ deltaSLfirst.set2(-deltaslCon2);
 deltaSLfirst.set3(-deltaslCon3);
 
 //SL[ip]+=deltaSL;
-

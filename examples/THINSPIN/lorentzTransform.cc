@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/lorentzTransform.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 #ifndef THINSPIN_LORENTZ_TRANSFORM_CC
 #define THINSPIN_LORENTZ_TRANSFORM_CC
 
@@ -20,4 +14,3 @@ void lorentzTransform(const THINSPIN::fourVector& in, const THINSPIN::threeVecto
 }
 
 #endif
-

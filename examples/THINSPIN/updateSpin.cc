@@ -1,9 +1,3 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/updateSpin.cc
-// Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
-
 double teslaPerTw = p0 / e0 / data.m_l / rkicks;
 
 THINSPIN::fourVector ulCon, slCon;
@@ -65,15 +59,15 @@ double sl_dot_Fl_times_ul = sl.get0()*Fl_times_ul0 + sl.get1()*Fl_times_ul1 +sl.
 
 double gover2minus1FacFac = gover2minus1Fac * sl_dot_Fl_times_ul;
 
-double dslCon0dTau = f1*(gover2*Fl_times_sl0 + gover2minus1FacFac*ulCon.get0());
-double dslCon1dTau = f1*(gover2*Fl_times_sl1 + gover2minus1FacFac*ulCon.get1());
-double dslCon2dTau = f1*(gover2*Fl_times_sl2 + gover2minus1FacFac*ulCon.get2());
-double dslCon3dTau = f1*(gover2*Fl_times_sl3 + gover2minus1FacFac*ulCon.get3());
+double dslCon0dTau = f1*(gover2*Fl_times_sl0 + gover2minus1FacFac*ulCon.get0()); 
+double dslCon1dTau = f1*(gover2*Fl_times_sl1 + gover2minus1FacFac*ulCon.get1()); 
+double dslCon2dTau = f1*(gover2*Fl_times_sl2 + gover2minus1FacFac*ulCon.get2()); 
+double dslCon3dTau = f1*(gover2*Fl_times_sl3 + gover2minus1FacFac*ulCon.get3()); 
 
 double dslCon0dt = dslCon0dTau / gl;        //  gl before last kick?
-double dslCon1dt = dslCon1dTau / gl;
-double dslCon2dt = dslCon2dTau / gl;
-double dslCon3dt = dslCon3dTau / gl;
+double dslCon1dt = dslCon1dTau / gl; 
+double dslCon2dt = dslCon2dTau / gl; 
+double dslCon3dt = dslCon3dTau / gl; 
 
 THINSPIN::threeVector v;
 v.setX(-ulAve.get1()/gl/m0);
@@ -83,8 +77,7 @@ v.setZ(-ulAve.get3()/gl/m0);
 double vs = v.getZ();     // ???
 //std::cout << "vs = " << vs << "(m / s)\n";
 
-double dslCon0ds = dslCon0dt / vs;
-double dslCon1ds = dslCon1dt / vs;
-double dslCon2ds = dslCon2dt / vs;
-double dslCon3ds = dslCon3dt / vs;
-
+double dslCon0ds = dslCon0dt / vs; 
+double dslCon1ds = dslCon1dt / vs; 
+double dslCon2ds = dslCon2dt / vs; 
+double dslCon3ds = dslCon3dt / vs; 

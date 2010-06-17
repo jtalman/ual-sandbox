@@ -1,8 +1,8 @@
-// Library       : THINSPIN
-// File          : examples/THINSPIN/bendAndMultipole.cc
+// Library       : 
+// File          : 
 // Copyright     : see Copyright file
-// Author        :
-// C++ version   : J.Talman
+// Author        : 
+// C++ version   :
 
 #include <math.h>
 #include "UAL/APF/PropagatorFactory.hh"
@@ -34,12 +34,12 @@ UAL::PropagatorNode* THINSPIN::bendAndMultipole::clone()
   return new THINSPIN::bendAndMultipole(*this);
 }
 
-void THINSPIN::bendAndMultipole::setLatticeElements(const UAL::AcceleratorNode& sequence,
-					       int is0,
+void THINSPIN::bendAndMultipole::setLatticeElements(const UAL::AcceleratorNode& sequence, 
+					       int is0, 
 					       int is1,
 					       const UAL::AttributeSet& attSet)
 {
-   TEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+   TEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);  
    const PacLattice& lattice     = (PacLattice&) sequence;
    setLatticeElement(lattice[is0]);
 }
@@ -54,7 +54,7 @@ void THINSPIN::bendAndMultipole::propagate(UAL::Probe& probe)
 {
 //std::cout << "JDT - enter void THINSPIN::bendAndMultipole::propagate(UAL::Probe& probe)\n";
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
-
+  
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   double oldT = ba.getElapsedTime();
   double e0 = ba.getEnergy(), m0 = ba.getMass();
@@ -73,7 +73,7 @@ void THINSPIN::bendAndMultipole::propagate(UAL::Probe& probe)
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
 //  s_algorithm.passBend(m_data, m_mdata, p, tmp, v0byc);
     s_algorithm.passBend(m_data, m_mdata, p, tmp, v0byc, ip);
-    s_algorithm.passExit(m_mdata, p);
+    s_algorithm.passExit(m_mdata, p);  
     // testAperture(p);
   }
 
@@ -81,9 +81,9 @@ void THINSPIN::bendAndMultipole::propagate(UAL::Probe& probe)
   std::cout << "after dipole " << m_name << std::endl;
   for(int i =0; i < bunch.size(); i++){
     PAC::Position p = bunch[i].getPosition();
-    std::cout << i << " "
-	      << p[0] << " " << p[1] << " "
-	      << p[2] << " " << p[3] << " "
+    std::cout << i << " " 
+	      << p[0] << " " << p[1] << " " 
+	      << p[2] << " " << p[3] << " " 
 	      << p[4] << " " << p[5] << std::endl;
   }
   */
@@ -102,4 +102,3 @@ THINSPIN::bendAndMultipoleRegister::bendAndMultipoleRegister()
 }
 
 static THINSPIN::bendAndMultipoleRegister thebendAndMultipoleRegister;
-
