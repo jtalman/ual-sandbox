@@ -1,0 +1,18 @@
+// Library       : TEAPOT
+// File          : TEAPOT/Integrator/DriftAlgorithm.icc
+// Copyright     : see Copyright file
+// Author        : L.Schachinger and R.Talman
+// C++ version   : N.Malitsky 
+
+#include "TEAPOT/Integrator/DriftAlgorithm.hh"
+
+template<class Coordinate, class Coordinates> 
+TEAPOT::DriftAlgorithm<Coordinate, Coordinates>::DriftAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+TEAPOT::DriftAlgorithm<Coordinate, Coordinates>::~DriftAlgorithm()
+{
+}
+
