@@ -4,7 +4,7 @@
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#include "EETEAPOT/Integrator/BasicPropagator.hh"
+#include "ETEAPOT/Integrator/BasicPropagator.hh"
 
 double ETEAPOT::BasicPropagator::s_steps[] = {0.1, 4./15., 4./15., 4./15., 0.1};  
 
