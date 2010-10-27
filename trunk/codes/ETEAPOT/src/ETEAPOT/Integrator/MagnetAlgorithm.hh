@@ -44,6 +44,6 @@ namespace TEAPOT {
 
 }
 
-#include "TEAPOT/Integrator/MagnetAlgorithm.icc"
+#include "ETEAPOT/Integrator/MagnetAlgorithm.icc"
 
 #endif

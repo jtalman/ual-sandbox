@@ -66,10 +66,10 @@ TEAPOT::MltTracker* TEAPOT::TrackerFactory::createMltTracker()
   return new TEAPOT::MltTracker();
 }
 
-TEAPOT::MatrixTracker* TEAPOT::TrackerFactory::createMatrixTracker()
-{
-  return new TEAPOT::MatrixTracker();
-}
+// TEAPOT::MatrixTracker* TEAPOT::TrackerFactory::createMatrixTracker()
+// {
+//  return new TEAPOT::MatrixTracker();
+// }
 
 
 
@@ -85,8 +85,8 @@ TEAPOT::TrackerRegister::TrackerRegister()
   UAL::PropagatorNodePtr mltPtr(new TEAPOT::MltTracker());
   UAL::PropagatorFactory::getInstance().add("TEAPOT::MltTracker", mltPtr);
 
-  UAL::PropagatorNodePtr matrixPtr(new TEAPOT::MatrixTracker());
-  UAL::PropagatorFactory::getInstance().add("TEAPOT::MatrixTracker", matrixPtr);
+  // UAL::PropagatorNodePtr matrixPtr(new TEAPOT::MatrixTracker());
+  // UAL::PropagatorFactory::getInstance().add("TEAPOT::MatrixTracker", matrixPtr);
 
   UAL::PropagatorNodePtr rfPtr(new TEAPOT::RFCavityTracker());
   UAL::PropagatorFactory::getInstance().add("TEAPOT::RFCavityTracker", rfPtr);
