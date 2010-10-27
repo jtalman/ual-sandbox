@@ -1,16 +1,16 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DriftTracker.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DriftTracker.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_DRIFT_TRACKER_HH
-#define UAL_TEAPOT_DRIFT_TRACKER_HH
+#ifndef UAL_ETEAPOT_DRIFT_TRACKER_HH
+#define UAL_ETEAPOT_DRIFT_TRACKER_HH
 
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 #include "ETEAPOT/Integrator/DriftAlgorithm.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
   /** Drift tracker. */
 

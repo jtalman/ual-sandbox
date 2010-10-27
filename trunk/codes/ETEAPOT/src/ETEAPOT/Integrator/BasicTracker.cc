@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/BasicTracker.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/BasicTracker.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -10,30 +10,30 @@
 #include <iostream>
 
 using namespace std;
-double TEAPOT::BasicTracker::s_maxR = 1.0; 
+double ETEAPOT::BasicTracker::s_maxR = 1.0; 
 
-TEAPOT::BasicTracker::BasicTracker()
+ETEAPOT::BasicTracker::BasicTracker()
 {
   initialize();
 }
 
-TEAPOT::BasicTracker::BasicTracker(const TEAPOT::BasicTracker& bt)
+ETEAPOT::BasicTracker::BasicTracker(const ETEAPOT::BasicTracker& bt)
 {
   copy(bt);
 }
 
-TEAPOT::BasicTracker::~BasicTracker()
+ETEAPOT::BasicTracker::~BasicTracker()
 {
 }
 
 /*
-UAL::PropagatorNode* TEAPOT::BasicTracker::clone()
+UAL::PropagatorNode* ETEAPOT::BasicTracker::clone()
 {
-  return new TEAPOT::BasicTracker(*this);
+  return new ETEAPOT::BasicTracker(*this);
 }
 */
 
-void TEAPOT::BasicTracker::initialize()
+void ETEAPOT::BasicTracker::initialize()
 {
   m_i0 = 0;
   m_i1 = 0;
@@ -45,7 +45,7 @@ void TEAPOT::BasicTracker::initialize()
   m_offset   = 0;
 }
 
-void TEAPOT::BasicTracker::copy(const TEAPOT::BasicTracker& bt)
+void ETEAPOT::BasicTracker::copy(const ETEAPOT::BasicTracker& bt)
 {
   m_i0 = bt.m_i0;
   m_i1 = bt.m_i1;
@@ -57,12 +57,12 @@ void TEAPOT::BasicTracker::copy(const TEAPOT::BasicTracker& bt)
   m_offset = bt.m_offset; 
 }
 
-void TEAPOT::BasicTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
+void ETEAPOT::BasicTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
 					      int is0, 
 					      int is1,
 					      const UAL::AttributeSet& attSet)
 {
-   TEAPOT::BasicPropagator::setLatticeElements(sequence, is0, is1, attSet);
+   ETEAPOT::BasicPropagator::setLatticeElements(sequence, is0, is1, attSet);
 
    m_i0 = is0;
    m_i1 = is1;
@@ -74,7 +74,7 @@ void TEAPOT::BasicTracker::setLatticeElements(const UAL::AcceleratorNode& sequen
    m_name=lattice[is0].getDesignName();
 }
 
-void TEAPOT::BasicTracker::setLatticeElement(const PacLattElement& e)
+void ETEAPOT::BasicTracker::setLatticeElement(const PacLattElement& e)
 {
   m_l = e.getLength();
   m_n = e.getN();
@@ -97,7 +97,7 @@ void TEAPOT::BasicTracker::setLatticeElement(const PacLattElement& e)
 }
 
 
-void TEAPOT::BasicTracker::checkAperture(PAC::Bunch& bunch)
+void ETEAPOT::BasicTracker::checkAperture(PAC::Bunch& bunch)
 {
   for(int i=0; i < bunch.size(); i++){
     if(bunch[i].isLost()) continue;
@@ -108,7 +108,7 @@ void TEAPOT::BasicTracker::checkAperture(PAC::Bunch& bunch)
   }
 }
 
-bool TEAPOT::BasicTracker::isOK(PAC::Position& p)
+bool ETEAPOT::BasicTracker::isOK(PAC::Position& p)
 {
 
   bool flag = true;

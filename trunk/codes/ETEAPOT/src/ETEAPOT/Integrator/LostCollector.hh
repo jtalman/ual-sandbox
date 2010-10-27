@@ -1,17 +1,17 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/LostCollector.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/LostCollector.hh
 // Copyright     : see Copyright file
 // Author        : Raymond Fliller III 
 
-#ifndef UAL_TEAPOT_LOSTCOLLECTOR_HH
-#define UAL_TEAPOT_LOSTCOLLECTOR_HH
+#ifndef UAL_ETEAPOT_LOSTCOLLECTOR_HH
+#define UAL_ETEAPOT_LOSTCOLLECTOR_HH
 
 #include <string>
 #include "UAL/Common/Def.hh"
 #include "PAC/Beam/Position.hh"
 #include "PAC/Beam/Bunch.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
   class LostCollector{ 
   private:

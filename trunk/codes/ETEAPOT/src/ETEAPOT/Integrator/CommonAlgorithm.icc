@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/CommonAlgorithm.icc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/CommonAlgorithm.icc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -7,17 +7,17 @@
 #include "ETEAPOT/Integrator/CommonAlgorithm.hh"
 
 template<class Coordinate, class Coordinates> 
-TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::CommonAlgorithm()
+ETEAPOT::CommonAlgorithm<Coordinate, Coordinates>::CommonAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::~CommonAlgorithm()
+ETEAPOT::CommonAlgorithm<Coordinate, Coordinates>::~CommonAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::passDrift(
+void ETEAPOT::CommonAlgorithm<Coordinate, Coordinates>::passDrift(
   double rlipl, 
   Coordinates& p, 
   Coordinates& tmp, 
@@ -133,7 +133,7 @@ void TeapotEngine<Coordinate, Position>::passBend(
 */
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::makeVelocity(
+void ETEAPOT::CommonAlgorithm<Coordinate, Coordinates>::makeVelocity(
   Coordinates& p,
   Coordinates& tmp,
   double v0byc)
@@ -168,7 +168,7 @@ void TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::makeVelocity(
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::makeRV(
+void ETEAPOT::CommonAlgorithm<Coordinate, Coordinates>::makeRV(
   Coordinates& p,
   Coordinates& tmp,
   double e0, 

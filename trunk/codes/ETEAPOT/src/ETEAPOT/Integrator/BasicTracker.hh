@@ -1,11 +1,11 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/BasicTracker.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/BasicTracker.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_BASIC_TRACKER_HH
-#define UAL_TEAPOT_BASIC_TRACKER_HH
+#ifndef UAL_ETEAPOT_BASIC_TRACKER_HH
+#define UAL_ETEAPOT_BASIC_TRACKER_HH
 
 #include <string>
 
@@ -17,11 +17,11 @@
 
 #include "ETEAPOT/Integrator/BasicPropagator.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
-  /** A root class of TEAPOT conventional integrators. */
+  /** A root class of ETEAPOT conventional integrators. */
 
-  class BasicTracker : public TEAPOT::BasicPropagator {
+  class BasicTracker : public ETEAPOT::BasicPropagator {
 
   public:
 

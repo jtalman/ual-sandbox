@@ -1,19 +1,19 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DipoleData.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DipoleData.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_DIPOLE_DATA_HH
-#define UAL_TEAPOT_DIPOLE_DATA_HH
+#ifndef UAL_ETEAPOT_DIPOLE_DATA_HH
+#define UAL_ETEAPOT_DIPOLE_DATA_HH
 
 #include "SMF/PacLattElement.h"
 #include "Survey/PacSurveyData.h"
 #include "ETEAPOT/Integrator/ElemSlice.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
-  /** Collection of attributes used by the TEAPOT dipole propagator */
+  /** Collection of attributes used by the ETEAPOT dipole propagator */
 
   class DipoleData {
 

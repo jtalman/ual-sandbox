@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/TrackerFactory.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/TrackerFactory.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -8,15 +8,15 @@
 #include "UAL/APF/PropagatorFactory.hh"
 #include "ETEAPOT/Integrator/TrackerFactory.hh"
 
-TEAPOT::TrackerFactory* TEAPOT::TrackerFactory::s_theInstance = 0;
+ETEAPOT::TrackerFactory* ETEAPOT::TrackerFactory::s_theInstance = 0;
 
-TEAPOT::TrackerFactory::TrackerFactory()
+ETEAPOT::TrackerFactory::TrackerFactory()
 {
-  UAL::PropagatorNodePtr dipolePtr(new TEAPOT::DipoleTracker());
+  UAL::PropagatorNodePtr dipolePtr(new ETEAPOT::DipoleTracker());
   m_trackers["Sbend"] = dipolePtr;
   m_trackers["Rbend"] = dipolePtr;
 
-  UAL::PropagatorNodePtr mltPtr(new TEAPOT::MltTracker());
+  UAL::PropagatorNodePtr mltPtr(new ETEAPOT::MltTracker());
   m_trackers["Kicker"]     = mltPtr;
   m_trackers["Hkicker"]    = mltPtr;  
   m_trackers["Vkicker"]    = mltPtr;
@@ -24,72 +24,72 @@ TEAPOT::TrackerFactory::TrackerFactory()
   m_trackers["Sextupole"]  = mltPtr;  
   m_trackers["Multipole"]  = mltPtr;
 
-  UAL::PropagatorNodePtr rfPtr(new TEAPOT::RFCavityTracker());
+  UAL::PropagatorNodePtr rfPtr(new ETEAPOT::RFCavityTracker());
   m_trackers["RfCavity"]   = rfPtr;
 
 }
 
-TEAPOT::TrackerFactory* TEAPOT::TrackerFactory::getInstance()
+ETEAPOT::TrackerFactory* ETEAPOT::TrackerFactory::getInstance()
 {
   if(s_theInstance == 0){
-    s_theInstance = new TEAPOT::TrackerFactory();
+    s_theInstance = new ETEAPOT::TrackerFactory();
   }
   return s_theInstance;
 }
 
-UAL::PropagatorNode* TEAPOT::TrackerFactory::createTracker(const std::string& type)
+UAL::PropagatorNode* ETEAPOT::TrackerFactory::createTracker(const std::string& type)
 {
-  TEAPOT::TrackerFactory* factory = getInstance(); 
+  ETEAPOT::TrackerFactory* factory = getInstance(); 
 
   std::map<std::string, UAL::PropagatorNodePtr>::const_iterator it = factory->m_trackers.find(type);
   if(it == factory->m_trackers.end()) return createDefaultTracker();
   return it->second->clone();  
 }
 
-TEAPOT::BasicTracker* TEAPOT::TrackerFactory::createDefaultTracker()
+ETEAPOT::BasicTracker* ETEAPOT::TrackerFactory::createDefaultTracker()
 {
-  return new TEAPOT::DriftTracker();
+  return new ETEAPOT::DriftTracker();
 }
 
-TEAPOT::DriftTracker* TEAPOT::TrackerFactory::createDriftTracker()
+ETEAPOT::DriftTracker* ETEAPOT::TrackerFactory::createDriftTracker()
 {
-  return new TEAPOT::DriftTracker();
+  return new ETEAPOT::DriftTracker();
 }
 
-TEAPOT::DipoleTracker* TEAPOT::TrackerFactory::createDipoleTracker()
+ETEAPOT::DipoleTracker* ETEAPOT::TrackerFactory::createDipoleTracker()
 {
-  return new TEAPOT::DipoleTracker();
+  return new ETEAPOT::DipoleTracker();
 }
 
-TEAPOT::MltTracker* TEAPOT::TrackerFactory::createMltTracker()
+ETEAPOT::MltTracker* ETEAPOT::TrackerFactory::createMltTracker()
 {
-  return new TEAPOT::MltTracker();
+  return new ETEAPOT::MltTracker();
 }
 
-// TEAPOT::MatrixTracker* TEAPOT::TrackerFactory::createMatrixTracker()
+// ETEAPOT::MatrixTracker* ETEAPOT::TrackerFactory::createMatrixTracker()
 // {
-//  return new TEAPOT::MatrixTracker();
+//  return new ETEAPOT::MatrixTracker();
 // }
 
 
 
 
-TEAPOT::TrackerRegister::TrackerRegister()
+ETEAPOT::TrackerRegister::TrackerRegister()
 {
-  UAL::PropagatorNodePtr driftPtr(new TEAPOT::DriftTracker());
-  UAL::PropagatorFactory::getInstance().add("TEAPOT::DriftTracker", driftPtr);
+  UAL::PropagatorNodePtr driftPtr(new ETEAPOT::DriftTracker());
+  UAL::PropagatorFactory::getInstance().add("ETEAPOT::DriftTracker", driftPtr);
 
-  UAL::PropagatorNodePtr dipolePtr(new TEAPOT::DipoleTracker());
-  UAL::PropagatorFactory::getInstance().add("TEAPOT::DipoleTracker", dipolePtr);
+  UAL::PropagatorNodePtr dipolePtr(new ETEAPOT::DipoleTracker());
+  UAL::PropagatorFactory::getInstance().add("ETEAPOT::DipoleTracker", dipolePtr);
 
-  UAL::PropagatorNodePtr mltPtr(new TEAPOT::MltTracker());
-  UAL::PropagatorFactory::getInstance().add("TEAPOT::MltTracker", mltPtr);
+  UAL::PropagatorNodePtr mltPtr(new ETEAPOT::MltTracker());
+  UAL::PropagatorFactory::getInstance().add("ETEAPOT::MltTracker", mltPtr);
 
-  // UAL::PropagatorNodePtr matrixPtr(new TEAPOT::MatrixTracker());
-  // UAL::PropagatorFactory::getInstance().add("TEAPOT::MatrixTracker", matrixPtr);
+  // UAL::PropagatorNodePtr matrixPtr(new ETEAPOT::MatrixTracker());
+  // UAL::PropagatorFactory::getInstance().add("ETEAPOT::MatrixTracker", matrixPtr);
 
-  UAL::PropagatorNodePtr rfPtr(new TEAPOT::RFCavityTracker());
-  UAL::PropagatorFactory::getInstance().add("TEAPOT::RFCavityTracker", rfPtr);
+  UAL::PropagatorNodePtr rfPtr(new ETEAPOT::RFCavityTracker());
+  UAL::PropagatorFactory::getInstance().add("ETEAPOT::RFCavityTracker", rfPtr);
 }
 
-static TEAPOT::TrackerRegister theSingleton; 
+static ETEAPOT::TrackerRegister theSingleton; 

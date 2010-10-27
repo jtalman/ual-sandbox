@@ -1,11 +1,11 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/TrackerFactory.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/TrackerFactory.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_TRACKER_FACTORY_HH
-#define UAL_TEAPOT_TRACKER_FACTORY_HH
+#ifndef UAL_ETEAPOT_TRACKER_FACTORY_HH
+#define UAL_ETEAPOT_TRACKER_FACTORY_HH
 
 #include <map>
 
@@ -13,12 +13,12 @@
 #include "ETEAPOT/Integrator/DriftTracker.hh"
 #include "ETEAPOT/Integrator/DipoleTracker.hh"
 #include "ETEAPOT/Integrator/MltTracker.hh"
-// #include "ETEAPOT/Integrator/MatrixTracker.hh"
+// #include "EETEAPOT/Integrator/MatrixTracker.hh"
 #include "ETEAPOT/Integrator/RFCavityTracker.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
-  /** Factory of the TEAPOT Trackers */
+  /** Factory of the ETEAPOT Trackers */
 
   class TrackerFactory {
 

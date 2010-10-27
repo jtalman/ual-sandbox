@@ -1,17 +1,17 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/MagnetAlgorithm.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/MagnetAlgorithm.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_MAGNET_ALGORITHM_HH
-#define UAL_TEAPOT_MAGNET_ALGORITHM_HH
+#ifndef UAL_ETEAPOT_MAGNET_ALGORITHM_HH
+#define UAL_ETEAPOT_MAGNET_ALGORITHM_HH
 
 #include "SMF/PacElemMultipole.h"
 #include "ETEAPOT/Integrator/MagnetData.hh"
 #include "ETEAPOT/Integrator/CommonAlgorithm.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
  
   /** A template of the common methods used by the magnet conventional tracker and DA integrator */
 

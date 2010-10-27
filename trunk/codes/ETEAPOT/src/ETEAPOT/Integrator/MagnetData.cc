@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/MagnetData.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/MagnetData.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -9,28 +9,28 @@
 #include "SMF/PacElemAttributes.h"
 #include "ETEAPOT/Integrator/MagnetData.hh"
 
-TEAPOT::MagnetData::MagnetData()
+ETEAPOT::MagnetData::MagnetData()
 {
   initialize();
 }
 
-TEAPOT::MagnetData::MagnetData(const MagnetData& mdata)
+ETEAPOT::MagnetData::MagnetData(const MagnetData& mdata)
 {
   copy(mdata);
 }
 
 
-TEAPOT::MagnetData::~MagnetData()
+ETEAPOT::MagnetData::~MagnetData()
 {
 }
 
-const TEAPOT::MagnetData& TEAPOT::MagnetData::operator=(const MagnetData& mdata)
+const ETEAPOT::MagnetData& ETEAPOT::MagnetData::operator=(const MagnetData& mdata)
 {
   copy(mdata);
   return *this;
 }
 
-void TEAPOT::MagnetData::setLatticeElement(const PacLattElement& e)
+void ETEAPOT::MagnetData::setLatticeElement(const PacLattElement& e)
 {
 
   // Entry multipole
@@ -72,7 +72,7 @@ void TEAPOT::MagnetData::setLatticeElement(const PacLattElement& e)
   } 
 }
 
-void TEAPOT::MagnetData::initialize()
+void ETEAPOT::MagnetData::initialize()
 {
 
   m_entryMlt = 0;
@@ -84,7 +84,7 @@ void TEAPOT::MagnetData::initialize()
   // m_aperture = 0;
 }
 
-void TEAPOT::MagnetData::copy(const TEAPOT::MagnetData& mdata)
+void ETEAPOT::MagnetData::copy(const ETEAPOT::MagnetData& mdata)
 {
 
   m_entryMlt = mdata.m_entryMlt;

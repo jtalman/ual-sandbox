@@ -1,11 +1,11 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/MltTracker.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/MltTracker.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_MLT_TRACKER_HH
-#define UAL_TEAPOT_MLT_TRACKER_HH
+#ifndef UAL_ETEAPOT_MLT_TRACKER_HH
+#define UAL_ETEAPOT_MLT_TRACKER_HH
 
 #include "SMF/PacElemMultipole.h"
 #include "SMF/PacLattice.h"
@@ -13,7 +13,7 @@
 #include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
   /** Multipole Tracker. */
 

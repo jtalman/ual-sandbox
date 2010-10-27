@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DipoleData.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DipoleData.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -9,27 +9,27 @@
 #include "SMF/PacElemAttributes.h"
 #include "ETEAPOT/Integrator/DipoleData.hh"
 
-TEAPOT::DipoleData::DipoleData()
+ETEAPOT::DipoleData::DipoleData()
 {
   initialize();
 }
 
-TEAPOT::DipoleData::DipoleData(const DipoleData& data)
+ETEAPOT::DipoleData::DipoleData(const DipoleData& data)
 {
   copy(data);
 }
 
-TEAPOT::DipoleData::~DipoleData()
+ETEAPOT::DipoleData::~DipoleData()
 {
 }
 
-const TEAPOT::DipoleData& TEAPOT::DipoleData::operator=(const TEAPOT::DipoleData& data)
+const ETEAPOT::DipoleData& ETEAPOT::DipoleData::operator=(const ETEAPOT::DipoleData& data)
 {
   copy(data);
   return *this;
 }
 
-void TEAPOT::DipoleData::setLatticeElement(const PacLattElement& e)
+void ETEAPOT::DipoleData::setLatticeElement(const PacLattElement& e)
 {
   // length
   m_l = e.getLength();
@@ -66,7 +66,7 @@ void TEAPOT::DipoleData::setLatticeElement(const PacLattElement& e)
   
 }
 
-void TEAPOT::DipoleData::setBendStrengths(const std::string& etype)
+void ETEAPOT::DipoleData::setBendStrengths(const std::string& etype)
 {
   // m_angle = angle;
 
@@ -94,7 +94,7 @@ void TEAPOT::DipoleData::setBendStrengths(const std::string& etype)
 }
 
 
-void TEAPOT::DipoleData::setSlices(double l, 
+void ETEAPOT::DipoleData::setSlices(double l, 
 				   double angle, 
 				   int ir)
 {
@@ -112,7 +112,7 @@ void TEAPOT::DipoleData::setSlices(double l,
     
 }
 
-void TEAPOT::DipoleData::setSlices(PacSurveyData& survey, 
+void ETEAPOT::DipoleData::setSlices(PacSurveyData& survey, 
 				   double l, 
 				   double angle, 
 				   int ir, 
@@ -176,7 +176,7 @@ void TEAPOT::DipoleData::setSlices(PacSurveyData& survey,
 
 }  
 
-void TEAPOT::DipoleData::initialize()
+void ETEAPOT::DipoleData::initialize()
 {
   // length
 
@@ -200,7 +200,7 @@ void TEAPOT::DipoleData::initialize()
 
 }  
 
-void TEAPOT::DipoleData::copy(const DipoleData& data)
+void ETEAPOT::DipoleData::copy(const DipoleData& data)
 {
   // length
 

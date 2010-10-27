@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/MagnetAlgorithm.icc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/MagnetAlgorithm.icc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -7,34 +7,34 @@
 #include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
 
 template<class Coordinate, class Coordinates> 
-TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::MagnetAlgorithm()
+ETEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::MagnetAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::~MagnetAlgorithm()
+ETEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::~MagnetAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::passEntry(
-	const TEAPOT::MagnetData& mdata,
+void ETEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::passEntry(
+	const ETEAPOT::MagnetData& mdata,
 	Coordinates& p)
 {
   if(mdata.m_entryMlt) applyMltKick(mdata.m_entryMlt, 0, 1, p);
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::passExit(
-	const TEAPOT::MagnetData& mdata,
+void ETEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::passExit(
+	const ETEAPOT::MagnetData& mdata,
 	Coordinates& p)
 {
   if(mdata.m_exitMlt) applyMltKick(mdata.m_exitMlt, 0, 1, p);
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
-	const TEAPOT::MagnetData& mdata,
+void ETEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
+	const ETEAPOT::MagnetData& mdata,
 	double rkicks, 
 	Coordinates& p)
 {
@@ -42,7 +42,7 @@ void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
+void ETEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::applyMltKick(
 	PacElemMultipole* mult, PacElemOffset* offset,
 	double rkicks, 
 	Coordinates& p)

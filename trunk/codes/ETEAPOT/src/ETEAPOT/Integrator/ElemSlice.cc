@@ -1,123 +1,123 @@
-// Program     : TEAPOT
-// File        : TEAPOT/Integrator/ElemSlice.cc
+// Program     : ETEAPOT
+// File        : ETEAPOT/Integrator/ElemSlice.cc
 // Copyright   : see Copyright file
 // Author      : L.Schachinger and R.Talman
 // C++ version : Nikolay Malitsky
 
 #include "ETEAPOT/Integrator/ElemSlice.hh"
 
-TEAPOT::ElemSlice::ElemSlice()
+ETEAPOT::ElemSlice::ElemSlice()
 {
   initialize();
 }
 
-TEAPOT::ElemSlice::ElemSlice(const TEAPOT::ElemSlice& sl)
+ETEAPOT::ElemSlice::ElemSlice(const ETEAPOT::ElemSlice& sl)
 {
   initialize(sl);
 }
 
-TEAPOT::ElemSlice& TEAPOT::ElemSlice::operator=(const TEAPOT::ElemSlice& sl) 
+ETEAPOT::ElemSlice& ETEAPOT::ElemSlice::operator=(const ETEAPOT::ElemSlice& sl) 
 {
   initialize(sl);
   return *this;
 }
 
-PacSurvey& TEAPOT::ElemSlice::survey() 
+PacSurvey& ETEAPOT::ElemSlice::survey() 
 {
   return _survey;
 }
 
-const PacSurvey& TEAPOT::ElemSlice::survey() const
+const PacSurvey& ETEAPOT::ElemSlice::survey() const
 {
   return _survey;
 }
 
-double& TEAPOT::ElemSlice::phpl()
+double& ETEAPOT::ElemSlice::phpl()
 {
   return _phpl;
 }
 
-double TEAPOT::ElemSlice::phpl() const
+double ETEAPOT::ElemSlice::phpl() const
 {
   return _phpl;
 }
 
-double& TEAPOT::ElemSlice::cphpl()
+double& ETEAPOT::ElemSlice::cphpl()
 {
   return _cphpl;
 }
 
-double TEAPOT::ElemSlice::cphpl() const
+double ETEAPOT::ElemSlice::cphpl() const
 {
   return _cphpl;
 }
 
-double& TEAPOT::ElemSlice::sphpl()
+double& ETEAPOT::ElemSlice::sphpl()
 {
   return _sphpl;
 }
 
-double TEAPOT::ElemSlice::sphpl() const
+double ETEAPOT::ElemSlice::sphpl() const
 {
   return _sphpl;
 }
 
-double& TEAPOT::ElemSlice::tphpl()
+double& ETEAPOT::ElemSlice::tphpl()
 {
   return _tphpl;
 }
 
-double TEAPOT::ElemSlice::tphpl() const
+double ETEAPOT::ElemSlice::tphpl() const
 {
   return _tphpl;
 }
 
-double& TEAPOT::ElemSlice::rlipl()
+double& ETEAPOT::ElemSlice::rlipl()
 {
   return _rlipl;
 }
 
-double TEAPOT::ElemSlice::rlipl() const
+double ETEAPOT::ElemSlice::rlipl() const
 {
   return _rlipl;
 }
 
-double& TEAPOT::ElemSlice::scrx()
+double& ETEAPOT::ElemSlice::scrx()
 {
   return _scrx;
 }
 
-double TEAPOT::ElemSlice::scrx() const
+double ETEAPOT::ElemSlice::scrx() const
 {
   return _scrx;
 }
 
-double& TEAPOT::ElemSlice::scrs()
+double& ETEAPOT::ElemSlice::scrs()
 {
   return _scrs;
 }
 
-double TEAPOT::ElemSlice::scrs() const
+double ETEAPOT::ElemSlice::scrs() const
 {
   return _scrs;
 }
 
-double& TEAPOT::ElemSlice::spxt()
+double& ETEAPOT::ElemSlice::spxt()
 {
   return _spxt;
 }
 
-double TEAPOT::ElemSlice::spxt() const
+double ETEAPOT::ElemSlice::spxt() const
 {
   return _spxt;
 }
 
-void TEAPOT::ElemSlice::erase() 
+void ETEAPOT::ElemSlice::erase() 
 {
   initialize();
 }
 
-void TEAPOT::ElemSlice::initialize()
+void ETEAPOT::ElemSlice::initialize()
 {
   // Frame
 
@@ -133,7 +133,7 @@ void TEAPOT::ElemSlice::initialize()
   
 }
 
-void TEAPOT::ElemSlice::initialize(const TEAPOT::ElemSlice& sl)
+void ETEAPOT::ElemSlice::initialize(const ETEAPOT::ElemSlice& sl)
 {
   // Survey
 
@@ -153,7 +153,7 @@ void TEAPOT::ElemSlice::initialize(const TEAPOT::ElemSlice& sl)
 
 }
 
-void TEAPOT::ElemSlice::define(const PacSurvey& previous, const PacSurvey& present, const PacSurvey& next)
+void ETEAPOT::ElemSlice::define(const PacSurvey& previous, const PacSurvey& present, const PacSurvey& next)
 {
   _survey = present;
 
