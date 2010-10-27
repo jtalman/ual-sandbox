@@ -41,6 +41,8 @@ void ETEAPOT::DriftTracker::setLatticeElements(const UAL::AcceleratorNode& seque
 
 void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)
 {
+  std::cout << "Hello ETEAPOT::DriftTracker " << std::endl;
+
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
