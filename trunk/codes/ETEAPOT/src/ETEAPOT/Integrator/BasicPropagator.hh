@@ -1,18 +1,18 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/BasicPropagator.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/BasicPropagator.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_BASIC_PROPAGATOR_HH
-#define UAL_TEAPOT_BASIC_PROPAGATOR_HH
+#ifndef UAL_ETEAPOT_BASIC_PROPAGATOR_HH
+#define UAL_ETEAPOT_BASIC_PROPAGATOR_HH
 
 #include "UAL/APF/PropagatorComponent.hh"
 #include "SMF/PacLattElement.h"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
-  /** A root class of TEAPOT conventional and DA integrators. */
+  /** A root class of ETEAPOT conventional and DA integrators. */
 
   class BasicPropagator : public UAL::PropagatorNode {
 
