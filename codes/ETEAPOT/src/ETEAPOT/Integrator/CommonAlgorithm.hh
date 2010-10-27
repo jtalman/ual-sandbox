@@ -31,6 +31,6 @@ namespace TEAPOT {
 
 }
 
-#include "TEAPOT/Integrator/CommonAlgorithm.icc"
+#include "ETEAPOT/Integrator/CommonAlgorithm.icc"
 
 #endif

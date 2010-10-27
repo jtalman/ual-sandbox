@@ -15,7 +15,7 @@
 #include "SMF/PacElemAperture.h"
 #include "SMF/PacElemOffset.h"
 
-#include "TEAPOT/Integrator/BasicPropagator.hh"
+#include "ETEAPOT/Integrator/BasicPropagator.hh"
 
 namespace TEAPOT {
 

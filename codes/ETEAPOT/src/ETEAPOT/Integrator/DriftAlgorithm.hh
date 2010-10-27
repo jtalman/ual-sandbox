@@ -28,6 +28,6 @@ namespace TEAPOT {
 
 }
 
-#include "TEAPOT/Integrator/DriftAlgorithm.icc"
+#include "ETEAPOT/Integrator/DriftAlgorithm.icc"
 
 #endif

@@ -42,6 +42,6 @@ namespace TEAPOT {
 
 }
 
-#include "TEAPOT/Integrator/DipoleAlgorithm.icc"
+#include "ETEAPOT/Integrator/DipoleAlgorithm.icc"
 
 #endif
