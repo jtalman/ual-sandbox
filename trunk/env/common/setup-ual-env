@@ -22,6 +22,10 @@ setenv LD_LIBRARY_PATH $UAL_PAC/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 setenv UAL_TEAPOT          $UAL/codes/TEAPOT
 setenv LD_LIBRARY_PATH $UAL_TEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
+# ETEAPOT - element by element electric tracker (with errors)
+setenv UAL_ETEAPOT          $UAL/codes/ETEAPOT
+setenv LD_LIBRARY_PATH $UAL_ETEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
 setenv UAL_ACCSIM          $UAL/codes/ACCSIM
 setenv LD_LIBRARY_PATH $UAL_ACCSIM/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
