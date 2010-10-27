@@ -4,7 +4,7 @@
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#include "TEAPOT/Integrator/BasicPropagator.hh"
+#include "ETEAPOT/Integrator/BasicPropagator.hh"
 
 double TEAPOT::BasicPropagator::s_steps[] = {0.1, 4./15., 4./15., 4./15., 0.1};  
 

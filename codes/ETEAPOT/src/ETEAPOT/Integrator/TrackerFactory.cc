@@ -6,7 +6,7 @@
 
 
 #include "UAL/APF/PropagatorFactory.hh"
-#include "TEAPOT/Integrator/TrackerFactory.hh"
+#include "ETEAPOT/Integrator/TrackerFactory.hh"
 
 TEAPOT::TrackerFactory* TEAPOT::TrackerFactory::s_theInstance = 0;
 

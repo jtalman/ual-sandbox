@@ -7,8 +7,8 @@
 #ifndef UAL_TEAPOT_DRIFT_TRACKER_HH
 #define UAL_TEAPOT_DRIFT_TRACKER_HH
 
-#include "TEAPOT/Integrator/BasicTracker.hh"
-#include "TEAPOT/Integrator/DriftAlgorithm.hh"
+#include "ETEAPOT/Integrator/BasicTracker.hh"
+#include "ETEAPOT/Integrator/DriftAlgorithm.hh"
 
 namespace TEAPOT {
 

@@ -7,7 +7,7 @@
 #ifndef UAL_TEAPOT_DRIFT_ALGORITHM_HH
 #define UAL_TEAPOT_DRIFT_ALGORITHM_HH
 
-#include "TEAPOT/Integrator/CommonAlgorithm.hh"
+#include "ETEAPOT/Integrator/CommonAlgorithm.hh"
 
 namespace TEAPOT {
  

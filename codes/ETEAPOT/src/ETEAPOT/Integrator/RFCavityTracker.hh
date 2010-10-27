@@ -9,7 +9,7 @@
 
 #include "PAC/Beam/Position.hh"
 #include "SMF/PacLattElement.h"
-#include "TEAPOT/Integrator/BasicTracker.hh"
+#include "ETEAPOT/Integrator/BasicTracker.hh"
 
 namespace TEAPOT {
 

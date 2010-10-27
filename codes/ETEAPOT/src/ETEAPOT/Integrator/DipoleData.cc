@@ -7,7 +7,7 @@
 #include <math.h>
 #include "SMF/PacElemBend.h"
 #include "SMF/PacElemAttributes.h"
-#include "TEAPOT/Integrator/DipoleData.hh"
+#include "ETEAPOT/Integrator/DipoleData.hh"
 
 TEAPOT::DipoleData::DipoleData()
 {

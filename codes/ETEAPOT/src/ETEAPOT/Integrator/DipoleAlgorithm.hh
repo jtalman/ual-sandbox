@@ -7,7 +7,7 @@
 #ifndef UAL_TEAPOT_DIPOLE_ALGORITHM_HH
 #define UAL_TEAPOT_DIPOLE_ALGORITHM_HH
 
-#include "TEAPOT/Integrator/MagnetAlgorithm.hh"
+#include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
 
 namespace TEAPOT {
  

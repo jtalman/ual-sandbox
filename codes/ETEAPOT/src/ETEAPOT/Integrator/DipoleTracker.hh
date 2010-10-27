@@ -7,10 +7,10 @@
 #ifndef UAL_TEAPOT_DIPOLE_TRACKER_HH
 #define UAL_TEAPOT_DIPOLE_TRACKER_HH
 
-#include "TEAPOT/Integrator/DipoleData.hh"
-#include "TEAPOT/Integrator/MagnetData.hh"
-#include "TEAPOT/Integrator/DipoleAlgorithm.hh"
-#include "TEAPOT/Integrator/BasicTracker.hh"
+#include "ETEAPOT/Integrator/DipoleData.hh"
+#include "ETEAPOT/Integrator/MagnetData.hh"
+#include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
+#include "ETEAPOT/Integrator/BasicTracker.hh"
 
 namespace TEAPOT {
 

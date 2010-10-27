@@ -8,8 +8,8 @@
 #define UAL_TEAPOT_MAGNET_ALGORITHM_HH
 
 #include "SMF/PacElemMultipole.h"
-#include "TEAPOT/Integrator/MagnetData.hh"
-#include "TEAPOT/Integrator/CommonAlgorithm.hh"
+#include "ETEAPOT/Integrator/MagnetData.hh"
+#include "ETEAPOT/Integrator/CommonAlgorithm.hh"
 
 namespace TEAPOT {
  

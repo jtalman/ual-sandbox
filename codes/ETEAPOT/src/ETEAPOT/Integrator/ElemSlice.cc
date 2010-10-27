@@ -4,7 +4,7 @@
 // Author      : L.Schachinger and R.Talman
 // C++ version : Nikolay Malitsky
 
-#include "TEAPOT/Integrator/ElemSlice.hh"
+#include "ETEAPOT/Integrator/ElemSlice.hh"
 
 TEAPOT::ElemSlice::ElemSlice()
 {
