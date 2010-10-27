@@ -1,0 +1,194 @@
+// Library       : TEAPOT
+// File          : TEAPOT/Integrator/CommonAlgorithm.icc
+// Copyright     : see Copyright file
+// Author        : L.Schachinger and R.Talman
+// C++ version   : N.Malitsky 
+
+#include "TEAPOT/Integrator/CommonAlgorithm.hh"
+
+template<class Coordinate, class Coordinates> 
+TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::CommonAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::~CommonAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+void TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::passDrift(
+  double rlipl, 
+  Coordinates& p, 
+  Coordinates& tmp, 
+  double v0byc)
+{
+  Coordinate rvbyc, p1, p2, p4;
+
+  // Transform coordinates into frame of multipole
+
+  p[0] += (rlipl*tmp[1]); // was :tmp[PacPosition::PX]*rlipl;                 
+  p[2] += (rlipl*tmp[3]); // was :tmp[PacPosition::PY]*rlipl; 
+
+
+  if(p.size() > 5){
+
+    // -p[5] = cdt = L/(v/c) -Lo/(vo/c) = (L - Lo)/(v/c) + Lo*(c/v - c/vo) =
+    //                                  = cdt_circ       + cdt_vel
+
+    // 1. cdt_circ = (c/v)(L - Lo) = (c/v)(L**2 - Lo**2)/(L + Lo) ~ 
+
+/*
+    rvbyc  = v0byc*(1.+ tmp[PacPosition::CT]);  
+    rvbyc  = 1./rvbyc;                                // c/v
+*/
+
+    rvbyc  = tmp[5];                     // c/v
+
+    p1  = tmp[1];
+    p1 *= p1;
+    p2  = tmp[3];
+    p2 *= p2;
+    p1 += p2;
+
+    // Define L + Lo instead of 2*Lo (April 98)
+    p4  = 1.;
+    p4 += p1;
+    p4  = sqrt(p4);                                    // L/Lo
+    p4 += 1.;                                          // (L+Lo)/Lo
+    p4 /= 2.;
+
+    p1 /= p4;
+
+    p1 *= rvbyc;
+    p1 *= rlipl/2.;
+
+    // 2. cdt_vel  = Lo*(c/v -c/vo) 
+ 
+    p2  =  1./v0byc;
+    p2 -=  rvbyc;
+    p2 *=  rlipl;
+
+    // Total
+
+    p[4] -= p1; 
+    p[4] += p2;
+
+  }
+               
+  return;
+}
+
+/**
+template<class Coordinate, class Position>
+void TeapotEngine<Coordinate, Position>::passBend(
+  const TeapotElement& te, 
+  const TeapotElemSlice& slice, 
+  Position& p, 
+  Position& tmp,
+  double v0byc)
+{
+  // From makeVelocity:
+  //
+  // tmp[x]  = psbyp0
+  // tmp[px] = vx/vs
+  // tmp[py] = vy/vs
+
+  if(!te.l()) return;
+
+  Coordinate t0, t1, x, y;
+
+  // Transform velocities into frame of multipole
+
+ t0  = ((slice.cphpl())*p[1]);                                       // was : p[PacPosition::PX]*slice.cphpl(); 
+ t0 -= ((slice.sphpl())*tmp[0]);  // (px*cos(phi+) - ps*sin(phi+))/p0 // was : tmp[PacPosition::X]*slice.sphpl(); 
+ p[1] = t0;
+
+ // Transform coordinates into frame of multipole
+
+ t0  = 1/(1. + ((slice.tphpl())*tmp[1])); // 1/(1+vx/vs*tan(phi+))  // was : 1/(1. + tmp[PacPosition::PX]*slice.tphpl()); 
+ t1  = (-slice.scrx()) + p[0];            // x - scrx               // was : p[PacPosition::X] - slice.scrx(); 
+
+ 
+ if(p.size() > 5) {
+   tmp[2] = t0;
+   if(slice.rlipl()) deltaPath(slice, p, tmp, v0byc);  // P[5] -= cdt
+ }
+
+ x  = t1;
+ x += (slice.scrs())*tmp[1];            // (x - scrx + vx/vs*scrs)*   // was :tmp[PacPosition::PX]*slice.scrs(); 
+ x = ((1.0/(slice.cphpl()))*t0)*x;                             // *t0/cos(phi+) // was :  x *= t0/slice.cphpl(); 
+ y  = slice.scrs();
+ y -= slice.tphpl()*t1;                             // (scrs - tan(phi+)*(x - scrx))*
+ y *= tmp[3]*t0;                      // *vy/vs*t0+
+ y += p[2];                            // +y
+
+
+ p[0] = x;
+ p[2] = y;
+                              
+ return;
+}
+
+*/
+
+template<class Coordinate, class Coordinates>
+void TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::makeVelocity(
+  Coordinates& p,
+  Coordinates& tmp,
+  double v0byc)
+{
+  Coordinate t0, t1;
+
+  t0  = 1.;
+ 
+  if(p.size() > 5){ 
+    t1  = p[5];
+    t1 += 2./v0byc;
+    t1 *= p[5];
+    t0 += t1;
+  }
+
+  t1  = p[1];
+  t1 *= t1;
+  t0 -= t1;
+
+  t1  = p[3];
+  t1 *= t1;
+  t0 -= t1;
+
+  t0  = sqrt(t0);
+  tmp[0]   = t0;
+
+  t0  = 1./t0;
+  tmp[1]  = p[1]*t0;    // vx/vs
+  tmp[3]  = p[3]*t0;    // vy/vs
+
+  return;
+}
+
+template<class Coordinate, class Coordinates>
+void TEAPOT::CommonAlgorithm<Coordinate, Coordinates>::makeRV(
+  Coordinates& p,
+  Coordinates& tmp,
+  double e0, 
+  double p0,
+  double m0)
+{
+ 
+  Coordinate e, p2, rv;
+
+  e  = e0;
+  e += (p0*p[5]);    // was : p[PacPosition::DE]*p0; 
+
+  p2  = e;
+  p2 *= e;
+  p2 -= m0*m0;
+  p2  = sqrt(p2);
+  
+  rv  = e;
+  rv /= p2;
+
+  tmp[5] = rv;
+
+}
