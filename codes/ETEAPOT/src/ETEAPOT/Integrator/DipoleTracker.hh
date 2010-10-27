@@ -1,18 +1,18 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DipoleTracker.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DipoleTracker.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_DIPOLE_TRACKER_HH
-#define UAL_TEAPOT_DIPOLE_TRACKER_HH
+#ifndef UAL_ETEAPOT_DIPOLE_TRACKER_HH
+#define UAL_ETEAPOT_DIPOLE_TRACKER_HH
 
 #include "ETEAPOT/Integrator/DipoleData.hh"
 #include "ETEAPOT/Integrator/MagnetData.hh"
 #include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
   /** Dipole tracker. */
 

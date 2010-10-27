@@ -1,11 +1,11 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/MagnetData.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/MagnetData.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_MAGNET_DATA_HH
-#define UAL_TEAPOT_MAGNET_DATA_HH
+#ifndef UAL_ETEAPOT_MAGNET_DATA_HH
+#define UAL_ETEAPOT_MAGNET_DATA_HH
 
 #include "SMF/PacLattElement.h"
 #include "SMF/PacElemBend.h"
@@ -14,9 +14,9 @@
 #include "SMF/PacElemRotation.h"
 #include "SMF/PacElemAperture.h"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
-  /** Collection of attributes used by the TEAPOT magnet propagator */
+  /** Collection of attributes used by the ETEAPOT magnet propagator */
 
   class MagnetData {
 

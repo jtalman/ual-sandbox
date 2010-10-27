@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DriftTracker.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DriftTracker.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -9,37 +9,37 @@
 #include "SMF/PacLattice.h"
 #include "ETEAPOT/Integrator/DriftTracker.hh"
 
-TEAPOT::DriftAlgorithm<double, PAC::Position> TEAPOT::DriftTracker::s_algorithm;
+ETEAPOT::DriftAlgorithm<double, PAC::Position> ETEAPOT::DriftTracker::s_algorithm;
 
-TEAPOT::DriftTracker::DriftTracker()
-  : TEAPOT::BasicTracker()
+ETEAPOT::DriftTracker::DriftTracker()
+  : ETEAPOT::BasicTracker()
 {
 }
 
-TEAPOT::DriftTracker::DriftTracker(const TEAPOT::DriftTracker& dt)
-  : TEAPOT::BasicTracker(dt)
+ETEAPOT::DriftTracker::DriftTracker(const ETEAPOT::DriftTracker& dt)
+  : ETEAPOT::BasicTracker(dt)
 {
 }
 
-TEAPOT::DriftTracker::~DriftTracker()
+ETEAPOT::DriftTracker::~DriftTracker()
 {
 }
 
-UAL::PropagatorNode* TEAPOT::DriftTracker::clone()
+UAL::PropagatorNode* ETEAPOT::DriftTracker::clone()
 {
-  return new TEAPOT::DriftTracker(*this);
+  return new ETEAPOT::DriftTracker(*this);
 }
 
 
-void TEAPOT::DriftTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
+void ETEAPOT::DriftTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
 					      int is0, 
 					      int is1,
 					      const UAL::AttributeSet& attSet)
 {
-   TEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
 }
 
-void TEAPOT::DriftTracker::propagate(UAL::Probe& probe)
+void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   

@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DipoleTracker.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DipoleTracker.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -9,46 +9,46 @@
 #include "SMF/PacLattice.h"
 #include "ETEAPOT/Integrator/DipoleTracker.hh"
 
-TEAPOT::DipoleAlgorithm<double, PAC::Position> TEAPOT::DipoleTracker::s_algorithm;
+ETEAPOT::DipoleAlgorithm<double, PAC::Position> ETEAPOT::DipoleTracker::s_algorithm;
 
-TEAPOT::DipoleTracker::DipoleTracker()
-  : TEAPOT::BasicTracker()
+ETEAPOT::DipoleTracker::DipoleTracker()
+  : ETEAPOT::BasicTracker()
 {
 }
 
-TEAPOT::DipoleTracker::DipoleTracker(const TEAPOT::DipoleTracker& dt)
-  : TEAPOT::BasicTracker(dt)
+ETEAPOT::DipoleTracker::DipoleTracker(const ETEAPOT::DipoleTracker& dt)
+  : ETEAPOT::BasicTracker(dt)
 {
   m_data = dt.m_data;
   m_mdata = dt.m_mdata;
 }
 
-TEAPOT::DipoleTracker::~DipoleTracker()
+ETEAPOT::DipoleTracker::~DipoleTracker()
 {
 }
 
-UAL::PropagatorNode* TEAPOT::DipoleTracker::clone()
+UAL::PropagatorNode* ETEAPOT::DipoleTracker::clone()
 {
-  return new TEAPOT::DipoleTracker(*this);
+  return new ETEAPOT::DipoleTracker(*this);
 }
 
-void TEAPOT::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
+void ETEAPOT::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
 					       int is0, 
 					       int is1,
 					       const UAL::AttributeSet& attSet)
 {
-   TEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);  
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);  
    const PacLattice& lattice     = (PacLattice&) sequence;
    setLatticeElement(lattice[is0]);
 }
 
-void TEAPOT::DipoleTracker::setLatticeElement(const PacLattElement& e)
+void ETEAPOT::DipoleTracker::setLatticeElement(const PacLattElement& e)
 {
   m_data.setLatticeElement(e);
   m_mdata.setLatticeElement(e);
 }
 
-void TEAPOT::DipoleTracker::propagate(UAL::Probe& probe)
+void ETEAPOT::DipoleTracker::propagate(UAL::Probe& probe)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   

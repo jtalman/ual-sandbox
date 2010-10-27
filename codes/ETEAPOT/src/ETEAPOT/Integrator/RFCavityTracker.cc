@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/RFCavityTracker.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/RFCavityTracker.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -12,46 +12,46 @@
 #include "SMF/PacElemRfCavity.h"
 #include "ETEAPOT/Integrator/RFCavityTracker.hh"
 
-TEAPOT::RFCavityTracker::RFCavityTracker()
-  : TEAPOT::BasicTracker()
+ETEAPOT::RFCavityTracker::RFCavityTracker()
+  : ETEAPOT::BasicTracker()
 {
   init();
 }
 
-TEAPOT::RFCavityTracker::RFCavityTracker(const TEAPOT::RFCavityTracker& rft)
-  : TEAPOT::BasicTracker(rft)
+ETEAPOT::RFCavityTracker::RFCavityTracker(const ETEAPOT::RFCavityTracker& rft)
+  : ETEAPOT::BasicTracker(rft)
 {
   copy(rft);
 }
 
-TEAPOT::RFCavityTracker::~RFCavityTracker()
+ETEAPOT::RFCavityTracker::~RFCavityTracker()
 {
 }
 
-void TEAPOT::RFCavityTracker::setRF(double V, double h, double lag)
+void ETEAPOT::RFCavityTracker::setRF(double V, double h, double lag)
 {
   m_V   = V;
   m_h   = h;
   m_lag = lag;
 }
 
-UAL::PropagatorNode* TEAPOT::RFCavityTracker::clone()
+UAL::PropagatorNode* ETEAPOT::RFCavityTracker::clone()
 {
-  return new TEAPOT::RFCavityTracker(*this);
+  return new ETEAPOT::RFCavityTracker(*this);
 }
 
-void TEAPOT::RFCavityTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
+void ETEAPOT::RFCavityTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
 						  int is0, 
 						  int is1,
 						  const UAL::AttributeSet& attSet)
 {
-   TEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
 
    const PacLattice& lattice     = (PacLattice&) sequence;
    setLatticeElement(lattice[is0]);
 }
 
-void TEAPOT::RFCavityTracker::setLatticeElement(const PacLattElement& e)
+void ETEAPOT::RFCavityTracker::setLatticeElement(const PacLattElement& e)
 {
   init();
 
@@ -79,7 +79,7 @@ void TEAPOT::RFCavityTracker::setLatticeElement(const PacLattElement& e)
   // cerr << "V = " << m_V << " lag = " << m_lag << " harmon = " << m_h << "\n";
 }
 
-void TEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)
+void ETEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
 
@@ -150,7 +150,7 @@ void TEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)
   ba.setElapsedTime(t_old + (m_l/v0byc_old + m_l/v0byc_new)/2./UAL::clight);
 }
 
-void TEAPOT::RFCavityTracker::init()
+void ETEAPOT::RFCavityTracker::init()
 {
   m_l   = 0.0;
   m_V   = 0.0;
@@ -158,7 +158,7 @@ void TEAPOT::RFCavityTracker::init()
   m_h   = 0.0;
 }
 
-void TEAPOT::RFCavityTracker::copy(const TEAPOT::RFCavityTracker& rft)
+void ETEAPOT::RFCavityTracker::copy(const ETEAPOT::RFCavityTracker& rft)
 {
   m_l   = rft.m_l;
   m_V   = rft.m_V;
@@ -166,7 +166,7 @@ void TEAPOT::RFCavityTracker::copy(const TEAPOT::RFCavityTracker& rft)
   m_h   = rft.m_h;
 }
 
-void TEAPOT::RFCavityTracker::passDrift(double l, PAC::Position& p, double v0byc, double vbyc)
+void ETEAPOT::RFCavityTracker::passDrift(double l, PAC::Position& p, double v0byc, double vbyc)
 {
   // Transverse coordinates
 

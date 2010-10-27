@@ -1,17 +1,17 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/RFCavityTracker.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/RFCavityTracker.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_RFCAVITY_TRACKER_HH
-#define UAL_TEAPOT_RFCAVITY_TRACKER_HH
+#ifndef UAL_ETEAPOT_RFCAVITY_TRACKER_HH
+#define UAL_ETEAPOT_RFCAVITY_TRACKER_HH
 
 #include "PAC/Beam/Position.hh"
 #include "SMF/PacLattElement.h"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
   /** RF Cavity Tracker */
 

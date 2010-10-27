@@ -1,15 +1,15 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DipoleAlgorithm.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DipoleAlgorithm.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_DIPOLE_ALGORITHM_HH
-#define UAL_TEAPOT_DIPOLE_ALGORITHM_HH
+#ifndef UAL_ETEAPOT_DIPOLE_ALGORITHM_HH
+#define UAL_ETEAPOT_DIPOLE_ALGORITHM_HH
 
 #include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
 
-namespace TEAPOT {
+namespace ETEAPOT {
  
   /** A template of the dipole algorithm used by the conventional tracker and DA integrator */
 

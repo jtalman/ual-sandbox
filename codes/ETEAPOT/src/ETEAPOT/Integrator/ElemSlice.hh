@@ -1,16 +1,16 @@
-// Program     : TEAPOT
-// File        : TEAPOT/Integrator/ElemSlice.hh
+// Program     : ETEAPOT
+// File        : ETEAPOT/Integrator/ElemSlice.hh
 // Copyright   : see Copyright file
 // Author      : L.Schachinger and R.Talman
 // C++ version : Nikolay Malitsky
 
-#ifndef UAL_TEAPOT_ELEM_SLICE_HH
-#define UAL_TEAPOT_ELEM_SLICE_HH
+#ifndef UAL_ETEAPOT_ELEM_SLICE_HH
+#define UAL_ETEAPOT_ELEM_SLICE_HH
 
 #include "Survey/PacSurveyDrift.h"
 #include "Survey/PacSurveySbend.h"
 
-namespace TEAPOT {
+namespace ETEAPOT {
 
   /** Container of the frame slice parameters */
 

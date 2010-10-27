@@ -1,15 +1,15 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/CommonAlgorithm.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/CommonAlgorithm.hh
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#ifndef UAL_TEAPOT_COMMON_ALGORITHM_HH
-#define UAL_TEAPOT_COMMON_ALGORITHM_HH
+#ifndef UAL_ETEAPOT_COMMON_ALGORITHM_HH
+#define UAL_ETEAPOT_COMMON_ALGORITHM_HH
 
-namespace TEAPOT {
+namespace ETEAPOT {
  
-  /** Template of the common methods used by TEAPOT propagators */
+  /** Template of the common methods used by ETEAPOT propagators */
 
   template<class Coordinate, class Coordinates> class CommonAlgorithm {
 

@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/LostCollector.hh
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/LostCollector.hh
 // Copyright     : see Copyright file
 // Author        : Raymond Fliller III 
 
@@ -13,9 +13,9 @@
 
 using namespace std;
 
-TEAPOT::LostCollector* TEAPOT::LostCollector::s_theInstance=0;
+ETEAPOT::LostCollector* ETEAPOT::LostCollector::s_theInstance=0;
 
-TEAPOT::LostCollector::LostCollector()
+ETEAPOT::LostCollector::LostCollector()
 {
   Nparticles=0;
   p_index=NULL;
@@ -27,21 +27,21 @@ TEAPOT::LostCollector::LostCollector()
   flag=0;
 }
 
-TEAPOT::LostCollector::~LostCollector()
+ETEAPOT::LostCollector::~LostCollector()
 { 
   DeleteArrays();
 }
 
 
-TEAPOT::LostCollector& TEAPOT::LostCollector::GetInstance()
+ETEAPOT::LostCollector& ETEAPOT::LostCollector::GetInstance()
 {
   if(s_theInstance == 0){
-    s_theInstance = new TEAPOT::LostCollector();
+    s_theInstance = new ETEAPOT::LostCollector();
   }
   return *s_theInstance;
 }
 
-void TEAPOT::LostCollector::DeleteArrays()
+void ETEAPOT::LostCollector::DeleteArrays()
 {
 
   if (Nparticles){
@@ -56,7 +56,7 @@ void TEAPOT::LostCollector::DeleteArrays()
   sentry=0;
 }
 
-void TEAPOT::LostCollector::Clear()
+void ETEAPOT::LostCollector::Clear()
 {
   int i;
 
@@ -73,7 +73,7 @@ void TEAPOT::LostCollector::Clear()
 
 
 
-void TEAPOT::LostCollector::RegisterBunch(const PAC::Bunch &b)
+void ETEAPOT::LostCollector::RegisterBunch(const PAC::Bunch &b)
 {
   if(b.size()!= Nparticles){
     DeleteArrays();
@@ -90,8 +90,8 @@ void TEAPOT::LostCollector::RegisterBunch(const PAC::Bunch &b)
 
 }
 
-void TEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind, float s, std::string n)
-  //void TEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind)
+void ETEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind, float s, std::string n)
+  //void ETEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind)
 {
   int j;
 
@@ -115,7 +115,7 @@ void TEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind, fl
       
 
 
-void TEAPOT::LostCollector::Write(const char* filename)
+void ETEAPOT::LostCollector::Write(const char* filename)
 {
   ofstream file(filename);
   int i=0;

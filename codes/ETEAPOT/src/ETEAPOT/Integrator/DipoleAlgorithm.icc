@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/DipoleAlgorithm.icc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/DipoleAlgorithm.icc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -7,19 +7,19 @@
 #include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
 
 template<class Coordinate, class Coordinates> 
-TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::DipoleAlgorithm()
+ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::DipoleAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::~DipoleAlgorithm()
+ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::~DipoleAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
-	const TEAPOT::DipoleData& data, 
-	const TEAPOT::MagnetData& mdata, 	
+void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
+	const ETEAPOT::DipoleData& data, 
+	const ETEAPOT::MagnetData& mdata, 	
 	Coordinates& p, 
 	Coordinates& tmp, 
 	double v0byc)
@@ -58,8 +58,8 @@ void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(
-  const TEAPOT::ElemSlice& slice, 
+void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(
+  const ETEAPOT::ElemSlice& slice, 
   Coordinates& p, 
   Coordinates& tmp,
   double v0byc)
@@ -105,8 +105,8 @@ void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(
 }
 
 template<class Coordinate, class Coordinates>
-void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::deltaPath(
-  const TEAPOT::ElemSlice& slice, 
+void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::deltaPath(
+  const ETEAPOT::ElemSlice& slice, 
   Coordinates& p, 
   Coordinates& tmp,
   double v0byc)
@@ -172,9 +172,9 @@ void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::deltaPath(
 }
 	
 template<class Coordinate, class Coordinates>
-void TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
-  const TEAPOT::DipoleData& data,
-  const TEAPOT::MagnetData& mdata, double rkicks,
+void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
+  const ETEAPOT::DipoleData& data,
+  const ETEAPOT::MagnetData& mdata, double rkicks,
   Coordinates& p, double v0byc)
 {
   Coordinate x, px, y, py;

@@ -1,5 +1,5 @@
-// Library       : TEAPOT
-// File          : TEAPOT/Integrator/MltTracker.cc
+// Library       : ETEAPOT
+// File          : ETEAPOT/Integrator/MltTracker.cc
 // Copyright     : see Copyright file
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
@@ -9,40 +9,40 @@
 #include "PAC/Beam/Bunch.hh"
 #include "ETEAPOT/Integrator/MltTracker.hh"
 
-TEAPOT::MagnetAlgorithm<double, PAC::Position> TEAPOT::MltTracker::s_algorithm;
+ETEAPOT::MagnetAlgorithm<double, PAC::Position> ETEAPOT::MltTracker::s_algorithm;
 
-TEAPOT::MltTracker::MltTracker()
-  : TEAPOT::BasicTracker()
+ETEAPOT::MltTracker::MltTracker()
+  : ETEAPOT::BasicTracker()
 {
   initialize();
 }
 
-TEAPOT::MltTracker::MltTracker(const TEAPOT::MltTracker& mt)
-  : TEAPOT::BasicTracker(mt)
+ETEAPOT::MltTracker::MltTracker(const ETEAPOT::MltTracker& mt)
+  : ETEAPOT::BasicTracker(mt)
 {
   copy(mt);
 }
 
-TEAPOT::MltTracker::~MltTracker()
+ETEAPOT::MltTracker::~MltTracker()
 {
 }
 
-UAL::PropagatorNode* TEAPOT::MltTracker::clone()
+UAL::PropagatorNode* ETEAPOT::MltTracker::clone()
 {
-  return new TEAPOT::MltTracker(*this);
+  return new ETEAPOT::MltTracker(*this);
 }
 
-void TEAPOT::MltTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
+void ETEAPOT::MltTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
 					    int is0, 
 					    int is1,
 					    const UAL::AttributeSet& attSet)
 {
-   TEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
    const PacLattice& lattice     = (PacLattice&) sequence;
    setLatticeElement(lattice[is0]);
 }
 
-void TEAPOT::MltTracker::setLatticeElement(const PacLattElement& e)
+void ETEAPOT::MltTracker::setLatticeElement(const PacLattElement& e)
 {
   // length
   // m_l = e.getLength();
@@ -54,7 +54,7 @@ void TEAPOT::MltTracker::setLatticeElement(const PacLattElement& e)
 
 }
 
-void TEAPOT::MltTracker::propagate(UAL::Probe& probe)
+void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
@@ -127,13 +127,13 @@ void TEAPOT::MltTracker::propagate(UAL::Probe& probe)
 
 }
 
-void TEAPOT::MltTracker::initialize()
+void ETEAPOT::MltTracker::initialize()
 {
   // m_l = 0.0;
   m_ir = 0.0;
 }
 
-void TEAPOT::MltTracker::copy(const TEAPOT::MltTracker& mt)
+void ETEAPOT::MltTracker::copy(const ETEAPOT::MltTracker& mt)
 {
   // m_l   = mt.m_l;
   m_ir  = mt.m_ir;
