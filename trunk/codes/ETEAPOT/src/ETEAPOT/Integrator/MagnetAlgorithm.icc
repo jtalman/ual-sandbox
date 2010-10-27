@@ -4,7 +4,7 @@
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#include "TEAPOT/Integrator/MagnetAlgorithm.hh"
+#include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
 
 template<class Coordinate, class Coordinates> 
 TEAPOT::MagnetAlgorithm<Coordinate, Coordinates>::MagnetAlgorithm()

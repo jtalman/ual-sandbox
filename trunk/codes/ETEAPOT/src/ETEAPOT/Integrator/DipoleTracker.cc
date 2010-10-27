@@ -7,7 +7,7 @@
 #include <math.h>
 #include "PAC/Beam/Bunch.hh"
 #include "SMF/PacLattice.h"
-#include "TEAPOT/Integrator/DipoleTracker.hh"
+#include "ETEAPOT/Integrator/DipoleTracker.hh"
 
 TEAPOT::DipoleAlgorithm<double, PAC::Position> TEAPOT::DipoleTracker::s_algorithm;
 

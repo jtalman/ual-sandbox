@@ -9,7 +9,7 @@
 
 #include "SMF/PacLattElement.h"
 #include "Survey/PacSurveyData.h"
-#include "TEAPOT/Integrator/ElemSlice.hh"
+#include "ETEAPOT/Integrator/ElemSlice.hh"
 
 namespace TEAPOT {
 

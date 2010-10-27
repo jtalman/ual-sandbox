@@ -10,7 +10,7 @@
 #include "PAC/Beam/Bunch.hh"
 #include "SMF/PacLattice.h"
 #include "SMF/PacElemRfCavity.h"
-#include "TEAPOT/Integrator/RFCavityTracker.hh"
+#include "ETEAPOT/Integrator/RFCavityTracker.hh"
 
 TEAPOT::RFCavityTracker::RFCavityTracker()
   : TEAPOT::BasicTracker()

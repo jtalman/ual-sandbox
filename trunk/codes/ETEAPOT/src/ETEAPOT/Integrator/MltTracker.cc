@@ -7,7 +7,7 @@
 #include <math.h>
 #include "UAL/APF/PropagatorFactory.hh"
 #include "PAC/Beam/Bunch.hh"
-#include "TEAPOT/Integrator/MltTracker.hh"
+#include "ETEAPOT/Integrator/MltTracker.hh"
 
 TEAPOT::MagnetAlgorithm<double, PAC::Position> TEAPOT::MltTracker::s_algorithm;
 

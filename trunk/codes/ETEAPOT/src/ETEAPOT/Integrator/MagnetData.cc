@@ -7,7 +7,7 @@
 #include <math.h>
 
 #include "SMF/PacElemAttributes.h"
-#include "TEAPOT/Integrator/MagnetData.hh"
+#include "ETEAPOT/Integrator/MagnetData.hh"
 
 TEAPOT::MagnetData::MagnetData()
 {

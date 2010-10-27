@@ -4,7 +4,7 @@
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#include "TEAPOT/Integrator/DipoleAlgorithm.hh"
+#include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
 
 template<class Coordinate, class Coordinates> 
 TEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::DipoleAlgorithm()

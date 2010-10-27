@@ -9,9 +9,9 @@
 
 #include "SMF/PacElemMultipole.h"
 #include "SMF/PacLattice.h"
-#include "TEAPOT/Integrator/MagnetData.hh"
-#include "TEAPOT/Integrator/MagnetAlgorithm.hh"
-#include "TEAPOT/Integrator/BasicTracker.hh"
+#include "ETEAPOT/Integrator/MagnetData.hh"
+#include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
+#include "ETEAPOT/Integrator/BasicTracker.hh"
 
 namespace TEAPOT {
 

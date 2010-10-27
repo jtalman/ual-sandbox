@@ -7,7 +7,7 @@
 #include <math.h>
 #include "PAC/Beam/Bunch.hh"
 #include "SMF/PacLattice.h"
-#include "TEAPOT/Integrator/DriftTracker.hh"
+#include "ETEAPOT/Integrator/DriftTracker.hh"
 
 TEAPOT::DriftAlgorithm<double, PAC::Position> TEAPOT::DriftTracker::s_algorithm;
 

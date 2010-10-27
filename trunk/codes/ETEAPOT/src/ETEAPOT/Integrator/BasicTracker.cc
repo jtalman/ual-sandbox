@@ -4,8 +4,8 @@
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
-#include "TEAPOT/Integrator/BasicTracker.hh"
-#include "TEAPOT/Integrator/LostCollector.hh"
+#include "ETEAPOT/Integrator/BasicTracker.hh"
+#include "ETEAPOT/Integrator/LostCollector.hh"
 #include "SMF/PacLattice.h"
 #include <iostream>
 

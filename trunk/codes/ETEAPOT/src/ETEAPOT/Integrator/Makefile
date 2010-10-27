@@ -1,21 +1,15 @@
-include $(UAL_TEAPOT)/src/Makefile.config
+include $(UAL_ETEAPOT)/src/Makefile.config
 
-LDIR = $(UAL_TEAPOT)/lib/$(UAL_ARCH)
-
-LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPacSMF
-LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPacOptics 
-LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPac 
-LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPacSurvey
-LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH) -lZTps
+INC += -I$(UAL_PAC)/include/
+LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPac
 
 include ./Objects
 
 compile : $(OBJS)
+	if [ ! -d $(UAL_ETEAPOT)/include/ETEAPOT/Integrator ] ; \
+		then mkdir $(UAL_ETEAPOT)/include/ETEAPOT/Integrator ; fi;
+	cp *.hh *.icc $(UAL_ETEAPOT)/include/ETEAPOT/Integrator/.
 
-clean:		
+clean:	
 	rm -f $(OBJS) 
-
-# Force template instantiation
-$(LDIR)/obj/dummy : $(LDIR)/obj/dummy.o $(OBJS)
-	$(LD) $(LDFLAGS) $(INC)  -o $@  $(LDIR)/obj/dummy.o $(OBJS) $(LIBS)
-	cp /dev/null $(LDIR)/obj/dummy
+	rm -rf $(UAL_ETEAPOT)/include/ETEAPOT/Integrator
