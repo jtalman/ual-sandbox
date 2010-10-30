@@ -20,7 +20,7 @@ ETEAPOT::DipoleTracker::DipoleTracker(const ETEAPOT::DipoleTracker& dt)
   : ETEAPOT::BasicTracker(dt)
 {
   m_data = dt.m_data;
-  m_mdata = dt.m_mdata;
+  m_mdata = dt.m_edata;
 }
 
 ETEAPOT::DipoleTracker::~DipoleTracker()
@@ -45,7 +45,7 @@ void ETEAPOT::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 void ETEAPOT::DipoleTracker::setLatticeElement(const PacLattElement& e)
 {
   m_data.setLatticeElement(e);
-  m_mdata.setLatticeElement(e);
+  m_edata.setLatticeElement(e);
 }
 
 void ETEAPOT::DipoleTracker::propagate(UAL::Probe& probe)
@@ -64,11 +64,11 @@ void ETEAPOT::DipoleTracker::propagate(UAL::Probe& probe)
     if(bunch[ip].isLost()) continue;
     PAC::Position& p = bunch[ip].getPosition();
     tmp = p;
-    s_algorithm.passEntry(m_mdata, p);
+    s_algorithm.passEntry(m_edata, p);
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
-    s_algorithm.passBend(m_data, m_mdata, p, tmp, v0byc);
-    s_algorithm.passExit(m_mdata, p);  
+    s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc);
+    s_algorithm.passExit(m_edata, p);
     // testAperture(p);
   }
 
