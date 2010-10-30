@@ -19,7 +19,7 @@ ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::~DipoleAlgorithm()
 template<class Coordinate, class Coordinates>
 void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	const ETEAPOT::DipoleData& data, 
-	const ETEAPOT::MagnetData& mdata, 	
+	const ETEAPOT::ElectricData& edata,
 	Coordinates& p, 
 	Coordinates& tmp, 
 	double v0byc)
@@ -28,8 +28,8 @@ void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
 
  if(!data.m_ir){
    passBendSlice(data.m_slices[0], p, tmp, v0byc);
-   applyMltKick(mdata, 1, p); 
-   applyThinBendKick(data, mdata, 1, p, v0byc);
+   applyMltKick(edata, 1, p);
+   applyThinBendKick(data, edata, 1, p, v0byc);
    makeVelocity(p, tmp, v0byc);	
    passBendSlice(data.m_slices[1], p, tmp, v0byc);
    return;
@@ -45,8 +45,8 @@ void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBend(
    for(int is = 1; is < 5; is++){
      counter++;
      passBendSlice(data.m_slices[counter], p, tmp, v0byc);
-     applyMltKick(mdata, rkicks, p); 
-     applyThinBendKick(data, mdata, rkicks, p, v0byc);
+     applyMltKick(edata, rkicks, p);
+     applyThinBendKick(data, edata, rkicks, p, v0byc);
      makeVelocity(p, tmp, v0byc);	
    }
    counter++;
@@ -174,14 +174,14 @@ void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::deltaPath(
 template<class Coordinate, class Coordinates>
 void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
   const ETEAPOT::DipoleData& data,
-  const ETEAPOT::MagnetData& mdata, double rkicks,
+  const ETEAPOT::ElectricData& edata, double rkicks,
   Coordinates& p, double v0byc)
 {
   Coordinate x, px, y, py;
 
 
-  PacElemMultipole* mult = mdata.m_mlt;
-  PacElemOffset* offset = mdata.m_offset;
+  PacElemMultipole* mult = edata.m_mlt;
+  PacElemOffset* offset = edata.m_offset;
 
   x = p[0]; //  xdif
   y = p[2]; //  ydif

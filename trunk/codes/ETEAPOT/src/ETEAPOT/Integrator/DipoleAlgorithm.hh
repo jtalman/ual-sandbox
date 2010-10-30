@@ -7,14 +7,14 @@
 #ifndef UAL_ETEAPOT_DIPOLE_ALGORITHM_HH
 #define UAL_ETEAPOT_DIPOLE_ALGORITHM_HH
 
-#include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
+#include "ETEAPOT/Integrator/ElectricAlgorithm.hh"
 
 namespace ETEAPOT {
  
   /** A template of the dipole algorithm used by the conventional tracker and DA integrator */
 
   template<class Coordinate, class Coordinates> class DipoleAlgorithm 
-    : public MagnetAlgorithm<Coordinate, Coordinates> {
+    : public ElectricAlgorithm<Coordinate, Coordinates> {
 
   public:
 
@@ -25,14 +25,14 @@ namespace ETEAPOT {
     ~DipoleAlgorithm();
 
     /** Propagates a probe coordinates through the bend*/
-    void passBend(const DipoleData& ddata, const MagnetData& mdata, Coordinates& p, Coordinates& tmp, double v0byc);
+    void passBend(const DipoleData& ddata, const ElectricData& mdata, Coordinates& p, Coordinates& tmp, double v0byc);
 
     /** Propagates a probe coordinates through the bend slice*/
     void passBendSlice(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
 
     /** Applies a thin bend kick*/
     void applyThinBendKick(const DipoleData& data, 
-                           const MagnetData& mdata, double rkicks,
+                           const ElectricData& mdata, double rkicks,
                            Coordinates& p, double v0byc);
 
     /** Calculates the delta path*/

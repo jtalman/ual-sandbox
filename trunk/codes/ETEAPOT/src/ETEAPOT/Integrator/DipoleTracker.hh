@@ -8,7 +8,7 @@
 #define UAL_ETEAPOT_DIPOLE_TRACKER_HH
 
 #include "ETEAPOT/Integrator/DipoleData.hh"
-#include "ETEAPOT/Integrator/MagnetData.hh"
+#include "ETEAPOT/Integrator/ElectricData.hh"
 #include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
@@ -42,7 +42,7 @@ namespace ETEAPOT {
 
     inline DipoleData& getDipoleData();
 
-    inline MagnetData& getMagnetData();
+    inline ElectricData& getElectricData();
 
   protected:
 
@@ -54,8 +54,8 @@ namespace ETEAPOT {
     /** Dipole attributes */
     DipoleData m_data;
 
-    /** Magnet attributes */
-    MagnetData m_mdata;
+    /** Electric attributes */
+    ElectricData m_edata;
 
     /** Propagator algorithm */
     static DipoleAlgorithm<double, PAC::Position> s_algorithm;
@@ -67,9 +67,9 @@ namespace ETEAPOT {
       return m_data;
   }
 
-  inline MagnetData& DipoleTracker::getMagnetData()
+  inline ElectricData& DipoleTracker::getElectricData()
   {
-      return m_mdata;
+      return m_edata;
   }
 
 }
