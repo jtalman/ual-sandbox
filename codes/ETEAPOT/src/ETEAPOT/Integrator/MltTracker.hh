@@ -9,8 +9,8 @@
 
 #include "SMF/PacElemMultipole.h"
 #include "SMF/PacLattice.h"
-#include "ETEAPOT/Integrator/MagnetData.hh"
-#include "ETEAPOT/Integrator/MagnetAlgorithm.hh"
+#include "ETEAPOT/Integrator/ElectricData.hh"
+#include "ETEAPOT/Integrator/ElectricAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
 namespace ETEAPOT {
@@ -42,7 +42,7 @@ namespace ETEAPOT {
     /** Propagates a bunch of particles */
     void propagate(UAL::Probe& probe);
 
-    inline MagnetData& getMagnetData();
+    inline ElectricData& getElectricData();
 
   protected:
 
@@ -57,11 +57,11 @@ namespace ETEAPOT {
     /** Complexity number */
     double m_ir;
 
-    /** Magnet attributes */
-    MagnetData m_mdata;
+    /** Electric attributes */
+    ElectricData m_edata;
 
     /** Propagator algorithm */
-    static MagnetAlgorithm<double, PAC::Position> s_algorithm;
+    static ElectricAlgorithm<double, PAC::Position> s_algorithm;
 
   private:
 
@@ -70,9 +70,9 @@ namespace ETEAPOT {
 
   };
 
-  inline MagnetData& MltTracker::getMagnetData()
+  inline ElectricData& MltTracker::getElectricData()
   {
-      return m_mdata;
+      return m_edata;
   }
 
 }
