@@ -20,7 +20,7 @@ ETEAPOT::DipoleTracker::DipoleTracker(const ETEAPOT::DipoleTracker& dt)
   : ETEAPOT::BasicTracker(dt)
 {
   m_data = dt.m_data;
-  m_mdata = dt.m_edata;
+  m_edata = dt.m_edata;
 }
 
 ETEAPOT::DipoleTracker::~DipoleTracker()
