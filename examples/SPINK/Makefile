@@ -37,16 +37,17 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
 OBJS = $(OBJ_DIR)/timer.o \
 	   $(OBJ_DIR)/PositionPrinter.o \
-	   $(OBJ_DIR)/SpinPrinter.o 
+	   $(OBJ_DIR)/SpinPrinter.o \
+	   $(OBJ_DIR)/Shell.o
 
 
-compile : $(OBJS) ./tracker
+compile : $(OBJS) ./cosy
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker
+	rm -f $(OBJS) $(OBJ_DIR)/cosy.o ./cosy
 
-./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
+./cosy  : $(OBJ_DIR)/cosy.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/cosy.o $(OBJS) $(LIBS)
 
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
