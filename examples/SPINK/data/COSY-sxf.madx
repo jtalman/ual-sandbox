@@ -1,0 +1,966 @@
+SETPLOT, XSIZE=25, YSIZE=15, POST=2;
+// SETPLOT, XSIZE=25, YSIZE=15, POST=1
+
+k2dscale :=1.0;
+k1dscale :=1.0;
+t1:= -0.554784609;
+t4:= -0.554784609;
+t13:= -0.554784609;
+t16:= -0.554784609;
+t2:= 0.511912383;
+t3:= 0.511912383;
+t14:= 0.511912383;
+t15:= 0.511912383;
+t5:= 0.733167125;
+t8:= 0.733167125;
+t9:= 0.733167125;
+t12:= 0.733167125;
+t6:= -0.677116422;
+t7:= -0.677116422;
+t10:= -0.677116422;
+t11:= -0.677116422;
+t17:= -0.620255133;
+t20:= -0.620255133;
+t29:= -0.620255133;
+t32:= -0.620255133;
+t18:= 0.575280712;
+t19:= 0.575280712;
+t30:= 0.575280712;
+t31:= 0.575280712;
+t21:= -0.606555853;
+t24:= -0.606555853;
+t25:= -0.606555853;
+t28:= -0.606555853;
+t22:= 0.559662613;
+t23:= 0.559662613;
+t26:= 0.559662613;
+t27:= 0.559662613;
+u1:= -0.285994874;
+u4:= -0.285994874;
+u21:= -0.285994874;
+u24:= -0.285994874;
+u2:= 0.348959591;
+u3:= 0.348959591;
+u22:= 0.348959591;
+u23:= 0.348959591;
+u5:= -0.285994874;
+u8:= -0.285994874;
+u17:= -0.285994874;
+u20:= -0.285994874;
+u6:= 0.448070079;
+u7:= 0.448070079;
+u18:= 0.448070079;
+u19:= 0.448070079;
+u9:= -0.285994874;
+u12:= -0.285994874;
+u13:= -0.285994874;
+u16:= -0.285994874;
+u10:= 0.348959591;
+u11:= 0.348959591;
+u14:= 0.348959591;
+u15:= 0.348959591;
+momentum:= 1.85;
+title,s="1.85 GeV/c";
+beq01:=0.00024865454;
+beq02:=0.000290005055;
+beq03:=0.000364696551;
+beq04:=-4.39938447e-05;
+beq05:=-5.02770335e-05;
+beq06:=0.000340023466;
+beq07:=0.000218466286;
+beq08:=0.000188250485;
+beq09:=9.04582382e-05;
+beq10:=0.000565246685;
+beq11:=0.000446412357;
+beq12:=-0.000105023975;
+beq13:=8.9633605e-05;
+beq14:=0.000491963725;
+beq15:=0.000541445791;
+beq16:=0.000190897402;
+beq17:=0.000181602083;
+beq18:=0.000270748924;
+beq19:=0.000309054199;
+beq20:=-0.000102847503;
+beq21:=0.000154787272;
+beq22:=0.000420139713;
+beq23:=0.000571344314;
+beq24:=-3.59846136e-05;
+bes01:=-0.0200720795;
+bes02:=-0.0212360366;
+bes03:=-0.0212942433;
+bes04:=-0.0200618945;
+bes05:=-0.0195802792;
+bes06:=-0.0180427136;
+bes07:=-0.0218446443;
+bes08:=-0.0170255594;
+bes09:=-0.0203181775;
+bes10:=-0.0266770387;
+bes11:=-0.0187608173;
+bes12:=-0.0202064733;
+bes13:=-0.0178661488;
+bes14:=-0.0202668768;
+bes15:=-0.0250611256;
+bes16:=-0.0158581336;
+bes17:=-0.0229458656;
+bes18:=-0.0191868654;
+bes19:=-0.00377373102;
+bes20:=-0.0224494799;
+bes21:=-0.0219379186;
+bes22:=-0.0241846285;
+bes23:=-0.021817414;
+bes24:=-0.0193134543;
+// mad input file
+// file name: cosy.seq.ms
+// authors: r.toelle, p.leunissen
+// dem MAD-file muessen noch die Variablendefinitionen vorangestellt
+// werden.
+// Alle Kick-Elemente haben die Laenge Null (Steerer, Bumper)
+// ebenso viewer und scraper
+// date: 31.8.94
+// 3 bugs removed (mx14/18, bu3); 5.9.94
+// markers for esep, msep and cavity introduced; 5.9.94
+// TYPEs for magnets introduced; TP1, TP2, TP3, ECOOL installed
+// starting poimt of COSY can be pushed to any marker now. 12.9.94
+// bpm sind jetzt getrennt nach horizontal und vertikal eingetragen
+// an den gemessenen Positionen (Bandmassgenauigkeit). 11.10.95
+// tp1 und tp2 Targetposition gemessen. 11.10.95
+// Jump-Quadrupole fuer Polarisation eingefuegt. Da sie noch nicht
+// eingebaut sind, ist nur die Wunschposition angegeben.
+// BPM-Positionen nach Anke-Umbau korrigiert.
+
+//geometrische Laenge = 1.755
+lbend:=1.832596;
+lbend_eisen:=1.755;
+
+//geometrische Laenge = 0.57
+lqt:=0.620;
+
+//geometrische Laenge = 0.3
+lqu:=0.372;
+
+//geometrische Laenge = 0.6
+lqj:=0.6;
+
+//geometrische Laenge = 0.2
+lxl:=0.243;
+
+//geometrische Laenge = 0.09
+lxs:=0.140;
+
+//geometrische Laenge = 0.3
+lxg:=0.328;
+
+//geometrische Laengen = 0.27 / 0.52
+lbul:=0.52;
+lbus:=0.27;
+
+//geometrische Laengen der Steerer:
+lsl := 0.227;
+lsc=0.2;
+lss=0.132;
+lcool := 0.35;
+lmcool := 0.60;
+
+// kicker strength, for example:
+// sh11:=-0.00206
+
+
+// definition of collimators
+EK: ECOLLIMATOR,L := 0,XSIZE=75E-3,YSIZE=75E-3;
+RK: RCOLLIMATOR,L := 0,XSIZE=75E-3,YSIZE=30E-3;
+
+// type definition of dipole
+ba:=2*PI/24;
+// introduce Factor for fitting the entrance and exit angle of dipoles at higher energies
+fack:=1.;
+bi:=ba/2*fack;
+be:=bi*fack;
+
+rhob := lbend/ba;
+ke1b := -1.0*sin(bi)/cos(bi)/rhob;
+ke2b := -1.0*sin(be)/cos(be)/rhob;
+# BEND: SBEND, TYPE=MB, L := lbend, ANGLE := ba, HGAP=0.045, FINT=0.4, E1 := bi, E2 := be;
+# BEND: SBEND, TYPE=MB, L := lbend, ANGLE := ba, E1 := bi, E2 := be;
+BEND: SBEND, TYPE=MB, L := lbend, ANGLE := ba;
+
+# QBI: QUADRUPOLE, l = 0.000001, K1 := ke1b/0.000001;
+# QBE: QUADRUPOLE, l = 0.000001, K1 := ke2b/0.000001;
+
+QBI: MULTIPOLE, KNL := {0, ke1b};
+QBE: MULTIPOLE, KNL := {0, ke2b};
+
+BEND01: BEND; //, K1 := beq01*k1dscale, K2 := bes01*k2dscale;
+BEND02: BEND; //, K1 := beq02*k1dscale, K2 := bes02*k2dscale;
+BEND03: BEND; //, K1 := beq03*k1dscale, K2 := bes03*k2dscale;
+BEND04: BEND; //, K1 := beq04*k1dscale, K2 := bes04*k2dscale;
+BEND05: BEND; //, K1 := beq05*k1dscale, K2 := bes05*k2dscale;
+BEND06: BEND; //, K1 := beq06*k1dscale, K2 := bes06*k2dscale;
+BEND07: BEND; //, K1 := beq07*k1dscale, K2 := bes07*k2dscale;
+BEND08: BEND; //, K1 := beq08*k1dscale, K2 := bes08*k2dscale;
+BEND09: BEND; //, K1 := beq09*k1dscale, K2 := bes09*k2dscale;
+BEND10: BEND; //, K1 := beq10*k1dscale, K2 := bes10*k2dscale;
+BEND11: BEND; //, K1 := beq11*k1dscale, K2 := bes11*k2dscale;
+BEND12: BEND; //, K1 := beq12*k1dscale, K2 := bes12*k2dscale;
+BEND13: BEND; //, K1 := beq13*k1dscale, K2 := bes13*k2dscale;
+BEND14: BEND; //, K1 := beq14*k1dscale, K2 := bes14*k2dscale;
+BEND15: BEND; //, K1 := beq15*k1dscale, K2 := bes15*k2dscale;
+BEND16: BEND; //, K1 := beq16*k1dscale, K2 := bes16*k2dscale;
+BEND17: BEND; //, K1 := beq17*k1dscale, K2 := bes17*k2dscale;
+BEND18: BEND; //, K1 := beq18*k1dscale, K2 := bes18*k2dscale;
+BEND19: BEND; //, K1 := beq19*k1dscale, K2 := bes19*k2dscale;
+BEND20: BEND; //, K1 := beq20*k1dscale, K2 := bes20*k2dscale;
+BEND21: BEND; //, K1 := beq21*k1dscale, K2 := bes21*k2dscale;
+BEND22: BEND; //, K1 := beq22*k1dscale, K2 := bes22*k2dscale;
+BEND23: BEND; //, K1 := beq23*k1dscale, K2 := bes23*k2dscale;
+BEND24: BEND; //, K1 := beq24*k1dscale, K2 := bes24*k2dscale;
+
+// ANKE dipoles:
+// iron length is 0.690 m for dipole 1 and dipole 3
+// iron length is 1.400 m for dipole 2 
+
+// Angles for experiments:
+// COSY "normal": 0 degree,
+// eta measurement: 3.8 degree,
+// Einbaustellung: 5.3 degree,
+// 3He, tritium, Deuterium: 6.13 degree,
+// K2-meson: 9.0 degree,
+// K2-meson: 10.6 degree.
+
+anke1:=-anke_angle*RADDEG;
+anke2:=2*anke_angle*RADDEG;
+anke3:=-anke_angle*RADDEG;
+ain1:=3.6*RADDEG;
+aout1:=(-3.6+anke_angle)*RADDEG;
+ain2:=anke_angle*RADDEG;
+aout2:=anke_angle*RADDEG;
+ain3:=(-3.6+anke_angle)*RADDEG;
+aout3:=3.6*RADDEG;
+dipole1: SBEND,L := 0.7276,ANGLE := anke1,HGAP=0.045,FINT=0.6,E1 := ain1,E2 := aout1;
+dipole2: SBEND,L := 1.4847,ANGLE := anke2,HGAP=0.100,FINT=0.6,E1 := ain2,E2 := aout2;
+dipole3: SBEND,L := 0.7276,ANGLE := anke3,HGAP=0.045,FINT=0.6,E1 := ain3,E2 := aout3;
+
+// type definition of quadrupole-families
+facuu:=1;
+factt:=1;
+facufoc:=1;
+facudefoc:=1;
+// following are the correction factors for 1.92 GeV/c
+//facuu:=1
+//factt:=1.00575
+//facufoc:=0.9967921
+//facudefoc:=0.9778826
+// end of correction factors for 1.92 GeV/c
+// following are the correction factors for injection energy
+// factt:=1.0193
+// facufoc:=1.036
+// facudefoc:=1.085
+// end of correction factors for injection energy
+//following is the value of calibration factors for 1455 MeV/c
+//tele:=1.005
+//arc:=1.028
+//k:=-0.02*tele/1000
+//ks:=0.02*tele/1000
+//kst:=-0.14*tele/1000
+//kss:=-0.16*tele/1000
+//u:=-0.19*arc/1000
+//us:=-1.61*arc/1000
+//ust:=-0.08*arc/1000
+//uss:=-0.23*arc/1000
+// end of calibration factors for 1455 MeV/c
+phi=anke_angle*RADDEG+1e-20;
+anke_delta_l:=1e-3*(5214*(1/cos(phi)-1) - 
+//   1549.2*(tan(phi)/phi - 1))
+   1549.2*(tan(phi)/phi - 1) - 
+   1505*(tan(phi/2)/(phi/2) - 1));
+value,anke_delta_l;
+value,phi;
+value,anke_angle;
+MQT01: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t1+k-kkk)*factt;
+MQT02: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t2+k+kkk)*factt;
+MQT03: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t3+ks+kkk)*factt;
+MQT04: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t4+kst-kkk)*factt;
+MQT05: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t5+kst-kkk)*factt;
+MQT06: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t6+k+kkk)*factt;
+MQT07: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t7+ks+kkk)*factt;
+MQT08: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t8+k-kkk)*factt;
+MQT09: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t9+ks-kkk)*factt;
+MQT10: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t10+k+kkk)*factt;
+MQT11: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t11+k+kkk)*factt;
+MQT12: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t12+kst-kkk)*factt;
+MQT13: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t13+ks-kkk)*factt;
+MQT14: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t14+k+kkk)*factt;
+MQT15: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t15+k+kkk)*factt;
+MQT16: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t16+k-kkk)*factt;
+MQT17: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t17+k+kkk)*factt;
+MQT18: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t18+k-kkk)*factt;
+MQT19: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t19+ks-kkk)*factt;
+MQT20: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t20+kst+kkk)*factt;
+MQT21: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t21+kst+kkk)*factt;
+MQT22: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t22+k-kkk)*factt;
+MQT23: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t23+ks-kkk)*factt;
+MQT24: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t24+k+kkk)*factt;
+MQT25: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t25+ks+kkk)*factt;
+MQT26: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t26+k-kkk)*factt;
+MQT27: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t27+k-kkk)*factt;
+MQT28: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t28+kst+kkk)*factt;
+MQT29: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t29+kss+kkk)*factt;
+MQT30: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t30+k-kkk)*factt;
+MQT31: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t31+k-kkk)*factt;
+MQT32: QUADRUPOLE, TYPE=MQ, L := lqt, K1 := (t32+k+kkk)*factt;
+
+MQU01: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u1+u-kkk)*facuu*facudefoc;
+MQU02: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u2+ust+kkk)*facuu*facufoc;
+MQU03: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u3+uss+kkk)*facuu*facufoc;
+MQU04: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u4+u-kkk)*facuu*facudefoc;
+MQU05: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u5+us-kkk)*facuu*facudefoc;
+MQU06: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u6+ust+kkk)*facuu*facufoc;
+MQU07: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u7+u+kkk)*facuu*facufoc;
+MQU08: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u8+us-kkk)*facuu*facudefoc;
+MQU09: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u9+ust-kkk)*facuu*facudefoc;
+MQU10: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u10+us+kkk)*facuu*facufoc;
+MQU11: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u11+ust+kkk)*facuu*facufoc;
+MQU12: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u12+u-kkk)*facuu*facudefoc;
+MQU13: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u13+u-kkk)*facuu*facudefoc;
+MQU14: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u14+ust+kkk)*facuu*facufoc;
+MQU15: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u15+us+kkk)*facuu*facufoc;
+MQU16: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u16+ust-kkk)*facuu*facudefoc;
+MQU17: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u17+us-kkk)*facuu*facudefoc;
+MQU18: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u18+ust+kkk)*facuu*facufoc;
+MQU19: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u19+ust+kkk)*facuu*facufoc;
+MQU20: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u20+us-kkk)*facuu*facudefoc;
+MQU21: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u21+u-kkk)*facuu*facudefoc;
+MQU22: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u22+uss+kkk)*facuu*facufoc;
+MQU23: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u23+ust+kkk)*facuu*facufoc;
+MQU24: QUADRUPOLE, TYPE=MQ, L := lqu, K1 := (u24+u-kkk)*facuu*facudefoc;
+// Kmax= +/- 1/(B*rho) * 0.43T/m
+JQU1: QUADRUPOLE, TYPE=MQ, L := lqj, K1 := j1;
+JQU2: QUADRUPOLE, TYPE=MQ, L := lqj, K1 := j2;
+
+// type definitions of sextupole families
+// strength multiplied by -1 to account for tilt=60*raddeg
+// alle sextupole sind nach u.bechstedt mit Suedpol nach oben eingebaut
+MXL01:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl01;
+MXL02:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl02;
+MXL03:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl03;
+MXL04:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl04;
+MXL10:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl10;
+MXL11:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl11;
+MXL12:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl12;
+MXL13:  SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl13;
+MXS:    SEXTUPOLE,TYPE=MS,L := lxs,K2 := -xs;
+MXG:    SEXTUPOLE,TYPE=MS,L := lxg,K2 := -xg;
+//MXGoff: SEXTUPOLE,TYPE=MS,L := lxg,K2 := -xgoff
+MXL:    SEXTUPOLE,TYPE=MS,L := lxl,K2 := -xl;
+
+MX01: mxl01;  MX02: mxl02;  MX03: mxl03;   MX04: mxl04; ;
+MX10: mxl10;  MX11: mxl11;  MX12: mxl12;   MX13: mxl13; ;
+MX05: mxs;    MX06: mxl;    MX07: mxg;     MX08: mxl;   MX09: mxs; ;
+MX14: mxs;    MX15: mxl;    MX16: mxg;     MX17: mxl;   MX18: mxs; ;
+
+
+// type definitions of steerers&bumpers
+// all steerers differ only in their lengths
+// so just use two types of steerers: h and v
+lbu1=lbul;
+lbu2=lbus;
+lbu3=lbul;
+mBU1: HKICKER,L := lbu1,kick=bu1 ; // these "bumper" steering magnets
+mBU2: HKICKER,L := lbu2,kick=bu2 ; // should be used for injection, but not
+mBU3: HKICKER,L := lbu3,kick=bu3 ; // for closed orbit correction!
+msh01: HKICKER,l := lsl,kick=sh01;
+msh03: HKICKER,l := lsl,kick=sh03;
+msh05: HKICKER,l := lsl,kick=sh05;
+msh07: HKICKER,l := lsl,kick=sh07;
+msh09: HKICKER,l := lsl,kick=sh09;
+msh11: HKICKER,l := lsc,kick=sh11;
+msh13: HKICKER,l := lsc,kick=sh13;
+msh16: HKICKER,l := lss,kick=sh16;
+msh17: HKICKER,l := lss,kick=sh17;
+msh19: HKICKER,l := lss,kick=sh19;
+msh21: HKICKER,l := lsl,kick=sh21;
+msh23: HKICKER,l := lsl,kick=sh23;
+msh25: HKICKER,l := lsl,kick=sh25;
+msh27: HKICKER,l := lsl,kick=sh27;
+msh29: HKICKER,l := lsl,kick=sh29;
+//gedreht:
+//msh30: HKICKER,l := lss,kick=sh30
+msh31: HKICKER,l := lsl,kick=sh31;
+msh33: HKICKER,l := lss,kick=sh33;
+msh35: HKICKER,l := lss,kick=sh35;
+msh37: HKICKER,l := lss,kick=sh37;
+msh39: HKICKER,l := lsc,kick=sh39;
+msh41: HKICKER,l := lsc,kick=sh41;
+// gedrehter sv40:
+msh43: HKICKER,l := lsl,kick=sh43;
+msv02: VKICKER,l := lsl,kick=sv02;
+msv04: VKICKER,l := lsl,kick=sv04;
+msv06: VKICKER,l := lsl,kick=sv06;
+msv08: VKICKER,l := lsl,kick=sv08;
+msv10: VKICKER,l := lss,kick=sv10;
+msv12: VKICKER,l := lsl,kick=sv12;
+msv14: VKICKER,l := lss,kick=sv14;
+msv18: VKICKER,l := lss,kick=sv18;
+msv20: VKICKER,l := lsl,kick=sv20;
+msv22: VKICKER,l := lsl,kick=sv22;
+msv24: VKICKER,l := lsl,kick=sv24;
+//msv26: VKICKER,l := lsl,kick=sv26
+// korrekturwindung auf mqt28
+msv26: VKICKER,l := 0,kick=sv26;
+// msv28: VKICKER,l := lsl,kick=sv28
+// korrekturwindung auf mqt32
+msv28: VKICKER,l := 0,kick=sv28;
+msv30: VKICKER,l := lss,kick=sv30;
+msv32: VKICKER,l := lsc,kick=sv32;
+msv34: VKICKER,l := lsc,kick=sv34;
+msv36: VKICKER,l := lsl,kick=sv36;
+msv38: VKICKER,l := lsc,kick=sv38;
+// gedrehter sv40:
+//msv40: VKICKER,l := lsl,kick=sv40
+
+// definition for e-cooler steerer (and toroid kick)
+gun: kicker, l := lcool, hkick=mgunx, vkick=mguny;
+col: kicker, l := lcool, hkick=mcolx, vkick=mcoly;
+//gunx: HKICKER, l := lcool, kick=mgunx
+//colx: HKICKER, l := lcool, kick=mcolx
+//guny: VKICKER, l := lcool, kick=mguny
+//coly: VKICKER, l := lcool, kick=mcoly
+toroid1: HKICKER, l := lmcool, kick=mtoroid1;
+toroid2: HKICKER, l := lmcool, kick=mtoroid2;
+
+// type definition of viewer&scraper
+VIEW: DRIFT, L := 0 ; // viewers are no monitors for closed orbit correction
+SCRH: drift, L := 0 ; // scrapers are no monitors for closed orbit correction!
+SCRV: drift, L := 0 ; // scrapers are no monitors for closed orbit correction!
+VIEW1: VIEW; VIEW2: VIEW; VIEW3: VIEW; ;
+VIEW4: view; VIEW5: view; VIEW6: view; ;
+SCRAPHCT: scrh; SCRAPVCT: scrv; SCRAPHTT: scrh; SCRAPVTT: scrv;;
+
+// type definitions of bpms
+BPMH: HMONITOR,TYPE=MM;
+BPMV: VMONITOR,TYPE=MM;
+DPOS01H: BPMH; DPOS02H: BPMH; DPOS03H: BPMH; DPOS04H: BPMH; DPOS05H: BPMH; ;
+DPOS06H: BPMH; DPOS07H: BPMH; DPOS08H: BPMH; DPOS09H: BPMH; DPOS10H: BPMH;;
+DPOS11H: BPMH; DPOS12H: BPMH; DPOS13H: BPMH; DPOS14H: BPMH; DPOS15H: BPMH; ;
+DPOS16H: BPMH; DPOS17H: BPMH; DPOS18H: BPMH; DPOS19H: BPMH; DPOS20H: BPMH;;
+DPOS21H: BPMH; DPOS22H: BPMH; DPOS23H: BPMH; DPOS24H: BPMH; DPOS25H: BPMH;;
+DPOS26H: BPMH; DPOS27H: BPMH; DPOS28H: BPMH; DPOS29H: BPMH; ;
+DPOSEC1H: BPMH; DPOSEC2H: BPMH; DPOSANKE1H: BPMH; DPOSANKE2H: BPMH;
+DPOS01V: BPMV; DPOS02V: BPMV; DPOS03V: BPMV; DPOS04V: BPMV; DPOS05V: BPMV; ;
+DPOS06V: BPMV; DPOS07V: BPMV; DPOS08V: BPMV; DPOS09V: BPMV; DPOS10V: BPMV;;
+DPOS11V: BPMV; DPOS12V: BPMV; DPOS13V: BPMV; DPOS15V: BPMV; ;
+DPOS16V: BPMV; DPOS17V: BPMV; DPOS18V: BPMV; DPOS19V: BPMV; DPOS20V: BPMV;;
+DPOS21V: BPMV; DPOS22V: BPMV; DPOS23V: BPMV; DPOS24V: BPMV;;
+DPOS26V: BPMV; DPOS27V: BPMV; DPOS28V: BPMV; DPOS29V: BPMV; ;
+DPOSEC1V: BPMV; DPOSEC2V: BPMV; DPOSANKE1V: BPMV; DPOSANKE2V: BPMV;
+
+// start COSY at injection, i.e. before qu23!
+dr00: DRIFT, L := 0 ; // starting point
+
+// define esep, msep and cavity
+ESmP: MARKER;
+ESEP: MARKER;
+ES0: MARKER;
+MSEP: MARKER;
+// CAVITY: RFCAVITY,l := 2.5,volt=0.05,harmon=1,pg=20,shunt=5
+CAVITY: MARKER;
+CAVITY2: MARKER;
+TTstart: MARKER;
+TTend: MARKER;
+CTstart: MARKER;
+CTend: MARKER;
+TP1: MARKER;
+TP2: MARKER;
+TP3: MARKER;
+TPA: MARKER;
+ECOOL: MARKER;
+RSPX: MARKER;
+RSPY: MARKER;
+BCT: MARKER;
+BCT2: MARKER;
+WCM: MARKER;
+DKICKER: Marker;
+RPOL: Marker;
+BSTOP: MARKER;
+
+//define collimators
+sch_colli: rcollimator, xsize=0.070, ysize=0.07   ; //vorlaeufig, rolf stassen
+scv_colli: rcollimator, xsize=0.070, ysize=0.07   ; //vorlaeufig, rolf stassen
+rund:      ecollimator, xsize=0.075, ysize=0.075  ; //vorlaeufig, u.bechstedt
+rechteck:  rcollimator, xsize=0.075, ysize=0.3    ; //vorlaeufig, u.bechstedt
+ebello:    ecollimator, xsize=0.080, ysize=0.035  ; //vorlaeufig
+rbello:    ecollimator, xsize=0.080, ysize=0.080  ; //vorlaeufig
+schk_in:   sch_colli;
+schk_out:  sch_colli;
+scvk_in:   scv_colli;
+scvk_out:  scv_colli;
+schp_in:   sch_colli;
+schp_out:  sch_colli;
+scvp_in:   scv_colli;
+scvp_out:  scv_colli;
+
+cosy: sequence, refer=centre, l=183.472697;
+  tum:   marker, at=0;
+  qu23:   mqu23, at=0.310;
+
+  qbe24i: qbi ,    at=1.851306-lbend/2-0.000001/2;
+  be24:   bend24 , at=1.851306;
+  qbe24e: qbe ,    at=1.851306+lbend/2+0.000001/2;
+
+  qu24:   mqu24, at=3.392505;
+  qt1:    mqt01, at=9.873798;
+  qt2:    mqt02, at=10.873798;
+  qt3:    mqt03, at=11.733798;
+  qt4:    mqt04, at=12.733798;
+  qt5:    mqt05, at=19.810107;
+  qt6:    mqt06, at=20.810107;
+  qt7:    mqt07, at=21.670108;
+  qt8:    mqt08, at=22.670108;
+  qt9:    mqt09, at=27.11021;
+  qt10:   mqt10, at=28.11021;
+  qt11:   mqt11, at=28.970211;
+  qt12:   mqt12, at=29.970211;
+  qt13:   mqt13, at=37.046511;
+  qt14:   mqt14, at=38.046511;
+  qt15:   mqt15, at=38.90651;
+  qt16:   mqt16, at=39.90651;
+  qu1:    mqu01, at=46.3878;
+
+  qbe1i:  qbi ,    at=47.929106-lbend/2-0.000001/2;
+  be1:    bend01 , at=47.929106;
+  qbe1e:  qbe ,    at=47.929106+lbend/2+0.000001/2;
+
+  qu2:    mqu02, at=49.470396;
+
+  qbe2i:  qbi ,    at=51.011701-lbend/2-0.000001/2;
+  be2:    bend02 , at=51.011701;
+  qbe2e:  qbe ,    at=51.011701+lbend/2+0.000001/2;
+
+// here install JQUAD
+  jq1:    jqu1, at=53.500000;
+
+  qbe3i:  qbi ,    at=55.844297-lbend/2-0.000001/2;
+  be3:    bend03 , at=55.844297;
+  qbe3e:  qbe ,    at=55.844297+lbend/2+0.000001/2;
+
+  qu3:    mqu03, at=57.385603;
+
+  qbe4i:  qbi ,    at=58.926893-lbend/2-0.000001/2;
+  be4:    bend04 , at=58.926893;
+  qbe4e:  qbe ,    at=58.926893+lbend/2+0.000001/2;
+
+  qu4:    mqu04, at=60.468199;
+// here install JQUAD
+  jq2:    jqu2, at=62.000000;
+  qu5:    mqu05, at=63.718199;
+
+  qbe5i:  qbi ,    at=65.259504-lbend/2-0.000001/2;
+  be5:    bend05 , at=65.259504;
+  qbe5e:  qbe ,    at=65.259504+lbend/2+0.000001/2;
+
+  qu6:    mqu06, at=66.800794;
+
+  qbe6i:  qbi ,    at=68.3421-lbend/2-0.000001/2;
+  be6:    bend06 , at=68.3421;
+  qbe6e:  qbe ,    at=68.3421+lbend/2+0.000001/2;
+
+  qbe7i:  qbi ,    at=73.174696-lbend/2-0.000001/2;
+  be7:    bend07 , at=73.174696;
+  qbe7e:  qbe ,    at=73.174696+lbend/2+0.000001/2;
+
+  qu7:    mqu07, at=74.716001;
+
+  qbe8i:  qbi ,    at=76.257292-lbend/2-0.000001/2;
+  be8:    bend08 , at=76.257292;
+  qbe8e:  qbe ,    at=76.257292+lbend/2+0.000001/2;
+
+  qu8:    mqu08, at=77.799101;
+  qu9:    mqu09, at=81.049101;
+
+  qbe9i:  qbi ,    at=82.589949-lbend/2-0.000001/2;
+  be9:    bend09 , at=82.589949;
+  qbe9e:  qbe ,    at=82.589949+lbend/2+0.000001/2;
+
+  qu10:   mqu10, at=84.131193;
+
+  qbe10i: qbi ,    at=85.672483-lbend/2-0.000001/2;
+  be10:   bend10 , at=85.672483;
+  qbe10e: qbe ,    at=85.672483+lbend/2+0.000001/2;
+
+  qbe11i: qbi ,    at=90.505079-lbend/2-0.000001/2;
+  be11:   bend11 , at=90.505079;
+  qbe11e: qbe ,    at=90.505079+lbend/2+0.000001/2;
+
+  qu11:   mqu11, at=92.046385;
+
+  qbe12i: qbi ,    at=93.587675-lbend/2-0.000001/2;
+  be12:   bend12 , at=93.587675;
+  qbe12e: qbe ,    at=93.587675+lbend/2+0.000001/2;
+
+  qu12:   mqu12, at=95.128981;
+  qt17:   mqt17, at=99.610258;
+  qt18:   mqt18, at=100.610258;
+  qt19:   mqt19, at=101.470259;
+  qt20:   mqt20, at=102.470259;
+  qt21:   mqt21, at=109.546553;
+  qt22:   mqt22, at=110.546553;
+  qt23:   mqt23, at=111.406553;
+  qt24:   mqt24, at=112.406553;
+  qt25:   mqt25, at=120.846556;
+  qt26:   mqt26, at=121.846556;
+  qt27:   mqt27, at=122.706556;
+  qt28:   mqt28, at=123.706556;
+  qt29:   mqt29,   at=130.782850+anke_delta_l;
+  qt30:   mqt30,   at=131.782850+anke_delta_l;
+  qt31:   mqt31,   at=132.642851+anke_delta_l;
+  qt32:   mqt32,   at=133.642851+anke_delta_l;
+  qu13:   mqu13,   at=138.124159+anke_delta_l;
+
+  qbe13i: qbi ,    at=139.665419+anke_delta_l-lbend/2-0.000001/2;
+  be13:   bend13,  at=139.665419+anke_delta_l;
+  qbe13e: qbe ,    at=139.665419+anke_delta_l+lbend/2+0.000001/2;
+
+  qu14:   mqu14,   at=141.206755+anke_delta_l;
+
+  qbe14i: qbi ,    at=142.748014+anke_delta_l-lbend/2-0.000001/2;
+  be14:   bend14,  at=142.748014+anke_delta_l;
+  qbe14e: qbe ,    at=142.748014+anke_delta_l+lbend/2+0.000001/2;
+
+  qbe15i: qbi ,    at=147.580610+anke_delta_l-lbend/2-0.000001/2;
+  be15:   bend15,  at=147.580610+anke_delta_l;
+  qbe15e: qbe ,    at=147.580610+anke_delta_l+lbend/2+0.000001/2;
+
+  qu15:   mqu15,   at=149.121916+anke_delta_l;
+
+  qbe16i: qbi ,    at=150.663237+anke_delta_l-lbend/2-0.000001/2;
+  be16:   bend16,  at=150.663237+anke_delta_l;
+  qbe16e: qbe ,    at=150.663237+anke_delta_l+lbend/2+0.000001/2;
+
+
+  qu16:   mqu16,   at=152.204527+anke_delta_l;
+  qu17:   mqu17,   at=155.454512+anke_delta_l;
+
+  qbe17i: qbi ,    at=156.995832+anke_delta_l-lbend/2-0.000001/2;
+  be17:   bend17,  at=156.995832+anke_delta_l;
+  qbe17e: qbe ,    at=156.995832+anke_delta_l+lbend/2+0.000001/2;
+
+  qu18:   mqu18,   at=158.537123+anke_delta_l;
+
+  qbe18i: qbi ,    at=160.078398+anke_delta_l-lbend/2-0.000001/2;
+  be18:   bend18,  at=160.078398+anke_delta_l;
+  qbe18e: qbe ,    at=160.078398+anke_delta_l+lbend/2+0.000001/2;
+
+  qbe19i: qbi ,    at=164.911009+anke_delta_l-lbend/2-0.000001/2;
+  be19:   bend19,  at=164.911009+anke_delta_l;
+  qbe19e: qbe ,    at=164.911009+anke_delta_l+lbend/2+0.000001/2;
+
+  qu19:   mqu19,   at=166.452330+anke_delta_l;
+
+  qbe20i: qbi ,    at=167.993605+anke_delta_l-lbend/2-0.000001/2;
+  be20:   bend20,  at=167.993605+anke_delta_l;
+  qbe20e: qbe ,    at=167.993605+anke_delta_l+lbend/2+0.000001/2;
+
+  qu20:   mqu20,   at=169.534925+anke_delta_l;
+  qu21:   mqu21,   at=172.784910+anke_delta_l;
+
+  qbe21i: qbi ,    at=174.326216+anke_delta_l-lbend/2-0.000001/2;
+  be21:   bend21,  at=174.326216+anke_delta_l;
+  qbe21e: qbe ,    at=174.326216+anke_delta_l+lbend/2+0.000001/2;
+
+  qu22:   mqu22,   at=175.867521+anke_delta_l;
+
+  qbe22i: qbi ,    at=177.408811+anke_delta_l-lbend/2-0.000001/2;
+  be22:   bend22,  at=177.408811+anke_delta_l;
+  qbe22e: qbe ,    at=177.408811+anke_delta_l+lbend/2+0.000001/2;
+
+  qbe23i: qbi ,    at=182.241407+anke_delta_l-lbend/2-0.000001/2;
+  be23:   bend23,  at=182.241407+anke_delta_l;
+  qbe23e: qbe ,    at=182.241407+anke_delta_l+lbend/2+0.000001/2;
+
+  end:    dr00,    at=183.472697+anke_delta_l;
+  endm: marker,    at=183.472697+anke_delta_l;
+endsequence;
+
+// here install bpms; distances are +/- 1 cm measured position
+seqedit, sequence=cosy;
+  install, element=dpos01h, at=  3.662,    from=tum;
+  install, element=dpos01v, at=  3.819,    from=tum;
+  install, element=dpos02h, at= 10.304,    from=tum;
+  install, element=dpos02v, at= 10.464,    from=tum;
+//  install, element=dpos03h, at= 17.910,    from=tum
+//  install, element=dpos03v, at= 18.080,    from=tum
+//dpos03 moved to new place, appr. mbu1+1m in Maintenance ANKE/96
+//dpos03 moved appr. 0.5 m in Maintenance 31/2000
+  install, element=dpos03h, at= 15.67+0.5,    from=tum;
+  install, element=dpos03v, at= 15.82+0.5,    from=tum;
+  install, element=dpos04h, at= 20.240,    from=tum;
+  install, element=dpos04v, at= 20.390,    from=tum;
+  install, element=dpos05h, at= 24.222,    from=tum;
+  install, element=dpos05v, at= 24.365,    from=tum;
+  install, element=dpos06h, at= 29.395,    from=tum;
+  install, element=dpos06v, at= 29.545,    from=tum;
+  install, element=dpos07h, at= 34.653,    from=tum;
+  install, element=dpos07v, at= 34.802,    from=tum;
+  install, element=dpos08h, at= 39.337,    from=tum;
+  install, element=dpos08v, at= 39.482,    from=tum;
+  install, element=dpos09h, at= 45.950,    from=tum;
+  install, element=dpos09v, at= 46.105,    from=tum;
+  install, element=dpos10h, at= 48.995,    from=tum;
+  install, element=dpos10v, at= 49.160,    from=tum;
+  install, element=dpos11h, at= 59.990,    from=tum;
+  install, element=dpos11v, at= 60.150,    from=tum;
+  install, element=dpos12h, at= 66.318,    from=tum;
+  install, element=dpos12v, at= 66.483,    from=tum;
+  install, element=dpos13h, at= 74.232,    from=tum;
+  install, element=dpos13v, at= 74.397,    from=tum;
+  install, element=dpos14h, at= 77.334,    from=tum;
+  install, element=dpos15v, at= 81.353,    from=tum;
+  install, element=dpos15h, at= 81.513,    from=tum;
+  install, element=dpos16v, at= 92.350,    from=tum;
+  install, element=dpos16h, at= 92.513,    from=tum;
+  install, element=dpos17v, at= 95.402,    from=tum;
+  install, element=dpos17h, at= 95.552,    from=tum;
+  install, element=dpos18h, at=100.035,    from=tum;
+  install, element=dpos18v, at=100.185,    from=tum;
+  install, element=dpos19h, at=109.972,    from=tum;
+  install, element=dpos19v, at=110.122,    from=tum;
+  install, element=dpos20h, at=123.127,    from=tum;
+  install, element=dpos20v, at=123.282,    from=tum;
+  install, element=dpos21h, at=133.063+anke_delta_l,    from=tum;
+  install, element=dpos21v, at=133.218+anke_delta_l,    from=tum;
+  install, element=dpos22h, at=137.686+anke_delta_l,    from=tum;
+  install, element=dpos22v, at=137.846+anke_delta_l,    from=tum;
+  install, element=dpos23h, at=140.729+anke_delta_l,    from=tum;
+  install, element=dpos23v, at=140.894+anke_delta_l,    from=tum;
+  install, element=dpos24h, at=151.726+anke_delta_l,    from=tum;
+  install, element=dpos24v, at=151.891+anke_delta_l,    from=tum;
+  install, element=dpos25h, at=161.082+anke_delta_l,    from=tum;
+  install, element=dpos26v, at=163.429+anke_delta_l,    from=tum;
+  install, element=dpos26h, at=163.582+anke_delta_l,    from=tum;
+  install, element=dpos27h, at=169.058+anke_delta_l,    from=tum;
+  install, element=dpos27v, at=169.218+anke_delta_l,    from=tum;
+  install, element=dpos28h, at=172.919+0.052+anke_delta_l,    from=tum ; // sonst negative laenge einer driftstrecke
+  install, element=dpos28v, at=173.094+0.052+anke_delta_l,    from=tum ; // sonst negative laenge einer driftstrecke
+  install, element=dpos29h, at=180.850+anke_delta_l,    from=tum;
+  install, element=dpos29v, at=181.005+anke_delta_l,    from=tum;
+endedit;
+
+// here install sextupoles; distances are measured with a "Bandmass"
+// r.toelle, 20.12.96
+seqedit, sequence=cosy;
+  install, element=mx01, at=0.500,      from=qt3;
+  install, element=mx02, at=0.503,      from=qt7;
+  install, element=mx03, at=0.497,      from=qt9;
+  install, element=mx04, at=0.502,      from=qt13;
+  install, element=mx05, at=0.318,      from=qu3;
+  install, element=mx06, at=-0.376,     from=qu5;
+  install, element=mx07, at=1.3632,     from=be6;
+  install, element=mx08, at=0.383,      from=qu8;
+  install, element=mx09, at=-0.316,     from=qu10;
+  install, element=mx10, at=0.511,      from=qt19;
+  install, element=mx11, at=0.504,      from=qt23;
+  install, element=mx12, at=0.491,      from=qt25;
+  install, element=mx13, at=0.497,      from=qt29;
+  install, element=mx14, at=0.318,      from=qu15;
+  install, element=mx15, at=-0.387,     from=qu17;
+  install, element=mx16, at=1.3402,     from=be18;
+  install, element=mx17, at=0.382,      from=qu20;
+  install, element=mx18, at=-0.303,     from=qu22;
+endedit;
+
+// here install steerers; locations are measured (+/- 0.01 m)
+seqedit, sequence=cosy;
+  install, element=msh41, at=  0.6493,    from=tum;
+//  install, element=msv40, at=  4.0795
+// sv40 wurde gedreht!!
+  install, element=msh43, at=  4.0795,    from=tum;
+  install, element=msh01, at= 13.2423,    from=tum;
+  install, element=msv02, at= 13.5343,    from=tum;
+  install, element=msv04, at= 19.0056,    from=tum;
+  install, element=msh03, at= 19.2796,    from=tum;
+  install, element=msh05, at= 30.5037,    from=tum;
+  install, element=msv06, at= 30.7737,    from=tum;
+  install, element=msv08, at= 36.2520,    from=tum;
+  install, element=msh07, at= 36.5160,    from=tum;
+  install, element=msh09, at= 45.6801,    from=tum;
+  install, element=msv10, at= 49.7710,    from=tum;
+  install, element=msh11, at= 57.0476,    from=tum;
+  install, element=msv12, at= 61.1534,    from=tum;
+  install, element=msh13, at= 64.0397,    from=tum;
+  install, element=msv14, at= 67.1092,    from=tum;
+  install, element=msh16, at= 78.4738,    from=tum;
+  install, element=msh17, at= 80.6816,    from=tum;
+  install, element=msv18, at= 84.4360,    from=tum;
+  install, element=msh19, at= 91.7072,    from=tum;
+  install, element=msv20, at= 95.8202,    from=tum;
+  install, element=msh21, at=102.9938,    from=tum;
+  install, element=msv22, at=103.2708,    from=tum;
+  install, element=msv24, at=108.7701,    from=tum;
+  install, element=msh23, at=109.0381,    from=tum;
+// Steerer 25-28 ausgebaut wegen ANKE
+//  install, element=msh25, at=124.2321
+// sv26 und sv28 sind wicklungen auf den quads
+  install, element=msv26, at=lqt/2+1e-5, from=qt28;
+  install, element=msv28, at=lqt/2+1e-5, from=qt32;
+//  install, element=msh27, at=130.2544
+  install, element=msh29, at=137.4152+anke_delta_l,    from=tum;
+// gedrehter steerer sh30:
+  install, element=msv30, at=141.5048+anke_delta_l,    from=tum;
+  install, element=msh31, at=145.9631+anke_delta_l,    from=tum;
+  install, element=msv32, at=152.8332+anke_delta_l,    from=tum;
+  install, element=msh33, at=154.4432+anke_delta_l,    from=tum;
+  install, element=msv34, at=158.8337+anke_delta_l,    from=tum;
+  install, element=msh35, at=166.1154+anke_delta_l,    from=tum;
+  install, element=msv36, at=170.7046+anke_delta_l,    from=tum;
+  install, element=msh37, at=171.8424+anke_delta_l,    from=tum;
+  install, element=msv38, at=176.1734+anke_delta_l,    from=tum;
+  install, element=msh39, at=178.6623+anke_delta_l,    from=tum;
+// mbu1 moved appr. 60 mm in Maintenace 31/2000 (neue Kavitaet, BCT2
+  install, element=mbu1,  at= 14.6738+0.06+anke_delta_l,    from=tum;
+  install, element=mbu2,  at=172.2284+anke_delta_l,    from=tum;
+  install, element=mbu3,  at=179.9063+anke_delta_l,    from=tum;
+endedit;
+
+// here install viewer, scraper, bumper
+seqedit, sequence=cosy;
+  install, element=view1,  at=1.0,   from=qu24;
+  install, element=view2,  at=-1.0,  from=qu1;
+  install, element=view3,  at=1.55,  from=mx07;
+  install, element=view4,  at=1.0,   from=qu12;
+  install, element=view5,  at=-1.0,  from=qu13;
+  install, element=view6,  at=-1.6,  from=dpos29h;
+  install, element=bstop,  at=0.425, from=qt2;
+  install, element=scrapvtt,  at=0.425, from=qt10;
+  install, element=scraphtt,  at=0.425, from=qt14;
+  install, element=scraphct,  at=0.425, from=qt18;
+  install, element=scrapvct,  at=0.425, from=qt22;
+//these two scrapers are replaced by valves
+//  install, element=sc3x,   at=0.425, from=qt26
+//  install, element=sc4y,   at=0.425, from=qt30
+endedit;
+
+// here the settings for the ANKE dipoles and BPM's
+seqedit, sequence=cosy;
+  install, element=dipole1,     at=0.929,  from=qt28;
+  install, element=dposanke1h,  at=2.1468, from=qt28;
+  install, element=dipole2,     at=3.538+anke_delta_l/2,  from=qt28;
+  install, element=tpa,         at=-1,     from=dipole2 ; // TPA
+  install, element=dposanke2h,  at=-2.2448,from=qt29;
+  install, element=dipole3,     at=2.609+anke_delta_l/2,  from=dipole2;
+//  install, element=dposanke2v, at=-2.1468, from=qt29
+//  install, element=dposanke1v,   at=2.2448, from=qt28
+endedit;
+
+// here mark position of septa, start and end of telescopes
+// TP1, TP2, TP3, ecool, cooler-bpms
+seqedit, sequence=cosy;
+  install, element=esmp,     at=-2.3875, from=be15 ; // start of new esep
+  install, element=esep,     at=0.9669,  from=qu16 ; // calculate separatrix here
+  install, element=es0,      at=0.967,   from=qu16 ; // start of esep
+  install, element=msep,     at=0.205,   from=mx16 ; // start of msep
+  install, element=cavity,   at=2.798,   from=qt20 ; // middle of resonator
+  install, element=cavity2,  at=4.232,   from=qt4  ; // middle of resonator
+  install, element=ttstart,  at=-4.8563, from=qt1  ; // start of target telescope
+  install, element=ttend,    at=4.8563,  from=qt16 ; // end of target telescope
+  install, element=ctstart,  at=-2.8563, from=qt17 ; // start of cooler telescope
+  install, element=ctend,    at=2.8563,  from=qt32 ; // end of cooler telescope
+  install, element=tp1,      at=1.950,   from=qt8  ; // TP1, dist measured +- 1cm
+  install, element=tp2,      at=2.229,   from=qt12 ; // TP2, dist measured +- 1cm
+  install, element=tp3,      at=-0.9913, from=be8  ; // TP3
+  install, element=ecool,    at=4.222,   from=qt24 ; // middle of cooler
+  install, element=gun,      at=1.792,   from=qt24 ; //
+  install, element=col,      at=6.652,   from=qt24 ; //
+//  install, element=gunx,    at=1.792,   from=qt24 !
+//  install, element=colx,    at=6.652,   from=qt24 !
+//  install, element=guny,    at=1.792,   from=qt24 !
+//  install, element=coly,    at=6.652,   from=qt24 !
+  install, element=toroid1,  at=2.722,   from=qt24 ; // toroid magnet of e-cooler
+  install, element=toroid2,  at=5.722,   from=qt24 ; // toroid magnet of e-cooler
+  install, element=dposec1h, at=-0.734,  from=ecool;
+  install, element=dposec1v, at=-0.718,  from=ecool;
+  install, element=dposec2h, at= 0.718,  from=ecool;
+  install, element=dposec2v, at= 0.734,  from=ecool;
+  install, element=bct,      at=2.4,     from=cavity;
+//  install, element=rspx,    at=1.25,    from=mbu1
+//  install, element=rspy,    at=0.53,    from=mbu1
+  install, element=bct2,     at=-1.650,  from=qt5;
+  install, element=dkicker,  at=1+0.55/2,from=msh16;
+  install, element=rpol,     at=2.2,     from=be10;
+endedit;
+
+// install changes of the aperture as collimators
+// seqedit, sequence=cosy;
+//  install, element=scvk_in,    at=1.000,                from=qt32      ; //sc_kicker tank entrance
+//  install, element=scvk_out,   at=2.050,                from=scvk_in   ; //sc_kicker tank exit
+//  install, element=schk_in ,   at=1.430,                from=qu12      ; //sc_kicker tank entrance
+//  install, element=schk_out,   at=2.050,                from=schk_in   ; //sc_kicker tank exit
+//  install, element=scvp_in,    at=2.860,                from=qt16      ; //sc_pickup tank entrance
+//  install, element=scvp_out,   at=4.100,                from=scvp_in   ; //sc_pickup tank exit
+//  install, element=schp_in,    at=1.450,                from=qu24      ; //sc_pickup tank entrance
+//  install, element=schp_out,   at=4.100,                from=schp_in   ; //sc_pickup tank exit
+
+//kurze strecken addiert, damit keine negativen laengen von driften auftreten.
+//das wird zum problem, weil hier immer mit effektiven laengen gerechnet wird,
+//die montagen aber mit den eisenlaengen erfolgen.
+
+//  install, element=rechteck,   at=-lbend/2-0.2e-13,       from=be1;
+//  install, element=ebello,     at=lbend/2+0.2e-13,        from=be2;
+//  install, element=ebello,     at=-lquj/2-0.3-0.2e-13,    from=jq1;
+//  install, element=ebello,     at=-lquj/2-0.3-0.2e-13,    from=jq2;
+//  install, element=ebello,     at=lbend/2+0.2e-13,        from=be6;
+//  install, element=rund,       at=lbend/2+0.08,           from=be6;
+//  install, element=rechteck,   at=-lbend/2-0.2e-13,       from=be7;
+//  install, element=ebello,     at=lss/2+0.1,              from=msh16;
+//  install, element=rund,       at=1,                      from=msh16;
+//  install, element=rechteck,   at=1.55,                   from=msh16;
+//  install, element=rund,       at=lbend/2+0.2e-13,        from=be12;
+//  install, element=rechteck,   at=-lbend/2-0.2e-13,       from=be13;
+//  install, element=rund,       at=lbend/2+0.2e-13,        from=be17;
+//  install, element=rechteck,   at=lxg/2 + 0.001,          from=mx16;
+//  install, element=ebello,     at=lbend/2+0.2e-13,        from=be17;
+//  install, element=ebello,     at=-lbend/2-0.2e-13,       from=be19;
+//  install, element=ebello,     at=-lbend/2-0.2e-13,       from=be21;
+//  install, element=rund,       at=lsc/2 + 0.001,          from=msh39;
+//  install, element=rechteck,   at=-lbend/2-0.2e-13,       from=be23;
+//  install, element=rund,       at=lbend/2+0.2e-13,        from=be24;
+// endedit;
+
+
+// end of file cosy.seq
+// MAD action statements should follow now.
+
+// seqedit, sequence=cosy;
+// cycle, start=ttstart;
+// endedit;
+// strength:=0.0/1000;
+
+
+beam,particle=proton,pc=momentum,ex=100.e-6,ey=10.e-6,sige=2.e-3;
+
+use, PERIOD=cosy;
+
+sxfwrite, file = "COSY.sxf";
+
+stop;
+
+SELECT, FLAG=TWISS, clear;
+select, flag=twiss, class=sextupole, COLUMN=name,S,BETX,ALFX,BETY,ALFY,DX,MUX, MUY;
+twiss, file="SextupoleOptics";
+
+SELECT, FLAG=TWISS, clear;
+select, flag=twiss, COLUMN=S,BETX,ALFX,BETY,ALFY,DX,MUX, MUY;
+twiss, file="Optics";
+
+PLOT,HAXIS=S,SPLINE,STYLE=100, VMIN=0.0, VAXIS=BETX,BETY;
+PLOT,HAXIS=S,SPLINE,VAXIS=DX;
+
+
+stop;
+
+optics, filename='betax', centre, column=name, s, betx, alfx, mux;
+optics, filename='betay', centre, column=name, s, bety, alfy, muy;
+optics, filename='disp'  centre, column=name, s, dx;
+
+
+
+
+
