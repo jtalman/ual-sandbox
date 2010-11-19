@@ -23,9 +23,6 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
-int pause;
-std::cin >> pause;
-std::cout << "file  $UAL/examples/SXF_TRACKER/" << __FILE__ << " line " << __LINE__ << " method int main(int argc,char * argv[])" << " about to " << "UAL::Shell shell;" << "\n";
 
   UAL::Shell shell;
 
