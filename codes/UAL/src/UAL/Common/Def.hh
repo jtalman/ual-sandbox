@@ -25,6 +25,10 @@ namespace UAL {
   /** Speed of light [m/c] */
   const double clight = 2.99792458e+8;
 
+  /** elementary charge - http://physics.nist.gov/cgi-bin/cuu/Value?e|search_for=elecmag_in*/
+  /*  should verify with Handbook of Particle Physics*/
+  const double elemCharge = 1.602176487e-19;
+
 }
 
 #endif
