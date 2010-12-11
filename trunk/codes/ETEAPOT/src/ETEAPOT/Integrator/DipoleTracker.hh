@@ -44,6 +44,12 @@ namespace ETEAPOT {
 
     inline ElectricData& getElectricData();
 
+    static double xS[1000];
+    static double yS[1000];
+    static double zS[1000];
+    static char   nS[1000][100];
+    static int    maxSurvey;
+
   protected:
 
     /** Sets the lattice element */
