@@ -11,6 +11,7 @@ INC += -I$(UAL)/ext/UI/include
 INC += -I$(UAL_SXF)/src
 INC += -I$(UAL_ACCSIM)/src
 INC += -I$(UAL_TEAPOT)/src
+INC += -I$(UAL_ETEAPOT)/src
 INC += -I$(UAL_PAC)/src
 INC += -I$(UAL)/codes/UAL/include
 INC += -I$(UAL_ZLIB)/src
@@ -33,6 +34,8 @@ LIBS += 					-lm
 
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
+
+OBJS = $(OBJ_DIR)/positionPrinter.o
 
 compile : $(OBJS) ./tracker
 
