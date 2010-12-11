@@ -48,20 +48,23 @@ int main(int argc,char * argv[]){
   std::cout << "argv[11] is scrE0: 0\n";
   exit(0);
  }
- for(int i=0;i<argc;i++){
-  std::cout << "argv[" << i << "] = " << argv[i] << "\n";
- }
+#include "extractParameters.h"
+// double v0= UAL::clight*sqrt(1-1/gamma0/gamma0);
+ std::cout << "v0 " << v0 << "\n";
+
  UAL::Shell shell;
 
+/*
  string fname;
  cout << "Enter a file name: ";
  getline(cin, fname);
- ofstream ofstrm(fname.c_str());
+*/
+ ofstream ofstrm("flat_sxf");
  if (!ofstrm){
-   cout << "Couldn’t open file: " << fname << endl;
+   cout << "Couldn’t open file: " << "flat_sxf" << endl;
  }
  else{
-  cout << "Found and opened file: " << fname << endl;
+  cout << "Found and opened file: " << "flat_sxf" << endl;
  }
  ofstrm << setiosflags( ios::showpos   );
  ofstrm << setiosflags( ios::uppercase );
@@ -81,11 +84,6 @@ int main(int argc,char * argv[]){
  std::cout << "\nBuild lattice." << std::endl;
  // ************************************************************************
 
- std::string sxfFile = "./data/";
- sxfFile += argv[2];
- sxfFile += ".sxf";
- std::cout << "\nJDT -- sxfFile " << sxfFile << std::endl;
-
  shell.readSXF(UAL::Args() << UAL::Arg("file",  sxfFile.c_str()));
 
  // ************************************************************************
@@ -93,7 +91,7 @@ int main(int argc,char * argv[]){
  // ************************************************************************
 
   
- shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sbend")      << UAL::Arg("ir", atoi(argv[11])));
+ shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sbend")      << UAL::Arg("ir", split));
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Quadrupole") << UAL::Arg("ir", 0));
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sextupole")  << UAL::Arg("ir", 0));
 
@@ -107,25 +105,20 @@ int main(int argc,char * argv[]){
  std::cout << "\nWrite SXF file ." << std::endl;
  // ************************************************************************
 
- std::string outputFile = "./out/cpp/";
- outputFile += argv[2];
- outputFile += ".sxf";
- std::cout << "\nJDT -- outputFile " << outputFile << std::endl;
-
  shell.writeSXF(UAL::Args() << UAL::Arg("file",  outputFile.c_str()));
 
  // ************************************************************************
  std::cout << "\nDefine beam parameters." << std::endl;
  // ************************************************************************
 
- double mass   = 0.93827231; // proton rest mass
- double m0=mass;
- double chge   = 1.6e-19   ; // proton charge
- double gamma0 = atof(argv[3]);
- double v0= UAL::clight*sqrt(1-1/gamma0/gamma0);
- double energy = gamma0*m0;
- double e0=energy;
- double p0 = gamma0*m0*v0;
+// double mass   = 0.93827231; // proton rest mass
+// double m0=mass;
+// double chge   = 1.6e-19   ; // proton charge
+// double gamma0 = atof(argv[3]);
+// double v0= UAL::clight*sqrt(1-1/gamma0/gamma0);
+// double energy = gamma0*m0;
+// double e0=energy;
+// double p0 = gamma0*m0*v0;
  std::cout << "\nEnergy " << energy << std::endl;
 
  shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", energy) << UAL::Arg("mass", mass));
@@ -139,19 +132,11 @@ int main(int argc,char * argv[]){
   
  // Make linear matrix
 
- std::string mapFile = "./out/cpp/";
- mapFile += argv[2];
- mapFile += ".map1";
-
  std::cout << " matrix" << std::endl;
  shell.map(UAL::Args() << UAL::Arg("order", 1) << UAL::Arg("print", mapFile.c_str()));
 
  // Calculate twiss
   
- std::string twissFile = "./out/cpp/";
- twissFile += argv[2];
- twissFile += ".twiss";
-
  std::cout << " twiss (ring )" << std::endl;
 
  OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
@@ -179,7 +164,7 @@ int main(int argc,char * argv[]){
  double AX,BX,CX;                              // AX x^2 + BX x + CX = 0   via (c,0,d) element  exit point
 
 //double R0=31.81;
- double R0=atof(argv[4]);
+// double R0=atof(argv[4]);
  double xCPN,yCPN=0,zCPN;                         // center via plus  quadratic solution and element entry point
  double xCPX,yCPX=0,zCPX;                         // center via plus  quadratic solution and element exit  point
  double xCMN,yCMN=0,zCMN;                         // center via minus quadratic solution and element entry point
@@ -300,8 +285,6 @@ int main(int argc,char * argv[]){
  std::cout << "\nAlgorithm Part. " << std::endl;
  // ************************************************************************
 
- std::string apdfFile = argv[1];
-
  UAL::APDF_Builder apBuilder;
 
  apBuilder.setBeamAttributes(ba);
@@ -330,26 +313,6 @@ int main(int argc,char * argv[]){
  spin.setSY(0.0);
  spin.setSZ(1.0);
 
- double probe__dx0 = atof(argv[6]);
- double probe_dpx0 = atof(argv[7]);
- double probe__dy0 = atof(argv[8]);
- double probe_dpy0 = atof(argv[9]);
- double probe_cdt0 = atof(argv[10]);
-
- double probe__dz0 = probe_cdt0;
- double probe_dpz0 = 0;
-
- double probe_X0   = R0 + probe__dx0;
- double probe_Y0   = probe__dy0;
- double probe_Z0   = probe__dz0;
-
- double probePX0   = probe_dpx0;
- double probePY0   = probe_dpy0;
- double probePZ0   = p0 + probe_dpz0;
-
- double probe_r0   = sqrt(probe_X0*probe_X0+probe_Y0*probe_Y0+probe_Z0*probe_Z0);
- double probeP0    = sqrt(probePX0*probePX0+probePY0*probePY0+probePZ0*probePZ0);
- double probeEscr0 = sqrt(probeP0*probeP0+m0*m0)+chge*R0*log(probe_r0/R0) - sqrt(p0*p0+m0*m0);
  std::cout << "probeEscr0 " << probeEscr0 << "\n";
 
  for(int ip=0; ip < bunch.size(); ip ++){
@@ -364,10 +327,6 @@ int main(int argc,char * argv[]){
  double t; // time variable
 
  int turns = 1;
-
- std::string orbitFile = "./out/cpp/";
- orbitFile += argv[2];
- orbitFile += ".orbit";
 
  positionPrinter pP;
  pP.open(orbitFile.c_str());
