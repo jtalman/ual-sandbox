@@ -9,6 +9,10 @@
 #include "SMF/PacLattice.h"
 #include "ETEAPOT/Integrator/DriftTracker.hh"
 
+//#include "UAL/UI/OpticsCalculator.hh"
+//#include "Main/Teapot.h"
+#include <cstdlib>
+
 ETEAPOT::DriftAlgorithm<double, PAC::Position> ETEAPOT::DriftTracker::s_algorithm;
 
 ETEAPOT::DriftTracker::DriftTracker()
@@ -41,7 +45,8 @@ void ETEAPOT::DriftTracker::setLatticeElements(const UAL::AcceleratorNode& seque
 
 void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)
 {
-  std::cout << "Hello ETEAPOT::DriftTracker " << std::endl;
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " method void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)\n";
+//std::cout << "Hello ETEAPOT::DriftTracker " << std::endl;
 
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
@@ -60,6 +65,12 @@ void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)
     if(bunch[ip].isLost()) continue;
     PAC::Position& p = bunch[ip].getPosition();
     tmp = p;
+    std::cout << "m_i0 " << m_i0 << "\n";
+    std::cout << "m_i1 " << m_i1 << "\n";
+    std::cout << "m_l " << m_l << "\n";
+    std::cout << "m_n " << m_n << "\n";
+    std::cout << "m_s " << m_s << "\n";
+    std::cout << "m_name " << m_name << "\n";
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
     s_algorithm.passDrift(m_l, p, tmp, v0byc);
