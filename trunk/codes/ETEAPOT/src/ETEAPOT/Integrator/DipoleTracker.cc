@@ -13,7 +13,7 @@
 //#include "Main/Teapot.h"
 #include <cstdlib>
 
-ETEAPOT::DipoleAlgorithm<double, PAC::Position> ETEAPOT::DipoleTracker::s_algorithm;
+ETEAPOT::newDipoleAlgorithm<double, PAC::Position> ETEAPOT::DipoleTracker::s_algorithm;
 
  double ETEAPOT::DipoleTracker::xS[1000];
  double ETEAPOT::DipoleTracker::yS[1000];
@@ -118,9 +118,29 @@ std::cout << "member xS[m_i0] " << survey.x() << " member yS[m_i0] " << survey.y
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
-  double oldT = ba.getElapsedTime();
-  double e0 = ba.getEnergy(), m0 = ba.getMass();
-  double p0 = sqrt(e0*e0 - m0*m0);
+
+//                                            "Everything" about design/central orbit
+//double oldT = ba.getElapsedTime();
+  double e0 = ba.getEnergy();
+  double m0 = ba.getMass();
+  double q0 = ba.getCharge();
+  double t0 = ba.getElapsedTime();
+                                // RevFreq
+                                // Macrosize
+                                // G
+  double L0 = ba.getL();
+//                                            "Everything" about design/central orbit
+
+  double oldT = t0;
+         q0   = UAL::elemCharge;
+  double p0   = sqrt(e0*e0 - m0*m0);
+
+std::cout << "double q0 = ba.getCharge() = " << q0 << "\n";
+std::cout << "UAL::elemCharge = " << UAL::elemCharge << "\n";
+//               m_time
+//               m_revfreq
+//               m_macrosize
+//               m_G
   double v0byc = p0/e0;
 
   PAC::Position tmp;
@@ -134,8 +154,9 @@ std::cout << "member xS[m_i0] " << survey.x() << " member yS[m_i0] " << survey.y
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " about to  s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc);\n";
-    s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc);
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " back from s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc);\n";
+    s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc, e0, m0, q0, L0);
+//                      [      original interface      ] [central orbit ]
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " back from s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc, e0, p0, m0);\n";
     s_algorithm.passExit(m_edata, p);
     // testAperture(p);
   }
