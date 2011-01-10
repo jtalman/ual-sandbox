@@ -77,12 +77,12 @@ bool UAL::Shell::setBeamAttributes(const UAL::Arguments& arguments)
 
   it = args.find("designElectricField");            // E0 - 9 (ordering?)
   if(it != args.end()){
-    m_ba.setL(it->second->getNumber());
+    m_ba.setE(it->second->getNumber());
   }
 
   it = args.find("designRadius");                   // R0 - 10 (ordering?)
   if(it != args.end()){
-    m_ba.setL(it->second->getNumber());
+    m_ba.setR(it->second->getNumber());
   }
 
   UAL::OpticsCalculator::getInstance().setBeamAttributes(m_ba);
