@@ -82,7 +82,19 @@ namespace PAC {
       double getL() const;
   
       /** Sets the design angular momentum. */
-      void   setL(double v); 
+      void   setL(double v);
+
+      /** Returns the design electric field.*/
+      double getE() const;
+
+      /** Sets the design electric field. */
+      void   setE(double v);
+
+      /** Returns the design "radius".*/
+      double getR() const;
+
+      /** Sets the design "radius". */
+      void   setR(double v);
 
     protected:
 
