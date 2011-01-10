@@ -120,7 +120,13 @@ namespace PAC {
       double m_G;      
 
       /** angular momentum */
-      double m_L;      
+      double m_L;
+
+      /** electric field*/
+      double m_E;
+
+      /** "radius"*/
+      double m_R;
 
     private:
 
