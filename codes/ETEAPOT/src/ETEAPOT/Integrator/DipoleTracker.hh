@@ -10,6 +10,7 @@
 #include "ETEAPOT/Integrator/DipoleData.hh"
 #include "ETEAPOT/Integrator/ElectricData.hh"
 #include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
+#include "ETEAPOT/Integrator/newDipoleAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
 namespace ETEAPOT {
@@ -64,7 +65,7 @@ namespace ETEAPOT {
     ElectricData m_edata;
 
     /** Propagator algorithm */
-    static DipoleAlgorithm<double, PAC::Position> s_algorithm;
+    static newDipoleAlgorithm<double, PAC::Position> s_algorithm;
 
   };
 
