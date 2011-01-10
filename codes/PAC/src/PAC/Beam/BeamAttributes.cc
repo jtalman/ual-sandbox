@@ -112,6 +112,22 @@ void PAC::BeamAttributes::setL(double l) {
    m_L = l;
 }
 
+double PAC::BeamAttributes::getE() const {
+   return m_E;
+}
+
+void PAC::BeamAttributes::setE(double e) {
+   m_E = e;
+}
+
+double PAC::BeamAttributes::getR() const {
+   return m_R;
+}
+
+void PAC::BeamAttributes::setR(double r) {
+   m_R =r;
+}
+
 // Private methods
 
 void PAC::BeamAttributes::initialize()
@@ -123,6 +139,8 @@ void PAC::BeamAttributes::initialize()
   m_macrosize = 0.0;
   m_G = UAL::pG;
   m_L = 1.0;
+  m_E = 1.0;
+  m_R = 1.0;
 }
 
 void PAC::BeamAttributes::define(const PAC::BeamAttributes& ba)
@@ -134,4 +152,6 @@ void PAC::BeamAttributes::define(const PAC::BeamAttributes& ba)
   m_macrosize = ba.m_macrosize;
   m_G         = ba.m_G;
   m_L         = ba.m_L;
+  m_E         = ba.m_E;
+  m_R         = ba.m_R;
 }
