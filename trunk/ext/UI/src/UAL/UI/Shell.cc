@@ -50,27 +50,37 @@ bool UAL::Shell::setBeamAttributes(const UAL::Arguments& arguments)
 
   const std::map<std::string, UAL::Argument*>& args = arguments.getMap();
 
-  it = args.find("mass");
-  if(it != args.end()){
-    m_ba.setMass(it->second->getNumber());
-  }
-
-  it = args.find("energy");
+  it = args.find("energy");                         // e0 - 1
   if(it != args.end()){
     m_ba.setEnergy(it->second->getNumber());
   }
 
-  it = args.find("charge");
+  it = args.find("mass");                           // m0 - 2
+  if(it != args.end()){
+    m_ba.setMass(it->second->getNumber());
+  }
+
+  it = args.find("charge");                         // q0 - 3
   if(it != args.end()){
     m_ba.setCharge(it->second->getNumber());
   }
 
-  it = args.find("macrosize");
+  it = args.find("macrosize");                      // M0 - 6
   if(it != args.end()){
     m_ba.setMacrosize(it->second->getNumber());
   }
 
-  it = args.find("designAngularMomentum");
+  it = args.find("designAngularMomentum");          // L0 - 8 (5th chronologically)
+  if(it != args.end()){
+    m_ba.setL(it->second->getNumber());
+  }
+
+  it = args.find("designElectricField");            // E0 - 9 (ordering?)
+  if(it != args.end()){
+    m_ba.setL(it->second->getNumber());
+  }
+
+  it = args.find("designRadius");                   // R0 - 10 (ordering?)
   if(it != args.end()){
     m_ba.setL(it->second->getNumber());
   }
