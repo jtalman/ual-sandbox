@@ -32,22 +32,18 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
- if(argc!=12){
-  std::cout << "usage: ./tracker ./data/eteapot.apdf pre-E_pEDm 1.25 20 1 0.1 1e-3 0.1 1e-4 1e-3 0 (> ! myOut)\n";
-  std::cout << "argv[0 ] is this executable: ./tracker\n";
-  std::cout << "argv[1 ] is the algorithm file: ./data/eteapot.apdf\n";
-  std::cout << "argv[2 ] is the sxf file basename: pre-E_pEDm\n";
-  std::cout << "argv[3 ] is gamma0: 1.25\n";
-  std::cout << "argv[4 ] is R0: 20\n";
-  std::cout << "argv[5 ] is E0: 1\n";
-  std::cout << "argv[6 ] is dx0: 0.1\n";
-  std::cout << "argv[7 ] is dpx0: 1e-3\n";
-  std::cout << "argv[8 ] is dy0: 0.1\n";
-  std::cout << "argv[9 ] is dpy0: 1e-4\n";
-  std::cout << "argv[10] is dz0: 1e-3\n";
-  std::cout << "argv[11] is scrE0: 0\n";
+ if(argc!=2){
+  std::cout << "usage: ./tracker ./data/pre-E_pEDm.sxf (> ! myOut)\n";
+  std::cout << "argv[0] is this executable: ./tracker\n";
+  std::cout << "argv[1] is the input sxf file - ./data/pre-E_pEDm.sxf\n";
   exit(0);
  }
+
+std::string mysxf    =argv[1];
+std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
+std::cout << "mysxf     " << mysxf.c_str() << "\n";
+std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
+
 #include "designBeamValues.hh"
 #include "extractParameters.h"
 
@@ -110,16 +106,6 @@ int main(int argc,char * argv[]){
  std::cout << "\nDefine beam parameters." << std::endl;
  // ************************************************************************
 
-// double mass   = 0.93827231; // proton rest mass
-// double m0=mass;
-// double chge   = 1.6e-19   ; // proton charge
-// double gamma0 = atof(argv[3]);
-// double v0= UAL::clight*sqrt(1-1/gamma0/gamma0);
-// double energy = gamma0*m0;
-// double e0=energy;
-// double p0 = gamma0*m0*v0;
- std::cout << "\nEnergy " << e0 << std::endl;
-
 // shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", e0) << UAL::Arg("mass", m0));
 // shell.setBeamAttributes(UAL::Args() << UAL::Arg("elapsedTime", 0));
 #include "setBeamAttributes.hh"
@@ -138,6 +124,7 @@ int main(int argc,char * argv[]){
  // Calculate twiss
   
  std::cout << " twiss (ring )" << std::endl;
+ shell.twiss(UAL::Args() << UAL::Arg("print", twissFile.c_str()));
 
  OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
  Teapot* teapot = optics.m_teapot;
@@ -163,8 +150,6 @@ int main(int argc,char * argv[]){
                                                // AN x^2 + BN x + CN = 0
  double AX,BX,CX;                              // AX x^2 + BX x + CX = 0   via (c,0,d) element  exit point
 
-//double R0=31.81;
-// double R0=atof(argv[4]);
  double xCPN,yCPN=0,zCPN;                         // center via plus  quadratic solution and element entry point
  double xCPX,yCPX=0,zCPX;                         // center via plus  quadratic solution and element exit  point
  double xCMN,yCMN=0,zCMN;                         // center via minus quadratic solution and element entry point
