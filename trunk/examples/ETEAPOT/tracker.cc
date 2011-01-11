@@ -48,9 +48,8 @@ int main(int argc,char * argv[]){
   std::cout << "argv[11] is scrE0: 0\n";
   exit(0);
  }
+#include "designBeamValues.hh"
 #include "extractParameters.h"
-// double v0= UAL::clight*sqrt(1-1/gamma0/gamma0);
- std::cout << "v0 " << v0 << "\n";
 
  UAL::Shell shell;
 
@@ -119,10 +118,11 @@ int main(int argc,char * argv[]){
 // double energy = gamma0*m0;
 // double e0=energy;
 // double p0 = gamma0*m0*v0;
- std::cout << "\nEnergy " << energy << std::endl;
+ std::cout << "\nEnergy " << e0 << std::endl;
 
- shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", energy) << UAL::Arg("mass", mass));
- shell.setBeamAttributes(UAL::Args() << UAL::Arg("elapsedTime", 0));
+// shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", e0) << UAL::Arg("mass", m0));
+// shell.setBeamAttributes(UAL::Args() << UAL::Arg("elapsedTime", 0));
+#include "setBeamAttributes.hh"
 
  PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
@@ -303,7 +303,7 @@ int main(int argc,char * argv[]){
  std::cout << "\nBunch Part." << std::endl;
  // ************************************************************************
 
- ba.setG(1.7928474);             // adds proton G factor
+// ba.setG(1.7928474);             // adds proton G factor
 
  PAC::Bunch bunch(1);               // bunch with one particle
  bunch.setBeamAttributes(ba);
