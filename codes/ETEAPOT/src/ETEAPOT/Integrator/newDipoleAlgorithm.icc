@@ -23,30 +23,28 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	Coordinates& p, 
 	Coordinates& tmp, 
 	double v0byc,
-	double e0,
-	double m0,
-	double q0,
-	double L0)
+	const PAC::BeamAttributes cba)
 {
  // Simple Element
 
  if(!data.m_ir){
-   enterBendCorrection(q0,1.7e+07,30,30+p[0]);
-// passBendSlice(data.m_slices[0], p, tmp, v0byc);
+
+   enterBendCorrection(p,cba);           // no analogue?
+
+// passBendSlice           (data.m_slices[0], p, tmp, v0byc);
+   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba);
 
 // applyMltKick(edata, 1, p);
-
 // applyThinBendKick(data, edata, 1, p, v0byc);
-   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, e0, m0, q0);
+   handleSplitBendBoundary(p,cba);       //  should be markSplitBendBoundary?
+                                         //  loosely analogous?
 
-   handleSplitBendBoundary();       //  should be markSplitBendBoundary?
+   makeVelocity(p, tmp, v0byc);	         // common
 
-   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, e0, m0, q0);
-
-   makeVelocity(p, tmp, v0byc);	
 // passBendSlice(data.m_slices[1], p, tmp, v0byc);
+   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba);
 
-   leaveBendCorrection();
+   leaveBendCorrection(p,cba);           // no analogue?
 
    return;
  } 
@@ -77,12 +75,9 @@ exit(1);
 }
 
 template<class Coordinate, class Coordinates>
-void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(double q0,double E0,double R0,double r){
+void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
-//getPotentialEnergy(double q0,double E0,double R0,double r)
-//std::cout << "getPotentialEnergy(UAL::elemCharge,1.7e+07,30,r) " << getPotentialEnergy(UAL::elemCharge,1.7e+07,30,r) << "\n";
-  std::cout << "q0 " << q0 << "\n";
-  std::cout << "getPotentialEnergy(q0,1.7e+07,30,r) " << getPotentialEnergy(q0,1.7e+07,30,r) << "\n";
+#include "printDesignBeam.h"
 }
 
 template<class Coordinate, class Coordinates>
@@ -91,61 +86,21 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExac
   Coordinates& p, 
   Coordinates& tmp,
   double v0byc,
-  double e0,
-  double m0,
-  double q0){
+  const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
-
-// /*                                                     // applyThinBendKick?
-double R0  =30;             // can be inferred
-//double p0  =.7;             // can be inferred
-double p0=sqrt(e0*e0-m0*m0);
-double L0  =R0*p0;          // can be inferred
-//double e0  =1.17;           // Escr0
-double b0  =.6;             // beta0
-
-double xin =p[0];
-double r   =R0+xin;         // r0 or rin maybe?      R0+xin
-                            // double ratio=p[0]/R0;
-double xi =1-R0/r;
-                            // xi=ratio/(1+ratio);
-double e   =p[5];
-double Ly  =-r*p[0];
-double Qsq =1+L0*L0*(e/e0-b0*b0)/Ly/Ly;
-double Q   =sqrt(Qsq);
-double xi0=(1-L0*L0*e/e0/Ly/Ly)/Qsq;
-
-double thet=asin(slice.sphpl());              // can be inferred from m_l and R0
-double Cxi=cos(Q*thet)*(1-xi0)+xi0;
-double Ck_p=-sin(Q*thet)*Q*(1-xi0);
-double Sxi=sin(Q*thet)/Q-cos(Q*thet)+xi0;
-double Sk_p=cos(Q*thet)+sin(Q*thet)*Q*xi0;
-
-double denX=r*r-Cxi*r*p[0]-Sxi*R0*p[1];
-double xout=(Cxi*r*p[0]+Sxi*R0*p[1])/denX;
-
-double    denXp=r*r*(r*r-Cxi*r*p[0]-Sxi*R0*p[1]);
-       denXp=denXp*denXp;
-double xpout=(Ck_p*r*p[0]+Sk_p*R0*p[1])/denXp;
-
-std::cout << " e0 " << e0 << "\n";
-std::cout << " m0 " << m0 << "\n";
-std::cout << " q0 " << q0 << "\n";
-std::cout << " p0 " << p0 << "\n";
-std::cout << " xpout " << xpout << "\n";
-                                                       // applyThinBendKick?
-// */
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " leave method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseHalfSplitExactly(const ETEAPOT::ElemSlice& slice,Coordinates& p,Coordinates& tmp,double v0byc,double e0,double p0,double m0)\n";
+#include "printDesignBeam.h"
 }
 
 template<class Coordinate, class Coordinates>
-void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(){
+void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
+#include "printDesignBeam.h"
 }
 
 template<class Coordinate, class Coordinates>
-void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection(){
+void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection()\n";
+#include "printDesignBeam.h"
 }
 
 template<class Coordinate, class Coordinates>
