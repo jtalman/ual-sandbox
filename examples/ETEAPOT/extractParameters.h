@@ -1,13 +1,3 @@
- double mass   = 0.93827231; // proton rest mass
- double m0=mass;
- double chge   = UAL::elemCharge;       // 1.6e-19   ; // proton charge
-
- double gamma0 = atof(argv[3]);
- double v0= UAL::clight*sqrt(1-1/gamma0/gamma0);
- double energy = gamma0*m0;
- double e0=energy;
- double p0 = gamma0*m0*v0;
- double R0=atof(argv[4]);
  std::string sxfFile = "./data/";
  sxfFile += argv[2];
  sxfFile += ".sxf";
@@ -45,4 +35,4 @@
  orbitFile += ".orbit";
 
  int split = atoi(argv[11]);
- double probeEscr0 = sqrt(probeP0*probeP0+m0*m0)+chge*R0*log(probe_r0/R0) - sqrt(p0*p0+m0*m0);
+ double probeEscr0 = sqrt(probeP0*probeP0+m0*m0)+q0*R0*log(probe_r0/R0) - sqrt(p0*p0+m0*m0);
