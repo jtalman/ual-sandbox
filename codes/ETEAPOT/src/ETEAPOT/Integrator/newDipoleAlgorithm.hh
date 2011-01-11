@@ -31,7 +31,7 @@ namespace ETEAPOT {
     ~newDipoleAlgorithm();
 
     /** Propagates a probe coordinates through the bend*/
-    void passBend(const DipoleData& ddata, const ElectricData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, double e0, double m0, double q0,double L0);
+    void passBend(const DipoleData& ddata, const ElectricData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
 
     /** Propagates a probe coordinates through the bend slice*/
     void passBendSlice(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
@@ -44,10 +44,10 @@ namespace ETEAPOT {
     /** Calculates the delta path*/
     void deltaPath(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
 
-    void enterBendCorrection(double q0,double E0,double R0,double r);
-    void traverseSplitBendExactly(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc, double e0, double p0, double m0);
-    void leaveBendCorrection();
-    void handleSplitBendBoundary();
+    void enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba);
+    void traverseSplitBendExactly(const ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
+    void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba);
+    void leaveBendCorrection(Coordinates& p,const PAC::BeamAttributes cba);
 
     double getPotentialEnergy(double q0,double E0,double R0,double r){
        return q0*E0*R0*log(r/R0); 
