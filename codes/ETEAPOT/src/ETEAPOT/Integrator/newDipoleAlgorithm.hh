@@ -13,6 +13,8 @@
 //#include <math.h>
   #include <cmath>
 
+#include <iomanip>
+#include "UAL/Common/Def.hh"
 #include "ETEAPOT/Integrator/ElectricAlgorithm.hh"
 
 namespace ETEAPOT {
