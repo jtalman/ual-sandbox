@@ -77,7 +77,43 @@ exit(1);
 template<class Coordinate, class Coordinates>
 void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
+
+  std::cout << setiosflags( ios::showpos   );
+  std::cout << setiosflags( ios::uppercase );
+  std::cout << setiosflags( ios::scientific );
+//std::cout << setw( 11 );
+  std::cout << setfill( ' ' );
+  std::cout << setiosflags( ios::left );
+  std::cout << setprecision(7) ;
+
 #include "printDesignBeam.h"
+
+double p0      = sqrt(e0*e0-m0*m0);
+
+double q       = UAL::elemCharge;
+double GeVperJ = 1/q/1e9;
+
+double e       = e0+p0*p[5];
+double gO      = e/m0;
+
+double r       = p[0]+R0;                            // rho?
+double ePI     = GeVperJ*getPotentialEnergy(q,E0,R0,r);
+double eMI     = e-ePI;                              // e conserved (In = Out), PE is Inside
+double gI      = eMI/m0;
+double vI      = sqrt(1-1/gI/gI);
+
+std::cout << "q       " << q       << " (charge numerical value from UAL::elemCharge)\n";
+std::cout << "GeVperJ " << GeVperJ << " (conversion)\n";
+std::cout << "p0      " << p0      << " (design momentum)\n";
+std::cout << "e       " << e       << " (conserved total energy)\n";
+std::cout << "p[0]    " << p[0]    << " (probe x)\n";
+std::cout << "p[5]    " << p[5]    << " (probe delta (Electrostatic_I Eqn. 1))\n";
+std::cout << "r       " << r       << " (radius neglecting y)\n";
+std::cout << "ePI     " << ePI     << " (probe potential energy)\n";
+std::cout << "eMI     " << eMI     << " (probe mechanical energy)\n";
+std::cout << "gO      " << gO      << " (gamma Outside)\n";
+std::cout << "gI      " << gI      << " (gamma Inside)\n";
+std::cout << "vI      " << vI      << " (velocity Inside)\n";
 }
 
 template<class Coordinate, class Coordinates>
