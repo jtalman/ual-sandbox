@@ -32,7 +32,7 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
    enterBendCorrection(p,cba);           // no analogue?
 
 // passBendSlice           (data.m_slices[0], p, tmp, v0byc);
-   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba);
+   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,data.m_angle/2);
 
 // applyMltKick(edata, 1, p);
 // applyThinBendKick(data, edata, 1, p, v0byc);
@@ -42,7 +42,7 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
    makeVelocity(p, tmp, v0byc);	         // common
 
 // passBendSlice(data.m_slices[1], p, tmp, v0byc);
-   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba);
+   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_angle/2);
 
    leaveBendCorrection(p,cba);           // no analogue?
 
@@ -105,8 +105,8 @@ double gI      = eMI/m0;                                  // probe gamma Inside
 double vI      = sqrt(1-1/gI/gI);
 
 std::cout << "p0      " << p0      << " (design momentum)\n";
-std::cout << "g0      " << p0      << " (design gamma)\n";
-std::cout << "v0      " << p0      << " (design velocity)\n";
+std::cout << "g0      " << g0      << " (design gamma)\n";
+std::cout << "v0      " << v0      << " (design velocity)\n";
 
 std::cout << "q       " << q       << " (charge numerical value from UAL::elemCharge)\n";
 std::cout << "GeVperJ " << GeVperJ << " (conversion)\n";
