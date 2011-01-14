@@ -75,6 +75,8 @@ namespace ETEAPOT {
         return value;
     }
 
+  };
+
 }
 
 #include "ETEAPOT/Integrator/newDipoleAlgorithm.icc"
