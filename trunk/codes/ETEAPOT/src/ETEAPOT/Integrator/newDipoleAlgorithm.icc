@@ -88,32 +88,46 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method templ
 
 #include "printDesignBeam.h"
 
-double p0      = sqrt(e0*e0-m0*m0);
+double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
+double g0      = e0/m0;                                   // derived beam gamma
+double v0      = sqrt(1-1/g0/g0);                         // derived beam velocity
 
-double q       = UAL::elemCharge;
-double GeVperJ = 1/q/1e9;
+double q       = UAL::elemCharge;                         // units
+double GeVperJ = 1/q/1e9;                                 // units
 
 double e       = e0+p0*p[5];
-double gO      = e/m0;
+double gO      = e/m0;                                    // probe gamma Outside (entering bend)
 
-double r       = p[0]+R0;                            // rho?
-double ePI     = GeVperJ*getPotentialEnergy(q,E0,R0,r);
-double eMI     = e-ePI;                              // e conserved (In = Out), PE is Inside
-double gI      = eMI/m0;
+double r       = p[0]+R0;                                 // probe radius
+double ePI     = GeVperJ*getPotentialEnergy(q,E0,R0,r);   // probe potential energy Inside
+double eMI     = e-ePI;                                   // e conserved (Inside = Outside), PE is Inside
+double gI      = eMI/m0;                                  // probe gamma Inside
 double vI      = sqrt(1-1/gI/gI);
+
+std::cout << "p0      " << p0      << " (design momentum)\n";
+std::cout << "g0      " << p0      << " (design gamma)\n";
+std::cout << "v0      " << p0      << " (design velocity)\n";
 
 std::cout << "q       " << q       << " (charge numerical value from UAL::elemCharge)\n";
 std::cout << "GeVperJ " << GeVperJ << " (conversion)\n";
-std::cout << "p0      " << p0      << " (design momentum)\n";
+
 std::cout << "e       " << e       << " (conserved total energy)\n";
 std::cout << "p[0]    " << p[0]    << " (probe x)\n";
-std::cout << "p[5]    " << p[5]    << " (probe delta (Electrostatic_I Eqn. 1))\n";
-std::cout << "r       " << r       << " (radius neglecting y)\n";
+std::cout << "p[5]    " << p[5]    << " (probe Outside delta (Electrostatic_I Eqn. 1))\n";
+std::cout << "r       " << r       << " (probe radius neglecting y)\n";
 std::cout << "ePI     " << ePI     << " (probe potential energy)\n";
 std::cout << "eMI     " << eMI     << " (probe mechanical energy)\n";
-std::cout << "gO      " << gO      << " (gamma Outside)\n";
-std::cout << "gI      " << gI      << " (gamma Inside)\n";
-std::cout << "vI      " << vI      << " (velocity Inside)\n";
+std::cout << "gO      " << gO      << " (probe gamma Outside)\n";
+std::cout << "gI      " << gI      << " (probe gamma Inside)\n";
+std::cout << "vI      " << vI      << " (probe velocity Inside)\n";
+
+//p[0]=p[0];
+//p[1]=p[1];
+//p[2]=p[2];
+//p[3]=p[3];
+//p[4]=p[4];                                              // velocity changes instantaneously
+  p[5]=(gI-g0)/p0;                                        // Inside value. Outside (entering bend) value was (gO-g0)/p0
+std::cout << "p[5]    " << p[5]    << " (probe Inside delta (Electrostatic_I Eqn. 1))\n";
 }
 
 template<class Coordinate, class Coordinates>
@@ -122,7 +136,8 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExac
   Coordinates& p, 
   Coordinates& tmp,
   double v0byc,
-  const PAC::BeamAttributes cba){
+  const PAC::BeamAttributes cba,
+  double splitTheta){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 #include "printDesignBeam.h"
 }
