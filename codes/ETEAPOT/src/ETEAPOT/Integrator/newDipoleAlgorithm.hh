@@ -55,6 +55,24 @@ namespace ETEAPOT {
        return q0*E0*R0*log(r/R0); 
     }
 
+    double Cxi(double Q,double theta,double xi0){
+        double value=cos(Q*theta)*(1-xi0)+xi0;
+        return value;
+    }
+
+    double CxiP(double Q,double theta,double xi0){
+        double value=-sin(Q*theta)*Q*(1-xi0);
+        return value;
+    }
+
+    double Sxi(double Q,double theta,double xi0){
+        double value=sin(Q*theta)/Q-cos(Q*theta)*xi0+xi0;
+        return value;
+    }
+
+    double SxiP(double Q,double theta,double xi0){
+        double value=cos(Q*theta)+sin(Q*theta)*Q*xi0;
+        return value;
   };
 
 }
