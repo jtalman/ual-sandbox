@@ -73,7 +73,7 @@ namespace ETEAPOT {
     double SxiP(double Q,double theta,double xi0){
         double value=cos(Q*theta)+sin(Q*theta)*Q*xi0;
         return value;
-  };
+    }
 
 }
 
