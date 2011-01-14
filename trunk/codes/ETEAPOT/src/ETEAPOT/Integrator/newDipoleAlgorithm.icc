@@ -141,8 +141,13 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExac
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 #include "printDesignBeam.h"
 
+double p0        = sqrt(e0*e0-m0*m0);                       // derived beam momentum
 double g0        = e0/m0;                                   // derived beam gamma
 double b0        = sqrt(1-1/g0/g0);                         // derived beam beta
+
+double rInput    = p[0]+R0;
+double xiInput   = p[0]/rInput;                             // Input vs Inside
+double xip_Input = R0*p[1]/rInput/rInput;
 
 double eInput    = e0+p0*p[5];
 double gInput    = eInput/m0;
@@ -155,10 +160,6 @@ double Lr        = L0*L0/LyInput/LyInput;                   // L^2 ratio
 double Qs        = 1+Lr*(er-b0*b0);                         // Q squared Electrostatic_I Eqn (23)
 double Q         = sqrt(Qs);
 double xi0       = (1-Lr*er)/Qs;                            //                               (23)
-
-double rInput    = p[0]+R0;
-double xiInput   = p[0]/rInput;                             // Input vs Inside
-double xip_Input = R0*p[1]/rInput/rInput;
 
 double xi        = xiInput;                                 // formula transcription?
 double xiP       = xip_Input;                               //    ditto
