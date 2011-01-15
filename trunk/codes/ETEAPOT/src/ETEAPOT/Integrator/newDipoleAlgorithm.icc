@@ -77,15 +77,7 @@ exit(1);
 template<class Coordinate, class Coordinates>
 void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
-
-  std::cout << setiosflags( ios::showpos   );
-  std::cout << setiosflags( ios::uppercase );
-  std::cout << setiosflags( ios::scientific );
-//std::cout << setw( 11 );
-  std::cout << setfill( ' ' );
-  std::cout << setiosflags( ios::left );
-  std::cout << setprecision(7) ;
-
+#include "getDesignBeam.h"
 #include "printDesignBeam.h"
 
 double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
@@ -104,29 +96,14 @@ double eMI     = e-ePI;                                   // e conserved (Inside
 double gI      = eMI/m0;                                  // probe gamma Inside
 double vI      = sqrt(1-1/gI/gI);
 
-std::cout << "p0      " << p0      << " (design momentum)\n";
-std::cout << "g0      " << g0      << " (design gamma)\n";
-std::cout << "v0      " << v0      << " (design velocity)\n";
+#include "print_enterBendCorrection.h"
 
-std::cout << "q       " << q       << " (charge numerical value from UAL::elemCharge)\n";
-std::cout << "GeVperJ " << GeVperJ << " (conversion)\n";
-
-std::cout << "e       " << e       << " (conserved total energy)\n";
-std::cout << "p[0]    " << p[0]    << " (probe x)\n";
-std::cout << "p[5]    " << p[5]    << " (probe Outside delta (Electrostatic_I Eqn. 1))\n";
-std::cout << "r       " << r       << " (probe radius neglecting y)\n";
-std::cout << "ePI     " << ePI     << " (probe potential energy)\n";
-std::cout << "eMI     " << eMI     << " (probe mechanical energy)\n";
-std::cout << "gO      " << gO      << " (probe gamma Outside)\n";
-std::cout << "gI      " << gI      << " (probe gamma Inside)\n";
-std::cout << "vI      " << vI      << " (probe velocity Inside)\n";
-
-//p[0]=p[0];
-//p[1]=p[1];
-//p[2]=p[2];
-//p[3]=p[3];
-//p[4]=p[4];                                              // velocity changes instantaneously
-  p[5]=(gI-g0)/p0;                                        // Inside value. Outside (entering bend) value was (gO-g0)/p0
+//     p[0]    = p[0];                                    // unchanged? seems like there should be some coupling into x
+//     p[1]    = p[1];                                    // unchanged? seems like there should be some coupling into xp
+//     p[2]    = p[2];                                    // unchanged?
+//     p[3]    = p[3];                                    // unchanged?
+//     p[4]    = p[4];                                    // velocity changes instantaneously
+       p[5]    = (gI-g0)*m0/p0;                           // Inside value. Outside (entering bend) value was (gO-g0)/p0
 std::cout << "p[5]    " << p[5]    << " (probe Inside delta (Electrostatic_I Eqn. 1))\n";
 }
 
@@ -139,31 +116,32 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExac
   const PAC::BeamAttributes cba,
   double splitTheta){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
+#include "getDesignBeam.h"
 #include "printDesignBeam.h"
 
-double p0        = sqrt(e0*e0-m0*m0);                       // derived beam momentum
-double g0        = e0/m0;                                   // derived beam gamma
-double b0        = sqrt(1-1/g0/g0);                         // derived beam beta
+double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
+double g0        = e0/m0;                                 // derived beam gamma
+double b0        = sqrt(1-1/g0/g0);                       // derived beam beta
 
 double rInput    = p[0]+R0;
-double xiInput   = p[0]/rInput;                             // Input vs Inside
+double xiInput   = p[0]/rInput;                           // Input vs Inside
 double xip_Input = R0*p[1]/rInput/rInput;
 
 double eInput    = e0+p0*p[5];
 double gInput    = eInput/m0;
 double vInput    = sqrt(1-1/gInput/gInput);
 double pInput    = gInput*m0*vInput;
-double LyInput   = rInput*pInput;                           // quite a bit like L0
+double LyInput   = rInput*pInput;                         // quite a bit like L0
 
-double er        = eInput/e0;                               // energy ratio
-double Lr        = L0*L0/LyInput/LyInput;                   // L^2 ratio
-double Qs        = 1+Lr*(er-b0*b0);                         // Q squared Electrostatic_I Eqn (23)
+double er        = eInput/e0;                             // energy ratio
+double Lr        = L0*L0/LyInput/LyInput;                 // L^2 ratio
+double Qs        = 1+Lr*(er-b0*b0);                       // Q squared Electrostatic_I Eqn (23)
 double Q         = sqrt(Qs);
-double xi0       = (1-Lr*er)/Qs;                            //                               (23)
+double xi0       = (1-Lr*er)/Qs;                          //                               (23)
 
-double xi        = xiInput;                                 // formula transcription?
-double xiP       = xip_Input;                               //    ditto
-double th        = splitTheta;                              //    ditto
+double xi        = xiInput;                               // formula transcription?
+double xiP       = xip_Input;                             //    ditto
+double th        = splitTheta;                            //    ditto
 
 double c         = Cxi(Q,th,xi0)*xi;
 double s         = Sxi(Q,th,xi0)*xiP;
@@ -171,25 +149,43 @@ double s         = Sxi(Q,th,xi0)*xiP;
 double cP        = CxiP(Q,th,xi0)*xi;
 double sP        = SxiP(Q,th,xi0)*xiP;
 
-double den       = 1-c-s;                                   // (29) denominator
+double den       = 1-c-s;                                 // (29) denominator
 
 double xOutput   = R0*(c+s)/den;
 double xPOutput  = R0*(cP+sP)/den/den;
 
        p[0]      = xOutput;
        p[1]      = xPOutput;
+//     p[2]      = p[2];                                  // unchanged?
+//     p[3]      = p[3];                                  // unchanged?
+//     p[4]      = p[4];                                  // unchanged?
+//     p[5]      = p[5];                                  // unchanged?
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
+#include "getDesignBeam.h"
 #include "printDesignBeam.h"
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection()\n";
+#include "getDesignBeam.h"
 #include "printDesignBeam.h"
+
+double g0      = e0/m0;                                   // derived beam gamma
+double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
+double e       = e0+p0*p[5];
+double gO      = e/m0;                                    // Outside
+
+//     p[0]    = p[0];                                    // unchanged?
+//     p[1]    = p[1];                                    // unchanged?
+//     p[2]    = p[2];                                    // unchanged?
+//     p[3]    = p[3];                                    // unchanged?
+//     p[4]    = p[4];                                    // unchanged?
+       p[5]    = (gO-g0)*m0/p0;                           //
 }
 
 template<class Coordinate, class Coordinates>
