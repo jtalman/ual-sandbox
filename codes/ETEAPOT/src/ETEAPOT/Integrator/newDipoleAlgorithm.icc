@@ -74,6 +74,7 @@ exit(1);
  return;
 }
 
+/*
 template<class Coordinate, class Coordinates>
 void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
@@ -98,6 +99,10 @@ double vI      = sqrt(1-1/gI/gI);
 
 #include "print_enterBendCorrection.h"
 
+std::cout << "p[5]                                          " << p[5]                                             << "\n";
+std::cout << "    -GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0 " <<     -GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0    << "\n";
+std::cout << "p[5]-GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0 " << p[5]-GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0    << "\n";
+
 //     p[0]    = p[0];                                    // unchanged? seems like there should be some coupling into x
 //     p[1]    = p[1];                                    // unchanged? seems like there should be some coupling into xp
 //     p[2]    = p[2];                                    // unchanged?
@@ -105,6 +110,33 @@ double vI      = sqrt(1-1/gI/gI);
 //     p[4]    = p[4];                                    // velocity changes instantaneously
        p[5]    = (gI-g0)*m0/p0;                           // Inside value. Outside (entering bend) value was (gO-g0)/p0
 std::cout << "p[5]    " << p[5]    << " (probe Inside delta (Electrostatic_I Eqn. 1))\n";
+}
+*/
+
+template<class Coordinate, class Coordinates>
+void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
+#include "getDesignBeam.h"
+#include "printDesignBeam.h"
+std::cout << "Enter with p[5] nonBend " << p[5]    << " (probe nonBend/\"Drift\" delta (Electrostatic_I Eqn. 1))\n";
+
+//                    eMD=e0+p0*p[5]                      // Mechanical energy - "Drift" (non Bend)
+//                    eTD=eMD                             // Total      energy -  Drift
+//                    eTB=eTD                             // Total energy conserved
+//                       =eMB+V(r)                        // Total      energy -  Bend
+//                    eMD=eMB+V(r)                        // substitute
+//                                                                           
+//       (eMD-e0)/p0=(eMB-e0)/p0+V(r)/p0                  // rearrange
+//        p[5]Drift =  p[5]Bend +V(r)/p0                  // p[5]Bend is output
+
+double q       = UAL::elemCharge;                         // units
+double GeVperJ = 1/q/1e9;                                 // units
+double  r      = R0+p[0];
+double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
+
+       p[5]    = p[5]-GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0;
+
+std::cout << "Leave with p[5]    Bend " << p[5]    << " (probe    Bend         delta (Electrostatic_I Eqn. 1))\n";
 }
 
 template<class Coordinate, class Coordinates>
