@@ -45,6 +45,8 @@ clean :
 ./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
 
+./sxfUtility: $(OBJ_DIR)/sxfUtility.o
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/sxfUtility.o $(LIBS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
