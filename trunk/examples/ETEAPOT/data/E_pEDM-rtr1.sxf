@@ -38,11 +38,20 @@ ring sequence
                  kl = [ 0 -0.0057239]
                 }
          };
+   bh
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 9.30398163397
+         body = {
+                 kl = [ 0.392699081699]
+                }
+         };
    qbh
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 1.525
+         at = 17.2329632679
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -51,7 +60,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 1.675
+         at = 17.3829632679
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -60,16 +69,25 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 1.825
+         at = 17.5329632679
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.2
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 25.4619449019
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qah
      quadrupole {
          tag = qah
          l = 0.15
-         at = 1.975
+         at = 33.3909265359
          body = {
                  kl = [ 0 1e-10]
                 }
@@ -78,7 +96,7 @@ ring sequence
      sextupole {
          tag = sa
          l = 0.15
-         at = 2.125
+         at = 33.5409265359
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -87,16 +105,25 @@ ring sequence
      quadrupole {
          tag = qah
          l = 0.15
-         at = 2.275
+         at = 33.6909265359
          body = {
                  kl = [ 0 1e-10]
+                }
+         };
+   bh.3
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 41.6199081699
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qbh.3
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 2.425
+         at = 49.5488898039
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -105,7 +132,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 2.575
+         at = 49.6988898039
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -114,21 +141,39 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 2.725
+         at = 49.8488898039
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.4
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 57.7778714378
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    mslndcent
      marker {
          tag = mslndcent
-         at = 3.025
+         at = 65.8568530718
+         };
+   bh.5
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 73.9358347058
+         body = {
+                 kl = [ 0.392699081699]
+                }
          };
    qbh.5
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 3.325
+         at = 81.8648163397
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -137,7 +182,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 3.475
+         at = 82.0148163397
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -146,16 +191,25 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 3.625
+         at = 82.1648163398
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.6
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 90.0937979737
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qah.3
      quadrupole {
          tag = qah
          l = 0.15
-         at = 3.775
+         at = 98.0227796077
          body = {
                  kl = [ 0 1e-10]
                 }
@@ -164,7 +218,7 @@ ring sequence
      sextupole {
          tag = sa
          l = 0.15
-         at = 3.925
+         at = 98.1727796077
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -173,16 +227,25 @@ ring sequence
      quadrupole {
          tag = qah
          l = 0.15
-         at = 4.075
+         at = 98.3227796077
          body = {
                  kl = [ 0 1e-10]
+                }
+         };
+   bh.7
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 106.251761242
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qbh.7
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 4.225
+         at = 114.180742876
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -191,7 +254,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 4.375
+         at = 114.330742876
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -200,16 +263,25 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 4.525
+         at = 114.480742876
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.8
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 122.40972451
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qch.3
      quadrupole {
          tag = qch
          l = 0.15
-         at = 4.675
+         at = 130.338706144
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -218,7 +290,7 @@ ring sequence
      sextupole {
          tag = sc
          l = 0.15
-         at = 4.825
+         at = 130.488706144
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -227,7 +299,7 @@ ring sequence
      quadrupole {
          tag = qch
          l = 0.15
-         at = 4.975
+         at = 130.638706144
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -235,23 +307,23 @@ ring sequence
    marcout
      marker {
          tag = marcout
-         at = 5.05
+         at = 130.713706144
          };
    mhalf
      marker {
          tag = mhalf
-         at = 6.05
+         at = 131.713706144
          };
    marcin.2
      marker {
          tag = marcin
-         at = 7.05
+         at = 132.713706144
          };
    qch.5
      quadrupole {
          tag = qch
          l = 0.15
-         at = 7.125
+         at = 132.788706144
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -260,7 +332,7 @@ ring sequence
      sextupole {
          tag = sc
          l = 0.15
-         at = 7.275
+         at = 132.938706144
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -269,16 +341,25 @@ ring sequence
      quadrupole {
          tag = qch
          l = 0.15
-         at = 7.425
+         at = 133.088706144
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.9
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 141.017687778
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qbh.9
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 7.575
+         at = 148.946669412
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -287,7 +368,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 7.725
+         at = 149.096669412
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -296,16 +377,25 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 7.875
+         at = 149.246669412
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.10
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 157.175651046
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qah.5
      quadrupole {
          tag = qah
          l = 0.15
-         at = 8.025
+         at = 165.104632679
          body = {
                  kl = [ 0 1e-10]
                 }
@@ -314,7 +404,7 @@ ring sequence
      sextupole {
          tag = sa
          l = 0.15
-         at = 8.175
+         at = 165.254632679
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -323,16 +413,25 @@ ring sequence
      quadrupole {
          tag = qah
          l = 0.15
-         at = 8.325
+         at = 165.404632679
          body = {
                  kl = [ 0 1e-10]
+                }
+         };
+   bh.11
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 173.333614313
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qbh.11
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 8.475
+         at = 181.262595947
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -341,7 +440,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 8.625
+         at = 181.412595947
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -350,21 +449,39 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 8.775
+         at = 181.562595947
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.12
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 189.491577581
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    mslndcent.2
      marker {
          tag = mslndcent
-         at = 9.075
+         at = 197.570559215
+         };
+   bh.13
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 205.649540849
+         body = {
+                 kl = [ 0.392699081699]
+                }
          };
    qbh.13
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 9.375
+         at = 213.578522483
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -373,7 +490,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 9.525
+         at = 213.728522483
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -382,16 +499,25 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 9.675
+         at = 213.878522483
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.14
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 221.807504117
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qah.7
      quadrupole {
          tag = qah
          l = 0.15
-         at = 9.825
+         at = 229.736485751
          body = {
                  kl = [ 0 1e-10]
                 }
@@ -400,7 +526,7 @@ ring sequence
      sextupole {
          tag = sa
          l = 0.15
-         at = 9.975
+         at = 229.886485751
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -409,16 +535,25 @@ ring sequence
      quadrupole {
          tag = qah
          l = 0.15
-         at = 10.125
+         at = 230.036485751
          body = {
                  kl = [ 0 1e-10]
+                }
+         };
+   bh.15
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 237.965467385
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qbh.15
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 10.275
+         at = 245.894449019
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -427,7 +562,7 @@ ring sequence
      sextupole {
          tag = sb
          l = 0.15
-         at = 10.425
+         at = 246.044449019
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -436,16 +571,25 @@ ring sequence
      quadrupole {
          tag = qbh
          l = 0.15
-         at = 10.575
+         at = 246.194449019
          body = {
                  kl = [ 0 -0.0057239]
+                }
+         };
+   bh.16
+     sbend {
+         tag = bh
+         arc = 15.7079632679
+         at = 254.123430653
+         body = {
+                 kl = [ 0.392699081699]
                 }
          };
    qch.7
      quadrupole {
          tag = qch
          l = 0.15
-         at = 10.725
+         at = 262.052412287
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -454,7 +598,7 @@ ring sequence
      sextupole {
          tag = sc
          l = 0.15
-         at = 10.875
+         at = 262.202412287
          body = {
                  kl = [ 0 0 2e-10]
                 }
@@ -463,7 +607,7 @@ ring sequence
      quadrupole {
          tag = qch
          l = 0.15
-         at = 11.025
+         at = 262.352412287
          body = {
                  kl = [ 0 -0.0057239]
                 }
@@ -471,13 +615,13 @@ ring sequence
    marcout.2
      marker {
          tag = marcout
-         at = 11.1
+         at = 262.427412287
          };
    mend
      marker {
          tag = mend
-         at = 12.1
+         at = 263.427412287
          };
- endsequence at = 12.1
+ endsequence at = 263.427412287
 }
 // SXF end
