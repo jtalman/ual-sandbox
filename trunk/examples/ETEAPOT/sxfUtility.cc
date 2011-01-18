@@ -3,38 +3,15 @@
 #include <iomanip>
 #include <string>
 
-#include <algorithm>
-
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "UAL/APDF/APDF_Builder.hh"
-#include "PAC/Beam/Position.hh"
-#include "SMF/PacSmf.h"
-#include "PAC/Beam/Bunch.hh"
 #include "Main/Teapot.h"
 #include "UAL/UI/Shell.hh"
-
-#include "PAC/Beam/Particle.hh"
-#include "PAC/Beam/Spin.hh"
-
-#include "UAL/SMF/AcceleratorNodeFinder.hh"
-#include "Optics/PacTMap.h"
-#include "Integrator/TeapotElemBend.h"
-
-//#include "timer.h"
-#include "positionPrinter.hh"
-
-//#include "globalBlock.h"
-
-#include "ETEAPOT/Integrator/DipoleTracker.hh"
 
 using namespace UAL;
 
 int main(int argc,char * argv[]){
  ofstream ofstrm("flat_sxf");
  if (!ofstrm){
-   cout << "Couldn’t open file: " << "flat_sxf" << endl;
+  cout << "Couldn’t open file: " << "flat_sxf" << endl;
  }
  else{
   cout << "Found and opened file: " << "flat_sxf" << endl;
@@ -52,13 +29,20 @@ int main(int argc,char * argv[]){
  shell.readSXF(UAL::Args() << UAL::Arg("file",  sxfFile.c_str()));
  shell.use(UAL::Args() << UAL::Arg("lattice", "ring"));
 
+/*
+ std::cout << " calculate suml" << std::endl;
+ shell.setMapAttributes(UAL::Args() << UAL::Arg("order", 5));
+ shell.analysis(UAL::Args());
+*/
+
  OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
  Teapot* teapot = optics.m_teapot;
 
  double R0=40;
 
  PacSurveyData surveyData;
- char drift[13]="drift      ";
+
+ char drift[11]="drift     ";
  std::string nameInput;
  std::string nameOutput;
  double xN = 0;
@@ -104,6 +88,7 @@ int main(int argc,char * argv[]){
   if(nameInput=="s3"  ){nameInput+="   ";}
   if(nameInput=="bend"){nameInput+=" ";  }
 */
+/*
   if(nameInput=="mbegin"){nameInput+="     "; }
   if(nameInput=="marcin"){nameInput+="     "; }
   if(nameInput=="mcellin"){nameInput+="    "; }
@@ -118,6 +103,20 @@ int main(int argc,char * argv[]){
   if(nameInput=="mcellout"){nameInput+="   "; }
   if(nameInput=="marcout"){nameInput+="    "; }
   if(nameInput=="mend"){nameInput+="       "; }
+*/
+  if(nameInput=="mbegin"){nameInput+="    "; }
+  if(nameInput=="marcin"){nameInput+="    "; }
+  if(nameInput=="qch"){nameInput+="       "; }
+  if(nameInput=="sc"){nameInput+="        "; }
+  if(nameInput=="bh"){nameInput+="        "; }
+  if(nameInput=="qbh"){nameInput+="       "; }
+  if(nameInput=="sb"){nameInput+="        "; }
+  if(nameInput=="qah"){nameInput+="       "; }
+  if(nameInput=="sa"){nameInput+="        "; }
+  if(nameInput=="mslndcent"){nameInput+=" "; }
+  if(nameInput=="mhalf"){nameInput+="     "; }
+  if(nameInput=="marcout"){nameInput+="   "; }
+  if(nameInput=="mend"){nameInput+="      "; }
 
   myIndex++;
 
@@ -128,8 +127,6 @@ int main(int argc,char * argv[]){
    nameOutput=drift;
   }
 
-//std::remove(nameOutput.begin(), nameOutput.end(), ' ');
- 
   teapot->survey(surveyData,i,i+1);
 
   xX = surveyData.survey().x();
@@ -193,6 +190,18 @@ int main(int argc,char * argv[]){
   zN=zX;
   sN=sX;
  }
+
+ std::cout << "\nOne lattice element surveyed at a time suml():" << "\n";
+ std::cout << "       surveyData.survey().suml() " << surveyData.survey().suml()     << "\n";
+
+ PacSurveyData surveyDataTurn;
+ teapot->survey(surveyDataTurn,0,80);
+ std::cout <<   "One entire turn     surveyed\n";
+ std::cout << "   surveyDataTurn.survey().suml() " << surveyDataTurn.survey().suml() << "\n";
+ std::cout << "   these should be near zero:"                                        << "\n";
+ std::cout << "      surveyDataTurn.survey().x()    " << surveyDataTurn.survey().x()    << "\n";
+ std::cout << "      surveyDataTurn.survey().y()    " << surveyDataTurn.survey().y()    << "\n";
+ std::cout << "      surveyDataTurn.survey().z()    " << surveyDataTurn.survey().z()    << "\n";
 
  return 1;
 }
