@@ -37,6 +37,7 @@ int main(int argc,char * argv[]){
 
  OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
  Teapot* teapot = optics.m_teapot;
+ std::cout << " teapot->size() " << teapot->size() << std::endl;
 
  double R0=40;
 
@@ -195,7 +196,7 @@ int main(int argc,char * argv[]){
  std::cout << "       surveyData.survey().suml() " << surveyData.survey().suml()     << "\n";
 
  PacSurveyData surveyDataTurn;
- teapot->survey(surveyDataTurn,0,80);
+ teapot->survey(surveyDataTurn,0,teapot->size()-1);
  std::cout <<   "One entire turn     surveyed\n";
  std::cout << "   surveyDataTurn.survey().suml() " << surveyDataTurn.survey().suml() << "\n";
  std::cout << "   these should be near zero:"                                        << "\n";
