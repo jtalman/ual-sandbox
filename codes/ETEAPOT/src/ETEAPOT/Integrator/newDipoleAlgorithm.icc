@@ -31,17 +31,12 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 
    enterBendCorrection(p,cba);           // no analogue?
 
-// passBendSlice           (data.m_slices[0], p, tmp, v0byc);
    traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,data.m_angle/2);
 
-// applyMltKick(edata, 1, p);
-// applyThinBendKick(data, edata, 1, p, v0byc);
    handleSplitBendBoundary(p,cba);       //  should be markSplitBendBoundary?
-                                         //  loosely analogous?
 
    makeVelocity(p, tmp, v0byc);	         // common
 
-// passBendSlice(data.m_slices[1], p, tmp, v0byc);
    traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_angle/2);
 
    leaveBendCorrection(p,cba);           // no analogue?
@@ -130,7 +125,7 @@ std::cout << "Enter with p[5] nonBend " << p[5]    << " (probe nonBend/\"Drift\"
 //        p[5]Drift =  p[5]Bend +V(r)/p0                  // p[5]Bend is output
 
 double q       = UAL::elemCharge;                         // units
-double GeVperJ = 1/q/1e9;                                 // units
+double GeVperJ = 1./q/1.e9;                               // units
 double  r      = R0+p[0];
 double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
 
@@ -191,7 +186,7 @@ double xPOutput  = R0*(cP+sP)/den/den;
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
 double v0MKS                      = b0*UAL::clight;
-double approximateTimeOfFlightMKS = R0*th/2./v0MKS;
+double approximateTimeOfFlightMKS = R0*th/v0MKS;
 double e                          = e0+p[5];
 double g                          = e/m0;
 double approximate_vyMKS          = p[3]*p0*UAL::clight/g/m0;
