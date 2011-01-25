@@ -189,8 +189,9 @@ double xPOutput  = R0*(cP+sP)/den/den;
        p[0]      = xOutput;
        p[1]      = xPOutput;
 
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
 double v0MKS                      = b0*UAL::clight;
-double approximateTimeOfFlightMKS = R0*th/v0MKS;
+double approximateTimeOfFlightMKS = R0*th/2./v0MKS;
 double e                          = e0+p[5];
 double g                          = e/m0;
 double approximate_vyMKS          = p[3]*p0*UAL::clight/g/m0;
@@ -202,7 +203,6 @@ double approximate_yOut           = p[2]+approximate_vyMKS*approximateTimeOfFlig
 //     p[4]      = p[4];                                  // unchanged?
 //     p[5]      = p[5];                                  // unchanged?
 
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " v0MKS                      " << v0MKS                      << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximateTimeOfFlightMKS " << approximateTimeOfFlightMKS << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " e                          " << e                          << "\n";
