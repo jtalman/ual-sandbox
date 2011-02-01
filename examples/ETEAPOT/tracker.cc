@@ -22,10 +22,7 @@
 #include "Optics/PacTMap.h"
 #include "Integrator/TeapotElemBend.h"
 
-//#include "timer.h"
 #include "positionPrinter.hh"
-
-//#include "globalBlock.h"
 
 #include "ETEAPOT/Integrator/DipoleTracker.hh"
 
@@ -39,12 +36,13 @@ int main(int argc,char * argv[]){
   exit(0);
  }
 
-std::string mysxf    =argv[1];
-std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
-std::cout << "mysxf     " << mysxf.c_str() << "\n";
-std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
+ std::string mysxf    =argv[1];
+ std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
+ std::cout << "mysxf     " << mysxf.c_str() << "\n";
+ std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
 
 #include "designBeamValues.hh"
+
 #include "extractParameters.h"
 
  UAL::Shell shell;
@@ -86,8 +84,6 @@ std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
  std::cout << "\nDefine beam parameters." << std::endl;
  // ************************************************************************
 
-// shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", e0) << UAL::Arg("mass", m0));
-// shell.setBeamAttributes(UAL::Args() << UAL::Arg("elapsedTime", 0));
 #include "setBeamAttributes.hh"
 
  PAC::BeamAttributes& ba = shell.getBeamAttributes();
@@ -133,7 +129,7 @@ std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
 
 // ba.setG(1.7928474);             // adds proton G factor
 
- PAC::Bunch bunch(1);               // bunch with one particle
+ PAC::Bunch bunch(4);               // bunch with one particle
  bunch.setBeamAttributes(ba);
 
  PAC::Spin spin;
@@ -141,12 +137,10 @@ std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
  spin.setSY(0.0);
  spin.setSZ(1.0);
 
- std::cout << "probeEscr0 " << probeEscr0 << "\n";
-
- for(int ip=0; ip < bunch.size(); ip ++){
-  bunch[ip].getPosition().set(probe__dx0,probe_dpx0,probe__dy0,probe_dpy0,probe_cdt0,probeEscr0);
-  bunch[ip].setSpin(spin);
- }
+ bunch[0].getPosition().set(1.e-4,0.    ,0.   ,0.   ,0.,0.);
+ bunch[1].getPosition().set(0.   ,0.5e-5,0.   ,0.   ,0.,0.);
+ bunch[2].getPosition().set(0.   ,0.    ,1.e-4,0.   ,0.,0.);
+ bunch[3].getPosition().set(0.   ,0.    ,0.   ,1.e-6,0.,0.);
 
  // ************************************************************************
  std::cout << "\nTracking. " << std::endl;
@@ -154,7 +148,7 @@ std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
 
  double t; // time variable
 
- int turns = 1;
+ int turns = 1024;
 
  positionPrinter pP;
  pP.open(orbitFile.c_str());
