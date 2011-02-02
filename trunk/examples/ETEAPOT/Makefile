@@ -35,7 +35,8 @@ LIBS += 					-lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-OBJS = $(OBJ_DIR)/positionPrinter.o
+OBJS = $(OBJ_DIR)/positionPrinter.o \
+	$(OBJ_DIR)/xmgracePrint.o
 
 compile : $(OBJS) ./tracker
 
