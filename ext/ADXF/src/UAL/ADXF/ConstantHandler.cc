@@ -43,8 +43,8 @@ void UAL::ADXFConstantHandler::startElement(const   XMLCh* const    uri,
 
     mu::Parser& muParser = UAL::ADXFConstantManager::getInstance()->muParser;
 
-    const mu::Parser::valmap_type& constants = muParser.GetConst();
-    mu::Parser::valmap_type::const_iterator it = constants.find(name);
+    const mu::valmap_type& constants = muParser.GetConst();
+    mu::valmap_type::const_iterator it = constants.find(name);
     if(it != constants.end()){
       std::cout << "Constant " << name << " has been already defined " << std::endl;
       exit(0);
