@@ -39,15 +39,17 @@ GSL_FLAGS   =
 XERCESC_TARGETS = 
 XERCESC_FLAGS   = -plinux -cgcc -xg++ -minmem -nsocket -tnative -rpthread
 
+MUPARSER_TARGETS = --prefix=$(UAL)/tools \
+		--libdir=$(UAL)/tools/lib/$(UAL_ARCH)
+
 
 compile:
-	gzip -d -c FastMathParserC.so.tar.gz | tar xvf -
-	(cd FastMathParserC.so/src; \
+	gzip -d -c muparser_v134.tar.gz | tar xvf -
+	(cd muparser_v134; \
+	./configure $(MUPARSER_TARGETS); \
 	make; \
-	cd ../..; \
-	cp  FastMathParserC.so/src/*.so $(UAL)/tools/lib/$(UAL_ARCH); \
-	cp  FastMathParserC.so/ParserLib/*.h $(UAL)/tools/include; )
-	rm -rf FastMathParserC.so
+	make install; ) 
+	rm -rf muparser_v134
 	gzip -d -c xerces-c-src_2_7_0.tar.gz | tar xvf -
 	(cd xerces-c-src_2_7_0/src/xercesc; \
 	autoconf; \
