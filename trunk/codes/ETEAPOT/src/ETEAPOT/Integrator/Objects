@@ -1,6 +1,6 @@
 OBJS +=	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/ElemSlice.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/DipoleData.o \
-	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/ElectricData.o \
+	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/MltData.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/BasicPropagator.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/BasicTracker.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/DriftTracker.o \

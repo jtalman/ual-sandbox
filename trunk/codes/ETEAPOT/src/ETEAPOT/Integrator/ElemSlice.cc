@@ -1,8 +1,6 @@
 // Program     : ETEAPOT
 // File        : ETEAPOT/Integrator/ElemSlice.cc
 // Copyright   : see Copyright file
-// Author      : L.Schachinger and R.Talman
-// C++ version : Nikolay Malitsky
 
 #include "ETEAPOT/Integrator/ElemSlice.hh"
 

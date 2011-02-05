@@ -1,11 +1,10 @@
 // Program     : ETEAPOT
 // File        : ETEAPOT/Integrator/ElemSlice.hh
 // Copyright   : see Copyright file
-// Author      : L.Schachinger and R.Talman
-// C++ version : Nikolay Malitsky
 
-#ifndef UAL_ETEAPOT_ELEM_SLICE_HH
-#define UAL_ETEAPOT_ELEM_SLICE_HH
+
+#ifndef ETEAPOT_ELEM_SLICE_HH
+#define ETEAPOT_ELEM_SLICE_HH
 
 #include "Survey/PacSurveyDrift.h"
 #include "Survey/PacSurveySbend.h"
