@@ -81,6 +81,7 @@ void ETEAPOT::RFCavityTracker::setLatticeElement(const PacLattElement& e)
 
 void ETEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)
 {
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)\n";
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
 
   // cerr << "V = " << m_V << ", lag = " << m_lag << ", harmon = " << m_h << ", l = " << m_l << "\n";
