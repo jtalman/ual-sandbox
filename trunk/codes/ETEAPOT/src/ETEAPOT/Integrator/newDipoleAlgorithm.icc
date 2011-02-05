@@ -69,50 +69,14 @@ exit(1);
  return;
 }
 
-/*
 template<class Coordinate, class Coordinates>
 void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
 #include "getDesignBeam.h"
-#include "printDesignBeam.h"
-
+double GeVperJ = 1./q0/1.e9;                              // units
 double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
-double g0      = e0/m0;                                   // derived beam gamma
-double v0      = sqrt(1-1/g0/g0);                         // derived beam velocity
-
-double q       = UAL::elemCharge;                         // units
-double GeVperJ = 1/q/1e9;                                 // units
-
-double e       = e0+p0*p[5];
-double gO      = e/m0;                                    // probe gamma Outside (entering bend)
-
-double r       = p[0]+R0;                                 // probe radius
-double ePI     = GeVperJ*getPotentialEnergy(q,E0,R0,r);   // probe potential energy Inside
-double eMI     = e-ePI;                                   // e conserved (Inside = Outside), PE is Inside
-double gI      = eMI/m0;                                  // probe gamma Inside
-double vI      = sqrt(1-1/gI/gI);
-
-#include "print_enterBendCorrection.h"
-
-std::cout << "p[5]                                          " << p[5]                                             << "\n";
-std::cout << "    -GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0 " <<     -GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0    << "\n";
-std::cout << "p[5]-GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0 " << p[5]-GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0    << "\n";
-
-//     p[0]    = p[0];                                    // unchanged? seems like there should be some coupling into x
-//     p[1]    = p[1];                                    // unchanged? seems like there should be some coupling into xp
-//     p[2]    = p[2];                                    // unchanged?
-//     p[3]    = p[3];                                    // unchanged?
-//     p[4]    = p[4];                                    // velocity changes instantaneously
-       p[5]    = (gI-g0)*m0/p0;                           // Inside value. Outside (entering bend) value was (gO-g0)/p0
-std::cout << "p[5]    " << p[5]    << " (probe Inside delta (Electrostatic_I Eqn. 1))\n";
-}
-*/
-
-template<class Coordinate, class Coordinates>
-void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
-#include "getDesignBeam.h"
 #include "printDesignBeam.h"
+
 std::cout << "Enter with p[5] nonBend " << p[5]    << " (probe nonBend/\"Drift\" delta (Electrostatic_I Eqn. 1))\n";
 
 //                    eMD=e0+p0*p[5]                      // Mechanical energy - "Drift" (non Bend)
@@ -124,14 +88,12 @@ std::cout << "Enter with p[5] nonBend " << p[5]    << " (probe nonBend/\"Drift\"
 //       (eMD-e0)/p0=(eMB-e0)/p0+V(r)/p0                  // rearrange
 //        p[5]Drift =  p[5]Bend +V(r)/p0                  // p[5]Bend is output
 
-double q       = UAL::elemCharge;                         // units
-double GeVperJ = 1./q/1.e9;                               // units
-double  r      = R0+p[0];
-double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
-
-       p[5]    = p[5]-GeVperJ*getPotentialEnergy(q,E0,R0,r)/p0;
+double r       = R0+p[0];                                 // no distinction between rIn and rOut
+       p[5]    = p[5]-GeVperJ*getPotentialEnergy(q0,E0,R0,r)/p0;
 
 std::cout << "Leave with p[5]    Bend " << p[5]    << " (probe    Bend         delta (Electrostatic_I Eqn. 1))\n";
+
+// contrast with leaveBendCorrection
 }
 
 template<class Coordinate, class Coordinates>
@@ -144,23 +106,24 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExac
   double splitTheta){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 #include "getDesignBeam.h"
-#include "printDesignBeam.h"
-
+double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
-double b0        = sqrt(1-1/g0/g0);                       // derived beam beta
+double b0        = sqrt(1-1/g0/g0);                       // derived beam beta (same as velocity)
+#include "printDesignBeam.h"
 
 double rInput    = p[0]+R0;
 double xiInput   = p[0]/rInput;                           // Input vs Inside
 double xip_Input = R0*p[1]/rInput/rInput;
 
-double eInput    = e0+p0*p[5];
-double gInput    = eInput/m0;
+double mechEin   = e0+p0*p[5];                            // mechanical energy!
+double cnsrvdEgy = mechEin+GeVperJ*getPotentialEnergy(q0,E0,R0,rInput)/p0;
+double gInput    = mechEin/m0;                            // gamma input
 double vInput    = sqrt(1-1/gInput/gInput);
 double pInput    = gInput*m0*vInput;
 double LyInput   = rInput*pInput;                         // quite a bit like L0
 
-double er        = eInput/e0;                             // energy ratio
+double er        = mechEin/e0;                            // energy ratio
 double Lr        = L0*L0/LyInput/LyInput;                 // L^2 ratio
 double Qs        = 1+Lr*(er-b0*b0);                       // Q squared Electrostatic_I Eqn (23)
 double Q         = sqrt(Qs);
@@ -187,23 +150,29 @@ double xPOutput  = R0*(cP+sP)/den/den;
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
 double v0MKS                      = b0*UAL::clight;
 double approximateTimeOfFlightMKS = R0*th/v0MKS;
-double e                          = e0+p[5];
-double g                          = e/m0;
-double approximate_vyMKS          = p[3]*p0*UAL::clight/g/m0;
+double approximate_vyMKS          = p[3]*p0*UAL::clight/gInput/m0;
 double approximate_yOut           = p[2]+approximate_vyMKS*approximateTimeOfFlightMKS;
 
-       p[2]      = approximate_yOut;                      // kludge
-
-//     p[3]      = p[3];                                  // unchanged?
-//     p[4]      = p[4];                                  // unchanged?
-//     p[5]      = p[5];                                  // unchanged?
+       p[2]      = approximate_yOut;                      // kludge (should calc exact velocity)
+//     p[3]      = p[3];                                  // unchanged (force in y = 0)
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " v0MKS                      " << v0MKS                      << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximateTimeOfFlightMKS " << approximateTimeOfFlightMKS << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " e                          " << e                          << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " g                          " << g                          << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximate_vyMKS          " << approximate_vyMKS          << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximate_yOut           " << approximate_yOut           << "\n";
+
+double rOutput   = p[0]+R0;
+double mechEout  = cnsrvdEgy-GeVperJ*getPotentialEnergy(q0,E0,R0,rOutput)/p0;
+double gOutput   = mechEout/m0;                           // gamma output
+
+double LInput    = LyInput;                               // approximate 1 (exact L)
+double rA        = (rInput+rOutput)/2.;                   // r average
+double gA        = (gInput+gOutput)/2.;                   // gamma average
+double tof0      = m0*R0*R0*g0*th/L0;                     // Eqn. (51), page 18, Part I
+double tofA      = m0*rA*rA*gA*th/LInput;                 // approximate 2 (internal splitting)
+
+       p[4]      = tofA-tof0;
+       p[5]      = p[5]+mechEout-mechEin;                 // p[5]+(delta mechanical energy)
 }
 
 template<class Coordinate, class Coordinates>
@@ -217,10 +186,10 @@ template<class Coordinate, class Coordinates>
 void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection()\n";
 #include "getDesignBeam.h"
-#include "printDesignBeam.h"
-
 double g0      = e0/m0;                                   // derived beam gamma
 double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
+#include "printDesignBeam.h"
+
 double e       = e0+p0*p[5];
 double gO      = e/m0;                                    // Outside
 
@@ -230,6 +199,8 @@ double gO      = e/m0;                                    // Outside
 //     p[3]    = p[3];                                    // unchanged?
 //     p[4]    = p[4];                                    // unchanged?
        p[5]    = (gO-g0)*m0/p0;                           //
+
+// contrast with enterBendCorrection
 }
 
 template<class Coordinate, class Coordinates>
