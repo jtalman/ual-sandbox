@@ -105,10 +105,6 @@ void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExac
   double splitTheta){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 #include "getDesignBeam.h"
-double GeVperJ   = 1./q0/1.e9;                            // units
-double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
-double g0        = e0/m0;                                 // derived beam gamma
-double b0        = sqrt(1-1/g0/g0);                       // derived beam beta (same as velocity)
 #include "printDesignBeam.h"
 
 double rInput    = p[0]+R0;
