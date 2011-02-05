@@ -8,5 +8,5 @@ OBJS +=	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/ElemSlice.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/MltTracker.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/TrackerFactory.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/RFCavityTracker.o \
-	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/LostCollector.o
+	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/LossCollector.o
 
