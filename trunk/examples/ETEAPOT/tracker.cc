@@ -138,10 +138,11 @@ int main(int argc,char * argv[]){
  spin.setSY(0.0);
  spin.setSZ(1.0);
 
- bunch[0].getPosition().set(1.e-4,0.    ,0.   ,0.    ,0.,0.);
- bunch[1].getPosition().set(0.   ,0.5e-5,0.   ,0.    ,0.,0.);
- bunch[2].getPosition().set(0.   ,0.    ,1.e-4,0.    ,0.,0.);
- bunch[3].getPosition().set(0.   ,0.    ,0.   ,0.5e-6,0.,0.);
+//bunch[0].getPosition().set(1.e-4,0.    ,0.   ,0.    ,0.,0.);
+  bunch[0].getPosition().set(1.e-4,0.    ,1.e-4,0.    ,0.,0.);
+  bunch[1].getPosition().set(0.   ,0.5e-5,0.   ,0.    ,0.,0.);
+  bunch[2].getPosition().set(0.   ,0.    ,1.e-4,0.    ,0.,0.);
+  bunch[3].getPosition().set(0.   ,0.    ,0.   ,0.5e-6,0.,0.);
 
  // ************************************************************************
  std::cout << "\nTracking. " << std::endl;
@@ -149,12 +150,12 @@ int main(int argc,char * argv[]){
 
  double t; // time variable
 
- int turns = 1024;
+ int turns = 16;
 
  positionPrinter pP;
  pP.open(orbitFile.c_str());
  xmgracePrint xP;
- xP.open("typeIII");
+ xP.open("bunchSub0");
 
  ba.setElapsedTime(0.0);
 
@@ -163,7 +164,7 @@ int main(int argc,char * argv[]){
   for(int ip=0; ip < bunch.size(); ip++){
    pP.write(iturn, ip, bunch);
   }
-  xP.write(iturn, 2, bunch);
+  xP.write(iturn, 0, bunch);
  }
 
  pP.close();
