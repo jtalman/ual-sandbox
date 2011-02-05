@@ -1,10 +1,9 @@
 // Library       : ETEAPOT
-// File          : ETEAPOT/Integrator/LostCollector.hh
-// Copyright     : see Copyright file
-// Author        : Raymond Fliller III 
+// File          : ETEAPOT/Integrator/LossCollector.hh
 
-#ifndef UAL_ETEAPOT_LOSTCOLLECTOR_HH
-#define UAL_ETEAPOT_LOSTCOLLECTOR_HH
+
+#ifndef ETEAPOT_LOSS_COLLECTOR_HH
+#define ETEAPOT_LOSS_COLLECTOR_HH
 
 #include <string>
 #include "UAL/Common/Def.hh"
@@ -13,7 +12,7 @@
 
 namespace ETEAPOT {
 
-  class LostCollector{ 
+  class LossCollector{
   private:
     
     void DeleteArrays();
@@ -31,13 +30,13 @@ namespace ETEAPOT {
     int turn;   //internal turn counter.
     std::string *name; //names
 
-    static LostCollector* s_theInstance;   
+    static LossCollector* s_theInstance;
 
   public: 
-    LostCollector();
-    ~LostCollector();
+    LossCollector();
+    ~LossCollector();
 
-    static LostCollector& GetInstance();
+    static LossCollector& GetInstance();
 
     void Clear();
 

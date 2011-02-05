@@ -1,21 +1,20 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/LostCollector.hh
-// Copyright     : see Copyright file
-// Author        : Raymond Fliller III 
+
 
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-#include "LostCollector.hh"
+#include "LossCollector.hh"
 
 #define  NO_PARTICLE -1 
 // this flag says that there is no particle at p_index[?]
 
 using namespace std;
 
-ETEAPOT::LostCollector* ETEAPOT::LostCollector::s_theInstance=0;
+ETEAPOT::LossCollector* ETEAPOT::LossCollector::s_theInstance=0;
 
-ETEAPOT::LostCollector::LostCollector()
+ETEAPOT::LossCollector::LossCollector()
 {
   Nparticles=0;
   p_index=NULL;
@@ -27,13 +26,13 @@ ETEAPOT::LostCollector::LostCollector()
   flag=0;
 }
 
-ETEAPOT::LostCollector::~LostCollector()
+ETEAPOT::LossCollector::~LossCollector()
 { 
   DeleteArrays();
 }
 
 
-ETEAPOT::LostCollector& ETEAPOT::LostCollector::GetInstance()
+ETEAPOT::LossCollector& ETEAPOT::LossCollector::GetInstance()
 {
   if(s_theInstance == 0){
     s_theInstance = new ETEAPOT::LostCollector();
@@ -41,7 +40,7 @@ ETEAPOT::LostCollector& ETEAPOT::LostCollector::GetInstance()
   return *s_theInstance;
 }
 
-void ETEAPOT::LostCollector::DeleteArrays()
+void ETEAPOT::LossCollector::DeleteArrays()
 {
 
   if (Nparticles){
@@ -56,7 +55,7 @@ void ETEAPOT::LostCollector::DeleteArrays()
   sentry=0;
 }
 
-void ETEAPOT::LostCollector::Clear()
+void ETEAPOT::LossCollector::Clear()
 {
   int i;
 
@@ -73,7 +72,7 @@ void ETEAPOT::LostCollector::Clear()
 
 
 
-void ETEAPOT::LostCollector::RegisterBunch(const PAC::Bunch &b)
+void ETEAPOT::LossCollector::RegisterBunch(const PAC::Bunch &b)
 {
   if(b.size()!= Nparticles){
     DeleteArrays();
@@ -90,7 +89,7 @@ void ETEAPOT::LostCollector::RegisterBunch(const PAC::Bunch &b)
 
 }
 
-void ETEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind, float s, std::string n)
+void ETEAPOT::LossCollector::RegisterLoss(int i, PAC::Position &pos, int eind, float s, std::string n)
   //void ETEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind)
 {
   int j;
@@ -115,7 +114,7 @@ void ETEAPOT::LostCollector::RegisterLoss(int i, PAC::Position &pos, int eind, f
       
 
 
-void ETEAPOT::LostCollector::Write(const char* filename)
+void ETEAPOT::LossCollector::Write(const char* filename)
 {
   ofstream file(filename);
   int i=0;
