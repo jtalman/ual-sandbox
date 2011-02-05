@@ -1,11 +1,9 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/MltTracker.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_MLT_TRACKER_HH
-#define UAL_ETEAPOT_MLT_TRACKER_HH
+#ifndef ETEAPOT_MLT_TRACKER_HH
+#define ETEAPOT_MLT_TRACKER_HH
 
 #include "SMF/PacElemMultipole.h"
 #include "SMF/PacLattice.h"

@@ -1,8 +1,7 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/BasicPropagator.cc
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
+
 
 #include "ETEAPOT/Integrator/BasicPropagator.hh"
 

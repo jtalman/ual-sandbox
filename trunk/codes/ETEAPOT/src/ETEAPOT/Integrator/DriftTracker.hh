@@ -1,11 +1,9 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/DriftTracker.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_DRIFT_TRACKER_HH
-#define UAL_ETEAPOT_DRIFT_TRACKER_HH
+#ifndef ETEAPOT_DRIFT_TRACKER_HH
+#define ETEAPOT_DRIFT_TRACKER_HH
 
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 #include "ETEAPOT/Integrator/DriftAlgorithm.hh"

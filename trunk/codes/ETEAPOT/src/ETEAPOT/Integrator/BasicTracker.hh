@@ -1,11 +1,10 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/BasicTracker.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_BASIC_TRACKER_HH
-#define UAL_ETEAPOT_BASIC_TRACKER_HH
+
+#ifndef ETEAPOT_BASIC_TRACKER_HH
+#define ETEAPOT_BASIC_TRACKER_HH
 
 #include <string>
 

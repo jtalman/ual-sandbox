@@ -1,11 +1,10 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/DriftAlgorithm.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_DRIFT_ALGORITHM_HH
-#define UAL_ETEAPOT_DRIFT_ALGORITHM_HH
+
+#ifndef ETEAPOT_DRIFT_ALGORITHM_HH
+#define ETEAPOT_DRIFT_ALGORITHM_HH
 
 #include "ETEAPOT/Integrator/CommonAlgorithm.hh"
 
