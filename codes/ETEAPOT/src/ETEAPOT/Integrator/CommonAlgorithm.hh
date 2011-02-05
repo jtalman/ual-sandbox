@@ -1,11 +1,10 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/CommonAlgorithm.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_COMMON_ALGORITHM_HH
-#define UAL_ETEAPOT_COMMON_ALGORITHM_HH
+
+#ifndef ETEAPOT_COMMON_ALGORITHM_HH
+#define ETEAPOT_COMMON_ALGORITHM_HH
 
 namespace ETEAPOT {
  

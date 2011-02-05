@@ -1,11 +1,10 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/BasicPropagator.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_BASIC_PROPAGATOR_HH
-#define UAL_ETEAPOT_BASIC_PROPAGATOR_HH
+
+#ifndef ETEAPOT_BASIC_PROPAGATOR_HH
+#define ETEAPOT_BASIC_PROPAGATOR_HH
 
 #include "UAL/APF/PropagatorComponent.hh"
 #include "SMF/PacLattElement.h"

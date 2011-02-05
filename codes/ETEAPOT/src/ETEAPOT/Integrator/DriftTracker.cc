@@ -1,8 +1,7 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/DriftTracker.cc
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
+
 
 #include <math.h>
 #include "PAC/Beam/Bunch.hh"
@@ -45,8 +44,8 @@ void ETEAPOT::DriftTracker::setLatticeElements(const UAL::AcceleratorNode& seque
 
 void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)
 {
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " method void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)\n";
-//std::cout << "Hello ETEAPOT::DriftTracker " << std::endl;
+  // std::cout << "File " << __FILE__ << " line " << __LINE__
+  // << " method void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)\n";
 
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
@@ -65,12 +64,6 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " method void ETEAPO
     if(bunch[ip].isLost()) continue;
     PAC::Position& p = bunch[ip].getPosition();
     tmp = p;
-    std::cout << "m_i0 " << m_i0 << "\n";
-    std::cout << "m_i1 " << m_i1 << "\n";
-    std::cout << "m_l " << m_l << "\n";
-    std::cout << "m_n " << m_n << "\n";
-    std::cout << "m_s " << m_s << "\n";
-    std::cout << "m_name " << m_name << "\n";
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
     s_algorithm.passDrift(m_l, p, tmp, v0byc);
