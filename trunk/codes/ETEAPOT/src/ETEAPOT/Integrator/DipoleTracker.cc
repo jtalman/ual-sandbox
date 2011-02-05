@@ -15,33 +15,9 @@
 
 ETEAPOT::newDipoleAlgorithm<double, PAC::Position> ETEAPOT::DipoleTracker::s_algorithm;
 
- double ETEAPOT::DipoleTracker::xS[1000];
- double ETEAPOT::DipoleTracker::yS[1000];
- double ETEAPOT::DipoleTracker::zS[1000];
- char   ETEAPOT::DipoleTracker::nS[1000][100];
- int    ETEAPOT::DipoleTracker::maxSurvey;
-
 ETEAPOT::DipoleTracker::DipoleTracker()
   : ETEAPOT::BasicTracker()
 {
- std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method ETEAPOT::DipoleTracker::DipoleTracker() : ETEAPOT::BasicTracker()\n";
- std::ifstream inFile; 
- char index[14];  // One extra for null char.
- char name[14];  // One extra for null char.
-
- int i=0;
-
- inFile.open("Survey", std::ios::in);
-
- if (!inFile) {
-  std::cout << "Can't open input file " << "Survey" << std::endl;
-  exit(1);
- }
-
- while (inFile >> index >> ETEAPOT::DipoleTracker::xS[i] >> ETEAPOT::DipoleTracker::yS[i] >> ETEAPOT::DipoleTracker::zS[i] >> ETEAPOT::DipoleTracker::nS[i]) {
-  ETEAPOT::DipoleTracker::maxSurvey=i;
-  i++;
- }
 }
 
 ETEAPOT::DipoleTracker::DipoleTracker(const ETEAPOT::DipoleTracker& dt)
@@ -85,7 +61,6 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method void 
   
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   const PAC::BeamAttributes cba = ba;
-#include "printPropagateInfo.h"
   double v0byc = p0/e0;
 
   PAC::Position tmp;
