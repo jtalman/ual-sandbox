@@ -1,48 +1,47 @@
 // Library       : ETEAPOT
-// File          : ETEAPOT/Integrator/ElectricAlgorithm.icc
+// File          : ETEAPOT/Integrator/MltAlgorithm.icc
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#include "ETEAPOT/Integrator/ElectricAlgorithm.hh"
+
+#include "ETEAPOT/Integrator/MltAlgorithm.hh"
 
 template<class Coordinate, class Coordinates> 
-ETEAPOT::ElectricAlgorithm<Coordinate, Coordinates>::ElectricAlgorithm()
+ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::MltAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-ETEAPOT::ElectricAlgorithm<Coordinate, Coordinates>::~ElectricAlgorithm()
+ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::~MltAlgorithm()
 {
 }
 
 template<class Coordinate, class Coordinates>
-void ETEAPOT::ElectricAlgorithm<Coordinate, Coordinates>::passEntry(
-	const ETEAPOT::ElectricData& edata,
+void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::passEntry(
+	const ETEAPOT::MltData& data,
 	Coordinates& p)
 {
-  if(edata.m_entryMlt) applyMltKick(edata.m_entryMlt, 0, 1, p);
+  if(data.m_entryMlt) applyMltKick(data.m_entryMlt, 0, 1, p);
 }
 
 template<class Coordinate, class Coordinates>
-void ETEAPOT::ElectricAlgorithm<Coordinate, Coordinates>::passExit(
-	const ETEAPOT::ElectricData& edata,
+void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::passExit(
+	const ETEAPOT::MltData& data,
 	Coordinates& p)
 {
-  if(edata.m_exitMlt) applyMltKick(edata.m_exitMlt, 0, 1, p);
+  if(data.m_exitMlt) applyMltKick(data.m_exitMlt, 0, 1, p);
 }
 
 template<class Coordinate, class Coordinates>
-void ETEAPOT::ElectricAlgorithm<Coordinate, Coordinates>::applyMltKick(
-	const ETEAPOT::ElectricData& edata,
+void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
+	const ETEAPOT::MltData& data,
 	double rkicks, 
 	Coordinates& p)
 {
-  applyMltKick(edata.m_mlt, edata.m_offset, rkicks, p);
+  applyMltKick(data.m_mlt, data.m_offset, rkicks, p);
 }
 
 template<class Coordinate, class Coordinates>
-void ETEAPOT::ElectricAlgorithm<Coordinate, Coordinates>::applyMltKick(
+void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
 	PacElemMultipole* mult, PacElemOffset* offset,
 	double rkicks, 
 	Coordinates& p)

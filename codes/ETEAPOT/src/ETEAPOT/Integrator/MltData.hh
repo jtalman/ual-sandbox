@@ -1,11 +1,10 @@
 // Library       : ETEAPOT
-// File          : ETEAPOT/Integrator/ElectricData.hh
+// File          : ETEAPOT/Integrator/MltData.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_ELECTRIC_DATA_HH
-#define UAL_ETEAPOT_ELECTRIC_DATA_HH
+
+#ifndef ETEAPOT_MLT_DATA_HH
+#define ETEAPOT_MLT_DATA_HH
 
 #include "SMF/PacLattElement.h"
 #include "SMF/PacElemBend.h"
@@ -16,23 +15,23 @@
 
 namespace ETEAPOT {
 
-  /** Collection of attributes used by the ETEAPOT electric propagator */
+  /** Collection of attributes used by the ETEAPOT mlt propagator */
 
-  class ElectricData {
+  class MltData {
 
   public:
 
     /** Constructor */
-    ElectricData();
+    MltData();
 
     /** Copy constructor */
-    ElectricData(const ElectricData& edata);
+    MltData(const MltData& edata);
 
     /** Destructor */
-    ~ElectricData();
+    ~MltData();
 
     /** Copy operator */
-    const ElectricData& operator=(const ElectricData& edata);
+    const MltData& operator=(const MltData& edata);
 
     /** Sets the lattice element */
     void setLatticeElement(const PacLattElement& e);

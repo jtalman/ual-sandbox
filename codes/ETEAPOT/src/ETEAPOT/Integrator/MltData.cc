@@ -1,36 +1,35 @@
 // Library       : ETEAPOT
-// File          : ETEAPOT/Integrator/ElectricData.cc
+// File          : ETEAPOT/Integrator/MltData.cc
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
+
 
 #include <math.h>
 
 #include "SMF/PacElemAttributes.h"
-#include "ETEAPOT/Integrator/ElectricData.hh"
+#include "ETEAPOT/Integrator/MltData.hh"
 
-ETEAPOT::ElectricData::ElectricData()
+ETEAPOT::MltData::MltData()
 {
   initialize();
 }
 
-ETEAPOT::ElectricData::ElectricData(const ElectricData& edata)
+ETEAPOT::MltData::MltData(const MltData& edata)
 {
   copy(edata);
 }
 
 
-ETEAPOT::ElectricData::~ElectricData()
+ETEAPOT::MltData::~MltData()
 {
 }
 
-const ETEAPOT::ElectricData& ETEAPOT::ElectricData::operator=(const ElectricData& edata)
+const ETEAPOT::MltData& ETEAPOT::MltData::operator=(const MltData& edata)
 {
   copy(edata);
   return *this;
 }
 
-void ETEAPOT::ElectricData::setLatticeElement(const PacLattElement& e)
+void ETEAPOT::MltData::setLatticeElement(const PacLattElement& e)
 {
 
   // Entry multipole
@@ -72,7 +71,7 @@ void ETEAPOT::ElectricData::setLatticeElement(const PacLattElement& e)
   } 
 }
 
-void ETEAPOT::ElectricData::initialize()
+void ETEAPOT::MltData::initialize()
 {
 
   m_entryMlt = 0;
@@ -84,7 +83,7 @@ void ETEAPOT::ElectricData::initialize()
   // m_aperture = 0;
 }
 
-void ETEAPOT::ElectricData::copy(const ETEAPOT::ElectricData& edata)
+void ETEAPOT::MltData::copy(const ETEAPOT::MltData& edata)
 {
 
   m_entryMlt = edata.m_entryMlt;
