@@ -59,7 +59,7 @@ namespace ETEAPOT {
   private:
 
     void initialize();
-    void copy(const ElectricData& edata);
+    void copy(const MltData& edata);
  
   };
 

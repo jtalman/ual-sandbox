@@ -4,7 +4,7 @@
 
 
 #include "ETEAPOT/Integrator/BasicTracker.hh"
-#include "ETEAPOT/Integrator/LostCollector.hh"
+#include "ETEAPOT/Integrator/LossCollector.hh"
 #include "SMF/PacLattice.h"
 #include <iostream>
 
@@ -102,7 +102,7 @@ void ETEAPOT::BasicTracker::checkAperture(PAC::Bunch& bunch)
     if(bunch[i].isLost()) continue;
     if(!isOK(bunch[i].getPosition())) { 
       bunch[i].setFlag(1); 
-      LostCollector::GetInstance().RegisterLoss(i,bunch[i].getPosition(),m_i0,m_s,m_name);
+      LossCollector::GetInstance().RegisterLoss(i,bunch[i].getPosition(),m_i0,m_s,m_name);
     }
   }
 }

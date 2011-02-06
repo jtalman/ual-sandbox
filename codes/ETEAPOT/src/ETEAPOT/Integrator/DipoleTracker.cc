@@ -1,8 +1,7 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/DipoleTracker.cc
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
+
 
 #include <math.h>
 #include "PAC/Beam/Bunch.hh"
@@ -13,7 +12,7 @@
 //#include "Main/Teapot.h"
 #include <cstdlib>
 
-ETEAPOT::newDipoleAlgorithm<double, PAC::Position> ETEAPOT::DipoleTracker::s_algorithm;
+ETEAPOT::DipoleAlgorithm<double, PAC::Position> ETEAPOT::DipoleTracker::s_algorithm;
 
 ETEAPOT::DipoleTracker::DipoleTracker()
   : ETEAPOT::BasicTracker()
