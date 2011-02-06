@@ -1,16 +1,13 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/DipoleTracker.hh
 // Copyright     : see Copyright file
-// Author        : L.Schachinger and R.Talman
-// C++ version   : N.Malitsky 
 
-#ifndef UAL_ETEAPOT_DIPOLE_TRACKER_HH
-#define UAL_ETEAPOT_DIPOLE_TRACKER_HH
+#ifndef ETEAPOT_DIPOLE_TRACKER_HH
+#define ETEAPOT_DIPOLE_TRACKER_HH
 
 #include "ETEAPOT/Integrator/DipoleData.hh"
-#include "ETEAPOT/Integrator/ElectricData.hh"
+#include "ETEAPOT/Integrator/MltData.hh"
 #include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
-#include "ETEAPOT/Integrator/newDipoleAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
 namespace ETEAPOT {
@@ -43,7 +40,7 @@ namespace ETEAPOT {
 
     inline DipoleData& getDipoleData();
 
-    inline ElectricData& getElectricData();
+    inline MltData& getMltData();
 
   protected:
 
@@ -56,10 +53,10 @@ namespace ETEAPOT {
     DipoleData m_data;
 
     /** Electric attributes */
-    ElectricData m_edata;
+    MltData m_edata;
 
     /** Propagator algorithm */
-    static newDipoleAlgorithm<double, PAC::Position> s_algorithm;
+    static DipoleAlgorithm<double, PAC::Position> s_algorithm;
 
   };
 
@@ -68,7 +65,7 @@ namespace ETEAPOT {
       return m_data;
   }
 
-  inline ElectricData& DipoleTracker::getElectricData()
+  inline MltData& DipoleTracker::getMltData()
   {
       return m_edata;
   }
