@@ -70,7 +70,7 @@ namespace ETEAPOT {
 
   inline MltData& MltTracker::getMltData()
   {
-      return m_edata;
+      return m_mdata;
   }
 
 }
