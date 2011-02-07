@@ -41,6 +41,11 @@ namespace ETEAPOT {
     inline DipoleData& getDipoleData();
 
     inline MltData& getMltData();
+    
+  public:
+
+    void setM(double m) { m_data.m_m = m; }
+    double getM() { return m_data.m_m; }
 
   protected:
 
@@ -52,11 +57,12 @@ namespace ETEAPOT {
     /** Dipole attributes */
     DipoleData m_data;
 
-    /** Electric attributes */
-    MltData m_edata;
+    /** Mlt attributes */
+    MltData m_mdata;
 
     /** Propagator algorithm */
     static DipoleAlgorithm<double, PAC::Position> s_algorithm;
+
 
   };
 
