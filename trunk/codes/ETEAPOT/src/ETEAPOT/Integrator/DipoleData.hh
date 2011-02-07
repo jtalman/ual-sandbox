@@ -74,7 +74,11 @@ namespace ETEAPOT {
 
     /**  Frame slices */
 
-    std::vector<ElemSlice> m_slices;   
+    std::vector<ElemSlice> m_slices;
+
+  public :
+
+    double m_m;
 
   private:
 
