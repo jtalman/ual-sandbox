@@ -197,6 +197,8 @@ void ETEAPOT::DipoleData::initialize()
   m_btw00 = 0.0;
   m_btw01 = 0.0;
 
+  m_m = 0.0;
+
 
 }  
 
@@ -222,6 +224,8 @@ void ETEAPOT::DipoleData::copy(const DipoleData& data)
   m_btw01 = data.m_btw01;
 
   m_slices = data.m_slices;
+
+  m_m = data.m_m;
 
 }  
 
