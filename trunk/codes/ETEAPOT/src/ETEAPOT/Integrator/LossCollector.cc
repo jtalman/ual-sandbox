@@ -35,7 +35,7 @@ ETEAPOT::LossCollector::~LossCollector()
 ETEAPOT::LossCollector& ETEAPOT::LossCollector::GetInstance()
 {
   if(s_theInstance == 0){
-    s_theInstance = new ETEAPOT::LostCollector();
+    s_theInstance = new ETEAPOT::LossCollector();
   }
   return *s_theInstance;
 }

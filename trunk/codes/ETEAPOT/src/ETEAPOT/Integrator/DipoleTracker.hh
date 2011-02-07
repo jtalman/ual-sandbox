@@ -73,7 +73,7 @@ namespace ETEAPOT {
 
   inline MltData& DipoleTracker::getMltData()
   {
-      return m_edata;
+      return m_mdata;
   }
 
 }
