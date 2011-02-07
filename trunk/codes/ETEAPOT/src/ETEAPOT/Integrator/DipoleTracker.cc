@@ -71,13 +71,15 @@ void ETEAPOT::DipoleTracker::propagate(UAL::Probe& probe)
     tmp = p;
     s_algorithm.passEntry(m_mdata, p);
 
-    s_algorithm.updateEnergy(r0, m_data.m_m, p, v0byc);
+    s_algorithm.addPotential(r0, m_data.m_m, p, v0byc);
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
 
-    s_algorithm.passBend(m_data, m_mdata, p, tmp, v0byc);
+    s_algorithm.passBend(m_data, m_mdata, p, tmp, ba);
     s_algorithm.passExit(m_mdata, p);
     // testAperture(p);
+
+    s_algorithm.removePotential(r0, m_data.m_m, p, v0byc);
   }
 
   /*
