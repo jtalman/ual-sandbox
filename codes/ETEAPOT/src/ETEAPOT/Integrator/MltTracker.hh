@@ -8,7 +8,7 @@
 #include "SMF/PacElemMultipole.h"
 #include "SMF/PacLattice.h"
 #include "ETEAPOT/Integrator/MltData.hh"
-#include "ETEAPOT/Integrator/ElectricAlgorithm.hh"
+#include "ETEAPOT/Integrator/MltAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
 namespace ETEAPOT {
@@ -56,10 +56,10 @@ namespace ETEAPOT {
     double m_ir;
 
     /** Mlt attributes */
-    MltData m_edata;
+    MltData m_mdata;
 
     /** Propagator algorithm */
-    static ElectricAlgorithm<double, PAC::Position> s_algorithm;
+    static MltAlgorithm<double, PAC::Position> s_algorithm;
 
   private:
 

@@ -9,7 +9,7 @@
 #include "PAC/Beam/Bunch.hh"
 #include "ETEAPOT/Integrator/MltTracker.hh"
 
-ETEAPOT::ElectricAlgorithm<double, PAC::Position> ETEAPOT::MltTracker::s_algorithm;
+ETEAPOT::MltAlgorithm<double, PAC::Position> ETEAPOT::MltTracker::s_algorithm;
 
 ETEAPOT::MltTracker::MltTracker()
   : ETEAPOT::BasicTracker()
@@ -50,7 +50,7 @@ void ETEAPOT::MltTracker::setLatticeElement(const PacLattElement& e)
   // ir
   m_ir = e.getN();
 
-  m_edata.setLatticeElement(e);
+  m_mdata.setLatticeElement(e);
 
 }
 
@@ -72,7 +72,7 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
     PAC::Position& p = bunch[ip].getPosition();
     tmp = p;
 
-    s_algorithm.passEntry(m_edata, p);
+    s_algorithm.passEntry(m_mdata, p);
 
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
@@ -81,10 +81,10 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
 
     if(!m_ir){
       s_algorithm.passDrift(m_l/2., p, tmp, v0byc);
-      s_algorithm.applyMltKick(m_edata, 1., p);
+      s_algorithm.applyMltKick(m_mdata, 1., p);
       s_algorithm.makeVelocity(p, tmp, v0byc);
       s_algorithm.passDrift(m_l/2., p, tmp, v0byc);
-      s_algorithm.passExit(m_edata, p);
+      s_algorithm.passExit(m_mdata, p);
       continue;
     } 
 
@@ -99,14 +99,14 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
       for(int is = 0; is < 4; is++){
 	counter++;
 	s_algorithm.passDrift(m_l*s_steps[is]*rIr, p, tmp, v0byc);
-	s_algorithm.applyMltKick(m_edata, rkicks, p);
+	s_algorithm.applyMltKick(m_mdata, rkicks, p);
 	s_algorithm.makeVelocity(p, tmp, v0byc);	
       }
       counter++;
       s_algorithm.passDrift(m_l*s_steps[4]*rIr, p, tmp, v0byc); 
     }
 
-    s_algorithm.passExit(m_edata, p);
+    s_algorithm.passExit(m_mdata, p);
     // testAperture(p);
   }
 
@@ -138,7 +138,7 @@ void ETEAPOT::MltTracker::copy(const ETEAPOT::MltTracker& mt)
   // m_l   = mt.m_l;
   m_ir  = mt.m_ir;
 
-  m_edata = mt.m_edata;
+  m_mdata = mt.m_mdata;
 }
 
 
