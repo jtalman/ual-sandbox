@@ -6,12 +6,12 @@
 
 #include <iomanip>
 #include "UAL/Common/Def.hh"
-#include "ETEAPOT/Integrator/ElectricAlgorithm.hh"
+#include "ETEAPOT/Integrator/MltAlgorithm.hh"
 
   /** A template of the dipole algorithm used by the conventional tracker and DA integrator */
 
   template<class Coordinate, class Coordinates> class newDipoleAlgorithm 
-    : public ETEAPOT::ElectricAlgorithm<Coordinate, Coordinates> {
+    : public ETEAPOT::MltAlgorithm<Coordinate, Coordinates> {
 
   public:
 
@@ -22,14 +22,14 @@
     ~newDipoleAlgorithm();
 
     /** Propagates a probe coordinates through the bend*/
-    void passBend(const ETEAPOT::DipoleData& ddata, const ETEAPOT::ElectricData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
+    void passBend(const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
 
     /** Propagates a probe coordinates through the bend slice*/
     void passBendSlice(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
 
     /** Applies a thin bend kick*/
     void applyThinBendKick(const ETEAPOT::DipoleData& data, 
-                           const ETEAPOT::ElectricData& mdata, double rkicks,
+                           const ETEAPOT::MltData& mdata, double rkicks,
                            Coordinates& p, double v0byc);
 
     /** Calculates the delta path*/
