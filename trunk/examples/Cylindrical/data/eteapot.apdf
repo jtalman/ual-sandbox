@@ -1,0 +1,10 @@
+<apdf>
+  <propagator id="ETEAPOT" accelerator="ring">
+     <create>
+       <link algorithm="ETEAPOT::DriftTracker" types="Default"/>
+       <link algorithm="ETEAPOT::DipoleTracker" types="Sbend"/>
+       <link algorithm="ETEAPOT::MltTracker" types="Quadrupole|Sextupole"/>
+       <link algorithm="ETEAPOT::RFCavityTracker" types="RfCavity"/>
+     </create>
+  </propagator>
+</apdf>
