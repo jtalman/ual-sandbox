@@ -13,7 +13,7 @@ newDipoleAlgorithm<Coordinate, Coordinates>::~newDipoleAlgorithm()
 template<class Coordinate, class Coordinates>
 void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	const ETEAPOT::DipoleData& data, 
-	const ETEAPOT::ElectricData& edata,
+	const ETEAPOT::MltData& edata,
 	Coordinates& p, 
 	Coordinates& tmp, 
 	double v0byc,
@@ -320,7 +320,7 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::deltaPath(
 template<class Coordinate, class Coordinates>
 void newDipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
   const ETEAPOT::DipoleData& data,
-  const ETEAPOT::ElectricData& edata, double rkicks,
+  const ETEAPOT::MltData& edata, double rkicks,
   Coordinates& p, double v0byc)
 {
   Coordinate x, px, y, py;
