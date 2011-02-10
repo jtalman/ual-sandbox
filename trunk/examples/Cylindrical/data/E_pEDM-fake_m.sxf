@@ -1,0 +1,923 @@
+// SXF version 2.0
+ring sequence
+ {
+   mbegin
+     marker {
+         tag = mbegin
+         at = 0
+         };
+   marcin
+     marker {
+         tag = marcin
+         at = 1
+         };
+   qch
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 1.075
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   sc
+     sextupole {
+         tag = sc
+         l = 0.15
+         at = 1.225
+         body = {
+                 kl = [ 0 0 0.00176]
+                }
+         };
+   qch.2
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 1.375
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   bq
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 5.37699081699
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 9.30398163403
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.2
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 13.2309724511
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 17.2329632681
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 17.3829632681
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.2
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 17.5329632681
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.3
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 21.534954085
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.2
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 25.4619449021
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.4
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 29.3889357191
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qah
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 33.3909265361
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   sa
+     sextupole {
+         tag = sa
+         l = 0.15
+         at = 33.5409265361
+         body = {
+                 kl = [ 0 0 -0.0093]
+                }
+         };
+   qah.2
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 33.6909265361
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   bq.5
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 37.6929173531
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.3
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 41.6199081701
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.6
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 45.5468989872
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh.3
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 49.5488898042
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb.2
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 49.6988898042
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.4
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 49.8488898042
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.7
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 53.8508806211
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.4
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 57.7778714382
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.8
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 61.7048622552
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   rf
+     rfcavity {
+         tag = rf
+         l = 1e-10
+         at = 65.6318530723
+         body = {
+                 volt =  1000 harmon =  4
+                }
+         };
+   bq.9
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 69.5588438893
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.5
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 73.4858347063
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.10
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 77.4128255234
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh.5
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 81.4148163404
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb.3
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 81.5648163404
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.6
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 81.7148163404
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.11
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 85.7168071573
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.6
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 89.6437979744
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.12
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 93.5707887914
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qah.3
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 97.5727796084
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   sa.2
+     sextupole {
+         tag = sa
+         l = 0.15
+         at = 97.7227796084
+         body = {
+                 kl = [ 0 0 -0.0093]
+                }
+         };
+   qah.4
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 97.8727796084
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   bq.13
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 101.874770425
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.7
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 105.801761242
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.14
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 109.728752059
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh.7
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 113.730742876
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb.4
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 113.880742876
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.8
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 114.030742876
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.15
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 118.032733693
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.8
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 121.95972451
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.16
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 125.886715328
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qch.3
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 129.888706145
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   sc.2
+     sextupole {
+         tag = sc
+         l = 0.15
+         at = 130.038706145
+         body = {
+                 kl = [ 0 0 0.00176]
+                }
+         };
+   qch.4
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 130.188706145
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   marcout
+     marker {
+         tag = marcout
+         at = 130.263706145
+         };
+   mhalf
+     marker {
+         tag = mhalf
+         at = 131.263706145
+         };
+   marcin.2
+     marker {
+         tag = marcin
+         at = 132.263706145
+         };
+   qch.5
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 132.338706145
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   sc.3
+     sextupole {
+         tag = sc
+         l = 0.15
+         at = 132.488706145
+         body = {
+                 kl = [ 0 0 0.00176]
+                }
+         };
+   qch.6
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 132.638706145
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   bq.17
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 136.640696961
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.9
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 140.567687779
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.18
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 144.494678596
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh.9
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 148.496669413
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb.5
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 148.646669413
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.10
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 148.796669413
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.19
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 152.79866023
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.10
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 156.725651047
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.20
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 160.652641864
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qah.5
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 164.654632681
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   sa.3
+     sextupole {
+         tag = sa
+         l = 0.15
+         at = 164.804632681
+         body = {
+                 kl = [ 0 0 -0.0093]
+                }
+         };
+   qah.6
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 164.954632681
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   bq.21
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 168.956623498
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.11
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 172.883614315
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.22
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 176.810605132
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh.11
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 180.812595949
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb.6
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 180.962595949
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.12
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 181.112595949
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.23
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 185.114586766
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.12
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 189.041577583
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.24
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 192.9685684
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   rf.2
+     rfcavity {
+         tag = rf
+         l = 1e-10
+         at = 196.895559217
+         body = {
+                 volt =  1000 harmon =  4
+                }
+         };
+   bq.25
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 200.822550034
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.13
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 204.749540851
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.26
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 208.676531668
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh.13
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 212.678522485
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb.7
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 212.828522485
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.14
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 212.978522485
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.27
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 216.980513302
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.14
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 220.907504119
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.28
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 224.834494936
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qah.7
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 228.836485753
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   sa.4
+     sextupole {
+         tag = sa
+         l = 0.15
+         at = 228.986485753
+         body = {
+                 kl = [ 0 0 -0.0093]
+                }
+         };
+   qah.8
+     quadrupole {
+         tag = qah
+         l = 0.15
+         at = 229.136485753
+         body = {
+                 kl = [ 0 1e-10]
+                }
+         };
+   bq.29
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 233.13847657
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.15
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 237.065467387
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.30
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 240.992458204
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qbh.15
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 244.994449021
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   sb.8
+     sextupole {
+         tag = sb
+         l = 0.15
+         at = 245.144449021
+         body = {
+                 kl = [ 0 0 0.00506]
+                }
+         };
+   qbh.16
+     quadrupole {
+         tag = qbh
+         l = 0.15
+         at = 245.294449021
+         body = {
+                 kl = [ 0 -0.01183]
+                }
+         };
+   bq.31
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 249.296439838
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qm.16
+     quadrupole {
+         tag = qm
+         l = 1.001e-10
+         at = 253.223430655
+         body = {
+                 kl = [ 0 0.0117927534234]
+                }
+         };
+   bq.32
+     sbend {
+         tag = bq
+         arc = 7.85398163398
+         at = 257.150421472
+         body = {
+                 kl = [ 0.196349540849]
+                }
+         };
+   qch.7
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 261.152412289
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   sc.4
+     sextupole {
+         tag = sc
+         l = 0.15
+         at = 261.302412289
+         body = {
+                 kl = [ 0 0 0.00176]
+                }
+         };
+   qch.8
+     quadrupole {
+         tag = qch
+         l = 0.15
+         at = 261.452412289
+         body = {
+                 kl = [ 0 0.001]
+                }
+         };
+   marcout.2
+     marker {
+         tag = marcout
+         at = 261.527412289
+         };
+   mend
+     marker {
+         tag = mend
+         at = 262.527412289
+         };
+ endsequence at = 262.527412289
+}
+// SXF end
