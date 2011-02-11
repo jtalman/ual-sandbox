@@ -37,7 +37,7 @@
 
     void enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba);
     void traverseSplitBendExactly(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba,double R0, double splitTheta);
-    void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba);
+    void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double R0);
     void leaveBendCorrection(Coordinates& p,const PAC::BeamAttributes cba);
 
     double getPotentialEnergy(double q0,double E0,double R0,double r){
