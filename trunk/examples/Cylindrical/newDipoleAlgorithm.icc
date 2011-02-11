@@ -25,13 +25,13 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 
    enterBendCorrection(p,cba);           // no analogue?
 
-   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,data.m_angle/2);
+   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
 
    handleSplitBendBoundary(p,cba);       //  should be markSplitBendBoundary?
 
    makeVelocity(p, tmp, v0byc);	         // common
 
-   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_angle/2);
+   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
 
    leaveBendCorrection(p,cba);           // no analogue?
 
@@ -64,39 +64,13 @@ exit(1);
 }
 
 template<class Coordinate, class Coordinates>
-void newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::enterBendCorrection()\n";
-#include "getDesignBeam.h"
-double GeVperJ = 1./q0/1.e9;                              // units
-double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
-#include "printDesignBeam.h"
-
-std::cout << "Enter with p[5] nonBend " << p[5]    << " (probe nonBend/\"Drift\" delta (Electrostatic_I Eqn. 1))\n";
-
-//                    eMD=e0+p0*p[5]                      // Mechanical energy - "Drift" (non Bend)
-//                    eTD=eMD                             // Total      energy -  Drift
-//                    eTB=eTD                             // Total energy conserved
-//                       =eMB+V(r)                        // Total      energy -  Bend
-//                    eMD=eMB+V(r)                        // substitute
-//                                                                           
-//       (eMD-e0)/p0=(eMB-e0)/p0+V(r)/p0                  // rearrange
-//        p[5]Drift =  p[5]Bend +V(r)/p0                  // p[5]Bend is output
-
-double r       = R0+p[0];                                 // no distinction between rIn and rOut
-       p[5]    = p[5]-GeVperJ*getPotentialEnergy(q0,E0,R0,r)/p0;
-
-std::cout << "Leave with p[5]    Bend " << p[5]    << " (probe    Bend         delta (Electrostatic_I Eqn. 1))\n";
-
-// contrast with leaveBendCorrection
-}
-
-template<class Coordinate, class Coordinates>
 void newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
   const ETEAPOT::ElemSlice& slice,  
   Coordinates& p, 
   Coordinates& tmp,
   double v0byc,
   const PAC::BeamAttributes cba,
+  double R0,
   double splitTheta){
 std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 #include "getDesignBeam.h"
@@ -174,27 +148,6 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordi
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
 #include "getDesignBeam.h"
 #include "printDesignBeam.h"
-}
-
-template<class Coordinate, class Coordinates>
-void newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection(Coordinates& p,const PAC::BeamAttributes cba){
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::leaveBendCorrection()\n";
-#include "getDesignBeam.h"
-double g0      = e0/m0;                                   // derived beam gamma
-double p0      = sqrt(e0*e0-m0*m0);                       // derived beam momentum
-#include "printDesignBeam.h"
-
-double e       = e0+p0*p[5];
-double gO      = e/m0;                                    // Outside
-
-//     p[0]    = p[0];                                    // unchanged?
-//     p[1]    = p[1];                                    // unchanged?
-//     p[2]    = p[2];                                    // unchanged?
-//     p[3]    = p[3];                                    // unchanged?
-//     p[4]    = p[4];                                    // unchanged?
-       p[5]    = (gO-g0)*m0/p0;                           //
-
-// contrast with enterBendCorrection
 }
 
 template<class Coordinate, class Coordinates>
