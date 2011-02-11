@@ -15,4 +15,5 @@
   std::cout << "G0=cba.getG()           " << G0 << "\n";
   std::cout << "L0=cba.getL()           " << L0 << "\n";
   std::cout << "E0=cba.getE()           " << E0 << "\n";
-  std::cout << "R0=cba.getR()           " << R0 << "\n";
+//std::cout << "R0=cba.getR()           " << R0 << "\n";
+  std::cout << "R0                      " << R0 << "\n";
