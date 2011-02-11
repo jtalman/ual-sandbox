@@ -144,7 +144,7 @@ double tofA      = m0*rA*rA*gA*th/LInput;                 // approximate 2 (inte
 }
 
 template<class Coordinate, class Coordinates>
-void newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba){
+void newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double R0){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
 #include "getDesignBeam.h"
 #include "printDesignBeam.h"
