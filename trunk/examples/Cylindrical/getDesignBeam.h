@@ -7,4 +7,4 @@ double M0=cba.getMacrosize();
 double G0=cba.getG();
 double L0=cba.getL();
 double E0=cba.getE();
-double R0=cba.getR();
+//double R0=cba.getR();
