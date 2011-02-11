@@ -23,17 +23,17 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 
  if(!data.m_ir){
 
-   enterBendCorrection(p,cba);           // no analogue?
+// enterBendCorrection(p,cba);           // no analogue?
 
    traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
 
-   handleSplitBendBoundary(p,cba);       //  should be markSplitBendBoundary?
+   handleSplitBendBoundary(p,cba, cba,data.m_l/data.m_angle);       //  should be markSplitBendBoundary?
 
    makeVelocity(p, tmp, v0byc);	         // common
 
    traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
 
-   leaveBendCorrection(p,cba);           // no analogue?
+// leaveBendCorrection(p,cba);           // no analogue?
 
    return;
  } 
