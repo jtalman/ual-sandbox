@@ -8,5 +8,5 @@ std::cout << "#################################   Set Beam Attributes\n";
 //shell.setBeamAttributes(UAL::Args() << UAL::Arg("gyromagnetic",         G0));
   shell.setBeamAttributes(UAL::Args() << UAL::Arg("designAngularMomentum",L0));
   shell.setBeamAttributes(UAL::Args() << UAL::Arg("designElectricField",  E0));
-  shell.setBeamAttributes(UAL::Args() << UAL::Arg("designRadius",         R0));
+//shell.setBeamAttributes(UAL::Args() << UAL::Arg("designRadius",         R0));
 std::cout << "#################################   Set Beam Attributes\n";
