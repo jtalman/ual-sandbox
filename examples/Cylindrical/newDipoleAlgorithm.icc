@@ -19,21 +19,19 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	double v0byc,
 	const PAC::BeamAttributes cba)
 {
+#include "getDesignBeam.h"
+double R0=data.m_l/data.m_angle;
  // Simple Element
 
  if(!data.m_ir){
 
-// enterBendCorrection(p,cba);           // no analogue?
-
-   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
+   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,R0,data.m_angle/2);
 
    handleSplitBendBoundary(p,cba,data.m_l/data.m_angle);       //  should be markSplitBendBoundary?
 
    makeVelocity(p, tmp, v0byc);	         // common
 
    traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
-
-// leaveBendCorrection(p,cba);           // no analogue?
 
    return;
  } 
@@ -78,6 +76,8 @@ double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
 double b0        = sqrt(1-1/g0/g0);                       // derived beam beta (same as velocity)
+double L0        = p0*R0;
+double E0        = p0*b0/R0;
 #include "printDesignBeam.h"
 
 double rInput    = p[0]+R0;
@@ -147,6 +147,12 @@ template<class Coordinate, class Coordinates>
 void newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double R0){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
 #include "getDesignBeam.h"
+double GeVperJ   = 1./q0/1.e9;                            // units
+double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
+double g0        = e0/m0;                                 // derived beam gamma
+double b0        = sqrt(1-1/g0/g0);                       // derived beam beta (same as velocity)
+double L0        = p0*R0;
+double E0        = p0*b0/R0;
 #include "printDesignBeam.h"
 }
 
