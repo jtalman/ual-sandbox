@@ -13,7 +13,7 @@
   std::cout << "f0=cba.getRevfreq()     " << f0 << "\n";
   std::cout << "M0=cba.getMacrosize()   " << M0 << "\n";
   std::cout << "G0=cba.getG()           " << G0 << "\n";
-  std::cout << "L0=cba.getL()           " << L0 << "\n";
-  std::cout << "E0=cba.getE()           " << E0 << "\n";
-//std::cout << "R0=cba.getR()           " << R0 << "\n";
+
+  std::cout << "L0                      " << L0 << "\n";
+  std::cout << "E0                      " << E0 << "\n";
   std::cout << "R0                      " << R0 << "\n";
