@@ -75,9 +75,10 @@ std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << 
 double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
-double b0        = sqrt(1-1/g0/g0);                       // derived beam beta (same as velocity)
+double b0        = sqrt(1.-1./g0/g0);                       // derived beam beta (same as velocity)
 double L0        = p0*R0;
-double E0        = p0*b0/R0;
+double E0MKS     = 1.e9*g0*m0*b0*b0/R0;
+double E0        = E0MKS;
 #include "printDesignBeam.h"
 
 double rInput    = p[0]+R0;
@@ -107,7 +108,7 @@ double s         = Sxi(Q,th,xi0)*xiP;
 double cP        = CxiP(Q,th,xi0)*xi;
 double sP        = SxiP(Q,th,xi0)*xiP;
 
-double den       = 1-c-s;                                 // (29) denominator
+double den       = 1.-c-s;                                // (29) denominator
 
 double xOutput   = R0*(c+s)/den;
 double xPOutput  = R0*(cP+sP)/den/den;
@@ -150,9 +151,10 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method templ
 double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
-double b0        = sqrt(1-1/g0/g0);                       // derived beam beta (same as velocity)
+double b0        = sqrt(1.-1./g0/g0);                       // derived beam beta (same as velocity)
 double L0        = p0*R0;
-double E0        = p0*b0/R0;
+double E0MKS     = 1.e9*g0*m0*b0*b0/R0;
+double E0        = E0MKS;
 #include "printDesignBeam.h"
 }
 
