@@ -85,14 +85,14 @@ double rInput    = p[0]+R0;
 double xiInput   = p[0]/rInput;                           // Input vs Inside
 double xip_Input = R0*p[1]/rInput/rInput;
 
-double mechEin   = e0+p0*p[5];                            // mechanical energy!
-double cnsrvdEgy = mechEin+GeVperJ*getPotentialEnergy(q0,E0,R0,rInput)/p0;
+double E         = e0+p0*p[5];                            // conserved away from RF Cavity
+double mechEin   = E-GeVperJ*getPotentialEnergy(q0,E0,R0,rInput)/p0;
 double gInput    = mechEin/m0;                            // gamma input
 double vInput    = sqrt(1-1/gInput/gInput);
 double pInput    = gInput*m0*vInput;
 double LyInput   = rInput*pInput;                         // quite a bit like L0
 
-double er        = mechEin/e0;                            // energy ratio
+double er        = E/e0;                                  // energy ratio
 double Lr        = L0*L0/LyInput/LyInput;                 // L^2 ratio
 double Qs        = 1+Lr*(er-b0*b0);                       // Q squared Electrostatic_I Eqn (23)
 double Q         = sqrt(Qs);
@@ -108,7 +108,7 @@ double s         = Sxi(Q,th,xi0)*xiP;
 double cP        = CxiP(Q,th,xi0)*xi;
 double sP        = SxiP(Q,th,xi0)*xiP;
 
-double den       = 1.-c-s;                                // (29) denominator
+double den       = 1-c-s;                                 // (29) denominator
 
 double xOutput   = R0*(c+s)/den;
 double xPOutput  = R0*(cP+sP)/den/den;
@@ -123,7 +123,7 @@ double approximate_vyMKS          = p[3]*p0*UAL::clight/gInput/m0;
 double approximate_yOut           = p[2]+approximate_vyMKS*approximateTimeOfFlightMKS;
 
        p[2]      = approximate_yOut;                      // kludge (should calc exact velocity)
-//     p[3]      = p[3];                                  // unchanged (force in y = 0)
+//     p[3]      = p[3];                                  // unchanged (force in y direction is 0)
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " v0MKS                      " << v0MKS                      << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximateTimeOfFlightMKS " << approximateTimeOfFlightMKS << "\n";
@@ -131,7 +131,7 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximate_vyMKS 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximate_yOut           " << approximate_yOut           << "\n";
 
 double rOutput   = p[0]+R0;
-double mechEout  = cnsrvdEgy-GeVperJ*getPotentialEnergy(q0,E0,R0,rOutput)/p0;
+double mechEout  = E-GeVperJ*getPotentialEnergy(q0,E0,R0,rOutput)/p0;
 double gOutput   = mechEout/m0;                           // gamma output
 
 double LInput    = LyInput;                               // approximate 1 (exact L)
@@ -141,7 +141,7 @@ double tof0      = m0*R0*R0*g0*th/L0;                     // Eqn. (51), page 18,
 double tofA      = m0*rA*rA*gA*th/LInput;                 // approximate 2 (internal splitting)
 
        p[4]      = tofA-tof0;
-       p[5]      = p[5]+mechEout-mechEin;                 // p[5]+(delta mechanical energy)
+//     p[5]      = p[5];                                  // p[5] conserved away from RF Cavity
 }
 
 template<class Coordinate, class Coordinates>
