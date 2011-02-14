@@ -75,7 +75,7 @@ std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << 
 double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
-double b0        = sqrt(1.-1./g0/g0);                       // derived beam beta (same as velocity)
+double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
 double L0        = p0*R0;
 double E0MKS     = 1.e9*p0*b0/R0;
 double E0        = E0MKS;
@@ -86,15 +86,21 @@ double xiInput   = p[0]/rInput;                           // Input vs Inside
 double xip_Input = R0*p[1]/rInput/rInput;
 
 double E         = e0+p0*p[5];                            // conserved away from RF Cavity
+std::cout << "E       " << E       << "\n";
 double mechEin   = E-GeVperJ*getPotentialEnergy(q0,E0,R0,rInput)/p0;
+std::cout << "mechEin " << mechEin << "\n";
 double gInput    = mechEin/m0;                            // gamma input
 double vInput    = sqrt(1-1/gInput/gInput);
+std::cout << "vInput  " << vInput << "\n";
 double pInput    = gInput*m0*vInput;
 double LyInput   = rInput*pInput;                         // quite a bit like L0
+std::cout << "LyInput " << LyInput << "\n";
+
+double b         = vInput;
 
 double er        = E/e0;                                  // energy ratio
 double Lr        = L0*L0/LyInput/LyInput;                 // L^2 ratio
-double Qs        = 1+Lr*(er-b0*b0);                       // Q squared Electrostatic_I Eqn (23)
+double Qs        = 1+Lr*(er-b*b);                         // Q squared Electrostatic_I Eqn (23)
 double Q         = sqrt(Qs);
 double xi0       = (1-Lr*er)/Qs;                          //                               (23)
 
