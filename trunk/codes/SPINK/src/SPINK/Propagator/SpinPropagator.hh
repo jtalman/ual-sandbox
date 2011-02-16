@@ -48,6 +48,10 @@ namespace SPINK {
     /** Propagates a bunch */
     void propagate(UAL::Probe& bunch);
 
+    /** One Turn Spin Matrix  AULNLD:11DEC09 */
+    static double OTs_mat[3][3] ;
+    //static a1[8] ;
+
   protected:
 
     virtual void propagateSpin(UAL::Probe& bunch) = 0;

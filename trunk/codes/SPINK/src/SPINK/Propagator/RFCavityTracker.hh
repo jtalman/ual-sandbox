@@ -4,7 +4,10 @@
 
 #include "PAC/Beam/Position.hh"
 #include "SMF/PacLattElement.h"
+#include "SMF/PacElemRfCavity.h"
 #include "TEAPOT/Integrator/BasicTracker.hh"
+
+#include "SPINK/Propagator/SpinPropagator.hh" //AUL:27APR10
 
 namespace SPINK {
 
@@ -30,12 +33,28 @@ namespace SPINK {
     void setLatticeElements(const UAL::AcceleratorNode& lattice, int i0, int i1, 
 			    const UAL::AttributeSet& beamAttributes);
 
+    //virtual void setLatticeElements(const UAL::AcceleratorNode& sequence, int i0, int i1, 
+    //				    const UAL::AttributeSet& attSet); //AUL:27APR10
+
     /** Propagates a bunch of particles */
     void propagate(UAL::Probe& probe);
 
-    /** Sets Rf patameters */
-    void setRF(double V, double harmon, double lag);
+    /** Sets Rf parameters */
+    static void setRF(double V, double harmon, double lag) { 
+      m_V = V; m_h = harmon; m_lag = lag;
+    }
 
+    /** Pass ring length AUL:17MAR10 */
+    static void setCircum(double circum){circ = circum;}
+    static double circ ;
+
+     /** Setup a dump flag for diagnostics AUL:27APR10 */
+    static void setOutputDump(bool outdmp){coutdmp = outdmp;}
+    static bool coutdmp; 
+
+     /** Pass information on turn number for diagnostics AUL:27APR10 */
+    static void setNturns(int iturn){nturn = iturn;}
+    static int nturn ;
   protected:
 
     /** Sets the lattice element */
@@ -50,13 +69,13 @@ namespace SPINK {
     double m_l;
 
     /** Peak RF voltage [GeV] */ 
-    double m_V;
+    static double m_V;
 
     /** Phase lag in multiples of 2 pi */
-    double m_lag;
+    static double m_lag;
 
     /** Harmonic number */
-    double m_h;
+    static double m_h;
 
   private:
 
