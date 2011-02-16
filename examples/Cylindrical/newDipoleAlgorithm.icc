@@ -72,82 +72,48 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
   double splitTheta){
 std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 #include "getDesignBeam.h"
-double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
 double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
 double L0        = p0*R0;
-double E0MKS     = 1.e9*p0*b0/R0;
-double E0        = E0MKS;
+double Eel0      = p0*b0/R0;
 #include "printDesignBeam.h"
 
 double rInput    = p[0]+R0;
 double xiInput   = p[0]/rInput;                           // Input vs Inside
-double xip_Input = R0*p[1]/rInput/rInput;
+double xipInput  = R0*R0*p[1]/rInput/rInput;
 
-double E         = e0+p0*p[5];                            // conserved away from RF Cavity
-std::cout << "E       " << E       << "\n";
-double mechEin   = E-GeVperJ*getPotentialEnergy(q0,E0,R0,rInput)/p0;
-std::cout << "mechEin " << mechEin << "\n";
-double gInput    = mechEin/m0;                            // gamma input
-double vInput    = sqrt(1-1/gInput/gInput);
-std::cout << "vInput  " << vInput << "\n";
-double pInput    = gInput*m0*vInput;
-double LyInput   = rInput*pInput;                         // quite a bit like L0
-std::cout << "LyInput " << LyInput << "\n";
+double gbefi      = (e0+p0*p[5])/m0;                      // "befi" means "before input"
+double eVafti     = getPotentialEnergy(Eel0,R0,rInput);   // "afti" means "after input"
+double gafti      = gbefi-eVafti/m0;                      // gamma after input
+double bafti      = sqrt(1-1/gafti/gafti);
+double pafti      = gafti*m0*bafti;
+double Lyafti     = rInput*pafti*sqrt(1-p[1]*p[1]*p0*p0/pafti/pafti); // quite a bit like L0
 
-double b         = vInput;
-
-double er        = E/e0;                                  // energy ratio
-double Lr        = L0*L0/LyInput/LyInput;                 // L^2 ratio
-double Qs        = 1+Lr*(er-b*b);                         // Q squared Electrostatic_I Eqn (23)
+double er        = gbefi*m0/e0;                           // total energy ratio
+double Lr        = L0*L0/Lyafti/Lyafti;                   // L^2 ratio
+double Qs        = 1+Lr*(er-bafti*bafti);                 // Q squared Electrostatic_I Eqn (29)
 double Q         = sqrt(Qs);
-double xi0       = (1-Lr*er)/Qs;                          //                               (23)
+double xi_co     = (1-Lr*er)/Qs;                          //                               (23)
 
-double xi        = xiInput;                               // formula transcription?
-double xiP       = xip_Input;                             //    ditto
 double th        = splitTheta;                            //    ditto
 
-double c         = Cxi(Q,th,xi0)*xi;
-double s         = Sxi(Q,th,xi0)*xiP;
+double xiOutput   = xi_co + Cxi(Q,th)*(xiInput-xi_co) + Sxi(Q,th)*xipInput;
+double xipOutput  = Cxip(Q,th)*(xiInput-xi_co) + Sxip(Q,th)*xipInput;
 
-double cP        = CxiP(Q,th,xi0)*xi;
-double sP        = SxiP(Q,th,xi0)*xiP;
-
-double den       = 1-c-s;                                 // (29) denominator
-
-double xOutput   = R0*(c+s)/den;
-double xPOutput  = R0*(cP+sP)/den/den;
-
-       p[0]      = xOutput;
-       p[1]      = xPOutput;
+       p[0]      = R0*xiOutput/(1-xiOutput);
+       p[1]      = xipOutput/(1-xiOutput)/(1-xiOutput);
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
-double v0MKS                      = b0*UAL::clight;
-double approximateTimeOfFlightMKS = R0*th/v0MKS;
-double approximate_vyMKS          = p[3]*p0*UAL::clight/gInput/m0;
-double approximate_yOut           = p[2]+approximate_vyMKS*approximateTimeOfFlightMKS;
 
-       p[2]      = approximate_yOut;                      // kludge (should calc exact velocity)
-//     p[3]      = p[3];                                  // unchanged (force in y direction is 0)
-
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " v0MKS                      " << v0MKS                      << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximateTimeOfFlightMKS " << approximateTimeOfFlightMKS << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximate_vyMKS          " << approximate_vyMKS          << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " approximate_yOut           " << approximate_yOut           << "\n";
+       p[2]      += R0*th*p[3];                           // approximations
+//     p[3]      = p[3];                                  //    here
 
 double rOutput   = p[0]+R0;
-double mechEout  = E-GeVperJ*getPotentialEnergy(q0,E0,R0,rOutput)/p0;
-double gOutput   = mechEout/m0;                           // gamma output
+double eVbefo = getPotentialEnergy(Eel0,R0,rOutput);      // "befo" means "before output"
 
-double LInput    = LyInput;                               // approximate 1 (exact L)
-double rA        = (rInput+rOutput)/2.;                   // r average
-double gA        = (gInput+gOutput)/2.;                   // gamma average
-double tof0      = m0*R0*R0*g0*th/L0;                     // Eqn. (51), page 18, Part I
-double tofA      = m0*rA*rA*gA*th/LInput;                 // approximate 2 (internal splitting)
-
-       p[4]      = tofA-tof0;
-//     p[5]      = p[5];                                  // p[5] conserved away from RF Cavity
+//       p[4]      = tofA-tof0;                           // defer t.o.f. calculation
+//       p[5]      = p[5]-(eVbefo-eVafti)/p0;             // p[5]+(delta mechanical energy/p0)
 }
 
 template<class Coordinate, class Coordinates>
