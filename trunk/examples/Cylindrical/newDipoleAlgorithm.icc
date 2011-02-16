@@ -77,7 +77,7 @@ double g0        = e0/m0;                                 // derived beam gamma
 double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
 double L0        = p0*R0;
 double Eel0      = p0*b0/R0;
-#include "printDesignBeam.h"
+//#include "printDesignBeam.h"
 
 double rInput    = p[0]+R0;
 double xiInput   = p[0]/rInput;                           // Input vs Inside
