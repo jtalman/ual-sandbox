@@ -1,0 +1,19 @@
+variantName;	cosyRFS
+outdmp:		0
+logdmp:		1
+irSBend&irQuad:	1 4
+gamma:		1.5
+tune            3.60 3.62 
+chrom:		2.0 2.0
+settunes:	0
+dgamma/dt:	0
+volt&&harmon:	0 1
+spin:		0. 1. 0.
+emittance:	10. 15 
+PhaseSpace:	0.00 0.00 0.00 0.00  5.5041  0.00            
+calcPhaseSpace:	0
+snkflag:	0
+snk_mu:		180. 180.
+snk_phi:	45. -45.
+snk_theta:	0. 0.
+turns:		50
