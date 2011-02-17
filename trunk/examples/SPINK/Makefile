@@ -18,7 +18,6 @@ INC += -I$(UAL_ZLIB)/src
 INC += -I$(UAL)/tools/include
 INC += -I$(SXF)/src
 INC += -I/home/ual/tools/gsl/include
-
 LIBS += -L$(UAL)/ext/UI/lib/$(UAL_ARCH)  	-lUalUI
 LIBS += -L$(UAL_SPINK)/lib/$(UAL_ARCH)  	-lSpink
 LIBS += -L$(UAL_TIBETAN)/lib/$(UAL_ARCH)  	-lTibetan
@@ -37,17 +36,19 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
 OBJS = $(OBJ_DIR)/timer.o \
 	   $(OBJ_DIR)/PositionPrinter.o \
-	   $(OBJ_DIR)/SpinPrinter.o \
-	   $(OBJ_DIR)/Shell.o
+	   $(OBJ_DIR)/SpinPrinter.o 
 
 
-compile : $(OBJS) ./cosy
+compile : $(OBJS) ./tracker ./teapot_tracker
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/cosy.o ./cosy
+	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker
 
-./cosy  : $(OBJ_DIR)/cosy.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/cosy.o $(OBJS) $(LIBS)
+./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
+
+./teapot_tracker  : $(OBJ_DIR)/teapot_tracker.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/teapot_tracker.o $(OBJS) $(LIBS)
 
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
