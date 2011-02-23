@@ -17,3 +17,8 @@ snk_mu:		180. 180.
 snk_phi:	45. -45.
 snk_theta:	0. 0.
 turns:		50
+RFS_Bdl:        0       
+RFS_rot:        z       
+RFS_freq0:      0
+RFS_dfreq:      1
+RFS_nt:         0  
