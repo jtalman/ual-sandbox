@@ -1,274 +1,407 @@
-#include "UAL/Common/Def.hh"
 #include "UAL/APF/PropagatorFactory.hh"
 #include "PAC/Beam/Bunch.hh"
-#include "SMF/PacLattice.h"
-#include "SMF/PacElemRfCavity.h"
-#include "TEAPOT/Integrator/RFCavityTracker.hh"
-
+#include "TEAPOT/Integrator/TrackerFactory.hh"
 #include "SPINK/Propagator/RFSolenoid.hh"
+#include "SPINK/Propagator/SpinTrackerWriter.hh"
 
-double SPINK::RFSolenoid::m_V = 0;
-double SPINK::RFSolenoid::m_h = 0;
-double SPINK::RFSolenoid::m_lag = 0;
-double SPINK::RFSolenoid::circ = 0.0;
+#include <stdio.h>
+#include <stdlib.h>
+#include <cmath>
+#include <iostream>
+#include <fstream>
 
-/** pass variables for diagnostics AUL:27APR10 */
+double SPINK::RFSolenoid::RFS_Bdl   = 0;
+char   SPINK::RFSolenoid::RFS_rot   = 0;
+double SPINK::RFSolenoid::RFS_freq0 = 0;
+double SPINK::RFSolenoid::RFS_dfreq = 0;
+int    SPINK::RFSolenoid::RFS_nt    = 0;
+
+/** pass variables for diagnostics AUL:02MAR10 */
 bool SPINK::RFSolenoid::coutdmp = 0;
 int SPINK::RFSolenoid::nturn = 0;
 
 SPINK::RFSolenoid::RFSolenoid()
-  : TEAPOT::BasicTracker()
 {
-  init();
+  p_length = 0;
 }
 
-SPINK::RFSolenoid::RFSolenoid(const SPINK::RFSolenoid& rft)
-  : TEAPOT::BasicTracker(rft)
+SPINK::RFSolenoid::RFSolenoid(const SPINK::RFSolenoid& st)
 {
-  copy(rft);
+  copy(st);
 }
 
 SPINK::RFSolenoid::~RFSolenoid()
 {
 }
 
-/* void SPINK::RFSolenoid::setRF(double V, double h, double lag)*/
-//{
-//m_V   = V;
-//m_h   = h;
-//m_lag = lag;
-//}
-
 UAL::PropagatorNode* SPINK::RFSolenoid::clone()
 {
   return new SPINK::RFSolenoid(*this);
 }
 
+
 void SPINK::RFSolenoid::setLatticeElements(const UAL::AcceleratorNode& sequence,
-						  int is0, 
-						  int is1,
-						  const UAL::AttributeSet& attSet)
+					   int is0, int is1,
+					   const UAL::AttributeSet& attSet)
 {
-   TEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+    SPINK::SpinPropagator::setLatticeElements(sequence, is0, is1, attSet);
+ 
+    const PacLattice& lattice = (PacLattice&) sequence;
 
-   const PacLattice& lattice     = (PacLattice&) sequence;
-   setLatticeElement(lattice[is0]);
+    setElementData(lattice[is0]);
+    setConventionalTracker(sequence, is0, is1, attSet);
+
+    m_name = lattice[is0].getName();
 
 }
 
-void SPINK::RFSolenoid::setLatticeElement(const PacLattElement& e)
+void SPINK::RFSolenoid::propagate(UAL::Probe& b)
 {
-  init();
-
-  m_l = e.getLength();
-
-  m_V = 0.0;
-  m_lag = 0.0;
-  m_h = 0.0;
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " __TIMESTAMP__" << __TIMESTAMP__ << " enter method void SPINK::RFSolenoid::propagate(UAL::Probe& b)\n";
+  PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
 
-  PacElemAttributes* attributes = e.getBody(); 
-
-  if(attributes == 0) {
-    return;
-  }
-
-  PacElemAttributes::iterator it = attributes->find(PAC_RFCAVITY);
-  if(it != attributes->end()){
-    PacElemRfCavity* rfSet = (PacElemRfCavity*) &(*it);
-    if(rfSet->order() >= 0){
-      m_V = rfSet->volt(0);
-      m_lag = rfSet->lag(0);
-      m_h = rfSet->harmon(0);
-    }
-  }
-  //cerr << "RFSolenoid" << "\n" ; //AUL:29DEC09
-  //cerr << "V = " << m_V << ", lag = " << m_lag << ", harmon = " << m_h << "\n";
-}
-
-void SPINK::RFSolenoid::propagate(UAL::Probe& probe)
-{
-std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " __TIMESTAMP__" << __TIMESTAMP__ << " enter method void SPINK::RFSolenoid::propagate(UAL::Probe& probe)\n";
-  //   std::cout << "SPINK::RFSolenoid " << m_name << std::endl;
-
-  PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
-
-  
-  // cerr << "V = " << m_V << ", lag = " << m_lag << ", harmon = " << m_h << ", l = " << m_l << "\n";
-  
-  // Old beam attributes
+  // SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
+  // stw->write(bunch.getBeamAttributes().getElapsedTime());
 
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
 
-  double q           = ba.getCharge();
-  double m0          = ba.getMass();
-  double e0_old      = ba.getEnergy();
-  double p0_old      = sqrt(e0_old*e0_old - m0*m0);
-  double v0byc_old   = p0_old/e0_old;
-  //double revfreq_old = ba.getRevfreq();
-  double t_old       = ba.getElapsedTime();
+  double energy = ba.getEnergy();
+  double mass   = ba.getMass();
+  double gam    = energy/mass;
 
-  // RF attributes
-  
-  double V   = m_V;
-  double lag = m_lag;
-  double h   = m_h;
+  double p = sqrt(energy*energy - mass*mass);
+  double v = p/gam/mass*UAL::clight;
 
-  if( V == 0. ) return; //AUL:20AUG10
-  
-  /* AUL:17MAR10 ______________ 
-  cout << "\nq=" << q << ", m0=" << m0 << ", e0_old=" << e0_old << endl;
-  cout << "p0_old=" << p0_old << ", v0byc_old=" << v0byc_old << endl;
-  cout << "revfreq_old=" << revfreq_old << ", t_old=" << t_old << endl;
-  cout << "circ=" << circ << ", revfrteq_old=" << revfreq_old << endl ;
-  */
+  double t0 = ba.getElapsedTime();
 
+  double length = 0;
+  if(p_length)     length = p_length->l();
 
-  // Update the synchronous particle (beam attributes)
+  if(!p_complexity){
 
-  double de0       = q*V*sin(2*UAL::pi*lag);
-  double e0_new    = e0_old + de0;
-  double p0_new    = sqrt(e0_new*e0_new - m0*m0);
-  double v0byc_new = p0_new/e0_new;
+    length /= 2;
 
-  /* AUL:18MAR10 _________ 
-  cout << "V=" << V << ", lag=" << lag << endl;
-  */
+    if(p_mlt) *p_mlt /= 2.;             // kl, kt
+    m_tracker->propagate(bunch);
+    if(p_mlt) *p_mlt *= 2.;             // kl, kt
 
-  double revfreq_old = v0byc_old*UAL::clight/circ ; //AUL:18MAR10
+    t0 += length/v;
+    ba.setElapsedTime(t0);
 
-  ba.setEnergy(e0_new);
-  ba.setRevfreq(revfreq_old*v0byc_new/v0byc_old);
+    propagateSpin(bunch);
 
-  // Tracking
+    if(p_mlt) *p_mlt /= 2.;             // kl, kt
+    m_tracker->propagate(bunch);
+    if(p_mlt) *p_mlt *= 2.;             // kl, kt
 
-  PAC::Position tmp;
-  double e_old, p_old, e_new, p_new, vbyc, de, phase;
+    t0 += length/v;
+    ba.setElapsedTime(t0);
 
-  for(int ip = 0; ip < bunch.size(); ip++) {
-
-    PAC::Position& p = bunch[ip].getPosition();
-
-    /*
-    std::cout << "RF: x = " << p[0] << std::endl; //AUL:17MAR10
-    std::cout << "RF: xp = " << p[1] << std::endl; //AUL:17MAR10
-    std::cout << "RF: y = " << p[2] << std::endl; //AUL:17MAR10
-    std::cout << "RF: yp = " << p[3] << std::endl; //AUL:17MAR10
-    std::cout << "RF: ct = " << p[4] << std::endl; //AUL:17MAR10
-    std::cout << "RF: dp = " << p[5] << std::endl; //AUL:17MAR10
-    */
-
-    // Drift
-
-    e_old = p.getDE()*p0_old + e0_old;
-    p_old = sqrt(e_old*e_old - m0*m0);
-    vbyc  = p_old/e_old;
-
-    /* * AUL:18MAR10 _______ 
-    double gamma = e_old/m0; double gam2 = gamma*gamma; double beta = sqrt(1. - 1./gam2);
-    cout << "e0_old=" << e0_old << ", p0_old=" << p0_old << ", DE=" << p.getDE() << ", e_old=" << e_old << endl;
-    cout << "p_old=" << p_old << ", vbyc=" << vbyc << ", gamma=" << gamma << ", beta=" << beta << endl;
-    */
-
-    passDrift(m_l/2., p, v0byc_old, vbyc);
-
-    // RF
-
-    phase = h*revfreq_old*(p.getCT()/UAL::clight);
-    de    = q*V*sin(2.*UAL::pi*(lag - phase)); 
-
-    e_new = e_old + de;
-    p.setDE((e_new - e0_new)/p0_new);
-
-    //  AUL:27APR10 ________ 
-    if ( coutdmp ){
-      std::cout << " " << endl; //AUL:20AUG10
-      std::cout << "RFCavityRTracker: "  << m_name << ", turn = " << nturn << endl ;
-      std::cout << "V = " << V << ", h = " << h << endl ;
-    }
-
-
-    //  AUL:27APR10 ________ 
-
-    /* AUL:17MAR10
-    //std::cout << "h=" << h << "  revfreq_old=" << revfreq_old << std::endl;
-    //std::cout << p.getCT() << "  " << p.getDE() << std::endl; //AUL:17MAR10
-    std::cout << phase << "  " << de << std::endl; //AUL:17MAR10
-    */
-
-    //ßstd::cout << revfreq_old << " " <<phase <<  "  " << e_new << std::endl; //AUL:17MAR10
-
-    // Drift
-
-    p_new = sqrt(e_new*e_new - m0*m0);
-    vbyc  = p_new/e_new;
-
-    passDrift(m_l/2., p, v0byc_new, vbyc);
-    
+    return;
   }
 
-  ba.setElapsedTime(t_old + (m_l/v0byc_old + m_l/v0byc_new)/2./UAL::clight);
+  int ns = 4*p_complexity->n();
+
+  length /= 2*ns;
+
+  for(int i=0; i < ns; i++) {
+
+    if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
+    m_tracker->propagate(bunch);
+    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
+
+    t0 += length/v;
+    ba.setElapsedTime(t0);
+
+    propagateSpin(bunch);
+
+    if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
+    m_tracker->propagate(bunch);
+    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
+
+    t0 += length/v;
+    ba.setElapsedTime(t0);
+
+  }
 }
 
-void SPINK::RFSolenoid::init()
+double SPINK::RFSolenoid::get_psp0(PAC::Position& p, double v0byc)
 {
-  m_l   = 0.0;
-  m_V   = 0.0;
-  m_lag = 0.0;
-  m_h   = 0.0;
+    double psp0  = 1.0;
+
+    psp0 -= p.getPX()*p.getPX();
+    psp0 -= p.getPY()*p.getPY();
+
+    psp0 += p.getDE()*p.getDE();
+    psp0 += (2./v0byc)*p.getDE();
+
+    psp0 = sqrt(psp0);
+
+    return psp0;
 }
 
-void SPINK::RFSolenoid::copy(const SPINK::RFSolenoid& rft)
+
+void SPINK::RFSolenoid::setElementData(const PacLattElement& e)
 {
-  m_l   = rft.m_l;
-  m_V   = rft.m_V;
-  m_lag = rft.m_lag;
-  m_h   = rft.m_h;
+ 
+  // Entry multipole
+  PacElemAttributes* front  = e.getFront();
+  if(front){
+     PacElemAttributes::iterator it = front->find(PAC_MULTIPOLE);
+     if(it != front->end()) p_entryMlt = (PacElemMultipole*) &(*it);
+  }
+
+  // Exit multipole
+  PacElemAttributes* end  = e.getEnd();
+  if(end){
+     PacElemAttributes::iterator it = end->find(PAC_MULTIPOLE);
+     if(it != end->end()) p_exitMlt = (PacElemMultipole*) &(*it);
+  }
+
+  // Body attributes
+  PacElemAttributes* attributes = e.getBody();
+
+  if(attributes){
+    for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+      switch((*it).key()){
+       case PAC_LENGTH:                          // 1: l
+            p_length = (PacElemLength*) &(*it);
+            break;
+       case PAC_BEND:                            // 2: angle, fint
+            p_bend = (PacElemBend*) &(*it);
+            break;
+       case PAC_MULTIPOLE:                       // 3: kl, ktl
+            p_mlt = (PacElemMultipole*) &(*it);
+            break;
+       case PAC_OFFSET:                          // 4: dx, dy, ds
+            p_offset = (PacElemOffset*) &(*it);
+            break;
+       case PAC_ROTATION:                        // 5: dphi, dtheta, tilt
+            p_rotation = (PacElemRotation*) &(*it);
+            break;
+       case PAC_APERTURE:                        // 6: shape, xsize, ysize
+	    // p_aperture = (PacElemAperture*) &(*it);
+	    break;
+       case PAC_COMPLEXITY:                     // 7: n
+            p_complexity = (PacElemComplexity* ) &(*it);
+            break;
+       case PAC_SOLENOID:                       // 8: ks
+            // p_solenoid = (PacElemSolenoid* ) &(*it);
+            break;
+       case PAC_RFCAVITY:                       // 9: volt, lag, harmon
+           // p_rf = (PacElemRfCavity* ) &(*it);
+           break;
+      default:
+	break;
+      }
+    }
+  }
+
 }
 
-void SPINK::RFSolenoid::passDrift(double l, PAC::Position& p, double v0byc, double vbyc)
+void SPINK::RFSolenoid::setConventionalTracker(const UAL::AcceleratorNode& sequence,
+                                                int is0, int is1,
+                                                const UAL::AttributeSet& attSet)
 {
-  // Transverse coordinates
+    const PacLattice& lattice = (PacLattice&) sequence;
 
-  double ps2_by_po2 = 1. + (p[5] + 2./v0byc)*p[5] - p[1]*p[1] - p[3]*p[3];
-  double t0 = 1./sqrt(ps2_by_po2);
+    double ns = 2;
+    if(p_complexity) ns = 8*p_complexity->n();
 
-  double px_by_ps = p[1]*t0;
-  double py_by_ps = p[3]*t0;
+    UAL::PropagatorNodePtr nodePtr =
+      TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
 
-  p[0] += (l*px_by_ps);                
-  p[2] += (l*py_by_ps);
+    m_tracker = nodePtr;
+    
+    if(p_complexity) p_complexity->n() = 0;   // ir
+    if(p_length)    *p_length /= ns;          // l
+    if(p_bend)      *p_bend /= ns;            // angle, fint
+     
+    m_tracker->setLatticeElements(sequence, is0, is1, attSet);
+     
+    if(p_bend)      *p_bend *= ns;
+    if(p_length)    *p_length *= ns;
+    if(p_complexity) p_complexity->n() = ns/8;
 
-  // Longitudinal part
+}
 
-  // ct = L/(v/c) - Lo/(vo/c) = (L - Lo)/(v/c) + Lo*(c/v - c/vo) = 
-  //                          = cdt_circ       + cdt_vel
+void SPINK::RFSolenoid::propagateSpin(UAL::Probe& b)
+{
+    PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
+    
+    PAC::BeamAttributes& ba = bunch.getBeamAttributes();
 
-  // 1. cdt_circ = (c/v)(L - Lo) = (c/v)(L**2 - Lo**2)/(L + Lo)
+    for(int i=0; i < bunch.size(); i++){
+        propagateSpin(ba, bunch[i]);
+    }
+}
+/*
+void SPINK::RFSolenoid::setSnakeParams(mu1, mu2, phi1, phi2, the1, the2) //AUL:10FEB10
+{
+  double dtr = 3.1415926536/180.;
+  snk1_mu = mu1*dtr  ; snk2_mu = mu2*dtr ;
+  snk1_phi = phi1*dtr   ; snk2_phi = phi2*dtr ;
+  snk1_theta = the1*dtr    ; snk2_theta = the2*dtr   ;
+}
+*/
 
-  double dl2_by_lo2  = px_by_ps*px_by_ps + py_by_ps*py_by_ps; // (L**2 - Lo**2)/Lo**2
-  double l_by_lo     = sqrt(1. + dl2_by_lo2);                 // L/Lo
+void SPINK::RFSolenoid::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle& prt)
+{
+
+   double dtr = atan(1.)/45.;
+   /*
+   //double snk1_mu    = 180.*dtr  ; double snk2_mu    = 180.*dtr ;
+   //double snk1_mu    = 0.*dtr  ; double snk2_mu    = 0.*dtr ;
+   //double snk1_phi   = 45.*dtr   ; double snk2_phi   = -45.*dtr ;
+   //double snk1_theta = 0.*dtr    ; double snk2_theta = 0.*dtr ;  
+  //AUL 10:DEC:09
+   */
+
+  double A[3] ;
+  double s_mat[3][3] ;
+
+  //snk1_phi *= dtr ; snk1_theta *= dtr ; snk1_mu *= dtr ;
+  //snk2_phi *= dtr ; snk2_theta *= dtr ; snk2_mu *= dtr ;
+
+  if( m_name == "snake1") {
+
+    double cs = 1;//1. -cos(snk1_mu*dtr) ; 
+    double sn =  0;//sin(snk1_mu*dtr) ;
+
+    A[0] = 1;//cos(snk1_theta*dtr) * sin(snk1_phi*dtr) ; // a(1) in MaD-SPINk
+    A[1] = 0;//sin(snk1_theta*dtr) ;                // a(2) in MAD-SPINK
+    A[2] = 1;//cos(snk1_theta*dtr) * cos(snk1_phi*dtr) ; // a(3) in MAD-SPINK
+
+    if( coutdmp ){ //AUL:01MAR10
+      std::cout << "\nRFSolenoid " << m_name << ", turn = " << nturn << endl ;
+//    std::cout << "mu = " << snk1_mu << ", phi = " << snk1_phi << ", theta = " << snk1_theta << endl ;
+      std::cout << "A[0] = " << A[0] << ", A[1] = " << A[1] << ", A[2] = " <<A[2] << endl ;
+    }
+
+    s_mat[0][0] = 1. - (A[1]*A[1] + A[2]*A[2])*cs ;
+    s_mat[0][1] =      A[0]*A[1]*cs + A[2]*sn ;
+    s_mat[0][2] =      A[0]*A[2]*cs - A[1]*sn ;
+    
+    s_mat[1][0] =      A[0]*A[1]*cs - A[2]*sn ;
+    s_mat[1][1] = 1. - (A[0]*A[0] + A[2]*A[2])*cs ;
+    s_mat[1][2] =      A[1]*A[2]*cs + A[0]*sn ;
+    
+    s_mat[2][0] =      A[0]*A[2]*cs + A[1]*sn ;
+    s_mat[2][1] =      A[1]*A[2]*cs - A[0]*sn ;
+    s_mat[2][2] = 1. - (A[0]*A[0] + A[1]*A[1])*cs ;
+
+  } else if( m_name == "snake2" ) {
+
+    double cs = 1;//1. -cos(snk2_mu*dtr) ;
+    double sn = 0;// sin(snk2_mu*dtr) ;
+
+    A[0] = 1;//cos(snk2_theta*dtr) * sin(snk2_phi*dtr) ; // a(1) in MAD-SPINk
+    A[1] = 0;//sin(snk2_theta*dtr) ;                // a(2) in MAD-SPINK
+    A[2] = 1;//cos(snk2_theta*dtr) * cos(snk2_phi*dtr) ; // a(3) in MAD-SPINK
+
+    if( coutdmp ){ //AUL:01MAR10
+      std::cout << "\nRFSolenoid " << m_name << ", turn = " << nturn << endl ;
+//    std::cout << "mu = " << snk2_mu << ", phi = " << snk2_phi << ", theta = " << snk2_theta << endl ;
+      std::cout << "A[0] = " << A[0] << ", A[1] = " << A[1] << ", A[2] = " <<A[2] << endl ;
+    }
+
+    s_mat[0][0] = 1. - (A[1]*A[1] + A[2]*A[2])*cs ;
+    s_mat[0][1] =      A[0]*A[1]*cs + A[2]*sn ;
+    s_mat[0][2] =      A[0]*A[2]*cs - A[1]*sn ;
+    
+    s_mat[1][0] =      A[0]*A[1]*cs - A[2]*sn ;
+    s_mat[1][1] = 1. - (A[0]*A[0] + A[2]*A[2])*cs ;
+    s_mat[1][2] =      A[1]*A[2]*cs + A[0]*sn ;
+      
+    s_mat[2][0] =      A[0]*A[2]*cs + A[1]*sn ;
+    s_mat[2][1] =      A[1]*A[2]*cs - A[0]*sn ;
+    s_mat[2][2] = 1. - (A[0]*A[0] + A[1]*A[1])*cs ;
+
+  } else { //initialize spin matrix at the beginning of a turn
+      /*if( nturn == 1 ) //AUL:01MAR10
+	{} */
+      OTs_mat[0][0] = OTs_mat[1][1] = OTs_mat[2][2] = 1. ;
+      OTs_mat[0][1] = OTs_mat[0][2] = OTs_mat[1][0] = OTs_mat[1][2] = OTs_mat[2][0] = OTs_mat[2][1] = 0. ;
+      
+      if( coutdmp )//AUL:01MAR10
+        {
+	  std::cout << "\nSpin matrix initialize at " << m_name << ", turn = " << nturn << endl;
+	  std::cout << "OT spin matrix" << endl ;
+	  std::cout << OTs_mat[0][0] << "  " << OTs_mat[0][1] << "  " << OTs_mat[0][2] << endl ;
+	  std::cout << OTs_mat[1][0] << "  " << OTs_mat[1][1] << "  " << OTs_mat[1][2] << endl ;
+	  std::cout << OTs_mat[2][0] << "  " << OTs_mat[2][1] << "  " << OTs_mat[2][2] << endl ;
+	}
+      return ;
+  }
+
+  /** propagate spin */
+  double sx0 = prt.getSpin()-> getSX();
+  double sy0 = prt.getSpin()-> getSY();
+  double sz0 = prt.getSpin()-> getSZ();
+
+  double sx1 = s_mat[0][0]*sx0 + s_mat[0][1]*sy0 + s_mat[0][2]*sz0;
+  double sy1 = s_mat[1][0]*sx0 + s_mat[1][1]*sy0 + s_mat[1][2]*sz0;
+  double sz1 = s_mat[2][0]*sx0 + s_mat[2][1]*sy0 + s_mat[2][2]*sz0;
   
-  double cdt_circ = dl2_by_lo2*l/(1 + l_by_lo)/vbyc;
+  double s2 = sx1*sx1 + sy1*sy1 + sz1*sz1;
 
-  // 2. cdt_vel = Lo*(c/v - c/vo)
+  /** build One Turn spin matrix */
+  double temp_mat[3][3] ; //dummy matrix 
 
-  double cdt_vel = l*(1./vbyc - 1./v0byc);
+  for(int i=0;i<3; i++){
+      for(int k=0;k<3; k++){
+	  temp_mat[i][k] = 0. ;
+	  for(int j=0;j<3; j++){
+	    temp_mat[i][k] = temp_mat[i][k] + OTs_mat[i][j]*s_mat[j][k] ;}}}
+  for(int i=0;i<3; i++){
+      for(int k=0;k<3; k++){
+	  OTs_mat[i][k] = temp_mat[i][k] ;  }}
 
-  // MAD longitudinal coordinate = -ct 
+  /** print out matrices */
+  if( coutdmp ) //AUL:01MAR10
+    { 
+      std::cout << "spin matrix" << endl ;
+      std::cout << s_mat[0][0] << "  " << s_mat[0][1] << "  " << s_mat[0][2] << endl ;
+      std::cout << s_mat[1][0] << "  " << s_mat[1][1] << "  " << s_mat[1][2] << endl ;
+      std::cout << s_mat[2][0] << "  " << s_mat[2][1] << "  " << s_mat[2][2] << endl ;
+      std::cout << "OT spin matrix" << endl ;
+      std::cout << OTs_mat[0][0] << "  " << OTs_mat[0][1] << "  " << OTs_mat[0][2] << endl ;
+      std::cout << OTs_mat[1][0] << "  " << OTs_mat[1][1] << "  " << OTs_mat[1][2] << endl ;
+      std::cout << OTs_mat[2][0] << "  " << OTs_mat[2][1] << "  " << OTs_mat[2][2] << endl ;
+    }
 
-  p[4] -= cdt_vel + cdt_circ;
+  prt.getSpin()-> setSX(sx1); 
+  prt.getSpin()-> setSY(sy1);
+  prt.getSpin()-> setSZ(sz1);
 
+}
+
+void SPINK::RFSolenoid::copy(const SPINK::RFSolenoid& st)
+{
+    m_name       = st.m_name;
+
+    p_entryMlt   = st.p_entryMlt;
+    p_exitMlt    = st.p_exitMlt;
+
+    p_length     = st.p_length;
+    p_bend       = st.p_bend;
+    p_mlt        = st.p_mlt;
+    p_offset     = st.p_offset;
+    p_rotation   = st.p_rotation;
+    // p_aperture = st.p_aperture;
+    p_complexity = st.p_complexity;
+    // p_solenoid = st.p_solenoid;
+    // p_rf = st.p_rf;
 }
 
 SPINK::RFSolenoidRegister::RFSolenoidRegister()
 {
-  UAL::PropagatorNodePtr rfPtr(new SPINK::RFSolenoid());
-  UAL::PropagatorFactory::getInstance().add("SPINK::RFSolenoid", rfPtr);
+  UAL::PropagatorNodePtr snakePtr(new SPINK::RFSolenoid());
+  UAL::PropagatorFactory::getInstance().add("SPINK::RFSolenoid", snakePtr);
 }
 
 static SPINK::RFSolenoidRegister theSpinkRFSolenoidRegister;
-
 
 
 
