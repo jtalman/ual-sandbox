@@ -13,6 +13,7 @@
 #include "SPINK/Propagator/RFCavityTracker.hh"
 #include "SPINK/Propagator/SpinTrackerWriter.hh"
 #include "SPINK/Propagator/SnakeTransform.hh"
+#include "SPINK/Propagator/RFSolenoid.hh"
 
 #include "timer.h"
 #include "PositionPrinter.h"
@@ -54,6 +55,11 @@ int main(){
   bool snkflag ; //AUL:10MAR10
   double mu1; double mu2; double phi1; double phi2; double the1; double the2;
   int turns;
+  double RFS_Bdl;
+  char RFS_rot;
+  double RFS_freq0;
+  double RFS_dfreq;
+  int RFS_nt; 
 
   configInput >> dummy >> variantName;
   configInput >> dummy >> outdmp ; //AUL:12MAR10
@@ -74,9 +80,13 @@ int main(){
   configInput >> dummy >> phi1 >> phi2 ; 
   configInput >> dummy >> the1 >> the2 ;
   configInput >> dummy >> turns;
+  configInput >> dummy >> RFS_Bdl;
+  configInput >> dummy >> RFS_rot;
+  configInput >> dummy >> RFS_freq0;
+  configInput >> dummy >> RFS_dfreq;
+  configInput >> dummy >> RFS_nt; 
   /** AUL:17MAR10 _________________________________________________________________*/
 
-  /*
     std::cout <<  variantName << std::endl;
     std::cout <<  outdmp << std::endl;
     std::cout <<  logdmp << std::endl;
@@ -96,10 +106,16 @@ int main(){
     std::cout <<  phi1 << " " << phi2 << std::endl;
     std::cout <<  the1 << " " << the2 << std::endl;
     std::cout <<  turns << std::endl;
-  */ 
+    std::cout <<  RFS_Bdl << std::endl;
+    std::cout <<  RFS_rot << std::endl;
+    std::cout <<  RFS_freq0 << std::endl;
+    std::cout <<  RFS_dfreq << std::endl;
+    std::cout <<  RFS_nt << std::endl;
+
   // ************************************************************************
 
   SPINK::SnakeTransform::setOutputDump(outdmp); //AUL:01MAR10
+  SPINK::RFSolenoid::setOutputDump(outdmp); //AUL:01MAR10
   SPINK::DipoleTracker::setOutputDump(outdmp); //AUL:02MAR10
   SPINK::RFCavityTracker::setOutputDump(outdmp); //AUL:27APR10
 
@@ -360,6 +376,8 @@ int main(){
 	std::cout << "\nNo Snakes" << std::endl ;
       }
   }
+
+  SPINK::RFSolenoid::setRFSParams(RFS_Bdl, RFS_rot, RFS_freq0, RFS_dfreq, RFS_nt);
 
   // ************************************************************************
   if( logdmp ){  std::cout << "\nTracking. " << std::endl;}
