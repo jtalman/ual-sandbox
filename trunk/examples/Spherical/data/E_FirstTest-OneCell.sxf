@@ -1,0 +1,77 @@
+// SXF version 2.0
+ring sequence
+ {
+   mbegin
+     marker {
+         tag = mbegin
+         at = 0
+         };
+   marcin
+     marker {
+         tag = marcin
+         at = 0
+         };
+   mcellin
+     marker {
+         tag = mcellin
+         at = 0
+         };
+   q
+     quadrupole {
+         tag = q
+         l = 1e-10
+         at = 1.00000000005
+         body = {
+                 kl = [ 0 -7.4e-05]
+                }
+         };
+   bh
+     sbend {
+         tag = bh
+         arc = 2.35619449019
+         at = 2.1780972452
+         body = {
+                 kl = [ 0.0785398163398]
+                }
+         };
+   mcellcenter
+     marker {
+         tag = mcellcenter
+         at = 3.35619449029
+         };
+   bh.2
+     sbend {
+         tag = bh
+         arc = 2.35619449019
+         at = 4.53429173539
+         body = {
+                 kl = [ 0.0785398163398]
+                }
+         };
+   q.2
+     quadrupole {
+         tag = q
+         l = 1e-10
+         at = 5.71238898054
+         body = {
+                 kl = [ 0 -7.4e-05]
+                }
+         };
+   mcellout
+     marker {
+         tag = mcellout
+         at = 6.71238898059
+         };
+   marcout
+     marker {
+         tag = marcout
+         at = 6.71238898059
+         };
+   mend
+     marker {
+         tag = mend
+         at = 6.71238898059
+         };
+ endsequence at = 6.71238898059
+}
+// SXF end
