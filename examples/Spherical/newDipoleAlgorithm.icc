@@ -1,0 +1,317 @@
+#include "newDipoleAlgorithm.hh"
+
+template<class Coordinate, class Coordinates> 
+newDipoleAlgorithm<Coordinate, Coordinates>::newDipoleAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+newDipoleAlgorithm<Coordinate, Coordinates>::~newDipoleAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
+	const ETEAPOT::DipoleData& data, 
+	const ETEAPOT::MltData& edata,
+	Coordinates& p, 
+	Coordinates& tmp, 
+	double v0byc,
+	const PAC::BeamAttributes cba)
+{
+#include "getDesignBeam.h"
+double R0=data.m_l/data.m_angle;
+ // Simple Element
+
+ if(!data.m_ir){
+
+   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,R0,data.m_angle/2);
+
+   handleSplitBendBoundary(p,cba,data.m_l/data.m_angle);       //  should be markSplitBendBoundary?
+
+   makeVelocity(p, tmp, v0byc);	         // common
+
+   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
+
+   return;
+ } 
+
+std::cerr << "Complex Element - disallowed!!!\n";
+exit(1);
+
+ // Complex Element
+
+ double rIr = 1./data.m_ir;
+ double rkicks = 0.25*rIr;
+
+ int counter = -1;
+ for(int i = 0; i < data.m_ir; i++){
+   for(int is = 1; is < 5; is++){
+     counter++;
+     passBendSlice(data.m_slices[counter], p, tmp, v0byc);
+     applyMltKick(edata, rkicks, p);
+     applyThinBendKick(data, edata, rkicks, p, v0byc);
+     makeVelocity(p, tmp, v0byc);	
+   }
+   counter++;
+   passBendSlice(data.m_slices[counter], p, tmp, v0byc);
+   makeVelocity(p, tmp, v0byc);
+ }
+
+ return;
+}
+
+template<class Coordinate, class Coordinates>
+void newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
+  const ETEAPOT::ElemSlice& slice,  
+  Coordinates& p, 
+  Coordinates& tmp,
+  double v0byc,
+  const PAC::BeamAttributes cba,
+  double R0,
+  double splitTheta){
+std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
+#include "getDesignBeam.h"
+double GeVperJ    = 1./q0/1.e9;                            // units
+double p0         = sqrt(e0*e0-m0*m0);                     // derived beam momentum
+double g0         = e0/m0;                                 // derived beam gamma
+double b0         = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
+
+       R0         = 40;                                    // JDT
+
+double L0         = p0*R0;
+double Eel0       = p0*b0/R0;
+double Eel0MKS    = Eel0*1e9;
+#include "printDesignBeam.h"
+
+double rInput     = p[0]+R0;
+double xiInput    = p[0]/rInput;                           // Input vs Inside
+double xipInput   = R0*R0*p[1]/rInput/rInput;
+
+double gbefi      = (e0+p0*p[5])/m0;                      // "befi" means "before input"
+double eVafti     = getPotentialEnergy(Eel0,R0,rInput);   // "afti" means "after input"
+double gafti      = gbefi-eVafti/m0;                      // gamma after input
+//#include "exact.inline"
+//#include "hamilton.inline"
+  #include "reference.inline"
+double bafti      = sqrt(1-1/gafti/gafti);
+double pafti      = gafti*m0*bafti;
+double Lyafti     = rInput*pafti*sqrt(1-p[1]*p[1]*p0*p0/pafti/pafti); // quite a bit like L0
+
+double er         = gbefi*m0/e0;                           // total energy ratio
+double Lr         = L0*L0/Lyafti/Lyafti;                   // L^2 ratio
+double Qs         = 1+Lr*(er-bafti*bafti);                 // Q squared Electrostatic_I Eqn (29)
+double Q          = sqrt(Qs);
+std::cout << "Q " << Q << "\n";
+double xi_co      = (1-Lr*er)/Qs;                          //                               (23)
+
+double th         = splitTheta;                            //    ditto
+
+double xiOutput   = xi_co + Cxi(Q,th)*(xiInput-xi_co) + Sxi(Q,th)*xipInput;
+double xipOutput  = Cxip(Q,th)*(xiInput-xi_co) + Sxip(Q,th)*xipInput;
+
+       p[0]       = R0*xiOutput/(1-xiOutput);
+       p[1]       = xipOutput/(1-xiOutput)/(1-xiOutput);
+
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
+
+       p[2]      += R0*th*p[3];                           // approximations
+//     p[3]       = p[3];                                  //    here
+
+double rOutput    = p[0]+R0;
+double eVbefo = getPotentialEnergy(Eel0,R0,rOutput);      // "befo" means "before output"
+
+//       p[4]     = tofA-tof0;                           // defer t.o.f. calculation
+//       p[5]     = p[5]-(eVbefo-eVafti)/p0;             // p[5]+(delta mechanical energy/p0)
+}
+
+template<class Coordinate, class Coordinates>
+void newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double R0){
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
+#include "getDesignBeam.h"
+double GeVperJ   = 1./q0/1.e9;                            // units
+double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
+double g0        = e0/m0;                                 // derived beam gamma
+double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
+double L0        = p0*R0;
+double Eel0      = p0*b0/R0;
+double Eel0MKS   = Eel0*1e9;
+#include "printDesignBeam.h"
+}
+
+template<class Coordinate, class Coordinates>
+void newDipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(
+  const ETEAPOT::ElemSlice& slice, 
+  Coordinates& p, 
+  Coordinates& tmp,
+  double v0byc)
+{
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(const ETEAPOT::ElemSlice& slice,Coordinates& p,Coordinates& tmp,double v0byc)\n";
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " asin(slice.sphpl()) = " << asin(slice.sphpl()) << "\n";
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " acos(slice.cphpl()) = " << acos(slice.cphpl()) << "\n";
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " atan(slice.tphpl()) = " << atan(slice.tphpl()) << "\n";
+
+  // From makeVelocity:
+  //
+  // tmp[x]  = psbyp0
+  // tmp[px] = vx/vs
+  // tmp[py] = vy/vs
+
+  Coordinate t0, t1, x, y;
+
+  // Transform velocities into frame of multipole
+
+ t0  = ((slice.cphpl())*p[1]);                                       // was : p[PacPosition::PX]*slice.cphpl(); 
+ t0 -= ((slice.sphpl())*tmp[0]);  // (px*cos(phi+) - ps*sin(phi+))/p0 // was : tmp[PacPosition::X]*slice.sphpl(); 
+ p[1] = t0;
+
+ // Transform coordinates into frame of multipole
+
+ t0  = 1/(1. + ((slice.tphpl())*tmp[1])); // 1/(1+vx/vs*tan(phi+))  // was : 1/(1. + tmp[PacPosition::PX]*slice.tphpl()); 
+ t1  = (-slice.scrx()) + p[0];            // x - scrx               // was : p[PacPosition::X] - slice.scrx(); 
+
+ 
+ if(p.size() > 5) {
+   tmp[2] = t0;
+   if(slice.rlipl()) deltaPath(slice, p, tmp, v0byc);  // P[5] -= cdt
+ }
+
+ x  = t1;
+ x += (slice.scrs())*tmp[1];            // (x - scrx + vx/vs*scrs)*   // was :tmp[PacPosition::PX]*slice.scrs(); 
+ x = ((1.0/(slice.cphpl()))*t0)*x;      // *t0/cos(phi+) // was :  x *= t0/slice.cphpl(); 
+ y  = slice.scrs();
+ y -= slice.tphpl()*t1;                 // (scrs - tan(phi+)*(x - scrx))*
+ y *= tmp[3]*t0;                        // *vy/vs*t0+
+ y += p[2];                             // +y
+
+
+ p[0] = x;
+ p[2] = y;
+                              
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " leave method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(const ETEAPOT::ElemSlice& slice,Coordinates& p,Coordinates& tmp,double v0byc)\n";
+ return;
+}
+
+template<class Coordinate, class Coordinates>
+void newDipoleAlgorithm<Coordinate, Coordinates>::deltaPath(
+  const ETEAPOT::ElemSlice& slice, 
+  Coordinates& p, 
+  Coordinates& tmp,
+  double v0byc)
+{
+  Coordinate rvbyc, p0, p1, p3, p2, p4;
+
+  // From passBend:
+  // 
+  // tmp[x]  = psbyp0
+  // tmp[y]  = 1/(1+vx/vs*tan(phi+))
+  // tmp[px] = vx/vs
+  // tmp[py] = vy/vs
+  // tmp[ct] = dV
+
+  // L = sqrt(dx*dx + dy*dy + ds*ds)
+
+  p0  = (p[0] + (slice.spxt())*tmp[1]);          // was :  (p[PacPosition::X] + tmp[PacPosition::PX]*slice.spxt()); 
+  p0 *= tmp[2];                                  // (x + vx/vs*spxt)*tmp[y]  
+  p1  = p0 - p[0];                               // dx
+  p0  = (slice.tphpl())*((-slice.scrx()) + p0 ); // (t0 - scrx)*tan(phi+)   // was :(p0 - slice.scrx())*slice.tphpl(); 
+  p3  = slice.scrs() - p0;                       // ds
+  p2  = tmp[3]*p3;                               // dy
+
+  p4  = 0;                                                    // L*L
+  p1 *= p1;
+  p2 *= p2;
+  p3 *= p3;
+  p4  = p1 + p2 + p3;
+  p4  = sqrt(p4);                                             // L
+  p4 += slice.rlipl();                                        // L + Lo
+
+
+  // p[5] = cdt = L/(v/c) - Lo/(vo/c) = (L - Lo)/(v/c) + Lo*(c/v -c/vo) =
+  //                                  =  cdt_circ      + cdt_vel
+
+
+  // cdt_circ = (c/v)(L - Lo) = (c/v)(L**2 - Lo**2)/(L + Lo)  
+
+/*
+  rvbyc = v0byc*(1. + tmp[4]);
+  rvbyc = 1./rvbyc;
+*/
+
+  rvbyc = tmp[5];
+
+  p1  = p1 + p2 + p0*p0;
+  p1 -= slice.scrx()*slice.scrx();             
+  p1 -= (2.*slice.scrs())*p0;                 // L**2 - Lo**2     // was :  2.*p0*slice.scrs() 
+
+  p4 = p1/p4;
+  p1  =  p4*rvbyc;                          // cdt_old + cdt_circ 
+  
+  // cdt_vel  = Lo*(c/v - c/vo)   
+
+  p2  = 1./v0byc;
+  p2 -= rvbyc;
+  p2 *= slice.rlipl();
+
+  p[4]   -= p1;               // cdt
+  p[4]   += p2;               // cdt
+
+  return;
+}
+	
+template<class Coordinate, class Coordinates>
+void newDipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
+  const ETEAPOT::DipoleData& data,
+  const ETEAPOT::MltData& edata, double rkicks,
+  Coordinates& p, double v0byc)
+{
+  Coordinate x, px, y, py;
+
+
+  PacElemMultipole* mult = edata.m_mlt;
+  PacElemOffset* offset = edata.m_offset;
+
+  x = p[0]; //  xdif
+  y = p[2]; //  ydif
+
+  px = 0.0;
+  py = 0.0;
+
+  if(offset) {
+    x -= offset->dx();
+    y -= offset->dy();
+  }
+
+  double kl1 = 0.0;
+
+  if(mult){
+     int order = mult->order();
+     if(order > 0) kl1 = mult->kl(1);
+  }
+
+  if(data.m_l){
+
+   double rho = data.m_l/data.m_angle;
+
+	// std::cerr << "btw00 = " << data.m_btw00 << ", btw01 = " << data.m_btw01 << endl;
+  	px -= x*data.m_btw01;
+  	px -= data.m_btw00;
+
+    px += y*y*kl1*rkicks/rho/2.0;  // K.Brown
+
+  	py += y*data.m_atw01;
+  	py += data.m_atw00;
+  }
+  else {
+	// MAD thin dipole
+        double factor = data.m_angle/v0byc;
+        px += factor*p[5];
+        p[4] -= factor*p[0];
+  }
+
+  p[1] += px;                              // px/p0
+  p[3] += py;                              // py/p0
+
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " px " << px << "\n";
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " py " << py << "\n";
+}

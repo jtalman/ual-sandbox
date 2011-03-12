@@ -1,0 +1,44 @@
+double rinFromProbe = get_rFromProbe(x,y,z);
+double rinFromEllipse = get_rFromEllipse(0);
+double rin  = (rinFromProbe+rinFromEllipse)/2;
+double routFromEllipse = get_rFromEllipse(splitTheta);
+double rout = routFromEllipse;
+std::cout << "rinFromProbe    " << rinFromProbe    << "\n";
+std::cout << "rinFromEllipse  " << rinFromEllipse  << "\n";
+std::cout << "rin             " << rin             << "\n";
+std::cout << "routFromEllipse " << routFromEllipse << "\n";
+
+double thetaOut = splitTheta;
+
+double pperp = sqrt(py*py+pz*pz);
+std::cout << "pperp " << pperp << "\n";
+
+double thetaPlanes = acos(py*y/pperp/rin);
+std::cout << "thetaPlanes " << thetaPlanes << "\n";
+
+double thetaPerp = thetaPlanes-thetaOut;
+std::cout << "thetaPerp " << thetaPerp << "\n";
+
+double routProjYZ = rout*cos(thetaPerp);
+std::cout << "routProjYZ " << routProjYZ << "\n";
+
+double phiZ = asin(py/pperp);
+double yout = routProjYZ*sin(phiZ);
+double zout = routProjYZ*cos(phiZ);
+std::cout << "yout " << yout << "\n";
+std::cout << "zout " << zout << "\n";
+
+double den = 1+epsilon2*cos(kap*splitTheta);
+double dxbyds = lambda*kap*epsilon2*sin(kap*splitTheta)/den/den;
+//   need C
+//   need theta0
+
+//double analyticGamma = 
+
+double xout = sqrt(rout*rout-yout*yout-zout*zout);
+std::cout << "xout " << xout << "\n";
+
+double dxout = xout-x;
+std::cout << "dxout " << dxout << "\n";
+
+std::cout << "\n";
