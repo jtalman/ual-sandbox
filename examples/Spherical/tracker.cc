@@ -130,7 +130,7 @@ int main(int argc,char * argv[]){
 
 // ba.setG(1.7928474);             // adds proton G factor
 
- PAC::Bunch bunch(4);               // bunch with 4 particles
+ PAC::Bunch bunch(1);               // bunch with 4 particles
  bunch.setBeamAttributes(ba);
 
  PAC::Spin spin;
@@ -138,11 +138,13 @@ int main(int argc,char * argv[]){
  spin.setSY(0.0);
  spin.setSZ(1.0);
 
-//bunch[0].getPosition().set(1.e-4,0.    ,0.   ,0.    ,0.,0.);
+  bunch[0].getPosition().set(dx,dpx,dy,dpy,0,p5Input);
+/*
   bunch[0].getPosition().set(1.e-4,0.    ,1.e-4,0.    ,0.,0.);
   bunch[1].getPosition().set(0.   ,0.5e-5,0.   ,0.    ,0.,0.);
   bunch[2].getPosition().set(0.   ,0.    ,1.e-4,0.    ,0.,0.);
   bunch[3].getPosition().set(0.   ,0.    ,0.   ,0.5e-6,0.,0.);
+*/
 
  // ************************************************************************
  std::cout << "\nTracking. " << std::endl;
