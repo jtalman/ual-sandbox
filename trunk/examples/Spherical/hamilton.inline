@@ -37,7 +37,7 @@ std::cout << "precessing ellipse\n";
 std::cout << "###############################\n";
 std::cout << "\n";
 
-//double E0 = m_p*c*c/gamma_0;
+double E0 = m_p*c*c/gamma_0;
 double kap0 = 1/gamma_0;
 double dEbyE = (E-E0)/E;
 double dE = E-E0;
