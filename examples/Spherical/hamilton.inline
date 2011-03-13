@@ -1,24 +1,25 @@
-double kbyLc = k/L/c;                       // c=1
-double kapSQ = 1-kbyLc*kbyLc;               //
+double kbyL_c = k/L_/c;                       // c=1
+double kapSQ = 1-kbyL_c*kbyL_c;               //
 
-double lambda1 = kapSQ*L*L*c*c/k/E;
+double lambda1 = kapSQ*L_*L_*c*c/k/E;
 std::cout << "lambda1                 " << lambda1 << "\n";
-double Lcbyk = L*c/k;
-double lambda2 = (k/E)*(Lcbyk*Lcbyk-1);
+double L_cbyk = L_*c/k;
+double lambda2 = (k/E)*(L_cbyk*L_cbyk-1);
 double m_pbyE = m_p/E;                      //
 
 double ca1 = m_pbyE*m_pbyE*kapSQ;
-double eps = Lcbyk*sqrt(1-ca1);
+double eps = L_cbyk*sqrt(1-ca1);
 
 std::cout << "E                       " << E      << "\n";
 std::cout << "m_pc^2/E                " << m_pbyE << "\n";
-std::cout << "L                       " << L      << "\n";
-std::cout << "k/L/c                   " << kbyLc  << "\n";
+std::cout << "k                       " << k       << "\n";
+std::cout << "L_                      " << L_      << "\n";
+std::cout << "k/L_/c                  " << kbyL_c  << "\n";
 std::cout << "kappa squared           " << kapSQ  << "\n";
 std::cout << "near one                " << ca1    << "\n";
 
 double kap = sqrt(kapSQ);
-double omega = (1-kap)*L/gamma/r/r;
+double omega = (1-kap)*L_/gamma/r/r;
 std::cout << "omega                   " << omega  << "\n";
 
 std::cout << "\n";
@@ -36,15 +37,51 @@ std::cout << "precessing ellipse\n";
 std::cout << "###############################\n";
 std::cout << "\n";
 
-double E0 = m_p*c*c/gamma_0;
+//double E0 = m_p*c*c/gamma_0;
 double kap0 = 1/gamma_0;
 double dEbyE = (E-E0)/E;
 double dE = E-E0;
 double dK = kap-kap0;
 std::cout << "dE                   " << dE     << "\n";
 std::cout << "dK                   " << dK     << "\n";
-//double epsilon2 = Lcbyk*sqrt(2*(E-E0)/E+ (E-E0)/E*(E-E0)/E -kbyLc/L/L);
+//double epsilon2 = L_cbyk*sqrt(2*(E-E0)/E+ (E-E0)/E*(E-E0)/E -kbyL_c/L_/L_);
 //       epsilon2 = epsilon2/(1+(E-E0)/E);
-  double epsilon2 = Lcbyk*sqrt( 2*E0*dE+dE*dE-(m_p*c*c)*(m_p*c*c)*(2*kap0*dK+dK*dK) );
+  double epsilon2 = L_cbyk*sqrt( 2*E0*dE+dE*dE-(m_p*c*c)*(m_p*c*c)*(2*kap0*dK+dK*dK) );
          epsilon2 = epsilon2/E;
 std::cout << "eccentricity (epsilon2) " << epsilon2     << "\n";
+
+double epsilon = epsilon2;                 // JDT
+std::cout << "lambda1                 " << lambda1    << "\n";
+std::cout << "lambda2                 " << lambda2    << "\n";
+std::cout << "lambda                  " << lambda     << "\n";
+std::cout << "r                       " << r          << "\n";
+std::cout << "lambda/r-1              " << lambda/r-1 << "\n";
+double cosKapTh = (lambda/r-1)/epsilon;
+std::cout << "cosKapTh " << cosKapTh     << "\n";
+double KapTh = acos(cosKapTh);
+std::cout << "   KapTh " <<    KapTh     << "\n";
+
+std::cout << "\n";
+//double MYh0 = c*sqrt((E/m_p/c/c)*(E/m_p/c/c)-kapSQ);
+//std::cout << "MYh0          " <<    MYh0        << "\n";
+/*
+double L_m_pccbykE = L_*m_p*c*c/k/E;
+std::cout << "L_m_pccbykE "<< L_m_pccbykE  << "\n";
+double huh = L_m_pccbykE*h0;
+std::cout << "huh "<< huh  << "\n";
+
+double cosKapTh2 = (lambda/r-1)/huh;
+std::cout << "cosKapTh2 " << cosKapTh2    << "\n";
+*/
+
+double ES = E+k/R0;
+double h0 = L_/m_p/r-k*ES/L_/m_p/c/c;
+std::cout << "h0  "<< h0   << "\n";
+std::cout << "p[1] " << p[1] << "\n";
+double h0p = -L_*R0*p[1]/m_p/r/r;
+double theta0 = atan(h0p/kap/h0);
+       theta0 = theta0/kap;
+std::cout << "theta0 " << theta0 << "\n";
+double CSQ = h0*h0+(h0p/kap)*(h0p/kap);
+std::cout << "CSQ    " << CSQ    << "\n";
+std::cout << "\n";
