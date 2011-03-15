@@ -88,7 +88,7 @@
     }
 
     double get_timeFromFirstTermViaMaple(double fac,double theta){
-        double a = epsilon;
+        double a  = epsilon;
         double t  = tan(kappa*theta/2);
         double am = a-1;
         double ap = a+1;
@@ -96,11 +96,11 @@
         double A  = 2*atan(am*t/pm)/kappa/am/pm;
         double B  = -2*a*t/kappa/am/ap/(-t*t-1+a*t*t-a);
         double C  = -2*a*atan(am*t/pm)/kappa/am/ap/pm;
-        return (A+B+C);
+        return fac*(A+B+C);
     }
 
     double get_timeFromSecondTermViaMaple(double fac,double theta){
-        double a = epsilon;
+        double a  = epsilon;
         double t  = tan(kappa*theta/2);
         double ap = a+1;
         double am = a-1;
@@ -108,7 +108,27 @@
         double D  = -2*atan(am*t/pm)/kappa/am/pm;
         double E  = 2*t/kappa/am/ap/(-t*t-1+a*t*t-a);
         double F  = 2*atan(am*t/pm)/kappa/am/ap/pm;
-        return (D+E+F);
+        return fac*(D+E+F);
+    }
+
+// http://integrals.wolfram.com/index.jsp?expr=1%2F%281%2Ba*cos%28k*x%29%29^2&random=false
+    double get_timeFromFirstTermViaMathematica(double fac,double theta){          // can't be right
+        double a  = epsilon;
+        double am = sqrt(a*a-1);
+        double t  = tan(kappa*theta/2);
+        double G  = a*sin(kappa*theta)/am/am/kappa/( a*cos(kappa*theta)+1 );
+        double H  = -2*a*atanh( (a-1)*t/am )/am/am/am/kappa;
+        return fac*(G+H);
+    }
+
+// http://integrals.wolfram.com/index.jsp?expr=cos%28k*x%29%2F%281%2Ba*cos%28k*x%29%29^2&random=false
+    double get_timeFromSecondTermViaMathematica(double fac,double theta){         // can't be right
+        double a  = epsilon;
+        double am = sqrt(a*a-1);
+        double t  = tan(kappa*theta/2);
+        double J  = 2*a*atanh( (a-1)*t/am )/am/am/am/kappa;
+        double K  = -sin(kappa*theta)/am/am/kappa/( a*cos(kappa*theta)+1 );
+        return fac*(J+K);
     }
 
   };
