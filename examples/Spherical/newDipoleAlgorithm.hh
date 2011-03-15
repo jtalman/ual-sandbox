@@ -78,6 +78,9 @@
     double lambda;
     double epsilon;
     double kappa;
+    double E;
+    double L_;
+    double k;
 
     double get_rFromProbe(double x,double y,double z){
        return sqrt(x*x+y*y+z*z);
