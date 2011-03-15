@@ -119,10 +119,15 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]              
 //     p[3]       = p[3];                                  //    here
 
 double rOutput    = p[0]+R0;
-double eVbefo = getPotentialEnergy(Eel0,R0,rOutput);      // "befo" means "before output"
+double eVbefo     = getPotentialEnergy(Eel0,R0,rOutput);      // "befo" means "before output"
 
-//       p[4]     = tofA-tof0;                           // defer t.o.f. calculation
-//       p[5]     = p[5]-(eVbefo-eVafti)/p0;             // p[5]+(delta mechanical energy/p0)
+double tof0       = R0*th/bafti;
+double fac1       = E*lambda*lambda/L_/kappa/kappa;
+double fac2       =     k*sqrt(CSQ)/L_/kappa/kappa;
+double tofA       = get_timeFromFirstTermViaMaple(fac1,th)+get_timeFromSecondTermViaMaple(fac2,th);
+
+         p[4]     = tofA-tof0;                           // 
+//       p[5]     = p[5]-(eVbefo-eVafti)/p0;             // p[5] conserved away from RF Cavity   // p[5]+(delta mechanical energy/p0)
 }
 
 template<class Coordinate, class Coordinates>
