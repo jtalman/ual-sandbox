@@ -87,6 +87,28 @@
         return lambda/(1+epsilon*cos(kappa*theta));
     }
 
+    double get_timeFromFirstTermViaMaple(double fac,double theta){
+        double t  = tan(kappa*theta/2);
+        double am = a-1;
+        double ap = a+1;
+        double pm = sqrt((1+a)*(1-a));
+        double A  = 2*atan(am*t/pm)/kappa/am/pm;
+        double B  = -2*a*t/kappa/am/ap/(-t*t-1+a*t*t-a);
+        double C  = -2*a*atan(am*t/pm)/kappa/am/ap/pm;
+        return (A+B+C);
+    }
+
+    double get_timeFromSecondTermViaMaple(double fac,double theta){
+        double t  = tan(kappa*theta/2);
+        double ap = a+1;
+        double am = a-1;
+        double pm = sqrt((1+a)*(1-a));
+        double D  = -2*atan(am*t/pm)/kappa/am/pm;
+        double E  = 2*t/kappa/am/ap/(-t*t-1+a*t*t-a);
+        double F  = 2*atan(am*t/pm)/kappa/am/ap/pm;
+        return (D+E+F);
+    }
+
   };
 
 #include "newDipoleAlgorithm.icc"
