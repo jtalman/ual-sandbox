@@ -88,6 +88,7 @@
     }
 
     double get_timeFromFirstTermViaMaple(double fac,double theta){
+        double a = epsilon;
         double t  = tan(kappa*theta/2);
         double am = a-1;
         double ap = a+1;
@@ -99,6 +100,7 @@
     }
 
     double get_timeFromSecondTermViaMaple(double fac,double theta){
+        double a = epsilon;
         double t  = tan(kappa*theta/2);
         double ap = a+1;
         double am = a-1;
