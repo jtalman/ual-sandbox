@@ -124,7 +124,8 @@ double eVbefo     = getPotentialEnergy(Eel0,R0,rOutput);      // "befo" means "b
 double tof0       = R0*th/bafti;
 double fac1       = E*lambda*lambda/L_/kappa/kappa;
 double fac2       =     k*sqrt(CSQ)/L_/kappa/kappa;
-double tofA       = get_timeFromFirstTermViaMaple(fac1,th)+get_timeFromSecondTermViaMaple(fac2,th);
+//double tofA       = get_timeFromFirstTermViaMaple(fac1,th)+get_timeFromSecondTermViaMaple(fac2,th);
+  double tofA       = getTime1(fac1,th)+getTime2(fac2,th);
 
          p[4]     = tofA-tof0;                           // 
 //       p[5]     = p[5]-(eVbefo-eVafti)/p0;             // p[5] conserved away from RF Cavity   // p[5]+(delta mechanical energy/p0)
