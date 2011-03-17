@@ -1,8 +1,8 @@
 #ifndef UAL_SPINK_GPUDIPOLE_TRACKER_HH
 #define UAL_SPINK_GPUDIPOLE_TRACKER_HH
 #define  precision double
-#define PARTICLES 10010
-//#define ELEMENTS 5000
+#define PARTICLES 100000
+#define ELEMENTS 2000
 #include "SPINK/Propagator/DipoleTracker.hh"
 #include "TEAPOT/Integrator/DipoleData.hh"
 #include "TEAPOT/Integrator/MagnetData.hh"
@@ -11,18 +11,55 @@ typedef struct {
  precision sx, sy, sz;
 } vec6D;
 
-//typedef struct {
-//precision mlt0, mlt1, mlt2, mlt3, m_ir;
-//precision cphpl, sphpl,  tphpl,  scrx, scrs, spxt,  rlipl;
-//precision m_l,  kl1, angle, btw01, btw00, atw01, atw00,  dx, dy;
-//int type;
-//}lattice ;
-
+typedef struct {
+  int rfcav ;
+  int snake ;
+  precision entryMlt[10];
+  precision exitMlt[10];
+  precision l;
+  precision bend;
+  precision mlt[10];
+  precision dx;
+  precision dy;           // 4: dx, dy, ds
+  int ns;
+  int m_ir;
+  precision cphpl[20] ;
+  precision sphpl[20];
+  precision tphpl[20] ;
+  precision scrx[20] ;
+  precision rlipl[20];
+  precision scrs[20] ;
+  precision spxt[20];
+  precision kl1;
+  precision k1l ;
+  precision k0l;
+  precision kls0;
+  precision k2l;
+     precision angle ;
+     precision btw01 ;
+     precision btw00 ;
+     precision atw01 ;
+     precision atw00 ;
+     precision m_l ;
+  //  precision V ;
+  //  precision lag ;
+  //  precision h ;
+  int order;
+  
+  }Lat;
 vec6D pos[PARTICLES];
-//lattice rhic[ELEMENTS];
+Lat rhic[ELEMENTS];
 
 __device__ vec6D pos_d[PARTICLES];
 __device__ vec6D tmp_d[PARTICLES];
+__device__ Lat rhic_d[ELEMENTS];
+__constant__ precision m0_d, circ_d, GG_d, q_d;
+__constant__ precision snk1_mu_d,snk1_theta_d,snk1_phi_d;
+__constant__ precision snk2_mu_d,snk2_theta_d,snk2_phi_d;
+__constant__ precision PI_d=3.1415926536, clite_d= 2.99792458e+8;
+__constant__ precision V_d, lag_d, h_d;
+__device__ precision Energy_d, v0byc_d, p0_d,gam_d, t0_d;
+
 
 namespace SPINK {
 
@@ -67,6 +104,8 @@ namespace SPINK {
     void DriftProp(PAC::Bunch& bunch);
     void propagateSpin(UAL::Probe& bunch);
     void SnakeProp(PAC::Bunch& bunch);
+    static void GpuPropagate(PAC::Bunch& bunch);
+
 
     UAL::PropagatorNode* clone();
 
@@ -78,7 +117,7 @@ namespace SPINK {
     static void setNturns(int iturn){nturn = iturn;}
     static int nturn ;
     static void readPart(PAC::Bunch& bunch);
-    void loadPart(PAC::Bunch& bunch);
+    static void loadPart(PAC::Bunch& bunch);
 
     /** Sets Rf patameters */
     static void setRF(precision V, precision harmon, precision lag) { 
