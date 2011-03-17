@@ -84,7 +84,7 @@ makeVelocitygpu(precision v0byc,int N){
       t0  = t0 - t1;
 
       t0  = sqrt(t0);
-  // printf(" i =  %i pos_d[i].x = %f \n",i, pos_d[i].x);
+      // printf(" i =  %i pos_d[i].x = %f \n",i, pos_d[i].x);
   //  printf("tmp_d = %f  t0 = %f \n", tmp_d[i].x ,t0 );
       tmp_d[i].x   = t0;
      
