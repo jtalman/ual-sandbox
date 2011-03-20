@@ -1,4 +1,4 @@
-#define GAMMA_FROZEN_SPIN 1.248107349
+//#define GAMMA_FROZEN_SPIN 1.248107349
 
 //                   constants
   double m_p = cba.getMass();                 // GeV  
@@ -6,7 +6,8 @@ std::cout << "JDT M_P - m_p - " << m_p << "\n";
 //double m_p = UAL::pmass;                    // GeV  
 //double m_p = 0.93827231;                    // GeV  
   double c = 1;                               // 2.99792458e8 m/s
-  double gamma_0 = GAMMA_FROZEN_SPIN;         //      
+  double gamma_0 = cba.getEnergy()/m_p;       // GAMMA_FROZEN_SPIN;         //      
+std::cout << "JDT GAMMA_0 - gamma_0 - " << gamma_0 << "\n";
   double beta_0 = sqrt(1-1/gamma_0/gamma_0);  //
   double p_0c = gamma_0*m_p*beta_0;           // GeV  
 //double p_0c = 0.7007405278;                 // GeV  
