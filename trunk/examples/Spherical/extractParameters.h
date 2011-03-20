@@ -18,3 +18,5 @@
  orbitFile += ".orbit";
 
  int split = 0;
+ int order = 5;
+ int turns = 64;
