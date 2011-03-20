@@ -42,17 +42,20 @@ int main(int argc,char * argv[]){
  std::cout << "mysxf     " << mysxf.c_str() << "\n";
  std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
 
-#include "designBeamValues.hh"
-
-#include "extractParameters.h"
-
  UAL::Shell shell;
+
+  #include "designBeamValues.hh"
+
+  #include "extractParameters.h"
+
+  #include "setBeamAttributes.hh"
 
  // ************************************************************************
  std::cout << "\nDefine the space of Taylor maps." << std::endl;
  // ************************************************************************
 
- shell.setMapAttributes(UAL::Args() << UAL::Arg("order", 5));
+  shell.setMapAttributes(UAL::Args() << UAL::Arg("order", order));
+//shell.setMapAttributes(UAL::Args() << UAL::Arg("order", 5));
 
  // ************************************************************************
  std::cout << "\nBuild lattice." << std::endl;
@@ -85,7 +88,7 @@ int main(int argc,char * argv[]){
  std::cout << "\nDefine beam parameters." << std::endl;
  // ************************************************************************
 
-#include "setBeamAttributes.hh"
+//#include "setBeamAttributes.hh"
 
  PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
@@ -130,7 +133,7 @@ int main(int argc,char * argv[]){
 
 // ba.setG(1.7928474);             // adds proton G factor
 
- PAC::Bunch bunch(1);               // bunch with 4 particles
+ PAC::Bunch bunch(1);               // bunch with 1 particle(s)
  bunch.setBeamAttributes(ba);
 
  PAC::Spin spin;
@@ -152,7 +155,7 @@ int main(int argc,char * argv[]){
 
  double t; // time variable
 
- int turns = 1;
+// int turns = 1024;
 
  positionPrinter pP;
  pP.open(orbitFile.c_str());
