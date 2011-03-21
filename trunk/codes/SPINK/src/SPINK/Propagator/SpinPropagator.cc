@@ -6,7 +6,7 @@
 
 #include "SPINK/Propagator/SpinPropagator.hh"
 
-double SPINK::SpinPropagator::OTs_mat[3][3] = {1.0,0.0,0.0, 0.0,1.0,0.0, 0.0,0.0,1.0}; //AULNLD:11DEC09
+double SPINK::SpinPropagator::OTs_mat[3][3] = { 1.0,0.0,0.0, 0.0,1.0,0.0, 0.0,0.0,1.0 }; //AULNLD:11DEC09
 
 SPINK::SpinPropagator::SpinPropagator()
 {
