@@ -13,9 +13,12 @@
 #include <iostream>
 #include <fstream>
 
+//declaring global GPU variables 
+__device__ vec6D pos_d[PARTICLES];
+__device__ vec6D tmp_d[PARTICLES];
+__device__ Lat rhic_d[ELEMENTS];
 #include <gpuKernels.cu>
-#include <gpuPropogate.cu>
-
+#include <gpuProp2.cu>
 SPINK::GpuTracker::GpuTracker()
 {
   p_entryMlt = 0;
@@ -67,7 +70,7 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
 					   int is0, int is1,
 					   const UAL::AttributeSet& attSet)
 {
-  precision number = 1000;
+  
     SPINK::SpinPropagator::setLatticeElements(sequence, is0, is1, attSet);
  
     const PacLattice& lattice = (PacLattice&) sequence;
@@ -78,80 +81,89 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
     setConventionalTracker(sequence, is0, is1, attSet);
    
     m_name = lattice[is0].getName();
-    //  std::cout << "get Name =" << m_name << " is0 = " << is0 << " \n"; 
-    if(m_name == "rfac9bnc" || m_name == "rfac9mhz"){
+    //  std::cout << "get Name =" << m_name << " \n"; 
+    /** loading up GPU lattice **/
+
+    /** setting rf flags **/
+if(m_name == "rfac9bnc" || m_name == "rfac9mhz"){
       rhic[is0].rfcav = 1;
     }else{rhic[is0].rfcav = 0;}
-
-    rhic[is0].snake = 0;
+/** setting snake flags **/
+ rhic[is0].snake = 0;
     if(m_name == "snake1"){
       rhic[is0].snake = 1;
     }else if(m_name == "snake2") { rhic[is0].snake = 2;}
-     
-    
- 
-    // std::cout << "after assignment \n";
-    if(p_entryMlt){
+
+    /** setting multipole values **/
+    for(int k=0 ; k < 10 ; k++){
+      rhic[is0].entryMlt[k] = 0.0;
+      rhic[is0].exitMlt[k] = 0.0;
+      rhic[is0].mlt[k] =0.0;
+    }
+
+
+  if(p_entryMlt){
      int size_entry = p_entryMlt->size();
      double * data = p_entryMlt->data();
      for( int ii = 0; ii < size_entry; ii++)
-       {    rhic[is0].entryMlt[ii] = (precision) data[ii];
+       {  
+	 /** pre-slicing up things to save time **/
+	 if(!p_complexity){  
+	   rhic[is0].entryMlt[ii] = (precision) data[ii]/2.0; }
+	 else{ 
+	   int ns = 4*p_complexity->n();
+	   rhic[is0].entryMlt[ii] = (precision) data[ii]/(2.0*ns);
      
-       }  }else {    rhic[is0].entryMlt[0] = number; }
-    // printf("rhic[is0].entryMlt = %f \n", rhic[is0].entryMlt[0]);
-  
- 
+            }
+       } //end of for loop
+  }else {    rhic[is0].entryMlt[0] = 1000.; }
+   
+
+
  if(p_exitMlt){ 
      int size_exit = p_exitMlt->size();
      double * data = p_exitMlt->data();
      for( int ii = 0; ii < size_exit; ii++)
-       {    rhic[is0].exitMlt[ii] = (precision) data[ii];
+       {  
+     	 /** pre-slicing up things to save time **/
+       if(!p_complexity){ 
+	   rhic[is0].exitMlt[ii] = (precision) data[ii]/2.0;}
+	 else {
+	     int ns = 4*p_complexity->n();
+	   rhic[is0].exitMlt[ii] = (precision) data[ii]/(2.0*ns);
+     
+            }
+	   
        }
- }else { rhic[is0].exitMlt[0] = number ; }
+ }else { rhic[is0].exitMlt[0] = 1000.; }
 
- // printf("rhic[is0].exitMlt = %f \n", rhic[is0].exitMlt[0]);
- // std::cout << "after assignment  4 \n";
-     rhic[is0].l = 0;
-   if(p_length) rhic[is0].l = p_length->l();
-   // printf("length  = %f \n", rhic[is0].l); 
-   //std::cout << "after assignment 5 \n";
-  rhic[is0].bend = 0;
-  // std::cout << "after assignment 6 \n";
-   if(p_bend) rhic[is0].bend = p_bend->angle();
-   // std::cout << "after assignment 7 \n";
-   //printf("bend = %d \n", rhic[is0].bend);
-   // std::cout << "after assignment 8 \n";
-   if(p_mlt){ 
+
+
+
+if(p_mlt){ 
       int sizemlt = p_mlt->size();
      double * data = p_mlt->data();
-     double * data2 = m_mdata.m_mlt->data();
      for( int ii = 0; ii < sizemlt; ii++)
-       {    rhic[is0].mlt[ii] = (precision) data[ii];
-	 if(is0 == 8) std::cout << ii << "data = " << data[ii] <<   " data2 = " << data2[ii] << "\n";
+       {  
+	 /** pre-slicing up things to save time **/
+      if(!p_complexity){ 
+	   rhic[is0].mlt[ii] = (precision) data[ii]/2.0;}
+	 else {
+	     int ns = 4*p_complexity->n();
+	   rhic[is0].mlt[ii] = (precision) data[ii]/(2.0*ns);
+     
+            } 
        }
-  rhic[is0].order = p_mlt->order(); } else { rhic[is0].mlt[0] = number;
+  rhic[is0].order = p_mlt->order(); } else { rhic[is0].mlt[0] = 1000;
      rhic[is0].order = 0;}
-   // printf("rhic[si0].mlt = %f \n",rhic[is0].mlt[0]);
+
+/**setting m_l values **/
+ rhic[is0].m_l = 0;
+  if(m_data.m_l) rhic[is0].m_l = m_data.m_l;
+
+/** setting bend transport values **/
    
-   //std::cout << "after assignment 10 \n";
-   rhic[is0].m_ir = m_ir;
-   // printf("m_ir =  %i \n",rhic[is0].m_ir);
-   //std::cout << "after assignment 11 \n";
-   rhic[is0].dx = 0;
-   rhic[is0].dy = 0;
-   if(p_offset){
-   rhic[is0].dx = p_offset->dx();
-   rhic[is0].dy = p_offset->dy();
-   }
-   // std::cout << "after assignment 12 \n";
-   rhic[is0].ns = 0;
-   if(p_complexity) rhic[is0].ns= p_complexity->n();
-   // std::cout << "after assignment 14 \n";
-   rhic[is0].kl1 = 0;
-   rhic[is0].k0l = 0;
-   rhic[is0].kls0 = 0;
    rhic[is0].k1l = 0;
-   rhic[is0].k2l = 0;
    rhic[is0].angle = 0;
    rhic[is0].btw01 = 0;
    rhic[is0].btw00 = 0;
@@ -159,19 +171,15 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
    rhic[is0].atw00 = 0;
    if(m_mdata.m_mlt){
      if(m_mdata.m_mlt->kl(1)) rhic[is0].kl1 = m_mdata.m_mlt->kl(1);
-     rhic[is0].k0l = p_mlt->kl(0);
-     rhic[is0].kls0 = p_mlt->ktl(0);
-     rhic[is0].k1l = p_mlt->kl(1);
-     rhic[is0].k2l = p_mlt->kl(2);
+     
 
     rhic[is0].angle =  m_data.m_angle;
     rhic[is0].btw01 = m_data.m_btw01;
     rhic[is0].btw00 = m_data.m_btw00;
     rhic[is0].atw01 = m_data.m_atw01;
     rhic[is0].atw00 = m_data.m_atw00;}
-   // std::cout << "after assignment 15 \n";
-   rhic[is0].m_l = 0;
-   for(int counter = 0; counter <= 1;counter++){
+
+for(int counter = 0; counter <= 1;counter++){
     rhic[is0].cphpl[counter] = (precision) m_data.m_slices[counter].cphpl();
     rhic[is0].sphpl[counter] = (precision) m_data.m_slices[counter].sphpl();
     rhic[is0].tphpl[counter] = (precision) m_data.m_slices[counter].tphpl();
@@ -179,7 +187,6 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
     rhic[is0].rlipl[counter] = (precision) m_data.m_slices[counter].rlipl();
     rhic[is0].scrs[counter] =  (precision) m_data.m_slices[counter].scrs();
     rhic[is0].spxt[counter] =  (precision) m_data.m_slices[counter].spxt();}
-   if(m_data.m_l) rhic[is0].m_l = m_data.m_l;
     int counter = -1;
      for(int i = 0; i < m_data.m_ir; i++){
    for(int is = 1; is < 5; is++){
@@ -194,11 +201,45 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
    
      }
 }
-     // std::cout << "after assignment 16 \n";
-     //     rhic[is0].V = m_V;  rhic[is0].lag = m_lag; rhic[is0].h = m_h;
-    
-     
+
+
+/** setting length for spin prop **/
+  rhic[is0].length = 0;
+   if(p_length) rhic[is0].length = p_length->l();
+   /** setting bend for spin prop **/
+rhic[is0].bend = 0;
+   if(p_bend) rhic[is0].bend = p_bend->angle();
+
+ /** setting complexity and ir values **/
+ rhic[is0].ns = 0;
+   if(p_complexity) rhic[is0].ns= p_complexity->n();
+rhic[is0].m_ir = m_ir;
+/** setting offset values **/
+ rhic[is0].dx = 0;
+   rhic[is0].dy = 0;
+   if(p_offset){
+   rhic[is0].dx = p_offset->dx();
+   rhic[is0].dy = p_offset->dy();
+   }
+
+
+  int ns = 1;
+  if(p_complexity) ns = 4*p_complexity->n();
+
+     rhic[is0].kl1 = 0;
+     rhic[is0].k0l = 0;
+     rhic[is0].kls0 = 0;
+     rhic[is0].k2l = 0;
+     if(p_mlt){
+     rhic[is0].k0l = p_mlt->kl(0)/ns;
+     rhic[is0].kls0 = p_mlt->ktl(0)/ns;
+     rhic[is0].k1l = p_mlt->kl(1)/ns;
+     rhic[is0].k2l = p_mlt->kl(2)/ns;
+     }
+ 
+
 }
+
 
 void SPINK::GpuTracker::setLatticeElement(const PacLattElement& e)
 {
@@ -259,17 +300,17 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   Copygpu<<<blocksPerGrid,threadsPerBlock>>>();
   // HANDLE_ERROR( cudaMemcpy(tmp_d,pos_d,sizeof(tmp_d),cudaMemcpyDeviceToDevice) );
   //  std::cout << "after Memcpy \n";   
-  readPart(bunch);
+  //readPart(bunch);
    makeVelocitygpu<<<blocksPerGrid,threadsPerBlock>>>(v0byc, N);
-   //   std::cout << "after make Velocity \n";   
-   // readPart(bunch);
+   //std::cout << "after make Velocity \n";   
+   //readPart(bunch);
     makeRVgpu<<<blocksPerGrid,threadsPerBlock>>>( v0byc, e0,  p0, m0, N);
-    // std::cout << "after makeRV \n";   
-    // readPart(bunch);
+    //std::cout << "after makeRV \n";   
+    //readPart(bunch);
    
   passDriftgpu<<<blocksPerGrid,threadsPerBlock>>>(m_l, v0byc, N,  6);
-  //std::cout << "after passDrift m_l = " << m_l << " \n";   
-  // readPart(bunch);
+  //  std::cout << "after passDrift \n";   
+  //readPart(bunch);
   //checkAperture(bunch);
 
   ba.setElapsedTime(oldT + m_l/v0byc/UAL::clight);
@@ -287,11 +328,11 @@ void SPINK::GpuTracker::BendProp(PAC::Bunch& bunch) {
   precision p0 =  sqrt(e0*e0 - m0*m0);
   precision v0byc = p0/e0;
   precision dx = 0.0, dy = 0.0;
-  // precision gam = e0/m0;
+  precision gam = e0/m0;
   precision entry[10], vexit[10], mlt[10];
   // precision * entry, *vexit, *mlt;
   int size_entry,size_mlt,size_exit;
-  // precision t0 = oldT;
+  precision t0 = oldT;
   //entry = (precision*)malloc(10*sizeof(precision));
   // vexit =  (precision*)malloc(10*sizeof(precision));
   //  mlt = (precision*)malloc(10*sizeof(precision));
@@ -339,7 +380,7 @@ void SPINK::GpuTracker::BendProp(PAC::Bunch& bunch) {
      precision atw00 =  (precision) m_data.m_atw00;
      precision m_l =     (precision) m_data.m_l;
 
- if(m_mdata.m_offset){
+if(m_mdata.m_offset){
        dx =  m_mdata.m_offset->dx();
        dy =  m_mdata.m_offset->dy();}
       
@@ -514,9 +555,9 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision e0 = (precision)  ba.getEnergy(), m0 = (precision)  ba.getMass();
   precision p0 =    sqrt(e0*e0 - m0*m0);
   precision v0byc = p0/e0;
-  precision dx = 0.00, dy = 0.00;      
+  precision dx = 0.00, dy = 0.00;
   precision length = 0;
-  // precision gam = e0/m0;
+  precision gam = e0/m0;
   precision entry[10], vexit[10], mlt[10];
   int size_entry,size_mlt,size_exit;
  
@@ -525,6 +566,7 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   //  mlt = (precision*)malloc(10*sizeof(precision));
   for( int ii = 0; ii < 10; ii++) {
     entry[ii] = 0.00; vexit[ii]=0.00;mlt[ii] =0.00;}
+
    if(m_mdata.m_offset){
        dx =  m_mdata.m_offset->dx();
        dy =  m_mdata.m_offset->dy();}
@@ -563,20 +605,20 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
      if(!m_ir){
 
      passDriftgpu<<<blocksPerGrid,threadsPerBlock>>>(m_l/2., v0byc, N,  6);
-     //     std::cout << "after passDriftgpu \n";
-     	     readPart(bunch);   
+     //std::cout << "after passDriftgpu \n";
+     //	     readPart(bunch);   
    
    if(m_mdata.m_mlt){
     size_mlt   = (int) m_mdata.m_mlt->size();
        double * data2 = m_mdata.m_mlt->data();
      for( int ii = 0; ii < size_mlt; ii++)
        {    mlt[ii] =   (precision) data2[ii];
-	 //	  std::cout << "ii = " << ii << "in multipole part mlt =" << mlt[ii] << "\n";
+	 // std::cout << "ii = " << ii << "in multipole part mlt =" << mlt[ii] << "\n";
 
        }
      // free(data2);   
 
-     //std::cout << "dx = " << dx << "dy = " << dy << "\n";
+
      applyMltKickgpu<<<blocksPerGrid,threadsPerBlock>>>(mlt[0],mlt[1],mlt[2],mlt[3],mlt[4],mlt[5],dx,dy,1.00,N,size_mlt);}
    //std::cout << "after applyMltKick \n";
      //  readPart(bunch);
@@ -584,7 +626,6 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
      // std::cout << "after makeVel \n";
      //  readPart(bunch); 
     passDriftgpu<<<blocksPerGrid,threadsPerBlock>>>(m_l/2.00, v0byc, N,  6);
-
     // std::cout << "after passDrift \n";
     //	     readPart(bunch);
  if(m_mdata.m_exitMlt){
@@ -646,7 +687,7 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
     //std::cout << "after passDriftgpu \n";
     //    readPart(bunch);  
 
-    }
+  }
 if(m_mdata.m_exitMlt){
    size_exit  = (int) m_mdata.m_exitMlt->size();
      double * data3 = m_mdata.m_exitMlt->data();
@@ -694,6 +735,7 @@ void SPINK::GpuTracker::RFProp(PAC::Bunch& bunch)
   precision V   = m_V;
   precision lag = m_lag;
   precision h   = m_h;
+
  
 
 
@@ -713,14 +755,14 @@ void SPINK::GpuTracker::RFProp(PAC::Bunch& bunch)
    // Tracking
  precision m_l =   (precision) m_data.m_l;
  
- 
+ /**
      cout << "\nq=" << q << ", m0=" << m0 << ", e0_old=" << e0_old << endl;
   cout << "p0_old=" << p0_old << ", v0byc_old=" << v0byc_old << endl;
   cout << "revfreq_old=" << revfreq_old << ", t_old=" << t_old << endl;
   cout << "circ=" << circ << ", revfrteq_old=" << revfreq_old << endl ;
 
   cout << "V=" << V << ", lag=" <<  lag << " m_l =" << m_l << endl;
-
+ **/
  // Invoke kernel
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
@@ -733,19 +775,27 @@ void SPINK::GpuTracker::RFProp(PAC::Bunch& bunch)
 }
 
 
-void SPINK::GpuTracker::GpuPropagate(PAC::Bunch& bunch)
+void SPINK::GpuTracker::GpuProp(PAC::Bunch& bunch)
 { 
-
+static int firstcall = 0;
   int N = bunch.size();
   int threadsPerBlock = 100;
   int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
-  std::cout << "blocksPerGrid =" << blocksPerGrid << " \n";
-  std::cout << "threadsPerBlock =" << threadsPerBlock << "\n";
+  // std::cout << "blocksPerGrid =" << blocksPerGrid << " \n";
+  // std::cout << "threadsPerBlock =" << threadsPerBlock << "\n";
 
-  gpuPropagate<<<1,1>>>(N);
+  
+ if(firstcall == 0){
+   loadPart(bunch);
+   }
+    firstcall = 1;
+
+  gpuPropagate<<<blocksPerGrid, threadsPerBlock>>>(N,nturn);
  
 
     }
+
+
 
 void SPINK::GpuTracker::propagate(UAL::Probe& b)
 {
@@ -762,24 +812,18 @@ void SPINK::GpuTracker::propagate(UAL::Probe& b)
    precision light = (precision) UAL::clight;
   precision v = p0/gam/m0*light;
   precision t0 = oldT;
-
-  //GpuPropagate(bunch);
-  // return;
-
-
-
-  //if(firstcall == 0){
-  //  loadPart(bunch);
  
-  // }
-  firstcall = 1;
+   if(firstcall == 0){
+   loadPart(bunch);
+   }
+    firstcall = 1;
 
   
 
-  //  std::cout << "element " << m_name << " ";
-  // std::cout <<"p_mlt =" << p_mlt << "p_bend =" << p_bend << "\n";
+  //std::cout << "element " << m_name << " ";
+  //std::cout <<"p_mlt =" << p_mlt << "p_bend =" << p_bend << "\n";
   // std::cout << " 1st call \n";
-   readPart(bunch);
+  // readPart(bunch);
   double ang = 0.00;
   if(p_bend) ang = fabs(p_bend->angle());
 
@@ -799,17 +843,17 @@ void SPINK::GpuTracker::propagate(UAL::Probe& b)
 
 // if(m_name == "rfac1") {
     if(m_name == "rfac9bnc" || m_name == "rfac9mhz" ) {
- std::cout << "start of RFProp() 1 complex \n";
+ //std::cout << "start of RFProp() 1 complex \n";
 	RFProp(bunch);
-		std::cout << "after RFProp() \n";
-		readPart(bunch);
+	//	std::cout << "after RFProp() \n";
+	// readPart(bunch);
 	return;
  }
 
 
     if(ang > 0.00){
 	// pick GPU Dipole propogator //
-      // 	std::cout << "start of Dipole Bend \n";
+  	//std::cout << "start of Dipole Bend \n";
         BendProp(bunch);
 	//	std::cout << "after BendProp \n";
 	//	 readPart(bunch);
@@ -817,7 +861,7 @@ void SPINK::GpuTracker::propagate(UAL::Probe& b)
 	// pick GPU Multipole propagator //
       //std::cout << "start of Multipole prop \n";
 	  MultProp(bunch);
-	  //  	  std::cout << "after Multipole Propo \n";
+	  //	  std::cout << "after Multipole Propo \n";
 	  //  readPart(bunch); 
  } else if( length > 0){
       //std::cout << " called Drift prop \n";
@@ -846,16 +890,16 @@ void SPINK::GpuTracker::propagate(UAL::Probe& b)
     if(p_mlt) *p_mlt /= 2.00; 
     if(ang > 0.00){
 	// pick GPU Dipole propogator //
-      	//std::cout << "start of 2nd Dipole Bend \n";
+      //	std::cout << "start of 2nd Dipole Bend \n";
         BendProp(bunch);
 	//std::cout << "after BendProp \n";
         //readPart(bunch);
  }else if(p_mlt) {
 	// pick GPU Multipole propagator //
-      //std::cout << "start of 2nd Multipole prop \n";
+      // std::cout << "start of 2nd Multipole prop \n";
 	  MultProp(bunch);
-	  // 	  std::cout << "after Multipole Propo \n";
-	  //  readPart(bunch); 
+	  //	  std::cout << "after Multipole Propo \n";
+          //readPart(bunch); 
  } else if( length > 0){
       //std::cout << " called 2nd Drift prop \n";
       DriftProp(bunch);
@@ -882,21 +926,21 @@ void SPINK::GpuTracker::propagate(UAL::Probe& b)
    if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
    if(ang > 0.00){
 	// pick GPU Dipole propogator //
-     // 	std::cout << "start of Dipole Bend \n";
+     //	std::cout << "start of Dipole Bend \n";
         BendProp(bunch);
-	//		std::cout << "after BendProp \n";
+	//	std::cout << "after BendProp \n";
         //readPart(bunch);
  }else if(p_mlt) {
 	// pick GPU Multipole propagator //
      //std::cout << "start of Multipole prop \n";
 	  MultProp(bunch);
-	  //	   std::cout << "after Multipole Propo \n";
-	  //   readPart(bunch); 
+	  // std::cout << "after Multipole Propo \n";
+	  // readPart(bunch); 
  }  else if( length > 0){
      //std::cout << " called Drift prop \n";
       DriftProp(bunch);
-      // std::cout << " after Drift prop \n";
-      //readPart(bunch);
+      //  std::cout << " after Drift prop \n";
+      //   readPart(bunch);
    }
     //   m_tracker->propagate(bunch);
    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
@@ -916,18 +960,18 @@ void SPINK::GpuTracker::propagate(UAL::Probe& b)
       //	std::cout << "start of Dipole Bend \n";
         BendProp(bunch);
 	//	std::cout << "after BendProp \n";
-	//readPart(bunch);
+	// readPart(bunch);
  }else if(p_mlt) {
 	// pick GPU Multipole propagator //
-      //      std::cout << "start of Multipole prop \n";
+     // std::cout << "start of Multipole prop \n";
 	  MultProp(bunch);
-	  //  	  std::cout << "after Multipole Propo \n";
+	  //	  std::cout << "after Multipole Propo \n";
           //readPart(bunch); 
  } else if( length > 0){
-      //std::cout << " called Drift prop \n";
+     //std::cout << " called Drift prop \n";
       DriftProp(bunch);
       // std::cout << " after Drift prop \n";
-      //readPart(bunch);
+      // readPart(bunch);
    }
    //  m_tracker->propagate(bunch);
    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
@@ -936,7 +980,7 @@ void SPINK::GpuTracker::propagate(UAL::Probe& b)
     ba.setElapsedTime(t0);
 
   }
-  //readPart(bunch);
+  //  readPart(bunch);
 
 }
 
@@ -1110,7 +1154,9 @@ gpu3dmatrix<<<blocksPerGrid, threadsPerBlock>>>(s_mat[0],s_mat[1],s_mat[2],s_mat
 
 
 void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
-{  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+{
+  
+    PAC::BeamAttributes& ba = bunch.getBeamAttributes();
     precision e0    =   (precision) ba.getEnergy();
     precision m0    =  (precision) ba.getMass();
     precision GG    =  (precision) ba.getG();
@@ -1119,7 +1165,7 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
     precision gam = e0/m0;
     precision v0byc = p0/e0;
     int N = bunch.size();
-   
+    precision dtr_h = atan(1.00)/45.00;
     cudaMemcpyToSymbol(p0_d,&p0,sizeof(precision));
     cudaMemcpyToSymbol(Energy_d,&e0,sizeof(precision));
     cudaMemcpyToSymbol(GG_d,&GG,sizeof(precision));
@@ -1137,12 +1183,11 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
     cudaMemcpyToSymbol(h_d,&m_h,sizeof(precision));
     cudaMemcpyToSymbol(lag_d,&m_lag,sizeof(precision));
     cudaMemcpyToSymbol(circ_d,&circ,sizeof(precision));
-    
-    // std::cout << " q = " << q << "\n";
-
+    cudaMemcpyToSymbol(dtr,&dtr_h,sizeof(precision));
     cudaMemcpyToSymbol(rhic_d,rhic, sizeof(rhic));
-   
-// std::cout << " in load Part \n";
+
+
+
   for(int ip = 0; ip <PARTICLES; ip++){
     pos[ip].sx = pos[ip].sy = pos[ip].sz = 0.00;
     pos[ip].x = pos[ip].y= pos[ip].ct = 0.00;
@@ -1173,25 +1218,22 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
 
 void SPINK::GpuTracker::readPart(PAC::Bunch& bunch)
 { int N = bunch.size();
-  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+
+ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision e0 = (precision)  ba.getEnergy(), m0 = (precision)  ba.getMass();
    precision gam = e0/m0;
    precision GG    =  (precision) ba.getG();
-  
+   // precision Ggam  = gam*GG; 
    precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
-   //cudaMemcpyFromSymbol(e0,Energy_d, sizeof(e0));
-   // cudaMemcpyFromSymbol(m0,m0_d, sizeof(m0));
-   // cudaMemcpyFromSymbol(GG,GG_d, sizeof(GG));
-   // cudaMemcpyFromSymbol(q,q_d, sizeof(q));
-   // cudaMemcpyFromSymbol(p0,p0_d, sizeof(p0));
-    cudaMemcpyFromSymbol(&gam,gam_d, sizeof(gam));
+
+  cudaMemcpyFromSymbol(&gam,gam_d, sizeof(gam));
     // cudaMemcpyFromSymbol(v0byc,v0byc_d,sizeof(v0byc));
   precision Ggam  = gam*GG; 
-
 //vec6D output[PARTICLES];
   cudaMemcpyFromSymbol(pos,pos_d, sizeof(pos));
+ 
    for(int ip = 0; ip < N; ip++) {
-     std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";
+       std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";
      SxAvg += pos[ip].sx; SyAvg += pos[ip].sy; SzAvg += pos[ip].sz;
       }
 
