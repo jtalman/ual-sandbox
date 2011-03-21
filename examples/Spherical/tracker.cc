@@ -44,11 +44,13 @@ int main(int argc,char * argv[]){
 
  UAL::Shell shell;
 
-  #include "designBeamValues.hh"
+ #include "designBeamValues.hh"
+ #include "setBeamAttributes.hh"
+ PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
-  #include "extractParameters.h"
+ #include "simulatedProbeValues"
 
-  #include "setBeamAttributes.hh"
+ #include "extractParameters.h"
 
  // ************************************************************************
  std::cout << "\nDefine the space of Taylor maps." << std::endl;
@@ -90,7 +92,7 @@ int main(int argc,char * argv[]){
 
 //#include "setBeamAttributes.hh"
 
- PAC::BeamAttributes& ba = shell.getBeamAttributes();
+// PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
  // ************************************************************************
  std::cout << "\nLinear analysis." << std::endl;
@@ -133,6 +135,7 @@ int main(int argc,char * argv[]){
 
 // ba.setG(1.7928474);             // adds proton G factor
 
+/*
  PAC::Bunch bunch(1);               // bunch with 1 particle(s)
  bunch.setBeamAttributes(ba);
 
@@ -142,6 +145,7 @@ int main(int argc,char * argv[]){
  spin.setSZ(1.0);
 
   bunch[0].getPosition().set(dx,dpx,dy,dpy,0,p5Input);
+*/
 /*
   bunch[0].getPosition().set(1.e-4,0.    ,1.e-4,0.    ,0.,0.);
   bunch[1].getPosition().set(0.   ,0.5e-5,0.   ,0.    ,0.,0.);
