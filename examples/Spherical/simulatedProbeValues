@@ -1,0 +1,40 @@
+std::cout     << "#################################   Simulated Probe Values \n";
+
+double k       = R0*p0*b0;                         //
+
+//                   probe deviations
+double  dx     = 0.001;                            // main input
+double  dy     = 0.0001; 
+double  dz     = 0.0; 
+
+double dpx     = 0.0; 
+double dpy     = 0.0; 
+double dpz     = 0.0; 
+
+double dt      = 0.0; 
+//                   probe deviations
+
+//                   Case I: dx and implied dE
+double Rin     = R0+dx;                            //
+double gamma   = gamma0;                           //
+double vin     = sqrt(1-1/gamma/gamma);
+double Ein     = gamma*m0*c*c-k/Rin;               // E for compatibility with Munoz
+//                   Case I: dx and implied dE
+
+double Edes    = m0*c*c/gamma0;                    // Design Energy (Munoz potential)
+double dE      = Ein-Edes; 
+
+double p5Input = dE/p0;
+
+std::cout << "dx      " << dx      << "\n";
+std::cout << "dpx     " << dpx     << "\n";
+std::cout << "dy      " << dy      << "\n";
+std::cout << "dpy     " << dpy     << "\n";
+std::cout << "dt      " << dt      << "\n";
+std::cout << "p5Input " << p5Input << "\n";
+
+PAC::Bunch bunch(1);                               // bunch with 1 particle(s)
+bunch.setBeamAttributes(ba);
+bunch[0].getPosition().set(dx,dpx,dy,dpy,dt,p5Input);
+
+std::cout     << "#################################   Simulated Probe Values \n";
