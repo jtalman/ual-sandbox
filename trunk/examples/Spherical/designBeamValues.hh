@@ -22,25 +22,3 @@ double E0      = 10.5e6;                           // 9
 double gap     = 3e-2;                             // should be 11?
 
 std::cout     << "#################################   Design Beam Orientation\n";
-
-double k       = R0*p0*b0;                         //
-
-//                   probe deviations
-double  dx     = 0.001;                            // main input
-double  dy     = 0.0001; 
-double  dz     = 0.0; 
-double dpx     = 0.0; 
-double dpy     = 0.0; 
-//                   probe deviations
-
-//                   Case I: dx and implied dE
-double Rin     = R0+dx;                            //
-double gamma   = gamma0;                           //
-double vin     = sqrt(1-1/gamma/gamma);
-double Ein     = gamma*m0*c*c-k/Rin;               // E for compatibility with Munoz
-//                   Case I: dx and implied dE
-
-double Edes    = m0*c*c/gamma0;                    // Design Energy (Munoz potential)
-double dE      = Ein-Edes; 
-
-double p5Input = dE/p0;
