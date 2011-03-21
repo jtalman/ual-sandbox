@@ -1,64 +1,42 @@
 #ifndef UAL_SPINK_GPUDIPOLE_TRACKER_HH
 #define UAL_SPINK_GPUDIPOLE_TRACKER_HH
 #define  precision double
-#define PARTICLES 100000
+#define PARTICLES 1000
 #define ELEMENTS 2000
 #include "SPINK/Propagator/DipoleTracker.hh"
 #include "TEAPOT/Integrator/DipoleData.hh"
 #include "TEAPOT/Integrator/MagnetData.hh"
+
+// struture for holding particle data for use on GPU
 typedef struct {
  precision x, px, y, py, ct, de;
  precision sx, sy, sz;
 } vec6D;
 
+// structure for holding lattice data for use on GPU
+
 typedef struct {
-  int rfcav ;
-  int snake ;
-  precision entryMlt[10];
-  precision exitMlt[10];
-  precision l;
-  precision bend;
-  precision mlt[10];
-  precision dx;
-  precision dy;           // 4: dx, dy, ds
-  int ns;
-  int m_ir;
-  precision cphpl[20] ;
-  precision sphpl[20];
-  precision tphpl[20] ;
-  precision scrx[20] ;
-  precision rlipl[20];
-  precision scrs[20] ;
-  precision spxt[20];
-  precision kl1;
-  precision k1l ;
-  precision k0l;
-  precision kls0;
-  precision k2l;
-     precision angle ;
-     precision btw01 ;
-     precision btw00 ;
-     precision atw01 ;
-     precision atw00 ;
-     precision m_l ;
-  //  precision V ;
-  //  precision lag ;
-  //  precision h ;
-  int order;
-  
+  // lattice definitions for use in orbit transport
+  //multipole transport:
+  precision mlt[10], entryMlt[10], exitMlt[10],kl1;
+  precision m_l,dx,dy;
+  //bend transport:
+  precision angle,btw01,btw00,atw01,atw00;
+  precision cphpl[20], sphpl[20],tphpl[20],scrx[20],rlipl[20];
+  precision scrs[20],spxt[20];
+  //element flags
+  int rfcav, snake;  // no rf at element = 0,  rfcavity at element  = 1,
+  //  0 no snake, 1 first snake,  2 second snake
+  // complexity and order indicators
+  int ns, m_ir, order;
+  // multipole elements calculated for Spin transport
+  precision k1l ,k0l,kls0, k2l,length,bend;
   }Lat;
+
+
 vec6D pos[PARTICLES];
 Lat rhic[ELEMENTS];
 
-__device__ vec6D pos_d[PARTICLES];
-__device__ vec6D tmp_d[PARTICLES];
-__device__ Lat rhic_d[ELEMENTS];
-__constant__ precision m0_d, circ_d, GG_d, q_d;
-__constant__ precision snk1_mu_d,snk1_theta_d,snk1_phi_d;
-__constant__ precision snk2_mu_d,snk2_theta_d,snk2_phi_d;
-__constant__ precision PI_d=3.1415926536, clite_d= 2.99792458e+8;
-__constant__ precision V_d, lag_d, h_d;
-__device__ precision Energy_d, v0byc_d, p0_d,gam_d, t0_d;
 
 
 namespace SPINK {
@@ -104,8 +82,6 @@ namespace SPINK {
     void DriftProp(PAC::Bunch& bunch);
     void propagateSpin(UAL::Probe& bunch);
     void SnakeProp(PAC::Bunch& bunch);
-    static void GpuPropagate(PAC::Bunch& bunch);
-
 
     UAL::PropagatorNode* clone();
 
@@ -128,7 +104,8 @@ namespace SPINK {
     static void setCircum(precision circum){circ = circum;}
     static precision circ ;
 
-
+    /** GpuPropagator **/
+    static void GpuProp(PAC::Bunch& bunch);
 
   protected:
 
