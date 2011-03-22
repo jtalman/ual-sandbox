@@ -1,10 +1,8 @@
-std::cout     << "#################################   Simulated Probe Values \n";
-
-double k       = R0*p0*b0;                         //
+double k       = R0*p0*v0;                         //
 
 //                   probe deviations
-double  dx     = 0.001;                            // main input
-double  dy     = 0.001; 
+double  dx     = 0.015;
+double  dy     = 0.04; 
 double  dz     = 0.0; 
 
 double dpx     = 0.0; 
@@ -16,6 +14,7 @@ double dt      = 0.0;
 
 //                   Case I, II: dx gives Rin, and implies dE, dy doesn't impact
 double Rin     = R0+dx;                            //
+double RinEx   = sqrt((R0+dx)*(R0+dx)+dy*dy+dz*dz);//
 double gamma   = gamma0;                           //
 double Ein     = gamma*m0*c*c-k/Rin;               // E for compatibility with Munoz
 //                   Case I, II: dx gives Rin, and implies dE, dy doesn't impact
@@ -27,21 +26,8 @@ double dpxbyp0 = dpx/p0;
 double dpybyp0 = dpy/p0; 
 double dEbyp0  = dE /p0;
 
-std::cout << setprecision(13);
-std::cout << "R0      " << R0      << "\n";
-std::cout << "p0      " << p0      << "\n";
-std::cout << "b0      " << b0      << "\n";
-std::cout << "k       " << k       << "\n";
-
-std::cout << "dx      " << dx      << "\n";
-std::cout << "dpxbyp0 " << dpxbyp0 << "\n";
-std::cout << "dy      " << dy      << "\n";
-std::cout << "dpybyp0 " << dpybyp0 << "\n";
-std::cout << "dt      " << dt      << "\n";
-std::cout << "dEbyp0  " << dEbyp0  << "\n";
-
 PAC::Bunch bunch(1);                               // bunch with 1 particle(s)
 bunch.setBeamAttributes(ba);
 bunch[0].getPosition().set(dx,dpxbyp0,dy,dpybyp0,dt,dEbyp0);
 
-std::cout     << "#################################   Simulated Probe Values \n";
+#include "printProbeValues"
