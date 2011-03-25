@@ -22,8 +22,9 @@ void PositionPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
       
       double energy = ba.getEnergy();
       double mass   = ba.getMass();
-
+      double G      = ba.getG();
       double gam   = energy/mass;
+      double Ggamma = gam*G ; //AUL:29DEC09
       double p     = sqrt(energy*energy - mass*mass);
       double v     = p/gam/energy*UAL::clight;
       double v0byc = p/energy;
@@ -41,14 +42,19 @@ void PositionPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
 
       double wp_time = t0 + (-ct /UAL::clight );
       double ew      = de * p + energy;
+      double dew     = de * p;
 
       double psp0    = get_psp0(pos, v0byc);
 
       char endLine = '\0';
       char line1[200];
       
-      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c",
-	      ip, iturn, wp_time, x, px, y, py, ct, de, psp0, ew, endLine);
+      //      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c",
+      //	      ip, iturn, wp_time, x, px, y, py, ct, de, psp0, ew, endLine);
+      //std::cout << "in this output \n";
+      
+      sprintf(line1, "%1d %7d    %-15.9e %-16.7e %-16.7e %-16.7e %-16.7e %-16.7e %-16.7e %-16.7e %c",
+	      ip, iturn, wp_time, Ggamma, x, px, y, py, ct, de, endLine);
 
       output << line1 << std::endl;
 }
