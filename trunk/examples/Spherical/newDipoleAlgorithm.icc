@@ -20,8 +20,11 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	const PAC::BeamAttributes cba)
 {
 #include "getDesignBeam.h"
-double R0=data.m_l/data.m_angle;
+
+double R0 = data.m_l/data.m_angle;
  // Simple Element
+
+       R0 = 40;                            // JDT
 
  if(!data.m_ir){
 
@@ -31,7 +34,7 @@ double R0=data.m_l/data.m_angle;
 
    makeVelocity(p, tmp, v0byc);	         // common
 
-   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,data.m_l/data.m_angle,data.m_angle/2);
+   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,R0,data.m_angle/2);
 
    return;
  } 
@@ -77,7 +80,7 @@ double p0         = sqrt(e0*e0-m0*m0);                     // derived beam momen
 double g0         = e0/m0;                                 // derived beam gamma
 double b0         = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
 
-       R0         = 40;                                    // JDT
+       R0_        = R0;                                    // JDT
 
 double L0         = p0*R0;
 double Eel0       = p0*b0/R0;
