@@ -30,7 +30,7 @@ double R0 = data.m_l/data.m_angle;
 
    traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,R0,data.m_angle/2);
 
-   handleSplitBendBoundary(p,cba,data.m_l/data.m_angle);       //  should be markSplitBendBoundary?
+   handleSplitBendBoundary(p,cba,R0);       //  should be markSplitBendBoundary?
 
    makeVelocity(p, tmp, v0byc);	         // common
 
@@ -94,9 +94,6 @@ double xipInput   = R0*R0*p[1]/rInput/rInput;
 double gbefi      = (e0+p0*p[5])/m0;                      // "befi" means "before input"
 double eVafti     = getPotentialEnergy(Eel0,R0,rInput);   // "afti" means "after input"
 double gafti      = gbefi-eVafti/m0;                      // gamma after input
-//#include "exact.inline"
-//#include "hamilton.inline"
-  #include "reference.inline"
 double bafti      = sqrt(1-1/gafti/gafti);
 double pafti      = gafti*m0*bafti;
 double Lyafti     = rInput*pafti*sqrt(1-p[1]*p[1]*p0*p0/pafti/pafti); // quite a bit like L0
@@ -112,6 +109,8 @@ double th         = splitTheta;                            //    ditto
 
 double xiOutput   = xi_co + Cxi(Q,th)*(xiInput-xi_co) + Sxi(Q,th)*xipInput;
 double xipOutput  = Cxip(Q,th)*(xiInput-xi_co) + Sxip(Q,th)*xipInput;
+
+#include "reference.inline"                                // 2 approaches in play, RT Original, Munoz
 
        p[0]       = R0*xiOutput/(1-xiOutput);
        p[1]       = xipOutput/(1-xiOutput)/(1-xiOutput);
