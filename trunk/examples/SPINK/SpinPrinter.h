@@ -1,13 +1,12 @@
-
-
 #ifndef _SPINPRINTER_H
-#define	_SPINPRINTER_H
+#define _SPINPRINTER_H
 
 #include <fstream>
 #include <math.h>
 
 #include "PAC/Beam/Bunch.hh"
 #include "UAL/UI/Shell.hh"
+#include "SPINK/Propagator/SpinPropagator.hh"
 
 class SpinPrinter
 {
@@ -41,10 +40,12 @@ public:
     int    m_turn0;
     double m_phase0;
     double m_ct0;
+    double omega_sum;
+    double omega_num;
 
 };
 
 
 
-#endif	/* _OUTPUTPRINTER_H */
+#endif  /* _OUTPUTPRINTER_H */
 
