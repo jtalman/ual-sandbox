@@ -18,7 +18,7 @@ __device__ vec6D pos_d[PARTICLES];
 __device__ vec6D tmp_d[PARTICLES];
 __device__ Lat rhic_d[ELEMENTS];
 #include <gpuKernels.cu>
-#include <gpuProp2.cu>
+#include <gpuProp11.cu>
 SPINK::GpuTracker::GpuTracker()
 {
   p_entryMlt = 0;
@@ -100,9 +100,12 @@ if(m_name == "rfac9bnc" || m_name == "rfac9mhz"){
       rhic[is0].exitMlt[k] = 0.0;
       rhic[is0].mlt[k] =0.0;
     }
-
+    // rhic[is0].ENTRY = 1;
+    // rhic[is0].EXIT = 1;
+    // rhic[is0].MULT = 1;
 
   if(p_entryMlt){
+    //    rhic[is0].ENTRY = 1;
      int size_entry = p_entryMlt->size();
      double * data = p_entryMlt->data();
      for( int ii = 0; ii < size_entry; ii++)
@@ -116,11 +119,13 @@ if(m_name == "rfac9bnc" || m_name == "rfac9mhz"){
      
             }
        } //end of for loop
-  }else {    rhic[is0].entryMlt[0] = 1000.; }
+  }else {   // rhic[is0].ENTRY = 0; 
+rhic[is0].entryMlt[0] = 10000. ;}
    
 
 
  if(p_exitMlt){ 
+   //   rhic[is0].EXIT = 1;
      int size_exit = p_exitMlt->size();
      double * data = p_exitMlt->data();
      for( int ii = 0; ii < size_exit; ii++)
@@ -135,12 +140,14 @@ if(m_name == "rfac9bnc" || m_name == "rfac9mhz"){
             }
 	   
        }
- }else { rhic[is0].exitMlt[0] = 1000.; }
+ }else {// rhic[is0].EXIT = 0; 
+rhic[is0].exitMlt[0] = 10000.;}
 
 
 
 
 if(p_mlt){ 
+  //  rhic[is0].MULT = 1;
       int sizemlt = p_mlt->size();
      double * data = p_mlt->data();
      for( int ii = 0; ii < sizemlt; ii++)
@@ -154,21 +161,21 @@ if(p_mlt){
      
             } 
        }
-  rhic[is0].order = p_mlt->order(); } else { rhic[is0].mlt[0] = 1000;
-     rhic[is0].order = 0;}
+     rhic[is0].order = p_mlt->order(); } else { //rhic[is0].MULT = 0;
+  rhic[is0].mlt[0] = 10000.;   rhic[is0].order = 0;}
 
 /**setting m_l values **/
- rhic[is0].m_l = 0;
+ rhic[is0].m_l = 0.;
   if(m_data.m_l) rhic[is0].m_l = m_data.m_l;
 
 /** setting bend transport values **/
    
-   rhic[is0].k1l = 0;
-   rhic[is0].angle = 0;
-   rhic[is0].btw01 = 0;
-   rhic[is0].btw00 = 0;
-   rhic[is0].atw01= 0;
-   rhic[is0].atw00 = 0;
+   rhic[is0].k1l = 0.;
+   rhic[is0].angle = 0.;
+   rhic[is0].btw01 = 0.;
+   rhic[is0].btw00 = 0.;
+   rhic[is0].atw01= 0.;
+   rhic[is0].atw00 = 0.;
    if(m_mdata.m_mlt){
      if(m_mdata.m_mlt->kl(1)) rhic[is0].kl1 = m_mdata.m_mlt->kl(1);
      
@@ -202,39 +209,48 @@ for(int counter = 0; counter <= 1;counter++){
      }
 }
 
-
-/** setting length for spin prop **/
-  rhic[is0].length = 0;
-   if(p_length) rhic[is0].length = p_length->l();
-   /** setting bend for spin prop **/
-rhic[is0].bend = 0;
-   if(p_bend) rhic[is0].bend = p_bend->angle();
-
- /** setting complexity and ir values **/
+/** setting complexity and ir values **/
  rhic[is0].ns = 0;
    if(p_complexity) rhic[is0].ns= p_complexity->n();
 rhic[is0].m_ir = m_ir;
+
+/** setting for spin prop **/
+     int ns =1;
+     if(rhic[is0].ns >0) ns = 4*rhic[is0].ns;
+ 
+   /** setting bend for spin prop **/
+   rhic[is0].bend = 0.0;
+   if(p_bend) rhic[is0].bend = p_bend->angle();
+   /** setting for bend for spin prop **/ 
+   rhic[is0].length = 0.0;
+   //  rhic[is0].h = 0.0;
+   if(p_length){ rhic[is0].length = p_length->l();
+     //  rhic[is0].h  = rhic[is0].bend/rhic[is0].length;
+    }
+ 
 /** setting offset values **/
- rhic[is0].dx = 0;
-   rhic[is0].dy = 0;
+ rhic[is0].dx = 0.;
+   rhic[is0].dy = 0.;
    if(p_offset){
    rhic[is0].dx = p_offset->dx();
    rhic[is0].dy = p_offset->dy();
    }
 
 
-  int ns = 1;
-  if(p_complexity) ns = 4*p_complexity->n();
+   //  int ns = 1;
+   //if(p_complexity) ns = 4*p_complexity->n();
 
-     rhic[is0].kl1 = 0;
-     rhic[is0].k0l = 0;
-     rhic[is0].kls0 = 0;
-     rhic[is0].k2l = 0;
+     rhic[is0].kl1 = 0.;
+     rhic[is0].k0l = 0.;
+     rhic[is0].kls0 = 0.;
+     rhic[is0].k2l = 0.;
      if(p_mlt){
+       if(rhic[is0].order == 0){
      rhic[is0].k0l = p_mlt->kl(0)/ns;
-     rhic[is0].kls0 = p_mlt->ktl(0)/ns;
-     rhic[is0].k1l = p_mlt->kl(1)/ns;
-     rhic[is0].k2l = p_mlt->kl(2)/ns;
+     rhic[is0].kls0 = p_mlt->ktl(0)/ns;}
+
+       if(rhic[is0].order > 0) rhic[is0].k1l = p_mlt->kl(1)/ns;
+       if(rhic[is0].order > 1) rhic[is0].k2l = p_mlt->kl(2)/ns;
      }
  
 
@@ -783,7 +799,7 @@ static int firstcall = 0;
   int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
   // std::cout << "blocksPerGrid =" << blocksPerGrid << " \n";
   // std::cout << "threadsPerBlock =" << threadsPerBlock << "\n";
-
+  //  threadsPerBlock = 1; blocksPerGrid = 1;
   
  if(firstcall == 0){
    loadPart(bunch);
@@ -1221,7 +1237,7 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch)
 
  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision e0 = (precision)  ba.getEnergy(), m0 = (precision)  ba.getMass();
-   precision gam = e0/m0;
+  precision gam ; //= e0/m0;
    precision GG    =  (precision) ba.getG();
    // precision Ggam  = gam*GG; 
    precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
@@ -1233,12 +1249,12 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch)
   cudaMemcpyFromSymbol(pos,pos_d, sizeof(pos));
  
    for(int ip = 0; ip < N; ip++) {
-       std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";
+     //  std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";
      SxAvg += pos[ip].sx; SyAvg += pos[ip].sy; SzAvg += pos[ip].sz;
       }
-
+   int ip = 0;
    // SxAvg = SxAvg/(N+1); SyAvg =SyAvg/(N+1); SzAvg = SzAvg/(N+1);
-   std::cout << gam << " " << Ggam << " " << SxAvg/N  << " " << SyAvg/N << " " << SzAvg/N << " \n";
+   std::cout << gam << " " << Ggam << " " << SxAvg/N  << " " << SyAvg/N << " " << SzAvg/N << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << "  \n";
   
 
 

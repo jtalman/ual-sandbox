@@ -1,7 +1,7 @@
 #ifndef UAL_SPINK_GPUDIPOLE_TRACKER_HH
 #define UAL_SPINK_GPUDIPOLE_TRACKER_HH
 #define  precision double
-#define PARTICLES 1000
+#define PARTICLES 10000
 #define ELEMENTS 2000
 #include "SPINK/Propagator/DipoleTracker.hh"
 #include "TEAPOT/Integrator/DipoleData.hh"
@@ -10,7 +10,7 @@
 // struture for holding particle data for use on GPU
 typedef struct {
  precision x, px, y, py, ct, de;
- precision sx, sy, sz;
+ double sx, sy, sz;
 } vec6D;
 
 // structure for holding lattice data for use on GPU
@@ -20,6 +20,7 @@ typedef struct {
   //multipole transport:
   precision mlt[10], entryMlt[10], exitMlt[10],kl1;
   precision m_l,dx,dy;
+  // int MULT, EXIT, ENTRY;
   //bend transport:
   precision angle,btw01,btw00,atw01,atw00;
   precision cphpl[20], sphpl[20],tphpl[20],scrx[20],rlipl[20];
