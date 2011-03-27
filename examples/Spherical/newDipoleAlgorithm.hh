@@ -81,6 +81,7 @@
     double E;
     double L_;
     double k;
+    double R0_;
 
     double get_rFromProbe(double x,double y,double z){
        return sqrt(x*x+y*y+z*z);
