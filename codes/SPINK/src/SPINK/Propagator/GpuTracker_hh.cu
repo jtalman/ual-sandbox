@@ -131,6 +131,8 @@ namespace SPINK {
 
     /** Harmonic number */
     static precision m_h;
+     
+    static int Nelement;
 
     private:
 

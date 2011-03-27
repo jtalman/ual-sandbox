@@ -37,10 +37,11 @@ SPINK::GpuTracker::GpuTracker()
 
 bool SPINK::GpuTracker::coutdmp = 0;
 int SPINK::GpuTracker::nturn = 0;
+int SPINK::GpuTracker::Nelement = 0;
 precision SPINK::GpuTracker::m_V = 0.00;
 precision SPINK::GpuTracker::m_h = 0.00;
 precision SPINK::GpuTracker::m_lag = 0.00;
-precision SPINK::GpuTracker::circ = 0.00;
+precision SPINK::GpuTracker::circ = 0.00; 
 
 precision SPINK::GpuTracker::snk1_mu = 0.00;
 precision SPINK::GpuTracker::snk2_mu = 0.00;
@@ -253,7 +254,7 @@ rhic[is0].m_ir = m_ir;
        if(rhic[is0].order > 1) rhic[is0].k2l = p_mlt->kl(2)/ns;
      }
  
-
+     Nelement = is0;
 }
 
 
@@ -805,11 +806,23 @@ static int firstcall = 0;
    loadPart(bunch);
    }
     firstcall = 1;
+    //   int npass = Nelement/20;
+    //    int leftover = Nelement - npass*20; 
+    // for(int turns= 1; turns <= nturn; turns++) {
+    //for(int k=0;k < npass ;k++){
+    // cudaMemcpyToSymbol(rhic_d,&rhic[k*20], sizeof(Lat)*20);
+    gpuPropagate<<<blocksPerGrid, threadsPerBlock>>>(N,nturn,Nelement);
+    // }
+   
 
-  gpuPropagate<<<blocksPerGrid, threadsPerBlock>>>(N,nturn);
- 
+    //   if(leftover > 0){
+    //    cudaMemcpyToSymbol(rhic_d,&rhic[npass*20], sizeof(Lat)*leftover);
+    //    gpuPropagate<<<blocksPerGrid, threadsPerBlock>>>(N,leftover);
+    //   }
+    
 
-    }
+    //  }
+}
 
 
 
@@ -1238,24 +1251,31 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch)
  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision e0 = (precision)  ba.getEnergy(), m0 = (precision)  ba.getMass();
   precision gam ; //= e0/m0;
+  precision Energy;
    precision GG    =  (precision) ba.getG();
    // precision Ggam  = gam*GG; 
    precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
-
-  cudaMemcpyFromSymbol(&gam,gam_d, sizeof(gam));
+ int count =0;
+  cudaMemcpyFromSymbol(&Energy,Energy_d, sizeof(Energy));
     // cudaMemcpyFromSymbol(v0byc,v0byc_d,sizeof(v0byc));
+  gam = Energy/m0;
   precision Ggam  = gam*GG; 
 //vec6D output[PARTICLES];
   cudaMemcpyFromSymbol(pos,pos_d, sizeof(pos));
  
-   for(int ip = 0; ip < N; ip++) {
+  for(int ip = 0; ip < N; ip++) {
      //  std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";
+     if(pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de != pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de ){ 
+     }else {count++;
      SxAvg += pos[ip].sx; SyAvg += pos[ip].sy; SzAvg += pos[ip].sz;
-      }
+
+     }
+   }
    int ip = 0;
    // SxAvg = SxAvg/(N+1); SyAvg =SyAvg/(N+1); SzAvg = SzAvg/(N+1);
-   std::cout << gam << " " << Ggam << " " << SxAvg/N  << " " << SyAvg/N << " " << SzAvg/N << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << "  \n";
-  
+   //  std::cout << count << " " <<  gam << " " << Ggam << " " << SxAvg/count  << " " << SyAvg/count << " " << SzAvg/count << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << "  \n";
+   printf(" %i  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e \n",count,gam,Ggam,SxAvg/count,SyAvg/count,SzAvg/count,pos[ip].x,pos[ip].px,pos[ip].y,pos[ip].py,pos[ip].ct,pos[ip].de);
+
 
 
 }
