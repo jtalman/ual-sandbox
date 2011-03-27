@@ -256,7 +256,7 @@ int main(){
     std::cout << "sigdp = " << sigdp << "\n";    
   
 
-  SPINK::GpuTracker::setRF(V,120,lag);
+  SPINK::GpuTracker::setRF(V,harmon,lag);
   //  TEAPOT::RFCavityTracker  tracker;
   //tracker.setRF(V, harmon, lag);  //AUL:17MAR10
   //double circ = circum;
@@ -325,8 +325,8 @@ int main(){
     std::cout << "dpp0 = " << dpp0 << "\n";
     // }
 
-    emit_x = emit_x*UAL::pi*1e-6;
-    emit_y = emit_y*UAL::pi*1e-6;
+    emit_x = emit_x*UAL::pi*1e-6/(6*gamma);
+    emit_y = emit_y*UAL::pi*1e-6/(6*gamma);
     std::cout << "emit_x = " << emit_x << " emit_y = " << emit_y << " \n";
   
  if( calcPhaseSpace){
@@ -369,7 +369,7 @@ int main(){
     std::cout << "\nInitial phase space (including dispersion)" << std::endl; //AUL:17MAR10
     //AUL:17MAR10
   }
-  /**
+ 
   // index for phases, weights, and dp/p
   int ipsi,iw,idp;
   iw = 0;
@@ -379,9 +379,9 @@ int main(){
   int nw = 4;
   // weights for gaussian approximation
   double w[4] = { 0.2671, 0.94, 1.9617, 4.1589};
-  double psi_x, psi_y, J_x, J_y, dp0;    
+  double psi_x, psi_y, J_x, J_y;    
   double dpstep = 0.000024;
-  **/
+ 
   
 
 
@@ -410,7 +410,7 @@ do {
     do {
       gsl_ran_bivariate_gaussian(rs , 1.0, 1.0, 0.0, &rngs , &rngdp);
     } while ( (rngs*rngs+rngdp*rngdp) > bdry);
-    /*
+    
      ipsi = ip % npsi;
      iw = ((ip-iw)/npsi % nw );
      idp = (ip - ipsi - iw*nw)/(nw*npsi);
@@ -429,8 +429,9 @@ do {
      y0 = sqrt(J_y*beta_y)*cos(psi_y);
      y0p = sqrt(J_y/beta_y)*(sin(psi_y) + alfa_y*cos(psi_y));
      
-     dp0 = dpp0 + idp*dpstep;     
-    **/
+     //dp0 = dpp0 + idp*dpstep;     
+    
+     
     sigct = sigt*cc;
     x0  = rngx *sigx;
     x0p = rngxp*sigxp;
@@ -438,18 +439,18 @@ do {
     y0p = rngyp*sigyp;
     ct0  = rngs *sigct + offset*2;
     dp0 = rngdp*sigdp;
-
+     
 
      //  PAC::Position& pos = bunch[ip].getPosition();
     bunch[ip].getPosition().set(x0, x0p, y0, y0p, ct0, dp0);    //AUL:17MAR10
     bunch[ip].setSpin(spin);
      
-
+    /**
       std::cout << " bunch number =" << ip << "  ";
       std::cout << " x0 = " << x0 << ",  x0p = " << x0p ;
      std::cout << " y0 = " << y0 << ",  y0p = " << y0p ;
      std::cout << " ct0 = " << ct0 << ",  dp0 = " << dp0 << std::endl;
-  
+    **/
   }
 
     gsl_rng_free (rx);
