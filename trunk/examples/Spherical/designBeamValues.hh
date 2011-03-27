@@ -4,11 +4,12 @@ std::cout     << "#################################   Design Beam Orientation\n"
 double gamma0  = GAMMA_FROZEN_SPIN;                // fundamental kinematic parameter
 double c       = 1;                                // other units (mks) have 2.99792458e8 m/s
 double b0      = sqrt(1-1/gamma0/gamma0);          // equivalent fundamental kinematic parameter
+double v0      = b0*c;                             // equivalent fundamental kinematic parameter
 
 // $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.hh   // # (index) of member variable
 double m0      = UAL::pmass;                       // 2
 double e0      = gamma0*m0;                        // 1
-double p0      = gamma0*m0*b0*c;
+double p0      = gamma0*m0*v0;                     //
 
 double q0      = UAL::elemCharge;                  // 3
 double t0      = 0;                                // 4
