@@ -343,21 +343,26 @@ precision de0 ,e0_new, p0_new ,v0byc_new ,revfreq_old ;
 precision p0_old ,e0_old ,v0byc_old ;
 precision X_out,Y_out,DE_out,CT_out,e_old,p_old,e_new,p_new,vbyc,de,phase;
     precision X_out2, Y_out2,CT_out2,vbyc_2;
-    precision px_by_ps, py_by_ps, ps2_by_po2, t0, t0_2;
+    precision px_by_ps, py_by_ps, ps2_by_po2, t0, t0_2,t_old;
     precision dl2_by_lo2, l_by_lo,cdt_circ, cdt_vel;
     precision px_by_ps_2, py_by_ps_2, ps2_by_po2_2;
     precision dl2_by_lo2_2, l_by_lo_2,cdt_circ_2, cdt_vel_2;
-   
-     de0       = q_d*V_d*sin(2*PI_d*lag_d);
-    e0_new    = Energy_d + de0;
+   e0_old = Energy_d;
+   p0_old = p0_d ;
+   t_old = t0_d; 
+   v0byc_old = v0byc_d;
+
+   de0       = q_d*V_d*sin(2*PI_d*lag_d);
+   e0_new    = e0_old + de0;
   p0_new    = sqrt(e0_new*e0_new - m0_d*m0_d);
   v0byc_new = p0_new/e0_new;
   revfreq_old = v0byc_d*clite_d/circ_d ;
-  p0_old = p0_d ;
-  v0byc_old = v0byc_d;
+ 
+ 
+   
   Energy_d = e0_new;
   v0byc_d = v0byc_new;
-  e0_old = Energy_d;
+ 
 
   p0_d = p0_new;
 
@@ -771,7 +776,7 @@ __device__ void propagateSpin(int N, int j,   precision x,   precision px,   pre
 
 }
 
-__global__ void gpuPropagate(int N, int Nturns){
+__global__ void gpuPropagate(int N, int Nturns, int Nelement){
  
    int i = blockDim.x*blockIdx.x + threadIdx.x;
    precision length,ang;
@@ -785,7 +790,7 @@ __global__ void gpuPropagate(int N, int Nturns){
    for(int turns= 1; turns <= Nturns; turns++) {
  
  // looping over lattice elements 
-for(int j = 0 ; j < 1845 ; j++)
+for(int j = 0 ; j < Nelement ; j++)
    {
      //  length=0.00; ang = 0.00;
      MULT = false;
@@ -904,7 +909,7 @@ for(int j = 0 ; j < 1845 ; j++)
 
    }
 
-   }
+  }
 
    pos_d[i].x = x; pos_d[i].px = px; pos_d[i].y = y ; pos_d[i].py = py;
    pos_d[i].ct = ct; pos_d[i].de = de; pos_d[i].sx = sx; pos_d[i].sy = sy;
