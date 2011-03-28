@@ -39,9 +39,19 @@
     void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double R0);
 
     double getPotentialEnergy(double Eel0,double R0,double r){
-       return -Eel0*R0*(R0/r-1);                   //  (2) page 15, "...Code...", Feb 17, 2011
+std::cout << "JDT - enter double getPotentialEnergy(double Eel0,double R0,double r)\n";
+std::cout << "k          " << k          << "\n";
+std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
+       double value = -k*(1/r-1/R0);
+       return value;
+//     return -Eel0*R0*(R0/r-1);                   //  (2) page 15, "...Code...", Feb 17, 2011
 // E field    -E0*R0*R0/r/r
 //     return E0*R0*log(r/R0); 
+    }
+
+    double PE(double Rsxf,double r){
+        double value = -k*(1/r-1/Rsxf);
+        return value;
     }
 
     double Cxi(double Q,double theta){             // (30) page 22, "...Code...", Feb 17, 2011
@@ -66,7 +76,8 @@
 
     double get_pz(double g,double m0,double Eel0,double R0,double r,double px,double py){
         double  e  =g*m0;
-        double me  =e-getPotentialEnergy(Eel0,R0,r);
+        double me  =e-PE(r);
+//      double me  =e-getPotentialEnergy(Eel0,R0,r);
         double pzSQ=me*me-px*px-py*py-m0*m0;
         return sqrt(pzSQ);
     }
