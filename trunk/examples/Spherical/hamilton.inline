@@ -3,13 +3,13 @@ double kapSQ = 1-kbyL_c*kbyL_c;               //
 
        lambda = kapSQ*L_*L_*c*c/k/E;          // also (k/E)*(L_cbyk*L_cbyk-1) - Munoz (34)
 double L_cbyk = L_*c/k;
-double m_pbyE = m_p/E;                      //
+double m0byE = m0/E;                      //
 
-double ca1 = m_pbyE*m_pbyE*kapSQ;
+double ca1 = m0byE*m0byE*kapSQ;
 //double eps = L_cbyk*sqrt(1-ca1);
 
 std::cout << "E                       " << E      << "\n";
-std::cout << "m_pc^2/E                " << m_pbyE << "\n";
+std::cout << "m0c^2/E                " << m0byE << "\n";
 std::cout << "k                       " << k       << "\n";
 std::cout << "L_                      " << L_      << "\n";
 std::cout << "k/L_/c                  " << kbyL_c  << "\n";
@@ -20,8 +20,8 @@ std::cout << "near one                " << ca1    << "\n";
 double omega = (1-kappa)*L_/gamma/r/r;
 std::cout << "omega                   " << omega  << "\n";
 
-double E0 = m_p*c*c/gamma_0;
-double kappa0 = 1/gamma_0;
+double E0 = m0*c*c/g0;
+double kappa0 = 1/g0;
 double dEbyE = (E-E0)/E;
 double dE = E-E0;
 double dK = kappa-kappa0;
@@ -29,13 +29,13 @@ std::cout << "dE                   " << dE     << "\n";
 std::cout << "dK                   " << dK     << "\n";
 
 double ES = E+k/R0;
-double h0 = L_/m_p/r-k*ES/L_/m_p/c/c;
+double h0 = L_/m0/r-k*ES/L_/m0/c/c;
 std::cout << "h0  "<< h0   << "\n";
 std::cout << "p[1] " << p[1] << "\n";
-double epsilon2 = L_cbyk*sqrt( 2*E0*dE+dE*dE-(m_p*c*c)*(m_p*c*c)*(2*kappa0*dK+dK*dK) );
+double epsilon2 = L_cbyk*sqrt( 2*E0*dE+dE*dE-(m0*c*c)*(m0*c*c)*(2*kappa0*dK+dK*dK) );
        epsilon2 = epsilon2/E;
 std::cout << "eccentricity (epsilon2) " << epsilon2     << "\n";
-double epsilonViah0 = h0*L_*m_p*c*c/k/E;
+double epsilonViah0 = h0*L_*m0*c*c/k/E;
 std::cout << "eccentricity (epsilonViah0) - is this dx/R0?   " << epsilonViah0    << "\n";
        epsilon = epsilonViah0;
 
@@ -44,7 +44,7 @@ std::cout << "eccentricity (epsilonViah0) - is this dx/R0?   " << epsilonViah0  
 //double KapTh = acos(cosKapTh);
 //std::cout << "   KapTh " <<    KapTh     << "\n";
 
-double h0p = -L_*R0*p[1]/m_p/r/r;
+double h0p = -L_*R0*p[1]/m0/r/r;
 double theta0 = atan(h0p/kappa/h0);
        theta0 = theta0/kappa;
 std::cout << "theta0 " << theta0 << "\n";
