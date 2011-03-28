@@ -21,20 +21,20 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 {
 #include "getDesignBeam.h"
 
-double R0 = data.m_l/data.m_angle;
+double Rsxf = data.m_l/data.m_angle;
  // Simple Element
 
-       R0 = 40;                            // JDT
+//     Rsxf = 30;                            // JDT
 
  if(!data.m_ir){
 
-   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,R0,data.m_angle/2);
+   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,Rsxf,data.m_angle/2);
 
-   handleSplitBendBoundary(p,cba,R0);       //  should be markSplitBendBoundary?
+   handleSplitBendBoundary(p,cba,Rsxf);       //  should be markSplitBendBoundary?
 
    makeVelocity(p, tmp, v0byc);	         // common
 
-   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,R0,data.m_angle/2);
+   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,Rsxf,data.m_angle/2);
 
    return;
  } 
@@ -71,18 +71,21 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
   Coordinates& tmp,
   double v0byc,
   const PAC::BeamAttributes cba,
-  double R0,
+  double Rsxf,
   double splitTheta){
 std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 #include "getDesignBeam.h"
 double GeVperJ    = 1./q0/1.e9;                            // units
 double p0         = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0         = e0/m0;                                 // derived beam gamma
-double b0         = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
+double b0         = sqrt(1.-1./g0/g0);                     // derived beam beta (usually same as velocity)
+double c          = 1;
+double v0         = b0/c;                                  // JDT
 
-       R0_        = R0;                                    // JDT
+//     R0_        = Rsxf;                                  // JDT
 
-double L0         = p0*R0;
+//double L0         = p0*R0;
+       k          = p0*v0*R0;                              // moved "upstream" to be available for getPotentialEnergy and PE()
 double Eel0       = p0*b0/R0;
 double Eel0MKS    = Eel0*1e9;
 #include "printDesignBeam.h"
@@ -92,7 +95,8 @@ double xiInput    = p[0]/rInput;                           // Input vs Inside
 double xipInput   = R0*R0*p[1]/rInput/rInput;
 
 double gbefi      = (e0+p0*p[5])/m0;                      // "befi" means "before input"
-double eVafti     = getPotentialEnergy(Eel0,R0,rInput);   // "afti" means "after input"
+  double eVafti     = PE(Rsxf,rInput);                    // "afti" means "after input"
+//double eVafti     = getPotentialEnergy(Eel0,R0,rInput); // "afti" means "after input"
 double gafti      = gbefi-eVafti/m0;                      // gamma after input
 double bafti      = sqrt(1-1/gafti/gafti);
 double pafti      = gafti*m0*bafti;
@@ -117,11 +121,12 @@ double xipOutput  = Cxip(Q,th)*(xiInput-xi_co) + Sxip(Q,th)*xipInput;
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
 
-       p[2]      += R0*th*p[3];                           // approximations
+       p[2]      += R0*th*p[3];                            // approximations
 //     p[3]       = p[3];                                  //    here
 
 double rOutput    = p[0]+R0;
-double eVbefo     = getPotentialEnergy(Eel0,R0,rOutput);      // "befo" means "before output"
+  double eVbefo     = PE(Rsxf,rOutput);                    // "befo" means "before output"
+//double eVbefo     = getPotentialEnergy(Eel0,R0,rOutput); // "befo" means "before output"
 
 double tof0       = R0*th/b0;
 double fac1       = E*lambda*lambda/L_/kappa/kappa;
@@ -140,14 +145,14 @@ std::cout << "time2                                   "  << time2               
 }
 
 template<class Coordinate, class Coordinates>
-void newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double R0){
+void newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf){
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
 #include "getDesignBeam.h"
 double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
 double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
-double L0        = p0*R0;
+//double L0        = p0*R0;
 double Eel0      = p0*b0/R0;
 double Eel0MKS   = Eel0*1e9;
 #include "printDesignBeam.h"
