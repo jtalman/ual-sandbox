@@ -82,21 +82,18 @@ double b0         = sqrt(1.-1./g0/g0);                     // derived beam beta 
 double c          = 1;
 double v0         = b0/c;                                  // JDT
 
-//     R0_        = Rsxf;                                  // JDT
-
-//double L0         = p0*R0;
-       k          = p0*v0*R0;                              // moved "upstream" to be available for getPotentialEnergy and PE()
-double Eel0       = p0*b0/R0;
+       k          = p0*v0*Rsxf;                              // moved "upstream" to be available for getPotentialEnergy and PE()
+double Eel0       = p0*b0/Rsxf;
 double Eel0MKS    = Eel0*1e9;
 #include "printDesignBeam.h"
 
-double rInput     = p[0]+R0;
+double rInput     = p[0]+Rsxf;
 double xiInput    = p[0]/rInput;                           // Input vs Inside
-double xipInput   = R0*R0*p[1]/rInput/rInput;
+double xipInput   = Rsxf*Rsxf*p[1]/rInput/rInput;
 
 double gbefi      = (e0+p0*p[5])/m0;                      // "befi" means "before input"
   double eVafti     = PE(Rsxf,rInput);                    // "afti" means "after input"
-//double eVafti     = getPotentialEnergy(Eel0,R0,rInput); // "afti" means "after input"
+//double eVafti     = getPotentialEnergy(Eel0,Rsxf,rInput); // "afti" means "after input"
 double gafti      = gbefi-eVafti/m0;                      // gamma after input
 double bafti      = sqrt(1-1/gafti/gafti);
 double pafti      = gafti*m0*bafti;
@@ -116,19 +113,19 @@ double xipOutput  = Cxip(Q,th)*(xiInput-xi_co) + Sxip(Q,th)*xipInput;
 
 #include "reference.inline"                                // 2 approaches in play, RT Original, Munoz
 
-       p[0]       = R0*xiOutput/(1-xiOutput);
+       p[0]       = Rsxf*xiOutput/(1-xiOutput);
        p[1]       = xipOutput/(1-xiOutput)/(1-xiOutput);
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
 
-       p[2]      += R0*th*p[3];                            // approximations
+       p[2]      += Rsxf*th*p[3];                            // approximations
 //     p[3]       = p[3];                                  //    here
 
-double rOutput    = p[0]+R0;
+double rOutput    = p[0]+Rsxf;
   double eVbefo     = PE(Rsxf,rOutput);                    // "befo" means "before output"
-//double eVbefo     = getPotentialEnergy(Eel0,R0,rOutput); // "befo" means "before output"
+//double eVbefo     = getPotentialEnergy(Eel0,Rsxf,rOutput); // "befo" means "before output"
 
-double tof0       = R0*th/b0;
+double tof0       = Rsxf*th/b0;
 double fac1       = E*lambda*lambda/L_/kappa/kappa;
 double fac2       =     k*sqrt(CSQ)/L_/kappa/kappa;
 double time1      = getTime1(fac1,th);                       // get_timeFromFirstTermViaMaple(fac1,th)
@@ -152,8 +149,8 @@ double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
 double g0        = e0/m0;                                 // derived beam gamma
 double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
-//double L0        = p0*R0;
-double Eel0      = p0*b0/R0;
+//double L0        = p0*Rsxf;
+double Eel0      = p0*b0/Rsxf;
 double Eel0MKS   = Eel0*1e9;
 #include "printDesignBeam.h"
 }
