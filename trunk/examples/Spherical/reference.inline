@@ -1,37 +1,18 @@
 //#define GAMMA_FROZEN_SPIN 1.248107349
 
-//                   constants
-  double m_p = cba.getMass();                 // GeV  
-std::cout << "JDT M_P - m_p - " << m_p << "\n";
-//double m_p = UAL::pmass;                    // GeV  
-//double m_p = 0.93827231;                    // GeV  
-  double c = 1;                               // 2.99792458e8 m/s
-  double gamma_0 = cba.getEnergy()/m_p;       // GAMMA_FROZEN_SPIN;         //      
-std::cout << "JDT GAMMA_0 - gamma_0 - " << gamma_0 << "\n";
-  double beta_0 = sqrt(1-1/gamma_0/gamma_0);  //
-  double p_0c = gamma_0*m_p*beta_0;           // GeV  
-//double p_0c = 0.7007405278;                 // GeV  
-//double R0_= 30;                             //      
-//double R0_= 40;                             //      
-         k = R0*p_0c*beta_0;                  //      
-//double k = 16.77233867;                     //      
-//                   constants
-
 //                   probe deviations
-double  dx  =  p[0];   // 0.01;             // main input
-double  dy  =  p[2];   // 0.0;
+double  dx  =  p[0];
+double  dy  =  p[2];
 double  dz  =  0.0;
-double dpx  =  p[1];   // 0.0;
-double dpy  =  p[3];   // 0.0;
-double dpz;                      // main ouput
+double dpx  =  p[1];
+double dpy  =  p[3];
+double dpz;
 //                   probe deviations
 
-//                   Case I: dx and implied dE
-  double r = R0+dx;                           //      
-  double gamma = gamma_0;                     //      
-         E = gamma*m_p*c*c-k/r;               //      
-  double L = r*p_0c;                          //      
-//                   Case I: dx and implied dE
+double r     = R0+dx;                         //      
+double gamma = gafti;                         //      
+       E     = gamma*m0*c*c-k/r;              //      
+double L     = r*p0;                          //      
 
 //                   probe values
 double x  = R0+dx; 
@@ -41,13 +22,14 @@ double z  = dz;
 double px = dpx;
 double py = dpy;
 double pz;
+//                   probe values
 
-double vin;
 double pin;
+double bin;
 
-vin = sqrt(1-1/gamma/gamma);
-pin = gamma*m_p*vin;
-std::cout << "vin " << vin  << "\n";
+bin = sqrt(1-1/gamma/gamma);
+pin = gamma*m0*bin*c;
+std::cout << "bin " << bin  << "\n";
 std::cout << "pin " << pin << "\n";
 
 pz = sqrt(pin*pin-px*px-py*py);
