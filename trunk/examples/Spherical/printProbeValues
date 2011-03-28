@@ -6,7 +6,7 @@ double GeVperJ = 1/q0/1e9;
 double m0MKS   = UAL::pmass/GeVperJ/UAL::clight/UAL::clight;
 double p0MKS   = gamma0*m0MKS*v0MKS;
 double kMKSpvR = p0MKS*v0MKS*R0;
-double kMKSeER = q0*E0*R0*R0;
+double kMKSeER = q0*El0*R0*R0;
 
 std::cout << setiosflags( ios::showpos   );
 std::cout << setiosflags( ios::uppercase );
