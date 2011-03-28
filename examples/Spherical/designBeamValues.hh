@@ -18,7 +18,7 @@ double M0      = 1;                                // 6
 double G0      = UAL::pG;                          // 7
 double R0      = 30;                               // 10
 double L0      = R0*p0;                            // 8
-double E0      = 10.5e6;                           // 9
+double El0     = 10.5e6;                           // 9
 
 double gap     = 3e-2;                             // should be 11?
 
