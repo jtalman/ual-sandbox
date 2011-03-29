@@ -96,7 +96,12 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
     double epsilon;
     double kappa;
 
-    double h0(double r0){
+    double h0;
+    double h0p;
+    double C;
+    double theta0;
+
+    double _h0(double r0){
         double value = L/mass/r0-k*gamma/L;
         return value;
     }
@@ -119,12 +124,25 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
         return value;
     }
 
+    double _theta0(){
+//  double _theta0(double h0,double h0p){
+//  double theta0(const Coordinates p,double Rsxf,double r){
+        return atan( h0p/h0/kappa )/kappa;
+    }
+
+    double CSQ(){
+//  double CSQ(double h0,double h0p){
+        return h0*h0+h0p*h0p/kappa/kappa;
+    }
+
     double get_rFromProbe(double x,double y,double z){
        return sqrt(x*x+y*y+z*z);
     }
 
     double get_rFromEllipse(double theta){
-        return lambda/(1+epsilon*cos(kappa*theta));
+        double fac = L*mass*c*c/k/E;
+        return lambda/( 1+fac*C*cos( kappa*(theta-theta0) ) );
+//      return lambda/(1+epsilon*cos(kappa*theta));
     }
 
 #include "getTimeAlternate.inline"
