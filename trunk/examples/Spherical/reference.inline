@@ -9,10 +9,11 @@ double dpy  =  p[3];
 double dpz;
 //                   probe deviations
 
+       gamma = gafti;                         //      
+       mass  = m0;
 double r     = R0+dx;                         //      
-double gamma = gafti;                         //      
        E     = gamma*m0*c*c-k/r;              //      
-double L     = r*p0;                          //      
+       L     = r*p0;                          //      
 
 //                   probe values
 double x  = R0+dx; 
@@ -38,12 +39,12 @@ std::cout << "pz " << pz << "\n";
 double Lx = y*pz-z*py;
 double Ly = z*px-x*pz;
 double Lz = x*py-y*px;
-       L_ = sqrt(Lx*Lx+Ly*Ly+Lz*Lz);
+       L  = sqrt(Lx*Lx+Ly*Ly+Lz*Lz);
 
 std::cout << "Lx  " << Lx << "\n";
 std::cout << "Ly  " << Ly << "\n";
 std::cout << "Lz  " << Lz << "\n";
-std::cout << "L_  " << L_ << "\n";
+std::cout << "L   " << L  << "\n";
 //                   probe values
 
 #include "hamilton.inline"
