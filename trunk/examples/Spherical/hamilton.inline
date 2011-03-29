@@ -28,12 +28,14 @@ double dK = kappa-kappa0;
 std::cout << "dE                   " << dE     << "\n";
 std::cout << "dK                   " << dK     << "\n";
 
-double ES = E+k/R0;
+double ES  = E+k/R0;
 double h0A = L/m0/r-k*ES/L/m0/c/c;
-std::cout << "h0A   "<< h0A   << "\n";
-std::cout << "h0(r) "<< h0(r) << "\n";
-std::cout << "ht(r) "<< ht(r) << "\n";
-std::cout << "p[1]  " << p[1] << "\n";
+       h0  = ht(r);
+std::cout << "h0A    "<< h0A    << "\n";
+std::cout << "_h0(r) "<< _h0(r) << "\n";
+std::cout << "h0     "<< h0     << "\n";
+std::cout << "ht(r)  "<< ht(r)  << "\n";
+std::cout << "p[1]   " << p[1]  << "\n";
 double epsilon2 = Lcbyk*sqrt( 2*E0*dE+dE*dE-(m0*c*c)*(m0*c*c)*(2*kappa0*dK+dK*dK) );
        epsilon2 = epsilon2/E;
 std::cout << "eccentricity (epsilon2) " << epsilon2     << "\n";
@@ -47,14 +49,20 @@ std::cout << "eccentricity (epsilonViah0A) - is this dx/R0?   " << epsilonViah0A
 //std::cout << "   KapTh " <<    KapTh     << "\n";
 
 double h0pA = -L*R0*p[1]/m0/r/r;
+       h0p  = htp2(p,Rsxf,r);
 std::cout << "h0pA           "<< h0pA           << "\n";
 std::cout << "htp(p,Rsxf,r)  "<< htp(p,Rsxf,r)  << "\n";
-std::cout << "htp2(p,Rsxf,r) "<< htp2(p,Rsxf,r) << "\n";
-double theta0 = atan(h0pA/kappa/h0A);
-       theta0 = theta0/kappa;
-std::cout << "theta0 " << theta0 << "\n";
-double CSQ = h0A*h0A+(h0pA/kappa)*(h0pA/kappa);
-std::cout << "CSQ    " << CSQ    << "\n";
+std::cout << "h0p            "<< h0p            << "\n";
+double theta0A = atan(h0pA/kappa/h0A);
+       theta0A = theta0A/kappa;
+       theta0  = _theta0();
+std::cout << "theta0A " << theta0A << "\n";
+std::cout << "theta0  " << theta0  << "\n";
+double CSQA = h0A*h0A+(h0pA/kappa)*(h0pA/kappa);
+double CSQ2 = CSQ();
+       C    = sqrt(CSQ2);
+std::cout << "CSQA " << CSQA << "\n";
+std::cout << "CSQ2 " << CSQ2 << "\n";
 
 std::cout << "\n";
 std::cout << "###############################\n";
