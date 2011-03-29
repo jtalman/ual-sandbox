@@ -86,13 +86,38 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
         return dl*pr-dr*pl;
     }
 
+    double c;
+    double gamma;
+    double mass;
+    double k;
+    double E;
+    double L;
     double lambda;
     double epsilon;
     double kappa;
-    double E;
-    double L_;
-    double k;
-    double R0_;
+
+    double h0(double r0){
+        double value = L/mass/r0-k*gamma/L;
+        return value;
+    }
+
+    double ht(double r){                       // h theta
+        double fac   = k/L/mass/c/c;
+        double value = L/mass/r-fac*(E+k/r);
+        return value;
+    }
+
+    double htp(const Coordinates p,double Rsxf,double r){                      // h theta prime
+        double drdtheta = Rsxf*p[1];
+        double value = -(L/mass/r/r)*drdtheta+(k*k/L/mass/c/c/r/r)*drdtheta;
+        return value;
+    }
+
+    double htp2(const Coordinates p,double Rsxf,double r){                     // h theta prime
+        double drdtheta = Rsxf*p[1];
+        double value = -kappa*kappa*(L/mass/r/r)*drdtheta;
+        return value;
+    }
 
     double get_rFromProbe(double x,double y,double z){
        return sqrt(x*x+y*y+z*z);
