@@ -50,5 +50,5 @@ std::cout << "L   " << L  << "\n";
 //                   probe values
 
 #include "hamilton.inline"
-#include "plane.inline"
+//#include "plane.inline"
 #include "rotate.insert"
