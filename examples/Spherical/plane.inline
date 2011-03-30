@@ -1,4 +1,4 @@
-double rin = get_rFromProbe(x,y,z);
+//double rin = get_rFromProbe(x,y,z);
 double routFromEllipse = get_rFromEllipse(splitTheta);
 double rout = routFromEllipse;
 std::cout << "rin  " << rin             << "\n";
