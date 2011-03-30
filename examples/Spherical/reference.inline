@@ -1,29 +1,30 @@
 //#define GAMMA_FROZEN_SPIN 1.248107349
 
 //                   probe deviations
-double  dx  =  p[0];
-double  dy  =  p[2];
-double  dz  =  0.0;
-double dpx  =  p[1];
-double dpy  =  p[3];
+double  dx   =  p[0];
+double  dy   =  p[2];
+double  dz   =  0.0;
+double dpx   =  p[1]*p0;
+double dpy   =  p[3]*p0;
 double dpz;
 //                   probe deviations
 
-       gamma = gafti;                         //      
-       mass  = m0;
-double r     = R0+dx;                         //      
-       E     = gamma*m0*c*c-k/r;              //      
-       L     = r*p0;                          //      
-
 //                   probe values
-double x  = R0+dx; 
-double y  = dy;
-double z  = dz;
+double x     = R0+dx; 
+double y     = dy;
+double z     = dz;
 
-double px = dpx;
-double py = dpy;
+double px    = dpx;
+double py    = dpy;
 double pz;
 //                   probe values
+
+       gamma = gafti;                         // for header methods
+       mass  = m0;                            // for header methods
+
+double rin   = get_rFromProbe(x,y,z);         // was R0+dx, now calculate exactly
+       E     = gamma*m0*c*c-k/rin;            //      
+       L     = rin*p0;                        //      
 
 double pin;
 double bin;
@@ -36,10 +37,10 @@ std::cout << "pin " << pin << "\n";
 pz = sqrt(pin*pin-px*px-py*py);
 std::cout << "pz " << pz << "\n";
 
-double Lx = y*pz-z*py;
-double Ly = z*px-x*pz;
-double Lz = x*py-y*px;
-       L  = sqrt(Lx*Lx+Ly*Ly+Lz*Lz);
+double Lx    = y*pz-z*py;
+double Ly    = z*px-x*pz;
+double Lz    = x*py-y*px;
+       L     = sqrt(Lx*Lx+Ly*Ly+Lz*Lz);
 
 std::cout << "Lx  " << Lx << "\n";
 std::cout << "Ly  " << Ly << "\n";
