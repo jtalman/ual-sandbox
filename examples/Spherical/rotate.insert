@@ -5,9 +5,9 @@ double nz = -Lz/L;      // basically aligned with y axes
 
 //double rin = r;
 
-double rinhatx = x/r;
-double rinhaty = y/r;
-double rinhatz = z/r;
+double rinhatx = x/rin;
+double rinhaty = y/rin;
+double rinhatz = z/rin;
 
 double pinhatx = px/pin;
 double pinhaty = py/pin;
@@ -63,7 +63,7 @@ std::cout << "rRy " << rRy << "\n";
 std::cout << "rRz " << rRz << "\n";
 
 std::cout << "angle " << angle << "\n";
-       angle = acos( (x*px+y*py)/r/pin );
+       angle = acos( (x*px+y*py)/rin/pin );
 std::cout << "angle " << angle << "\n";
 
 double phi   = atan( (x*py-y*px)/x/pz );
@@ -74,12 +74,12 @@ double nPy   = sin(phi);
 double nPz   = cos(phi);
 
 double nPdotr = nPx*x+nPy*y+nPz*z;
-double alpha  = acos(nPdotr/r);
+double alpha  = acos(nPdotr/rin);
 std::cout << "alpha " << alpha << "\n";
 
 double nPcrossrx = -nPz*y;
 double nPcrossry = -nPz*x;
 double nPcrossrz = -nPy*x;
 double nPcrossr  = sqrt(nPcrossrx*nPcrossrx+nPcrossry*nPcrossry+nPcrossrz*nPcrossrz);
-       alpha  = asin(nPcrossr/r);
+       alpha  = asin(nPcrossr/rin);
 std::cout << "alpha " << alpha << "\n";
