@@ -1,4 +1,12 @@
 #define PI 3.141592653589793
+
+double rinFromEllipse  = get_rFromEllipse(0);
+double routFromEllipse = get_rFromEllipse(splitTheta);
+double rout = routFromEllipse;
+std::cout << "rin            " << rin            << "\n";
+std::cout << "rinFromEllipse " << rinFromEllipse << "\n";
+std::cout << "rout           " << rout           << "\n";
+
 double nx = -Lx/L;      // normal vector for rotation
 double ny = -Ly/L;      //
 double nz = -Lz/L;      // basically aligned with y axes
@@ -34,52 +42,8 @@ double routhatz = co*rinhatz+si*rincrosnz;
 std::cout << "rinhat:  (" << rinhatx  << "," << rinhaty  << "," << rinhatz  << ")" << "\n";
 std::cout << "routhat: (" << routhatx << "," << routhaty << "," << routhatz << ")" << "\n";
 
-double ndotr = nx*x+ny*y+nz*z;
-
-double rLx   = nx*ndotr;
-double rLy   = ny*ndotr;
-double rLz   = nz*ndotr;
-
-double rPx   = x-rLx;
-double rPy   = y-rLy;
-double rPz   = z-rLz;
-
-double rCx   = y*nz-z*ny;
-double rCy   = z*nx-x*nz;
-double rCz   = x*ny-y*nx;
-
-double angle = PI/2; // 3.141592653589793/2; // UAL::pi/2;
-
-double rTx   = cos(angle)*rPx +sin(angle)*rCx;
-double rTy   = cos(angle)*rPy +sin(angle)*rCy;
-double rTz   = cos(angle)*rPz +sin(angle)*rCz;
-
-double rRx   = rLx+rTx;
-double rRy   = rLy+rTy;
-double rRz   = rLz+rTz;
-
-std::cout << "rRx " << rRx << "\n";
-std::cout << "rRy " << rRy << "\n";
-std::cout << "rRz " << rRz << "\n";
-
-std::cout << "angle " << angle << "\n";
-       angle = acos( (x*px+y*py)/rin/pin );
-std::cout << "angle " << angle << "\n";
-
-double phi   = atan( (x*py-y*px)/x/pz );
-std::cout << "phi   " << phi   << "\n";
-
-double nPx   = 0;
-double nPy   = sin(phi);
-double nPz   = cos(phi);
-
-double nPdotr = nPx*x+nPy*y+nPz*z;
-double alpha  = acos(nPdotr/rin);
-std::cout << "alpha " << alpha << "\n";
-
-double nPcrossrx = -nPz*y;
-double nPcrossry = -nPz*x;
-double nPcrossrz = -nPy*x;
-double nPcrossr  = sqrt(nPcrossrx*nPcrossrx+nPcrossry*nPcrossry+nPcrossrz*nPcrossrz);
-       alpha  = asin(nPcrossr/rin);
-std::cout << "alpha " << alpha << "\n";
+double xout = rout*routhatx;
+double yout = rout*routhaty;
+double zout = rout*routhatz;
+std::cout << "rin    : (" << x        << "," << y        << "," << z        << ")" << "\n";
+std::cout << "rout   : (" << xout     << "," << yout     << "," << zout     << ")" << "\n";
