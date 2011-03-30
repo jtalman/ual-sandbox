@@ -12,12 +12,10 @@ double dpz     = 0.0;
 double dt      = 0.0; 
 //                   probe deviations
 
-//                   Case I, II: dx gives Rin, and implies dE, dy doesn't impact
-double Rin     = R0+dx;                            //
-double RinEx   = sqrt((R0+dx)*(R0+dx)+dy*dy+dz*dz);//
+double rin     = R0+dx;                            //
+double rinEx   = sqrt((R0+dx)*(R0+dx)+dy*dy+dz*dz);//
 double gamma   = gamma0;                           //
-double Ein     = gamma*m0*c*c-k/Rin;               // E for compatibility with Munoz
-//                   Case I, II: dx gives Rin, and implies dE, dy doesn't impact
+double Ein     = gamma*m0*c*c-k/rinEx;             // E for compatibility with Munoz
 
 double Edes    = m0*c*c/gamma0;                    // Design Energy (Munoz potential)
 double dE      = Ein-Edes; 
