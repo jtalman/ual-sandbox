@@ -47,3 +47,13 @@ double yout = rout*routhaty;
 double zout = rout*routhatz;
 std::cout << "rin    : (" << x        << "," << y        << "," << z        << ")" << "\n";
 std::cout << "rout   : (" << xout     << "," << yout     << "," << zout     << ")" << "\n";
+
+double thetaHatOutx = co*rincrosnx-si*rinhatx;
+double thetaHatOuty = co*rincrosny-si*rinhaty;
+double thetaHatOutz = co*rincrosnz-si*rinhatz;
+
+double pxout = m0*hr(th)*routhatx + m0*_ht(th)*thetaHatOutx + m0*k*gamma*thetaHatOutx/L;
+double pyout = m0*hr(th)*routhaty + m0*_ht(th)*thetaHatOuty + m0*k*gamma*thetaHatOuty/L;
+double pzout = m0*hr(th)*routhatz + m0*_ht(th)*thetaHatOutz + m0*k*gamma*thetaHatOutz/L;
+std::cout << "pin    : (" << px       << "," << py       << "," << pz       << ")" << "\n";
+std::cout << "pout   : (" << pxout    << "," << pyout    << "," << pzout    << ")" << "\n";
