@@ -114,13 +114,23 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
 
     double htp(const Coordinates p,double Rsxf,double r){                      // h theta prime
         double drdtheta = Rsxf*p[1];
-        double value = -(L/mass/r/r)*drdtheta+(k*k/L/mass/c/c/r/r)*drdtheta;
+        double value    = -(L/mass/r/r)*drdtheta+(k*k/L/mass/c/c/r/r)*drdtheta;
         return value;
     }
 
     double htp2(const Coordinates p,double Rsxf,double r){                     // h theta prime
         double drdtheta = Rsxf*p[1];
-        double value = -kappa*kappa*(L/mass/r/r)*drdtheta;
+        double value    = -kappa*kappa*(L/mass/r/r)*drdtheta;
+        return value;
+    }
+
+    double hr(double theta){
+        double value = C*sin( kappa*(theta-theta0) )/kappa;
+        return value;
+    }
+
+    double _ht(double theta){
+        double value = C*cos( kappa*(theta-theta0) );
         return value;
     }
 
