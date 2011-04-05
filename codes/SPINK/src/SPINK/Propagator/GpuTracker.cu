@@ -1193,15 +1193,16 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
     precision p0 = sqrt(e0*e0 - m0*m0);
     precision gam = e0/m0;
     precision v0byc = p0/e0;
+    precision Energy[PARTICLES],v0byc_c[PARTICLES],p0_c[PARTICLES];
     int N = bunch.size();
     precision dtr_h = atan(1.00)/45.00;
-    cudaMemcpyToSymbol(p0_d,&p0,sizeof(precision));
-    cudaMemcpyToSymbol(Energy_d,&e0,sizeof(precision));
+    //  cudaMemcpyToSymbol(p0_d,&p0,sizeof(precision));
+    // cudaMemcpyToSymbol(Energy_d,&e0,sizeof(precision));
     cudaMemcpyToSymbol(GG_d,&GG,sizeof(precision));
     cudaMemcpyToSymbol(m0_d,&m0,sizeof(precision));
     cudaMemcpyToSymbol(q_d,&q,sizeof(precision));
-    cudaMemcpyToSymbol(gam_d,&gam,sizeof(precision));
-    cudaMemcpyToSymbol(v0byc_d,&v0byc,sizeof(precision));
+    //   cudaMemcpyToSymbol(gam_d,&gam,sizeof(precision));
+    //   cudaMemcpyToSymbol(v0byc_d,&v0byc,sizeof(precision));
     cudaMemcpyToSymbol(snk1_mu_d,&snk1_mu,sizeof(precision));
     cudaMemcpyToSymbol(snk1_theta_d,&snk1_theta,sizeof(precision));
     cudaMemcpyToSymbol(snk1_phi_d,&snk1_phi,sizeof(precision));
@@ -1221,6 +1222,7 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
     pos[ip].sx = pos[ip].sy = pos[ip].sz = 0.00;
     pos[ip].x = pos[ip].y= pos[ip].ct = 0.00;
     pos[ip].px = pos[ip].py = pos[ip].de = 0.00;
+    Energy[ip] = e0; p0_c[ip] = p0; v0byc_c[ip] = v0byc; 
 }
 
 
@@ -1240,31 +1242,35 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
  // std::cout << "before sending to Gpu \n";
   cudaMemcpyToSymbol(pos_d,pos, sizeof(pos));
   cudaMemcpyToSymbol(tmp_d,pos, sizeof(pos));
+  cudaMemcpyToSymbol(Energy_d,Energy,sizeof(Energy));
+  cudaMemcpyToSymbol(p0_d,p0_c,sizeof(p0_c));
+  cudaMemcpyToSymbol(v0byc_d,v0byc_c,sizeof(v0byc_c));
  // std::cout << "after sending to Gpu \n";
 
 
 }
 
-void SPINK::GpuTracker::readPart(PAC::Bunch& bunch)
+void SPINK::GpuTracker::readPart(PAC::Bunch& bunch,int printall)
 { int N = bunch.size();
 
  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision e0 = (precision)  ba.getEnergy(), m0 = (precision)  ba.getMass();
   precision gam ; //= e0/m0;
-  precision Energy;
+  precision Energy[PARTICLES];
    precision GG    =  (precision) ba.getG();
    // precision Ggam  = gam*GG; 
    precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
  int count =0;
-  cudaMemcpyFromSymbol(&Energy,Energy_d, sizeof(Energy));
+  cudaMemcpyFromSymbol(Energy,Energy_d, sizeof(Energy));
     // cudaMemcpyFromSymbol(v0byc,v0byc_d,sizeof(v0byc));
-  gam = Energy/m0;
+  gam = Energy[0]/m0;
   precision Ggam  = gam*GG; 
 //vec6D output[PARTICLES];
   cudaMemcpyFromSymbol(pos,pos_d, sizeof(pos));
  
   for(int ip = 0; ip < N; ip++) {
-     //  std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";
+    if(printall==1){
+      std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";}
      if(pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de != pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de ){ 
      }else {count++;
      SxAvg += pos[ip].sx; SyAvg += pos[ip].sy; SzAvg += pos[ip].sz;
