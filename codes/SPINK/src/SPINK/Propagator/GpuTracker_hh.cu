@@ -10,7 +10,7 @@
 // struture for holding particle data for use on GPU
 typedef struct {
  precision x, px, y, py, ct, de;
- double sx, sy, sz;
+  double sx, sy, sz;
 } vec6D;
 
 // structure for holding lattice data for use on GPU
@@ -93,7 +93,7 @@ namespace SPINK {
       /** Pass information on turn number for diagnostics AUL:02MAR10 */
     static void setNturns(int iturn){nturn = iturn;}
     static int nturn ;
-    static void readPart(PAC::Bunch& bunch);
+    static void readPart(PAC::Bunch& bunch, int printall);
     static void loadPart(PAC::Bunch& bunch);
 
     /** Sets Rf patameters */
