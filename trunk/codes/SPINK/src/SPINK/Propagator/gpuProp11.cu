@@ -9,7 +9,7 @@ __constant__ precision snk1_mu_d,snk1_theta_d,snk1_phi_d;
 __constant__ precision snk2_mu_d,snk2_theta_d,snk2_phi_d;
 __constant__ precision PI_d=3.1415926536, clite_d= 2.99792458e+8;
 __constant__ precision V_d, lag_d, h_d,dtr,small = 1e-20;
-__device__ precision Energy_d, v0byc_d, p0_d,gam_d, t0_d;
+__device__ precision Energy_d[PARTICLES], v0byc_d[PARTICLES], p0_d[PARTICLES];
 
 
 __device__  void
@@ -144,7 +144,7 @@ makeVelocitygpuP(int N,  precision px,   precision py,  precision de, precision 
     
       t0  = 1.00;
       t1  = de;
-      t1  = t1 + 2.00/v0byc_d;
+      t1  = t1 + 2.00/v0byc_d[N];
       t1 = de*t1;
       t0 = t1+t0;
 
@@ -176,8 +176,8 @@ makeVelocitygpuP(int N,  precision px,   precision py,  precision de, precision 
 __device__ void
 makeRVgpuP(int N,   precision de, precision &det){
     precision e, p2, rv;
-    e = Energy_d;
-    e = e + p0_d*de;
+    e = Energy_d[N];
+    e = e + p0_d[N]*de;
     
     p2 = e;
     p2 = p2*e;
@@ -232,7 +232,7 @@ passBendSlicegpuP(int N, int j, int slice,   precision &x1,  precision &px1,   p
   p4 = p1/p4;
   p1  =  p4*rvbyc;             
 
-  p2  = 1.00/v0byc_d;
+  p2  = 1.00/v0byc_d[N];
   p2 -= rvbyc;
   p2 *= rhic_d[j].rlipl[slice];
 
@@ -290,7 +290,7 @@ applyThinBendKickgpuP(int N, int j,precision rkicks, precision dx, precision dy,
   PX_out = px1 + px;
   PY_out = py1 + py; 
 } else {
-     precision factor = rhic_d[j].angle/v0byc_d;
+   precision factor = rhic_d[j].angle/v0byc_d[N];
      px += factor*de1;
      CT_out = ct1 - factor*x1;
      ct1 = CT_out;
@@ -322,7 +322,7 @@ passDriftgpuP(int N, precision rlipl,   precision &x,  precision pxt,   precisio
          p1 = p1*rvbyc;
          p1 = p1*rlipl/2.00;
        
-         p2 = 1.00/v0byc_d;
+         p2 = 1.00/v0byc_d[N];
          p2 = p2 -rvbyc;
          p2 = p2*rlipl;
 
@@ -343,28 +343,28 @@ precision de0 ,e0_new, p0_new ,v0byc_new ,revfreq_old ;
 precision p0_old ,e0_old ,v0byc_old ;
 precision X_out,Y_out,DE_out,CT_out,e_old,p_old,e_new,p_new,vbyc,de,phase;
     precision X_out2, Y_out2,CT_out2,vbyc_2;
-    precision px_by_ps, py_by_ps, ps2_by_po2, t0, t0_2,t_old;
+    precision px_by_ps, py_by_ps, ps2_by_po2, t0, t0_2;
     precision dl2_by_lo2, l_by_lo,cdt_circ, cdt_vel;
     precision px_by_ps_2, py_by_ps_2, ps2_by_po2_2;
     precision dl2_by_lo2_2, l_by_lo_2,cdt_circ_2, cdt_vel_2;
-   e0_old = Energy_d;
-   p0_old = p0_d ;
-   t_old = t0_d; 
-   v0byc_old = v0byc_d;
+   e0_old = Energy_d[N];
+   p0_old = p0_d[N] ;
+   // t_old = t0_d; 
+   v0byc_old = v0byc_d[N];
 
    de0       = q_d*V_d*sin(2*PI_d*lag_d);
    e0_new    = e0_old + de0;
   p0_new    = sqrt(e0_new*e0_new - m0_d*m0_d);
   v0byc_new = p0_new/e0_new;
-  revfreq_old = v0byc_d*clite_d/circ_d ;
+  revfreq_old = v0byc_d[N]*clite_d/circ_d ;
  
  
    
-  Energy_d = e0_new;
-  v0byc_d = v0byc_new;
+  Energy_d[N] = e0_new;
+  v0byc_d[N] = v0byc_new;
  
 
-  p0_d = p0_new;
+  p0_d[N] = p0_new;
 
 
     //printf(" before RF part = %f %f %f %f %f %f \n",pos_d[0].x,pos_d[0].px,pos_d[0].y,pos_d[0].py, pos_d[0].ct,pos_d[0].de);
@@ -594,14 +594,14 @@ gpupropogateSpin(int N, precision ang, precision h, precision length, precision 
  double s_mat00,s_mat01,s_mat02,s_mat10,s_mat20,s_mat11,s_mat22,s_mat21,s_mat12;
 
  //printf("in gpupropogate Spin \n");
-    e = de*p0_d + Energy_d;
+    e = de*p0_d[N] + Energy_d[N];
     p = sqrt(e*e - m0_d*m0_d);
     gamma = e/m0_d;
     psp0 -= px*px;
     psp0 -= py*py;
 
     psp0 += de*de;
-    psp0 += (2.00/v0byc_d)*de;
+    psp0 += (2.00/v0byc_d[N])*de;
 
     pz = sqrt(psp0);
     
@@ -611,11 +611,11 @@ gpupropogateSpin(int N, precision ang, precision h, precision length, precision 
     KLx = k1l*y + 2.00*k2l*x*y + kls0;
     KLy  = h*length + k1l*x - k1l*y*y/2.00*h + k2l*(x*x - y*y) + k0l;  //VR added kls0 and k0l for kicker field effects.
     
-    vKL = (px*KLx + py*KLy)/(p/p0_d);
+    vKL = (px*KLx + py*KLy)/(p/p0_d[N]);
 
-    fx = (1.00 + GG_d*gamma)*KLx - GG_d*(gamma - 1.00)*vKL*px/(p/p0_d);
-    fy = (1.00 + GG_d*gamma)*KLy - GG_d*(gamma - 1.00)*vKL*py/(p/p0_d);
-    fz = -GG_d*(gamma - 1.00)*vKL*pz/(p/p0_d);
+    fx = (1.00 + GG_d*gamma)*KLx - GG_d*(gamma - 1.00)*vKL*px/(p/p0_d[N]);
+    fy = (1.00 + GG_d*gamma)*KLy - GG_d*(gamma - 1.00)*vKL*py/(p/p0_d[N]);
+    fz = -GG_d*(gamma - 1.00)*vKL*pz/(p/p0_d[N]);
 
     dt_by_ds = (1.00 + h*x)/pz;
 
@@ -805,19 +805,19 @@ for(int j = 0 ; j < Nelement ; j++)
       
        if(rhic_d[j].rfcav == 1 ){
 	
-	 RFProp(N,j, x, px, y, py,ct,de);
+	 RFProp(i,j, x, px, y, py,ct,de);
 	 continue;
        }
           
 
 	 if(ang > small){
 	  
-	   BendProp(N,j,x,px,y,py,ct,de);
+	   BendProp(i,j,x,px,y,py,ct,de);
 	 
 	 }else if(MULT) {
-	   MultProp(N,j,x,px,y,py,ct,de);
+	   MultProp(i,j,x,px,y,py,ct,de);
 	 }else if(length > 0) {
-	   DriftProp(N,j,x,px,y,py,ct,de);
+	   DriftProp(i,j,x,px,y,py,ct,de);
 	 }
 
   
@@ -825,22 +825,22 @@ for(int j = 0 ; j < Nelement ; j++)
 	
 		if(rhic_d[j].snake > 0 ){
   
-	  SnakeProp(N,j,sx,sy,sz);} else{
-	  propagateSpin(N,j,x,px,y,py,ct,de,sx,sy,sz);}
+	  SnakeProp(i,j,sx,sy,sz);} else{
+	  propagateSpin(i,j,x,px,y,py,ct,de,sx,sy,sz);}
 	
 
 
     if(ang > small){
 	
-      BendProp(N,j,x,px,y,py,ct,de);
+      BendProp(i,j,x,px,y,py,ct,de);
 	
     }else if(MULT) {
 	
-      MultProp(N,j,x,px,y,py,ct,de);
+      MultProp(i,j,x,px,y,py,ct,de);
 	
  } else if( length > small){
    
-      DriftProp(N,j,x,px,y,py,ct,de);
+      DriftProp(i,j,x,px,y,py,ct,de);
       
 }
    
@@ -865,15 +865,15 @@ for(int j = 0 ; j < Nelement ; j++)
     
    if(ang > small){
 	
-     BendProp(N,j,x,px,y,py,ct,de);
+     BendProp(i,j,x,px,y,py,ct,de);
 
  }else if(MULT) {
 
-     MultProp(N,j,x,px,y,py,ct,de);
+     MultProp(i,j,x,px,y,py,ct,de);
 	
  }  else if( length > small){
      
-     DriftProp(N,j,x,px,y,py,ct,de);
+     DriftProp(i,j,x,px,y,py,ct,de);
       
    }
    
@@ -882,21 +882,21 @@ for(int j = 0 ; j < Nelement ; j++)
    
     if(rhic_d[j].snake > 0){
      
-      SnakeProp(N,j,sx,sy,sz);} else{
-      propagateSpin(N,j,x,px,y,py,ct,de,sx,sy,sz);}
+      SnakeProp(i,j,sx,sy,sz);} else{
+      propagateSpin(i,j,x,px,y,py,ct,de,sx,sy,sz);}
        
 
     if(ang > small){
 	
-      BendProp(N,j,x,px,y,py,ct,de);
+      BendProp(i,j,x,px,y,py,ct,de);
 
     }else if(MULT) {
 
-      MultProp(N,j,x,px,y,py,ct,de);
+      MultProp(i,j,x,px,y,py,ct,de);
 	  
     } else if( length > small){
      
-      DriftProp(N,j,x,px,y,py,ct,de);
+      DriftProp(i,j,x,px,y,py,ct,de);
       
    }
    
