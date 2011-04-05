@@ -531,7 +531,7 @@ do {
    //if( iturn % 10 == 0 ){
     std::cout << iturn*step << " ";
     // SPINK::GpuTracker::GpuPropagate(bunch);
-    SPINK::GpuTracker::readPart(bunch);
+    SPINK::GpuTracker::readPart(bunch,0);
     //} 
     //     for(int ip=0; ip < bunch.size(); ip++){
     //  positionPrinter.write(iturn, ip, bunch);
@@ -541,7 +541,7 @@ do {
   // }
 
     }
-  SPINK::GpuTracker::readPart(bunch);
+   SPINK::GpuTracker::readPart(bunch,1);
   t = (end_ms());
   std::cout << "time  = " << t << " ms" << endl;
   positionPrinter.close();
