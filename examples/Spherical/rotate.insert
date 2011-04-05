@@ -57,3 +57,8 @@ double pyout = m0*hr(th)*routhaty + m0*_ht(th)*thetaHatOuty + m0*k*gamma*thetaHa
 double pzout = m0*hr(th)*routhatz + m0*_ht(th)*thetaHatOutz + m0*k*gamma*thetaHatOutz/L;
 std::cout << "pin    : (" << px       << "," << py       << "," << pz       << ")" << "\n";
 std::cout << "pout   : (" << pxout    << "," << pyout    << "," << pzout    << ")" << "\n";
+
+double pxInFrom_h = m0*hr(0)*rinhatx+m0*_ht(0)*rincrosnx+m0*k*gamma*rincrosnx/L;
+double pyInFrom_h = m0*hr(0)*rinhaty+m0*_ht(0)*rincrosny+m0*k*gamma*rincrosny/L;
+double pzInFrom_h = m0*hr(0)*rinhatz+m0*_ht(0)*rincrosnz+m0*k*gamma*rincrosnz/L;
+std::cout << "pinH   : (" << pxInFrom_h<< "," << pyInFrom_h<< "," << pzInFrom_h<< ")" << "\n";
