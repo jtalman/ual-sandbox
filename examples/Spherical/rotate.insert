@@ -34,8 +34,32 @@ double rincrosnDotpinhat = rincrosnx*pinhatx+rincrosny*pinhaty+rincrosnz*pinhatz
 std::cout << "rincrosnDotpinhat " << rincrosnDotpinhat << "\n";
 std::cout << "close to 1 " <<            "\n";
 
-double co = cos(th);
-double si = sin(th);
+double xInHat = rinhatx;
+double yInHat = rinhaty;
+double a      = sqrt(1-yInHat*yInHat);
+std::cout << "a   " << a   << "\n";
+
+double den    = sqrt( ny*ny+nx*nx*cos(th)*cos(th)+2*nx*nz*cos(th)*sin(th)+nz*nz*sin(th)*sin(th) );
+       a      = ny/den;
+double one    = a*a+yInHat*yInHat;
+double zer    = nx*a*cos(th)+ny*sqrt(1-a*a)+nz*a*sin(th);
+double yOtHat;
+if(yInHat>=0){
+ yOtHat = sqrt( 1-a*a );
+}else{
+ yOtHat = -sqrt( 1-a*a );
+}
+std::cout << "one " << one << "\n";
+std::cout << "zer " << zer << "\n";
+std::cout << "a   " << a   << "\n";
+std::cout << "yOt " << yOtHat << "\n";
+  double phi = acos(xInHat*a*cos(th)+yInHat*yOtHat);
+//double phi = acos(xInHat*a*cos(th)+yInHat*yInHat);
+std::cout << "th  " << th  << "\n";
+std::cout << "phi " << phi << "\n";
+
+double co = cos(phi);  // cos(th);
+double si = sin(phi);  // sin(th);
 double routhatx = co*rinhatx+si*rincrosnx;
 double routhaty = co*rinhaty+si*rincrosny;
 double routhatz = co*rinhatz+si*rincrosnz;
@@ -62,3 +86,11 @@ double pxInFrom_h = m0*hr(0)*rinhatx+m0*_ht(0)*rincrosnx+m0*k*gamma*rincrosnx/L;
 double pyInFrom_h = m0*hr(0)*rinhaty+m0*_ht(0)*rincrosny+m0*k*gamma*rincrosny/L;
 double pzInFrom_h = m0*hr(0)*rinhatz+m0*_ht(0)*rincrosnz+m0*k*gamma*rincrosnz/L;
 std::cout << "pinH   : (" << pxInFrom_h<< "," << pyInFrom_h<< "," << pzInFrom_h<< ")" << "\n";
+
+       co = cos(th);
+       si = sin(th);
+
+double xpOut =  co*xout+si*zout;
+double ypOut =  yout;
+double zpOut = -si*xout+co*zout;
+std::cout << "rpout  : (" << xpOut    << "," << ypOut    << "," << zpOut    << ")" << "\n";
