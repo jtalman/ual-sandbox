@@ -1,11 +1,11 @@
 //#define GAMMA_FROZEN_SPIN 1.248107349
 
 //                   probe deviations
-double  dx   =  p[0];
-double  dy   =  p[2];
-double  dz   =  0.0;
-double dpx   =  p[1]*p0;
-double dpy   =  p[3]*p0;
+double  dx   = p[0];
+double  dy   = p[2];
+double  dz   = 0.0;
+double dpx   = p[1]*p0;
+double dpy   = p[3]*p0;
 double dpz;
 //                   probe deviations
 
@@ -22,9 +22,9 @@ double pz;
        gamma = gafti;                         // for header methods
        mass  = m0;                            // for header methods
 
-double rin   = get_rFromProbe(x,y,z);         // was R0+dx, now calculate exactly
-       E     = gamma*m0*c*c-k/rin;            //      
-       L     = rin*p0;                        //      
+double rIn   = get_rFromProbe(x,y,z);         // was R0+dx, now calculate exactly
+       E     = gamma*m0*c*c-k/rIn;            //      
+       L     = rIn*p0;                        //      
 
 double pin;
 double bin;
