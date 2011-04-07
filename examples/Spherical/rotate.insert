@@ -91,7 +91,7 @@ std::cout << "pInH   : (" << pxInFrom_h<< "," << pyInFrom_h<< "," << pzInFrom_h<
 double xOutp  =  co*xOut+si*zOut;
 double yOutp  =  yOut;
 double zOutp  = -si*xOut+co*zOut;
-std::cout << "rpOut  : (" << xOutp    << "," << yOutp    << "," << zOutp    << ")" << "\n";
+std::cout << "rpOut  : ( " << xOutp    << " , " << yOutp    << " , " << zOutp    << " )" << "\n";
 std::cout << "pOut   : (" << pxOut    << "," << pyOut    << "," << pzOut    << ")" << "\n";
 
 double pxOutp =  co*pxOut+si*pzOut;
