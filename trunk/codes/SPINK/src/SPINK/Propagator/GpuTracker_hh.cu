@@ -38,7 +38,7 @@ typedef struct {
 vec6D pos[PARTICLES];
 Lat rhic[ELEMENTS];
 
-
+ precision Energy[PARTICLES];
 
 namespace SPINK {
 

@@ -1256,7 +1256,7 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch,int printall)
  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision e0 = (precision)  ba.getEnergy(), m0 = (precision)  ba.getMass();
   precision gam ; //= e0/m0;
-  precision Energy[PARTICLES];
+  // precision Energy[PARTICLES];
    precision GG    =  (precision) ba.getG();
    // precision Ggam  = gam*GG; 
    precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
@@ -1264,25 +1264,29 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch,int printall)
   cudaMemcpyFromSymbol(Energy,Energy_d, sizeof(Energy));
     // cudaMemcpyFromSymbol(v0byc,v0byc_d,sizeof(v0byc));
   gam = Energy[0]/m0;
+  e0 = Energy[0];
+  printf(" gam = %e \n",gam);
+  //    ba.setEnergy(e0);
   precision Ggam  = gam*GG; 
 //vec6D output[PARTICLES];
   cudaMemcpyFromSymbol(pos,pos_d, sizeof(pos));
- 
+  /**
   for(int ip = 0; ip < N; ip++) {
     if(printall==1){
-      std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";}
+        std::cout  << ip << " "<< gam << " " << Ggam << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << " " << pos[ip].sx << " " << pos[ip].sy << " " << pos[ip].sz << " \n";}
      if(pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de != pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de ){ 
      }else {count++;
      SxAvg += pos[ip].sx; SyAvg += pos[ip].sy; SzAvg += pos[ip].sz;
 
      }
    }
+  
    int ip = 0;
    // SxAvg = SxAvg/(N+1); SyAvg =SyAvg/(N+1); SzAvg = SzAvg/(N+1);
    //  std::cout << count << " " <<  gam << " " << Ggam << " " << SxAvg/count  << " " << SyAvg/count << " " << SzAvg/count << " " << pos[ip].x << " " << pos[ip].px << " " << pos[ip].y << " " << pos[ip].py << " " << pos[ip].ct << " " << pos[ip].de << "  \n";
    printf(" %i  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e \n",count,gam,Ggam,SxAvg/count,SyAvg/count,SzAvg/count,pos[ip].x,pos[ip].px,pos[ip].y,pos[ip].py,pos[ip].ct,pos[ip].de);
 
-
+  **/
 
 }
 
