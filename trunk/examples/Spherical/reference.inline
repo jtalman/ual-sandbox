@@ -26,15 +26,15 @@ double rIn   = get_rFromProbe(x,y,z);         // was R0+dx, now calculate exactl
        E     = gamma*m0*c*c-k/rIn;            //      
        L     = rIn*p0;                        //      
 
-double pin;
+double pIn;
 double bin;
 
 bin = sqrt(1-1/gamma/gamma);
-pin = gamma*m0*bin*c;
+pIn = gamma*m0*bin*c;
 std::cout << "bin " << bin  << "\n";
-std::cout << "pin " << pin << "\n";
+std::cout << "pIn " << pIn << "\n";
 
-pz = sqrt(pin*pin-px*px-py*py);
+pz = sqrt(pIn*pIn-px*px-py*py);
 std::cout << "pz " << pz << "\n";
 
 double Lx    = y*pz-z*py;
