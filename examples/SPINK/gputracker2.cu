@@ -325,8 +325,8 @@ int main(){
     std::cout << "dpp0 = " << dpp0 << "\n";
     // }
 
-    emit_x = emit_x*UAL::pi*1e-6/(6*gamma);
-    emit_y = emit_y*UAL::pi*1e-6/(6*gamma);
+    emit_x = emit_x*UAL::pi*1e-6/(gamma);
+    emit_y = emit_y*UAL::pi*1e-6/(gamma);
     std::cout << "emit_x = " << emit_x << " emit_y = " << emit_y << " \n";
   
  if( calcPhaseSpace){
@@ -501,18 +501,20 @@ do {
   
   SpinPrinter spinPrinter;
   spinPrinter.open(spinFile.c_str());
-
+  int count;
   int step = 5;
   ba.setElapsedTime(0.0);
 
   start_ms();
 
-  //SPINK::GpuTracker::loadPart(bunch);
- // SPINK::GpuTracker::readPart(bunch); 
- //  SPINK::GpuTracker::setNturns(turns);
- //  SPINK::GpuTracker::GpuPropagate(bunch);
-
- 
+  std::ofstream allpart, avgpart;
+  allpart.open("PartOut.dat");
+  avgpart.open("AvgOut.dat");
+  char line[200];
+  int N = bunch.size();
+  precision Ggam = G*gamma;
+  precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
+  
   SPINK::GpuTracker::setNturns(step);
    for(int iturn = 1; iturn <= turns; iturn++){
 
@@ -524,24 +526,51 @@ do {
   //     positionPrinter.write(iturn, ip, bunch);
     //   spinPrinter.write(iturn, ip, bunch);
    // }
+
+ 
     
    SPINK::GpuTracker::GpuProp(bunch);
 
    // ap->propagate(bunch);
    //if( iturn % 10 == 0 ){
-    std::cout << iturn*step << " ";
+    avgpart << iturn*step << " ";
     // SPINK::GpuTracker::GpuPropagate(bunch);
     SPINK::GpuTracker::readPart(bunch,0);
+     gamma = Energy[0]/mass;
+     Ggam  = gamma*G; 
+     SxAvg = 0.00; SyAvg=0.00; SzAvg=0.00;
+     count = 0;
+
     //} 
-    //     for(int ip=0; ip < bunch.size(); ip++){
-    //  positionPrinter.write(iturn, ip, bunch);
-    //  spinPrinter.write(iturn, ip, bunch);
-    //   }
+         for(int ip=0; ip < bunch.size(); ip++){
+         
+   if(pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de != pos[ip].x*pos[ip].px*pos[ip].y*pos[ip].py*pos[ip].ct*pos[ip].de ){ 
+     }else {count++;
+     SxAvg += pos[ip].sx; SyAvg += pos[ip].sy; SzAvg += pos[ip].sz;
+
+     }
+       }
+	 int ip = 0;
+	 sprintf(line," %i  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e \n",count,gamma,Ggam,SxAvg/count,SyAvg/count,SzAvg/count,pos[ip].x,pos[ip].px,pos[ip].y,pos[ip].py,pos[ip].ct,pos[ip].de);
+	 avgpart << line ;
+
 
   // }
 
     }
-   SPINK::GpuTracker::readPart(bunch,1);
+   // SPINK::GpuTracker::readPart(bunch,1);
+
+
+
+
+
+   for(int ip = 0; ip < N; ip++) {
+    	 sprintf(line," %e  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e \n",gamma,Ggam,pos[ip].sx,pos[ip].sy,pos[ip].sz,pos[ip].x,pos[ip].px,pos[ip].y,pos[ip].py,pos[ip].ct,pos[ip].de);
+	 allpart << line ;
+     }
+
+   allpart.close();
+   avgpart.close();
   t = (end_ms());
   std::cout << "time  = " << t << " ms" << endl;
   positionPrinter.close();
