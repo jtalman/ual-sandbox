@@ -17,9 +17,9 @@ double rInHatx = x/rIn;
 double rInHaty = y/rIn;
 double rInHatz = z/rIn;
 
-double pInHatx = px/pin;
-double pInHaty = py/pin;
-double pInHatz = pz/pin;
+double pInHatx = px/pIn;
+double pInHaty = py/pIn;
+double pInHatz = pz/pIn;
 
 double angleIn = acos(rInHatx*pInHatx+rInHaty*pInHaty+rInHatz*pInHatz);
 std::cout << "angleIn    " << angleIn << "\n";
@@ -40,13 +40,13 @@ double yInHat = rInHaty;
 double den    = sqrt( ny*ny+nx*nx*cos(th)*cos(th)+2*nx*nz*cos(th)*sin(th)+nz*nz*sin(th)*sin(th) );
 double a      = ny/den;
 std::cout << "a   " << a   << "\n";
-double zer    = nx*a*cos(th)+ny*sqrt(1-a*a)+nz*a*sin(th);
 double yOutHat;
 if(yInHat>=0){
  yOutHat = sqrt( 1-a*a );
 }else{
  yOutHat = -sqrt( 1-a*a );
 }
+double zer    = nx*a*cos(th)+ny*yOutHat+nz*a*sin(th);
 double one    = a*a+yOutHat*yOutHat;
 std::cout << "one     " << one << "\n";
 std::cout << "zer     " << zer << "\n";
@@ -78,13 +78,13 @@ double thetaHatOutz = co*rInCross_nz-si*rInHatz;
 double pxOut = m0*hr(th)*rOutHatx + m0*_ht(th)*thetaHatOutx + m0*k*gamma*thetaHatOutx/L;
 double pyOut = m0*hr(th)*rOutHaty + m0*_ht(th)*thetaHatOuty + m0*k*gamma*thetaHatOuty/L;
 double pzOut = m0*hr(th)*rOutHatz + m0*_ht(th)*thetaHatOutz + m0*k*gamma*thetaHatOutz/L;
-std::cout << "pin    : (" << px       << "," << py       << "," << pz       << ")" << "\n";
+std::cout << "pIn    : (" << px       << "," << py       << "," << pz       << ")" << "\n";
 std::cout << "pout   : (" << pxOut    << "," << pyOut    << "," << pzOut    << ")" << "\n";
 
 double pxInFrom_h = m0*hr(0)*rInHatx+m0*_ht(0)*rInCross_nx+m0*k*gamma*rInCross_nx/L;
 double pyInFrom_h = m0*hr(0)*rInHaty+m0*_ht(0)*rInCross_ny+m0*k*gamma*rInCross_ny/L;
 double pzInFrom_h = m0*hr(0)*rInHatz+m0*_ht(0)*rInCross_nz+m0*k*gamma*rInCross_nz/L;
-std::cout << "pinH   : (" << pxInFrom_h<< "," << pyInFrom_h<< "," << pzInFrom_h<< ")" << "\n";
+std::cout << "pInH   : (" << pxInFrom_h<< "," << pyInFrom_h<< "," << pzInFrom_h<< ")" << "\n";
 
        co = cos(th);
        si = sin(th);
