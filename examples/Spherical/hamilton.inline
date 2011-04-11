@@ -1,15 +1,15 @@
 double kbyLc = k/L/c;                       // c=1
 double kapSQ = 1-kbyLc*kbyLc;               //
 
-       lambda = kapSQ*L*L*c*c/k/E;          // also (k/E)*(Lcbyk*Lcbyk-1) - Munoz (34)
+       lambda = kapSQ*L*L*c*c/k/EscM;          // also (k/EscM)*(Lcbyk*Lcbyk-1) - Munoz (34)
 double Lcbyk = L*c/k;
-double m0byE = m0/E;                      //
+double m0byEscM = m0/EscM;                      //
 
-double ca1 = m0byE*m0byE*kapSQ;
+double ca1 = m0byEscM*m0byEscM*kapSQ;
 //double eps = Lcbyk*sqrt(1-ca1);
 
-std::cout << "E                       " << E      << "\n";
-std::cout << "m0c^2/E                " << m0byE << "\n";
+std::cout << "EscM                    " << EscM   << "\n";
+std::cout << "m0c^2/EscM             " << m0byEscM << "\n";
 std::cout << "k                       " << k       << "\n";
 std::cout << "L                      " << L      << "\n";
 std::cout << "k/L/c                  " << kbyLc  << "\n";
@@ -20,26 +20,26 @@ std::cout << "near one                " << ca1    << "\n";
 double omega = (1-kappa)*L/gamma/rIn/rIn;
 std::cout << "omega                   " << omega  << "\n";
 
-double E0 = m0*c*c/g0;
+double EscM0 = m0*c*c/g0;
 double kappa0 = 1/g0;
-double dEbyE = (E-E0)/E;
-double dE = E-E0;
+double dEscMbyEscM = (EscM-EscM0)/EscM;
+double dEscM = EscM-EscM0;
 double dK = kappa-kappa0;
-std::cout << "dE                   " << dE     << "\n";
+std::cout << "dEscM                " << dEscM  << "\n";
 std::cout << "dK                   " << dK     << "\n";
 
-double ES  = E+k/R0;
-double h0A = L/m0/rIn-k*ES/L/m0/c/c;
+double EscMS  = EscM+k/R0;
+double h0A = L/m0/rIn-k*EscMS/L/m0/c/c;
        h0  = ht(rIn);
 std::cout << "h0A    "<< h0A    << "\n";
 std::cout << "_h0(rIn) "<< _h0(rIn) << "\n";
 std::cout << "h0     "<< h0     << "\n";
 std::cout << "ht(rIn)  "<< ht(rIn)  << "\n";
 std::cout << "p[1]   " << p[1]  << "\n";
-double epsilon2 = Lcbyk*sqrt( 2*E0*dE+dE*dE-(m0*c*c)*(m0*c*c)*(2*kappa0*dK+dK*dK) );
-       epsilon2 = epsilon2/E;
+double epsilon2 = Lcbyk*sqrt( 2*EscM0*dEscM+dEscM*dEscM-(m0*c*c)*(m0*c*c)*(2*kappa0*dK+dK*dK) );
+       epsilon2 = epsilon2/EscM;
 std::cout << "eccentricity (epsilon2) " << epsilon2     << "\n";
-double epsilonViah0A = h0A*L*m0*c*c/k/E;
+double epsilonViah0A = h0A*L*m0*c*c/k/EscM;
 std::cout << "eccentricity (epsilonViah0A) - is this dx/R0?   " << epsilonViah0A    << "\n";
        epsilon = epsilonViah0A;
 
