@@ -90,7 +90,7 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
     double gamma;
     double mass;
     double k;
-    double E;
+    double EscM;
     double L;
     double lambda;
     double epsilon;
@@ -108,7 +108,7 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
 
     double ht(double r){                       // h theta
         double fac   = k/L/mass/c/c;
-        double value = L/mass/r-fac*(E+k/r);
+        double value = L/mass/r-fac*(EscM+k/r);
         return value;
     }
 
@@ -150,7 +150,7 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
     }
 
     double get_rFromEllipse(double theta){
-        double fac = L*mass*c*c/k/E;
+        double fac = L*mass*c*c/k/EscM;
         return lambda/( 1+fac*C*cos( kappa*(theta-theta0) ) );
 //      return lambda/(1+epsilon*cos(kappa*theta));
     }
