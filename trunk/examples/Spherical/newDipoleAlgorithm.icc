@@ -126,7 +126,7 @@ double rOutput    = p[0]+Rsxf;
 //double eVbefo     = getPotentialEnergy(Eel0,Rsxf,rOutput); // "befo" means "before output"
 
 double tof0       = Rsxf*th/b0;
-double fac1       = E*lambda*lambda/L/kappa/kappa;
+double fac1       = EscM*lambda*lambda/L/kappa/kappa;
 double fac2       =    k*sqrt(CSQA)/L/kappa/kappa;
 double time1      = getTime1(fac1,th);                       // get_timeFromFirstTermViaMaple(fac1,th)
 double time2      = getTime2(fac2,th);                       // get_timeFromSecondTermViaMaple(fac2,th)
