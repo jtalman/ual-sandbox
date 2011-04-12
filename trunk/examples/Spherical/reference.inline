@@ -24,7 +24,6 @@ double pz;
 
 double rIn   = get_rFromProbe(x,y,z);         // was R0+dx, now calculate exactly
        EscM  = gamma*m0*c*c-k/rIn;            //      
-       L     = rIn*p0;                        //      
 
 double pIn;
 double bin;
