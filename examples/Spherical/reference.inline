@@ -10,7 +10,7 @@ double dpz;
 //                   probe deviations
 
 //                   probe values
-double x     = R0+dx; 
+double x     = Rsxf+dx; 
 double y     = dy;
 double z     = dz;
 
