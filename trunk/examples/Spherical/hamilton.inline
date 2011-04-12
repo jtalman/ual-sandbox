@@ -28,7 +28,7 @@ double dK = kappa-kappa0;
 std::cout << "dEscM                " << dEscM  << "\n";
 std::cout << "dK                   " << dK     << "\n";
 
-double EscMS  = EscM+k/R0;
+double EscMS  = EscM+k/Rsxf;
 double h0A = L/m0/rIn-k*EscMS/L/m0/c/c;
        h0  = ht(rIn);
 std::cout << "h0A    "<< h0A    << "\n";
@@ -48,7 +48,7 @@ std::cout << "eccentricity (epsilonViah0A) - is this dx/R0?   " << epsilonViah0A
 //double KapTh = acos(cosKapTh);
 //std::cout << "   KapTh " <<    KapTh     << "\n";
 
-double h0pA = -L*R0*p[1]/m0/rIn/rIn;
+double h0pA = -L*Rsxf*p[1]/m0/rIn/rIn;
        h0p  = htp2(p,Rsxf,rIn);
 std::cout << "h0pA           "<< h0pA           << "\n";
 std::cout << "htp(p,Rsxf,rIn)  "<< htp(p,Rsxf,rIn)  << "\n";
