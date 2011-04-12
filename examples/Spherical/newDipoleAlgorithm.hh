@@ -101,8 +101,8 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
     double C;
     double theta0;
 
-    double _h0(double r0){
-        double value = L/mass/r0-k*gamma/L;
+    double _h0(double rIn){
+        double value = L/mass/rIn-k*gamma/L;
         return value;
     }
 
