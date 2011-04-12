@@ -98,3 +98,18 @@ double pxOutp =  co*pxOut+si*pzOut;
 double pyOutp =  pyOut;
 double pzOutp = -si*pxOut+co*pzOut;
 std::cout << "pOutp  : (" << pxOutp   << "," << pyOutp   << "," << pzOutp   << ")" << "\n";
+
+std::cout << "rOut-rIn " << rOut-rIn << "\n";
+double rA = (rIn+rOut)/2;
+double dr = th*rIn*rIn*kappa*epsilon*sin(kappa*(th/2-theta0))/lambda;
+std::cout << "dr       " << dr       << "\n";
+double F1 = 1+epsilon*cos(kappa*(th-theta0));
+double F2 = 1+epsilon;
+double F3 = 1+        cos(kappa*(th-theta0));
+       dr = lambda*epsilon*sin(kappa*(th-theta0))*sin(kappa*(th-theta0))/F1/F2/F3;
+std::cout << "dr       " << dr       << "\n";
+double N1 = sin(kappa*th/2);
+double N2 = sin(kappa*th);
+double F4 = 1+epsilon*cos(kappa*theta0);
+       dr = epsilon*lambda*cos(kappa*theta0)*(2*N1*N1-N2*h0p/kappa/h0)/F1/F4;
+std::cout << "dr       " << dr       << "\n";
