@@ -113,3 +113,18 @@ double N2 = sin(kappa*th);
 double F4 = 1+epsilon*cos(kappa*theta0);
        dr = epsilon*lambda*cos(kappa*theta0)*(2*N1*N1-N2*h0p/kappa/h0)/F1/F4;
 std::cout << "dr       " << dr       << "\n";
+
+double fac = L*mass*c*c/k/EscM;
+double Ff = fac*C;
+std::cout << "Ff       " << Ff       << "\n";
+std::cout << "epsilon  " << epsilon  << "\n";
+
+       F1 = 1+Ff*cos(kappa*(th-theta0));
+       F4 = 1+Ff*cos(kappa*theta0);
+       dr = Ff*lambda*cos(kappa*theta0)*(2*N1*N1-N2*h0p/kappa/h0)/F1/F4;
+std::cout << "dr       " << dr       << "\n";
+double RR = rOut-rIn;
+std::cout << "RR       " << RR       << "\n";
+double rP = RR-dr;
+std::cout << "rP       " << rP       << "\n";
+std::cout << "TERMS    " << 2*N1*N1 << " " << N2*h0p/kappa/h0 << "\n";
