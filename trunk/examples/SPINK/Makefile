@@ -1,12 +1,14 @@
-CC       = g++                       # Compiler
-CCFLAGS  = -O -fpic -ansi -Wall      # Compilation flags
+CC       = nvcc -arch=sm_20  # Compiler
+CCFLAGS  = --compiler-options '-fpic -ansi -Wall -g '      # Compilation flags
+#CUDA_INC  = -I/usr/local/cuda/include  -I/home/research/ranjbar/NVIDIA_CUDA_SDK/common/inc
 
-DLD      = g++                       # Dynamic linker
+
+DLD      = nvcc                      # Dynamic linker
 DLDFLAGS = -shared                   # Dynamic linker flags
-LD       = g++                       # Linker
+LD       = nvcc                       # Linker
 LDFLAGS  =                           # Linker flags
 
-INC += -I. -I./src
+INC += -I. -I./src 
 INC += -I$(UAL)/ext/UI/include
 INC += -I$(UAL_SXF)/src
 INC += -I$(UAL_SPINK)/src
@@ -30,6 +32,8 @@ LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH) 	-lUal
 LIBS += -L$(SXF)/lib/$(UAL_ARCH) 		-lSXF
 LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		-lpcre -lxml2 -lrfftw -lfftw
 LIBS += 					-lm
+LIBS += 	-L/usr/local/cuda/lib64 -lcudart
+LIBS +=	-L$(UAL)/tools/lib/linux -lgsl
 
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
@@ -39,21 +43,24 @@ OBJS = $(OBJ_DIR)/timer.o \
 	   $(OBJ_DIR)/SpinPrinter.o 
 
 
-compile : $(OBJS) ./tracker ./teapot_tracker
+compile : $(OBJS) ./gputracker2 ./tracker2
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker
+	rm -f $(OBJS) $(OBJ_DIR)/gputracker2.o ./gputracker2
+	rm -f $(OBJS) $(OBJ_DIR)/tracker2.o  ./tracker2 
 
-./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
+./gputracker2  : $(OBJ_DIR)/gputracker2.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/gputracker2.o $(OBJS) $(LIBS)
 
-./teapot_tracker  : $(OBJ_DIR)/teapot_tracker.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/teapot_tracker.o $(OBJS) $(LIBS)
+./tracker2     : $(OBJ_DIR)/tracker2.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker2.o $(OBJS) $(LIBS)
 
-
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
-	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cu
+	$(CC)  $(CCFLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
-	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+	$(CC)  $(CCFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
+	$(CC)  $(CCFLAGS) $(INC) -c $< -o $@
 
