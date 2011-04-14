@@ -1,0 +1,20 @@
+VariantName:    blue_69_678_rms_d5mm                                                                                                
+outdmp:         0                                                                                                               
+logdmp:         1                                                                                                               
+irSBend&irQuad: 1 4                                                                                                             
+gamma:          100.0                                                                                                  
+tunes:          28.69   29.678                                                                                                  
+chrom:          2.0     2.0                                                                                                     
+settunes:       1                                                                                                               
+dgamma/dt:      1.15                                                                                                          
+volt$harmon:    0.2e-4  120                                                                                                       
+spin:           0.      1.      0.                                                                                              
+emittance:	3.0	20.0                                                                                                                
+phaseSpace:     1.2e-04  0.0  1.2e-04 0.0 0.0  0.00
+                          
+calcPhaseSpace: 0                                                                                                               
+snkflag:        1	                                                                                                              
+snk_mu:         180.     180.                                                                                                      
+snk_phi:        45.     -45.                                                                                                    
+snk_theta:      0.      0.                                                                                                      
+turns:          10200000                                                                                                           

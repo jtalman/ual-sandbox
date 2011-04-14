@@ -1,0 +1,19 @@
+VariantName:    SCT_sext                                                                                                        
+outdmp:         0                                                                                                               
+logdmp:         1                                                                                                               
+irSBend&irQuad: 1 4                                                                                                             
+gamma:          1.248107783302                                                                                                  
+tunes:          6.      1.77                                                                                                    
+chrom:          2.0     2.0                                                                                                     
+settunes:       0                                                                                                               
+dgamma/dt:      0.0                                                                                                             
+volt$harmon:    0.0001  0                                                                                                       
+spin:           0.      0.      1.                                                                                              
+emittance:	1.	1.                                                                                                                
+phaseSpace:     -0.00580301229  6.44749598E-05  0.000294950529 -0.00025471783 -0.202312171 -7.18833253E-05                      
+calcPhaseSpace: 0                                                                                                               
+snkflag:        0	                                                                                                              
+snk_mu:         0.      0.                                                                                                      
+snk_phi:        45.     135.                                                                                                    
+snk_theta:      0.      0.                                                                                                      
+turns:          1000                                                                                                            

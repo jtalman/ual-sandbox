@@ -1,0 +1,9 @@
+<apdf>
+  <propagator id="spink" accelerator="rhic">
+     <create>
+       <link algorithm="SPINK::DipoleTracker" types="Default"/>
+       <link algorithm="SPINK::RFCavityTracker" types="RfCavity"/>
+	<link algorithm="SPINK::SnakeTransform" types="Instrument"/>	
+     </create>
+  </propagator>
+</apdf>
