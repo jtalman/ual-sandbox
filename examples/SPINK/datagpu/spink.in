@@ -1,0 +1,21 @@
+VariantName:    d1rms_short                                                                                                
+outdmp:         0                                                                                                               
+logdmp:         1                                                                                                               
+irSBend&irQuad: 1 16                                                                                                             
+gamma:          101.2                                                                                                  
+tunes:          28.69   29.678                                                                                                  
+chrom:          2.0     2.0                                                                                                     
+settunes:       1                                                                                                               
+dgamma/dt:      0.575                                                                                                          
+volt$harmon:    0.2e-4  120                                                                                                       
+spin:           0.      1.      0.                                                                                              
+emittance:	3.0	20.0                                                                                                                
+phaseSpace:     1.2e-04  0.0  1.2e-04 0.0 0.0  -3.0e-4
+                          
+calcPhaseSpace: 0                                                                                                               
+snkflag:        1	                                                                                                              
+snk_mu:         180.     180.                                                                                                      
+snk_phi:        45.     -45.                                                                                                    
+snk_theta:      0.      0.                                                                                                      
+turns:          10                                                                                                           
+Particle:	1000
