@@ -127,4 +127,16 @@ double RR = rOut-rIn;
 std::cout << "RR       " << RR       << "\n";
 double rP = RR-dr;
 std::cout << "rP       " << rP       << "\n";
-std::cout << "TERMS    " << 2*N1*N1 << " " << N2*h0p/kappa/h0 << "\n";
+std::cout << "TERMS    " << 2*N1*N1  << " " << N2*h0p/kappa/h0 << "\n";
+
+std::cout << "DX       " << dr+p[0]  << "\n";
+
+// ./tracker ./data/E_FirstTest.sxf > ! JTout
+// cat JTout | grep rpOut > ! JT.orbit
+// cat JTout | grep DX > JT.DX
+// gnuplot
+// set xrange[0:1600]
+// p 'JT.orbit' u 4                // horizontal - absolute
+// p 'JT.DX' u 2                   // horizontal - xout-R0=xout-xin+xin-R0=dr+p[0] ?
+//
+// p 'JT.orbit' u 6                // vertical
