@@ -1,4 +1,5 @@
 #define GAMMA_FROZEN_SPIN 1.248107349
+#define INJECTION_AMBIT   30
 
 std::cout     << "#################################   Design Beam Orientation\n";
 double gamma0  = GAMMA_FROZEN_SPIN;                // fundamental kinematic parameter
@@ -16,8 +17,8 @@ double t0      = 0;                                // 4
 double f0      = 1;                                // 5
 double M0      = 1;                                // 6
 double G0      = UAL::pG;                          // 7
-double R0      = 30;                               // 10
-double L0      = R0*p0;                            // 8
+double IA      = INJECTION_AMBIT;                  // (10) not used
+double L0      = IA*p0;                            // 8
 double El0     = 10.5e6;                           // 9
 
 double gap     = 3e-2;                             // should be 11?
