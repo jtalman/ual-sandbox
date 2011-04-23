@@ -6,5 +6,4 @@ double f0=cba.getRevfreq();
 double M0=cba.getMacrosize();
 double G0=cba.getG();
 
-double L0=cba.getL();
 double El0=cba.getE();
