@@ -22,7 +22,7 @@ double pz;
        gamma = gafti;                         // for header methods
        mass  = m0;                            // for header methods
 
-double rIn   = get_rFromProbe(x,y,z);         // was R0+dx, now calculate exactly
+double rIn   = get_rFromProbe(x,y,z);         //
        EscM  = gamma*m0*c*c-k/rIn;            //      
 
 double pIn;
