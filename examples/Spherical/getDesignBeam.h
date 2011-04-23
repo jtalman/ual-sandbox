@@ -8,4 +8,3 @@ double G0=cba.getG();
 
 double L0=cba.getL();
 double El0=cba.getE();
-double R0=cba.getR();
