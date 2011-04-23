@@ -35,18 +35,18 @@
     /** Calculates the delta path*/
     void deltaPath(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
 
-    void traverseSplitBendExactly(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba,double R0, double splitTheta);
-    void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double R0);
+    void traverseSplitBendExactly(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba,double Rsxf, double splitTheta);
+    void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf);
 
-    double getPotentialEnergy(double Eel0,double R0,double r){
-std::cout << "JDT - enter double getPotentialEnergy(double Eel0,double R0,double r)\n";
+    double getPotentialEnergy(double Eel0,double Rsxf,double r){
+std::cout << "JDT - enter double getPotentialEnergy(double Eel0,double Rsxf,double r)\n";
 std::cout << "k          " << k          << "\n";
-std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
-       double value = -k*(1/r-1/R0);
+std::cout << "Eel0*Rsxf*Rsxf " << Eel0*Rsxf*Rsxf << "\n";
+       double value = -k*(1/r-1/Rsxf);
        return value;
-//     return -Eel0*R0*(R0/r-1);                   //  (2) page 15, "...Code...", Feb 17, 2011
-// E field    -E0*R0*R0/r/r
-//     return E0*R0*log(r/R0); 
+//     return -Eel0*Rsxf*(Rsxf/r-1);                   //  (2) page 15, "...Code...", Feb 17, 2011
+// E field    -E0*Rsxf*Rsxf/r/r
+//     return E0*Rsxf*log(r/Rsxf); 
     }
 
     double PE(double Rsxf,double r){
@@ -74,10 +74,10 @@ std::cout << "Eel0*R0*R0 " << Eel0*R0*R0 << "\n";
         return value;
     }
 
-    double get_pz(double g,double m0,double Eel0,double R0,double r,double px,double py){
+    double get_pz(double g,double m0,double Eel0,double Rsxf,double r,double px,double py){
         double  e  =g*m0;
         double me  =e-PE(r);
-//      double me  =e-getPotentialEnergy(Eel0,R0,r);
+//      double me  =e-getPotentialEnergy(Eel0,Rsxf,r);
         double pzSQ=me*me-px*px-py*py-m0*m0;
         return sqrt(pzSQ);
     }
