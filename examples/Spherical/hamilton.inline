@@ -40,7 +40,7 @@ double epsilon2 = Lcbyk*sqrt( 2*EscM0*dEscM+dEscM*dEscM-(m0*c*c)*(m0*c*c)*(2*kap
        epsilon2 = epsilon2/EscM;
 std::cout << "eccentricity (epsilon2) " << epsilon2     << "\n";
 double epsilonViah0A = h0A*L*m0*c*c/k/EscM;
-std::cout << "eccentricity (epsilonViah0A) - is this dx/R0?   " << epsilonViah0A    << "\n";
+std::cout << "eccentricity (epsilonViah0A) - is this dx/Rsxf?   " << epsilonViah0A    << "\n";
        epsilon = epsilon2;
 //     epsilon = epsilonViah0A;
 
