@@ -14,9 +14,8 @@
   std::cout << "M0=cba.getMacrosize()   " << M0   << "\n";
   std::cout << "G0=cba.getG()           " << G0   << "\n";
 
-  std::cout << "L0                      " << L0   << "\n";
   std::cout << "Eel0                    " << Eel0 << "\n";
-  std::cout << "R0                      " << R0   << "\n";
+  std::cout << "Rsxf                    " << Rsxf << "\n";
 
   std::cout << "GeVperJ                 " << GeVperJ   << "\n";
   std::cout << "Eel0MKS                 " << Eel0MKS   << "\n";
