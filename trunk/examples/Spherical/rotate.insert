@@ -97,7 +97,7 @@ std::cout << "pOut   : (" << pxOut    << "," << pyOut    << "," << pzOut    << "
 double pxOutp =  co*pxOut+si*pzOut;
 double pyOutp =  pyOut;
 double pzOutp = -si*pxOut+co*pzOut;
-std::cout << "pOutp  : (" << pxOutp   << "," << pyOutp   << "," << pzOutp   << ")" << "\n";
+std::cout << "pOutp  : ( " << pxOutp   << " , " << pyOutp   << " , " << pzOutp   << " )" << "\n";
 
 std::cout << "rOut-rIn " << rOut-rIn << "\n";
 double rA = (rIn+rOut)/2;
@@ -134,9 +134,14 @@ std::cout << "DX       " << dr+p[0]  << "\n";
 // ./tracker ./data/E_FirstTest.sxf > ! JTout
 // cat JTout | grep rpOut > ! JT.orbit
 // cat JTout | grep DX > JT.DX
+// cat JTout | grep pOutp > JT.slope
 // gnuplot
 // set xrange[0:1600]
+// set format x "%5.0f"
+// set format y "%7.4f"
 // p 'JT.orbit' u 4                // horizontal - absolute
-// p 'JT.DX' u 2                   // horizontal - xout-R0=xout-xin+xin-R0=dr+p[0] ?
+// p 'JT.DX' u 2                   // horizontal - xout-Rsxf=xout-xin+xin-Rsxf=dr+p[0] ?
 //
 // p 'JT.orbit' u 6                // vertical
+// p 'JT.slope' u 4                // vertical
+// p 'JT.slope' u 6                // vertical
