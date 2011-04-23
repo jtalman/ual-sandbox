@@ -1,4 +1,4 @@
-double k       = R0*p0*v0;                         //
+double k       = IA*p0*v0;                         //
 
 //                   probe deviations
 double  dx     = 0.015;
@@ -12,8 +12,8 @@ double dpz     = 0.0;
 double dt      = 0.0; 
 //                   probe deviations
 
-double rin     = R0+dx;                            //
-double rinEx   = sqrt((R0+dx)*(R0+dx)+dy*dy+dz*dz);//
+double rin     = IA+dx;                            //
+double rinEx   = sqrt((IA+dx)*(IA+dx)+dy*dy+dz*dz);//
 double gamma   = gamma0;                           //
 double Ein     = gamma*m0*c*c-k/rinEx;             // E for compatibility with Munoz
 
