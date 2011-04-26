@@ -30,10 +30,24 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
- if(argc!=2){
-  std::cout << "usage: ./tracker ./data/pre-E_pEDm.sxf (> ! myOut)\n";
-  std::cout << "argv[0] is this executable: ./tracker\n";
-  std::cout << "argv[1] is the input sxf file - ./data/pre-E_pEDm.sxf\n";
+ if(argc!=3){
+  std::cout << "usage: ./tracker ./data/E_FirstTest.sxf 30 (> ! myOut)\n";
+  std::cout << "argv[0] is this executable         - ./tracker\n";
+  std::cout << "argv[1] is the input sxf file      - ./data/E_FirstTest.sxf\n";
+  std::cout << "argv[2] is the nominal bend radius - 30      \n";
+  std::cout << "                                             \n";
+  std::cout << "This radius is used to set the scale         \n";
+  std::cout << "of the probe parameters.                     \n";
+  std::cout << "It can be estimated from the sxf file(e.g.   \n";
+  std::cout << "arc = 2.35619449019/                         \n";
+  std::cout << "kl = 0.0785398163398 =                       \n";
+  std::cout << "approximately 30).                           \n";
+  std::cout << "It is a little subtle (e.g. injection issues,\n";
+  std::cout << "manufacturing errors, setup errors, ...).    \n";
+  std::cout << "A further subtlety is that angular           \n";
+  std::cout << "momentum breaks the element-algorithm-probe  \n";
+  std::cout << "paradigm, coupling probe parameter momentum  \n";
+  std::cout << "with element parameter bend radius.          \n";
   exit(0);
  }
 
