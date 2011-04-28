@@ -21,6 +21,4 @@ double IA      = atof(INJECTION_AMBIT);            // (10) not used
 double L0      = IA*p0;                            // 8
 double El0     = 10.5e6;                           // 9
 
-double gap     = 3e-2;                             // should be 11?
-
 std::cout     << "#################################   Design Beam Orientation\n";
