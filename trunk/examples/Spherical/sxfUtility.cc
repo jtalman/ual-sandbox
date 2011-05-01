@@ -90,7 +90,7 @@ int main(int argc,char * argv[]){
   if(nameInput=="bend"){nameInput+=" ";  }
 */
 
-
+/*
   if(nameInput=="mbegin"){nameInput+="     "; }    // ./data/E_FirstTest.sxf
   if(nameInput=="marcin"){nameInput+="     "; }
   if(nameInput=="mcellin"){nameInput+="    "; }
@@ -101,6 +101,17 @@ int main(int argc,char * argv[]){
   if(nameInput=="qc"){nameInput+="         "; }
   if(nameInput=="qa"){nameInput+="         "; }
   if(nameInput=="sa"){nameInput+="         "; }
+  if(nameInput=="mcellcenter"){nameInput+=""; }
+  if(nameInput=="mcellout"){nameInput+="   "; }
+  if(nameInput=="marcout"){nameInput+="    "; }
+  if(nameInput=="mend"){nameInput+="       "; }
+*/
+
+  if(nameInput=="mbegin"){nameInput+="     "; }    // ./data/E_Kepler.sxf
+  if(nameInput=="marcin"){nameInput+="     "; }
+  if(nameInput=="mcellin"){nameInput+="    "; }
+  if(nameInput=="q"){nameInput+="          "; }    // JDT - diff
+  if(nameInput=="bh"){nameInput+="         "; }
   if(nameInput=="mcellcenter"){nameInput+=""; }
   if(nameInput=="mcellout"){nameInput+="   "; }
   if(nameInput=="marcout"){nameInput+="    "; }
