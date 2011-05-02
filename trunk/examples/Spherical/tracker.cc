@@ -112,6 +112,7 @@ int main(int argc,char * argv[]){
  std::cout << "\nLinear analysis." << std::endl;
  // ************************************************************************
   
+/*
  // Make linear matrix
 
  std::cout << " matrix" << std::endl;
@@ -124,6 +125,7 @@ int main(int argc,char * argv[]){
 
  std::cout << " calculate suml" << std::endl;
  shell.analysis(UAL::Args());
+*/
 
  // ************************************************************************
  std::cout << "\nAlgorithm Part. " << std::endl;
