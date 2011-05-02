@@ -115,13 +115,13 @@ double xipOutput  = Cxip(Q,th)*(xiInput-xi_co) + Sxip(Q,th)*xipInput;
 
 #include "reference.inline"                                // 2 approaches in play, RT Original, Munoz
 
-       p[0]       = Rsxf*xiOutput/(1-xiOutput);
-       p[1]       = xipOutput/(1-xiOutput)/(1-xiOutput);
+       p[0]      += dr;
+       p[1]       = pxOutp/p0;
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " p[2]                       " << p[2]                       << "\n";
 
-       p[2]      += Rsxf*th*p[3];                            // approximations
-//     p[3]       = p[3];                                  //    here
+       p[2]       = yOutp;                                 // approximations
+       p[3]       = pyOutp/p0;                             //    here
 
 double rOutput    = p[0]+Rsxf;
   double eVbefo     = PE(Rsxf,rOutput);                    // "befo" means "before output"
