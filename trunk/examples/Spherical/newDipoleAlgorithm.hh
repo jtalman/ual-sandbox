@@ -135,9 +135,12 @@ std::cout << "Eel0*Rsxf*Rsxf " << Eel0*Rsxf*Rsxf << "\n";
     }
 
     double _theta0(){
-//  double _theta0(double h0,double h0p){
-//  double theta0(const Coordinates p,double Rsxf,double r){
-        return atan( h0p/h0/kappa )/kappa;
+        double value = atan2( h0p/kappa,h0 )/kappa;
+//      double value = atan( h0p/h0/kappa )/kappa;
+//      if(value<-UAL::pi/2){value=UAL::pi-value;}
+//      if(value<-UAL::pi/2){value=-value;}
+//      if(value<-UAL::pi/2){value=value+UAL::pi;}
+        return value;
     }
 
     double CSQ(){
