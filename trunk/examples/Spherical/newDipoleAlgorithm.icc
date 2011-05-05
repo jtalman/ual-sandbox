@@ -19,6 +19,7 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	double v0byc,
 	const PAC::BeamAttributes cba)
 {
+std::cout << "JDT - m_m " << data.m_m << "\n";
 #include "getDesignBeam.h"
 
 double Rsxf = data.m_l/data.m_angle;
@@ -26,11 +27,22 @@ double Rsxf = data.m_l/data.m_angle;
 
 //     Rsxf = 30;                            // JDT
 
+/*
+int totalSplitBends = pow( 2, (data.m_ir+1) );
+std::cout << "JDT - totalSplitBends " << totalSplitBends << "\n";
+for(int i = 0; i < totalSplitBends; i++){
+ traverseSplitBendExactly(data.m_slices[i], p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
+ splitBendKick(p,cba,Rsxf,data.m_m,data.m_l);
+}
+return;
+*/
+
  if(!data.m_ir){
 
    traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,Rsxf,data.m_angle/2);
 
    handleSplitBendBoundary(p,cba,Rsxf);       //  should be markSplitBendBoundary?
+ splitBendKick(p,cba,Rsxf,data.m_m,data.m_l);
 
    makeVelocity(p, tmp, v0byc);	         // common
 
@@ -141,6 +153,26 @@ std::cout << "time2                                   "  << time2               
 
          p[4]    += tofA-tof0;                           //
 //       p[5]     = p[5]-(eVbefo-eVafti)/p0;             // p[5] conserved away from RF Cavity   // p[5]+(delta mechanical energy/p0)
+}
+
+template<class Coordinate, class Coordinates>
+void newDipoleAlgorithm<Coordinate, Coordinates>::splitBendKick(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf,double m,double l){
+std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::splitBendKick()\n";
+#include "getDesignBeam.h"
+double GeVperJ   = 1./q0/1.e9;                            // units
+double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
+double g0        = e0/m0;                                 // derived beam gamma
+double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (same as velocity)
+//double L0        = p0*Rsxf;
+double Eel0      = p0*b0/Rsxf;
+double Eel0MKS   = Eel0*1e9;
+#include "printDesignBeam.h"
+
+double inverseFocalLengthX = -(-m+1)*l/Rsxf/Rsxf/2.5;
+p[1] += p[0]*inverseFocalLengthX;
+
+double inverseFocalLengthY = -inverseFocalLengthX;
+p[3] += p[2]*inverseFocalLengthY;
 }
 
 template<class Coordinate, class Coordinates>
