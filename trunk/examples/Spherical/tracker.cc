@@ -30,11 +30,12 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
- if(argc!=3){
-  std::cout << "usage: ./tracker ./data/E_FirstTest.sxf 30 (> ! myOut)\n";
+ if(argc!=4){
+  std::cout << "usage: ./tracker ./data/E_FirstTest.sxf 30 -1.3 (> ! myOut)\n";
   std::cout << "argv[0] is this executable         - ./tracker\n";
   std::cout << "argv[1] is the input sxf file      - ./data/E_FirstTest.sxf\n";
   std::cout << "argv[2] is the nominal bend radius - 30      \n";
+  std::cout << "argv[3] is the nominal electrode m - -1.3    \n";
   std::cout << "                                             \n";
   std::cout << "This radius is used to set the scale         \n";
   std::cout << "of the probe parameters.                     \n";
@@ -50,6 +51,11 @@ int main(int argc,char * argv[]){
   std::cout << "with element parameter bend radius.          \n";
   exit(0);
  }
+
+  ofstream m_m;
+  m_m.open ("m_m");
+  m_m << argv[3];
+  m_m.close();
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
