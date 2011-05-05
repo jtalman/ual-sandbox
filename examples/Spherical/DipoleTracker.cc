@@ -21,6 +21,8 @@ newDipoleAlgorithm<double, PAC::Position> s_algorithm;
  char   ETEAPOT::DipoleTracker::nS[1000][100];
  int    ETEAPOT::DipoleTracker::maxSurvey;
 
+ double ETEAPOT::DipoleTracker::m_m;
+
 ETEAPOT::DipoleTracker::DipoleTracker()
   : ETEAPOT::BasicTracker()
 {
@@ -49,6 +51,13 @@ ETEAPOT::DipoleTracker::DipoleTracker(const ETEAPOT::DipoleTracker& dt)
 {
   m_data = dt.m_data;
   m_edata = dt.m_edata;
+
+  string line;
+  ifstream m_m;
+  m_m.open ("m_m");
+  getline (m_m,line);
+  ETEAPOT::DipoleTracker::m_m = atof( line.c_str() );
+  m_m.close();
 }
 
 ETEAPOT::DipoleTracker::~DipoleTracker()
@@ -72,6 +81,7 @@ void ETEAPOT::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 
 void ETEAPOT::DipoleTracker::setLatticeElement(const PacLattElement& e)
 {
+  m_data.m_m=ETEAPOT::DipoleTracker::m_m;
   m_data.setLatticeElement(e);
   m_edata.setLatticeElement(e);
 }
