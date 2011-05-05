@@ -37,6 +37,7 @@
 
     void traverseSplitBendExactly(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba,double Rsxf, double splitTheta);
     void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf);
+    void splitBendKick(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf,double m,double l);
 
     double getPotentialEnergy(double Eel0,double Rsxf,double r){
 std::cout << "JDT - enter double getPotentialEnergy(double Eel0,double Rsxf,double r)\n";
