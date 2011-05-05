@@ -7,6 +7,11 @@
 #ifndef UAL_ETEAPOT_DIPOLE_TRACKER_HH
 #define UAL_ETEAPOT_DIPOLE_TRACKER_HH
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+
 #include "ETEAPOT/Integrator/DipoleData.hh"
 #include "ETEAPOT/Integrator/MltData.hh"
 #include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
@@ -50,6 +55,8 @@ namespace ETEAPOT {
     static double zS[1000];
     static char   nS[1000][100];
     static int    maxSurvey;
+
+    static double m_m;
 
   protected:
 
