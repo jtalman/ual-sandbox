@@ -27,7 +27,7 @@
   double zLS = surveyData.survey().z();
   std::cout << "xLS      " << xLS      << " yLS      " << yLS      << " zLS      " << zLS      << "\n";
 */
-std::cout << "       xS[m_i0] " << ETEAPOT::DipoleTracker::xS[m_i0] << " member yS[m_i0] " << ETEAPOT::DipoleTracker::yS[m_i0] << " member zS[m_i0] " << ETEAPOT::DipoleTracker::zS[m_i0] << " member nS[m_i0] " << ETEAPOT::DipoleTracker::nS[m_i0] << "\n";
+//std::cout << "       xS[m_i0] " << ETEAPOT::DipoleTracker::xS[m_i0] << " member yS[m_i0] " << ETEAPOT::DipoleTracker::yS[m_i0] << " member zS[m_i0] " << ETEAPOT::DipoleTracker::zS[m_i0] << " member nS[m_i0] " << ETEAPOT::DipoleTracker::nS[m_i0] << "\n";
 PacSurvey survey=m_data.m_slices[0].survey();
 std::cout << "member xS[m_i0] " << survey.x() << " member yS[m_i0] " << survey.y() << " member zS[m_i0] " << survey.z() << "\n";
 
