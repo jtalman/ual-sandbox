@@ -12,6 +12,7 @@ newDipoleAlgorithm<Coordinate, Coordinates>::~newDipoleAlgorithm()
 
 template<class Coordinate, class Coordinates>
 void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
+	int ip,
 	const ETEAPOT::DipoleData& data, 
 	const ETEAPOT::MltData& edata,
 	Coordinates& p, 
@@ -19,66 +20,38 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	double v0byc,
 	const PAC::BeamAttributes cba)
 {
-std::cout << "JDT - m_m " << data.m_m << "\n";
 #include "getDesignBeam.h"
 
 double Rsxf = data.m_l/data.m_angle;
  // Simple Element
 
-//     Rsxf = 30;                            // JDT
-
-/*
-int totalSplitBends = pow( 2, (data.m_ir+1) );
-std::cout << "JDT - totalSplitBends " << totalSplitBends << "\n";
-for(int i = 0; i < totalSplitBends; i++){
- traverseSplitBendExactly(data.m_slices[i], p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
- splitBendKick(p,cba,Rsxf,data.m_m,data.m_l);
-}
-return;
-*/
-
  if(!data.m_ir){
 
-   traverseSplitBendExactly(data.m_slices[0], p, tmp, v0byc, cba,Rsxf,data.m_angle/2);
+   traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/2);
 
    handleSplitBendBoundary(p,cba,Rsxf);       //  should be markSplitBendBoundary?
- splitBendKick(p,cba,Rsxf,data.m_m,data.m_l);
+// splitBendKick(p,cba,Rsxf,data.m_m,data.m_l);
 
    makeVelocity(p, tmp, v0byc);	         // common
 
-   traverseSplitBendExactly(data.m_slices[1], p, tmp, v0byc, cba,Rsxf,data.m_angle/2);
+   traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/2);
 
    return;
  } 
 
-std::cerr << "Complex Element - disallowed!!!\n";
-exit(1);
-
- // Complex Element
-
- double rIr = 1./data.m_ir;
- double rkicks = 0.25*rIr;
-
- int counter = -1;
- for(int i = 0; i < data.m_ir; i++){
-   for(int is = 1; is < 5; is++){
-     counter++;
-     passBendSlice(data.m_slices[counter], p, tmp, v0byc);
-     applyMltKick(edata, rkicks, p);
-     applyThinBendKick(data, edata, rkicks, p, v0byc);
-     makeVelocity(p, tmp, v0byc);	
-   }
-   counter++;
-   passBendSlice(data.m_slices[counter], p, tmp, v0byc);
-   makeVelocity(p, tmp, v0byc);
- }
+int totalSplitBends = pow( 2, data.m_ir );
+for(int i = 0; i < totalSplitBends/2; i++){
+ traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
+// splitBendKick(p,cba,Rsxf,data.m_m,data.m_l);
+ traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
+}
 
  return;
 }
 
 template<class Coordinate, class Coordinates>
 void newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
-  const ETEAPOT::ElemSlice& slice,  
+  int ip,
   Coordinates& p, 
   Coordinates& tmp,
   double v0byc,
@@ -86,6 +59,9 @@ void newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
   double Rsxf,
   double splitTheta){
 std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::newDipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
+
+char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+
 #include "getDesignBeam.h"
 double GeVperJ    = 1./q0/1.e9;                            // units
 double p0         = sqrt(e0*e0-m0*m0);                     // derived beam momentum
