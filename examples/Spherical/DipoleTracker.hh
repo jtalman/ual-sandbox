@@ -18,6 +18,8 @@
 #include "newDipoleAlgorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
 
+#define MAXSXF 1000
+
 namespace ETEAPOT {
 
   /** Dipole tracker. */
@@ -49,12 +51,6 @@ namespace ETEAPOT {
     inline DipoleData& getDipoleData();
 
     inline MltData& getElectricData();
-
-    static double xS[1000];
-    static double yS[1000];
-    static double zS[1000];
-    static char   nS[1000][100];
-    static int    maxSurvey;
 
     static double m_m;
 
