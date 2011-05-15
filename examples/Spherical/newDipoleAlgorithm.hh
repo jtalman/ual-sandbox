@@ -22,7 +22,7 @@
     ~newDipoleAlgorithm();
 
     /** Propagates a probe coordinates through the bend*/
-    void passBend(const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
+    void passBend(int ip,const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
 
     /** Propagates a probe coordinates through the bend slice*/
     void passBendSlice(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
@@ -35,19 +35,13 @@
     /** Calculates the delta path*/
     void deltaPath(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
 
-    void traverseSplitBendExactly(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba,double Rsxf, double splitTheta);
+    void traverseSplitBendExactly(int ip, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba,double Rsxf, double splitTheta);
     void handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf);
     void splitBendKick(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf,double m,double l);
 
     double getPotentialEnergy(double Eel0,double Rsxf,double r){
-std::cout << "JDT - enter double getPotentialEnergy(double Eel0,double Rsxf,double r)\n";
-std::cout << "k          " << k          << "\n";
-std::cout << "Eel0*Rsxf*Rsxf " << Eel0*Rsxf*Rsxf << "\n";
        double value = -k*(1/r-1/Rsxf);
        return value;
-//     return -Eel0*Rsxf*(Rsxf/r-1);                   //  (2) page 15, "...Code...", Feb 17, 2011
-// E field    -E0*Rsxf*Rsxf/r/r
-//     return E0*Rsxf*log(r/Rsxf); 
     }
 
     double PE(double Rsxf,double r){
@@ -78,7 +72,6 @@ std::cout << "Eel0*Rsxf*Rsxf " << Eel0*Rsxf*Rsxf << "\n";
     double get_pz(double g,double m0,double Eel0,double Rsxf,double r,double px,double py){
         double  e  =g*m0;
         double me  =e-PE(r);
-//      double me  =e-getPotentialEnergy(Eel0,Rsxf,r);
         double pzSQ=me*me-px*px-py*py-m0*m0;
         return sqrt(pzSQ);
     }
@@ -145,7 +138,6 @@ std::cout << "Eel0*Rsxf*Rsxf " << Eel0*Rsxf*Rsxf << "\n";
     }
 
     double CSQ(){
-//  double CSQ(double h0,double h0p){
         return h0*h0+h0p*h0p/kappa/kappa;
     }
 
@@ -156,7 +148,6 @@ std::cout << "Eel0*Rsxf*Rsxf " << Eel0*Rsxf*Rsxf << "\n";
     double get_rFromEllipse(double theta){
         double fac = L*mass*c*c/k/EscM;
         return lambda/( 1+fac*C*cos( kappa*(theta-theta0) ) );
-//      return lambda/(1+epsilon*cos(kappa*theta));
     }
 
 #include "getTimeAlternate.inline"
