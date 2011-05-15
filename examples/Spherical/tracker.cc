@@ -194,8 +194,8 @@ int main(int argc,char * argv[]){
   ap -> propagate(bunch);
   for(int ip=0; ip < bunch.size(); ip++){
    pP.write(iturn, ip, bunch);
+   xP.write(iturn, ip, bunch);
   }
-  xP.write(iturn, 0, bunch);
  }
 
  pP.close();
