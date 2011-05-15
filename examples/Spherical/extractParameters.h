@@ -17,6 +17,6 @@
  orbitFile += mysxfbase;
  orbitFile += ".orbit";
 
- int split = 0;
+ int split = 2;
  int order = 5;
- int turns = 64;
+ int turns = 4;
