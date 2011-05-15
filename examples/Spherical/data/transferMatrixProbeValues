@@ -1,0 +1,62 @@
+double k       = IA*p0*v0;                         //
+
+//                   probe deviations
+double typfac = 1.0e-6;
+
+double xt  = typfac;   // "t" is abbreviation for "typ" (from TEAPOT notation)
+double yt  = typfac;
+double ctt = typfac; 
+
+double pxt  = typfac/IA; 
+double pyt  = typfac/IA; 
+double delt = typfac;
+
+double  dx     = 0.0001;
+double  dy     = 0.0001;
+double  dz     = 0.0; 
+
+double dpx     = 0.0; 
+double dpy     = 0.0; 
+double dpz     = 0.0; 
+
+double dt      = 0.0; 
+double rin     = IA+dx;                            //
+double rinEx   = sqrt((IA+dx)*(IA+dx)+dy*dy+dz*dz);//
+double gamma   = gamma0;                           //
+double Ein     = gamma*m0*c*c-k/rinEx;             // E for compatibility with Munoz
+
+double Edes    = m0*c*c/gamma0;                    // Design Energy (Munoz potential)
+double dE      = Ein-Edes; 
+
+double dpxbyp0 = dpx/p0; 
+double dpybyp0 = dpy/p0; 
+double dEbyp0  = dE /p0;
+
+
+
+PAC::Bunch bunch(21);                               // bunch with 21 particle(s)
+bunch.setBeamAttributes(ba);
+// bunch[0].getPosition().set(dx,dpxbyp0,dy,dpybyp0,dt,dEbyp0);
+ bunch[0].getPosition().set(      0,      0,      0,      0,      0,      0);
+ bunch[1].getPosition().set(     xt,      0,      0,      0,      0,      0);
+ bunch[2].getPosition().set(    -xt,      0,      0,      0,      0,      0);
+ bunch[3].getPosition().set(      0,    pxt,      0,      0,      0,      0);
+ bunch[4].getPosition().set(      0,   -pxt,      0,      0,      0,      0);
+ bunch[5].getPosition().set(      0,      0,     yt,      0,      0,      0);
+ bunch[6].getPosition().set(      0,      0,    -yt,      0,      0,      0);
+ bunch[7].getPosition().set(      0,      0,      0,    pyt,      0,      0);
+ bunch[8].getPosition().set(      0,      0,      0,   -pyt,      0,      0);
+ bunch[9].getPosition().set(      0,      0,      0,      0,      0,   delt);
+bunch[10].getPosition().set(      0,      0,      0,      0,      0,  -delt);
+bunch[11].getPosition().set(     xt,    pxt,      0,      0,      0,      0);
+bunch[12].getPosition().set(      0,      0,     yt,    pyt,      0,      0);
+bunch[13].getPosition().set(     xt,      0,      0,      0,      0,   delt);
+bunch[14].getPosition().set(      0,    pxt,      0,      0,      0,   delt);
+bunch[15].getPosition().set(      0,      0,     yt,      0,      0,   delt);
+bunch[16].getPosition().set(      0,      0,      0,    pyt,      0,   delt);
+bunch[17].getPosition().set(     xt,      0,     yt,      0,      0,      0);
+bunch[18].getPosition().set(     xt,      0,      0,    pyt,      0,      0);
+bunch[19].getPosition().set(      0,    pxt,     yt,      0,      0,      0);
+bunch[20].getPosition().set(      0,    pxt,      0,    pyt,      0,      0);
+
+#include "printProbeValues"
