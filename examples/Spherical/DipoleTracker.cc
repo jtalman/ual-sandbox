@@ -9,41 +9,14 @@
 #include "SMF/PacLattice.h"
 #include "DipoleTracker.hh"
 
-//#include "UAL/UI/OpticsCalculator.hh"
-//#include "Main/Teapot.h"
 #include <cstdlib>
 
 newDipoleAlgorithm<double, PAC::Position> s_algorithm;
-
- double ETEAPOT::DipoleTracker::xS[1000];
- double ETEAPOT::DipoleTracker::yS[1000];
- double ETEAPOT::DipoleTracker::zS[1000];
- char   ETEAPOT::DipoleTracker::nS[1000][100];
- int    ETEAPOT::DipoleTracker::maxSurvey;
-
- double ETEAPOT::DipoleTracker::m_m;
+double ETEAPOT::DipoleTracker::m_m;
 
 ETEAPOT::DipoleTracker::DipoleTracker()
   : ETEAPOT::BasicTracker()
 {
- std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method ETEAPOT::DipoleTracker::DipoleTracker() : ETEAPOT::BasicTracker()\n";
- std::ifstream inFile; 
- char index[14];  // One extra for null char.
- char name[14];  // One extra for null char.
-
- int i=0;
-
- inFile.open("Survey", std::ios::in);
-
- if (!inFile) {
-  std::cout << "Can't open input file " << "Survey" << std::endl;
-  exit(1);
- }
-
- while (inFile >> index >> ETEAPOT::DipoleTracker::xS[i] >> ETEAPOT::DipoleTracker::yS[i] >> ETEAPOT::DipoleTracker::zS[i] >> ETEAPOT::DipoleTracker::nS[i]) {
-  ETEAPOT::DipoleTracker::maxSurvey=i;
-  i++;
- }
 }
 
 ETEAPOT::DipoleTracker::DipoleTracker(const ETEAPOT::DipoleTracker& dt)
@@ -74,6 +47,7 @@ void ETEAPOT::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 					       int is1,
 					       const UAL::AttributeSet& attSet)
 {
+std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,int is0,int is1,const UAL::AttributeSet& attSet)\n";
    ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);  
    const PacLattice& lattice     = (PacLattice&) sequence;
    setLatticeElement(lattice[is0]);
@@ -81,6 +55,8 @@ void ETEAPOT::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 
 void ETEAPOT::DipoleTracker::setLatticeElement(const PacLattElement& e)
 {
+std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT::DipoleTracker::setLatticeElement(const PacLattElement& e)\n";
+std::cout << "e.getName() " << e.getName() << " e.getPosition() " << e.getPosition() << "\n";
   m_data.m_m=ETEAPOT::DipoleTracker::m_m;
   m_data.setLatticeElement(e);
   m_edata.setLatticeElement(e);
@@ -108,10 +84,7 @@ std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << 
     s_algorithm.passEntry(m_edata, p);
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " about to  s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc);\n";
-    s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc, cba);
-//                      [      original interface      ] [central orbit ]
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " back from s_algorithm.passBend(m_data, m_edata, p, tmp, v0byc, e0, p0, m0);\n";
+    s_algorithm.passBend(ip ,m_data, m_edata, p, tmp, v0byc, cba);
     s_algorithm.passExit(m_edata, p);
     // testAperture(p);
   }
