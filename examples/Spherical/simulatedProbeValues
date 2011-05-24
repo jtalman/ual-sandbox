@@ -14,7 +14,9 @@ double dt      = 0.0;
 
 double rin     = IA+dx;                            //
 double rinEx   = sqrt((IA+dx)*(IA+dx)+dy*dy+dz*dz);//
-double gamma   = gamma0;                           //
+  double gamma = (k/rinEx-k/IA)/m0/c/c;             //
+         gamma = gamma+gamma0;
+//double gamma   = gamma0;                         //
 double Ein     = gamma*m0*c*c-k/rinEx;             // E for compatibility with Munoz
 
 double Edes    = m0*c*c/gamma0;                    // Design Energy (Munoz potential)
