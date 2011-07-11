@@ -79,7 +79,9 @@ int main(int argc,char * argv[]){
   double mass   = 0.10565839; // muon rest mass
   double energy = sqrt(mass*mass + 0.1*0.1);
 
-  shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", energy) << UAL::Arg("mass", mass));
+  shell.setBeamAttributes(UAL::Args() << UAL::Arg("mass", mass));
+  shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", energy));
+//shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", energy) << UAL::Arg("mass", mass));
 
   PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
