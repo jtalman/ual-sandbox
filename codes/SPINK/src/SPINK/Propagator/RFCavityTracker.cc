@@ -93,7 +93,8 @@ void SPINK::RFCavityTracker::propagate(UAL::Probe& probe)
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   static int oldturn = -1;
   // if(m_name != "rfac9bnc") return;
- if(m_name == "rfac9bnc" || m_name == "rfac9mhz" ) {
+  // if(m_name == "rfac9bnc" || m_name == "rfac9mhz" ) {
+  if(m_name == "rfac1") {
   // if( nturn == oldturn ) return;
   oldturn = nturn;
   // cerr << "V = " << m_V << ", lag = " << m_lag << ", harmon = " << m_h << ", l = " << m_l << "\n";

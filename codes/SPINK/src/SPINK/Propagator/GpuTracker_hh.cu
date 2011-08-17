@@ -1,7 +1,16 @@
+// Library       : SPINK
+// File          : SPINK/Propagator/GpuTracker_hh.cu
+// Copyright     : see Copyright file
+// Author        : V.Ranjbar
+/** header file for GpuTracker.cu **/
+
 #ifndef UAL_SPINK_GPUDIPOLE_TRACKER_HH
 #define UAL_SPINK_GPUDIPOLE_TRACKER_HH
+/** set the global precision here **/
 #define  precision double
+/** set the maximum number of particles to be tracked **/
 #define PARTICLES 10000
+/** set maximum number of elements to be tracked through **/
 #define ELEMENTS 2000
 #include "SPINK/Propagator/DipoleTracker.hh"
 #include "TEAPOT/Integrator/DipoleData.hh"
