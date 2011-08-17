@@ -1,3 +1,11 @@
+// Library       : SPINK
+// File          : SPINK/Propagator/gpuProp11.cu
+// Copyright     : see Copyright file
+// Author        : V.Ranjbar
+/** this contains all the gpu device functions necessary for the kernel
+gpuPropagate(). It takes all particles with orbit and spin and transports
+them through the lattice preloaded into the GPU memory **/
+
 #ifndef gpu_propogate
 #define gpu_propogate
 
@@ -776,11 +784,16 @@ __device__ void propagateSpin(int N, int j,   precision x,   precision px,   pre
 
 }
 
+
+/** main kernel callable from GpuPropagate Class **/
+
 __global__ void gpuPropagate(int N, int Nturns, int Nelement){
  
    int i = blockDim.x*blockIdx.x + threadIdx.x;
+   /** we load all position and spin arrays into register memory to speed up
+       memory access during tracking **/
    precision length,ang;
-   precision v;
+   //  precision v;
      precision x,px,y,py,ct,de;
      double sx,sy,sz;
    x= pos_d[i].x; px = pos_d[i].px; y = pos_d[i].y;

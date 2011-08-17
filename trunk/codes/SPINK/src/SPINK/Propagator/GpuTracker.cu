@@ -1,3 +1,15 @@
+// Library       : SPINK
+// File          : SPINK/Propagator/GpuTracker.cu
+// Copyright     : see Copyright file
+// Author        : V.Ranjbar
+//  This the class which invokes the GPU kernel to perform spin and orbit
+//  particle push using gpuPropagate kernel in the GpuPropagate C++ function
+//  There is a lot of legacy functions using an older and much slower method where
+//  all the pieces of the orbit and spin push are sperated out into individual kernel
+//  calls. These are still in the code but unused. Perhaps later they can be removed.
+
+
+
 #include "UAL/APF/PropagatorFactory.hh"
 #include "PAC/Beam/Bunch.hh"
 //#include "../../../../common/book.h"
@@ -67,6 +79,10 @@ UAL::PropagatorNode* SPINK::GpuTracker::clone()
 }
 
 
+/** This Class reads in the lattice information into both the C++ classes
+    and loads them into the GPU lattice variables.
+**/
+
 void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
 					   int is0, int is1,
 					   const UAL::AttributeSet& attSet)
@@ -82,31 +98,30 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
     setConventionalTracker(sequence, is0, is1, attSet);
    
     m_name = lattice[is0].getName();
-    //  std::cout << "get Name =" << m_name << " \n"; 
     /** loading up GPU lattice **/
 
-    /** setting rf flags **/
-if(m_name == "rfac9bnc" || m_name == "rfac9mhz"){
-      rhic[is0].rfcav = 1;
+    /** setting rf flags indicating rfcavity rfcav=1 **/
+    if(m_name == "rfac1"){  
+    rhic[is0].rfcav = 1;
     }else{rhic[is0].rfcav = 0;}
-/** setting snake flags **/
+
+   /** setting snake flag indicating snake1 or snake2 present **/
  rhic[is0].snake = 0;
     if(m_name == "snake1"){
       rhic[is0].snake = 1;
     }else if(m_name == "snake2") { rhic[is0].snake = 2;}
 
     /** setting multipole values **/
-    for(int k=0 ; k < 10 ; k++){
+    /** initializing to zero **/ 
+   for(int k=0 ; k < 10 ; k++){
       rhic[is0].entryMlt[k] = 0.0;
       rhic[is0].exitMlt[k] = 0.0;
       rhic[is0].mlt[k] =0.0;
     }
-    // rhic[is0].ENTRY = 1;
-    // rhic[is0].EXIT = 1;
-    // rhic[is0].MULT = 1;
+   
 
   if(p_entryMlt){
-    //    rhic[is0].ENTRY = 1;
+ 
      int size_entry = p_entryMlt->size();
      double * data = p_entryMlt->data();
      for( int ii = 0; ii < size_entry; ii++)
@@ -120,13 +135,14 @@ if(m_name == "rfac9bnc" || m_name == "rfac9mhz"){
      
             }
        } //end of for loop
-  }else {   // rhic[is0].ENTRY = 0; 
+  }else {   
+    /** setting entryMlt[0]= 10000. indicates no entryMlt present **/ 
 rhic[is0].entryMlt[0] = 10000. ;}
    
 
 
  if(p_exitMlt){ 
-   //   rhic[is0].EXIT = 1;
+  
      int size_exit = p_exitMlt->size();
      double * data = p_exitMlt->data();
      for( int ii = 0; ii < size_exit; ii++)
@@ -141,14 +157,14 @@ rhic[is0].entryMlt[0] = 10000. ;}
             }
 	   
        }
- }else {// rhic[is0].EXIT = 0; 
+ }else {
+   /** setting exitMlt[0]=10000. indicates no exitMlit present **/
 rhic[is0].exitMlt[0] = 10000.;}
 
 
 
 
 if(p_mlt){ 
-  //  rhic[is0].MULT = 1;
       int sizemlt = p_mlt->size();
      double * data = p_mlt->data();
      for( int ii = 0; ii < sizemlt; ii++)
@@ -162,15 +178,17 @@ if(p_mlt){
      
             } 
        }
-     rhic[is0].order = p_mlt->order(); } else { //rhic[is0].MULT = 0;
+     rhic[is0].order = p_mlt->order(); } else { 
+  /** setting mlt[0] = 10000. indicates no mlt present **/
   rhic[is0].mlt[0] = 10000.;   rhic[is0].order = 0;}
 
-/**setting m_l values **/
+/**setting m_l values length of element**/
  rhic[is0].m_l = 0.;
   if(m_data.m_l) rhic[is0].m_l = m_data.m_l;
 
 /** setting bend transport values **/
    
+/** initializing everyone to zero **/
    rhic[is0].k1l = 0.;
    rhic[is0].angle = 0.;
    rhic[is0].btw01 = 0.;
@@ -224,9 +242,8 @@ rhic[is0].m_ir = m_ir;
    if(p_bend) rhic[is0].bend = p_bend->angle();
    /** setting for bend for spin prop **/ 
    rhic[is0].length = 0.0;
-   //  rhic[is0].h = 0.0;
+  
    if(p_length){ rhic[is0].length = p_length->l();
-     //  rhic[is0].h  = rhic[is0].bend/rhic[is0].length;
     }
  
 /** setting offset values **/
@@ -238,8 +255,6 @@ rhic[is0].m_ir = m_ir;
    }
 
 
-   //  int ns = 1;
-   //if(p_complexity) ns = 4*p_complexity->n();
 
      rhic[is0].kl1 = 0.;
      rhic[is0].k0l = 0.;
@@ -280,7 +295,6 @@ void SPINK::GpuTracker::setConventionalTracker(const UAL::AcceleratorNode& seque
       TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
      
 
-    // std::cout << "setting Convertional tracker Type = " <<  lattice[is0].getType() << "\n";
     m_tracker = nodePtr;
     
     if(p_complexity) p_complexity->n() = 0;   // ir
@@ -288,7 +302,6 @@ void SPINK::GpuTracker::setConventionalTracker(const UAL::AcceleratorNode& seque
     if(p_bend)      *p_bend /= ns;            // angle, fint
      
     m_tracker->setLatticeElements(sequence, is0, is1, attSet);
-    // std::cout << "set latticeElement()  in GpuTRacker \n";
    setLatticeElement(lattice[is0]);
    
   
@@ -298,7 +311,7 @@ void SPINK::GpuTracker::setConventionalTracker(const UAL::AcceleratorNode& seque
 
 }
 
-
+/** old Class to perform Drift in GPU individually not in use currently **/
 void SPINK::GpuTracker::DriftProp(PAC::Bunch& bunch)
 {
 PAC::BeamAttributes& ba = bunch.getBeamAttributes();
@@ -335,7 +348,7 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
 }
 
 
-
+/** Old class to perform Bend seperately on GPU not in use currently **/
 void SPINK::GpuTracker::BendProp(PAC::Bunch& bunch) {
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   PAC::Position& pos = bunch[0].getPosition();
@@ -345,11 +358,11 @@ void SPINK::GpuTracker::BendProp(PAC::Bunch& bunch) {
   precision p0 =  sqrt(e0*e0 - m0*m0);
   precision v0byc = p0/e0;
   precision dx = 0.0, dy = 0.0;
-  precision gam = e0/m0;
+  // precision gam = e0/m0;
   precision entry[10], vexit[10], mlt[10];
   // precision * entry, *vexit, *mlt;
   int size_entry,size_mlt,size_exit;
-  precision t0 = oldT;
+  // precision t0 = oldT;
   //entry = (precision*)malloc(10*sizeof(precision));
   // vexit =  (precision*)malloc(10*sizeof(precision));
   //  mlt = (precision*)malloc(10*sizeof(precision));
@@ -564,6 +577,8 @@ if(!m_data.m_ir){
 
 }
 
+
+/** Old Class to perform Multipole kick on Gpu seperately currently not in use **/
 void SPINK::GpuTracker::MultProp(PAC::Bunch& bunch){
 PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   PAC::Position& pos = bunch[0].getPosition();
@@ -574,7 +589,7 @@ PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision v0byc = p0/e0;
   precision dx = 0.00, dy = 0.00;
   precision length = 0;
-  precision gam = e0/m0;
+  // precision gam = e0/m0;
   precision entry[10], vexit[10], mlt[10];
   int size_entry,size_mlt,size_exit;
  
@@ -734,7 +749,7 @@ if(m_mdata.m_exitMlt){
 }
 
 
-
+/** Old class to perform RF cavity propagation on GPU seperately not in use **/
 void SPINK::GpuTracker::RFProp(PAC::Bunch& bunch)
 {
  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
@@ -791,21 +806,28 @@ void SPINK::GpuTracker::RFProp(PAC::Bunch& bunch)
   return;
 }
 
-
+/** Class for performing full spin orbit propagation on GPU **/
 void SPINK::GpuTracker::GpuProp(PAC::Bunch& bunch)
 { 
 static int firstcall = 0;
   int N = bunch.size();
+  /** found this threadPerBlock size seemed to have best timing. Could experiment more to find a better number **/
   int threadsPerBlock = 100;
   int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
   // std::cout << "blocksPerGrid =" << blocksPerGrid << " \n";
   // std::cout << "threadsPerBlock =" << threadsPerBlock << "\n";
   //  threadsPerBlock = 1; blocksPerGrid = 1;
   
+  /** if this is the first time we are calling this function then load up particles onto the GPU **/
  if(firstcall == 0){
    loadPart(bunch);
    }
     firstcall = 1;
+    // I did some tests here trying to load the lattice into Constant Memory on 
+    // the GPU since it wouldn't all fit into memory I tried breaking it appart
+    // but this didn't seem to deliver any performance inprovement. I leave
+    // it here commented out incase some one might wish to try it again.
+ 
     //   int npass = Nelement/20;
     //    int leftover = Nelement - npass*20; 
     // for(int turns= 1; turns <= nturn; turns++) {
@@ -825,6 +847,8 @@ static int firstcall = 0;
 }
 
 
+/** Old Class used for propagating individual elements on the GPU
+    it performes much slower than using GpuProp Class **/
 
 void SPINK::GpuTracker::propagate(UAL::Probe& b)
 {
@@ -1032,6 +1056,7 @@ void SPINK::GpuTracker::copy(const SPINK::GpuTracker& st)
     // p_rf = st.p_rf;
 }
 
+/** Old Class for propagating Spin on the GPU no longer in use **/
 void SPINK::GpuTracker::propagateSpin(UAL::Probe& b)
 {
 PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
@@ -1081,6 +1106,8 @@ precision k0l = 0.00, kls0 = 0.00; // VR added to handle hkicker and vkicker spi
 
 }
 
+
+/** Old Class for propagating spin through snakes no long in use **/
 void SPINK::GpuTracker::SnakeProp(PAC::Bunch& bunch)
 {
  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
@@ -1180,7 +1207,7 @@ gpu3dmatrix<<<blocksPerGrid, threadsPerBlock>>>(s_mat[0],s_mat[1],s_mat[2],s_mat
 
 
 
-
+/** Class for passing all vectors and parameters to GPU memory **/
 
 void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
 {
@@ -1191,7 +1218,7 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
     precision GG    =  (precision) ba.getG();
     precision q           =  (precision)  ba.getCharge();
     precision p0 = sqrt(e0*e0 - m0*m0);
-    precision gam = e0/m0;
+    // precision gam = e0/m0;
     precision v0byc = p0/e0;
     precision Energy[PARTICLES],v0byc_c[PARTICLES],p0_c[PARTICLES];
     int N = bunch.size();
@@ -1250,6 +1277,10 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
 
 }
 
+
+/** Class to read back all particle vectors and parameters back to CPU 
+    to be printed out **/
+
 void SPINK::GpuTracker::readPart(PAC::Bunch& bunch,int printall)
 { int N = bunch.size();
 
@@ -1259,15 +1290,15 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch,int printall)
   // precision Energy[PARTICLES];
    precision GG    =  (precision) ba.getG();
    // precision Ggam  = gam*GG; 
-   precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
- int count =0;
+   // precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
+   // int count =0;
   cudaMemcpyFromSymbol(Energy,Energy_d, sizeof(Energy));
     // cudaMemcpyFromSymbol(v0byc,v0byc_d,sizeof(v0byc));
   gam = Energy[0]/m0;
   e0 = Energy[0];
   printf(" gam = %e \n",gam);
   //    ba.setEnergy(e0);
-  precision Ggam  = gam*GG; 
+  // precision Ggam  = gam*GG; 
 //vec6D output[PARTICLES];
   cudaMemcpyFromSymbol(pos,pos_d, sizeof(pos));
   /**
