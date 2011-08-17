@@ -1,15 +1,15 @@
-VariantName:    d1rms_short                                                                                                
+VariantName:  Shorter                                                                                               
 outdmp:         0                                                                                                               
 logdmp:         1                                                                                                               
-irSBend&irQuad: 1 16                                                                                                             
-gamma:          210.0                                                                                                 
-tunes:          28.69   29.685                                                                                                  
-chrom:          6.0     6.0                                                                                                     
+irSBend&irQuad: 1 4                                                                                                             
+gamma:          101.214                                                                                                 
+tunes:          28.685   29.675                                                                                                  
+chrom:          2.0     2.0                                                                                                     
 settunes:       1                                                                                                               
-dgamma/dt:      4.2760935                                                                                                          
+dgamma/dt:      8.55219                                                                                                          
 volt$harmon:    1.5e-4  360                                                                                                       
 spin:           0.      1.      0.                                                                                              
-emittance:	10.0	10.0	2.0e-9                                                                                                                
+emittance:	20.0	20.0	0.0e-9                                                                                                                
 phaseSpace:     1.2e-04  0.0  1.2e-04 0.0 0.0  -0.0e-4
                           
 calcPhaseSpace: 0                                                                                                               
@@ -17,5 +17,5 @@ snkflag:        1
 snk_mu:         180.     180.                                                                                                      
 snk_phi:        45.     -45.                                                                                                    
 snk_theta:      0.      0.                                                                                                      
-turns:          20000                                                                                                           
-Particle:	5000
+turns:          100000                                                                                                       
+Particle:	1000
