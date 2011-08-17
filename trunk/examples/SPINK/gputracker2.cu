@@ -56,7 +56,7 @@ int main(){
   double sigct, sigx,sigy,sigxp,sigyp,sigt;
   double x00; double x00p; double y00; double y00p; double ct0; double dpp0;
   bool calcPhaseSpace;
-  bool snkflag ; //AUL:10MAR10
+  bool snkflag ,restart; //AUL:10MAR10
   double mu1; double mu2; double phi1; double phi2; double the1; double the2;
   int turns, NPart;
 
@@ -80,6 +80,7 @@ int main(){
   configInput >> dummy >> the1 >> the2 ;
   configInput >> dummy >> turns;
   configInput >> dummy >> NPart;
+//  configInput >> dummy >> restart;
   /** AUL:17MAR10 _________________________________________________________________*/
 
  
@@ -243,7 +244,7 @@ int main(){
     if( logdmp ){ }
     cout << "dgamma/dt = " << dgammadt << endl ; //AUL:29DEC09
     cout << "Circumference(m) = " << circum << endl;
-    cout << "Volt = " << V << ", harmon =" << harmon << ", lag = " << lag*360 << std::endl;
+    cout << "Volt = " << V << ", harmon =" << harmon << ", lag = " << lag << std::endl;
     double gamt = 24.5; // RHIC Transition gamma;
     double betak = sqrt(1.0 - 1.0/(gamma*gamma));
     double alpham = 1/(gamt*gamt); 
@@ -253,7 +254,10 @@ int main(){
     Qs0 = sqrt(Qs0);
     std::cout << "Qs0 = " << Qs0 <<  "\n";
     double sigdp = Qs0*(2.0*UAL::pi/T_0)*sigt/eta;
-    std::cout << "sigdp = " << sigdp << "\n";    
+    std::cout << "sigdp = " << sigdp << "\n";
+    std::cout << "eta =" << eta << " \n";
+    std::cout << "sigt =" << sigt << "\n";
+    
   
 
   SPINK::GpuTracker::setRF(V,harmon,lag);
@@ -261,14 +265,6 @@ int main(){
   //tracker.setRF(V, harmon, lag);  //AUL:17MAR10
   //double circ = circum;
    SPINK::GpuTracker::setCircum(circum); //AUL:17MAR10
-
-
-
-
-
-
-
-
 
 
 
@@ -325,32 +321,33 @@ int main(){
     std::cout << "dpp0 = " << dpp0 << "\n";
     // }
 
-    emit_x = emit_x*UAL::pi*1e-6/(gamma);
-    emit_y = emit_y*UAL::pi*1e-6/(gamma);
+    emit_x = emit_x*UAL::pi*1e-6/(gamma*6.0);
+    emit_y = emit_y*UAL::pi*1e-6/(gamma*6.0);
     std::cout << "emit_x = " << emit_x << " emit_y = " << emit_y << " \n";
   
- if( calcPhaseSpace){
+    // if( calcPhaseSpace){
  
-    if( logdmp ){ std::cout << "\nTranverse phase space calculated from emittance" << endl;}
-    
-    x0 = sqrt(emit_x*beta_x/(6*gamma))*0.001 + tws.d(0)*dpp0;
+    //if( logdmp ){ std::cout << "\nTranverse phase space calculated from emittance" << endl;}
+    double dp0 = 0.0;
+    x0 = sqrt(emit_x*beta_x/(6*gamma)) + tws.d(0)*dpp0;
     x0p = tws.dp(0)*dpp0;
-    y0 = sqrt(emit_y*beta_y/(6*gamma))*0.001 + tws.d(1)*dpp0;
+    y0 = sqrt(emit_y*beta_y/(6*gamma)) + tws.d(1)*dpp0;
     y0p = tws.dp(1)*dpp0;
     std::cout << "dp(0) = "<<tws.dp(0) << "dp(1) =" << tws.dp(1) << "\n";
+    ct0 = ct0 + offset*2;
+    dp0 = sigdp;
+    //} else {
 
-  } else {
-
-    if( logdmp ){ std::cout << "\nTranverse phase space directly input" << endl;}
+    // if( logdmp ){ std::cout << "\nTranverse phase space directly input" << endl;}
 
     //   x0 = x00 + tws.d(0)*dpp0;
     // x0p = x00p + tws.dp(0)*dpp0;
     // y0 = y00 + tws.d(1)*dpp0;
     //y0p = y00p + tws.dp(1)*dpp0;
       
-    x0 = x00; x0p = x00p; y0 = y00; y0p = y00p;
-    ct0 = ct0 + offset*2;
-  }
+    //x0 = x00; x0p = x00p; y0 = y00; y0p = y00p;
+    //ct0 = ct0 + offset*2;
+    //}
  double gama_x = (1.0 + alfa_x*alfa_x)/beta_x;
  double gama_y = (1.0 + alfa_y*alfa_y)/beta_y;
  sigx  = sqrt(beta_x*emit_x + (tws.d(0)*sigdp)* (tws.d(0)*sigdp));
@@ -383,12 +380,9 @@ int main(){
   double dpstep = 0.000024;
  
   
-
-
-
   const gsl_rng_type *Tx, *Ty, *Ts;
   gsl_rng            *rx, *ry, *rs;
-  double     rngx,rngxp,rngy,rngyp,rngs,rngdp, dp0;
+  double     rngx,rngxp,rngy,rngyp,rngs,rngdp;
   double bdry = 9.0;
   /* create a generator chosen by the environment variable GSL_RNG_TYPE */
   gsl_rng_env_setup();
@@ -399,8 +393,12 @@ int main(){
   //gsl_rng_set(ry, param->irandy);
   gsl_rng_default_seed = 1178;  Ts = gsl_rng_default;  rs = gsl_rng_alloc(Ts);
 
+ // if(restart){
+ // FILE * pFile;
+ // pFile = fopen ("PartOut.dat","r");}
 
   for(int ip=0; ip < bunch.size(); ip ++){
+    
 do {
       gsl_ran_bivariate_gaussian(rx , 1.0, 1.0, corr_x, &rngx, &rngxp);
  } while ((rngx*rngx+rngxp*rngxp) > bdry);
@@ -439,20 +437,28 @@ do {
     y0p = rngyp*sigyp;
     ct0  = rngs *sigct + offset*2;
     dp0 = rngdp*sigdp;
-     
+   
+   // if(restart){
+   // fscanf (pFile, "%e %e %e %e %e %e %e %e %e %e %e", &gamma, &Ggam, &ssx, &ssy, &ssz, &x0, &x0p, &y0, &y0p, &ct0, &dp0);
+ // spin.setSX(ssx);
+ // spin.setSY(ssy);
+ // spin.setSZ(ssz);}
+
 
      //  PAC::Position& pos = bunch[ip].getPosition();
     bunch[ip].getPosition().set(x0, x0p, y0, y0p, ct0, dp0);    //AUL:17MAR10
     bunch[ip].setSpin(spin);
      
-    /**
-      std::cout << " bunch number =" << ip << "  ";
-      std::cout << " x0 = " << x0 << ",  x0p = " << x0p ;
-     std::cout << " y0 = " << y0 << ",  y0p = " << y0p ;
-     std::cout << " ct0 = " << ct0 << ",  dp0 = " << dp0 << std::endl;
-    **/
+    
+      std::cout << ip << "  ";
+      std::cout << " " << x0 << ",  " << x0p ;
+     std::cout << " " << y0 << ", " << y0p ;
+     std::cout << " " << ct0 << ", " << dp0 << std::endl;
+   
   }
-
+  
+ // if(restart){
+   // fclose (pFile);}
     gsl_rng_free (rx);
   gsl_rng_free (ry);
   gsl_rng_free (rs);
@@ -502,7 +508,7 @@ do {
   SpinPrinter spinPrinter;
   spinPrinter.open(spinFile.c_str());
   int count;
-  int step = 5;
+  int step = 1;
   ba.setElapsedTime(0.0);
 
   start_ms();

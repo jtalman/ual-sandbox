@@ -37,7 +37,7 @@ int main(){
   //* Read input parameters*/
   /**********************************************************/
  
-  std::ifstream configInput("./datagpu/spink.in");//AULNLD:07JAN10
+  std::ifstream configInput("./datagpu/spink2.in");//AULNLD:07JAN10
 
   std::string dummy ; // this string has been added to improve readability of input
   std::string variantName;
@@ -52,6 +52,7 @@ int main(){
   double ssx; double ssy; double ssz;
   double emit_y; // Pi mm*mrad (normalized) 15.; 
   double emit_x; // Pi mm*mrad (normalized)
+  double sigct, sigx,sigy,sigxp,sigyp,sigt;
   double x00; double x00p; double y00; double y00p; double ct0; double dpp0;
   bool calcPhaseSpace;
   bool snkflag ; //AUL:10MAR10
@@ -69,7 +70,7 @@ int main(){
   configInput >> dummy >> dgammadt;
   configInput >> dummy >> V >> harmon;
   configInput >> dummy >> ssx >> ssy >> ssz; 
-  configInput >> dummy >> emit_x >> emit_y;
+  configInput >> dummy >> emit_x >> emit_y >> sigt;
   configInput >> dummy >> x00 >> x00p >> y00 >> y00p >> ct0 >> dpp0;
   configInput >> dummy >> calcPhaseSpace; 
   configInput >> dummy >> snkflag; 
@@ -241,10 +242,19 @@ int main(){
     if( logdmp ){ }
     cout << "dgamma/dt = " << dgammadt << endl ; //AUL:29DEC09
     cout << "Circumference(m) = " << circum << endl;
-    cout << "Volt = " << V << ", harmon =" << harmon << ", lag = " << lag*360 << std::endl;
-  
+    cout << "Volt = " << V << ", harmon =" << harmon << ", lag = " << lag << std::endl;
+   double gamt = 24.5; // RHIC Transition gamma;
+    double betak = sqrt(1.0 - 1.0/(gamma*gamma));
+    double alpham = 1/(gamt*gamt); 
+    double eta = alpham - 1.0/(gamma*gamma);
+    double Qs0 = harmon*V*fabs(eta*cos(lag));
+    Qs0 /= 2.0*UAL::pi*sqrt(betak)*energy;
+    Qs0 = sqrt(Qs0);
+    std::cout << "Qs0 = " << Qs0 <<  "\n";
+    double sigdp = Qs0*(2.0*UAL::pi/T_0)*sigt/eta;
+    std::cout << "sigdp = " << sigdp << "\n";
 
-  SPINK::RFCavityTracker::setRF(V,120,lag);
+  SPINK::RFCavityTracker::setRF(V,harmon,lag);
   //  TEAPOT::RFCavityTracker  tracker;
   //tracker.setRF(V, harmon, lag);  //AUL:17MAR10
   //double circ = circum;
@@ -258,7 +268,7 @@ int main(){
   
   if( logdmp ){  cout << "gamma = " << gamma << ",  Ggamma = " << G*gamma << endl;}
 
-  PAC::Bunch bunch(NPart);               // bunch with one particle
+  PAC::Bunch bunch(1);               // bunch with one particle
   bunch.setBeamAttributes(ba);
 
   if( logdmp ){  std::cout << "initial spin = " << ssx << "  " << ssy << "  " << ssz << std::endl;}
@@ -303,33 +313,34 @@ int main(){
     std::cout << "dpp0 = " << dpp0 << "\n";
   }
 
-    emit_x = emit_x*UAL::pi*1e-6;
-    emit_y = emit_y*UAL::pi*1e-6;
+  emit_x = emit_x*UAL::pi*1e-6/(gamma);
+  emit_y = emit_y*UAL::pi*1e-6/(gamma);
     std::cout << "emit_x = " << emit_x << " emit_y = " << emit_y << " \n";
 
 
-  if( calcPhaseSpace){
+    //if( calcPhaseSpace){
  
-    if( logdmp ){ std::cout << "\nTranverse phase space calculated from emittance" << endl;}
-    
-    x0 = sqrt(emit_x*beta_x/(6*gamma))*0.001 + tws.d(0)*dpp0;
+    //if( logdmp ){ std::cout << "\nTranverse phase space calculated from emittance" << endl;}
+    double dp0 =0.0 ;
+    x0 = sqrt(emit_x*beta_x/(6*gamma)) + tws.d(0)*dpp0;
     x0p = tws.dp(0)*dpp0;
-    y0 = sqrt(emit_y*beta_y/(6*gamma))*0.001 + tws.d(1)*dpp0;
+    y0 = sqrt(emit_y*beta_y/(6*gamma)) + tws.d(1)*dpp0;
     y0p = tws.dp(1)*dpp0;
     std::cout << "dp(0) = "<<tws.dp(0) << "dp(1) =" << tws.dp(1) << "\n";
+    ct0 = ct0 + offset*2;
+    dp0 = sigdp;
+    //} else {
 
-  } else {
-
-    if( logdmp ){ std::cout << "\nTranverse phase space directly input" << endl;}
+    // if( logdmp ){ std::cout << "\nTranverse phase space directly input" << endl;}
 
     //   x0 = x00 + tws.d(0)*dpp0;
     // x0p = x00p + tws.dp(0)*dpp0;
     // y0 = y00 + tws.d(1)*dpp0;
     //y0p = y00p + tws.dp(1)*dpp0;
       
-    x0 = x00; x0p = x00p; y0 = y00; y0p = y00p;
-    ct0 = ct0 + offset*2;
-  }
+    // x0 = x00; x0p = x00p; y0 = y00; y0p = y00p;
+    //ct0 = ct0 + offset*2;
+    // }
 
   if( logdmp ){
     std::cout << "\nInitial phase space (including dispersion)" << std::endl; //AUL:17MAR10
@@ -345,11 +356,11 @@ int main(){
   int nw = 4;
   // weights for gaussian approximation
   double w[4] = { 0.2671, 0.94, 1.9617, 4.1589};
-  double psi_x, psi_y, J_x, J_y, dp0;    
+  double psi_x, psi_y, J_x, J_y;    
   double dpstep = 0.000024;
 
   for(int ip=0; ip < bunch.size(); ip ++){
-
+    /**
      ipsi = ip % npsi;
      iw = ((ip-iw)/npsi % nw );
      idp = (ip - ipsi - iw*nw)/(nw*npsi);
@@ -369,7 +380,7 @@ int main(){
      
      dp0 = dpp0 + idp*dpstep;     
 
-
+    **/
 
 
      //  PAC::Position& pos = bunch[ip].getPosition();
