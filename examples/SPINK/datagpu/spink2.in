@@ -1,8 +1,8 @@
-VariantName:  Shorter                                                                                               
+ VariantName:  Shorter                                                                                               
 outdmp:         0                                                                                                               
 logdmp:         1                                                                                                               
-irSBend&irQuad: 1 4                                                                                                             
-gamma:          101.214                                                                                                 
+irSBend&irQuad: 1 16                                                                                                             
+gamma:         1.449612e+02                                                                                                 
 tunes:          28.685   29.675                                                                                                  
 chrom:          2.0     2.0                                                                                                     
 settunes:       1                                                                                                               

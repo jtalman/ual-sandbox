@@ -56,7 +56,7 @@ int main(){
   double sigct, sigx,sigy,sigxp,sigyp,sigt;
   double x00; double x00p; double y00; double y00p; double ct0; double dpp0;
   bool calcPhaseSpace;
-  bool snkflag ,restart; //AUL:10MAR10
+  bool snkflag ; //AUL:10MAR10
   double mu1; double mu2; double phi1; double phi2; double the1; double the2;
   int turns, NPart;
 
@@ -313,21 +313,21 @@ int main(){
   double alfa_x = tws.alpha(0);
   double alfa_y = tws.alpha(1);
 
-  // if( logdmp ){
+ 
     std::cout << "beta_x = " << beta_x << "  beta_y = " << beta_y << std::endl;
     std::cout << "alfa_x = " << alfa_x << "  alfa_y = " << alfa_y << std::endl;
     std::cout << "Q_x = " << q_x << "  Q_y = " << q_y << std::endl;
     std::cout << "chrom_x = " << chrm_x << "  chrom_y = " << chrm_y << std::endl;
     std::cout << "dpp0 = " << dpp0 << "\n";
-    // }
+  
+    if(calcPhaseSpace == 1){
+
 
     emit_x = emit_x*UAL::pi*1e-6/(gamma*6.0);
     emit_y = emit_y*UAL::pi*1e-6/(gamma*6.0);
     std::cout << "emit_x = " << emit_x << " emit_y = " << emit_y << " \n";
   
-    // if( calcPhaseSpace){
- 
-    //if( logdmp ){ std::cout << "\nTranverse phase space calculated from emittance" << endl;}
+    
     double dp0 = 0.0;
     x0 = sqrt(emit_x*beta_x/(6*gamma)) + tws.d(0)*dpp0;
     x0p = tws.dp(0)*dpp0;
@@ -336,18 +336,7 @@ int main(){
     std::cout << "dp(0) = "<<tws.dp(0) << "dp(1) =" << tws.dp(1) << "\n";
     ct0 = ct0 + offset*2;
     dp0 = sigdp;
-    //} else {
-
-    // if( logdmp ){ std::cout << "\nTranverse phase space directly input" << endl;}
-
-    //   x0 = x00 + tws.d(0)*dpp0;
-    // x0p = x00p + tws.dp(0)*dpp0;
-    // y0 = y00 + tws.d(1)*dpp0;
-    //y0p = y00p + tws.dp(1)*dpp0;
-      
-    //x0 = x00; x0p = x00p; y0 = y00; y0p = y00p;
-    //ct0 = ct0 + offset*2;
-    //}
+    
  double gama_x = (1.0 + alfa_x*alfa_x)/beta_x;
  double gama_y = (1.0 + alfa_y*alfa_y)/beta_y;
  sigx  = sqrt(beta_x*emit_x + (tws.d(0)*sigdp)* (tws.d(0)*sigdp));
@@ -362,10 +351,7 @@ int main(){
  std::cout << "corr_x = " << corr_x << "corr_y = " << corr_y << " \n";
 
 
-  if( logdmp ){
-    std::cout << "\nInitial phase space (including dispersion)" << std::endl; //AUL:17MAR10
-    //AUL:17MAR10
-  }
+ 
  
   // index for phases, weights, and dp/p
   int ipsi,iw,idp;
@@ -393,9 +379,7 @@ int main(){
   //gsl_rng_set(ry, param->irandy);
   gsl_rng_default_seed = 1178;  Ts = gsl_rng_default;  rs = gsl_rng_alloc(Ts);
 
- // if(restart){
- // FILE * pFile;
- // pFile = fopen ("PartOut.dat","r");}
+ 
 
   for(int ip=0; ip < bunch.size(); ip ++){
     
@@ -462,6 +446,39 @@ do {
     gsl_rng_free (rx);
   gsl_rng_free (ry);
   gsl_rng_free (rs);
+
+   // end of calcPhaseSpace 
+    }else {
+      std::cout << "starting loading of dist.in \n";
+      precision Ggam,sx0,sy0,sz0,dp0;
+      // else read in particle distribution from file
+      std::ifstream distInput("dist.in");
+      for(int ip=0; ip< bunch.size(); ip++){
+	distInput >> gamma >> Ggam >> sx0 >> sy0 >> sz0 >> x0 >> x0p >> y0 >> y0p >> ct0 >> dp0;
+	 std::cout << ip << "  ";
+      std::cout << " " << x0 << ",  " << x0p ;
+     std::cout << " " << y0 << ", " << y0p ;
+     std::cout << " " << ct0 << ", " << dp0  <<  " ," << sx0 << ", " << sy0 << " ," << sz0 << std::endl;
+
+       bunch[ip].getPosition().set(x0, x0p, y0, y0p, ct0, dp0);    //AUL:17MAR10
+       //  bunch[ip].setSpin(spin);
+    //  bunch[ip].getPosition().set(x0,x0p,y0,y0p,ct0,dp0);
+	       spin.setSX(sx0);
+		spin.setSY(sy0);
+		spin.setSZ(sz0);
+    	bunch[ip].setSpin(spin);
+      }
+      energy = gamma*mass;
+  std::cout << "setting energy from file \n";
+  
+   shell.setBeamAttributes(Args() << Arg("energy", energy) << Arg("mass", mass)
+  			  << Arg("charge",charge));
+    std::cout << "after setting energy from file \n";
+   ba = shell.getBeamAttributes();
+   bunch.setBeamAttributes(ba);   
+
+    }
+
   /** read in snake parameters AULNLD 2/9/10 */
  
  //SPINK::GpuDipoleTracker::loadPart(bunch);
