@@ -1,0 +1,22 @@
+ VariantName:  test2                                                                                               
+outdmp:         0                                                                                                               
+logdmp:         1                                                                                                               
+irSBend&irQuad: 1 4                                                                                                             
+gamma:          210.689                                                                                                
+tunes:          28.685   29.675                                                                                                  
+chrom:          0.7     0.74                                                                                                 
+settunes:       1                                                                                                              
+dgamma/dt:      8.55219                                                                                                          
+volt$harmon:    1.5e-4  360                                                                                                       
+spin:           0.      1.      0.                                                                                              
+emittance:	2.5	2.5	0.0e-9                                                                                                                
+phaseSpace:     1.2e-04  0.0  1.2e-04 0.0 0.0  -0.0e-4
+                          
+calcPhaseSpace: 1                                                                                                               
+snkflag:        1	                                                                                                              
+snk_mu:         180.     180.                                                                                                      
+snk_phi:        45.     -45.                                                                                                    
+snk_theta:      0.      0.                                                                                                      
+turns:          50000                                                                                                      
+Particle:	1024                                                            
+stepsize:       0.1
