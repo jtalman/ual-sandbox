@@ -18,7 +18,8 @@ __constant__ precision snk2_mu_d,snk2_theta_d,snk2_phi_d;
 __constant__ precision PI_d=3.1415926536, clite_d= 2.99792458e+8;
 __constant__ precision V_d, lag_d, h_d,dtr,small = 1e-20;
 __device__ precision Energy_d[PARTICLES], v0byc_d[PARTICLES], p0_d[PARTICLES];
-
+__device__ precision stepsize_d,dS2_d,TOL_d;
+__device__ int icount_d=0;
 
 __device__  void
 applyMltKickgpuP(int N, int j,  precision rkicks, int position, precision dx, precision dy,   precision x1,  precision &px1,   precision y1,   precision &py1)
@@ -29,25 +30,27 @@ applyMltKickgpuP(int N, int j,  precision rkicks, int position, precision dx, pr
   t0 = 0.00; 
   x = x1 - dx;
   y = y1 - dy;
+  precision ns = 1.0;
+  if(rhic_d[j].ns > 0) ns = rhic_d[j].ns*8.0;
 
-if(position == 1) {
+ if(position == 1) {
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].mlt[4];
+      t0 -= y*py - rhic_d[j].mlt[4]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].mlt[5];
+      py += y*px + rhic_d[j].mlt[5]/ns;
       px = t0;   
 
 
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].mlt[2];
+      t0 -= y*py - rhic_d[j].mlt[2]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].mlt[3];
+      py += y*px + rhic_d[j].mlt[3]/ns;
       px = t0;
 
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].mlt[0];
+      t0 -= y*py - rhic_d[j].mlt[0]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].mlt[1];
+      py += y*px + rhic_d[j].mlt[1]/ns;
       px = t0;
 
         px *= rkicks;
@@ -69,22 +72,22 @@ if(position == 1) {
 
   if(position == 0) {
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].entryMlt[4];
+      t0 -= y*py - rhic_d[j].entryMlt[4]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].entryMlt[5];
+      py += y*px + rhic_d[j].entryMlt[5]/ns;
       px = t0;   
 
 
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].entryMlt[2];
+      t0 -= y*py - rhic_d[j].entryMlt[2]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].entryMlt[3];
+      py += y*px + rhic_d[j].entryMlt[3]/ns;
       px = t0;
 
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].entryMlt[0];
+      t0 -= y*py - rhic_d[j].entryMlt[0]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].entryMlt[1];
+      py += y*px + rhic_d[j].entryMlt[1]/ns;
       px = t0;
 
        px *= rkicks;
@@ -104,22 +107,22 @@ if(position == 1) {
 
 if(position == 2) {
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].exitMlt[4];
+      t0 -= y*py - rhic_d[j].exitMlt[4]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].exitMlt[5];
+      py += y*px + rhic_d[j].exitMlt[5]/ns;
       px = t0;   
 
 
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].exitMlt[2];
+      t0 -= y*py - rhic_d[j].exitMlt[2]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].exitMlt[3];
+      py += y*px + rhic_d[j].exitMlt[3]/ns;
       px = t0;
 
       t0 = x*px;
-      t0 -= y*py - rhic_d[j].exitMlt[0];
+      t0 -= y*py - rhic_d[j].exitMlt[0]/ns;
       py = x*py;
-      py += y*px + rhic_d[j].exitMlt[1];
+      py += y*px + rhic_d[j].exitMlt[1]/ns;
       px = t0;
 
        px *= rkicks;
@@ -600,7 +603,6 @@ gpupropogateSpin(int N, precision ang, precision h, precision length, precision 
  double omega, pz, psp0 = 1.00;
  double A0,A1,A2,cs,sn,sx1,sy1,sz1;
  double s_mat00,s_mat01,s_mat02,s_mat10,s_mat20,s_mat11,s_mat22,s_mat21,s_mat12;
-
  //printf("in gpupropogate Spin \n");
     e = de*p0_d[N] + Energy_d[N];
     p = sqrt(e*e - m0_d*m0_d);
@@ -664,7 +666,14 @@ gpupropogateSpin(int N, precision ang, precision h, precision length, precision 
     sx1 = s_mat00*sx0 + s_mat01*sy0 + s_mat02*sz0;
     sy1 = s_mat10*sx0 + s_mat11*sy0 + s_mat12*sz0;
     sz1 = s_mat20*sx0 + s_mat21*sy0 + s_mat22*sz0;
-    sx0=sx1;sy0=sy1;sz0=sz1;
+    int k = blockDim.x*blockIdx.x + threadIdx.x;
+    if(ang == 0 && k == 0 ){ icount_d++;
+      dS2_d += (sx0-sx1)*(sx0-sx1) + (sy0-sy1)*(sy0-sy1)+(sz0-sz1)*(sz0-sz1); }
+    // if(dS2_d > TOL_d ) stepsize_d /=2;
+    // if(dS2_d <= TOL_d) stepsize_d *=2;
+     
+   sx0=sx1;sy0=sy1;sz0=sz1;
+       
    }
 
 __device__ void gpu3dmatrixP(double s_mat0, double s_mat1,double s_mat2, double s_mat3, double s_mat4, double s_mat5, double s_mat6, double s_mat7, double s_mat8, int N,   double &sx,   double &sy,   double &sz)
@@ -764,16 +773,16 @@ __device__ void propagateSpin(int N, int j,   precision x,   precision px,   pre
   k1l = 0.00; k2l = 0.00;
   k0l = 0.00; kls0 = 0.00; // VR added to handle hkicker and vkicker spin effects Dec22 2010
 
-  /**
+  
   if(rhic_d[j].mlt[0] != 1000){
     if(rhic_d[j].order == 0){
-      k0l = rhic_d[j].k0l; kls0 = rhic_d[j].kls0 ;} // VR added to handle hkicker and vkicker spin effects Dec22 2010
-    if(rhic_d[j].order > 0) k1l   =   rhic_d[j].k1l;
-    if(rhic_d[j].order > 1) k2l   =   rhic_d[j].k2l;
+      k0l = rhic_d[j].k0l/ns; kls0 = rhic_d[j].kls0/ns ;} // VR added to handle hkicker and vkicker spin effects Dec22 2010
+    if(rhic_d[j].order > 0) k1l   =   rhic_d[j].k1l/ns;
+    if(rhic_d[j].order > 1) k2l   =   rhic_d[j].k2l/ns;
   }
-  **/
-  k1l = rhic_d[j].k1l; k0l= rhic_d[j].k0l; kls0 = rhic_d[j].kls0;
-  k2l = rhic_d[j].k2l;
+  
+  // k1l = rhic_d[j].k1l/ns; k0l= rhic_d[j].k0l/ns; kls0 = rhic_d[j].kls0/ns;
+  // k2l = rhic_d[j].k2l/ns;
   float K = h*h + k1l*k1l + k2l*k2l + k2l*k2l + kls0*kls0 + ang*ang;
   if( K < small) return;
    gpupropogateSpin(N, ang, h, length, k1l, k2l, k0l,kls0, x,px,y,py,ct,de, sx, sy, sz);
@@ -795,10 +804,13 @@ __global__ void gpuPropagate(int N, int Nturns, int Nelement){
    precision length,ang;
    //  precision v;
      precision x,px,y,py,ct,de;
-     double sx,sy,sz;
+    
+     double sx,sy,sz,sxi,syi,szi;
+     int fac = 1;
    x= pos_d[i].x; px = pos_d[i].px; y = pos_d[i].y;
    py = pos_d[i].py; ct = pos_d[i].ct; de = pos_d[i].de;
    sx = pos_d[i].sx; sy = pos_d[i].sy ; sz = pos_d[i].sz;
+   //   sxi = sx; syi = sy; szi = sz;
    bool MULT = false;
    for(int turns= 1; turns <= Nturns; turns++) {
  
@@ -864,10 +876,27 @@ for(int j = 0 ; j < Nelement ; j++)
     continue;
      }
 
-    
- 
-   
-     int ns = rhic_d[j].ns*4;
+     int ns = rhic_d[j].ns;  
+     
+     //    precision stepsize = 0.0001;
+      
+      if(MULT==true && ns > 2){
+       fac = 1;
+       precision leng = rhic_d[j].m_l;
+       if(stepsize_d > leng/ns) {  fac = ns/4; ns = 4; leng = fac*leng; fac = 1;}
+       // if( leng/fac >= stepsize_d){
+       while(leng/(fac*ns) > stepsize_d) fac= fac*2;
+        ns = ns*fac; leng = leng/fac;
+       // } else {
+       // while( stepsize_d > leng*1.1/fac && ns*fac > 2 ) fac = fac/2;
+       //	
+          // }
+       
+        rhic_d[j].ns = ns; rhic_d[j].m_l = leng;
+   }
+     
+     
+     ns = rhic_d[j].ns*4;
 
      // length /= 2*ns;
       
@@ -922,7 +951,16 @@ for(int j = 0 ; j < Nelement ; j++)
 
    }
 
-  }
+ if(icount_d != 0){
+  dS2_d /=icount_d;
+  dS2_d /= stepsize_d;}
+ icount_d = 0;
+
+
+// dS2 =  (sx-sxi)*(sx-sxi) + (sy-syi)*(sy-syi) + (sz-szi);
+//while(dS2*stepsize > STOL ) stepsize=stepsize/2.0; 
+
+   }
 
    pos_d[i].x = x; pos_d[i].px = px; pos_d[i].y = y ; pos_d[i].py = py;
    pos_d[i].ct = ct; pos_d[i].de = de; pos_d[i].sx = sx; pos_d[i].sy = sy;

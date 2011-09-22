@@ -11,7 +11,7 @@
 /** set the maximum number of particles to be tracked **/
 #define PARTICLES 10000
 /** set maximum number of elements to be tracked through **/
-#define ELEMENTS 2000
+#define ELEMENTS 3000
 #include "SPINK/Propagator/DipoleTracker.hh"
 #include "TEAPOT/Integrator/DipoleData.hh"
 #include "TEAPOT/Integrator/MagnetData.hh"
@@ -80,6 +80,8 @@ namespace SPINK {
     static precision snk2_phi;
     static precision snk1_theta;
     static precision snk2_theta;
+    static precision stepsize;
+    static precision TOL;
 
       /** Sets the lattice element */
     void setLatticeElement(const PacLattElement& e);
@@ -104,6 +106,8 @@ namespace SPINK {
     static int nturn ;
     static void readPart(PAC::Bunch& bunch, int printall);
     static void loadPart(PAC::Bunch& bunch);
+    static void setStep(precision step);
+    static void setTOL(precision TOLin);
 
     /** Sets Rf patameters */
     static void setRF(precision V, precision harmon, precision lag) { 

@@ -61,6 +61,8 @@ precision SPINK::GpuTracker::snk1_phi = 0.00;
 precision SPINK::GpuTracker::snk2_phi = 0.00;
 precision SPINK::GpuTracker::snk1_theta = 0.00;
 precision SPINK::GpuTracker::snk2_theta = 0.00;
+precision SPINK::GpuTracker::stepsize = 0.1; //set default stepsize for quads
+precision SPINK::GpuTracker::TOL = 0.0;
 SPINK::GpuTracker::GpuTracker(const SPINK::GpuTracker& st)
 {
   copy(st);
@@ -99,24 +101,27 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
    
     m_name = lattice[is0].getName();
     /** loading up GPU lattice **/
+    static int el=0;   
+    double isMzero = 0;
 
+    // std::cout << "is0 = " << is0 << " el =" << el << " \n";
     /** setting rf flags indicating rfcavity rfcav=1 **/
     if(m_name == "rfac1"){  
-    rhic[is0].rfcav = 1;
-    }else{rhic[is0].rfcav = 0;}
+    rhic[el].rfcav = 1;
+    }else{rhic[el].rfcav = 0;}
 
    /** setting snake flag indicating snake1 or snake2 present **/
- rhic[is0].snake = 0;
+ rhic[el].snake = 0;
     if(m_name == "snake1"){
-      rhic[is0].snake = 1;
-    }else if(m_name == "snake2") { rhic[is0].snake = 2;}
+      rhic[el].snake = 1;
+    }else if(m_name == "snake2") { rhic[el].snake = 2;}
 
     /** setting multipole values **/
     /** initializing to zero **/ 
    for(int k=0 ; k < 10 ; k++){
-      rhic[is0].entryMlt[k] = 0.0;
-      rhic[is0].exitMlt[k] = 0.0;
-      rhic[is0].mlt[k] =0.0;
+      rhic[el].entryMlt[k] = 0.0;
+      rhic[el].exitMlt[k] = 0.0;
+      rhic[el].mlt[k] =0.0;
     }
    
 
@@ -128,16 +133,18 @@ void SPINK::GpuTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,
        {  
 	 /** pre-slicing up things to save time **/
 	 if(!p_complexity){  
-	   rhic[is0].entryMlt[ii] = (precision) data[ii]/2.0; }
+	   rhic[el].entryMlt[ii] = (precision) data[ii]/2.0; 
+           isMzero += data[ii];   
+          }
 	 else{ 
-	   int ns = 4*p_complexity->n();
-	   rhic[is0].entryMlt[ii] = (precision) data[ii]/(2.0*ns);
-     
+	   //  int ns = 4*p_complexity->n();
+	   rhic[el].entryMlt[ii] = (precision) data[ii]; // /(2.0*ns);
+            isMzero += data[ii];  
             }
        } //end of for loop
   }else {   
     /** setting entryMlt[0]= 10000. indicates no entryMlt present **/ 
-rhic[is0].entryMlt[0] = 10000. ;}
+rhic[el].entryMlt[0] = 10000. ;}
    
 
 
@@ -149,17 +156,19 @@ rhic[is0].entryMlt[0] = 10000. ;}
        {  
      	 /** pre-slicing up things to save time **/
        if(!p_complexity){ 
-	   rhic[is0].exitMlt[ii] = (precision) data[ii]/2.0;}
+	   rhic[el].exitMlt[ii] = (precision) data[ii]/2.0;
+ isMzero += data[ii];  
+}
 	 else {
-	     int ns = 4*p_complexity->n();
-	   rhic[is0].exitMlt[ii] = (precision) data[ii]/(2.0*ns);
-     
+	   // int ns = 4*p_complexity->n();
+	   rhic[el].exitMlt[ii] = (precision) data[ii]; // /(2.0*ns);
+            isMzero += data[ii];  
             }
 	   
        }
  }else {
    /** setting exitMlt[0]=10000. indicates no exitMlit present **/
-rhic[is0].exitMlt[0] = 10000.;}
+rhic[el].exitMlt[0] = 10000.;}
 
 
 
@@ -171,105 +180,112 @@ if(p_mlt){
        {  
 	 /** pre-slicing up things to save time **/
       if(!p_complexity){ 
-	   rhic[is0].mlt[ii] = (precision) data[ii]/2.0;}
+	   rhic[el].mlt[ii] = (precision) data[ii]/2.0;
+               isMzero += data[ii];  
+}
 	 else {
-	     int ns = 4*p_complexity->n();
-	   rhic[is0].mlt[ii] = (precision) data[ii]/(2.0*ns);
-     
+	   //  int ns = 4*p_complexity->n();
+	   rhic[el].mlt[ii] = (precision) data[ii]; // /(2.0*ns);
+            isMzero += data[ii];  
             } 
        }
-     rhic[is0].order = p_mlt->order(); } else { 
+     rhic[el].order = p_mlt->order(); } else { 
   /** setting mlt[0] = 10000. indicates no mlt present **/
-  rhic[is0].mlt[0] = 10000.;   rhic[is0].order = 0;}
+  rhic[el].mlt[0] = 10000.;   rhic[el].order = 0;}
 
 /**setting m_l values length of element**/
- rhic[is0].m_l = 0.;
-  if(m_data.m_l) rhic[is0].m_l = m_data.m_l;
+ rhic[el].m_l = 0.;
+  if(m_data.m_l) rhic[el].m_l = m_data.m_l;
 
 /** setting bend transport values **/
    
 /** initializing everyone to zero **/
-   rhic[is0].k1l = 0.;
-   rhic[is0].angle = 0.;
-   rhic[is0].btw01 = 0.;
-   rhic[is0].btw00 = 0.;
-   rhic[is0].atw01= 0.;
-   rhic[is0].atw00 = 0.;
+   rhic[el].k1l = 0.;
+   rhic[el].angle = 0.;
+   rhic[el].btw01 = 0.;
+   rhic[el].btw00 = 0.;
+   rhic[el].atw01= 0.;
+   rhic[el].atw00 = 0.;
    if(m_mdata.m_mlt){
-     if(m_mdata.m_mlt->kl(1)) rhic[is0].kl1 = m_mdata.m_mlt->kl(1);
+     if(m_mdata.m_mlt->kl(1)) rhic[el].kl1 = m_mdata.m_mlt->kl(1);
      
 
-    rhic[is0].angle =  m_data.m_angle;
-    rhic[is0].btw01 = m_data.m_btw01;
-    rhic[is0].btw00 = m_data.m_btw00;
-    rhic[is0].atw01 = m_data.m_atw01;
-    rhic[is0].atw00 = m_data.m_atw00;}
+    rhic[el].angle =  m_data.m_angle;
+    rhic[el].btw01 = m_data.m_btw01;
+    rhic[el].btw00 = m_data.m_btw00;
+    rhic[el].atw01 = m_data.m_atw01;
+    rhic[el].atw00 = m_data.m_atw00;}
 
 for(int counter = 0; counter <= 1;counter++){
-    rhic[is0].cphpl[counter] = (precision) m_data.m_slices[counter].cphpl();
-    rhic[is0].sphpl[counter] = (precision) m_data.m_slices[counter].sphpl();
-    rhic[is0].tphpl[counter] = (precision) m_data.m_slices[counter].tphpl();
-    rhic[is0].scrx[counter] =  (precision) m_data.m_slices[counter].scrx();
-    rhic[is0].rlipl[counter] = (precision) m_data.m_slices[counter].rlipl();
-    rhic[is0].scrs[counter] =  (precision) m_data.m_slices[counter].scrs();
-    rhic[is0].spxt[counter] =  (precision) m_data.m_slices[counter].spxt();}
+    rhic[el].cphpl[counter] = (precision) m_data.m_slices[counter].cphpl();
+    rhic[el].sphpl[counter] = (precision) m_data.m_slices[counter].sphpl();
+    rhic[el].tphpl[counter] = (precision) m_data.m_slices[counter].tphpl();
+    rhic[el].scrx[counter] =  (precision) m_data.m_slices[counter].scrx();
+    rhic[el].rlipl[counter] = (precision) m_data.m_slices[counter].rlipl();
+    rhic[el].scrs[counter] =  (precision) m_data.m_slices[counter].scrs();
+    rhic[el].spxt[counter] =  (precision) m_data.m_slices[counter].spxt();}
     int counter = -1;
      for(int i = 0; i < m_data.m_ir; i++){
    for(int is = 1; is < 5; is++){
      counter++;
-    rhic[is0].cphpl[counter] = (precision) m_data.m_slices[counter].cphpl();
-    rhic[is0].sphpl[counter] = (precision) m_data.m_slices[counter].sphpl();
-    rhic[is0].tphpl[counter] = (precision) m_data.m_slices[counter].tphpl();
-    rhic[is0].scrx[counter] =  (precision) m_data.m_slices[counter].scrx();
-    rhic[is0].rlipl[counter] = (precision) m_data.m_slices[counter].rlipl();
-    rhic[is0].scrs[counter] =  (precision) m_data.m_slices[counter].scrs();
-    rhic[is0].spxt[counter] =  (precision) m_data.m_slices[counter].spxt();
+    rhic[el].cphpl[counter] = (precision) m_data.m_slices[counter].cphpl();
+    rhic[el].sphpl[counter] = (precision) m_data.m_slices[counter].sphpl();
+    rhic[el].tphpl[counter] = (precision) m_data.m_slices[counter].tphpl();
+    rhic[el].scrx[counter] =  (precision) m_data.m_slices[counter].scrx();
+    rhic[el].rlipl[counter] = (precision) m_data.m_slices[counter].rlipl();
+    rhic[el].scrs[counter] =  (precision) m_data.m_slices[counter].scrs();
+    rhic[el].spxt[counter] =  (precision) m_data.m_slices[counter].spxt();
    
      }
 }
 
 /** setting complexity and ir values **/
- rhic[is0].ns = 0;
-   if(p_complexity) rhic[is0].ns= p_complexity->n();
-rhic[is0].m_ir = m_ir;
+ rhic[el].ns = 0;
+   if(p_complexity) rhic[el].ns= p_complexity->n();
+rhic[el].m_ir = m_ir;
+
+// if(m_data.m_ir > 0) std::cout << "m_ir not zero =" << m_data.m_ir << " \n";
 
 /** setting for spin prop **/
      int ns =1;
-     if(rhic[is0].ns >0) ns = 4*rhic[is0].ns;
+     if(rhic[el].ns >0) ns = 4*rhic[el].ns;
  
    /** setting bend for spin prop **/
-   rhic[is0].bend = 0.0;
-   if(p_bend) rhic[is0].bend = p_bend->angle();
+   rhic[el].bend = 0.0;
+   if(p_bend) rhic[el].bend = p_bend->angle();
    /** setting for bend for spin prop **/ 
-   rhic[is0].length = 0.0;
+   rhic[el].length = 0.0;
   
-   if(p_length){ rhic[is0].length = p_length->l();
+   if(p_length){ rhic[el].length = p_length->l();
     }
  
 /** setting offset values **/
- rhic[is0].dx = 0.;
-   rhic[is0].dy = 0.;
+ rhic[el].dx = 0.;
+   rhic[el].dy = 0.;
    if(p_offset){
-   rhic[is0].dx = p_offset->dx();
-   rhic[is0].dy = p_offset->dy();
+   rhic[el].dx = p_offset->dx();
+   rhic[el].dy = p_offset->dy();
    }
 
 
 
-     rhic[is0].kl1 = 0.;
-     rhic[is0].k0l = 0.;
-     rhic[is0].kls0 = 0.;
-     rhic[is0].k2l = 0.;
+     rhic[el].kl1 = 0.;
+     rhic[el].k0l = 0.;
+     rhic[el].kls0 = 0.;
+     rhic[el].k2l = 0.;
      if(p_mlt){
-       if(rhic[is0].order == 0){
-     rhic[is0].k0l = p_mlt->kl(0)/ns;
-     rhic[is0].kls0 = p_mlt->ktl(0)/ns;}
+       if(rhic[el].order == 0){
+	 rhic[el].k0l = p_mlt->kl(0); // /ns;
+	 rhic[el].kls0 = p_mlt->ktl(0); } // /ns;}
 
-       if(rhic[is0].order > 0) rhic[is0].k1l = p_mlt->kl(1)/ns;
-       if(rhic[is0].order > 1) rhic[is0].k2l = p_mlt->kl(2)/ns;
+	 if(rhic[el].order > 0) rhic[el].k1l = p_mlt->kl(1); // /ns;
+	 if(rhic[el].order > 1) rhic[el].k2l = p_mlt->kl(2); // /ns;
      }
- 
-     Nelement = is0;
+      
+     Nelement = el;
+     isMzero += rhic[el].m_l + rhic[el].bend + rhic[el].snake + rhic[el].rfcav;
+     if(isMzero != 0) el++;
+     isMzero = 0.0;
 }
 
 
@@ -1228,6 +1244,7 @@ void SPINK::GpuTracker::loadPart(PAC::Bunch& bunch)
     cudaMemcpyToSymbol(GG_d,&GG,sizeof(precision));
     cudaMemcpyToSymbol(m0_d,&m0,sizeof(precision));
     cudaMemcpyToSymbol(q_d,&q,sizeof(precision));
+    cudaMemcpyToSymbol(stepsize_d,&stepsize,sizeof(precision));
     //   cudaMemcpyToSymbol(gam_d,&gam,sizeof(precision));
     //   cudaMemcpyToSymbol(v0byc_d,&v0byc,sizeof(precision));
     cudaMemcpyToSymbol(snk1_mu_d,&snk1_mu,sizeof(precision));
@@ -1286,17 +1303,21 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch,int printall)
 
  PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   precision e0 = (precision)  ba.getEnergy(), m0 = (precision)  ba.getMass();
-  precision gam ; //= e0/m0;
+  precision gam,dS2 ; //= e0/m0;
   // precision Energy[PARTICLES];
    precision GG    =  (precision) ba.getG();
    // precision Ggam  = gam*GG; 
    // precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
    // int count =0;
   cudaMemcpyFromSymbol(Energy,Energy_d, sizeof(Energy));
+  cudaMemcpyFromSymbol(&dS2,dS2_d,sizeof(precision));
+  
     // cudaMemcpyFromSymbol(v0byc,v0byc_d,sizeof(v0byc));
   gam = Energy[0]/m0;
   e0 = Energy[0];
-  printf(" gam = %e \n",gam);
+  printf(" gam = %e dS2 = %e \n",gam,dS2);
+  dS2 = 0.0;
+  cudaMemcpyFromSymbol(&dS2_d,dS2,sizeof(precision));
   //    ba.setEnergy(e0);
   // precision Ggam  = gam*GG; 
 //vec6D output[PARTICLES];
@@ -1319,6 +1340,20 @@ void SPINK::GpuTracker::readPart(PAC::Bunch& bunch,int printall)
 
   **/
 
+}
+
+
+void SPINK::GpuTracker::setStep(precision step){ 
+  std::cout << "Changing step size from =" << stepsize << " to " << step << "\n";
+  stepsize = step;
+  cudaMemcpyToSymbol(stepsize_d,&stepsize,sizeof(precision));
+  
+}
+
+void SPINK::GpuTracker::setTOL(precision TOLin){
+  std::cout << "Changing TOL from = " << TOL << " to " << TOLin << "\n";
+  TOL = TOLin;
+  cudaMemcpyToSymbol(TOL_d,&TOL,sizeof(precision));
 }
 
 
