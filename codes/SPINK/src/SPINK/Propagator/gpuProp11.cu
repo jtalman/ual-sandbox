@@ -880,7 +880,7 @@ for(int j = 0 ; j < Nelement ; j++)
      
      //    precision stepsize = 0.0001;
       
-      if(MULT==true && ns > 2){
+     /**   if(MULT==true && ns > 2 && i ==0){
        fac = 1;
        precision leng = rhic_d[j].m_l;
        if(stepsize_d > leng/ns) {  fac = ns/4; ns = 4; leng = fac*leng; fac = 1;}
@@ -895,7 +895,7 @@ for(int j = 0 ; j < Nelement ; j++)
         rhic_d[j].ns = ns; rhic_d[j].m_l = leng;
    }
      
-     
+     **/
      ns = rhic_d[j].ns*4;
 
      // length /= 2*ns;

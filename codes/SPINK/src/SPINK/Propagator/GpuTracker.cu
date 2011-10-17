@@ -241,14 +241,30 @@ for(int counter = 0; counter <= 1;counter++){
 
 /** setting complexity and ir values **/
  rhic[el].ns = 0;
-   if(p_complexity) rhic[el].ns= p_complexity->n();
+ if(p_complexity){ rhic[el].ns= p_complexity->n();
+   double ns = rhic[el].ns;
+   if(p_mlt && ns > 2){
+   double    ns_n = ns;
+       precision leng = rhic[el].m_l;
+       /*  if(stepsize >= leng/(4*ns)) {  
+	 std::cout << "tripped this leng/ns = " << leng/(4*ns) << " with stepsize set to =" << stepsize << " \n";    
+       fac = ns/4; ns = 4; leng = fac*leng; fac = 1;
+       }*/
+ while(leng/(ns_n*4) > stepsize) ns_n= ns_n+1.;
+   double fac =  ns_n/ns; 
+      leng = leng/fac;
+      rhic[el].ns = (int) ns_n; rhic[el].m_l = leng;
+      std::cout << "element number = " << el << " real step size = " << leng/(4*ns_n) <<  "set stepsize=" << stepsize << " ns_n = " << ns_n << "fac = " <<  fac <<  " ns = " << ns << " \n";  
+ 
+   }}
+
 rhic[el].m_ir = m_ir;
 
 // if(m_data.m_ir > 0) std::cout << "m_ir not zero =" << m_data.m_ir << " \n";
 
 /** setting for spin prop **/
-     int ns =1;
-     if(rhic[el].ns >0) ns = 4*rhic[el].ns;
+// ns =1;
+//  if(rhic[el].ns >0) ns = 4*rhic[el].ns;
  
    /** setting bend for spin prop **/
    rhic[el].bend = 0.0;
