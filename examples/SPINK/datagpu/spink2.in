@@ -1,8 +1,8 @@
  VariantName:  Shorter                                                                                               
 outdmp:         0                                                                                                               
 logdmp:         1                                                                                                               
-irSBend&irQuad: 1 16                                                                                                             
-gamma:         1.449612e+02                                                                                                 
+irSBend&irQuad: 1 32                                                                                                             
+gamma:          1.449555e+02                                                                                                 
 tunes:          28.685   29.675                                                                                                  
 chrom:          2.0     2.0                                                                                                     
 settunes:       1                                                                                                               
@@ -17,5 +17,5 @@ snkflag:        1
 snk_mu:         180.     180.                                                                                                      
 snk_phi:        45.     -45.                                                                                                    
 snk_theta:      0.      0.                                                                                                      
-turns:          100000                                                                                                       
-Particle:	1000
+turns:          2                                                                                                      
+Particle:	100

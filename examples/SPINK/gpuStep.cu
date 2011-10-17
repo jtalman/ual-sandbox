@@ -38,7 +38,7 @@ int main(){
   //* Read input parameters*/
   /**********************************************************/
  
-  std::ifstream configInput("./datagpu/spinkGDD.in");//AULNLD:07JAN10
+  std::ifstream configInput("./datagpu/spinkStep.in");//AULNLD:07JAN10
 
   std::string dummy ; // this string has been added to improve readability of input
   std::string variantName;
@@ -208,6 +208,7 @@ int main(){
   std::cout << " calculate suml" << std::endl;
   shell.analysis(Args());
 
+  SPINK::GpuTracker::setStep(stepsize);
   // ************************************************************************
   std::cout << "\nAlgorithm Part. " << std::endl;
   // ************************************************************************
@@ -564,7 +565,7 @@ for(int iwx=0; iwx < Nwx; iwx ++){
   precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
   
   SPINK::GpuTracker::setNturns(step);
-  SPINK::GpuTracker::setStep(stepsize);
+ 
    for(int iturn = 1; iturn <= turns; iturn++){
 
     /** to pass turn no for diagnostics AUL:02MAR10 */
