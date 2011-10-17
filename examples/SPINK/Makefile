@@ -1,11 +1,19 @@
+ifeq ($(USE_GPU), TRUE)
 CC       = nvcc -arch=sm_20  # Compiler
 CCFLAGS  = --compiler-options '-fpic -ansi -Wall -g '      # Compilation flags
-#CUDA_INC  = -I/usr/local/cuda/include  -I/home/research/ranjbar/NVIDIA_CUDA_SDK/common/inc
-
-
 DLD      = nvcc                      # Dynamic linker
 DLDFLAGS = -shared                   # Dynamic linker flags
 LD       = nvcc                       # Linker
+else
+CC       = g++                       # Compiler                                 
+CCFLAGS  = -O -fpic -ansi -Wall      # Compilation flags                        
+
+DLD      = g++                       # Dynamic linker                           
+DLDFLAGS = -shared                   # Dynamic linker flags                     
+LD       = g++                       # Linker  
+endif
+
+
 LDFLAGS  =                           # Linker flags
 
 INC += -I. -I./src 
@@ -32,8 +40,10 @@ LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH) 	-lUal
 LIBS += -L$(SXF)/lib/$(UAL_ARCH) 		-lSXF
 LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		-lpcre -lxml2 -lrfftw -lfftw
 LIBS += 					-lm
-LIBS += 	-L/usr/local/cuda/lib64 -lcudart
 LIBS +=	-L$(UAL)/tools/lib/linux -lgsl
+ifeq ($(USE_GPU), TRUE)
+LIBS +=         -L/usr/local/cuda/lib64 -lcudart
+endif
 
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
@@ -43,20 +53,29 @@ OBJS = $(OBJ_DIR)/timer.o \
 	   $(OBJ_DIR)/SpinPrinter.o 
 
 
-compile : $(OBJS) ./gputracker2 ./tracker2
+compile : $(OBJS) ./tracker \
+ifeq($(USE_GPU), TRUE)
+./gpuStep
+endif
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/gputracker2.o ./gputracker2
-	rm -f $(OBJS) $(OBJ_DIR)/tracker2.o  ./tracker2 
+ifeq ($(USE_GPU), TRUE)
+	rm -f $(OBJS) $(OBJ_DIR)/gpuStep.o ./gpuStep
+endif
+	rm -f $(OBJS) $(OBJ_DIR)/tracker.o  ./tracker 
 
-./gputracker2  : $(OBJ_DIR)/gputracker2.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/gputracker2.o $(OBJS) $(LIBS)
+ifeq ($(USE_GPU), TRUE)
+./gpuStep  : $(OBJ_DIR)/gpuStep.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/gpuStep.o $(OBJS) $(LIBS)
+endif
 
-./tracker2     : $(OBJ_DIR)/tracker2.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker2.o $(OBJS) $(LIBS)
+./tracker     : $(OBJ_DIR)/tracker.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
 
+ifeq ($(USE_GPU), TRUE)
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cu
 	$(CC)  $(CCFLAGS) $(INC) -c $< -o $@
+endif
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	$(CC)  $(CCFLAGS) $(INC) -c $< -o $@
