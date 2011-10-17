@@ -68,6 +68,7 @@ void SPINK::SnakeTransform::propagate(UAL::Probe& b)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
 
+  //PAC::Position& pos = bunch[0].getPosition();
 
   // SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
   // stw->write(bunch.getBeamAttributes().getElapsedTime());
@@ -85,6 +86,9 @@ void SPINK::SnakeTransform::propagate(UAL::Probe& b)
 
   double length = 0;
   if(p_length)     length = p_length->l();
+
+  //  double x0 = pos.getX();
+  //double px0 = pos.getPX();
 
   if(!p_complexity){
 
@@ -105,7 +109,13 @@ void SPINK::SnakeTransform::propagate(UAL::Probe& b)
 
     t0 += length/v;
     ba.setElapsedTime(t0);
+   
+    //double x1 = pos.getX();
+    // double px1 =pos.getPX();
 
+    // double dx  = x0 - x1;
+    // double dpx = px0 - px1;
+    // std::cout << "dx = " << dx << " dpx =" << dpx << "\n";
     return;
   }
 
@@ -132,6 +142,7 @@ void SPINK::SnakeTransform::propagate(UAL::Probe& b)
     ba.setElapsedTime(t0);
 
   }
+ 
 }
 
 double SPINK::SnakeTransform::get_psp0(PAC::Position& p, double v0byc)
@@ -328,7 +339,7 @@ void SPINK::SnakeTransform::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle
       /*if( nturn == 1 ) //AUL:01MAR10
 	{} */
       OTs_mat[0][0] = OTs_mat[1][1] = OTs_mat[2][2] = 1. ;
-      OTs_mat[0][1] = OTs_mat[0][2] = OTs_mat[1][0] = OTs_mat[1][2] = OTs_mat[2][0] = OTs_mat[2][1] = 0. ;
+      OTs_mat[0][1] = OTs_mat[0][2] = OTs_mat[1][0] = OTs_mat[1][2] = OTs_mat[2][0] = OTs_mat[2][1] = 0. ; OTs_omega = 0; OTs_rot = 0.0;
       
       if( coutdmp )//AUL:01MAR10
         {
@@ -350,7 +361,7 @@ void SPINK::SnakeTransform::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle
   double sy1 = s_mat[1][0]*sx0 + s_mat[1][1]*sy0 + s_mat[1][2]*sz0;
   double sz1 = s_mat[2][0]*sx0 + s_mat[2][1]*sy0 + s_mat[2][2]*sz0;
   
-  double s2 = sx1*sx1 + sy1*sy1 + sz1*sz1;
+  //double s2 = sx1*sx1 + sy1*sy1 + sz1*sz1;
 
   /** build One Turn spin matrix */
   double temp_mat[3][3] ; //dummy matrix 
@@ -359,7 +370,7 @@ void SPINK::SnakeTransform::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle
       for(int k=0;k<3; k++){
 	  temp_mat[i][k] = 0. ;
 	  for(int j=0;j<3; j++){
-	    temp_mat[i][k] = temp_mat[i][k] + OTs_mat[i][j]*s_mat[j][k] ;}}}
+	    temp_mat[i][k] = temp_mat[i][k] + s_mat[i][j]*OTs_mat[j][k] ;}}}
   for(int i=0;i<3; i++){
       for(int k=0;k<3; k++){
 	  OTs_mat[i][k] = temp_mat[i][k] ;  }}
