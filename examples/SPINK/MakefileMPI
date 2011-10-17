@@ -1,0 +1,62 @@
+CC       = mpiCC                       # Compiler
+CCFLAGS  = -O -fpic                    # Compilation flags
+
+DLD      = mpiCC                      # Dynamic linker
+DLDFLAGS = -shared                   # Dynamic linker flags
+LD       = mpiCC                       # Linker
+LDFLAGS  =                           # Linker flags
+
+INC += -I. -I./src
+INC += -I$(UAL)/ext/UI/include
+INC += -I$(UAL_SXF)/src
+INC += -I$(UAL_SPINK)/src
+INC += -I$(UAL_ACCSIM)/src
+INC += -I$(UAL_TEAPOT)/src
+INC += -I$(UAL_PAC)/src
+INC += -I$(UAL)/codes/UAL/include
+INC += -I$(UAL_ZLIB)/src
+INC += -I$(UAL)/tools/include
+INC += -I$(SXF)/src
+INC += -I/home/ual/tools/gsl/include
+#INC += -I/usr/include/c++/4.1.1
+#INC += -I/usr/include/c++/4.1.1/x86_64-redhat-linux
+
+LIBS += -L$(UAL)/ext/UI/lib/$(UAL_ARCH)  	-lUalUI
+LIBS += -L$(UAL_SPINK)/lib/$(UAL_ARCH)  	-lSpink
+LIBS += -L$(UAL_TIBETAN)/lib/$(UAL_ARCH)  	-lTibetan
+LIBS += -L$(UAL_SXF)/lib/$(UAL_ARCH) 		-lUalSXF2
+LIBS += -L$(UAL_ACCSIM)/lib/$(UAL_ARCH) 	-lAccsim
+LIBS += -L$(UAL_TEAPOT)/lib/$(UAL_ARCH) 	-lTeapot
+LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH)  		-lPacSMF -lPacOptics -lPac
+LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH) 		-lZTps
+LIBS += -L$(UAL)/codes/UAL/lib/$(UAL_ARCH) 	-lUal
+LIBS += -L$(SXF)/lib/$(UAL_ARCH) 		-lSXF
+LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		-lpcre -lxml2 -lrfftw -lfftw
+LIBS += 					-lm
+
+SRC_DIR  = .
+OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
+
+OBJS = $(OBJ_DIR)/timer.o \
+	   $(OBJ_DIR)/PositionPrinter.o \
+	   $(OBJ_DIR)/SpinPrinter.o 
+
+
+compile : $(OBJS) ./mpi_tracker ./teapot_tracker
+
+clean :
+	rm -f $(OBJS) $(OBJ_DIR)/mpi_tracker.o ./mpi_tracker
+
+./mpi_tracker  : $(OBJ_DIR)/mpi_tracker.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/mpi_tracker.o $(OBJS) $(LIBS)
+
+./teapot_tracker  : $(OBJ_DIR)/teapot_tracker.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/teapot_tracker.o $(OBJS) $(LIBS)
+
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
+	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
+	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+
