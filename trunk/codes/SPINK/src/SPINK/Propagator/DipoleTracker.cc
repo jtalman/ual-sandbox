@@ -63,21 +63,13 @@ void SPINK::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequen
     setConventionalTracker(sequence, is0, is1, attSet);
 
     m_name = lattice[is0].getName();
-    //  std::cout << "get Name =" << m_name << " \n"; 
-
 
 }
 
 void SPINK::DipoleTracker::propagate(UAL::Probe& b)
 {
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(b);
-
-
-  // SPINK::SpinTrackerWriter* stw = SPINK::SpinTrackerWriter::getInstance();
-  // stw->write(bunch.getBeamAttributes().getElapsedTime());
-
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
-  PAC::Position& pos = bunch[0].getPosition();
   double energy = ba.getEnergy();
   double mass   = ba.getMass();
   double gam    = energy/mass;
@@ -88,38 +80,25 @@ void SPINK::DipoleTracker::propagate(UAL::Probe& b)
   double t0 = ba.getElapsedTime();
 
   double length = 0;
-  //  std::cout << " element   " <<  m_name << " ";
-  //std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
-  // for(int ip=0; ip < 3; ip++){
-  // PAC::Position& pos2 = bunch[ip].getPosition(); 
-  // std::cout << "ip =" << ip << " "  << pos2.getX() << " " << pos2.getPX() << " " << pos2.getY() << " " << pos2.getPY() << " " << pos2.getCT() << " " << pos2.getDE() << " " << bunch[ip].getSpin()->getSX() << " " << bunch[ip].getSpin()->getSY() << " " << bunch[ip].getSpin()->getSZ() << "\n";}
   if(p_length)     length = p_length->l();
 
   if(!p_complexity){
 
-      length /= 2;
+    length /= 2;
 
     if(p_mlt) *p_mlt /= 2.;             // kl, kt
-    //  std::cout << "before First Propogate SPINK DipoleTracker \n";
-    // std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
     m_tracker->propagate(bunch);
-    // std::cout << "m_name =" << m_name << "\n";
+    if(p_mlt) *p_mlt *= 2.;             // kl, kt
 
-     if(p_mlt) *p_mlt *= 2.;             // kl, kt
-     // std::cout << "After First Propogate SPINK DipoleTracker \n";
-     //std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
     t0 += length/v;
     ba.setElapsedTime(t0);
 
     propagateSpin(bunch);
 
-   if(p_mlt) *p_mlt /= 2.;  
-   // std::cout << "before Second Propogate SPINK DipoleTracker \n";
-   // std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";           // kl, kt
+    if(p_mlt) *p_mlt /= 2.;             // kl, kt
     m_tracker->propagate(bunch);
     if(p_mlt) *p_mlt *= 2.;             // kl, kt
-    // std::cout << "after Second Propogate SPINK DipoleTracker \n";
-    // std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
+
     t0 += length/v;
     ba.setElapsedTime(t0);
 
@@ -128,36 +107,27 @@ void SPINK::DipoleTracker::propagate(UAL::Probe& b)
 
   int ns = 4*p_complexity->n();
 
-   length /= 2*ns;
+  length /= 2*ns;
 
   for(int i=0; i < ns; i++) {
 
     if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
-    // std::cout << "before first complex Propogate SPINK DipoleTracker \n";
-    // std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";  
-
-    // std::cout << "m_name =" << m_name << "\n";
     m_tracker->propagate(bunch);
-     if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
-     // std::cout << "after first complex Propogate SPINK DipoleTracker \n";
-     //std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
+    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
+
     t0 += length/v;
     ba.setElapsedTime(t0);
 
     propagateSpin(bunch);
 
-     if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
-     // std::cout << "before second complex Propogate SPINK DipoleTracker \n";
-     //std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
+    if(p_mlt) *p_mlt /= (2*ns);          // kl, kt
     m_tracker->propagate(bunch);
-     if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
-     //std::cout << "after second complex Propogate SPINK DipoleTracker \n";
-     //std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
+    if(p_mlt) *p_mlt *= (2*ns);          // kl, kt
+
     t0 += length/v;
     ba.setElapsedTime(t0);
 
   }
-  // std::cout << "pos =" << pos.getX() << " " << pos.getPX() << " " << pos.getY() << " " << pos.getPY() << " " << pos.getCT() << " " << pos.getDE() << " \n";
 }
 
 double SPINK::DipoleTracker::get_psp0(PAC::Position& p, double v0byc)
@@ -246,7 +216,6 @@ void SPINK::DipoleTracker::setConventionalTracker(const UAL::AcceleratorNode& se
     UAL::PropagatorNodePtr nodePtr =
       TEAPOT::TrackerFactory::createTracker(lattice[is0].getType());
 
-    // std::cout << "setting Convertional tracker Type = " <<  lattice[is0].getType() << "\n";
     m_tracker = nodePtr;
     
     if(p_complexity) p_complexity->n() = 0;   // ir
@@ -313,7 +282,7 @@ void SPINK::DipoleTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle&
   double ang = 0.0, h = 0.0;
   if(p_bend)  {
       ang    = p_bend->angle()/ns;
-      // VR added to avoid div by zero Dec22 2010
+    // VR added to avoid div by zero Dec22 2010
  if(length > 1E-20)
       h      = ang/length;
   }
@@ -351,7 +320,7 @@ void SPINK::DipoleTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle&
 
   double omega = sqrt(fx*fx + (fy - h*length)*(fy - h*length) + fz*fz);
 
-  // if( coutdmp ){std::cout << "omega = " << omega << endl ;} //AUL:01MAR10
+  if( coutdmp ){std::cout << "omega = " << omega << endl ;} //AUL:01MAR10
   
 
   //  double a11,a12, a13, a21 ,a22, a23 ,a31, a32, a33;
@@ -368,8 +337,8 @@ void SPINK::DipoleTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle&
     A[1] = (fy - h*length)/omega;
     A[2] = fz/omega;
     
-    // if( coutdmp ){  //AUL:02MAR10
-    //  std::cout << "A[0] = " << A[0] << " A[1] = " << A[1] << " A[2] = " <<A[2] << endl ;}
+    if( coutdmp ){  //AUL:02MAR10
+      std::cout << "A[0] = " << A[0] << " A[1] = " << A[1] << " A[2] = " <<A[2] << endl ;}
 
     //AULNLD:11DEC09
     s_mat[0][0] = 1. - (A[1]*A[1] + A[2]*A[2])*cs ;
@@ -410,7 +379,7 @@ void SPINK::DipoleTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle&
 	  temp_mat[i][k] = 0. ;
 	  for(int j=0;j<3; j++)
 	    {
-	      temp_mat[i][k] = temp_mat[i][k] + OTs_mat[i][j]*s_mat[j][k] ;
+	      temp_mat[i][k] = temp_mat[i][k] + s_mat[i][j]*OTs_mat[j][k] ;
 	    }
        	}
     }
@@ -423,14 +392,16 @@ void SPINK::DipoleTracker::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle&
     }
 
   if( coutdmp ){ //for diagnostics AUL:02MAR10
-    //  std::cout << "spin matrix" << endl ;
-    // std::cout << s_mat[0][0] << "  " << s_mat[0][1] << "  " << s_mat[0][2] << endl ;
-    // std::cout << s_mat[1][0] << "  " << s_mat[1][1] << "  " << s_mat[1][2] << endl ;
-    // std::cout << s_mat[2][0] << "  " << s_mat[2][1] << "  " << s_mat[2][2] << endl ;
-    // std::cout << "OT spin matrix" << endl ;
-    // std::cout << OTs_mat[0][0] << "  " << OTs_mat[0][1] << "  " << OTs_mat[0][2] << endl ;
-    // std::cout << OTs_mat[1][0] << "  " << OTs_mat[1][1] << "  " << OTs_mat[1][2] << endl ;
-    // std::cout << OTs_mat[2][0] << "  " << OTs_mat[2][1] << "  " << OTs_mat[2][2] << endl ;
+    std::cout << "initial Spin =" << sx0 << " " << sy0 << " " << sz0 << "\n";
+  std:cout << " final Spin = " << sx1 << " " << sy1 << " " << sz1 << " \n";
+    std::cout << "spin matrix" << endl ;
+    std::cout << s_mat[0][0] << "  " << s_mat[0][1] << "  " << s_mat[0][2] << endl ;
+    std::cout << s_mat[1][0] << "  " << s_mat[1][1] << "  " << s_mat[1][2] << endl ;
+    std::cout << s_mat[2][0] << "  " << s_mat[2][1] << "  " << s_mat[2][2] << endl ;
+    std::cout << "OT spin matrix" << endl ;
+    std::cout << OTs_mat[0][0] << "  " << OTs_mat[0][1] << "  " << OTs_mat[0][2] << endl ;
+    std::cout << OTs_mat[1][0] << "  " << OTs_mat[1][1] << "  " << OTs_mat[1][2] << endl ;
+    std::cout << OTs_mat[2][0] << "  " << OTs_mat[2][1] << "  " << OTs_mat[2][2] << endl ;
   }
 
   prt.getSpin()-> setSX(sx1);
