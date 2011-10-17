@@ -10,14 +10,18 @@
 #include "UAL/UI/Shell.hh"
 
 #include "SPINK/Propagator/DipoleTracker.hh"
+//#include "TEAPOT/Integrator/RFCavityTracker.hh"
 #include "SPINK/Propagator/RFCavityTracker.hh"
 #include "SPINK/Propagator/SpinTrackerWriter.hh"
 #include "SPINK/Propagator/SnakeTransform.hh"
-#include "SPINK/Propagator/RFSolenoid.hh"
 
 #include "timer.h"
 #include "PositionPrinter.h"
 #include "SpinPrinter.h"
+
+#include "BPMCollector.hh"
+
+
 
 using namespace UAL;
 
@@ -35,7 +39,7 @@ int main(){
   //* Read input parameters*/
   /**********************************************************/
  
-  std::ifstream configInput("./data/spink.in");//AULNLD:07JAN10
+  std::ifstream configInput("./data2/spink.in");//AULNLD:07JAN10
 
   std::string dummy ; // this string has been added to improve readability of input
   std::string variantName;
@@ -55,11 +59,6 @@ int main(){
   bool snkflag ; //AUL:10MAR10
   double mu1; double mu2; double phi1; double phi2; double the1; double the2;
   int turns;
-  double RFS_Bdl;
-  char RFS_rot;
-  double RFS_freq0;
-  double RFS_dfreq;
-  int RFS_nt; 
 
   configInput >> dummy >> variantName;
   configInput >> dummy >> outdmp ; //AUL:12MAR10
@@ -80,45 +79,15 @@ int main(){
   configInput >> dummy >> phi1 >> phi2 ; 
   configInput >> dummy >> the1 >> the2 ;
   configInput >> dummy >> turns;
-  configInput >> dummy >> RFS_Bdl;
-  configInput >> dummy >> RFS_rot;
-  configInput >> dummy >> RFS_freq0;
-  configInput >> dummy >> RFS_dfreq;
-  configInput >> dummy >> RFS_nt; 
   /** AUL:17MAR10 _________________________________________________________________*/
 
-    std::cout <<  variantName << std::endl;
-    std::cout <<  outdmp << std::endl;
-    std::cout <<  logdmp << std::endl;
-    std::cout <<  irSBend << " " << irQuad << std::endl;
-    std::cout <<  gamma << std::endl;
-    std::cout <<  tuneX << " " << tuneY << std::endl;
-    std::cout <<  chromX << " " << chromY << std::endl;
-    std::cout <<  settunes  << std::endl;
-    std::cout <<  dgammadt << std::endl;
-    std::cout <<  V << " " << harmon << std::endl;
-    std::cout <<  ssx << " " << ssy << " " << ssz << std::endl;
-    std::cout <<  emit_x << " " << emit_y << std::endl;
-    std::cout <<  x00 << " " <<x00p << " " << y00 << " " << y00p << " " << ct0 << " " << dpp0 << std::endl;
-    std::cout <<  calcPhaseSpace  << std::endl;
-    std::cout <<  snkflag  << std::endl;
-    std::cout <<  mu1 << " " << mu2 << std::endl;
-    std::cout <<  phi1 << " " << phi2 << std::endl;
-    std::cout <<  the1 << " " << the2 << std::endl;
-    std::cout <<  turns << std::endl;
-    std::cout <<  RFS_Bdl << std::endl;
-    std::cout <<  RFS_rot << std::endl;
-    std::cout <<  RFS_freq0 << std::endl;
-    std::cout <<  RFS_dfreq << std::endl;
-    std::cout <<  RFS_nt << std::endl;
-
+ 
   // ************************************************************************
 
   SPINK::SnakeTransform::setOutputDump(outdmp); //AUL:01MAR10
-  SPINK::RFSolenoid::setOutputDump(outdmp); //AUL:01MAR10
   SPINK::DipoleTracker::setOutputDump(outdmp); //AUL:02MAR10
   SPINK::RFCavityTracker::setOutputDump(outdmp); //AUL:27APR10
-
+  
   // ************************************************************************
   if( logdmp ){std::cout << "\nDefine the space of Taylor maps." << std::endl;}
   // ************************************************************************
@@ -129,7 +98,7 @@ int main(){
   if( logdmp ){  std::cout << "\nBuild lattice." << std::endl;}
   // ************************************************************************
 
-  std::string sxfFile = "./data/";
+  std::string sxfFile = "./data2/";
   sxfFile += variantName;
   sxfFile += ".sxf";
 
@@ -143,23 +112,23 @@ int main(){
 
   if( logdmp ){std::cout << "irSBend = " << irSBend << ", irQuad = " << irQuad << endl;}
 
-  shell.addSplit(Args() << Arg("lattice", "ring") << Arg("types", "Sbend")
+  shell.addSplit(Args() << Arg("lattice", "rhic") << Arg("types", "Sbend")
   		 << Arg("ir", irSBend));
 
-  shell.addSplit(Args() << Arg("lattice", "ring") << Arg("types", "Quadrupole")
+  shell.addSplit(Args() << Arg("lattice", "rhic") << Arg("types", "Quadrupole")
   		 << Arg("ir", irQuad));
 
   // ************************************************************************
   if( logdmp ){  std::cout << "Select lattice." << std::endl;}
   // ************************************************************************
 
-  shell.use(Args() << Arg("lattice", "ring"));
+  shell.use(Args() << Arg("lattice", "rhic"));
 
   // ************************************************************************
   if( logdmp ){  std::cout << "\nWrite ADXF file ." << std::endl;}
   // ************************************************************************
 
-  std::string outputFile = "./out/cpp/";
+  std::string outputFile = "./Slice_study/";
   outputFile += variantName;
   outputFile += ".sxf";
 
@@ -182,7 +151,7 @@ int main(){
   
   // Make linear matrix
 
-  std::string mapFile = "./out/cpp/";
+  std::string mapFile = "./Slice_study/";
   mapFile += variantName;
   mapFile += ".map1";
 
@@ -195,14 +164,15 @@ int main(){
 
   // shell.analysis(Args());
 
-  // for RHIC AUL:07MAY10 after a hint by Nikolay 
+  /* for RHIC AUL:07MAY10 after a hint by Nikolay */
   if( settunes ){
     shell.tunefit(Args() << Arg("tunex", tuneX) << Arg("tuney", tuneY) << Arg("b1f", "^qf$") << Arg("b1d", "^qd$"));
-    shell.chromfit(Args() << Arg("chromx", chromX) << Arg("chromy", chromY)<< Arg("b2f", "^sf$") << Arg("b2d", "^sd$"));
+    shell.chromfit(Args() << Arg("chromx", chromX) << Arg("chromy", chromY)<< Arg("b2f", "^sf") << Arg("b2d", "^sd"));
   } else {
     if( logdmp ){ std::cout << "\n--tunes and chromaticity NOT readjusted" << std::endl;}
   }
-   
+ 
+  
   /* for EDM AUL:07MAY10 after a hint by Nikolay
   if( settunes ){
     shell.tunefit(Args() << Arg("tunex", tuneX) << Arg("tuney", tuneY) << Arg("b1f", "^quadf$") << Arg("b1d", "^quadd$"));
@@ -213,32 +183,33 @@ int main(){
   */
 
   /* for SCT AUL:12MAY10 after a hint by Nikolay */
-  /*
-  if( settunes ){
-    shell.tunefit(Args() << Arg("tunex", tuneX) << Arg("tuney", tuneY) << Arg("b1f", "^quada$") << Arg("b1d", "^quadb$"));
-    shell.chromfit(Args() << Arg("chromx", chromX) << Arg("chromy", chromY)<< Arg("b2f", "^sexta$") << Arg("b2d", "^sextb$"));
-  } else {
-    if( logdmp ){ std::cout << "\n--tunes and chromaticity NOT readjusted" << std::endl;}
-  }
-*/
+  // if( settunes ){
+  // shell.tunefit(Args() << Arg("tunex", tuneX) << Arg("tuney", tuneY) << Arg("b1f", "^quada$") << Arg("b1d", "^quadb$"));
+  // shell.chromfit(Args() << Arg("chromx", chromX) << Arg("chromy", chromY)<< Arg("b2f", "^sexta$") << Arg("b2d", "^sextb$"));
+  // } else {
+  // if( logdmp ){ std::cout << "\n--tunes and chromaticity NOT readjusted" << std::endl;}
+  //}
+
   // Calculate twiss
   
-  std::string twissFile = "./out/cpp/";
+  std::string twissFile = "./Slice_study/";
   twissFile += variantName;
   twissFile += ".twiss";
 
   if( logdmp ){  std::cout << " twiss " << std::endl;}
 
-  //AUL shell.twiss(Args() << Arg("print", twissFile.c_str()));
+  std::cout << "we are here \n";
+  // shell.twiss(Args() << Arg("print", twissFile.c_str()));
 
+  std::cout << "we are here next \n";
   std::cout << " calculate suml" << std::endl;
-  //AUL  shell.analysis(Args());
+  shell.analysis(Args());
 
   // ************************************************************************
   std::cout << "\nAlgorithm Part. " << std::endl;
   // ************************************************************************
 
-  std::string apdfFile = "./data/spink.apdf";
+  std::string apdfFile = "./data2/spink.apdf";
 
   UAL::APDF_Builder apBuilder;
 
@@ -253,26 +224,33 @@ int main(){
   if( logdmp ){
     std::cout << "\nSpink tracker, ";
     std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
-
+  
     // ************************************************************************
     std::cout << "\nSet Acceleration. " << std::endl;
     // ************************************************************************
   }
+
+  // dgammadt = 2.094  V = 1.3e-4 
   double dedt = dgammadt*mass;
   double circum = OpticsCalculator::getInstance().suml; 
   double T_0 = circum / cc;
+  std::cout << "T_0*dedt/V = " << T_0*dedt/V << "asin() =" << asin(dedt*T_0/V) << " \n";
 
-  double lag = asin((dedt * T_0)/(2*V))/(2*UAL::pi);
-
-  if( logdmp ){
+    double lag = asin((dedt * T_0)/(V))/(2*UAL::pi);
+    double offset = lag*circum/harmon;
+  // double lag = asin(dedt*T_0/V);
+    // lag = 0.0;
+    if( logdmp ){ }
     cout << "dgamma/dt = " << dgammadt << endl ; //AUL:29DEC09
     cout << "Circumference(m) = " << circum << endl;
-    cout << "Volt = " << V << ", harmon =" << harmon << ", lag = " << lag << std::endl;
-  }
+    cout << "Volt = " << V << ", harmon =" << harmon << ", lag = " << lag*120 << std::endl;
+  
 
-  SPINK::RFCavityTracker::setRF(V, harmon, lag);  //AUL:17MAR10
+  SPINK::RFCavityTracker::setRF(V,harmon,lag);
+  //  TEAPOT::RFCavityTracker  tracker;
+  //tracker.setRF(V, harmon, lag);  //AUL:17MAR10
   //double circ = circum;
-  SPINK::RFCavityTracker::setCircum(circum); //AUL:17MAR10
+   SPINK::RFCavityTracker::setCircum(circum); //AUL:17MAR10
 
   // ************************************************************************
   if( logdmp ){  std::cout << "\nBunch Part." << std::endl;}
@@ -305,9 +283,10 @@ int main(){
     std::cout << "\nOptics" << std::endl; //AUL:30DEC09
     // ************************************************************************
   }
-  UAL::OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
+  /** 
+ UAL::OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
 
-  //AUL  optics.calculate();
+  optics.calculate();
 
   PacTwissData tws = optics.m_chrom->twiss();
   double q_x = tws.mu(0)/2./UAL::pi;
@@ -318,44 +297,121 @@ int main(){
   double chrm_y = optics.m_chrom->dmu(0)/2./UAL::pi;
   double alfa_x = tws.alpha(0);
   double alfa_y = tws.alpha(1);
+  
+  //  optics.writeTeapotTwissToFile("rhic","twiss.dat","bpmh.50");
 
   if( logdmp ){
     std::cout << "beta_x = " << beta_x << "  beta_y = " << beta_y << std::endl;
     std::cout << "alfa_x = " << alfa_x << "  alfa_y = " << alfa_y << std::endl;
     std::cout << "Q_x = " << q_x << "  Q_y = " << q_y << std::endl;
     std::cout << "chrom_x = " << chrm_x << "  chrom_y = " << chrm_y << std::endl;
+    std::cout << "dpp0 = " << dpp0 << "\n";
   }
-
+  **/
+  emit_x = emit_x*UAL::pi*1e-6/6.0;
+  emit_y = emit_y*UAL::pi*1e-6/6.0;
+  std::cout << "emit_x = " << emit_x << " \n";
+  //ct0 = 2e-9*cc;
   if( calcPhaseSpace){
  
     if( logdmp ){ std::cout << "\nTranverse phase space calculated from emittance" << endl;}
     
-    x0 = sqrt(emit_x*beta_x/(6*gamma))*0.001 + tws.d(0)*dpp0;
-    x0p = tws.dp(0)*dpp0;
-    y0 = sqrt(emit_y*beta_y/(6*gamma))*0.001 + tws.d(1)*dpp0;
-    y0p = tws.dp(1)*dpp0;
-
+    //  x0 = sqrt(emit_x*beta_x/(gamma)) + tws.d(0)*dpp0;
+    //   x0p = tws.dp(0)*dpp0;
+    //   y0 = sqrt(emit_y*beta_y/(gamma)) + tws.d(1)*dpp0;
+    //    y0p = tws.dp(1)*dpp0;
+    //   std::cout << "dp(0) = "<<tws.dp(0) << "dp(1) =" << tws.dp(1) << "\n";
+    //ct0 = ct0 + offset*2;
   } else {
 
     if( logdmp ){ std::cout << "\nTranverse phase space directly input" << endl;}
 
-    x0 = x00 + tws.d(0)*dpp0;
-    x0p = x00p + tws.dp(0)*dpp0;
-    y0 = y00 + tws.d(1)*dpp0;
-    y0p = y00p + tws.dp(1)*dpp0;
+    //   x0 = x00 + tws.d(0)*dpp0;
+    // x0p = x00p + tws.dp(0)*dpp0;
+    // y0 = y00 + tws.d(1)*dpp0;
+    //y0p = y00p + tws.dp(1)*dpp0;
+      
+    x0 = x00; x0p = x00p; y0 = y00; y0p = y00p;
+    ct0 = ct0 + offset*2;
   }
 
   if( logdmp ){
     std::cout << "\nInitial phase space (including dispersion)" << std::endl; //AUL:17MAR10
-    std::cout << "x0 = " << x0 << ",  x0p = " << x0p << std::endl;
-    std::cout << "y0 = " << y0 << ",  y0p = " << y0p << std::endl;
-    std::cout << "ct0 = " << ct0 << ",  dpp0 = " << dpp0 << std::endl; //AUL:17MAR10
+    //AUL:17MAR10
   }
 
+  //  for(int ip=0; ip < bunch.size(); ip ++){
+  //  bunch[ip].getPosition().set(x0, x0p, y0, y0p, ct0, dpp0);    //AUL:17MAR10
+  //  bunch[ip].setSpin(spin);
+  //  std::cout << " bunch number =" << ip << "\n";
+  //  std::cout << "x0 = " << x0 << ",  x0p = " << x0p << std::endl;
+  //   std::cout << "y0 = " << y0 << ",  y0p = " << y0p << std::endl;
+  //  std::cout << "ct0 = " << ct0 << ",  dpp0 = " << dpp0 << std::endl;
+  // }
+
+ // index for phases, weights, and dp/p
+  int ipsi,iw,idp;
+  // number of phase angles psi between y and yprime
+  int npsi = 8;
+  // number of action weights for gaussian approximation
+  int nw = 4;
+  // weights for gaussian approximation
+  double w[4] = { 0.2671, 0.94, 1.9617, 4.1589};
+  double sx0[3] ={ 1.0, 0.0, 0.0};
+  double sy0[3] = { 0.0 , 1.0, 0.0};
+  double sz0[3] = {0.0, 0.0, 1.0};
+  double psi_x, psi_y, J_x, J_y, dp0;    
+  double dpstep = 0.0003;
+
+  std::cout << "Initial distribution \n";
+  std::cout << " bunchNo  x  px  y  py  ct  dp \n";
+
   for(int ip=0; ip < bunch.size(); ip ++){
-    bunch[ip].getPosition().set(x0, x0p, y0, y0p, ct0, dpp0);    //AUL:17MAR10
+
+    /**
+     ipsi = ip % npsi;
+     iw = ((ip-iw)/npsi % nw );
+     idp = (ip - ipsi - iw*nw)/(nw*npsi);
+     psi_y = (2*UAL::pi/npsi)*ipsi;
+     psi_x = (2*UAL::pi/4); 
+     J_y = emit_y*exp(-w[iw]/2)*0.5/(6*gamma);
+     // J_y = emit_y/(6*gamma);
+     J_x = emit_x/(6*gamma);
+
+     x0 = sqrt(J_x*beta_x)*cos(psi_x);
+     x0p = sqrt(J_x/beta_x)*(sin(psi_x) + alfa_x*cos(psi_x));
+
+     y0 = sqrt(J_y*beta_y)*cos(psi_y);
+     y0p = sqrt(J_y/beta_y)*(sin(psi_y) + alfa_y*cos(psi_y));
+     
+     dp0 = dpp0 + idp*dpstep;     
+
+    **/
+
+    dp0 = dpp0;
+     std::cout << ip << " " << x0 << " " << x0p << " " << y0 << " " << y0p << " " << ct0 << " " << dp0 << " \n";
+
+    PAC::Position& pos = bunch[ip].getPosition();
+    bunch[ip].getPosition().set(x0, x0p, y0, y0p, ct0, dp0);    //AUL:17MAR10
+    spin.setSX(sx0[1]);
+    spin.setSY(sy0[1]);
+    spin.setSZ(sz0[1]);
     bunch[ip].setSpin(spin);
+
+
+
+     
+  
   }
+
+
+
+
+
+
+
+
+
 
   /** read in snake parameters AULNLD 2/9/10 */
 
@@ -377,8 +433,6 @@ int main(){
       }
   }
 
-  SPINK::RFSolenoid::setRFSParams(RFS_Bdl, RFS_rot, RFS_freq0, RFS_dfreq, RFS_nt);
-
   // ************************************************************************
   if( logdmp ){  std::cout << "\nTracking. " << std::endl;}
   // ************************************************************************
@@ -389,14 +443,14 @@ int main(){
   std::cout << "\nTurns = " << turns << std::endl ;
   //return 0;
 
-  std::string orbitFile = "./out/cpp/";
+  std::string orbitFile = "./Slice_study/";
   orbitFile += variantName;
   orbitFile += ".orbit";
 
   PositionPrinter positionPrinter;
   positionPrinter.open(orbitFile.c_str());
 
-  std::string spinFile = "./out/cpp/";
+  std::string spinFile = "./Slice_study/";
   spinFile += variantName;
   spinFile += ".spin";
   
@@ -405,7 +459,13 @@ int main(){
 
   ba.setElapsedTime(0.0);
 
+  // Clear the previous data
+  // MIA::BPMCollector::getInstance().clear();
+
   start_ms();
+
+
+  std::cout << " \n";
 
   for(int iturn = 1; iturn <= turns; iturn++){
 
@@ -413,18 +473,26 @@ int main(){
     SPINK::SnakeTransform::setNturns(iturn);
     SPINK::DipoleTracker::setNturns(iturn);
     SPINK::RFCavityTracker::setNturns(iturn);//AUL:27APR10
-
-    ap -> propagate(bunch);
-    
-    for(int ip=0; ip < bunch.size(); ip++){
+    // if (iturn % 100 == 0) { 
+for(int ip=0; ip < bunch.size(); ip++){
        positionPrinter.write(iturn, ip, bunch);
        spinPrinter.write(iturn, ip, bunch);
-    }
+ } 
+//}
+// SPINK::DipoleTracker::setOmegaT(0.0);
+ ap -> propagate(bunch);
+// std::cout << iturn << "\n"; ;
+    //  SPINK::DipoleTracker::printOmega();
+   
 
   }
 
   t = (end_ms());
   std::cout << "time  = " << t << " ms" << endl;
+
+   // Write bpm turn-by-turn data into the specified file
+  //MIA::BPMCollector::getInstance().write("./bpm.out");
+
 
   positionPrinter.close();
   spinPrinter.close();
