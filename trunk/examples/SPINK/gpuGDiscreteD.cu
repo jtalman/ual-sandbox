@@ -324,8 +324,8 @@ int main(){
     if(calcPhaseSpace >= 1){
 
 
-    emit_x = emit_x*UAL::pi*1e-6/(gamma*6.0);
-    emit_y = emit_y*UAL::pi*1e-6/(gamma*6.0);
+      emit_x = emit_x*UAL::pi*1e-6; ///(gamma*6.0);
+      emit_y = emit_y*UAL::pi*1e-6; // /(gamma*6.0);
     std::cout << "emit_x = " << emit_x << " emit_y = " << emit_y << " \n";
     
     
@@ -442,9 +442,9 @@ for(int iwx=0; iwx < Nwx; iwx ++){
      psi_x = (2*UAL::pi/Npx)*ipx;
      psi_x = (2*UAL::pi/Npy)*ipy;
      psi_z = (2*UAL::pi/Npz)*ipz; 
-     J_y = emit_y*exp(-w[iwy]/2)*0.5/(6*gamma);
-     J_x = emit_x*exp(-w[iwx]/2)*0.5/(6*gamma);
-     J_z = emit_z*exp(-w[iwz]/2)*0.5/6;
+     J_y = emit_y*exp(-w[iwy]/2)*0.5/(gamma);
+     J_x = emit_x*exp(-w[iwx]/2)*0.5/(gamma);
+     J_z = emit_z*exp(-w[iwz]/2)*0.5;
 
      x0 = sqrt(J_x*beta_x)*cos(psi_x);
      x0p = sqrt(J_x/beta_x)*(sin(psi_x) + alfa_x*cos(psi_x));
