@@ -339,7 +339,7 @@ void SPINK::SnakeTransform::propagateSpin(PAC::BeamAttributes& ba, PAC::Particle
       /*if( nturn == 1 ) //AUL:01MAR10
 	{} */
       OTs_mat[0][0] = OTs_mat[1][1] = OTs_mat[2][2] = 1. ;
-      OTs_mat[0][1] = OTs_mat[0][2] = OTs_mat[1][0] = OTs_mat[1][2] = OTs_mat[2][0] = OTs_mat[2][1] = 0. ; OTs_omega = 0; OTs_rot = 0.0;
+      OTs_mat[0][1] = OTs_mat[0][2] = OTs_mat[1][0] = OTs_mat[1][2] = OTs_mat[2][0] = OTs_mat[2][1] = 0. ;// OTs_omega = 0; OTs_rot = 0.0;
       
       if( coutdmp )//AUL:01MAR10
         {
