@@ -1,24 +1,19 @@
-variantName;	cosyRFS
-outdmp:		0
-logdmp:		1
-irSBend&irQuad:	1 4
-gamma:		1.5
-tune            3.60 3.62 
-chrom:		2.0 2.0
-settunes:	0
-dgamma/dt:	0
-volt&&harmon:	0 1
-spin:		0. 1. 0.
-emittance:	10. 15 
-PhaseSpace:	0.00 0.00 0.00 0.00  5.5041  0.00            
-calcPhaseSpace:	0
-snkflag:	0
-snk_mu:		180. 180.
-snk_phi:	45. -45.
-snk_theta:	0. 0.
-turns:		50
-RFS_Bdl:        0       
-RFS_rot:        z       
-RFS_freq0:      0
-RFS_dfreq:      1
-RFS_nt:         0  
+VariantName:    test2                                                                                            
+outdmp:         0                                                                                                               
+logdmp:         1                                                                                                              
+irSBend&irQuad: 1  32                                                                                                          
+gamma:          120.315                                                                                                 
+tunes:          28.685   29.675                                                                                                   
+chrom:          2.0     2.0                                                                                                     
+settunes:       1                                                                                                               
+dgamma/dt:      8.552187                                                                                               
+volt$harmon:    30.0e-4  360                                                                                                       
+spin:           0.   1.   0.
+emittance:	0.0   0.0
+phaseSpace:     0.0   0.0  0.0   0.0   0.0  0.0
+calcPhaseSpace: 1                                                                                                               
+snkflag:        1	                                                                                                              
+snk_mu:         180.     180.                                                                                                      
+snk_phi:        -45.     45.                                                                                                    
+snk_theta:      0.      0.                                                                                                      
+turns:          2                                                                                                         
