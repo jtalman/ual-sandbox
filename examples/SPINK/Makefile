@@ -1,5 +1,5 @@
 ifeq ($(USE_GPU), TRUE)
-CC       = nvcc  #-arch=sm_20  # Compiler
+CC       = nvcc  -arch=sm_20  # Compiler
 CCFLAGS  = --compiler-options '-fpic -ansi -Wall -g '      # Compilation flags
 DLD      = nvcc                      # Dynamic linker
 DLDFLAGS = -shared                   # Dynamic linker flags
@@ -42,8 +42,8 @@ LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH) 		-lpcre -lxml2 -lrfftw -lfftw
 LIBS += 					-lm
 LIBS +=	-L$(UAL)/tools/lib/linux -lgsl
 ifeq ($(USE_GPU), TRUE)
-#LIBS +=         -L/usr/local/cuda/lib64 -lcudart
-LIBS += -L/usr/local/pgiCDK-11.5/linux86-64/2011/cuda/3.1/lib64 -lcudart
+LIBS +=         -L/usr/local/cuda/lib64 -lcudart
+#LIBS += -L/usr/local/pgiCDK-11.5/linux86-64/2011/cuda/3.1/lib64 -lcudart
 endif
 
 SRC_DIR  = .
