@@ -51,11 +51,13 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 OBJS = $(OBJ_DIR)/timer.o \
 	   $(OBJ_DIR)/PositionPrinter.o \
 	   $(OBJ_DIR)/SpinPrinter.o 
+ 
 
 
-compile : $(OBJS) ./tracker \
-ifeq($(USE_GPU), TRUE)
-./gpuStep
+compile :  $(OBJS) ./tracker 
+
+ifeq ($(USE_GPU), TRUE) 
+compile:	$(OBJS) ./tracker ./gpuStep
 endif
 
 clean :

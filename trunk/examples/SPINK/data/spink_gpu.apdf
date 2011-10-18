@@ -1,0 +1,7 @@
+<apdf>
+  <propagator id="spink" accelerator="rhic">
+     <create>
+       <link algorithm="SPINK::GpuTracker" types="Default"/>
+     </create>
+  </propagator>
+</apdf>

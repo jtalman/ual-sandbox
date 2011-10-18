@@ -19,7 +19,7 @@
 #include "PositionPrinter.h"
 #include "SpinPrinter.h"
 
-#include "BPMCollector.hh"
+//#include "BPMCollector.hh"
 
 
 
@@ -39,7 +39,7 @@ int main(){
   //* Read input parameters*/
   /**********************************************************/
  
-  std::ifstream configInput("./data2/spink.in");//AULNLD:07JAN10
+  std::ifstream configInput("./data/spink.in");//AULNLD:07JAN10
 
   std::string dummy ; // this string has been added to improve readability of input
   std::string variantName;
@@ -98,7 +98,7 @@ int main(){
   if( logdmp ){  std::cout << "\nBuild lattice." << std::endl;}
   // ************************************************************************
 
-  std::string sxfFile = "./data2/";
+  std::string sxfFile = "./data/";
   sxfFile += variantName;
   sxfFile += ".sxf";
 
@@ -128,7 +128,7 @@ int main(){
   if( logdmp ){  std::cout << "\nWrite ADXF file ." << std::endl;}
   // ************************************************************************
 
-  std::string outputFile = "./Slice_study/";
+  std::string outputFile = "./Output/";
   outputFile += variantName;
   outputFile += ".sxf";
 
@@ -151,7 +151,7 @@ int main(){
   
   // Make linear matrix
 
-  std::string mapFile = "./Slice_study/";
+  std::string mapFile = "./Output/";
   mapFile += variantName;
   mapFile += ".map1";
 
@@ -192,7 +192,7 @@ int main(){
 
   // Calculate twiss
   
-  std::string twissFile = "./Slice_study/";
+  std::string twissFile = "./Output/";
   twissFile += variantName;
   twissFile += ".twiss";
 
@@ -209,7 +209,7 @@ int main(){
   std::cout << "\nAlgorithm Part. " << std::endl;
   // ************************************************************************
 
-  std::string apdfFile = "./data2/spink.apdf";
+  std::string apdfFile = "./data/spink.apdf";
 
   UAL::APDF_Builder apBuilder;
 
@@ -443,14 +443,14 @@ int main(){
   std::cout << "\nTurns = " << turns << std::endl ;
   //return 0;
 
-  std::string orbitFile = "./Slice_study/";
+  std::string orbitFile = "./Output/";
   orbitFile += variantName;
   orbitFile += ".orbit";
 
   PositionPrinter positionPrinter;
   positionPrinter.open(orbitFile.c_str());
 
-  std::string spinFile = "./Slice_study/";
+  std::string spinFile = "./Output/";
   spinFile += variantName;
   spinFile += ".spin";
   
