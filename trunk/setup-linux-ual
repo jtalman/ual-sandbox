@@ -1,7 +1,7 @@
 setenv UAL_ARCH linux
-
+setenv USE_GPU FALSE
 setenv LD_LIBRARY_PATH
-
+setenv UAL `pwd`
 ###########################################################
 # Paths to UAL Components
 ###########################################################
