@@ -1,19 +1,19 @@
-VariantName:    test2                                                                                            
-outdmp:         0                                                                                                               
-logdmp:         1                                                                                                              
-irSBend&irQuad: 1  32                                                                                                          
-gamma:          120.315                                                                                                 
-tunes:          28.685   29.675                                                                                                   
-chrom:          2.0     2.0                                                                                                     
-settunes:       1                                                                                                               
-dgamma/dt:      8.552187                                                                                               
-volt$harmon:    150.0e-6  360                                                                                                       
+VariantName:    test2
+outdmp:         0
+logdmp:         1
+irSBend&irQuad: 1  32
+gamma:          120.315
+tunes:          28.685   29.675
+chrom:          2.0     2.0
+settunes:       1
+dgamma/dt:      8.552187
+volt$harmon:    150.0e-6  360
 spin:           0.   1.   0.
 emittance:	2.5   2.5
 phaseSpace:     0.0   0.0  0.0   0.0   0.0  0.0
-calcPhaseSpace: 1                                                                                                               
-snkflag:        1	                                                                                                              
-snk_mu:         180.     180.                                                                                                      
-snk_phi:        -45.     45.                                                                                                    
-snk_theta:      0.      0.                                                                                                      
-turns:          250                                                                                                         
+calcPhaseSpace: 1
+snkflag:        1	
+snk_mu:         180.     180.
+snk_phi:        -45.     45.
+snk_theta:      0.      0.
+turns:          250
