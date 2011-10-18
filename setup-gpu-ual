@@ -1,7 +1,8 @@
 setenv UAL_ARCH linux
 setenv USE_GPU TRUE
 
-setenv LD_LIBRARY_PATH /usr/local/pgiCDK-11.5/linux86-64/2011/cuda/3.1/lib64:$LD_LIBRARY_PATH
+setenv LD_LIBRARY_PATH
+# /usr/local/pgiCDK-11.5/linux86-64/2011/cuda/3.1/lib64:$LD_LIBRARY_PATH
 
 setenv UAL `pwd`
 ###########################################################
