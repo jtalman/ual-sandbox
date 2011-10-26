@@ -283,7 +283,7 @@ int main(){
     std::cout << "\nOptics" << std::endl; //AUL:30DEC09
     // ************************************************************************
   }
-  /** 
+  
  UAL::OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
 
   optics.calculate();
@@ -307,7 +307,7 @@ int main(){
     std::cout << "chrom_x = " << chrm_x << "  chrom_y = " << chrm_y << std::endl;
     std::cout << "dpp0 = " << dpp0 << "\n";
   }
-  **/
+ 
   emit_x = emit_x*UAL::pi*1e-6/6.0;
   emit_y = emit_y*UAL::pi*1e-6/6.0;
   std::cout << "emit_x = " << emit_x << " \n";
@@ -316,12 +316,12 @@ int main(){
  
     if( logdmp ){ std::cout << "\nTranverse phase space calculated from emittance" << endl;}
     
-    //  x0 = sqrt(emit_x*beta_x/(gamma)) + tws.d(0)*dpp0;
-    //   x0p = tws.dp(0)*dpp0;
-    //   y0 = sqrt(emit_y*beta_y/(gamma)) + tws.d(1)*dpp0;
-    //    y0p = tws.dp(1)*dpp0;
+      x0 = sqrt(emit_x*beta_x/(gamma)) + tws.d(0)*dpp0;
+       x0p = tws.dp(0)*dpp0;
+      y0 = sqrt(emit_y*beta_y/(gamma)) + tws.d(1)*dpp0;
+       y0p = tws.dp(1)*dpp0;
     //   std::cout << "dp(0) = "<<tws.dp(0) << "dp(1) =" << tws.dp(1) << "\n";
-    //ct0 = ct0 + offset*2;
+    ct0 = ct0 + offset*2;
   } else {
 
     if( logdmp ){ std::cout << "\nTranverse phase space directly input" << endl;}

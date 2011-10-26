@@ -61,6 +61,7 @@ ifeq ($(USE_GPU), TRUE)
 compile:	$(OBJS) ./tracker ./gpuStep
 endif
 
+
 clean :
 ifeq ($(USE_GPU), TRUE)
 	rm -f $(OBJS) $(OBJ_DIR)/gpuStep.o ./gpuStep
