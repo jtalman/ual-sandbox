@@ -60,7 +60,7 @@ int main(){
   bool snkflag ; //AUL:10MAR10
   double mu1; double mu2; double phi1; double phi2; double the1; double the2;
   double stepsize;
-  int turns, NPart;
+  int turns, NPart, dumpstep;
 
   configInput >> dummy >> variantName;
   configInput >> dummy >> outdmp ; //AUL:12MAR10
@@ -80,13 +80,13 @@ int main(){
   configInput >> dummy >> mu1 >> mu2 ; 
   configInput >> dummy >> phi1 >> phi2 ; 
   configInput >> dummy >> the1 >> the2 ;
-  configInput >> dummy >> turns;
+  configInput >> dummy >> turns >> dumpstep;
   configInput >> dummy >> NPart;
   configInput >> dummy >> stepsize;
 
   std::cout << "emit =" << emit_x << " " << emit_y << " " << sigt << "\n";
   std::cout << "Dist =" << calcPhaseSpace << " snkflag = " << snkflag << " \n";
-  std::cout << "mu = " << mu1 << " " << mu2 << " theta = " << the1 << " " << the2 << " turns = " << turns << " NPart =" << NPart << " \n";
+  std::cout << "mu = " << mu1 << " " << mu2 << " theta = " << the1 << " " << the2 << " turns = " << turns << " dumpstep =" << dumpstep << " NPart =" << NPart << " \n";
   std::cout << "stepsize = " << stepsize << " \n"; 
  // SPINK::SnakeTransform::setOutputDump(outdmp); //AUL:01MAR10
   SPINK::GpuTracker::setOutputDump(outdmp); //AUL:02MAR10
@@ -557,14 +557,23 @@ for(int iwx=0; iwx < Nwx; iwx ++){
   start_ms();
 
   std::ofstream allpart, avgpart;
-  allpart.open("PartOut.dat");
+
+  //  allpart.open("PartOut.dat");
   avgpart.open("AvgOut.dat");
   char line[200];
   int N = bunch.size();
   precision Ggam = G*gamma;
   precision SxAvg =0.00, SyAvg=0.00, SzAvg=0.00;
+  int stepdump = 0;
   
   SPINK::GpuTracker::setNturns(step);
+
+ 
+
+
+
+
+
  
    for(int iturn = 1; iturn <= turns; iturn++){
 
@@ -609,6 +618,29 @@ for(int iwx=0; iwx < Nwx; iwx ++){
 	 avgpart << line ;
 
 
+	 if(iturn % dumpstep == 0) {
+           std::string PartFile = "PartOut";
+           char dumpNo[3];
+	   sprintf(dumpNo, "%d",stepdump);
+	   stepdump++;
+           PartFile += dumpNo;
+           PartFile += ".dat";
+           const char * inputc = PartFile.c_str();
+
+           allpart.open(inputc);
+for(int ip = 0; ip < N; ip++) {
+    	 sprintf(line," %e  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e \n",gamma,Ggam,pos[ip].sx,pos[ip].sy,pos[ip].sz,pos[ip].x,pos[ip].px,pos[ip].y,pos[ip].py,pos[ip].ct,pos[ip].de);
+	 allpart << line ;
+     }
+
+   allpart.close();
+
+
+	 }
+
+
+
+
   // }
 
     }
@@ -616,7 +648,7 @@ for(int iwx=0; iwx < Nwx; iwx ++){
 
 
 
-
+     allpart.open("PartOut_last.dat");
 
    for(int ip = 0; ip < N; ip++) {
     	 sprintf(line," %e  %e  %e  %e  %e  %e  %e  %e  %e  %e  %e \n",gamma,Ggam,pos[ip].sx,pos[ip].sy,pos[ip].sz,pos[ip].x,pos[ip].px,pos[ip].y,pos[ip].py,pos[ip].ct,pos[ip].de);
