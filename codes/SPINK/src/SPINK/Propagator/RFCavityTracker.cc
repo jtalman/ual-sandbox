@@ -180,6 +180,8 @@ void SPINK::RFCavityTracker::propagate(UAL::Probe& probe)
     e_new = e_old + de;
   
 	   p.setDE((e_new - e0_new)/p0_new);
+           p.setPX(p[1]*p0_old/p0_new);
+           p.setPY(p[3]*p0_old/p0_new);
     //  p.setDE(dp);
   
   //  AUL:27APR10 ________ 
