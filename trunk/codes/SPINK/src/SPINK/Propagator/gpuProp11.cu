@@ -348,11 +348,12 @@ passDriftgpuP(int N, precision rlipl,   precision &x,  precision pxt,   precisio
 
 }
 
-__device__ void RFProp(int N, int j,  precision &x1,  precision px1,   precision &y1,   precision py1,   precision &ct1,   precision &de1)
+__device__ void RFProp(int N, int j,  precision &x1,  precision &px1,   precision &y1,   precision &py1,   precision &ct1,   precision &de1)
 {
 precision de0 ,e0_new, p0_new ,v0byc_new ,revfreq_old ;
 precision p0_old ,e0_old ,v0byc_old ;
 precision X_out,Y_out,DE_out,CT_out,e_old,p_old,e_new,p_new,vbyc,de,phase;
+precision PX_out,PY_out;
     precision X_out2, Y_out2,CT_out2,vbyc_2;
     precision px_by_ps, py_by_ps, ps2_by_po2, t0, t0_2;
     precision dl2_by_lo2, l_by_lo,cdt_circ, cdt_vel;
@@ -447,12 +448,18 @@ precision X_out,Y_out,DE_out,CT_out,e_old,p_old,e_new,p_new,vbyc,de,phase;
 
   cdt_vel_2 = rhic_d[j].m_l*0.50*(1.00/vbyc_2 - 1.00/v0byc_new);
 
-  // MAD longitudinal coordinate = -ct 
 
+
+  // MAD longitudinal coordinate = -ct
+
+  /** rescaling PX and PY for new reference energy **/
+ 
+  PX_out = px1*p0_old/p0_new;
+  PY_out = py1*p0_old/p0_new;
   CT_out2 = -cdt_vel_2 - cdt_circ_2 + CT_out;
      x1 = X_out2; y1 = Y_out2; ct1 = CT_out2;
      de1 = DE_out;
-
+     px1 = PX_out; py1 = PY_out;
      // t0_d  += (rhic_d[j].m_l/v0byc_old + rhic_d[j].m_l/v0byc_new)/2./clite_d ;
   //printf(" after all RF part = %f %f %f %f %f %f \n",pos_d[0].x,pos_d[0].px,pos_d[0].y,pos_d[0].py, pos_d[0].ct,pos_d[0].de);
 }
