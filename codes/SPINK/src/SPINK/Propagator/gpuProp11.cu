@@ -11,6 +11,8 @@ them through the lattice preloaded into the GPU memory **/
 
 #include <stdio.h>
 
+
+//__device__  Qlat MLT_d[ELEMENTS];
 __constant__  precision s_steps[] = {0.10, 4.00/15, 4.00/15, 4.00/15, 0.10};
 __constant__ precision m0_d, circ_d, GG_d, q_d;
 __constant__ precision snk1_mu_d,snk1_theta_d,snk1_phi_d;
@@ -18,8 +20,6 @@ __constant__ precision snk2_mu_d,snk2_theta_d,snk2_phi_d;
 __constant__ precision PI_d=3.1415926536, clite_d= 2.99792458e+8;
 __constant__ precision V_d, lag_d, h_d,dtr,small = 1e-20;
 __device__ precision Energy_d[PARTICLES], v0byc_d[PARTICLES], p0_d[PARTICLES];
-__device__ precision stepsize_d,dS2_d,TOL_d;
-__device__ int icount_d=0;
 
 __device__  void
 applyMltKickgpuP(int N, int j,  precision rkicks, int position, precision dx, precision dy,   precision x1,  precision &px1,   precision y1,   precision &py1)
@@ -150,12 +150,12 @@ if(position == 2) {
 }
 
 __device__  void
-makeVelocitygpuP(int N,  precision px,   precision py,  precision de, precision &xt, precision &pxt, precision &pyt){
+makeVelocitygpuP(int N,  precision px,   precision py,  precision de, precision &xt, precision &pxt, precision &pyt, precision v0byc){
       precision t0,t1,tmp_px,tmp_py;
     
       t0  = 1.00;
       t1  = de;
-      t1  = t1 + 2.00/v0byc_d[N];
+      t1  = t1 + 2.00/v0byc;
       t1 = de*t1;
       t0 = t1+t0;
 
@@ -185,10 +185,10 @@ makeVelocitygpuP(int N,  precision px,   precision py,  precision de, precision 
 
 
 __device__ void
-makeRVgpuP(int N,   precision de, precision &det){
+makeRVgpuP(int N,   precision de, precision &det, double p0d, double Energyd){
     precision e, p2, rv;
-    e = Energy_d[N];
-    e = e + p0_d[N]*de;
+    e = Energyd;
+    e = e + p0d*de;
     
     p2 = e;
     p2 = p2*e;
@@ -203,7 +203,7 @@ makeRVgpuP(int N,   precision de, precision &det){
 }
 
 __device__ void
-passBendSlicegpuP(int N, int j, int slice,   precision &x1,  precision &px1,   precision &y1,   precision py1,   precision &ct1,   precision de1, precision xt,precision pxt, precision yt, precision pyt, precision det) {
+passBendSlicegpuP(int N, int j, int slice,   precision &x1,  precision &px1,   precision &y1,   precision py1,   precision &ct1,   precision de1, precision xt,precision pxt, precision yt, precision pyt, precision det, precision v0byc) {
   precision t0, t1, x,y, PX_out, CT_out, rvbyc;
   precision p0,p1,p2,p3,p4;
     
@@ -243,7 +243,7 @@ passBendSlicegpuP(int N, int j, int slice,   precision &x1,  precision &px1,   p
   p4 = p1/p4;
   p1  =  p4*rvbyc;             
 
-  p2  = 1.00/v0byc_d[N];
+  p2  = 1.00/v0byc;
   p2 -= rvbyc;
   p2 *= rhic_d[j].rlipl[slice];
 
@@ -273,7 +273,7 @@ passBendSlicegpuP(int N, int j, int slice,   precision &x1,  precision &px1,   p
 
 
 __device__ void
-applyThinBendKickgpuP(int N, int j,precision rkicks, precision dx, precision dy,  precision x1,  precision &px1,   precision y1,   precision &py1,   precision &ct1,   precision de1)
+applyThinBendKickgpuP(int N, int j,precision rkicks, precision dx, precision dy,  precision x1,  precision &px1,   precision y1,   precision &py1,   precision &ct1,   precision de1, precision v0byc)
 {  
   precision x, y, px, py, PX_out, PY_out, CT_out;
    
@@ -301,7 +301,7 @@ applyThinBendKickgpuP(int N, int j,precision rkicks, precision dx, precision dy,
   PX_out = px1 + px;
   PY_out = py1 + py; 
 } else {
-   precision factor = rhic_d[j].angle/v0byc_d[N];
+   precision factor = rhic_d[j].angle/v0byc;
      px += factor*de1;
      CT_out = ct1 - factor*x1;
      ct1 = CT_out;
@@ -316,7 +316,7 @@ applyThinBendKickgpuP(int N, int j,precision rkicks, precision dx, precision dy,
 }
 
 __device__  void
-passDriftgpuP(int N, precision rlipl,   precision &x,  precision pxt,   precision &y, precision pyt,   precision &ct, precision det) {
+passDriftgpuP(int N, precision rlipl,   precision &x,  precision pxt,   precision &y, precision pyt,   precision &ct, precision det,precision v0byc) {
 
     precision X_out,Y_out,rvbyc,p1,p2,p4,CT_out;
    
@@ -333,7 +333,7 @@ passDriftgpuP(int N, precision rlipl,   precision &x,  precision pxt,   precisio
          p1 = p1*rvbyc;
          p1 = p1*rlipl/2.00;
        
-         p2 = 1.00/v0byc_d[N];
+         p2 = 1.00/v0byc;
          p2 = p2 -rvbyc;
          p2 = p2*rlipl;
 
@@ -348,7 +348,7 @@ passDriftgpuP(int N, precision rlipl,   precision &x,  precision pxt,   precisio
 
 }
 
-__device__ void RFProp(int N, int j,  precision &x1,  precision &px1,   precision &y1,   precision &py1,   precision &ct1,   precision &de1)
+__device__ void RFProp(int N, int j,  precision &x1,  precision &px1,   precision &y1,   precision &py1,   precision &ct1,   precision &de1,precision &v0byc, precision &p0d, precision &Energyd)
 {
 precision de0 ,e0_new, p0_new ,v0byc_new ,revfreq_old ;
 precision p0_old ,e0_old ,v0byc_old ;
@@ -359,24 +359,24 @@ precision PX_out,PY_out;
     precision dl2_by_lo2, l_by_lo,cdt_circ, cdt_vel;
     precision px_by_ps_2, py_by_ps_2, ps2_by_po2_2;
     precision dl2_by_lo2_2, l_by_lo_2,cdt_circ_2, cdt_vel_2;
-   e0_old = Energy_d[N];
-   p0_old = p0_d[N] ;
+   e0_old = Energyd;
+   p0_old = p0d;
    // t_old = t0_d; 
-   v0byc_old = v0byc_d[N];
+   v0byc_old = v0byc;
 
    de0       = q_d*V_d*sin(2*PI_d*lag_d);
    e0_new    = e0_old + de0;
   p0_new    = sqrt(e0_new*e0_new - m0_d*m0_d);
   v0byc_new = p0_new/e0_new;
-  revfreq_old = v0byc_d[N]*clite_d/circ_d ;
+  revfreq_old = v0byc*clite_d/circ_d ;
  
  
    
-  Energy_d[N] = e0_new;
-  v0byc_d[N] = v0byc_new;
+  Energyd = e0_new;
+  v0byc = v0byc_new;
  
 
-  p0_d[N] = p0_new;
+  p0d = p0_new;
 
 
     //printf(" before RF part = %f %f %f %f %f %f \n",pos_d[0].x,pos_d[0].px,pos_d[0].y,pos_d[0].py, pos_d[0].ct,pos_d[0].de);
@@ -466,7 +466,7 @@ precision PX_out,PY_out;
 
 
 
-__device__ void BendProp(int N, int j,   precision &x,   precision &px,   precision &y,   precision &py,   precision &ct,   precision &de)
+__device__ void BendProp(int N, int j,   precision &x,   precision &px,   precision &y,   precision &py,   precision &ct,   precision &de, precision v0byc, precision p0d,precision Energyd)
 {
   precision xt,pxt,yt,pyt,det,dx,dy;
   dx = rhic_d[j].dx; dy = rhic_d[j].dy;
@@ -480,19 +480,19 @@ __device__ void BendProp(int N, int j,   precision &x,   precision &px,   precis
   if(rhic_d[j].entryMlt[0] < 1000){
     applyMltKickgpuP(N,j,1.0,0,0.,0. ,x, px, y, py);//
   }
-  makeVelocitygpuP(N,px, py,de,xt,pxt, pyt);//
-  makeRVgpuP(N, de, det);//
+  makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc);//
+  makeRVgpuP(N, de, det,p0d,Energyd);//
   
     
     if(rhic_d[j].m_ir == 0){
-      passBendSlicegpuP(N,j,0, x, px, y, py, ct,de, xt, pxt, yt, pyt, det);//
+      passBendSlicegpuP(N,j,0, x, px, y, py, ct,de, xt, pxt, yt, pyt, det,v0byc);//
       
       if(rhic_d[j].mlt[0] < 1000){
-	 applyMltKickgpuP(N,j,1.0,1,dx,dy,x, px, y, py); //
+	applyMltKickgpuP(N,j,1.0,1,dx,dy,x, px, y, py); //
       }
-      applyThinBendKickgpuP(N,j,1,dx,dy, x,px,y,py,ct, de);//
-      makeVelocitygpuP(N,px, py,de,xt,pxt, pyt);//
-      passBendSlicegpuP(N,j,1, x, px, y, py, ct,de, xt, pxt, yt, pyt, det); //
+      applyThinBendKickgpuP(N,j,1,dx,dy, x,px,y,py,ct, de,v0byc);//
+      makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc);//
+      passBendSlicegpuP(N,j,1, x, px, y, py, ct,de, xt, pxt, yt, pyt, det,v0byc); //
 
 	}else {
       precision rIr, rkicks;
@@ -504,27 +504,27 @@ __device__ void BendProp(int N, int j,   precision &x,   precision &px,   precis
    for(int i = 0; i < rhic_d[j].m_ir; i++){
      for(int is = 1; is < 5; is++){
        counter++;
-       passBendSlicegpuP(N,j,counter, x, px, y, py, ct,de, xt, pxt, yt, pyt, det);//
+       passBendSlicegpuP(N,j,counter, x, px, y, py, ct,de, xt, pxt, yt, pyt, det,v0byc);//
        if(rhic_d[j].mlt[0] < 1000){
 	 applyMltKickgpuP(N,j,rkicks,1,dx,dy,x, px, y, py); //
  }
-       applyThinBendKickgpuP(N,j,rkicks,dx,dy,x, px, y, py,ct,de);//
-	makeVelocitygpuP(N,px, py,de,xt,pxt, pyt);
+       applyThinBendKickgpuP(N,j,rkicks,dx,dy,x, px, y, py,ct,de,v0byc);//
+       makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc);
      }
      counter++;
-     passBendSlicegpuP(N,j,counter, x, px, y, py, ct,de, xt, pxt, yt, pyt, det);
-      makeVelocitygpuP(N,px, py,de,xt,pxt, pyt);
+     passBendSlicegpuP(N,j,counter, x, px, y, py, ct,de, xt, pxt, yt, pyt, det,v0byc);
+     makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc);
    }
     }
 
     if(rhic_d[j].exitMlt[0] < 1000){
      
-       applyMltKickgpuP(N,j,1,2,0.0,0.0,x, px, y, py); }
+      applyMltKickgpuP(N,j,1,2,0.0,0.0,x, px, y, py); }
 }
 
 
 
-__device__ void MultProp(int N, int j,   precision &x,   precision &px,   precision &y,   precision &py,   precision &ct,   precision &de)
+__device__ void MultProp(int N, int j,   precision &x,   precision &px,   precision &y,   precision &py,   precision &ct,   precision &de, precision v0byc, precision p0d,precision Energyd)
 {
   //  printf("MultProp \n");
   precision xt,pxt,pyt,det,dx,dy;
@@ -538,16 +538,16 @@ __device__ void MultProp(int N, int j,   precision &x,   precision &px,   precis
   if(rhic_d[j].entryMlt[0] < 1000 ){
     applyMltKickgpuP(N,j,1.,0,0.0,0.0,x, px, y, py);//
   }
-  makeVelocitygpuP(N,px, py,de,xt,pxt, pyt);//
-  makeRVgpuP(N, de, det);//
+  makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc);//
+  makeRVgpuP(N, de, det,p0d,Energyd);//
 
    if(rhic_d[j].m_ir == 0){
-     passDriftgpuP(N,rhic_d[j].m_l/2.00, x, pxt, y, pyt, ct, det);//
+     passDriftgpuP(N,rhic_d[j].m_l/2.00, x, pxt, y, pyt, ct, det,v0byc);//
      //if(rhic_d[j].mlt[0] < 1000) {
    applyMltKickgpuP(N,j,1.,1,dx,dy,x, px, y, py);//
    // }
-   makeVelocitygpuP(N,px, py,de,xt,pxt, pyt);
-   passDriftgpuP(N,rhic_d[j].m_l/2.00, x, pxt, y, pyt, ct, det);
+   makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc);
+   passDriftgpuP(N,rhic_d[j].m_l/2.00, x, pxt, y, pyt, ct, det,v0byc);
    if(rhic_d[j].exitMlt[0] < 1000) {
    applyMltKickgpuP(N,j,1.,2,0.0,0.0,x, px, y, py);//
 }
@@ -562,14 +562,14 @@ __device__ void MultProp(int N, int j,   precision &x,   precision &px,   precis
      for(int i = 0; i < rhic_d[j].m_ir; i++){
       for(int is = 0; is < 4; is++){
 	counter++;
-	passDriftgpuP(N,rhic_d[j].m_l*s_steps[is]*rIr, x, pxt, y, pyt, ct, det);//
+	passDriftgpuP(N,rhic_d[j].m_l*s_steps[is]*rIr, x, pxt, y, pyt, ct, det,v0byc);//
         // if(rhic_d[j].mlt[0] < 1000) {
 	   applyMltKickgpuP(N,j,rkicks,1,dx,dy,x, px, y, py); // 
 	   //}
-	 makeVelocitygpuP(N,px, py,de,xt,pxt, pyt); //
+	   makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc); //
       }
       counter++;
-      passDriftgpuP(N,rhic_d[j].m_l*s_steps[4]*rIr, x, pxt, y, pyt, ct, det); //
+      passDriftgpuP(N,rhic_d[j].m_l*s_steps[4]*rIr, x, pxt, y, pyt, ct, det,v0byc); //
      }
       if(rhic_d[j].exitMlt[0] < 1000) {
     applyMltKickgpuP(N,j,1.,2,0.0,0.0,x, px, y, py); //
@@ -580,7 +580,7 @@ __device__ void MultProp(int N, int j,   precision &x,   precision &px,   precis
 
 
 
-__device__ void DriftProp(int N, int j,   precision &x,   precision &px,   precision &y,   precision &py,   precision &ct,   precision &de)
+__device__ void DriftProp(int N, int j,   precision &x,   precision &px,   precision &y,   precision &py,   precision &ct,   precision &de, precision v0byc,precision p0d,precision Energyd)
   {
      precision xt,pxt,pyt,det;
   
@@ -589,9 +589,9 @@ __device__ void DriftProp(int N, int j,   precision &x,   precision &px,   preci
  pyt = py;
  det = de;
    
-    makeVelocitygpuP(N,px, py,de,xt,pxt, pyt);
-    makeRVgpuP(N, de, det);
-    passDriftgpuP(N,rhic_d[j].m_l, x, pxt, y, pyt, ct, det);
+ makeVelocitygpuP(N,px, py,de,xt,pxt, pyt,v0byc);
+ makeRVgpuP(N, de, det,p0d,Energyd);
+    passDriftgpuP(N,rhic_d[j].m_l, x, pxt, y, pyt, ct, det,v0byc);
     //  t0_d += rhic_d[j].m_l/v0byc_d/clite_d;
   
 
@@ -604,21 +604,21 @@ __device__ void DriftProp(int N, int j,   precision &x,   precision &px,   preci
 
 
 __device__ void
-gpupropogateSpin(int N, precision ang, precision h, precision length, precision k1l, precision k2l, precision k0l, precision kls0,    precision x,   precision px,   precision y,   precision py,   precision ct,   precision de,   double &sx0,   double &sy0,   double &sz0)
+gpupropogateSpin(int N, precision ang, precision h, precision length, precision k1l, precision k2l, precision k0l, precision kls0,    precision x,   precision px,   precision y,   precision py,   precision ct,   precision de,   double &sx0,   double &sy0,   double &sz0,precision v0byc, precision p0d, precision Energyd)
 {
  double e,p,gamma, KLx, KLy, vKL, fx, fy, fz, dt_by_ds;
  double omega, pz, psp0 = 1.00;
  double A0,A1,A2,cs,sn,sx1,sy1,sz1;
  double s_mat00,s_mat01,s_mat02,s_mat10,s_mat20,s_mat11,s_mat22,s_mat21,s_mat12;
  //printf("in gpupropogate Spin \n");
-    e = de*p0_d[N] + Energy_d[N];
+    e = de*p0d + Energyd;
     p = sqrt(e*e - m0_d*m0_d);
     gamma = e/m0_d;
     psp0 -= px*px;
     psp0 -= py*py;
 
     psp0 += de*de;
-    psp0 += (2.00/v0byc_d[N])*de;
+    psp0 += (2.00/v0byc)*de;
 
     pz = sqrt(psp0);
     
@@ -628,11 +628,11 @@ gpupropogateSpin(int N, precision ang, precision h, precision length, precision 
     KLx = k1l*y + 2.00*k2l*x*y + kls0;
     KLy  = h*length + k1l*x - k1l*y*y/2.00*h + k2l*(x*x - y*y) + k0l;  //VR added kls0 and k0l for kicker field effects.
     
-    vKL = (px*KLx + py*KLy)/(p/p0_d[N]);
+    vKL = (px*KLx + py*KLy)/(p/p0d);
 
-    fx = (1.00 + GG_d*gamma)*KLx - GG_d*(gamma - 1.00)*vKL*px/(p/p0_d[N]);
-    fy = (1.00 + GG_d*gamma)*KLy - GG_d*(gamma - 1.00)*vKL*py/(p/p0_d[N]);
-    fz = -GG_d*(gamma - 1.00)*vKL*pz/(p/p0_d[N]);
+    fx = (1.00 + GG_d*gamma)*KLx - GG_d*(gamma - 1.00)*vKL*px/(p/p0d);
+    fy = (1.00 + GG_d*gamma)*KLy - GG_d*(gamma - 1.00)*vKL*py/(p/p0d);
+    fz = -GG_d*(gamma - 1.00)*vKL*pz/(p/p0d);
 
     dt_by_ds = (1.00 + h*x)/pz;
 
@@ -666,18 +666,15 @@ gpupropogateSpin(int N, precision ang, precision h, precision length, precision 
     s_mat22 = 1.00 - (A0*A0 + A1*A1)*cs ;
 
      } else { return;
-    s_mat00 = s_mat11 = s_mat22 = 1.00 ;
-    s_mat01 = s_mat02 = s_mat10 = s_mat12 = s_mat20 = s_mat21 = 0.00 ;
+       // s_mat00 = s_mat11 = s_mat22 = 1.00 ;
+       // s_mat01 = s_mat02 = s_mat10 = s_mat12 = s_mat20 = s_mat21 = 0.00 ;
   }
 
     sx1 = s_mat00*sx0 + s_mat01*sy0 + s_mat02*sz0;
     sy1 = s_mat10*sx0 + s_mat11*sy0 + s_mat12*sz0;
     sz1 = s_mat20*sx0 + s_mat21*sy0 + s_mat22*sz0;
-    int k = blockDim.x*blockIdx.x + threadIdx.x;
-    if(ang == 0 && k == 0 ){ icount_d++;
-      dS2_d += (sx0-sx1)*(sx0-sx1) + (sy0-sy1)*(sy0-sy1)+(sz0-sz1)*(sz0-sz1); }
-    // if(dS2_d > TOL_d ) stepsize_d /=2;
-    // if(dS2_d <= TOL_d) stepsize_d *=2;
+    //    int k = blockDim.x*blockIdx.x + threadIdx.x;
+   
      
    sx0=sx1;sy0=sy1;sz0=sz1;
        
@@ -758,7 +755,7 @@ __device__ void SnakeProp(int N,int j,   double &sx,   double &sy,   double &sz)
 }
 
 
-__device__ void propagateSpin(int N, int j,   precision x,   precision px,   precision y,   precision py,   precision ct,   precision de,   double &sx,   double &sy,   double &sz)
+__device__ void propagateSpin(int N, int j,   precision x,   precision px,   precision y,   precision py,   precision ct,   precision de,   double &sx,   double &sy,   double &sz, precision v0byc, precision p0d, precision Energyd)
 {
   //printf("propagateSpin \n"); 
   int ns = 1;
@@ -792,7 +789,7 @@ __device__ void propagateSpin(int N, int j,   precision x,   precision px,   pre
   // k2l = rhic_d[j].k2l/ns;
   float K = h*h + k1l*k1l + k2l*k2l + k2l*k2l + kls0*kls0 + ang*ang;
   if( K < small) return;
-   gpupropogateSpin(N, ang, h, length, k1l, k2l, k0l,kls0, x,px,y,py,ct,de, sx, sy, sz);
+  gpupropogateSpin(N, ang, h, length, k1l, k2l, k0l,kls0, x,px,y,py,ct,de, sx, sy, sz,v0byc,p0d,Energyd);
     
 
    //} 
@@ -812,13 +809,15 @@ __global__ void gpuPropagate(int N, int Nturns, int Nelement){
    //  precision v;
      precision x,px,y,py,ct,de;
     
-     double sx,sy,sz,sxi,syi,szi;
-     int fac = 1;
+     double sx,sy,sz,v0byc,p0d,Energyd;
    x= pos_d[i].x; px = pos_d[i].px; y = pos_d[i].y;
    py = pos_d[i].py; ct = pos_d[i].ct; de = pos_d[i].de;
    sx = pos_d[i].sx; sy = pos_d[i].sy ; sz = pos_d[i].sz;
-   //   sxi = sx; syi = sy; szi = sz;
+   v0byc = v0byc_d[i];
+   p0d = p0_d[i];
+   Energyd = Energy_d[i];
    bool MULT = false;
+  
    for(int turns= 1; turns <= Nturns; turns++) {
  
  // looping over lattice elements 
@@ -826,6 +825,10 @@ for(int j = 0 ; j < Nelement ; j++)
    {
      //  length=0.00; ang = 0.00;
      MULT = false;
+   
+     //     for(int kk=0; kk < 6;kk++)
+     //  MLT_d[kk] = rhic_d[j].mlt[kk];
+    
      //   v = p0_d/gam_d/m0_d/clite_d;
      if(rhic_d[j].mlt[0] < 1000) MULT = true;
  
@@ -837,19 +840,19 @@ for(int j = 0 ; j < Nelement ; j++)
       
        if(rhic_d[j].rfcav == 1 ){
 	
-	 RFProp(i,j, x, px, y, py,ct,de);
+	 RFProp(i,j, x, px, y, py,ct,de,v0byc,p0d,Energyd);
 	 continue;
        }
           
 
 	 if(ang > small){
 	  
-	   BendProp(i,j,x,px,y,py,ct,de);
+	   BendProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 	 
 	 }else if(MULT) {
-	   MultProp(i,j,x,px,y,py,ct,de);
+	   MultProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 	 }else if(length > 0) {
-	   DriftProp(i,j,x,px,y,py,ct,de);
+	   DriftProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 	 }
 
   
@@ -858,21 +861,21 @@ for(int j = 0 ; j < Nelement ; j++)
 		if(rhic_d[j].snake > 0 ){
   
 	  SnakeProp(i,j,sx,sy,sz);} else{
-	  propagateSpin(i,j,x,px,y,py,ct,de,sx,sy,sz);}
+		  propagateSpin(i,j,x,px,y,py,ct,de,sx,sy,sz,v0byc,p0d,Energyd);}
 	
 
 
     if(ang > small){
 	
-      BendProp(i,j,x,px,y,py,ct,de);
+      BendProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 	
     }else if(MULT) {
 	
-      MultProp(i,j,x,px,y,py,ct,de);
+      MultProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 	
  } else if( length > small){
    
-      DriftProp(i,j,x,px,y,py,ct,de);
+      DriftProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
       
 }
    
@@ -885,24 +888,7 @@ for(int j = 0 ; j < Nelement ; j++)
 
      int ns = rhic_d[j].ns;  
      
-     //    precision stepsize = 0.0001;
-      
-     /**   if(MULT==true && ns > 2 && i ==0){
-       fac = 1;
-       precision leng = rhic_d[j].m_l;
-       if(stepsize_d > leng/ns) {  fac = ns/4; ns = 4; leng = fac*leng; fac = 1;}
-       // if( leng/fac >= stepsize_d){
-       while(leng/(fac*ns) > stepsize_d) fac= fac*2;
-        ns = ns*fac; leng = leng/fac;
-       // } else {
-       // while( stepsize_d > leng*1.1/fac && ns*fac > 2 ) fac = fac/2;
-       //	
-          // }
-       
-        rhic_d[j].ns = ns; rhic_d[j].m_l = leng;
-   }
-     
-     **/
+  
      ns = rhic_d[j].ns*4;
 
      // length /= 2*ns;
@@ -914,15 +900,15 @@ for(int j = 0 ; j < Nelement ; j++)
     
    if(ang > small){
 	
-     BendProp(i,j,x,px,y,py,ct,de);
+     BendProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 
  }else if(MULT) {
 
-     MultProp(i,j,x,px,y,py,ct,de);
+     MultProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 	
  }  else if( length > small){
      
-     DriftProp(i,j,x,px,y,py,ct,de);
+     DriftProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
       
    }
    
@@ -932,20 +918,20 @@ for(int j = 0 ; j < Nelement ; j++)
     if(rhic_d[j].snake > 0){
      
       SnakeProp(i,j,sx,sy,sz);} else{
-      propagateSpin(i,j,x,px,y,py,ct,de,sx,sy,sz);}
+      propagateSpin(i,j,x,px,y,py,ct,de,sx,sy,sz,v0byc,p0d,Energyd);}
        
 
     if(ang > small){
 	
-      BendProp(i,j,x,px,y,py,ct,de);
+      BendProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 
     }else if(MULT) {
 
-      MultProp(i,j,x,px,y,py,ct,de);
+      MultProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
 	  
     } else if( length > small){
      
-      DriftProp(i,j,x,px,y,py,ct,de);
+      DriftProp(i,j,x,px,y,py,ct,de,v0byc,p0d,Energyd);
       
    }
    
@@ -958,21 +944,15 @@ for(int j = 0 ; j < Nelement ; j++)
 
    }
 
- if(icount_d != 0){
-  dS2_d /=icount_d;
-  dS2_d /= stepsize_d;}
- icount_d = 0;
 
-
-// dS2 =  (sx-sxi)*(sx-sxi) + (sy-syi)*(sy-syi) + (sz-szi);
-//while(dS2*stepsize > STOL ) stepsize=stepsize/2.0; 
 
    }
 
    pos_d[i].x = x; pos_d[i].px = px; pos_d[i].y = y ; pos_d[i].py = py;
    pos_d[i].ct = ct; pos_d[i].de = de; pos_d[i].sx = sx; pos_d[i].sy = sy;
    pos_d[i].sz = sz;
-
+   v0byc_d[i] = v0byc;
+   p0_d[i] = p0d; Energy_d[i] = Energyd;
 }
 
 
