@@ -43,6 +43,9 @@ typedef struct {
   precision k1l ,k0l,kls0, k2l,length,bend;
   }Lat;
 
+typedef struct {
+  precision mlt[10];}Qlat;
+
 
 vec6D pos[PARTICLES];
 Lat rhic[ELEMENTS];
@@ -87,14 +90,7 @@ namespace SPINK {
     void setLatticeElement(const PacLattElement& e);
  static void setSnakeParams(precision mu1, precision mu2, precision phi1, precision phi2, precision the1, precision the2)
     {snk1_mu = mu1; snk2_mu = mu2; snk1_phi = phi1; snk2_phi = phi2; snk1_theta = the1; snk2_theta = the2;}
-    void propagate(UAL::Probe& bunch);
-    void BendProp(PAC::Bunch& bunch);
-    void MultProp(PAC::Bunch& bunch);
-    void RFProp(PAC::Bunch& bunch);
-    void DriftProp(PAC::Bunch& bunch);
-    void propagateSpin(UAL::Probe& bunch);
-    void SnakeProp(PAC::Bunch& bunch);
-
+   
     UAL::PropagatorNode* clone();
 
     /** Setup a dump flag for diagnostics AUL:02MAR10 */
@@ -106,8 +102,8 @@ namespace SPINK {
     static int nturn ;
     static void readPart(PAC::Bunch& bunch, int printall);
     static void loadPart(PAC::Bunch& bunch);
-    static void setStep(precision step);
-    static void setTOL(precision TOLin);
+    static void setStep(precision step){ stepsize = step;};
+   
 
     /** Sets Rf patameters */
     static void setRF(precision V, precision harmon, precision lag) { 
