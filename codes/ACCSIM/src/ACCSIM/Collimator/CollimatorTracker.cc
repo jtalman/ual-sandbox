@@ -30,7 +30,7 @@ ACCSIM::CollimatorTracker::~CollimatorTracker(){
 
 UAL::PropagatorNode* ACCSIM::CollimatorTracker::clone()
 {
-  return new ACCSIM::CollimatorTracker::CollimatorTracker(*this);
+  return new ACCSIM::CollimatorTracker(*this);
 }
 
 void ACCSIM::CollimatorTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
