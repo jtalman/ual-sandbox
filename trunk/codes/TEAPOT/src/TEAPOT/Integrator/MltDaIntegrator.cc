@@ -12,6 +12,11 @@
 
 TEAPOT::MagnetAlgorithm<ZLIB::Tps, ZLIB::VTps> TEAPOT::MltDaIntegrator::s_algorithm;
 
+const char* TEAPOT::MltDaIntegrator::getType()
+{
+  return "TEAPOT::MltDaIntegrator";
+}
+
 TEAPOT::MltDaIntegrator::MltDaIntegrator()
 {
   initialize();
