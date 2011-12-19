@@ -12,6 +12,10 @@
 
 TEAPOT::DipoleAlgorithm<ZLIB::Tps, ZLIB::VTps> TEAPOT::DipoleDaIntegrator::s_algorithm;
 
+const char* TEAPOT::DipoleDaIntegrator::getType() {
+  return "TEAPOT::DipoleAlgorithm";
+}
+
 TEAPOT::DipoleDaIntegrator::DipoleDaIntegrator()
 {
 }
