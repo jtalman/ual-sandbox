@@ -12,6 +12,11 @@
 
 TEAPOT::DriftAlgorithm<ZLIB::Tps, ZLIB::VTps> TEAPOT::DriftDaIntegrator::s_algorithm;
 
+const char* TEAPOT::DriftDaIntegrator::getType()
+{
+  return "TEAPOT::DriftDaIntegrator";
+}
+
 TEAPOT::DriftDaIntegrator::DriftDaIntegrator()
 {
   initialize();

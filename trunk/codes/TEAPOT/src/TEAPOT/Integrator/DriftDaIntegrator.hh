@@ -27,6 +27,8 @@ namespace TEAPOT {
     /** Destructor */
     ~DriftDaIntegrator();
 
+    const char* getType();
+
     /** Returns a deep copy of this object (inherited from UAL::PropagatorNode) */
     UAL::PropagatorNode* clone();
 
