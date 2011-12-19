@@ -17,6 +17,8 @@ namespace UAL {
 
   public:
 
+    const char* getType();
+
     /** Returns false */
     bool isSequence();
 
