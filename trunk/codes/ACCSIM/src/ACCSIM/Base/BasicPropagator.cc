@@ -7,6 +7,11 @@
 #include "UAL/SMF/AcceleratorNodeFinder.hh"
 #include "ACCSIM/Base/BasicPropagator.hh"
 
+const char* ACCSIM::BasicPropagator::getType()
+{
+  return "ACCSIM::BasicPropagator";
+}
+
 ACCSIM::BasicPropagator::BasicPropagator()
 {
 }
