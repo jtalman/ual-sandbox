@@ -5,6 +5,11 @@
 
 #include "SIMBAD/Tracker/BasicTracker.hh"
 
+const char* SIMBAD::BasicTracker::getType()
+{
+  return "SIMBAD::BasicTracker";
+}
+
 SIMBAD::BasicTracker::BasicTracker()
 {
 }
