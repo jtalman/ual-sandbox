@@ -12,6 +12,8 @@
 #include "UAL/Common/RCIPtr.hh"
 #include "UAL/SMF/AcceleratorNode.hh"
 
+#include <string>
+
 namespace UAL {
 
 /**  A basis interface of a hierarchical tree of accelerator propagator nodes.*/
@@ -19,6 +21,8 @@ namespace UAL {
   class PropagatorNode : public Algorithm {
 
   public:
+
+    virtual const char* getType() = 0;
 
     /** Returns true if this node is composite */
     virtual bool isSequence() = 0;
