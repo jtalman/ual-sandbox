@@ -1,0 +1,11 @@
+<apdf>
+  <propagator id="Evolver" accelerator="ring">
+     <create>
+       <link algorithm="TEAPOT::DriftDaIntegrator" types="Default"/>
+       <link algorithm="TEAPOT::DriftDaIntegrator" types="Drift"/>
+       <link algorithm="TEAPOT::DipoleDaIntegrator" types="Sbend"/>
+       <link algorithm="TEAPOT::MltDaIntegrator" types="Quadrupole"/>
+       <link algorithm="TEAPOT::MltDaIntegrator" types="Sextupole"/>
+     </create>
+  </propagator>
+</apdf>
