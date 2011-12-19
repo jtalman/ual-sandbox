@@ -33,6 +33,8 @@ namespace UAL {
     /** Copy operator */
     PropagatorSequence& operator=(const PropagatorSequence& rhs);
 
+    const char* getType();
+
     /** Returns true */
     bool isSequence();
 
