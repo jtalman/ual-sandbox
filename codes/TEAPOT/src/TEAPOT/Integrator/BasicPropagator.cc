@@ -21,6 +21,11 @@ UAL::PropagatorNode*  TEAPOT::BasicPropagator::clone()
   return new TEAPOT::BasicPropagator();
 }
 
+void TEAPOT::BasicPropagator::getType()
+{
+  return "TEAPOT::BasicPropagator";
+}
+
 void TEAPOT::BasicPropagator::propagate(UAL::Probe& probe)
 {
 }
