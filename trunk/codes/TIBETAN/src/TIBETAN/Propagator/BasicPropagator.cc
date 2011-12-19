@@ -7,6 +7,10 @@
 #include "UAL/SMF/AcceleratorNodeFinder.hh"
 #include "TIBETAN/Propagator/BasicPropagator.hh"
 
+const char* TIBETAN::BasicPropagator::getType()
+{
+  return "TIBETAN::BasicPropagator";
+}
 
 TIBETAN::BasicPropagator::BasicPropagator()
 {
