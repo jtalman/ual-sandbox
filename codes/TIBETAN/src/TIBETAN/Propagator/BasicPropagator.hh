@@ -24,6 +24,8 @@ namespace TIBETAN {
     /** Destructor */
     virtual ~BasicPropagator();
 
+    const char* getType();
+
     /** Returns false */
     bool isSequence() { return false; }
 
