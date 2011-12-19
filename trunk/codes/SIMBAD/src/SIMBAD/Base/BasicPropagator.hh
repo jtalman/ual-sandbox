@@ -18,6 +18,8 @@ namespace SIMBAD {
   {
   public:
 
+    const char* getType();
+
     /** Returns false (PropagatorNode method) */
     bool isSequence() { return false; }
 

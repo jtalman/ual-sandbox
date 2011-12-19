@@ -6,6 +6,10 @@
 #include "UAL/SMF/AcceleratorNodeFinder.hh"
 #include "SIMBAD/Base/BasicPropagator.hh"
 
+const char*  SIMBAD::BasicPropagator::getType(){
+  return "SIMBAD::BasicPropagator";
+}
+
 
 void SIMBAD::BasicPropagator::setLatticeElements(const UAL::AcceleratorNode& sequence, 
 						 int i0, int i1, 
