@@ -24,6 +24,8 @@ namespace TEAPOT {
     /** Destructor */
     virtual ~BasicPropagator();
 
+    const char* getType();
+
     /** Returns fasle */
     bool isSequence() { return false; }
 
