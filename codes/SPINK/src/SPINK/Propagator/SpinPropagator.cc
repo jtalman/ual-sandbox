@@ -8,6 +8,11 @@
 
 double SPINK::SpinPropagator::OTs_mat[3][3] = { 1.0,0.0,0.0, 0.0,1.0,0.0, 0.0,0.0,1.0 }; //AULNLD:11DEC09
 
+const char* SPINK::SpinPropagator::getType()
+{
+  return "SPINK::SpinPropagator";
+}
+
 SPINK::SpinPropagator::SpinPropagator()
 {
 
