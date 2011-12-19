@@ -25,6 +25,8 @@ namespace SPINK {
     /** Destructor */
     virtual ~SpinPropagator();
 
+    const char* getType();
+
     /** Returns false */
     bool isSequence() { return false; }
 
