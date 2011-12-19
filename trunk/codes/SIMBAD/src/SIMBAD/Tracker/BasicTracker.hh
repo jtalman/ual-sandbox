@@ -24,6 +24,8 @@ namespace SIMBAD {
     /** Destructor */
     virtual ~BasicTracker();
 
+    const char* getType();
+
     /** Returns false */
     bool isSequence() { return false; }
     
