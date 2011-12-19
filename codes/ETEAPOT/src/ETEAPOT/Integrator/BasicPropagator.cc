@@ -7,6 +7,11 @@
 
 double ETEAPOT::BasicPropagator::s_steps[] = {0.1, 4./15., 4./15., 4./15., 0.1};  
 
+const char*  ETEAPOT::BasicPropagator::getType()
+{
+  return "ETEAPOT::BasicPropagator";
+}
+
 ETEAPOT::BasicPropagator::BasicPropagator()
 {
 }
