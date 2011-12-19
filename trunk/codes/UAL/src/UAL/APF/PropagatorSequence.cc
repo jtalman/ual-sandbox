@@ -28,6 +28,11 @@ UAL::PropagatorSequence& UAL::PropagatorSequence::operator=(const UAL::Propagato
   return *this;
 }
 
+const char* UAL::PropagatorSequence::getType()
+{
+  return "UAL::PropagatorSequence";
+}
+
 bool UAL::PropagatorSequence::isSequence()
 {
   return true;
