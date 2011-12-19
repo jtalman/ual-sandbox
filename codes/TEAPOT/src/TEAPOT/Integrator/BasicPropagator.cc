@@ -21,7 +21,7 @@ UAL::PropagatorNode*  TEAPOT::BasicPropagator::clone()
   return new TEAPOT::BasicPropagator();
 }
 
-void TEAPOT::BasicPropagator::getType()
+const char* TEAPOT::BasicPropagator::getType()
 {
   return "TEAPOT::BasicPropagator";
 }
