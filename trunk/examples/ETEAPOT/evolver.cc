@@ -113,12 +113,12 @@ int main(int argc,char * argv[]){
  PacTMap map0(6);
   map0.mltOrder(2);
 
-  std::string xmlFile = "./data/evolver.apdf";
+  std::string apdfFile = "./data/evolver.apdf";
 
  UAL::APDF_Builder apBuilder;
  apBuilder.setBeamAttributes(ba);
 
- UAL::AcceleratorPropagator* ap = apBuilder.parse(xmlFile);
+ UAL::AcceleratorPropagator* ap = apBuilder.parse(apdfFile);
 
  if(ap == 0) {
    std::cout << "Accelerator Propagator has not been created " << std::endl;
