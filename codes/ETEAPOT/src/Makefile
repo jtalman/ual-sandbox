@@ -1,4 +1,4 @@
-include $(UAL_TEAPOT)/src/Makefile.config
+include $(UAL_ETEAPOT)/src/Makefile.config
 
 DIRS =  ./ETEAPOT
 
