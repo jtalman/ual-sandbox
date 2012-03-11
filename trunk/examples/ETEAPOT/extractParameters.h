@@ -12,9 +12,13 @@
  std::string twissFile = "./out/cpp/";
  twissFile += mysxfbase;
  twissFile += ".twiss";
- std::string apdfFile = "./data/eteapot.apdf";
+//std::string apdfFile = "./data/eteapotConservedVector.apdf";
+//std::string apdfFile = "./data/eteapotLegacyBenchmark.apdf";
+  std::string apdfFile = "./data/eteapot.apdf";
  std::string orbitFile = "./out/cpp/";
  orbitFile += mysxfbase;
  orbitFile += ".orbit";
 
- int split = 0;
+ int split = 1;
+ int order = 2;
+// int turns = 1;
