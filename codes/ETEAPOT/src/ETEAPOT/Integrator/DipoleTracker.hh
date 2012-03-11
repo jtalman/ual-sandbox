@@ -1,18 +1,27 @@
 // Library       : ETEAPOT
 // File          : ETEAPOT/Integrator/DipoleTracker.hh
 // Copyright     : see Copyright file
+// Author        : L.Schachinger and R.Talman
+// C++ version   : N.Malitsky 
 
 #ifndef ETEAPOT_DIPOLE_TRACKER_HH
 #define ETEAPOT_DIPOLE_TRACKER_HH
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+
 #include "ETEAPOT/Integrator/DipoleData.hh"
 #include "ETEAPOT/Integrator/MltData.hh"
-#include "ETEAPOT/Integrator/DipoleAlgorithm.hh"
+#include "algorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
+
+#define MAXSXF 1000
 
 namespace ETEAPOT {
 
-  /** Dipole tracker. */
+  /** bend tracker. */
 
   class DipoleTracker : public BasicTracker {
 
@@ -40,12 +49,9 @@ namespace ETEAPOT {
 
     inline DipoleData& getDipoleData();
 
-    inline MltData& getMltData();
-    
-  public:
+    inline MltData& getElectricData();
 
-    void setM(double m) { m_data.m_m = m; }
-    double getM() { return m_data.m_m; }
+    static double m_m;
 
   protected:
 
@@ -54,15 +60,14 @@ namespace ETEAPOT {
 
   protected:
 
-    /** Dipole attributes */
+    /** bend attributes */
     DipoleData m_data;
 
-    /** Mlt attributes */
-    MltData m_mdata;
+    /** Electric attributes */
+    MltData m_edata;
 
     /** Propagator algorithm */
-    static DipoleAlgorithm<double, PAC::Position> s_algorithm;
-
+    static algorithm<double, PAC::Position> s_algorithm;
 
   };
 
@@ -71,9 +76,9 @@ namespace ETEAPOT {
       return m_data;
   }
 
-  inline MltData& DipoleTracker::getMltData()
+  inline MltData& DipoleTracker::getElectricData()
   {
-      return m_mdata;
+      return m_edata;
   }
 
 }
