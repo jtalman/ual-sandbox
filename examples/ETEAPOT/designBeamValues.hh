@@ -1,34 +1,24 @@
-std::cout << "#################################   Design Beam Values\n";
-double gamma0=1.248107349;
-std::cout << "   double gamma0= " << gamma0 << "\n";
-std::cout << "\n";
-double m0=UAL::pmass;                       // * (2)
+#define GAMMA_FROZEN_SPIN 1.248107349
+#define INJECTION_AMBIT   argv[2]
 
-double e0=gamma0*m0;                        // 1
-//double m0=;                               // 2
-double q0=UAL::elemCharge;                  // 3
-double t0=0;                                // 4
-double f0=1e6;                              // 5
-double M0=1;                                // 6
-double G0=UAL::pG;                          // 7
-double R0=40;                               // * (10)
-double v0=sqrt(1-1/gamma0/gamma0);
-double p0=gamma0*m0*v0;
-double L0=R0*p0;                            // 8
-double E0=12e6;                             // 9
-//double R0=;                               // 10
-//double gap=3e-2;                          // 11?
-std::cout << "   double e0= " << e0 << "\n";
-std::cout << "   double m0= " << m0 << "\n";
-std::cout << "   double q0= " << q0 << "\n";
-std::cout << "   double t0= " << t0 << "\n";
-std::cout << "   double f0= " << f0 << "\n";
-std::cout << "   double M0= " << M0 << "\n";
-std::cout << "   double G0= " << G0 << "\n";
-std::cout << "   double L0= " << L0 << "\n";
-std::cout << "   double E0= " << E0 << "\n";
-std::cout << "   double R0= " << R0 << "\n";
-std::cout << "\n";
-std::cout << "   double v0= " << v0 << "\n";
-std::cout << "   double p0= " << p0 << "\n";
-std::cout << "#################################   Design Beam Values\n";
+std::cout     << "#################################   Design Beam Orientation\n";
+double gamma0  = GAMMA_FROZEN_SPIN;                // fundamental kinematic parameter
+double c       = 1;                                // other units (mks) have 2.99792458e8 m/s
+double b0      = sqrt(1-1/gamma0/gamma0);          // equivalent fundamental kinematic parameter
+double v0      = b0*c;                             // equivalent fundamental kinematic parameter
+
+// $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.hh   // # (index) of member variable
+double m0      = UAL::pmass;                       // 2
+double e0      = gamma0*m0;                        // 1
+double p0      = gamma0*m0*v0;                     //
+
+double q0      = UAL::elemCharge;                  // 3
+double t0      = 0;                                // 4
+double f0      = 1;                                // 5
+double M0      = 1;                                // 6
+double G0      = UAL::pG;                          // 7
+double IA      = atof(INJECTION_AMBIT);            // (10) not used
+double L0      = IA*p0;                            // 8
+double El0     = 10.5e6;                           // 9
+
+std::cout     << "#################################   Design Beam Orientation\n";
