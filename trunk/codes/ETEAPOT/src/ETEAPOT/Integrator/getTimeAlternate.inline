@@ -1,0 +1,35 @@
+double getTime1(double fac,double theta){
+    double a      = epsilon;
+    double mpa    = -1+a;                        // "m = -1"
+    double t      = tan(kappa*theta/2);
+    double pmaa   = 1-a*a;                       // "Circumscribing/Governing Factor"
+    double Rpmaa  = sqrt(pmaa);                  // "R = square root", "p = +1"
+    double angle  = 2*atan(mpa*t/Rpmaa);
+    double angle2 = angle/kappa/mpa/Rpmaa;
+                                                 // terms 1(A) and 3(C) combined
+    double AC     = angle2/(1+a);                // angle2*(1-a/(1+a));
+
+    double aamp   = a*a-1;
+    double T      = mpa*t*t-1-a;
+
+    double B      = -2*a*t/kappa/aamp/T;
+    return fac*(AC+B);
+}
+
+double getTime2(double fac,double theta){
+    double a      = epsilon;
+    double mpa    = -1+a;                        // "m = -1"
+    double t      = tan(kappa*theta/2);
+    double pmaa   = 1-a*a;                       // "Circumscribing/Governing Factor"
+    double Rpmaa  = sqrt(pmaa);                  // "R = square root", "p = +1"
+    double angle  = 2*atan(mpa*t/Rpmaa);
+    double angle2 = angle/kappa/mpa/Rpmaa;
+                                                 // terms 1(A) and 3(C) combined
+    double DF     = -a*angle2/(1+a);             // angle2*(1/(1+a)-1);
+
+    double aamp   = a*a-1;
+    double T      = mpa*t*t-1-a;
+
+    double E      = +2*t/kappa/aamp/T;
+    return fac*(DF+E);
+}

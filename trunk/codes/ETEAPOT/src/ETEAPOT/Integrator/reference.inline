@@ -1,0 +1,56 @@
+//#define GAMMA_FROZEN_SPIN 1.248107349
+
+//                   probe deviations
+double  dx   = p[0];
+double  dy   = p[2];
+double  dz   = 0.0;
+double dpx   = p[1]*p0;
+double dpy   = p[3]*p0;
+double dpz;
+//                   probe deviations
+
+//                   probe values
+double x     = Rsxf+dx; 
+double y     = dy;
+double z     = dz;
+
+double px    = dpx;
+double py    = dpy;
+double pz;
+//                   probe values
+
+       gamma = gafti;                         // for header methods
+       mass  = m0;                            // for header methods
+
+double rIn   = get_rFromProbe(x,y,z);         //
+       EscM  = gamma*m0*c*c-k/rIn;            //      
+
+double pIn;
+double bin;
+
+bin = sqrt(1-1/gamma/gamma);
+pIn = gamma*m0*bin*c;
+
+pz = sqrt(pIn*pIn-px*px-py*py);
+
+double Lx    = y*pz-z*py;
+double Ly    = z*px-x*pz;
+double Lz    = x*py-y*px;
+       L     = sqrt(Lx*Lx+Ly*Ly+Lz*Lz);
+
+if(ip==0){
+ std::cout << "bin " << bin  << "\n";
+ std::cout << "pIn " << pIn << "\n";
+ std::cout << "pz " << pz << "\n";
+ std::cout << "Lx  " << Lx << "\n";
+ std::cout << "Ly  " << Ly << "\n";
+ std::cout << "Lz  " << Lz << "\n";
+ std::cout << "L   " << L  << "\n";
+}
+
+//                   probe values
+
+#include "hamilton.inline"
+#include "conservedVector.insert"
+
+#include "rotate.insert"
