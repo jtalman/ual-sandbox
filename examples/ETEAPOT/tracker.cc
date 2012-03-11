@@ -30,29 +30,66 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
- if(argc!=2){
-  std::cout << "usage: ./tracker ./data/pre-E_pEDm.sxf (> ! myOut)\n";
-  std::cout << "argv[0] is this executable: ./tracker\n";
-  std::cout << "argv[1] is the input sxf file - ./data/pre-E_pEDm.sxf\n";
+ if(argc!=4){
+  std::cout << "usage: ./tracker ./data/E_FirstTest.sxf 30 -1.3 (> ! myOut)\n";
+  std::cout << "argv[0] is this executable         - ./tracker\n";
+  std::cout << "argv[1] is the input sxf file      - ./data/E_FirstTest.sxf\n";
+  std::cout << "argv[2] is the nominal bend radius - 30      \n";
+  std::cout << "argv[3] is the nominal electrode m - -1.3    \n";
+  std::cout << "                                             \n";
+  std::cout << "This radius is used to set the scale         \n";
+  std::cout << "of the probe parameters.                     \n";
+  std::cout << "It can be estimated from the sxf file(e.g.   \n";
+  std::cout << "arc = 2.35619449019/                         \n";
+  std::cout << "kl = 0.0785398163398 =                       \n";
+  std::cout << "approximately 30).                           \n";
+  std::cout << "It is a little subtle (e.g. injection issues,\n";
+  std::cout << "manufacturing errors, setup errors, ...).    \n";
+  std::cout << "A further subtlety is that angular           \n";
+  std::cout << "momentum breaks the element-algorithm-probe  \n";
+  std::cout << "paradigm, coupling probe parameter momentum  \n";
+  std::cout << "with element parameter bend radius.          \n";
   exit(0);
  }
+
+  ofstream m_m;
+  m_m.open ("m_m");
+  m_m << argv[3];
+  m_m.close();
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
  std::cout << "mysxf     " << mysxf.c_str() << "\n";
  std::cout << "mysxfbase " << mysxfbase.c_str() << "\n";
 
-#include "designBeamValues.hh"
-
-#include "extractParameters.h"
-
  UAL::Shell shell;
+
+ #include "designBeamValues.hh"
+ #include "setBeamAttributes.hh"
+ PAC::BeamAttributes& ba = shell.getBeamAttributes();
+
+ #include "simulatedProbeValues"
+ double trtrout[5][9];
+ for(int i=0;i<5;i++){
+  for(int j=0;j<9;j++){
+   trtrout[i][j]=0;
+  }
+ }
+ double      rx[3][3];
+ for(int i=0;i<3;i++){
+  for(int j=0;j<3;j++){
+        rx[i][j]=0;
+  }
+ }
+
+ #include "extractParameters.h"
 
  // ************************************************************************
  std::cout << "\nDefine the space of Taylor maps." << std::endl;
  // ************************************************************************
 
- shell.setMapAttributes(UAL::Args() << UAL::Arg("order", 5));
+  shell.setMapAttributes(UAL::Args() << UAL::Arg("order", order));
+//shell.setMapAttributes(UAL::Args() << UAL::Arg("order", 5));
 
  // ************************************************************************
  std::cout << "\nBuild lattice." << std::endl;
@@ -85,14 +122,15 @@ int main(int argc,char * argv[]){
  std::cout << "\nDefine beam parameters." << std::endl;
  // ************************************************************************
 
-#include "setBeamAttributes.hh"
+//#include "setBeamAttributes.hh"
 
- PAC::BeamAttributes& ba = shell.getBeamAttributes();
+// PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
  // ************************************************************************
  std::cout << "\nLinear analysis." << std::endl;
  // ************************************************************************
   
+/*
  // Make linear matrix
 
  std::cout << " matrix" << std::endl;
@@ -105,6 +143,7 @@ int main(int argc,char * argv[]){
 
  std::cout << " calculate suml" << std::endl;
  shell.analysis(UAL::Args());
+*/
 
  // ************************************************************************
  std::cout << "\nAlgorithm Part. " << std::endl;
@@ -130,7 +169,8 @@ int main(int argc,char * argv[]){
 
 // ba.setG(1.7928474);             // adds proton G factor
 
- PAC::Bunch bunch(1);
+/*
+ PAC::Bunch bunch(1);               // bunch with 1 particle(s)
  bunch.setBeamAttributes(ba);
 
  PAC::Spin spin;
@@ -138,7 +178,8 @@ int main(int argc,char * argv[]){
  spin.setSY(0.0);
  spin.setSZ(1.0);
 
-  bunch[0].getPosition().set(1.e-4,0.    ,0.   ,0.    ,0.,0.);
+  bunch[0].getPosition().set(dx,dpx,dy,dpy,0,p5Input);
+*/
 /*
   bunch[0].getPosition().set(1.e-4,0.    ,1.e-4,0.    ,0.,0.);
   bunch[1].getPosition().set(0.   ,0.5e-5,0.   ,0.    ,0.,0.);
@@ -152,25 +193,57 @@ int main(int argc,char * argv[]){
 
  double t; // time variable
 
- int turns = 16;
+// int turns = 1024;
 
  positionPrinter pP;
  pP.open(orbitFile.c_str());
- xmgracePrint xP;
- xP.open("bunchSub0");
+// xmgracePrint xP;
+// xP.open("bunchSub0");
 
  ba.setElapsedTime(0.0);
 
- for(int iturn = 1; iturn <= turns; iturn++){
-  ap -> propagate(bunch);
+ for(int iturn = 0; iturn <= (turns-1); iturn++){
+//ap -> propagate(bunch);
   for(int ip=0; ip < bunch.size(); ip++){
    pP.write(iturn, ip, bunch);
+// xP.write(iturn, ip, bunch);
   }
-  xP.write(iturn, 0, bunch);
+  ap -> propagate(bunch);
  }
 
  pP.close();
- xP.close();
+// xP.close();
+
+trtrout[1][1]=bunch[1].getPosition().getX();
+trtrout[1][2]=bunch[2].getPosition().getX();
+     rx[1][1]=(trtrout[1][1]-trtrout[1][2]);
+std::cout << "TDJ-rx-DIFF" << "1 " << rx[1][1] << "\n";
+     rx[1][1]=(trtrout[1][1]-trtrout[1][2])/2/x1typ;
+std::cout << "TDJ-rx-RSLT" << "1 " << rx[1][1] << "\n";
+
+      int ip=0;
+      int iturn=0;
+      PAC::Position& pos = bunch[ip].getPosition();
+
+      double x  = pos.getX();
+      double px = pos.getPX();
+      double y  = pos.getY();
+      double py = pos.getPY();
+      double ct = pos.getCT();
+      double de = pos.getDE();
+
+      double wp_time = t0 + (-ct /UAL::clight );
+      double ew      = 0;                         //de * p + energy;
+
+      double psp0    = 0;                         //get_psp0(pos, v0byc);
+
+      char endLine = '\0';
+      char line1[200];
+    
+      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c",
+              ip, iturn, wp_time, x, px, y, py, ct, de, psp0, ew, endLine);
+
+      std::cout << line1 << std::endl;
 
  return 1;
 }
