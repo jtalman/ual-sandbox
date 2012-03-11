@@ -1,0 +1,54 @@
+std::cout << "#################################   Simulated Probe Values \n";
+
+double v0MKS   = v0*UAL::clight;
+
+double GeVperJ = 1/q0/1e9;
+double m0MKS   = UAL::pmass/GeVperJ/UAL::clight/UAL::clight;
+double p0MKS   = gamma0*m0MKS*v0MKS;
+double kMKSpvR = p0MKS*v0MKS*IA;
+double kMKSeER = q0*El0*IA*IA;
+
+std::cout << setiosflags( ios::showpos   );
+std::cout << setiosflags( ios::uppercase );
+std::cout << setiosflags( ios::scientific );
+std::cout << setprecision(13);
+std::cout << "gamma0    " << gamma0    << "\n";
+std::cout << "m0        " << m0        << "\n";
+std::cout << "e0        " << e0        << "\n";
+std::cout << "IA        " << IA        << "\n";
+std::cout << "rin       " << rin       << "\n";
+std::cout << "rinEx     " << rinEx     << "\n";
+std::cout << "p0        " << p0        << "\n";
+std::cout << "b0        " << b0        << "\n";
+std::cout << "v0        " << b0        << "\n";
+std::cout << "k(GeV m)  " << k         << "\n";
+
+std::cout << "v0MKS     " << v0MKS     << "\n";
+std::cout << "m0MKS     " << m0MKS     << "\n";
+std::cout << "GeVperJ   " << GeVperJ   << "\n";
+std::cout << "k/GeVperJ " << k/GeVperJ << "\n";
+std::cout << "kMKSpvR   " << kMKSpvR   << "\n";
+std::cout << "kMKSeER   " << kMKSpvR   << "\n";
+
+std::cout << "k/rin     " << k/rin     << "\n";
+std::cout << "Ein       " << Ein       << "\n";
+std::cout << "Edes      " << Edes      << "\n";
+std::cout << "dE        " << dE        << "\n";
+std::cout << "dEbyp0    " << dEbyp0    << "\n";
+
+std::cout << "dx        " << dx        << "\n";
+std::cout << "x1typ     " << x1typ     << "\n";
+std::cout << "x2typ     " << x2typ     << "\n";
+std::cout << "y1typ     " << y1typ     << "\n";
+std::cout << "y2typ     " << y2typ     << "\n";
+std::cout << "x5typ     " << x5typ     << "\n";
+std::cout << "deltyp    " << deltyp    << "\n";
+
+std::cout << "dx        " << dx        << "\n";
+std::cout << "dpxbyp0   " << dpxbyp0   << "\n";
+std::cout << "dy        " << dy        << "\n";
+std::cout << "dpybyp0   " << dpybyp0   << "\n";
+std::cout << "dt        " << dt        << "\n";
+std::cout << "dEbyp0    " << dEbyp0    << "\n";
+
+std::cout << "#################################   Simulated Probe Values \n";
