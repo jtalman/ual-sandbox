@@ -1,0 +1,53 @@
+#include "probeDataForTwiss"
+
+double k       = IA*p0*v0;                         //
+
+//                   probe deviations
+double  dx     = 0.0;
+double  dy     = 0.000001;
+double  dz     = 0.0; 
+
+double dpx     = 0.0; 
+double dpy     = 0.0; 
+double dpz     = 0.0; 
+
+double dt      = 0.0; 
+//                   probe deviations
+
+double rin     = IA+dx;                            //
+double rinEx   = sqrt((IA+dx)*(IA+dx)+dy*dy+dz*dz);//
+  double gamma = (k/rinEx-k/IA)/m0/c/c;            //
+         gamma = gamma+gamma0;
+//double gamma   = gamma0;                         //
+double Ein     = gamma*m0*c*c-k/rinEx;             // E for compatibility with Munoz
+
+double Edes    = m0*c*c/gamma0;                    // Design Energy (Munoz potential)
+double dE      = Ein-Edes; 
+
+double dpxbyp0 = dpx/p0; 
+double dpybyp0 = dpy/p0; 
+double dEbyp0  = dE /p0;
+
+int turns      = 1;
+
+//PAC::Bunch bunch( 3);                               // bunch with  3 particle(s)
+//PAC::Bunch bunch( 2);                               // bunch with  2 particle(s)
+  PAC::Bunch bunch(11);                               // bunch with 11 particle(s)
+
+bunch.setBeamAttributes(ba);
+
+//bunch[ 0].getPosition().set( +x1typ,      0,      0,      0,      0,      0 );
+  bunch[ 0].getPosition().set(     dx,dpxbyp0,     dy,dpybyp0,     dt, dEbyp0 );
+
+  bunch[ 1].getPosition().set( +x1typ,      0,      0,      0,      0,      0 );
+  bunch[ 2].getPosition().set( -x1typ,      0,      0,      0,      0,      0 );
+  bunch[ 3].getPosition().set(      0, +x2typ,      0,      0,      0,      0 );
+  bunch[ 4].getPosition().set(      0, -x2typ,      0,      0,      0,      0 );
+  bunch[ 5].getPosition().set(      0,      0, +y1typ,      0,      0,      0 );
+  bunch[ 6].getPosition().set(      0,      0, -y1typ,      0,      0,      0 );
+  bunch[ 7].getPosition().set(      0,      0,      0, +y2typ,      0,      0 );
+  bunch[ 8].getPosition().set(      0,      0,      0, -y2typ,      0,      0 );
+  bunch[ 9].getPosition().set(      0,      0,      0,      0,      0,+deltyp );
+  bunch[10].getPosition().set(      0,      0,      0,      0,      0,-deltyp );
+
+#include "printProbeValues"
