@@ -21,4 +21,5 @@
 
  int split = 1;
  int order = 2;
-// int turns = 1;
+ int turns;                // specified as 1 in trtrin (for post processing)
+                           // might be overwritten tp multiple turns (e.g. 10) in simulatedProbeValues
