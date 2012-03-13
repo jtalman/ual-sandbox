@@ -1,0 +1,38 @@
+turns      = 1;
+PAC::Bunch bunch(21);                               // bunch with 21 particle(s)
+bunch.setBeamAttributes(ba);
+
+bunch[ 1].getPosition().set( +x1typ,      0,      0,      0,      0,      0 ); /* trtrin(1, 1) = trtrin(1, 1) +  x1typ */
+bunch[ 2].getPosition().set( -x1typ,      0,      0,      0,      0,      0 ); /* trtrin(1, 2) = trtrin(1, 2) -  x1typ */
+bunch[ 3].getPosition().set(      0, +x2typ,      0,      0,      0,      0 ); /* trtrin(2, 3) = trtrin(2, 3) +  x2typ */
+bunch[ 4].getPosition().set(      0, -x2typ,      0,      0,      0,      0 ); /* trtrin(2, 4) = trtrin(2, 4) -  x2typ */
+bunch[ 5].getPosition().set(      0,      0, +y1typ,      0,      0,      0 ); /* trtrin(3, 5) = trtrin(3, 5) +  y1typ */
+bunch[ 6].getPosition().set(      0,      0, -y1typ,      0,      0,      0 ); /* trtrin(3, 6) = trtrin(3, 6) -  y1typ */
+bunch[ 7].getPosition().set(      0,      0,      0, +y2typ,      0,      0 ); /* trtrin(4, 7) = trtrin(4, 7) +  y2typ */
+bunch[ 8].getPosition().set(      0,      0,      0, -y2typ,      0,      0 ); /* trtrin(4, 8) = trtrin(4, 8) -  y2typ */
+                             // C     --   delta ones
+bunch[ 9].getPosition().set(      0,      0,      0,      0,      0,+deltyp ); /* trtrin(6, 9) = trtrin(6, 9) + deltyp */
+bunch[10].getPosition().set(      0,      0,      0,      0,      0,-deltyp ); /* trtrin(6,10) = trtrin(6,10) - deltyp */
+// C     --   double ones
+bunch[11].getPosition().set( +x1typ, +x2typ,      0,      0,      0,      0 ); /* trtrin(1,11) = trtrin(1,11) +  x1typ */
+                                                                               /* trtrin(2,11) = trtrin(2,11) +  x2typ */
+bunch[12].getPosition().set(      0,      0, +y1typ, +y2typ,      0,      0 ); /* trtrin(3,12) = trtrin(3,12) +  y1typ */
+                                                                               /* trtrin(4,12) = trtrin(4,12) +  y2typ */
+// C     --   double delta ones
+bunch[13].getPosition().set( +x1typ,      0,      0,      0,      0,+deltyp ); /* trtrin(1,13) = trtrin(1,13) +  x1typ */
+                                                                               /* trtrin(6,13) = trtrin(6,13) + deltyp */
+bunch[14].getPosition().set(      0, +x2typ,      0,      0,      0,+deltyp ); /* trtrin(2,14) = trtrin(2,14) +  x2typ */
+                                                                               /* trtrin(6,14) = trtrin(6,14) + deltyp */
+bunch[15].getPosition().set(      0,      0, +y1typ,      0,      0,+deltyp ); /* trtrin(3,15) = trtrin(3,15) +  y1typ */
+                                                                               /* trtrin(6,15) = trtrin(6,15) + deltyp */
+bunch[16].getPosition().set(      0,      0,      0, +y2typ,      0,+deltyp ); /* trtrin(4,16) = trtrin(4,16) +  y2typ */
+                                                                               /* trtrin(6,16) = trtrin(6,16) + deltyp */
+// C     --   coupling ones
+bunch[17].getPosition().set( +x1typ,      0, +y1typ,      0,      0,      0 ); /* trtrin(1,17) = trtrin(1,17) +  x1typ */
+                                                                               /* trtrin(3,17) = trtrin(3,17) +  y1typ */
+bunch[18].getPosition().set( +x1typ,      0,      0, +y2typ,      0,      0 ); /* trtrin(1,18) = trtrin(1,18) +  x1typ */
+                                                                               /* trtrin(4,18) = trtrin(4,18) +  y2typ */
+bunch[19].getPosition().set(      0, +x2typ, +y1typ,      0,      0,      0 ); /* trtrin(2,19) = trtrin(2,19) +  x2typ */
+                                                                               /* trtrin(3,19) = trtrin(3,19) +  y1typ */
+bunch[20].getPosition().set(      0, +x2typ,      0, +y2typ,      0,      0 ); /* trtrin(2,20) = trtrin(2,20) +  x2typ */
+                                                                               /* trtrin(4,20) = trtrin(4,20) +  y2typ */
