@@ -28,26 +28,11 @@ double dpxbyp0 = dpx/p0;
 double dpybyp0 = dpy/p0; 
 double dEbyp0  = dE /p0;
 
-int turns      = 1;
+#include "trtrin"
 
-//PAC::Bunch bunch( 3);                               // bunch with  3 particle(s)
-//PAC::Bunch bunch( 2);                               // bunch with  2 particle(s)
-  PAC::Bunch bunch(11);                               // bunch with 11 particle(s)
-
-bunch.setBeamAttributes(ba);
-
-//bunch[ 0].getPosition().set( +x1typ,      0,      0,      0,      0,      0 );
+//         This configuration is for a standard one turn bunch for post processing.
+//     Uncomment this next line to look at multi turns for your particle specified above.
+//turns=10;
   bunch[ 0].getPosition().set(     dx,dpxbyp0,     dy,dpybyp0,     dt, dEbyp0 );
-
-  bunch[ 1].getPosition().set( +x1typ,      0,      0,      0,      0,      0 );
-  bunch[ 2].getPosition().set( -x1typ,      0,      0,      0,      0,      0 );
-  bunch[ 3].getPosition().set(      0, +x2typ,      0,      0,      0,      0 );
-  bunch[ 4].getPosition().set(      0, -x2typ,      0,      0,      0,      0 );
-  bunch[ 5].getPosition().set(      0,      0, +y1typ,      0,      0,      0 );
-  bunch[ 6].getPosition().set(      0,      0, -y1typ,      0,      0,      0 );
-  bunch[ 7].getPosition().set(      0,      0,      0, +y2typ,      0,      0 );
-  bunch[ 8].getPosition().set(      0,      0,      0, -y2typ,      0,      0 );
-  bunch[ 9].getPosition().set(      0,      0,      0,      0,      0,+deltyp );
-  bunch[10].getPosition().set(      0,      0,      0,      0,      0,-deltyp );
 
 #include "printProbeValues"
