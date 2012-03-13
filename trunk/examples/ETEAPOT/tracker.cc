@@ -49,6 +49,18 @@ int main(int argc,char * argv[]){
   std::cout << "momentum breaks the element-algorithm-probe  \n";
   std::cout << "paradigm, coupling probe parameter momentum  \n";
   std::cout << "with element parameter bend radius.          \n";
+  std::cout << "#############################################\n";
+  std::cout << "Nota bene: file simulatedProbeValues         \n";
+  std::cout << "           is setup for post processing.     \n";
+  std::cout << "           A single (1) turn is assumed.     \n";
+  std::cout << "                                             \n";
+  std::cout << "           It is intended to be edited       \n";
+  std::cout << "           for specific user parameter       \n";
+  std::cout << "           tracking.                         \n";
+  std::cout << "                                             \n";
+  std::cout << "           It has brief comments to this     \n";
+  std::cout << "           effect.                           \n";
+  std::cout << "#############################################\n";
   exit(0);
  }
 
@@ -68,6 +80,8 @@ int main(int argc,char * argv[]){
  #include "setBeamAttributes.hh"
  PAC::BeamAttributes& ba = shell.getBeamAttributes();
 
+ #include "extractParameters.h"
+
  #include "simulatedProbeValues"
  double trtrout[5][9];
  for(int i=0;i<5;i++){
@@ -81,8 +95,6 @@ int main(int argc,char * argv[]){
         rx[i][j]=0;
   }
  }
-
- #include "extractParameters.h"
 
  // ************************************************************************
  std::cout << "\nDefine the space of Taylor maps." << std::endl;
