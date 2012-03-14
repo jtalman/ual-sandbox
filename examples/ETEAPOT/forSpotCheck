@@ -1,0 +1,18 @@
+#!/bin/tcsh
+echo "The current directory is " $cwd
+echo "The current path      is " $path
+
+#set ONE = `cat JTout | grep pOf0 | grep ONE`
+#echo $ONE   >!   JT_ONE.deviationFromOrbit
+
+cat JTout | grep pOf0 | grep ONE   >!   JT_ONE.deviationFromOrbit
+cat JTout | grep pOf0 | grep TWO   >!   JT_TWO.deviationFromOrbit
+
+cat JTout | grep pOf1 | grep THREE >! JT_THREE.deviationFromOrbit
+cat JTout | grep pOf1 | grep FOUR  >!  JT_FOUR.deviationFromOrbit
+
+cat JTout | grep pOf2 | grep FIVE  >!  JT_FIVE.deviationFromOrbit
+cat JTout | grep pOf2 | grep SIX   >!   JT_SIX.deviationFromOrbit
+
+cat JTout | grep pOf3 | grep SEVEN >! JT_SEVEN.deviationFromOrbit
+cat JTout | grep pOf3 | grep EIGHT >! JT_EIGHT.deviationFromOrbit
