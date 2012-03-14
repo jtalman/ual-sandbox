@@ -83,6 +83,7 @@ int main(int argc,char * argv[]){
  #include "extractParameters.h"
 
  #include "simulatedProbeValues"
+/*
  double trtrout[5][9];
  for(int i=0;i<5;i++){
   for(int j=0;j<9;j++){
@@ -95,6 +96,7 @@ int main(int argc,char * argv[]){
         rx[i][j]=0;
   }
  }
+*/
 
  // ************************************************************************
  std::cout << "\nDefine the space of Taylor maps." << std::endl;
@@ -226,12 +228,15 @@ int main(int argc,char * argv[]){
  pP.close();
 // xP.close();
 
+/*
 trtrout[1][1]=bunch[1].getPosition().getX();
 trtrout[1][2]=bunch[2].getPosition().getX();
      rx[1][1]=(trtrout[1][1]-trtrout[1][2]);
 std::cout << "TDJ-rx-DIFF" << "1 " << rx[1][1] << "\n";
      rx[1][1]=(trtrout[1][1]-trtrout[1][2])/2/x1typ;
 std::cout << "TDJ-rx-RSLT" << "1 " << rx[1][1] << "\n";
+*/
+#include"trtrout"
 
       int ip=0;
       int iturn=0;
