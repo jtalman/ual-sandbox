@@ -1,0 +1,190 @@
+double trtrout[6][21];
+for(int i=0;i<6;i++){
+ for(int j=0;j<21;j++){
+  trtrout[i][j]=0;
+ }
+}
+
+trtrout[1][ 1]=bunch[ 1].getPosition().getX();
+trtrout[1][ 2]=bunch[ 2].getPosition().getX();
+trtrout[1][ 3]=bunch[ 3].getPosition().getX();
+trtrout[1][ 4]=bunch[ 4].getPosition().getX();
+trtrout[1][ 5]=bunch[ 5].getPosition().getX();
+trtrout[1][ 6]=bunch[ 6].getPosition().getX();
+trtrout[1][ 7]=bunch[ 7].getPosition().getX();
+trtrout[1][ 8]=bunch[ 8].getPosition().getX();
+trtrout[1][ 9]=bunch[ 9].getPosition().getX();
+trtrout[1][10]=bunch[10].getPosition().getX();
+trtrout[1][11]=bunch[11].getPosition().getX();
+trtrout[1][12]=bunch[12].getPosition().getX();
+trtrout[1][13]=bunch[13].getPosition().getX();
+trtrout[1][14]=bunch[14].getPosition().getX();
+trtrout[1][15]=bunch[15].getPosition().getX();
+trtrout[1][16]=bunch[16].getPosition().getX();
+trtrout[1][17]=bunch[17].getPosition().getX();
+trtrout[1][18]=bunch[18].getPosition().getX();
+trtrout[1][19]=bunch[19].getPosition().getX();
+trtrout[1][20]=bunch[20].getPosition().getX();
+
+trtrout[2][ 1]=bunch[ 1].getPosition().getPX();
+trtrout[2][ 2]=bunch[ 2].getPosition().getPX();
+trtrout[2][ 3]=bunch[ 3].getPosition().getPX();
+trtrout[2][ 4]=bunch[ 4].getPosition().getPX();
+trtrout[2][ 5]=bunch[ 5].getPosition().getPX();
+trtrout[2][ 6]=bunch[ 6].getPosition().getPX();
+trtrout[2][ 7]=bunch[ 7].getPosition().getPX();
+trtrout[2][ 8]=bunch[ 8].getPosition().getPX();
+trtrout[2][ 9]=bunch[ 9].getPosition().getPX();
+trtrout[2][10]=bunch[10].getPosition().getPX();
+trtrout[2][11]=bunch[11].getPosition().getPX();
+trtrout[2][12]=bunch[12].getPosition().getPX();
+trtrout[2][13]=bunch[13].getPosition().getPX();
+trtrout[2][14]=bunch[14].getPosition().getPX();
+trtrout[2][15]=bunch[15].getPosition().getPX();
+trtrout[2][16]=bunch[16].getPosition().getPX();
+trtrout[2][17]=bunch[17].getPosition().getPX();
+trtrout[2][18]=bunch[18].getPosition().getPX();
+trtrout[2][19]=bunch[19].getPosition().getPX();
+trtrout[2][20]=bunch[20].getPosition().getPX();
+
+trtrout[3][ 1]=bunch[ 1].getPosition().getY();
+trtrout[3][ 2]=bunch[ 2].getPosition().getY();
+trtrout[3][ 3]=bunch[ 3].getPosition().getY();
+trtrout[3][ 4]=bunch[ 4].getPosition().getY();
+trtrout[3][ 5]=bunch[ 5].getPosition().getY();
+trtrout[3][ 6]=bunch[ 6].getPosition().getY();
+trtrout[3][ 7]=bunch[ 7].getPosition().getY();
+trtrout[3][ 8]=bunch[ 8].getPosition().getY();
+trtrout[3][ 9]=bunch[ 9].getPosition().getY();
+trtrout[3][10]=bunch[10].getPosition().getY();
+trtrout[3][11]=bunch[11].getPosition().getY();
+trtrout[3][12]=bunch[12].getPosition().getY();
+trtrout[3][13]=bunch[13].getPosition().getY();
+trtrout[3][14]=bunch[14].getPosition().getY();
+trtrout[3][15]=bunch[15].getPosition().getY();
+trtrout[3][16]=bunch[16].getPosition().getY();
+trtrout[3][17]=bunch[17].getPosition().getY();
+trtrout[3][18]=bunch[18].getPosition().getY();
+trtrout[3][19]=bunch[19].getPosition().getY();
+trtrout[3][20]=bunch[20].getPosition().getY();
+
+trtrout[4][ 1]=bunch[ 1].getPosition().getPY();
+trtrout[4][ 2]=bunch[ 2].getPosition().getPY();
+trtrout[4][ 3]=bunch[ 3].getPosition().getPY();
+trtrout[4][ 4]=bunch[ 4].getPosition().getPY();
+trtrout[4][ 5]=bunch[ 5].getPosition().getPY();
+trtrout[4][ 6]=bunch[ 6].getPosition().getPY();
+trtrout[4][ 7]=bunch[ 7].getPosition().getPY();
+trtrout[4][ 8]=bunch[ 8].getPosition().getPY();
+trtrout[4][ 9]=bunch[ 9].getPosition().getPY();
+trtrout[4][10]=bunch[10].getPosition().getPY();
+trtrout[4][11]=bunch[11].getPosition().getPY();
+trtrout[4][12]=bunch[12].getPosition().getPY();
+trtrout[4][13]=bunch[13].getPosition().getPY();
+trtrout[4][14]=bunch[14].getPosition().getPY();
+trtrout[4][15]=bunch[15].getPosition().getPY();
+trtrout[4][16]=bunch[16].getPosition().getPY();
+trtrout[4][17]=bunch[17].getPosition().getPY();
+trtrout[4][18]=bunch[18].getPosition().getPY();
+trtrout[4][19]=bunch[19].getPosition().getPY();
+trtrout[4][20]=bunch[20].getPosition().getPY();
+
+trtrout[5][ 1]=bunch[ 1].getPosition().getCT();
+trtrout[5][ 2]=bunch[ 2].getPosition().getCT();
+trtrout[5][ 3]=bunch[ 3].getPosition().getCT();
+trtrout[5][ 4]=bunch[ 4].getPosition().getCT();
+trtrout[5][ 5]=bunch[ 5].getPosition().getCT();
+trtrout[5][ 6]=bunch[ 6].getPosition().getCT();
+trtrout[5][ 7]=bunch[ 7].getPosition().getCT();
+trtrout[5][ 8]=bunch[ 8].getPosition().getCT();
+trtrout[5][ 9]=bunch[ 9].getPosition().getCT();
+trtrout[5][10]=bunch[10].getPosition().getCT();
+trtrout[5][11]=bunch[11].getPosition().getCT();
+trtrout[5][12]=bunch[12].getPosition().getCT();
+trtrout[5][13]=bunch[13].getPosition().getCT();
+trtrout[5][14]=bunch[14].getPosition().getCT();
+trtrout[5][15]=bunch[15].getPosition().getCT();
+trtrout[5][16]=bunch[16].getPosition().getCT();
+trtrout[5][17]=bunch[17].getPosition().getCT();
+trtrout[5][18]=bunch[18].getPosition().getCT();
+trtrout[5][19]=bunch[19].getPosition().getCT();
+trtrout[5][20]=bunch[20].getPosition().getCT();
+
+trtrout[6][ 1]=bunch[ 1].getPosition().getDE();
+trtrout[6][ 2]=bunch[ 2].getPosition().getDE();
+trtrout[6][ 3]=bunch[ 3].getPosition().getDE();
+trtrout[6][ 4]=bunch[ 4].getPosition().getDE();
+trtrout[6][ 5]=bunch[ 5].getPosition().getDE();
+trtrout[6][ 6]=bunch[ 6].getPosition().getDE();
+trtrout[6][ 7]=bunch[ 7].getPosition().getDE();
+trtrout[6][ 8]=bunch[ 8].getPosition().getDE();
+trtrout[6][ 9]=bunch[ 9].getPosition().getDE();
+trtrout[6][10]=bunch[10].getPosition().getDE();
+trtrout[6][11]=bunch[11].getPosition().getDE();
+trtrout[6][12]=bunch[12].getPosition().getDE();
+trtrout[6][13]=bunch[13].getPosition().getDE();
+trtrout[6][14]=bunch[14].getPosition().getDE();
+trtrout[6][15]=bunch[15].getPosition().getDE();
+trtrout[6][16]=bunch[16].getPosition().getDE();
+trtrout[6][17]=bunch[17].getPosition().getDE();
+trtrout[6][18]=bunch[18].getPosition().getDE();
+trtrout[6][19]=bunch[19].getPosition().getDE();
+trtrout[6][20]=bunch[20].getPosition().getDE();
+
+double rx[3][3],ry[3][3];
+for(int i=0;i<3;i++){
+ for(int j=0;j<3;j++){
+       rx[i][j]=0;
+       ry[i][j]=0;
+ }
+}
+
+     rx[1][1]=(trtrout[1][1]-trtrout[1][2]);
+std::cout << "TDJ-rx-DIFF" << "1 " << rx[1][1] << "\n";
+     rx[1][1]=(trtrout[1][1]-trtrout[1][2])/2/x1typ;
+std::cout << "TDJ-rx-RSLT" << "1 " << rx[1][1] << "\n";
+
+// C     ---  get transfer matrices using tracking output
+rx[1][1] = (trtrout[1][1] - trtrout[1][ 2])/(2.*x1typ);
+rx[2][1] = (trtrout[2][1] - trtrout[2][ 2])/(2.*x1typ);
+rx[1][2] = (trtrout[1][3] - trtrout[1][ 4])/(2.*x2typ);
+rx[2][2] = (trtrout[2][3] - trtrout[2][ 4])/(2.*x2typ);
+ry[1][1] = (trtrout[3][5] - trtrout[3][ 6])/(2.*y1typ);
+ry[2][1] = (trtrout[4][5] - trtrout[4][ 6])/(2.*y1typ);
+ry[1][2] = (trtrout[3][7] - trtrout[3][ 8])/(2.*y2typ);
+ry[2][2] = (trtrout[4][7] - trtrout[4][ 8])/(2.*y2typ);
+
+// C     ---  now get delta ones
+rx[1][3] = (trtrout[1][9] - trtrout[1][10])/(2.*deltyp);
+rx[2][3] = (trtrout[2][9] - trtrout[2][10])/(2.*deltyp);
+
+ry[1][3] = (trtrout[3][9] - trtrout[3][10])/(2.*deltyp);
+ry[2][3] = (trtrout[4][9] - trtrout[4][10])/(2.*deltyp);
+
+double r[5][5];
+for(int i=0;i<5;i++){
+ for(int j=0;j<5;j++){
+       r[i][j]=0;
+ }
+}
+
+// C     --   coupled ones
+r[1][3] = (trtrout[1][5] - trtrout[1][6])/(2.*y1typ);
+r[2][3] = (trtrout[2][5] - trtrout[2][6])/(2.*y1typ);
+r[1][4] = (trtrout[1][7] - trtrout[1][8])/(2.*y2typ);
+r[2][4] = (trtrout[2][7] - trtrout[2][8])/(2.*y2typ);
+r[3][1] = (trtrout[3][1] - trtrout[3][2])/(2.*x1typ);
+r[4][1] = (trtrout[4][1] - trtrout[4][2])/(2.*x1typ);
+r[3][2] = (trtrout[3][3] - trtrout[3][4])/(2.*x2typ);
+r[4][2] = (trtrout[4][3] - trtrout[4][4])/(2.*x2typ);
+
+for(int i=1;i<3;i++){
+ for(int j=1;j<3;j++){
+  r[i  ][j  ]=rx[i][j];
+  r[i+2][j+2]=ry[i][j];
+ }
+}
+r[1][5]=rx[1][3];
+r[2][5]=rx[2][3];
+r[3][5]=ry[1][3];
+r[4][5]=ry[2][3];
