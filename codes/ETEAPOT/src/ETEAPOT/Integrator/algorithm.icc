@@ -129,7 +129,7 @@ double Eel0      = p0*b0/Rsxf;
 double Eel0MKS   = Eel0*1e9;
 #include "printDesignBeam.h"
 
-double inverseFocalLengthX = -(-m+1)*theta/Rsxf/Rsxf;
+double inverseFocalLengthX = -(-m+1)*theta/Rsxf;
 p[1] += p[0]*inverseFocalLengthX;
 
 double inverseFocalLengthY = -inverseFocalLengthX;
