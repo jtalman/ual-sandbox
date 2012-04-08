@@ -11,6 +11,19 @@ algorithm<Coordinate, Coordinates>::~algorithm()
 }
 
 template<class Coordinate, class Coordinates>
+void algorithm<Coordinate, Coordinates>::getE(
+	int ip,
+	const ETEAPOT::DipoleData& data, 
+	const ETEAPOT::MltData& edata,
+	Coordinates& p, 
+	Coordinates& tmp, 
+	double v0byc,
+	const PAC::BeamAttributes cba)
+{
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates>void algorithm<Coordinate, Coordinates>::getE(...\n";
+}
+
+template<class Coordinate, class Coordinates>
 void algorithm<Coordinate, Coordinates>::passBend(
 	int ip,
 	const ETEAPOT::DipoleData& data, 
@@ -38,11 +51,24 @@ std::cout << "JDT-Rsxf" << ip << " " << Rsxf << "\n";
  } 
 */
 
+PAC::Position dummy;
+PAC::Position dummy2;
+double dummy_v0byc;
+getE(ip,data,edata,dummy,dummy2,dummy_v0byc,cba);
+char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+
 int totalSplitBends = pow( 2, data.m_ir );
 for(int i = 0; i < totalSplitBends/2; i++){
  traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
+
+applyThinBendKick(data, edata, 1, dummy, v0byc);
+
  splitBendKick(p,cba,Rsxf,data.m_m,data.m_angle);
  traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
+std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
+std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
+std::cout << "JDT-pOf2" << ip << " " << p[2] << " " << S[ip] << "\n";
+std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
 }
 
  return;
@@ -93,14 +119,14 @@ std::cout << "JDT - EscM " << EscM << "\n";
 
 //     p[0]      += dx85;
        p[0]      += dr;
-std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
+//std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
        p[1]       = pxOutp/p0;
-std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
+//std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
 
        p[2]       = yOutp;                                 // approximations
-std::cout << "JDT-pOf2" << ip << " " << p[2] << " " << S[ip] << "\n";
+//std::cout << "JDT-pOf2" << ip << " " << p[2] << " " << S[ip] << "\n";
        p[3]       = pyOutp/p0;                             //    here
-std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
+//std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
 
 double tof0       = Rsxf*th/b0;
 double fac1       = EscM*lambda*lambda/L/kappa/kappa;
@@ -131,9 +157,11 @@ double Eel0MKS   = Eel0*1e9;
 
 double inverseFocalLengthX = -(-m+1)*theta/Rsxf;
 p[1] += p[0]*inverseFocalLengthX;
+//std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
 
 double inverseFocalLengthY = -inverseFocalLengthX;
 p[3] += p[2]*inverseFocalLengthY;
+//std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
 }
 
 template<class Coordinate, class Coordinates>
@@ -276,6 +304,7 @@ void algorithm<Coordinate, Coordinates>::applyThinBendKick(
   const ETEAPOT::MltData& edata, double rkicks,
   Coordinates& p, double v0byc)
 {
+  std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates>void algorithm<Coordinate, Coordinates>::applyThinBendKick(...\n";
   Coordinate x, px, y, py;
 
 
@@ -325,4 +354,5 @@ void algorithm<Coordinate, Coordinates>::applyThinBendKick(
 
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " px " << px << "\n";
 std::cout << "File " << __FILE__ << " line " << __LINE__ << " py " << py << "\n";
+  std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " leave template<class Coordinate, class Coordinates>void algorithm<Coordinate, Coordinates>::applyThinBendKick(...\n";
 }
