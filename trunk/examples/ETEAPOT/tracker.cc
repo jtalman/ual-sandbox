@@ -238,6 +238,50 @@ std::cout << "TDJ-rx-RSLT" << "1 " << rx[1][1] << "\n";
 */
 #include"trtrout"
 
+double MX11=rx[1][1];double MX12=rx[1][2];
+double MX21=rx[2][1];double MX22=rx[2][2];
+double MXtr=MX11+MX22;
+double cosMuX=MXtr/2;
+double betaX=abs(MX12)/sqrt(1-MXtr*MXtr/4);
+double sinMuX=MX12/betaX;;
+double alphaX=(MX11-MX22)/2/sinMuX;
+std::cout << "JDT: betaX  " << betaX  << "\n";
+std::cout << "JDT: cosMuX " << cosMuX << "\n";
+std::cout << "JDT: sinMuX " << sinMuX << "\n";
+std::cout << "JDT: alphaX " << alphaX << "\n";
+double MuX_PR=acos(cosMuX);
+double MuX;
+if     (cosMuX>=0 && sinMuX>=0){MuX=MuX_PR;}
+else if(cosMuX<=0 && sinMuX>=0){MuX=MuX_PR;}
+else if(cosMuX<=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
+else if(cosMuX>=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
+std::cout << "JDT:    MuX " <<    MuX << "\n";
+double QX=MuX/2/PI;
+std::cout << "JDT:    QX  " <<    QX  << "\n";
+std::cout <<                             "\n";
+
+double MY11=ry[1][1];double MY12=ry[1][2];
+double MY21=ry[2][1];double MY22=ry[2][2];
+double MYtr=MY11+MY22;
+double cosMuY=MYtr/2;
+double betaY=abs(MY12)/sqrt(1-MYtr*MYtr/4);
+double sinMuY=MY12/betaY;;
+double alphaY=(MY11-MY22)/2/sinMuY;
+std::cout << "JDT: betaY  " << betaY  << "\n";
+std::cout << "JDT: cosMuY " << cosMuY << "\n";
+std::cout << "JDT: sinMuY " << sinMuY << "\n";
+std::cout << "JDT: alphaY " << alphaY << "\n";
+double MuY_PR=acos(cosMuY);
+double MuY;
+if     (cosMuY>=0 && sinMuY>=0){MuY=MuY_PR;}
+else if(cosMuY<=0 && sinMuY>=0){MuY=MuY_PR;}
+else if(cosMuY<=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
+else if(cosMuY>=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
+std::cout << "JDT:    MuY " <<    MuY << "\n";
+double QY=MuY/2/PI;
+std::cout << "JDT:    QY  " <<    QY  << "\n";
+std::cout <<                             "\n";
+
       int ip=0;
       int iturn=0;
       PAC::Position& pos = bunch[ip].getPosition();
@@ -260,7 +304,7 @@ std::cout << "TDJ-rx-RSLT" << "1 " << rx[1][1] << "\n";
       sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c",
               ip, iturn, wp_time, x, px, y, py, ct, de, psp0, ew, endLine);
 
-      std::cout << line1 << std::endl;
+//    std::cout << line1 << std::endl;
 
  return 1;
 }
