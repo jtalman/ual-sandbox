@@ -58,12 +58,16 @@ getE(ip,data,edata,dummy,dummy2,dummy_v0byc,cba);
 char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
 int totalSplitBends = pow( 2, data.m_ir );
+std::cout << "JDT-data.m_ir                    " << data.m_ir       << "\n";
+std::cout << "JDT-data.m_angle                 " << data.m_angle    << "\n";
+std::cout << "JDT-totalSplitBends              " << totalSplitBends << "\n";
+std::cout << "JDT-data.m_angle/totalSplitBends " << data.m_angle/totalSplitBends    << "\n";
 for(int i = 0; i < totalSplitBends/2; i++){
  traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
 
 applyThinBendKick(data, edata, 1, dummy, v0byc);
 
- splitBendKick(p,cba,Rsxf,data.m_m,data.m_angle);
+ splitBendKick(p,cba,Rsxf,data.m_m,2*data.m_angle/totalSplitBends);
  traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
 std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
 std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
