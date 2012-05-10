@@ -33,6 +33,7 @@ std::cout << "member xS[m_i0] " << survey.x() << " member yS[m_i0] " << survey.y
 
 //                                            "Everything" about design/central orbit
 //double oldT = ba.getElapsedTime();
+/*
   double e0 = ba.getEnergy();
   double m0 = ba.getMass();
   double q0 = ba.getCharge();
@@ -47,7 +48,10 @@ std::cout << "member xS[m_i0] " << survey.x() << " member yS[m_i0] " << survey.y
          q0   = UAL::elemCharge;
   double p0   = sqrt(e0*e0 - m0*m0);
 
+
 std::cout << "double q0 = ba.getCharge() = " << q0 << "\n";
+ */
+
 std::cout << "UAL::elemCharge = " << UAL::elemCharge << "\n";
 //               m_time
 //               m_revfreq
