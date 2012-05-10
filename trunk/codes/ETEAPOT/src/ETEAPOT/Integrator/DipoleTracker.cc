@@ -71,7 +71,16 @@ std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << 
   
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
   const PAC::BeamAttributes cba = ba;
-#include "printPropagateInfo.h"
+
+//  -------------------------------------------- //
+//#include "printPropagateInfo.h"
+  double e0 = ba.getEnergy();
+  double m0 = ba.getMass();
+  double t0 = ba.getElapsedTime();
+  double oldT = t0;
+  double p0   = sqrt(e0*e0 - m0*m0);
+//  -------------------------------------------- //
+
   double v0byc = p0/e0;
 
   PAC::Position tmp;
