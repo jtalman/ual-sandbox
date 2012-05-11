@@ -13,6 +13,8 @@
 #include "SMF/PacSmf.h"
 #include "PAC/Beam/Bunch.hh"
 #include "Main/Teapot.h"
+#include "Main/Eteapot.h"
+
 #include "UAL/UI/Shell.hh"
 
 #include "PAC/Beam/Particle.hh"
@@ -173,6 +175,14 @@ int main(int argc,char * argv[]){
    std::cout << "Accelerator Propagator has not been created " << std::endl;
    return 1;
  }
+
+ #define MAXPATHLEN 100
+char cpath[MAXPATHLEN];
+getcwd(cpath, MAXPATHLEN);
+printf("pwd -> %s\n", cpath);
+std::string path=cpath;
+Eteapot* etpot;
+  etpot->twissFromTracking( ba, ap );
 
  std::cout << "\n SXF_TRACKER tracker, ";
  std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
