@@ -1,0 +1,7 @@
+#define TINY 1E-6
+double x1typ  = TINY;
+double x2typ  = TINY;
+double y1typ  = TINY, x3typ  = TINY;
+double y2typ  = TINY, x4typ  = TINY;
+double x5typ  = TINY;
+double deltyp = TINY, x6typ  = TINY;
