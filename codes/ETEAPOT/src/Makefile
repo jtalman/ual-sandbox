@@ -1,6 +1,6 @@
 include $(UAL_ETEAPOT)/src/Makefile.config
 
-DIRS =  ./ETEAPOT
+DIRS =  ./ETEAPOT ./Main
 
 LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPacSMF
 LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPacOptics 
@@ -9,7 +9,7 @@ LIBS += -L$(UAL_PAC)/lib/$(UAL_ARCH) -lPacSurvey
 LIBS += -L$(UAL_ZLIB)/lib/$(UAL_ARCH) -lZTps
 LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH)		-lgsl -lgslcblas
 
-include ./ETEAPOT/Integrator/Objects
+include ./ETEAPOT/Integrator/Objects ./Main/Objects
 
 
 compile : 
@@ -35,6 +35,3 @@ clean :
 	done 
 	rm -rf $(UAL_ETEAPOT)/include
 	rm -rf $(UAL_ETEAPOT)/lib/$(UAL_ARCH)
-
-
-
