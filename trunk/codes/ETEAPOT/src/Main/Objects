@@ -1,0 +1,2 @@
+OBJS += $(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/Eteapot.o \
+	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/positionPrinter.o
