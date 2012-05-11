@@ -11,7 +11,6 @@ LIBS += -L$(UAL)/tools/lib/$(UAL_ARCH)		-lgsl -lgslcblas
 
 include ./ETEAPOT/Integrator/Objects ./Main/Objects
 
-
 compile : 
 	if [ ! -d $(UAL_ETEAPOT)/include ] ; \
 		then (mkdir $(UAL_ETEAPOT)/include;); fi;
