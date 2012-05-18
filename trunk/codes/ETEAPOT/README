@@ -1,0 +1,10 @@
+Running
+   make clean
+   make >&! make.log
+generates e.g. (ll lib/linux/libETeapot.so)
+13269770 -rwxr-xr-x 1 talmanj talmanj 1051208 2012-05-18 13:41 lib/linux/libETeapot.so
+
+Executing
+   cp src/Makefile.configDEBUG src/Makefile.config
+first gives a verbose output e.g.
+   ./tracker ./data/E_BM_P1.0.sxf 30 +1 > & ! JDTP1
