@@ -105,7 +105,9 @@ double L0         = Rsxf*p0;
        k          = p0*v0*Rsxf;                              // moved "upstream" to be available for getPotentialEnergy and PE()
 double Eel0       = p0*b0/Rsxf;
 double Eel0MKS    = Eel0*1e9;
-#include "printDesignBeam.h"
+#ifdef DEBUG
+ #include "printDesignBeam.h"
+#endif
 
 double rInput     = p[0]+Rsxf;
 
@@ -157,7 +159,9 @@ double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (
 //double L0        = p0*Rsxf;
 double Eel0      = p0*b0/Rsxf;
 double Eel0MKS   = Eel0*1e9;
-#include "printDesignBeam.h"
+#ifdef DEBUG
+ #include "printDesignBeam.h"
+#endif
 
 double inverseFocalLengthX = -(-m+1)*theta/Rsxf;
 p[1] += p[0]*inverseFocalLengthX;
@@ -179,7 +183,9 @@ double b0        = sqrt(1.-1./g0/g0);                     // derived beam beta (
 //double L0        = p0*Rsxf;
 double Eel0      = p0*b0/Rsxf;
 double Eel0MKS   = Eel0*1e9;
-#include "printDesignBeam.h"
+#ifdef DEBUG
+ #include "printDesignBeam.h"
+#endif
 }
 
 template<class Coordinate, class Coordinates>
