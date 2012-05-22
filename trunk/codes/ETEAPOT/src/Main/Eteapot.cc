@@ -22,7 +22,7 @@
 
 // Tracking
 
-void Eteapot::twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap )
+void Eteapot::twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, std::string filename )
 { 
  std::cout << "JDT: file " << __FILE__ << " line " <<__LINE__ << " enter void Eteapot::twissFromTracking()\n";
 
@@ -45,7 +45,7 @@ int turns=1;
 bunch[ 0].getPosition().set( 0, 0, 0, 0, 0, 0 );
 
 positionPrinter pP;
-pP.open("DUH");
+pP.open("TBT");
 
 //int iturn = 0;
 //for(iturn = 0; iturn <= (turns-1); iturn++){
@@ -62,7 +62,8 @@ pP.open("DUH");
 pP.close();
 
 std::ofstream output;
-output.open("TWISS");
+output.open( filename.c_str() );
+//output.open("TWISS");
 #define PI 3.141592653589793
 #include "trtrout"
 double MX11=rx[1][1];double MX12=rx[1][2];
