@@ -17,6 +17,7 @@
 class Eteapot : public PacSmf
 {
 public:
- void twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap );
+ void twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, std::string filename );
+// void twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap );
 };
 #endif
