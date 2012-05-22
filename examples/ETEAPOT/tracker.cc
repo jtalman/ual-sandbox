@@ -32,12 +32,13 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
- if(argc!=4){
+ if(argc!=5){
   std::cout << "usage: ./tracker ./data/E_FirstTest.sxf 30 -1.3 (> ! myOut)\n";
   std::cout << "argv[0] is this executable         - ./tracker\n";
   std::cout << "argv[1] is the input sxf file      - ./data/E_FirstTest.sxf\n";
   std::cout << "argv[2] is the nominal bend radius - 30      \n";
   std::cout << "argv[3] is the nominal electrode m - -1.3    \n";
+  std::cout << "argv[4] is the Twiss output file name        \n";
   std::cout << "                                             \n";
   std::cout << "This radius is used to set the scale         \n";
   std::cout << "of the probe parameters.                     \n";
@@ -182,7 +183,7 @@ getcwd(cpath, MAXPATHLEN);
 printf("pwd -> %s\n", cpath);
 std::string path=cpath;
 Eteapot* etpot;
-  etpot->twissFromTracking( ba, ap );
+  etpot->twissFromTracking( ba, ap, argv[4] );
 
  std::cout << "\n SXF_TRACKER tracker, ";
  std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
