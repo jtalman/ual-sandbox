@@ -33,9 +33,9 @@ using namespace UAL;
 
 int main(int argc,char * argv[]){
  if(argc!=5){
-  std::cout << "usage: ./tracker ./data/E_FirstTest.sxf 30 -1.3 (> ! myOut)\n";
+  std::cout << "usage: ./tracker ./data/E_BM_P1.0.sxf 30 +1 TWISSP1.0 (>&! OUTP1.0)\n";
   std::cout << "argv[0] is this executable         - ./tracker\n";
-  std::cout << "argv[1] is the input sxf file      - ./data/E_FirstTest.sxf\n";
+  std::cout << "argv[1] is the input sxf file      - ./data/E_BM_P1.0.sxf\n";
   std::cout << "argv[2] is the nominal bend radius - 30      \n";
   std::cout << "argv[3] is the nominal electrode m - -1.3    \n";
   std::cout << "argv[4] is the Twiss output file name        \n";
@@ -86,20 +86,6 @@ int main(int argc,char * argv[]){
  #include "extractParameters.h"
 
  #include "simulatedProbeValues"
-/*
- double trtrout[5][9];
- for(int i=0;i<5;i++){
-  for(int j=0;j<9;j++){
-   trtrout[i][j]=0;
-  }
- }
- double      rx[3][3];
- for(int i=0;i<3;i++){
-  for(int j=0;j<3;j++){
-        rx[i][j]=0;
-  }
- }
-*/
 
  // ************************************************************************
  std::cout << "\nDefine the space of Taylor maps." << std::endl;
@@ -139,29 +125,10 @@ int main(int argc,char * argv[]){
  std::cout << "\nDefine beam parameters." << std::endl;
  // ************************************************************************
 
-//#include "setBeamAttributes.hh"
-
-// PAC::BeamAttributes& ba = shell.getBeamAttributes();
-
  // ************************************************************************
  std::cout << "\nLinear analysis." << std::endl;
  // ************************************************************************
   
-/*
- // Make linear matrix
-
- std::cout << " matrix" << std::endl;
- shell.map(UAL::Args() << UAL::Arg("order", 1) << UAL::Arg("print", mapFile.c_str()));
-
- // Calculate twiss
-  
- std::cout << " twiss (ring )" << std::endl;
- shell.twiss(UAL::Args() << UAL::Arg("print", twissFile.c_str()));
-
- std::cout << " calculate suml" << std::endl;
- shell.analysis(UAL::Args());
-*/
-
  // ************************************************************************
  std::cout << "\nAlgorithm Part. " << std::endl;
  // ************************************************************************
@@ -192,26 +159,6 @@ Eteapot* etpot;
  std::cout << "\nBunch Part." << std::endl;
  // ************************************************************************
 
-// ba.setG(1.7928474);             // adds proton G factor
-
-/*
- PAC::Bunch bunch(1);               // bunch with 1 particle(s)
- bunch.setBeamAttributes(ba);
-
- PAC::Spin spin;
- spin.setSX(0.0);
- spin.setSY(0.0);
- spin.setSZ(1.0);
-
-  bunch[0].getPosition().set(dx,dpx,dy,dpy,0,p5Input);
-*/
-/*
-  bunch[0].getPosition().set(1.e-4,0.    ,1.e-4,0.    ,0.,0.);
-  bunch[1].getPosition().set(0.   ,0.5e-5,0.   ,0.    ,0.,0.);
-  bunch[2].getPosition().set(0.   ,0.    ,1.e-4,0.    ,0.,0.);
-  bunch[3].getPosition().set(0.   ,0.    ,0.   ,0.5e-6,0.,0.);
-*/
-
  // ************************************************************************
  std::cout << "\nTracking. " << std::endl;
  // ************************************************************************
@@ -239,14 +186,6 @@ Eteapot* etpot;
  pP.close();
 // xP.close();
 
-/*
-trtrout[1][1]=bunch[1].getPosition().getX();
-trtrout[1][2]=bunch[2].getPosition().getX();
-     rx[1][1]=(trtrout[1][1]-trtrout[1][2]);
-std::cout << "TDJ-rx-DIFF" << "1 " << rx[1][1] << "\n";
-     rx[1][1]=(trtrout[1][1]-trtrout[1][2])/2/x1typ;
-std::cout << "TDJ-rx-RSLT" << "1 " << rx[1][1] << "\n";
-*/
 #include"trtrout"
 
 double MX11=rx[1][1];double MX12=rx[1][2];
