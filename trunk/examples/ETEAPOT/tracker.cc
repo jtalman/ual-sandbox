@@ -38,7 +38,7 @@ int main(int argc,char * argv[]){
   std::cout << "argv[1] is the input sxf file      - ./data/E_BM_P1.0.sxf \n";
   std::cout << "argv[2] is the nominal bend radius - 30                   \n";
   std::cout << "argv[3] is the nominal electrode m - +1                   \n";
-  std::cout << "argv[4] is the Twiss output file name - TWISSP1.0         \n";
+  std::cout << "argv[4] is the name of the file Twiss output will be written to - TWISSP1.0         \n";
   std::cout << "                                                          \n";
   std::cout << "This radius is used to set the scale                      \n";
   std::cout << "of the probe parameters.                                  \n";
@@ -137,6 +137,7 @@ int main(int argc,char * argv[]){
 
  apBuilder.setBeamAttributes(ba);
 
+// ETEAPOT::ElectricAcceleratorPropagator* ap = (ETEAPOT::ElectricAcceleratorPropagator*) apBuilder.parse(apdfFile);
  UAL::AcceleratorPropagator* ap = apBuilder.parse(apdfFile);
 
  if(ap == 0) {
@@ -154,6 +155,15 @@ Eteapot* etpot;
 
  std::cout << "\n SXF_TRACKER tracker, ";
  std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
+
+ UAL::PropagatorSequence& apSeq = ap->getRootNode();
+
+ int counter = 0;
+ std::list<UAL::PropagatorNodePtr>::iterator it;
+ for(it = apSeq.begin(); it != apSeq.end(); it++){
+  std::cout << counter++ << " (*it)->getType() " << (*it)->getType() << std::endl;
+//std::cout << counter++ << " JDT - (*it)->getName() " << (*it)->getName() << " (*it)->getType() " << (*it)->getType() << std::endl;
+ }
 
  // ************************************************************************
  std::cout << "\nBunch Part." << std::endl;
@@ -185,76 +195,6 @@ Eteapot* etpot;
 
  pP.close();
 // xP.close();
-
-#include"trtrout"
-
-double MX11=rx[1][1];double MX12=rx[1][2];
-double MX21=rx[2][1];double MX22=rx[2][2];
-double MXtr=MX11+MX22;
-double cosMuX=MXtr/2;
-double betaX=abs(MX12)/sqrt(1-MXtr*MXtr/4);
-double sinMuX=MX12/betaX;;
-double alphaX=(MX11-MX22)/2/sinMuX;
-std::cout << "JDT: betaX  " << betaX  << "\n";
-std::cout << "JDT: cosMuX " << cosMuX << "\n";
-std::cout << "JDT: sinMuX " << sinMuX << "\n";
-std::cout << "JDT: alphaX " << alphaX << "\n";
-double MuX_PR=acos(cosMuX);
-double MuX;
-if     (cosMuX>=0 && sinMuX>=0){MuX=MuX_PR;}
-else if(cosMuX<=0 && sinMuX>=0){MuX=MuX_PR;}
-else if(cosMuX<=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
-else if(cosMuX>=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
-std::cout << "JDT:    MuX " <<    MuX << "\n";
-double QX=MuX/2/PI;
-std::cout << "JDT:    QX  " <<    QX  << "\n";
-std::cout <<                             "\n";
-
-double MY11=ry[1][1];double MY12=ry[1][2];
-double MY21=ry[2][1];double MY22=ry[2][2];
-double MYtr=MY11+MY22;
-double cosMuY=MYtr/2;
-double betaY=abs(MY12)/sqrt(1-MYtr*MYtr/4);
-double sinMuY=MY12/betaY;;
-double alphaY=(MY11-MY22)/2/sinMuY;
-std::cout << "JDT: betaY  " << betaY  << "\n";
-std::cout << "JDT: cosMuY " << cosMuY << "\n";
-std::cout << "JDT: sinMuY " << sinMuY << "\n";
-std::cout << "JDT: alphaY " << alphaY << "\n";
-double MuY_PR=acos(cosMuY);
-double MuY;
-if     (cosMuY>=0 && sinMuY>=0){MuY=MuY_PR;}
-else if(cosMuY<=0 && sinMuY>=0){MuY=MuY_PR;}
-else if(cosMuY<=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
-else if(cosMuY>=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
-std::cout << "JDT:    MuY " <<    MuY << "\n";
-double QY=MuY/2/PI;
-std::cout << "JDT:    QY  " <<    QY  << "\n";
-std::cout <<                             "\n";
-
-      int ip=0;
-      int iturn=0;
-      PAC::Position& pos = bunch[ip].getPosition();
-
-      double x  = pos.getX();
-      double px = pos.getPX();
-      double y  = pos.getY();
-      double py = pos.getPY();
-      double ct = pos.getCT();
-      double de = pos.getDE();
-
-      double wp_time = t0 + (-ct /UAL::clight );
-      double ew      = 0;                         //de * p + energy;
-
-      double psp0    = 0;                         //get_psp0(pos, v0byc);
-
-      char endLine = '\0';
-      char line1[200];
-    
-      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c",
-              ip, iturn, wp_time, x, px, y, py, ct, de, psp0, ew, endLine);
-
-//    std::cout << line1 << std::endl;
 
  return 1;
 }
