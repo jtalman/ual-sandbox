@@ -6,6 +6,8 @@
 #ifndef ETEAPOT_H
 #define ETEAPOT_H
 
+#include <stdlib.h>
+
 #include "SMF/PacSmf.h"
 #include "PAC/Beam/Bunch.hh"
 
@@ -17,7 +19,8 @@
 class Eteapot : public PacSmf
 {
 public:
- void twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, std::string filename );
+   void twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, float m_m );
+// void twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, std::string filename );
 // void twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap );
 };
 #endif
