@@ -13,6 +13,7 @@
 
 algorithm<double, PAC::Position> ETEAPOT::DipoleTracker::s_algorithm;
 double ETEAPOT::DipoleTracker::m_m;
+   int ETEAPOT::DipoleTracker::bend=0;
 
 ETEAPOT::DipoleTracker::DipoleTracker()
   : ETEAPOT::BasicTracker()
@@ -94,10 +95,11 @@ std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << 
     s_algorithm.passEntry(m_edata, p);
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
-    s_algorithm.passBend(ip ,m_data, m_edata, p, tmp, v0byc, cba);
+    s_algorithm.passBend( ip, m_data, m_edata, p, tmp, v0byc, cba, bend );
     s_algorithm.passExit(m_edata, p);
     // testAperture(p);
   }
+bend++;
 
   /*
   std::cout << "after dipole " << m_name << std::endl;
@@ -115,13 +117,3 @@ std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << 
   // Should be edited with the correct length for sbend and rbends
   ba.setElapsedTime(oldT + m_data.m_l/v0byc/UAL::clight);
 }
-
-
-
-
-
-
-
-
-
-
