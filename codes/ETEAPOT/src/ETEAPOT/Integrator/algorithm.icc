@@ -1,4 +1,8 @@
 #include "algorithm.hh"
+//#include <stdio.h>
+
+template<class Coordinate, class Coordinates>
+int algorithm<Coordinate, Coordinates>::turn=0;
 
 template<class Coordinate, class Coordinates> 
 algorithm<Coordinate, Coordinates>::algorithm()
@@ -31,7 +35,8 @@ void algorithm<Coordinate, Coordinates>::passBend(
 	Coordinates& p, 
 	Coordinates& tmp, 
 	double v0byc,
-	const PAC::BeamAttributes cba)
+	const PAC::BeamAttributes cba,
+        int bend)
 {
 std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates> void algorithm<Coordinate, Coordinates>::passBend( ...\n";
 #include "getDesignBeam.h"
@@ -69,10 +74,37 @@ applyThinBendKick(data, edata, 1, dummy, v0byc);
 
  splitBendKick(p,cba,Rsxf,data.m_m,2*data.m_angle/totalSplitBends);
  traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
-std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
-std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
-std::cout << "JDT-pOf2" << ip << " " << p[2] << " " << S[ip] << "\n";
-std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
+#ifndef lngTrmTrk
+char buffer [3];
+//itoa (ip,buffer,10);
+//std::string sip=itoa(ip);
+//std::string sip(ip);
+sprintf(buffer,"%d",ip);
+std::string bip(buffer);
+char buffr2 [10];
+  sprintf(buffr2,"%+5.2f",data.m_m);
+//sprintf(buffr2,"%+f10.1",data.m_m);
+std::string bp2(buffr2);
+  std::string sip = "out/STT/StndrdPrtcl";
+//std::string sip = "out/shortTermTracking/resultsForStandardParticle";
+            sip+=bip;
+std::cout << "sip.length() " << sip.length() << "\n";
+if(sip.length()==20){sip+="_";}
+            sip+="_m=";
+            sip+=bp2;
+fstream filestr;
+filestr.open (sip.c_str(), fstream::out | fstream::app);
+filestr << setiosflags( ios::showpos    );  
+filestr << setiosflags( ios::uppercase  );
+filestr << setiosflags( ios::scientific );
+//filestr << setw( 11 );
+filestr << setfill( ' ' );
+filestr << setiosflags( ios::left );
+filestr << setprecision(13) ;
+filestr << setw(5) << bend << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << S[ip] << "\n";
+turn++;
+filestr.close();
+#endif
 }
 
  return;
