@@ -53,6 +53,8 @@ namespace ETEAPOT {
 
     static double m_m;
 
+    static int bend;
+
   protected:
 
     /** Sets the lattice element */
