@@ -1,11 +1,11 @@
-rm make.log out/cpp/* TWISS* OUT*
+rm make.log out/cpp/* OUT* out/STT/* out/LTT/*
 make clean
 make >&! make.log
-./tracker ./data/E_BM_P1.0.sxf 30 +1 TWISSP1.0 >&! OUTP1.0
+./tracker ./data/E_BM_P1.0.sxf +1 >&! OUTP1.0
 // (split=1) betaX  36.1910, betaY  262.237, QX  0.458782  -->> 1.458782, QY 0.200472
 
-./tracker ./data/E_BM_Z.sxf    30  0 TWISSZ    >&! OUTZ
+./tracker ./data/E_BM_Z.sxf     0 >&! OUTZ
 // (split=1) betaX  36.0795, betaY  261.469, QX  0.458131  -->> 1.458131, QY 0.201768
 
-./tracker ./data/E_BM_M1.0.sxf 30 -1 TWISSM1.0 >&! OUTM1.0
+./tracker ./data/E_BM_M1.0.sxf -1 >&! OUTM1.0
 // (split=1) betaX  35.8566, betaY  251.852, QX  0.462043  -->> 1.462043, QY 0.210209
