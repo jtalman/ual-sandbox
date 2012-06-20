@@ -22,8 +22,13 @@
 
 // Tracking
 
-void Eteapot::twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, std::string filename )
+  void Eteapot::twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, float m_m )
+//void Eteapot::twissFromTracking( PAC::BeamAttributes ba, UAL::AcceleratorPropagator* ap, std::string filename )
 { 
+#ifdef lngTrmTrk
+ std::cerr << "################ TWISS NOT ALLOWED ################\n";
+ exit(0);
+#endif
  std::cout << "JDT: file " << __FILE__ << " line " <<__LINE__ << " enter void Eteapot::twissFromTracking()\n";
 
 /*
@@ -62,7 +67,14 @@ pP.open("TBT");
 pP.close();
 
 std::ofstream output;
-output.open( filename.c_str() );
+char buffr2 [10];
+sprintf(buffr2,"%+5.2f",m_m);
+std::string bp2(buffr2);
+std::string sT = "out/STT/TWISS";
+            sT+=bp2;
+
+  output.open( sT.c_str() );
+//output.open( filename.c_str() );
 //output.open("TWISS");
 #define PI 3.141592653589793
 #include "trtrout"
