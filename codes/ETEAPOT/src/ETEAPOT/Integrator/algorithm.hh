@@ -3,8 +3,9 @@
 
 #include <cstdlib>
 #include <cmath>
-
 #include <iomanip>
+//#include <stdlib.h>
+
 #include "UAL/Common/Def.hh"
 #include "ETEAPOT/Integrator/MltAlgorithm.hh"
 
@@ -20,6 +21,9 @@
 
     /** Destructor */
     ~algorithm();
+
+//                   STATIC
+    static int turn;
 
 //                   GLOBALS
     double c;          // $UAL/codes/ETEAPOT/src/ETEAPOT/inverseSquareBend/MunozPavic/conservedVector/algorithm.icc +73
@@ -67,7 +71,7 @@
     void getE(int ip,const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
 
     /** Propagates a probe coordinates through the bend*/
-    void passBend(int ip,const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
+    void passBend(int ip,const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba, int bend );
 
     /** Propagates a probe coordinates through the bend slice*/
     void passBendSlice(const ETEAPOT::ElemSlice& slice, Coordinates& p, Coordinates& tmp, double v0byc);
