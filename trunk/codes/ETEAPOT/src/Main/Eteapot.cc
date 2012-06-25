@@ -70,7 +70,7 @@ std::ofstream output;
 char buffr2 [10];
 sprintf(buffr2,"%+5.2f",m_m);
 std::string bp2(buffr2);
-std::string sT = "out/STT/TWISS";
+std::string sT = "out/STT/TWISS_m=";
             sT+=bp2;
 
   output.open( sT.c_str() );
