@@ -3,6 +3,7 @@ make clean
 make >&! make.log
 ./tracker ./data/E_BM_P1.0.sxf +1 >&! OUT_m=+1.00
 // (split=1) betaX  36.1910, betaY  262.237, QX  0.458782  -->> 1.458782, QY 0.200472
+// compare with out/STT/TWISS_m=+1.00
 
 gnuplot
    > p 'out/STT/StndrdPrtcl1__m=+1.00' u ($1<80? 1/0: $1-80):2,'out/STT/StndrdPrtcl2__m=+1.00' u ($1<80? 1/0: $1-80):2
