@@ -1,4 +1,4 @@
-rm make.log out/cpp/*m=+0* OUT*m=+0* out/STT/*m=+0* out/LTT/*m=+0*
+rm make.log out/cpp/*m=+0.00* OUT*m=+0.00* out/STT/*m=+0.00* out/LTT/*m=+0.00*
 make clean
 make >&! make.log
 ./tracker ./data/E_BM_Z.sxf 40 0 >&! OUT_m=+0.00
