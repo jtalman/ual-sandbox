@@ -1,0 +1,20 @@
+rm make.log out/cpp/*m=-1.00* OUT*m=-1.00* out/STT/*m=-1.00* out/LTT/*m=-1.00*
+make clean
+make >&! make.log
+./tracker ./data/E_BM_M1.0.sxf 40 -1 >&! OUT_m=-1.00
+// (split=1) betaX  35.8566, betaY  251.8522 QX  0.4620    -->> 1.4562  , QY 0.2102   
+// compare with out/STT/TWISS_m=-1.00
+// reference UAL/ETEAPOT Results (Augmented) for Proton EDM Benchmark Lattices, J. Talman & R. Talman, April 29, 2012
+
+gnuplot
+   > p 'out/STT/StndrdPrtcl1__m=-1.00' u ($1<80? 1/0: $1-80):2,'out/STT/StndrdPrtcl2__m=-1.00' u ($1<80? 1/0: $1-80):2
+   > p 'out/STT/StndrdPrtcl1__m=-1.00' u ($1<80? 1/0: $1-80):3,'out/STT/StndrdPrtcl2__m=-1.00' u ($1<80? 1/0: $1-80):3
+
+   > p 'out/STT/StndrdPrtcl3__m=-1.00' u ($1<80? 1/0: $1-80):2,'out/STT/StndrdPrtcl4__m=-1.00' u ($1<80? 1/0: $1-80):2
+   > p 'out/STT/StndrdPrtcl3__m=-1.00' u ($1<80? 1/0: $1-80):3,'out/STT/StndrdPrtcl4__m=-1.00' u ($1<80? 1/0: $1-80):3
+
+   > p 'out/STT/StndrdPrtcl5__m=-1.00' u ($1<80? 1/0: $1-80):4,'out/STT/StndrdPrtcl6__m=-1.00' u ($1<80? 1/0: $1-80):4
+   > p 'out/STT/StndrdPrtcl5__m=-1.00' u ($1<80? 1/0: $1-80):5,'out/STT/StndrdPrtcl6__m=-1.00' u ($1<80? 1/0: $1-80):5
+
+   > p 'out/STT/StndrdPrtcl7__m=-1.00' u ($1<80? 1/0: $1-80):4,'out/STT/StndrdPrtcl8__m=-1.00' u ($1<80? 1/0: $1-80):4
+   > p 'out/STT/StndrdPrtcl7__m=-1.00' u ($1<80? 1/0: $1-80):5,'out/STT/StndrdPrtcl8__m=-1.00' u ($1<80? 1/0: $1-80):5
