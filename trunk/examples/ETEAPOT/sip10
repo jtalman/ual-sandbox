@@ -1,0 +1,14 @@
+ string sip10 = "out/STT/StndrdPrtcl10_m=";
+        sip10+=m;
+ cerr << "sip10 prefix " << sip10      << "\n";
+//cerr << "sip10          " << sip10          << "\n";
+//cerr << "sip10.length() " << sip10.length() << "\n";
+
+ fstream filestr10;
+ filestr10.open (sip10.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr10           >> bend >> p10[i][0] >> p10[i][1] >> p10[i][2] >> p10[i][3] >> p10[i][4] >> p10[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p10[i][0] << " " << p10[i][1] << " " << p10[i][2] << " " << p10[i][3] << " " << p10[i][4] << " " << p10[i][5] << " " << "TEN   " << "\n";
+ }
+ filestr10.close();
