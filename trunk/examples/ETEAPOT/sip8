@@ -1,0 +1,14 @@
+ string sip8 = "out/STT/StndrdPrtcl8__m=";
+        sip8+=m;
+ cerr << "sip8 prefix " << sip8       << "\n";
+//cerr << "sip8          " << sip8          << "\n";
+//cerr << "sip8.length() " << sip8.length() << "\n";
+
+ fstream filestr8;
+ filestr8.open (sip8.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr8           >> bend >> p8[i][0] >> p8[i][1] >> p8[i][2] >> p8[i][3] >> p8[i][4] >> p8[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p8[i][0] << " " << p8[i][1] << " " << p8[i][2] << " " << p8[i][3] << " " << p8[i][4] << " " << p8[i][5] << " " << "EIGHT " << "\n";
+ }
+ filestr8.close();
