@@ -1,0 +1,14 @@
+ string sip1 = "out/STT/StndrdPrtcl1__m=";
+        sip1+=m;
+//cerr << "sip1          " << sip1          << "\n";
+//cerr << "sip1.length() " << sip1.length() << "\n";
+
+ fstream filestr1;
+ filestr1.open (sip1.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr1           >> bend >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> alp;
+//cout               << setw(5);
+//cout               << bend << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << "ONE   " << "\n";
+//cout               << bend << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << alp << "\n";
+ }
+ filestr1.close();
