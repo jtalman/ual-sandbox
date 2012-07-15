@@ -1,0 +1,14 @@
+ string sip7 = "out/STT/StndrdPrtcl7__m=";
+        sip7+=m;
+ cerr << "sip7 prefix " << sip7       << "\n";
+//cerr << "sip7          " << sip7          << "\n";
+//cerr << "sip7.length() " << sip7.length() << "\n";
+
+ fstream filestr7;
+ filestr7.open (sip7.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr7           >> bend >> p7[i][0] >> p7[i][1] >> p7[i][2] >> p7[i][3] >> p7[i][4] >> p7[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p7[i][0] << " " << p7[i][1] << " " << p7[i][2] << " " << p7[i][3] << " " << p7[i][4] << " " << p7[i][5] << " " << "SEVEN " << "\n";
+ }
+ filestr7.close();
