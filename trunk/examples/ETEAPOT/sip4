@@ -1,0 +1,14 @@
+ string sip4 = "out/STT/StndrdPrtcl4__m=";
+        sip4+=m;
+ cerr << "sip4 prefix " << sip4       << "\n";
+//cerr << "sip4          " << sip4          << "\n";
+//cerr << "sip4.length() " << sip4.length() << "\n";
+
+ fstream filestr4;
+ filestr4.open (sip4.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr4           >> bend >> p4[i][0] >> p4[i][1] >> p4[i][2] >> p4[i][3] >> p4[i][4] >> p4[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p4[i][0] << " " << p4[i][1] << " " << p4[i][2] << " " << p4[i][3] << " " << p4[i][4] << " " << p4[i][5] << " " << "FOUR  " << "\n";
+ }
+ filestr4.close();
