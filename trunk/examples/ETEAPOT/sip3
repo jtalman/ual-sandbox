@@ -1,0 +1,14 @@
+ string sip3 = "out/STT/StndrdPrtcl3__m=";
+        sip3+=m;
+ cerr << "sip3 prefix " << sip3       << "\n";
+//cerr << "sip3          " << sip3          << "\n";
+//cerr << "sip3.length() " << sip3.length() << "\n";
+
+ fstream filestr3;
+ filestr3.open (sip3.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr3           >> bend >> p3[i][0] >> p3[i][1] >> p3[i][2] >> p3[i][3] >> p3[i][4] >> p3[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p3[i][0] << " " << p3[i][1] << " " << p3[i][2] << " " << p3[i][3] << " " << p3[i][4] << " " << p3[i][5] << " " << "THREE " << "\n";
+ }
+ filestr3.close();
