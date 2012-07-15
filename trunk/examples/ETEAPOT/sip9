@@ -1,0 +1,14 @@
+ string sip9 = "out/STT/StndrdPrtcl9__m=";
+        sip9+=m;
+ cerr << "sip9 prefix " << sip9       << "\n";
+//cerr << "sip9          " << sip9          << "\n";
+//cerr << "sip9.length() " << sip9.length() << "\n";
+
+ fstream filestr9;
+ filestr9.open (sip9.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr9           >> bend >> p9[i][0] >> p9[i][1] >> p9[i][2] >> p9[i][3] >> p9[i][4] >> p9[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p9[i][0] << " " << p9[i][1] << " " << p9[i][2] << " " << p9[i][3] << " " << p9[i][4] << " " << p9[i][5] << " " << "NINE  " << "\n";
+ }
+ filestr9.close();
