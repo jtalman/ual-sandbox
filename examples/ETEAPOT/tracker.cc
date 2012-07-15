@@ -32,28 +32,30 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
- if(argc!=3){
-  std::cout << "usage: ./tracker ./data/E_BM_P1.0.sxf +1 (>&! OUTP1.0)\n";
+ if(argc!=4){
+  std::cout << "usage: ./tracker ./data/E_BM_P1.0.sxf 40 +1 (>&! OUTP1.0)\n";
+//std::cout << "usage: ./tracker ./data/E_BM_P1.0.sxf +1 (>&! OUTP1.0)\n";
 //std::cout << "usage: ./tracker ./data/E_BM_P1.0.sxf    +1 TWISSP1.0 (>&! OUTP1.0)\n";
 //std::cout << "usage: ./tracker ./data/E_BM_P1.0.sxf 30 +1 TWISSP1.0 (>&! OUTP1.0)\n";
   std::cout << "argv[0] is this executable         - ./tracker            \n";
   std::cout << "argv[1] is the input sxf file      - ./data/E_BM_P1.0.sxf \n";
-//std::cout << "argv[2] is the nominal bend radius - 30                   \n";
-  std::cout << "argv[2] is the nominal electrode m - +1                   \n";
+  std::cout << "argv[2] is the bend radius (rinExact) of a candidate injected particle- 40\n";
+  std::cout << "this does NOT override the sxf design bend radius         \n";
+  std::cout << "argv[3] is the nominal electrode m - +1                   \n";
 //std::cout << "argv[3] is the name of the file Twiss output will be written to - TWISSP1.0         \n";
   std::cout << "                                                          \n";
-//std::cout << "This radius is used to set the scale                      \n";
-//std::cout << "of the probe parameters.                                  \n";
-//std::cout << "It can be estimated from the sxf file(e.g.                \n";
-//std::cout << "arc = 2.35619449019/                                      \n";
-//std::cout << "kl = 0.0785398163398 =                                    \n";
-//std::cout << "approximately 30).                                        \n";
-//std::cout << "It is a little subtle (e.g. injection issues,             \n";
-//std::cout << "manufacturing errors, setup errors, ...).                 \n";
-//std::cout << "A further subtlety is that angular                        \n";
-//std::cout << "momentum breaks the element-algorithm-probe               \n";
-//std::cout << "paradigm, coupling probe parameter momentum               \n";
-//std::cout << "with element parameter bend radius.                       \n";
+  std::cout << "This radius is used to set the scale                      \n";
+  std::cout << "of the probe parameters.                                  \n";
+  std::cout << "It can be estimated from the sxf file(e.g.                \n";
+  std::cout << "arc = 2.35619449019/                                      \n";
+  std::cout << "kl = 0.0785398163398 =                                    \n";
+  std::cout << "approximately 30).                                        \n";
+  std::cout << "It is a little subtle (e.g. injection issues,             \n";
+  std::cout << "manufacturing errors, setup errors, ...).                 \n";
+  std::cout << "A further subtlety is that angular                        \n";
+  std::cout << "momentum breaks the element-algorithm-probe               \n";
+  std::cout << "paradigm, coupling probe parameter momentum               \n";
+  std::cout << "with element parameter bend radius.                       \n";
   std::cout << "#############################################             \n";
   std::cout << "Nota bene: file simulatedProbeValues                      \n";
   std::cout << "           is setup for post processing.                  \n";
@@ -71,7 +73,7 @@ int main(int argc,char * argv[]){
 
   ofstream m_m;
   m_m.open ("m_m");
-  m_m << argv[2];
+  m_m << argv[3];
   m_m.close();
 
  std::string mysxf    =argv[1];
@@ -153,7 +155,17 @@ getcwd(cpath, MAXPATHLEN);
 printf("pwd -> %s\n", cpath);
 std::string path=cpath;
 Eteapot* etpot;
-  etpot->twissFromTracking( ba, ap, atof(argv[2]) );
+double a0x=     (double)0;
+double b0x=     (double)0;
+double mu_xTent=(double)0;
+double a0y=     (double)0;
+double b0y=     (double)0;
+double mu_yTent=(double)0;
+  etpot->twissFromTracking( ba, ap, atof(argv[3]),a0x,b0x,mu_xTent,a0y,b0y,mu_yTent );
+std::cerr << "RMT: a0x " << a0x << " b0x " << b0x << " mu_xTent " << mu_xTent << " a0y " << a0y << " b0y " << b0y << " mu_yTent " << mu_yTent << "\n";
+//etpot->twissFromTracking( ba, ap, atof(argv[3]) );
+
+//etpot->twissFromTracking( ba, ap, atof(argv[2]) );
 //etpot->twissFromTracking( ba, ap, argv[3] );
 
  std::cout << "\n SXF_TRACKER tracker, ";
