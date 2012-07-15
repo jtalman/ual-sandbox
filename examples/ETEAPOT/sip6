@@ -1,0 +1,14 @@
+ string sip6 = "out/STT/StndrdPrtcl6__m=";
+        sip6+=m;
+ cerr << "sip6 prefix " << sip6       << "\n";
+//cerr << "sip6          " << sip6          << "\n";
+//cerr << "sip6.length() " << sip6.length() << "\n";
+
+ fstream filestr6;
+ filestr6.open (sip6.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr6           >> bend >> p6[i][0] >> p6[i][1] >> p6[i][2] >> p6[i][3] >> p6[i][4] >> p6[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p6[i][0] << " " << p6[i][1] << " " << p6[i][2] << " " << p6[i][3] << " " << p6[i][4] << " " << p6[i][5] << " " << "SIX   " << "\n";
+ }
+ filestr6.close();
