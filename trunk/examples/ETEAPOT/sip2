@@ -1,0 +1,14 @@
+ string sip2 = "out/STT/StndrdPrtcl2__m=";
+        sip2+=m;
+ cerr << "sip2 prefix " << sip2       << "\n";
+//cerr << "sip2          " << sip2          << "\n";
+//cerr << "sip2.length() " << sip2.length() << "\n";
+
+ fstream filestr2;
+ filestr2.open (sip2.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr2           >> bend >> p2[i][0] >> p2[i][1] >> p2[i][2] >> p2[i][3] >> p2[i][4] >> p2[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p2[i][0] << " " << p2[i][1] << " " << p2[i][2] << " " << p2[i][3] << " " << p2[i][4] << " " << p2[i][5] << " " << "TWO   " << "\n";
+ }
+ filestr2.close();
