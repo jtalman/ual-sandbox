@@ -1,0 +1,14 @@
+ string sip5 = "out/STT/StndrdPrtcl5__m=";
+        sip5+=m;
+ cerr << "sip5 prefix " << sip5       << "\n";
+//cerr << "sip5          " << sip5          << "\n";
+//cerr << "sip5.length() " << sip5.length() << "\n";
+
+ fstream filestr5;
+ filestr5.open (sip5.c_str(), fstream::in | fstream::app);
+ for(i=0;i<sBends;i++){
+  filestr5           >> bend >> p5[i][0] >> p5[i][1] >> p5[i][2] >> p5[i][3] >> p5[i][4] >> p5[i][5] >> alp; 
+//cout               << setw(5);
+//cout               << bend << " " << p5[i][0] << " " << p5[i][1] << " " << p5[i][2] << " " << p5[i][3] << " " << p5[i][4] << " " << p5[i][5] << " " << "FIVE  " << "\n";
+ }
+ filestr5.close();
