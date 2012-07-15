@@ -38,16 +38,19 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 OBJS = $(OBJ_DIR)/positionPrinter.o \
 	$(OBJ_DIR)/xmgracePrint.o
 
-compile : $(OBJS) ./tracker ./evolver
+compile : $(OBJS) ./tracker ./evolver ./transferMatrix
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker
+	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix
 
 ./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
 
 ./evolver  : $(OBJ_DIR)/evolver.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/evolver.o $(OBJS) $(LIBS)
+
+./transferMatrix  : $(OBJ_DIR)/transferMatrix.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/transferMatrix.o $(OBJS) $(LIBS)
 
 ./sxfUtility: $(OBJ_DIR)/sxfUtility.o
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/sxfUtility.o $(LIBS)
