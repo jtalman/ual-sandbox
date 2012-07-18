@@ -82,11 +82,12 @@ char buffr2 [10];
   sprintf(buffr2,"%+5.2f",data.m_m);
 //sprintf(buffr2,"%+f10.1",data.m_m);
 std::string bp2(buffr2);
-  std::string sip = "out/STT/StndrdPrtcl";
+  std::string sip = "out/TWISS/StndrdPrtcl";
+//std::string sip = "out/STT/StndrdPrtcl";
 //std::string sip = "out/shortTermTracking/resultsForStandardParticle";
             sip+=bip;
 std::cout << "sip.length() " << sip.length() << "\n";
-if(sip.length()==20){sip+="_";}
+if(sip.length()==22){sip+="_";}
             sip+="_m=";
             sip+=bp2;
 fstream filestr;
