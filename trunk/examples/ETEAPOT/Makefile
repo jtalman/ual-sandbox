@@ -38,10 +38,10 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 OBJS = $(OBJ_DIR)/positionPrinter.o \
 	$(OBJ_DIR)/xmgracePrint.o
 
-compile : $(OBJS) ./tracker ./evolver ./transferMatrix
+compile : $(OBJS) ./tracker ./evolver ./transferMatrix ./determineTwiss
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix
+	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss
 
 ./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
@@ -51,6 +51,9 @@ clean :
 
 ./transferMatrix  : $(OBJ_DIR)/transferMatrix.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/transferMatrix.o $(OBJS) $(LIBS)
+
+./determineTwiss  : $(OBJ_DIR)/determineTwiss.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/determineTwiss.o $(OBJS) $(LIBS)
 
 ./sxfUtility: $(OBJ_DIR)/sxfUtility.o
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/sxfUtility.o $(LIBS)
