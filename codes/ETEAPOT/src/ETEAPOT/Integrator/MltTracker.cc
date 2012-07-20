@@ -10,10 +10,19 @@
 #include "ETEAPOT/Integrator/MltTracker.hh"
 
 ETEAPOT::MltAlgorithm<double, PAC::Position> ETEAPOT::MltTracker::s_algorithm;
+double ETEAPOT::MltTracker::m_m;
 
 ETEAPOT::MltTracker::MltTracker()
   : ETEAPOT::BasicTracker()
 {
+  string line;
+  ifstream m_m;
+  m_m.open ("m_m");
+  getline (m_m,line);
+  ETEAPOT::MltTracker::m_m = atof( line.c_str() );
+//std::cerr << "ETEAPOT::MltTracker::m_m " << ETEAPOT::MltTracker::m_m << "\n";
+  m_m.close();
+
   initialize();
 }
 
@@ -56,6 +65,14 @@ void ETEAPOT::MltTracker::setLatticeElement(const PacLattElement& e)
 
 void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
 {
+  string line;
+  ifstream m_m;
+  m_m.open ("m_m");
+  getline (m_m,line);
+  ETEAPOT::MltTracker::m_m = atof( line.c_str() );
+//std::cerr << "ETEAPOT::MltTracker::m_m " << ETEAPOT::MltTracker::m_m << "\n";
+  m_m.close();
+
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
@@ -87,39 +104,31 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
       s_algorithm.passExit(m_mdata, p);
       continue;
     } 
+    else{
+      std::cerr << "Complex Elements not allowed!!!\n";
+      exit(1);
 
-    // Complex Element
+      // Complex Element
 
+      double rIr = 1./m_ir;
+      double rkicks = 0.25*rIr;
 
-    double rIr = 1./m_ir;
-    double rkicks = 0.25*rIr;
-
-    int counter = 0;
-    for(int i = 0; i < m_ir; i++){
-      for(int is = 0; is < 4; is++){
-	counter++;
-	s_algorithm.passDrift(m_l*s_steps[is]*rIr, p, tmp, v0byc);
-	s_algorithm.applyMltKick(m_mdata, rkicks, p);
-	s_algorithm.makeVelocity(p, tmp, v0byc);	
+      int counter = 0;
+      for(int i = 0; i < m_ir; i++){
+        for(int is = 0; is < 4; is++){
+          counter++;
+          s_algorithm.passDrift(m_l*s_steps[is]*rIr, p, tmp, v0byc);
+          s_algorithm.applyMltKick(m_mdata, rkicks, p);
+          s_algorithm.makeVelocity(p, tmp, v0byc);	
+        }
+        counter++;
+        s_algorithm.passDrift(m_l*s_steps[4]*rIr, p, tmp, v0byc); 
       }
-      counter++;
-      s_algorithm.passDrift(m_l*s_steps[4]*rIr, p, tmp, v0byc); 
     }
 
     s_algorithm.passExit(m_mdata, p);
     // testAperture(p);
   }
-
-  /*
-  std::cout << "after quadrupole " << m_name << std::endl;
-  for(int i =0; i < bunch.size(); i++){
-    PAC::Position p = bunch[i].getPosition();
-    std::cout << i << " " 
-	      << p[0] << " " << p[1] << " " 
-	      << p[2] << " " << p[3] << " " 
-	      << p[4] << " " << p[5] << std::endl;
-  }
-  */
 
   checkAperture(bunch);
 
