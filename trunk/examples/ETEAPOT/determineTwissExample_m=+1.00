@@ -1,0 +1,20 @@
+rm make.log out/cpp/*m=+1.00* OUT*m=+1.00* out/TWISS/*m=+1.00* out/LTT/*m=+1.00*
+make clean
+make >&! make.log
+./determineTwiss ./data/E_BM_P1.0.sxf +1 >! OUT_m=+1.00
+// (split=1) betaX  36.1910, betaY  262.2370, QX  0.4588  -->> 1.4588, QY 0.2005
+// compare with out/TWISS/TWISS_m=+1.00
+// reference UAL/ETEAPOT Results (Augmented) for Proton EDM Benchmark Lattices, J. Talman & R. Talman, April 29, 2012
+
+gnuplot
+   > p 'out/TWISS/StndrdPrtcl1__m=+1.00' u 2,'out/TWISS/StndrdPrtcl2__m=+1.00' u 2
+   > p 'out/TWISS/StndrdPrtcl1__m=+1.00' u 3,'out/TWISS/StndrdPrtcl2__m=+1.00' u 3
+
+   > p 'out/TWISS/StndrdPrtcl3__m=+1.00' u 2,'out/TWISS/StndrdPrtcl4__m=+1.00' u 2
+   > p 'out/TWISS/StndrdPrtcl3__m=+1.00' u 3,'out/TWISS/StndrdPrtcl4__m=+1.00' u 3
+
+   > p 'out/TWISS/StndrdPrtcl5__m=+1.00' u 4,'out/TWISS/StndrdPrtcl6__m=+1.00' u 4
+   > p 'out/TWISS/StndrdPrtcl5__m=+1.00' u 5,'out/TWISS/StndrdPrtcl6__m=+1.00' u 5
+
+   > p 'out/TWISS/StndrdPrtcl7__m=+1.00' u 4,'out/TWISS/StndrdPrtcl8__m=+1.00' u 4
+   > p 'out/TWISS/StndrdPrtcl7__m=+1.00' u 5,'out/TWISS/StndrdPrtcl8__m=+1.00' u 5
