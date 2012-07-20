@@ -6,6 +6,7 @@
 #ifndef ETEAPOT_MLT_ALGORITHM_HH
 #define ETEAPOT_MLT_ALGORITHM_HH
 
+#include <iomanip>
 #include "SMF/PacElemMultipole.h"
 #include "ETEAPOT/Integrator/MltData.hh"
 #include "ETEAPOT/Integrator/CommonAlgorithm.hh"
