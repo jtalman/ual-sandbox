@@ -5,6 +5,7 @@
 #ifndef ETEAPOT_MLT_TRACKER_HH
 #define ETEAPOT_MLT_TRACKER_HH
 
+#include <stdlib.h>
 #include "SMF/PacElemMultipole.h"
 #include "SMF/PacLattice.h"
 #include "ETEAPOT/Integrator/MltData.hh"
@@ -41,6 +42,8 @@ namespace ETEAPOT {
     void propagate(UAL::Probe& probe);
 
     inline MltData& getMltData();
+
+    static double m_m;
 
   protected:
 
