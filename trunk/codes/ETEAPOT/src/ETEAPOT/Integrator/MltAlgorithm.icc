@@ -1,8 +1,3 @@
-// Library       : ETEAPOT
-// File          : ETEAPOT/Integrator/MltAlgorithm.icc
-// Copyright     : see Copyright file
-
-
 #include "ETEAPOT/Integrator/MltAlgorithm.hh"
 
 template<class Coordinate, class Coordinates> 
@@ -88,4 +83,40 @@ void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
 
   p[1] += px;                              // px/p0
   p[3] += py;                              // py/p0	
+
+char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+int ip=1;
+
+#ifndef lngTrmTrk
+char buffer [3];
+sprintf(buffer,"%d",ip);
+std::string bip(buffer);
+char buffr2 [10];
+  sprintf(buffr2,"%+5.2f",+9.99);
+//sprintf(buffr2,"%+5.2f",+1.00);
+//sprintf(buffr2,"%+5.2f",data.m_m);
+std::string bp2(buffr2);
+  std::string sip = "out/TWISS/StndrdPrtcl";
+//std::string sip = "out/STT/StndrdPrtcl";
+//std::string sip = "out/shortTermTracking/resultsForStandardParticle";
+            sip+=bip;
+std::cout << "sip.length() " << sip.length() << "\n";
+if(sip.length()==22){sip+="_";}
+            sip+="_m=";
+            sip+=bp2;
+fstream filestr;
+filestr.open (sip.c_str(), fstream::out | fstream::app);
+filestr << setiosflags( ios::showpos    );  
+filestr << setiosflags( ios::uppercase  );  
+filestr << setiosflags( ios::scientific );
+//filestr << setw( 11 );
+filestr << setfill( ' ' );
+filestr << setiosflags( ios::left );
+filestr << setprecision(13) ;
+int bend=1;
+filestr << setw(5) << bend << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << S[ip] << "\n";
+//turn++;
+filestr.close();
+#endif
+
 }
