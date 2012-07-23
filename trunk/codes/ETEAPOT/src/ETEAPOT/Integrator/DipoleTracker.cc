@@ -26,12 +26,14 @@ ETEAPOT::DipoleTracker::DipoleTracker(const ETEAPOT::DipoleTracker& dt)
   m_data = dt.m_data;
   m_edata = dt.m_edata;
 
+/*
   string line;
   ifstream m_m;
   m_m.open ("m_m");
   getline (m_m,line);
   ETEAPOT::DipoleTracker::m_m = atof( line.c_str() );
   m_m.close();
+*/
 }
 
 ETEAPOT::DipoleTracker::~DipoleTracker()
@@ -92,11 +94,11 @@ std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << 
     tmp = p;
               #include "verboseBlock.h"
 //  if(ip==0){#include "verboseBlock.h"}
-    s_algorithm.passEntry(m_edata, p);
+    s_algorithm.passEntry(0, m_edata, p, 0, ETEAPOT::DipoleTracker::m_m );
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
     s_algorithm.passBend( ip, m_data, m_edata, p, tmp, v0byc, cba, bend );
-    s_algorithm.passExit(m_edata, p);
+    s_algorithm.passExit(0, m_edata, p, 0, ETEAPOT::DipoleTracker::m_m );
     // testAperture(p);
   }
 bend++;
