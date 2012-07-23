@@ -12,35 +12,54 @@ ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::~MltAlgorithm()
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::passEntry(
+        int ip,
 	const ETEAPOT::MltData& data,
-	Coordinates& p)
+	Coordinates& p,
+        int mltK,
+        double m_m)
 {
-  if(data.m_entryMlt) applyMltKick(data.m_entryMlt, 0, 1, p);
+  if(data.m_entryMlt) applyMltKick(ip, data.m_entryMlt, 0, 1, p, mltK, m_m);
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::passExit(
+        int ip,
 	const ETEAPOT::MltData& data,
-	Coordinates& p)
+	Coordinates& p,
+        int mltK,
+        double m_m)
 {
-  if(data.m_exitMlt) applyMltKick(data.m_exitMlt, 0, 1, p);
+  if(data.m_exitMlt) applyMltKick(ip, data.m_exitMlt, 0, 1, p, mltK, m_m);
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
+        int ip,
 	const ETEAPOT::MltData& data,
 	double rkicks, 
-	Coordinates& p)
+	Coordinates& p,
+        int mltK,
+        double m_m)
 {
-  applyMltKick(data.m_mlt, data.m_offset, rkicks, p);
+//std::cerr << "applyMltKick ip: "   << ip   << "\n";
+//std::cerr << "applyMltKick mltK: " << mltK << "\n";
+//std::cerr << "applyMltKick m_m: "  << m_m  << "\n";
+  applyMltKick(ip, data.m_mlt, data.m_offset, rkicks, p, mltK, m_m );
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
+        int ip,
 	PacElemMultipole* mult, PacElemOffset* offset,
 	double rkicks, 
-	Coordinates& p)
+	Coordinates& p,
+        int mltK,
+        double m_m)
 {
+  std::cerr << "applyMltKick ip: "   << ip   << "\n";
+//std::cerr << "applyMltKick mltK: " << mltK << "\n";
+//mltK++;
+//std::cerr << "Wrapped applyMltKick m_m: " << m_m << "\n";
 
   if(mult == 0) return;
 
@@ -85,14 +104,15 @@ void ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
   p[3] += py;                              // py/p0	
 
 char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
-int ip=1;
+//int ip=1;
 
 #ifndef lngTrmTrk
 char buffer [3];
 sprintf(buffer,"%d",ip);
 std::string bip(buffer);
 char buffr2 [10];
-  sprintf(buffr2,"%+5.2f",+9.99);
+  sprintf(buffr2,"%+5.2f",m_m);
+//sprintf(buffr2,"%+5.2f",+9.99);
 //sprintf(buffr2,"%+5.2f",+1.00);
 //sprintf(buffr2,"%+5.2f",data.m_m);
 std::string bp2(buffr2);
