@@ -52,6 +52,10 @@ int main(int argc,char * argv[]){
  ETEAPOT::MltTracker*    mdt=new ETEAPOT::MltTracker();
  std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
+               ETEAPOT::DipoleTracker::m_m=atof( argv[2] );
+               ETEAPOT::MltTracker::m_m   =atof( argv[2] );
+ std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
+ std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
 
  std::string mysxf    =argv[1];
  std::string mysxfbase=mysxf.substr(7,mysxf.size()-11);
