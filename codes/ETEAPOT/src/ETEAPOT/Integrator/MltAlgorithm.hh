@@ -27,18 +27,24 @@ namespace ETEAPOT {
     ~MltAlgorithm();
 
     /** Passes the element entry  */
-    void passEntry(const MltData& edata, Coordinates& p);
+    void passEntry(int ip, const MltData& edata, Coordinates& p, int mltK, double m_m );
 
     /** Passes the element exit  */
-    void passExit(const MltData& edata, Coordinates& p);
+    void passExit(int ip, const MltData& edata, Coordinates& p, int mltK, double m_m );
 
    /** Applies the multipole kick */
-   void applyMltKick(const MltData& edata, double rkicks, Coordinates& p);
+   void applyMltKick(int ip, const MltData& edata, double rkicks, Coordinates& p, int mltK, double m_m);
+// void applyMltKick(const MltData& edata, double rkicks, Coordinates& p, int mltK, double m_m);
+// void applyMltKick(const MltData& edata, double rkicks, Coordinates& p, double m_m);
+// void applyMltKick(const MltData& edata, double rkicks, Coordinates& p);
 
   protected:
    
     /** Applies the multipole kick */
-    void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p);
+    void applyMltKick(int ip, PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, int mltK, double m_m);
+//  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, int mltK, double m_m);
+//  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, double m_m);
+//  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p);
 
   };
 
