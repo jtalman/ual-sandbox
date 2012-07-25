@@ -8,6 +8,7 @@
 #include "UAL/APF/PropagatorFactory.hh"
 #include "PAC/Beam/Bunch.hh"
 #include "ETEAPOT/Integrator/MltTracker.hh"
+#include "ETEAPOT/Integrator/DipoleTracker.hh"
 
 ETEAPOT::MltAlgorithm<double, PAC::Position> ETEAPOT::MltTracker::s_algorithm;
 double ETEAPOT::MltTracker::m_m;
@@ -94,7 +95,7 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
     PAC::Position& p = bunch[ip].getPosition();
     tmp = p;
 
-    s_algorithm.passEntry(ip, m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
+    s_algorithm.passEntry(ip, m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::DipoleTracker::m_m );
 //  s_algorithm.passEntry(m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
 //  s_algorithm.passEntry(m_mdata, p, ETEAPOT::MltTracker::m_m );
 //  s_algorithm.passEntry(m_mdata, p);
@@ -106,13 +107,13 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
 
     if(!m_ir){
       s_algorithm.passDrift(m_l/2., p, tmp, v0byc);
-      s_algorithm.applyMltKick(ip, m_mdata, 1., p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
+      s_algorithm.applyMltKick(ip, m_mdata, 1., p, ETEAPOT::MltTracker::mltK, ETEAPOT::DipoleTracker::m_m );
 //    s_algorithm.applyMltKick(m_mdata, 1., p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
 //    s_algorithm.applyMltKick(m_mdata, 1., p, ETEAPOT::MltTracker::m_m );
 //    s_algorithm.applyMltKick(m_mdata, 1., p);
       s_algorithm.makeVelocity(p, tmp, v0byc);
       s_algorithm.passDrift(m_l/2., p, tmp, v0byc);
-      s_algorithm.passExit(ip, m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
+      s_algorithm.passExit(ip, m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::DipoleTracker::m_m );
 //    s_algorithm.passExit(m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
 //    s_algorithm.passExit(m_mdata, p);
       continue;
@@ -131,7 +132,7 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
         for(int is = 0; is < 4; is++){
           counter++;
           s_algorithm.passDrift(m_l*s_steps[is]*rIr, p, tmp, v0byc);
-          s_algorithm.applyMltKick(ip, m_mdata, rkicks, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
+          s_algorithm.applyMltKick(ip, m_mdata, rkicks, p, ETEAPOT::MltTracker::mltK, ETEAPOT::DipoleTracker::m_m );
 //        s_algorithm.applyMltKick(m_mdata, rkicks, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
 //        s_algorithm.applyMltKick(m_mdata, rkicks, p, ETEAPOT::MltTracker::m_m );
 //        s_algorithm.applyMltKick(m_mdata, rkicks, p);
@@ -142,7 +143,7 @@ void ETEAPOT::MltTracker::propagate(UAL::Probe& probe)
       }
     }
 
-    s_algorithm.passExit(ip, m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
+    s_algorithm.passExit(ip, m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::DipoleTracker::m_m );
 //  s_algorithm.passExit(m_mdata, p, ETEAPOT::MltTracker::mltK, ETEAPOT::MltTracker::m_m );
 //  s_algorithm.passExit(m_mdata, p);
     // testAperture(p);
