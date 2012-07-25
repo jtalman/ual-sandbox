@@ -7,12 +7,14 @@
 #include "PAC/Beam/Bunch.hh"
 #include "SMF/PacLattice.h"
 #include "ETEAPOT/Integrator/DriftTracker.hh"
+#include "ETEAPOT/Integrator/DipoleTracker.hh"
 
 //#include "UAL/UI/OpticsCalculator.hh"
 //#include "Main/Teapot.h"
 #include <cstdlib>
 
 ETEAPOT::DriftAlgorithm<double, PAC::Position> ETEAPOT::DriftTracker::s_algorithm;
+int ETEAPOT::DriftTracker::drft=0;
 
 ETEAPOT::DriftTracker::DriftTracker()
   : ETEAPOT::BasicTracker()
@@ -32,7 +34,6 @@ UAL::PropagatorNode* ETEAPOT::DriftTracker::clone()
 {
   return new ETEAPOT::DriftTracker(*this);
 }
-
 
 void ETEAPOT::DriftTracker::setLatticeElements(const UAL::AcceleratorNode& sequence, 
 					      int is0, 
@@ -66,8 +67,9 @@ void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)
     tmp = p;
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
-    s_algorithm.passDrift(m_l, p, tmp, v0byc);
+    s_algorithm.passDriftPlusPostProcess( ip, m_l, p, tmp, v0byc, ETEAPOT::DipoleTracker::m_m, drft );
   }
+drft++;
 
   /*
   std::cout << "after drift " << m_name << std::endl;
@@ -80,9 +82,7 @@ void ETEAPOT::DriftTracker::propagate(UAL::Probe& probe)
   }
   */
 
-
   checkAperture(bunch);
 
   ba.setElapsedTime(oldT + m_l/v0byc/UAL::clight);
 }
-
