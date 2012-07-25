@@ -35,6 +35,8 @@ namespace ETEAPOT {
     /** Propagates a bunch of particles */
     void propagate(UAL::Probe& probe);
 
+    static int drft;
+
   protected:
 
     // Sets the lattice element 
