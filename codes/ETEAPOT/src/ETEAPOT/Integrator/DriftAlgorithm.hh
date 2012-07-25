@@ -6,6 +6,7 @@
 #ifndef ETEAPOT_DRIFT_ALGORITHM_HH
 #define ETEAPOT_DRIFT_ALGORITHM_HH
 
+#include <iomanip>
 #include "ETEAPOT/Integrator/CommonAlgorithm.hh"
 
 namespace ETEAPOT {
@@ -22,6 +23,15 @@ namespace ETEAPOT {
 
     /** Destructor */
     ~DriftAlgorithm();
+
+    void passDriftPlusPostProcess(
+      int ip,
+      double rlipl, 
+      Coordinates& p,  
+      Coordinates& tmp, 
+      double v0byc,
+      double m_m,
+      int drft);
 
   };
 
