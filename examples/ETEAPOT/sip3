@@ -1,14 +1,39 @@
- string sip3 = "out/STT/StndrdPrtcl3__m=";
+ string sip3 = "out/TWISS/StndrdPrtcl3__m=";
         sip3+=m;
- cerr << "sip3 prefix " << sip3       << "\n";
-//cerr << "sip3          " << sip3          << "\n";
-//cerr << "sip3.length() " << sip3.length() << "\n";
+ cerr << "sip3 " << sip3 << "\n";
+ fstream filestrTHR_IN;
+ std::string dummyTHR[sElems];
+ filestrTHR_IN.open (sip3.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrTHR_IN >> dummyTHR[i] >> p3[i][0] >> p3[i][1] >> p3[i][2] >> p3[i][3] >> p3[i][4] >> p3[i][5] >> alp;
+  }
+ filestrTHR_IN.close();
 
- fstream filestr3;
- filestr3.open (sip3.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr3           >> bend >> p3[i][0] >> p3[i][1] >> p3[i][2] >> p3[i][3] >> p3[i][4] >> p3[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p3[i][0] << " " << p3[i][1] << " " << p3[i][2] << " " << p3[i][3] << " " << p3[i][4] << " " << p3[i][5] << " " << "THREE " << "\n";
+ string sop3 = "out/VERIF/StndrdPrtcl3__m=";
+        sop3+=m;
+ cerr << "sop3 " << sop3       << "\n";
+ fstream filestrTHR_OUT;
+ filestrTHR_OUT.open (sop3.c_str(), fstream::out | fstream::app );
+ filestrTHR_OUT << setiosflags( ios::showpos    );
+ filestrTHR_OUT << setiosflags( ios::uppercase  );
+ filestrTHR_OUT << setiosflags( ios::scientific );
+ filestrTHR_OUT << setfill( ' ' );
+ filestrTHR_OUT << setiosflags( ios::left );
+ filestrTHR_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummyTHR[i].length()==6 ){
+   filestrTHR_OUT << dummyTHR[i] << "   ";
+  }
+  if( dummyTHR[i].length()==7 ){
+   filestrTHR_OUT << dummyTHR[i] << "  ";
+  }
+  if( dummyTHR[i].length()==8 ){
+   filestrTHR_OUT << dummyTHR[i] << " ";
+  }
+  if( dummyTHR[i].length()==9 ){
+// filestrTHR_OUT << dummyTHR[i] << "";
+  }
+   filestrTHR_OUT << " " << p3[i][0] << " " << p3[i][1] << " " << p3[i][2] << " " << p3[i][3] << " " << p3[i][4] << " " << p3[i][5] << " " << alp << " " << "\n";
  }
- filestr3.close();
+ filestrTHR_OUT.close();
