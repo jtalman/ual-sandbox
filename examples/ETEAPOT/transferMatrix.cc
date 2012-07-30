@@ -4,8 +4,7 @@
 #include <iomanip>
 #include "PAC/Beam/Position.hh"
 
-  #define sBends 264
-//#define sBends 880
+  #define sElems 366
 
 using namespace std;
 int main(int argc, char* argv[]){
@@ -13,7 +12,7 @@ int main(int argc, char* argv[]){
  int bend=0;
  string alp;
  int i;
- PAC::Position p1[sBends],p2[sBends],p3[sBends],p4[sBends],p5[sBends],p6[sBends],p7[sBends],p8[sBends],p9[sBends],p10[sBends];
+ PAC::Position p1[sElems],p2[sElems],p3[sElems],p4[sElems],p5[sElems],p6[sElems],p7[sElems],p8[sElems],p9[sElems],p10[sElems];
  double Mi[6][6];
 
  cout << setiosflags( ios::showpos    );  
@@ -29,16 +28,7 @@ int main(int argc, char* argv[]){
  cerr << "m          " << m          << "\n";
  cerr << "m.length() " << m.length() << "\n";
 
-//#include "sip1"
- string sip1 = "out/STT/StndrdPrtcl1__m=";
-        sip1+=m;
- cerr << "sip1 prefix " << sip1       << "\n";
- fstream filestr1;
- filestr1.open (sip1.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr1           >> bend >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> alp;
- }
- filestr1.close();
+#include "sip1"
 #include "sip2"
 #include "sip3"
 #include "sip4"
@@ -78,6 +68,5 @@ int main(int argc, char* argv[]){
  double    muOfS=atan(tanMuOfS);
  cout << "tanMuOfS " << tanMuOfS << "\n";
  cout << "   muOfS " <<    muOfS << "\n";
-
  return 0;
 }
