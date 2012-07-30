@@ -1,14 +1,39 @@
- string sip9 = "out/STT/StndrdPrtcl9__m=";
+ string sip9 = "out/TWISS/StndrdPrtcl9__m=";
         sip9+=m;
- cerr << "sip9 prefix " << sip9       << "\n";
-//cerr << "sip9          " << sip9          << "\n";
-//cerr << "sip9.length() " << sip9.length() << "\n";
+ cerr << "sip9 " << sip9 << "\n";
+ fstream filestrNIN_IN;
+ std::string dummyNIN[sElems];
+ filestrNIN_IN.open (sip9.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrNIN_IN >> dummyNIN[i] >> p9[i][0] >> p9[i][1] >> p9[i][2] >> p9[i][3] >> p9[i][4] >> p9[i][5] >> alp;
+  }
+ filestrNIN_IN.close();
 
- fstream filestr9;
- filestr9.open (sip9.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr9           >> bend >> p9[i][0] >> p9[i][1] >> p9[i][2] >> p9[i][3] >> p9[i][4] >> p9[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p9[i][0] << " " << p9[i][1] << " " << p9[i][2] << " " << p9[i][3] << " " << p9[i][4] << " " << p9[i][5] << " " << "NINE  " << "\n";
+ string sop9 = "out/VERIF/StndrdPrtcl9__m=";
+        sop9+=m;
+ cerr << "sop9 " << sop9       << "\n";
+ fstream filestrNIN_OUT;
+ filestrNIN_OUT.open (sop9.c_str(), fstream::out | fstream::app );
+ filestrNIN_OUT << setiosflags( ios::showpos    );
+ filestrNIN_OUT << setiosflags( ios::uppercase  );
+ filestrNIN_OUT << setiosflags( ios::scientific );
+ filestrNIN_OUT << setfill( ' ' );
+ filestrNIN_OUT << setiosflags( ios::left );
+ filestrNIN_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummyNIN[i].length()==6 ){
+   filestrNIN_OUT << dummyNIN[i] << "   ";
+  }
+  if( dummyNIN[i].length()==7 ){
+   filestrNIN_OUT << dummyNIN[i] << "  ";
+  }
+  if( dummyNIN[i].length()==8 ){
+   filestrNIN_OUT << dummyNIN[i] << " ";
+  }
+  if( dummyNIN[i].length()==9 ){
+// filestrNIN_OUT << dummyNIN[i] << "";
+  }
+   filestrNIN_OUT << " " << p9[i][0] << " " << p9[i][1] << " " << p9[i][2] << " " << p9[i][3] << " " << p9[i][4] << " " << p9[i][5] << " " << alp << "  " << "\n";
  }
- filestr9.close();
+ filestrNIN_OUT.close();
