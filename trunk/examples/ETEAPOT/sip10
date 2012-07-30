@@ -1,14 +1,39 @@
- string sip10 = "out/STT/StndrdPrtcl10_m=";
+ string sip10 = "out/TWISS/StndrdPrtcl10_m=";
         sip10+=m;
- cerr << "sip10 prefix " << sip10      << "\n";
-//cerr << "sip10          " << sip10          << "\n";
-//cerr << "sip10.length() " << sip10.length() << "\n";
+ cerr << "sip10 " << sip10 << "\n";
+ fstream filestrTEN_IN;
+ std::string dummyTEN[sElems];
+ filestrTEN_IN.open (sip10.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrTEN_IN >> dummyTEN[i] >> p10[i][0] >> p10[i][1] >> p10[i][2] >> p10[i][3] >> p10[i][4] >> p10[i][5] >> alp;
+  }
+ filestrTEN_IN.close();
 
- fstream filestr10;
- filestr10.open (sip10.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr10           >> bend >> p10[i][0] >> p10[i][1] >> p10[i][2] >> p10[i][3] >> p10[i][4] >> p10[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p10[i][0] << " " << p10[i][1] << " " << p10[i][2] << " " << p10[i][3] << " " << p10[i][4] << " " << p10[i][5] << " " << "TEN   " << "\n";
+ string sop10 = "out/VERIF/StndrdPrtcl10_m=";
+        sop10+=m;
+ cerr << "sop10 " << sop10       << "\n";
+ fstream filestrTEN_OUT;
+ filestrTEN_OUT.open (sop10.c_str(), fstream::out | fstream::app );
+ filestrTEN_OUT << setiosflags( ios::showpos    );
+ filestrTEN_OUT << setiosflags( ios::uppercase  );
+ filestrTEN_OUT << setiosflags( ios::scientific );
+ filestrTEN_OUT << setfill( ' ' );
+ filestrTEN_OUT << setiosflags( ios::left );
+ filestrTEN_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummyTEN[i].length()==6 ){
+   filestrTEN_OUT << dummyTEN[i] << "   ";
+  }
+  if( dummyTEN[i].length()==7 ){
+   filestrTEN_OUT << dummyTEN[i] << "  ";
+  }
+  if( dummyTEN[i].length()==8 ){
+   filestrTEN_OUT << dummyTEN[i] << " ";
+  }
+  if( dummyTEN[i].length()==9 ){
+// filestrTEN_OUT << dummyTEN[i] << "";
+  }
+   filestrTEN_OUT << " " << p10[i][0] << " " << p10[i][1] << " " << p10[i][2] << " " << p10[i][3] << " " << p10[i][4] << " " << p10[i][5] << " " << alp << "   " << "\n";
  }
- filestr10.close();
+ filestrTEN_OUT.close();
