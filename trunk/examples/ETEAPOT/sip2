@@ -1,14 +1,39 @@
- string sip2 = "out/STT/StndrdPrtcl2__m=";
+ string sip2 = "out/TWISS/StndrdPrtcl2__m=";
         sip2+=m;
- cerr << "sip2 prefix " << sip2       << "\n";
-//cerr << "sip2          " << sip2          << "\n";
-//cerr << "sip2.length() " << sip2.length() << "\n";
+ cerr << "sip2 " << sip2 << "\n";
+ fstream filestrTWO_IN;
+ std::string dummyTWO[sElems];
+ filestrTWO_IN.open (sip2.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrTWO_IN >> dummyTWO[i] >> p2[i][0] >> p2[i][1] >> p2[i][2] >> p2[i][3] >> p2[i][4] >> p2[i][5] >> alp;
+  }
+ filestrTWO_IN.close();
 
- fstream filestr2;
- filestr2.open (sip2.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr2           >> bend >> p2[i][0] >> p2[i][1] >> p2[i][2] >> p2[i][3] >> p2[i][4] >> p2[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p2[i][0] << " " << p2[i][1] << " " << p2[i][2] << " " << p2[i][3] << " " << p2[i][4] << " " << p2[i][5] << " " << "TWO   " << "\n";
+ string sop2 = "out/VERIF/StndrdPrtcl2__m=";
+        sop2+=m;
+ cerr << "sop2 " << sop2       << "\n";
+ fstream filestrTWO_OUT;
+ filestrTWO_OUT.open (sop2.c_str(), fstream::out | fstream::app );
+ filestrTWO_OUT << setiosflags( ios::showpos    );
+ filestrTWO_OUT << setiosflags( ios::uppercase  );
+ filestrTWO_OUT << setiosflags( ios::scientific );
+ filestrTWO_OUT << setfill( ' ' );
+ filestrTWO_OUT << setiosflags( ios::left );
+ filestrTWO_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummyTWO[i].length()==6 ){
+   filestrTWO_OUT << dummyTWO[i] << "   ";
+  }
+  if( dummyTWO[i].length()==7 ){
+   filestrTWO_OUT << dummyTWO[i] << "  ";
+  }
+  if( dummyTWO[i].length()==8 ){
+   filestrTWO_OUT << dummyTWO[i] << " ";
+  }
+  if( dummyTWO[i].length()==9 ){
+// filestrTWO_OUT << dummyTWO[i] << "";
+  }
+   filestrTWO_OUT << " " << p2[i][0] << " " << p2[i][1] << " " << p2[i][2] << " " << p2[i][3] << " " << p2[i][4] << " " << p2[i][5] << " " << alp << "   " << "\n";
  }
- filestr2.close();
+ filestrTWO_OUT.close();
