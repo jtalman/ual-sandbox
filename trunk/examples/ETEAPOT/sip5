@@ -1,14 +1,39 @@
- string sip5 = "out/STT/StndrdPrtcl5__m=";
+ string sip5 = "out/TWISS/StndrdPrtcl5__m=";
         sip5+=m;
- cerr << "sip5 prefix " << sip5       << "\n";
-//cerr << "sip5          " << sip5          << "\n";
-//cerr << "sip5.length() " << sip5.length() << "\n";
+ cerr << "sip5 " << sip5 << "\n";
+ fstream filestrFIV_IN;
+ std::string dummyFIV[sElems];
+ filestrFIV_IN.open (sip5.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrFIV_IN >> dummyFIV[i] >> p5[i][0] >> p5[i][1] >> p5[i][2] >> p5[i][3] >> p5[i][4] >> p5[i][5] >> alp;
+  }
+ filestrFIV_IN.close();
 
- fstream filestr5;
- filestr5.open (sip5.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr5           >> bend >> p5[i][0] >> p5[i][1] >> p5[i][2] >> p5[i][3] >> p5[i][4] >> p5[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p5[i][0] << " " << p5[i][1] << " " << p5[i][2] << " " << p5[i][3] << " " << p5[i][4] << " " << p5[i][5] << " " << "FIVE  " << "\n";
+ string sop5 = "out/VERIF/StndrdPrtcl5__m=";
+        sop5+=m;
+ cerr << "sop5 " << sop5       << "\n";
+ fstream filestrFIV_OUT;
+ filestrFIV_OUT.open (sop5.c_str(), fstream::out | fstream::app );
+ filestrFIV_OUT << setiosflags( ios::showpos    );
+ filestrFIV_OUT << setiosflags( ios::uppercase  );
+ filestrFIV_OUT << setiosflags( ios::scientific );
+ filestrFIV_OUT << setfill( ' ' );
+ filestrFIV_OUT << setiosflags( ios::left );
+ filestrFIV_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummyFIV[i].length()==6 ){
+   filestrFIV_OUT << dummyFIV[i] << "   ";
+  }
+  if( dummyFIV[i].length()==7 ){
+   filestrFIV_OUT << dummyFIV[i] << "  ";
+  }
+  if( dummyFIV[i].length()==8 ){
+   filestrFIV_OUT << dummyFIV[i] << " ";
+  }
+  if( dummyFIV[i].length()==9 ){
+// filestrFIV_OUT << dummyFIV[i] << "";
+  }
+   filestrFIV_OUT << " " << p5[i][0] << " " << p5[i][1] << " " << p5[i][2] << " " << p5[i][3] << " " << p5[i][4] << " " << p5[i][5] << " " << alp << "  " << "\n";
  }
- filestr5.close();
+ filestrFIV_OUT.close();
