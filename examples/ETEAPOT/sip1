@@ -1,14 +1,39 @@
- string sip1 = "out/STT/StndrdPrtcl1__m=";
+ string sip1 = "out/TWISS/StndrdPrtcl1__m=";
         sip1+=m;
-//cerr << "sip1          " << sip1          << "\n";
-//cerr << "sip1.length() " << sip1.length() << "\n";
+ cerr << "sip1 " << sip1 << "\n";
+ fstream filestrONE_IN;
+ std::string dummy[sElems];
+ filestrONE_IN.open (sip1.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrONE_IN >> dummy[i] >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> alp;
+  }
+ filestrONE_IN.close();
 
- fstream filestr1;
- filestr1.open (sip1.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr1           >> bend >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> alp;
-//cout               << setw(5);
-//cout               << bend << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << "ONE   " << "\n";
-//cout               << bend << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << alp << "\n";
+ string sop1 = "out/VERIF/StndrdPrtcl1__m=";
+        sop1+=m;
+ cerr << "sop1 " << sop1       << "\n";
+ fstream filestrONE_OUT;
+ filestrONE_OUT.open (sop1.c_str(), fstream::out | fstream::app );
+ filestrONE_OUT << setiosflags( ios::showpos    );
+ filestrONE_OUT << setiosflags( ios::uppercase  );
+ filestrONE_OUT << setiosflags( ios::scientific );
+ filestrONE_OUT << setfill( ' ' );
+ filestrONE_OUT << setiosflags( ios::left );
+ filestrONE_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummy[i].length()==6 ){
+   filestrONE_OUT << dummy[i] << "   ";
+  }
+  if( dummy[i].length()==7 ){
+   filestrONE_OUT << dummy[i] << "  ";
+  }
+  if( dummy[i].length()==8 ){
+   filestrONE_OUT << dummy[i] << " ";
+  }
+  if( dummy[i].length()==9 ){
+// filestrONE_OUT << dummy[i] << "";
+  }
+   filestrONE_OUT << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << alp << "   " << "\n";
  }
- filestr1.close();
+ filestrONE_OUT.close();
