@@ -1,14 +1,39 @@
- string sip4 = "out/STT/StndrdPrtcl4__m=";
+ string sip4 = "out/TWISS/StndrdPrtcl4__m=";
         sip4+=m;
- cerr << "sip4 prefix " << sip4       << "\n";
-//cerr << "sip4          " << sip4          << "\n";
-//cerr << "sip4.length() " << sip4.length() << "\n";
+ cerr << "sip4 " << sip4 << "\n";
+ fstream filestrFOR_IN;
+ std::string dummyFOR[sElems];
+ filestrFOR_IN.open (sip4.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrFOR_IN >> dummyFOR[i] >> p4[i][0] >> p4[i][1] >> p4[i][2] >> p4[i][3] >> p4[i][4] >> p4[i][5] >> alp;
+  }
+ filestrFOR_IN.close();
 
- fstream filestr4;
- filestr4.open (sip4.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr4           >> bend >> p4[i][0] >> p4[i][1] >> p4[i][2] >> p4[i][3] >> p4[i][4] >> p4[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p4[i][0] << " " << p4[i][1] << " " << p4[i][2] << " " << p4[i][3] << " " << p4[i][4] << " " << p4[i][5] << " " << "FOUR  " << "\n";
+ string sop4 = "out/VERIF/StndrdPrtcl4__m=";
+        sop4+=m;
+ cerr << "sop4 " << sop4       << "\n";
+ fstream filestrFOR_OUT;
+ filestrFOR_OUT.open (sop4.c_str(), fstream::out | fstream::app );
+ filestrFOR_OUT << setiosflags( ios::showpos    );
+ filestrFOR_OUT << setiosflags( ios::uppercase  );
+ filestrFOR_OUT << setiosflags( ios::scientific );
+ filestrFOR_OUT << setfill( ' ' );
+ filestrFOR_OUT << setiosflags( ios::left );
+ filestrFOR_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummyFOR[i].length()==6 ){
+   filestrFOR_OUT << dummyFOR[i] << "   ";
+  }
+  if( dummyFOR[i].length()==7 ){
+   filestrFOR_OUT << dummyFOR[i] << "  ";
+  }
+  if( dummyFOR[i].length()==8 ){
+   filestrFOR_OUT << dummyFOR[i] << " ";
+  }
+  if( dummyFOR[i].length()==9 ){
+// filestrFOR_OUT << dummyFOR[i] << "";
+  }
+   filestrFOR_OUT << " " << p4[i][0] << " " << p4[i][1] << " " << p4[i][2] << " " << p4[i][3] << " " << p4[i][4] << " " << p4[i][5] << " " << alp << "  " << "\n";
  }
- filestr4.close();
+ filestrFOR_OUT.close();
