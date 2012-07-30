@@ -1,14 +1,39 @@
- string sip8 = "out/STT/StndrdPrtcl8__m=";
+ string sip8 = "out/TWISS/StndrdPrtcl8__m=";
         sip8+=m;
- cerr << "sip8 prefix " << sip8       << "\n";
-//cerr << "sip8          " << sip8          << "\n";
-//cerr << "sip8.length() " << sip8.length() << "\n";
+ cerr << "sip8 " << sip8 << "\n";
+ fstream filestrEGT_IN;
+ std::string dummyEGT[sElems];
+ filestrEGT_IN.open (sip8.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrEGT_IN >> dummyEGT[i] >> p8[i][0] >> p8[i][1] >> p8[i][2] >> p8[i][3] >> p8[i][4] >> p8[i][5] >> alp;
+  }
+ filestrEGT_IN.close();
 
- fstream filestr8;
- filestr8.open (sip8.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr8           >> bend >> p8[i][0] >> p8[i][1] >> p8[i][2] >> p8[i][3] >> p8[i][4] >> p8[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p8[i][0] << " " << p8[i][1] << " " << p8[i][2] << " " << p8[i][3] << " " << p8[i][4] << " " << p8[i][5] << " " << "EIGHT " << "\n";
+ string sop8 = "out/VERIF/StndrdPrtcl8__m=";
+        sop8+=m;
+ cerr << "sop8 " << sop8       << "\n";
+ fstream filestrEGT_OUT;
+ filestrEGT_OUT.open (sop8.c_str(), fstream::out | fstream::app );
+ filestrEGT_OUT << setiosflags( ios::showpos    );
+ filestrEGT_OUT << setiosflags( ios::uppercase  );
+ filestrEGT_OUT << setiosflags( ios::scientific );
+ filestrEGT_OUT << setfill( ' ' );
+ filestrEGT_OUT << setiosflags( ios::left );
+ filestrEGT_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummyEGT[i].length()==6 ){
+   filestrEGT_OUT << dummyEGT[i] << "   ";
+  }
+  if( dummyEGT[i].length()==7 ){
+   filestrEGT_OUT << dummyEGT[i] << "  ";
+  }
+  if( dummyEGT[i].length()==8 ){
+   filestrEGT_OUT << dummyEGT[i] << " ";
+  }
+  if( dummyEGT[i].length()==9 ){
+// filestrEGT_OUT << dummyEGT[i] << "";
+  }
+   filestrEGT_OUT << " " << p8[i][0] << " " << p8[i][1] << " " << p8[i][2] << " " << p8[i][3] << " " << p8[i][4] << " " << p8[i][5] << " " << alp << " " << "\n";
  }
- filestr8.close();
+ filestrEGT_OUT.close();
