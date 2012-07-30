@@ -36,3 +36,17 @@ Transfer Matrix:
 
    det can be compiled with
       gcc det.c -o det -lm
+
+Notes:
+   With care in cleaning (some of these files are opened to be appended),
+      diff out/TWISS/StndrdPrtcl1__m=-1.00 out/VERIF/StndrdPrtcl1__m=-1.00
+      diff out/TWISS/StndrdPrtcl2__m=-1.00 out/VERIF/StndrdPrtcl2__m=-1.00
+      diff out/TWISS/StndrdPrtcl3__m=-1.00 out/VERIF/StndrdPrtcl3__m=-1.00
+      diff out/TWISS/StndrdPrtcl4__m=-1.00 out/VERIF/StndrdPrtcl4__m=-1.00
+      diff out/TWISS/StndrdPrtcl5__m=-1.00 out/VERIF/StndrdPrtcl5__m=-1.00
+      diff out/TWISS/StndrdPrtcl6__m=-1.00 out/VERIF/StndrdPrtcl6__m=-1.00
+      diff out/TWISS/StndrdPrtcl7__m=-1.00 out/VERIF/StndrdPrtcl7__m=-1.00
+      diff out/TWISS/StndrdPrtcl8__m=-1.00 out/VERIF/StndrdPrtcl8__m=-1.00
+      diff out/TWISS/StndrdPrtcl9__m=-1.00 out/VERIF/StndrdPrtcl9__m=-1.00
+      diff out/TWISS/StndrdPrtcl10_m=-1.00 out/VERIF/StndrdPrtcl10_m=-1.00
+   verifies that these standard particle files are being read back in correctly for post processing.
