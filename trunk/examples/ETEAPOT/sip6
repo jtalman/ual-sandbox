@@ -1,14 +1,39 @@
- string sip6 = "out/STT/StndrdPrtcl6__m=";
+ string sip6 = "out/TWISS/StndrdPrtcl6__m=";
         sip6+=m;
- cerr << "sip6 prefix " << sip6       << "\n";
-//cerr << "sip6          " << sip6          << "\n";
-//cerr << "sip6.length() " << sip6.length() << "\n";
+ cerr << "sip6 " << sip6 << "\n";
+ fstream filestrSIX_IN;
+ std::string dummySIX[sElems];
+ filestrSIX_IN.open (sip6.c_str(), fstream::in );
+  for(i=0;i<sElems ;i++){
+   filestrSIX_IN >> dummySIX[i] >> p6[i][0] >> p6[i][1] >> p6[i][2] >> p6[i][3] >> p6[i][4] >> p6[i][5] >> alp;
+  }
+ filestrSIX_IN.close();
 
- fstream filestr6;
- filestr6.open (sip6.c_str(), fstream::in | fstream::app);
- for(i=0;i<sBends;i++){
-  filestr6           >> bend >> p6[i][0] >> p6[i][1] >> p6[i][2] >> p6[i][3] >> p6[i][4] >> p6[i][5] >> alp; 
-//cout               << setw(5);
-//cout               << bend << " " << p6[i][0] << " " << p6[i][1] << " " << p6[i][2] << " " << p6[i][3] << " " << p6[i][4] << " " << p6[i][5] << " " << "SIX   " << "\n";
+ string sop6 = "out/VERIF/StndrdPrtcl6__m=";
+        sop6+=m;
+ cerr << "sop6 " << sop6       << "\n";
+ fstream filestrSIX_OUT;
+ filestrSIX_OUT.open (sop6.c_str(), fstream::out | fstream::app );
+ filestrSIX_OUT << setiosflags( ios::showpos    );
+ filestrSIX_OUT << setiosflags( ios::uppercase  );
+ filestrSIX_OUT << setiosflags( ios::scientific );
+ filestrSIX_OUT << setfill( ' ' );
+ filestrSIX_OUT << setiosflags( ios::left );
+ filestrSIX_OUT << setprecision(13) ;
+
+ for(i=0;i<sElems ;i++){
+  if( dummySIX[i].length()==6 ){
+   filestrSIX_OUT << dummySIX[i] << "   ";
+  }
+  if( dummySIX[i].length()==7 ){
+   filestrSIX_OUT << dummySIX[i] << "  ";
+  }
+  if( dummySIX[i].length()==8 ){
+   filestrSIX_OUT << dummySIX[i] << " ";
+  }
+  if( dummySIX[i].length()==9 ){
+// filestrSIX_OUT << dummySIX[i] << "";
+  }
+   filestrSIX_OUT << " " << p6[i][0] << " " << p6[i][1] << " " << p6[i][2] << " " << p6[i][3] << " " << p6[i][4] << " " << p6[i][5] << " " << alp << "   " << "\n";
  }
- filestr6.close();
+ filestrSIX_OUT.close();
