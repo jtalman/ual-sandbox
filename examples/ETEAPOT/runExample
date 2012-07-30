@@ -1,1 +1,38 @@
-./tracker ./data/eteapot.apdf E_fodoLine 1.25 2e-1 1 1
+a0x, b0x:
+   Running
+      ./tracker ./data/E_BM_M1.0.sxf 40 -1 > ! OUT_m=-1.00
+   (skipping the careful clean, and slightly modified to not redirect std::cerr) from the
+      sxfAnalysisExample_m=-1.00
+   instructions file gives
+      RMT: a0x 3.96957e-09 b0x 58.1868 mu_xTent 5.66973 a0y 6.62176e-12 b0y 45.3526 mu_yTent 1.04014
+
+   This allows a0x, 3.96957e-09, and b0x, 58.1868, to be used subsequently.
+
+   Alternatively, one can have these values available from some other source, e.g.
+      out/STT/TWISS_m=-1.00
+
+   I don't thing alpha, beta, and, gamma, are being handled consistently between these programs at this point (7/30/2012)
+
+Populate the Standard Particle files:
+   out/TWISS/StndrdPrtcl...
+
+   Follow instructions sequentially in file
+      determineTwissExample_m=-1.00
+   The "gnuplots" are probably the best verification that the standard bunch is being handled reasonably correctly.
+
+Transfer Matrix:
+   Running
+      ./transferMatrix -1.00 300 3.96957e-09 58.1868
+   gives the evolved transfer matrix, M (M00, M01, ..., M55), for m=-1 at the 300th lattice element (including drifts).
+
+   Running
+      ./det
+         6
+         M00 M01 ... M05
+         M10 ...
+         ...
+         M50 ... M55
+   verifies that the evolved transfer matrix has a determinant of 1 and gives its inverse.
+
+   det can be compiled with
+      gcc det.c -o det -lm
