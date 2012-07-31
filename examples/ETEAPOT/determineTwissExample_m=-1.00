@@ -1,9 +1,10 @@
-rm make.log out/cpp/*m=-1.00* OUT*m=-1.00* out/TWISS/*m=-1.00* out/LTT/*m=-1.00*
+rm make.log OUT*m=-1.00* out/TWISS/*m=-1.00* out/VERIF/*m=-1.00*
 make clean
 make >&! make.log
 ./determineTwiss ./data/E_BM_M1.0.sxf -1 >! OUT_m=-1.00
-// (split=1) betaX  35.8566, betaY  251.8522, QX  0.4620  -->> 1.4620, QY 0.2102
-// compare with out/TWISS/TWISS_m=+1.00
+// (split=1) betaX (b0x) 35.8566,  QX 0.4620  -->> 1.4620, alphax (a0x) -4.40477e-09
+// (split=1) betaY (b0y) 251.8522, QY 0.2102,              alphay (a0y)  7.34497e-10
+// compare with out/TWISS/TWISS_m=-1.00
 // reference UAL/ETEAPOT Results (Augmented) for Proton EDM Benchmark Lattices, J. Talman & R. Talman, April 29, 2012
 
 gnuplot
@@ -18,3 +19,32 @@ gnuplot
 
    > p 'out/TWISS/StndrdPrtcl7__m=-1.00' u 4,'out/TWISS/StndrdPrtcl8__m=-1.00' u 4
    > p 'out/TWISS/StndrdPrtcl7__m=-1.00' u 5,'out/TWISS/StndrdPrtcl8__m=-1.00' u 5
+
+./transferMatrix -1.00 0 -4.40477e-09 35.8566
+// identity
+
+./transferMatrix -1.00 1 -4.40477e-09 35.8566
+// identity
+
+./transferMatrix -1.00 2 -4.40477e-09 35.8566
+// identity
+
+./transferMatrix -1.00 3 -4.40477e-09 35.8566
+// identity except for small M45
+
+...
+
+./transferMatrix -1.00 5 -4.40477e-09 35.8566
+// first bend, and first non trivial M
+
+./det
+   6
+   +9.9817544245732E-01 +4.1280088831128E+00 +0.0000000000000E+00 +0.0000000000000E+00 +0.0000000000000E+00 +3.3789181976172E-01
+   -3.1801660777893E-03 +9.8867614264629E-01 +0.0000000000000E+00 +0.0000000000000E+00 +0.0000000000000E+00 +2.1503762601052E-01
+   +0.0000000000000E+00 +0.0000000000000E+00 +9.9672358716215E-01 +4.1447718980758E+00 +0.0000000000000E+00 +0.0000000000000E+00
+   +0.0000000000000E+00 +0.0000000000000E+00 -6.5756881110812E-05 +1.0030137398208E+00 +0.0000000000000E+00 +0.0000000000000E+00
+   -9.2016000150828E-10 +1.1701124993252E-06 +0.0000000000000E+00 +0.0000000000000E+00 +1.0000000000000E+00 +3.3008456884808E+01
+   +0.0000000000000E+00 +0.0000000000000E+00 +0.0000000000000E+00 +0.0000000000000E+00 +0.0000000000000E+00 +1.0000000000000E+00
+// Determinant is :1.000000e+00
+// ...
+
