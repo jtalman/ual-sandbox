@@ -2,7 +2,8 @@ rm make.log out/cpp/*m=+0.00* OUT*m=+0.00* out/TWISS/*m=+0.00* out/LTT/*m=+0.00*
 make clean
 make >&! make.log
 ./determineTwiss ./data/E_BM_Z.sxf 0 >! OUT_m=+0.00
-// (split=1) betaX  36.0795, betaY  261.4688, QX  0.4581  -->> 1.4581, QY 0.2018
+// (split=1) betaX (b0x)  36.0795, QX 0.4581  -->> 1.4581, alphax (a0x) 3.8436e-10
+// (split=1) betaY (b0y) 261.4688, QY 0.2018,              alphay (a0y) 8.42004e-10
 // compare with out/TWISS/TWISS_m=+0.00
 // reference UAL/ETEAPOT Results (Augmented) for Proton EDM Benchmark Lattices, J. Talman & R. Talman, April 29, 2012
 
