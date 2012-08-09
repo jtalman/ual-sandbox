@@ -1,0 +1,10 @@
+// execute, line by line, the commands in determineTwissExample_m=+0.00
+
+// execute
+./transferMatrices +0.00 3.8436e-10 36.0795 8.42004e-10 261.469 >&! betaFunctions_m=+0.00
+
+gnuplot
+gnuplot> set yrange [36:36.3]
+gnuplot> p 'betaFunctions_m=+0.00' u 2
+gnuplot> set yrange [261.4:261.5]
+gnuplot> p 'betaFunctions_m=+0.00' u 3
