@@ -65,8 +65,17 @@ int main(int argc, char* argv[]){
  double a0x=atof(argv[3]);
  double b0x=atof(argv[4]);
  double tanMuOfS=Mi[0][1]/(b0x*Mi[0][0]-a0x*Mi[0][1]);
- double    muOfS=atan(tanMuOfS);
- cout << "tanMuOfS " << tanMuOfS << "\n";
- cout << "   muOfS " <<    muOfS << "\n";
+  double    muOfS=atan2( Mi[0][1],b0x*Mi[0][0]-a0x*Mi[0][1] );
+//double    muOfS=atan ( tanMuOfS );
+ cout << "tanMuOfS              " << tanMuOfS             << "\n";
+ cout << "   muOfS              " <<    muOfS             << "\n\n";
+
+ double PI=3.141592654;
+ double xTrace;
+        xTrace=Mi[0][0]+Mi[1][1];
+ double xMu=acos(xTrace/2);
+ cout << "  acos(xTrace/2)      " << acos(xTrace/2)        << "\n";
+ cout << "  acos(xTrace/2)/2/PI " << acos(xTrace/2)/2/PI   << "\n";
+ cout << "1+acos(xTrace/2)/2/PI " << 1+acos(xTrace/2)/2/PI << "\n";
  return 0;
 }
