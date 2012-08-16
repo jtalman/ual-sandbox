@@ -29,12 +29,14 @@
 
 #include "ETEAPOT/Integrator/DipoleTracker.hh"
 #include "ETEAPOT/Integrator/MltTracker.hh"
+//#include "ETEAPOT/Integrator/DriftTracker.hh"
+#include "ETEAPOT/Integrator/MarkerTracker.hh"
 
 using namespace UAL;
 
 int main(int argc,char * argv[]){
- std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
- std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
+// std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
+// std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
 
  if(argc!=3){
   std::cout << "usage: ./determineTwiss ./data/E_BM_P1.0.sxf +1 (>&! OUTP1.0)\n";
@@ -85,7 +87,6 @@ int main(int argc,char * argv[]){
  // ************************************************************************
  std::cout << "\nAdd split ." << std::endl;
  // ************************************************************************
-
   
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Sbend")      << UAL::Arg("ir", splitForBends));
  shell.addSplit(UAL::Args() << UAL::Arg("lattice", "ring") << UAL::Arg("types", "Quadrupole") << UAL::Arg("ir", splitForQuads));
@@ -126,6 +127,113 @@ int main(int argc,char * argv[]){
    return 1;
  }
 
+// ETEAPOT::MltAlgorithm<double, PAC::Position>::m_sxfFilename = argv[1];
+ OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
+ Teapot* teapot = optics.m_teapot;
+ PacSurveyData surveyData;
+ char drift[13]="Drift       ";
+ std::string nameInput,nameOutput;
+ std::string typeInput,typeOutput;
+ std::string designNameInput;
+ std::cerr << "teapot->size() " << teapot->size() << "\n";
+ double xX,yX,zX,sX;
+ int mltK=0,drft=0,bend=0,mark=0;
+ for(int i = 0; i < teapot->size(); i++){
+  TeapotElement& te = teapot->element(i);
+  nameInput=te.getDesignName();
+  typeInput=te.getType();
+  designNameInput=te.getDesignName();
+  teapot->survey(surveyData,i,i+1);
+
+  if(nameInput.length()==1 ){nameInput+="           "; }
+  if(nameInput.length()==2 ){nameInput+="          ";  }
+  if(nameInput.length()==3 ){nameInput+="         ";   }   
+  if(nameInput.length()==4 ){nameInput+="        ";    }   
+  if(nameInput.length()==5 ){nameInput+="       ";     }   
+  if(nameInput.length()==6 ){nameInput+="      ";      }   
+  if(nameInput.length()==7 ){nameInput+="     ";       }   
+  if(nameInput.length()==8 ){nameInput+="    ";        }   
+  if(nameInput.length()==9 ){nameInput+="   ";         }   
+  if(nameInput.length()==10){nameInput+="  ";          }   
+  if(nameInput.length()==11){nameInput+=" ";           }   
+  if(nameInput.length()==12){nameInput+="";            }   
+
+  if(nameInput.size()>=1){
+   nameOutput=nameInput;
+  }
+  else{
+   nameOutput=drift;
+  }
+
+  if(typeInput.length()==1 ){typeInput+="           "; }
+  if(typeInput.length()==2 ){typeInput+="          ";  }
+  if(typeInput.length()==3 ){typeInput+="         ";   }   
+  if(typeInput.length()==4 ){typeInput+="        ";    }   
+  if(typeInput.length()==5 ){typeInput+="       ";     }   
+  if(typeInput.length()==6 ){typeInput+="      ";      }   
+  if(typeInput.length()==7 ){typeInput+="     ";       }   
+  if(typeInput.length()==8 ){typeInput+="    ";        }   
+  if(typeInput.length()==9 ){typeInput+="   ";         }   
+  if(typeInput.length()==10){typeInput+="  ";          }   
+  if(typeInput.length()==11){typeInput+=" ";           }   
+  if(typeInput.length()==12){typeInput+="";            }   
+
+  if(typeInput.size()>=1){
+   typeOutput=typeInput;
+  }
+  else{
+   typeOutput=drift;
+  }
+
+  xX = surveyData.survey().x();
+  yX = surveyData.survey().y();
+  zX = surveyData.survey().z();
+  sX = surveyData.survey().suml();
+
+  if( typeOutput=="Quadrupole  "){
+   std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]=nameOutput;
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK++]=sX;
+  }
+
+  if( typeOutput=="Sextupole   "){
+   std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]=nameOutput;
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK++]=sX;
+  }
+
+  if( typeOutput=="Drift       "){
+   std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+// ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_elementName[drft]=nameOutput;
+// ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_sX[drft++]=sX;
+  }
+
+  if( typeOutput=="Sbend       "){
+   std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   algorithm<double,PAC::Position>::bend_m_elementName[bend]=nameOutput;
+   algorithm<double,PAC::Position>::bend_m_sX[bend++]=sX;
+  }
+
+  if( typeOutput=="Marker      "){
+   std::cerr << "Marker: name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::MarkerTracker::Mark_m_elementName[mark]=nameOutput;
+   ETEAPOT::MarkerTracker::Mark_m_sX[mark++]=sX;
+  }
+
+//std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+ }
+/*
+ for(int i = 0; i < teapot->size(); i++){
+  std::cerr << "applyMltKick ETEAPOT::DriftAlgorithm::drft_m_elementName[" << i << "]: "   << ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_elementName[i]   << " " << ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_sX[i] << "\n";
+ }
+ for(int i = 0; i < teapot->size(); i++){
+  std::cerr << "applyMltKick ETEAPOT::MltAlgorithm::m_elementName[       " << i << "]: "   << ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[i]      << " " << ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[i] << "\n";
+ }
+ for(int i = 0; i < teapot->size(); i++){
+  std::cerr << "applyMltKick algorithm:bend_:m_elementName[              " << i << "]: "   << algorithm<double,PAC::Position>::bend_m_elementName[i]                 << " " << algorithm<double,PAC::Position>::bend_m_sX[i] << "\n";
+ }
+*/
+
  double a0x=     (double)0;
  double b0x=     (double)0;
  double mu_xTent=(double)0;
@@ -139,16 +247,14 @@ int main(int argc,char * argv[]){
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
  ap -> propagate(bunch);
 
- std::ofstream output;
  char buffr2 [10];
  sprintf( buffr2,"%+5.2f",atof(argv[2]) );
  std::string bp2(buffr2);
  std::string sT = "out/TWISS/TWISS_m=";
  sT+=bp2;
 
- output.open( sT.c_str() );
-//output.open( filename.c_str() );
-//output.open("TWISS");
+//std::cerr.open( filename.c_str() );
+//std::cerr.open("TWISS");
  #define PI 3.141592653589793
                                                // JDT (from RMT)
                                                // 7/13/2012
@@ -161,10 +267,10 @@ int main(int argc,char * argv[]){
  double betaX=abs(MX12)/sqrt(1-MXtr*MXtr/4);
  double sinMuX=MX12/betaX;
  double alphaX=(MX11-MX22)/2/sinMuX;
- output << "JDT: betaX  " << betaX  << "\n";
- output << "JDT: cosMuX " << cosMuX << "\n";
- output << "JDT: sinMuX " << sinMuX << "\n";
- output << "JDT: alphaX " << alphaX << "\n";
+ std::cerr << "JDT: betaX  " << betaX  << "\n";
+ std::cerr << "JDT: cosMuX " << cosMuX << "\n";
+ std::cerr << "JDT: sinMuX " << sinMuX << "\n";
+ std::cerr << "JDT: alphaX " << alphaX << "\n";
  double MuX_PR=acos(cosMuX);
  double MuX;
                                                // half integer tune ambiguity resolution
@@ -178,10 +284,10 @@ int main(int argc,char * argv[]){
  b0x=betaX;
  mu_xTent=MuX;
 
- output << "JDT:    MuX " <<    MuX << "\n";
+ std::cerr << "JDT:    MuX " <<    MuX << "\n";
  double QX=MuX/2/PI;
- output << "JDT:    QX  " <<    QX  << "\n";
- output <<                             "\n";
+ std::cerr << "JDT:    QX  " <<    QX  << "\n";
+ std::cerr <<                             "\n";
 
  double MY11=ry[1][1];double MY12=ry[1][2];
  double MY21=ry[2][1];double MY22=ry[2][2];
@@ -191,10 +297,10 @@ int main(int argc,char * argv[]){
  double betaY=abs(MY12)/sqrt(1-MYtr*MYtr/4);
  double sinMuY=MY12/betaY;;
  double alphaY=(MY11-MY22)/2/sinMuY;
- output << "JDT: betaY  " << betaY  << "\n";
- output << "JDT: cosMuY " << cosMuY << "\n";
- output << "JDT: sinMuY " << sinMuY << "\n";
- output << "JDT: alphaY " << alphaY << "\n";
+ std::cerr << "JDT: betaY  " << betaY  << "\n";
+ std::cerr << "JDT: cosMuY " << cosMuY << "\n";
+ std::cerr << "JDT: sinMuY " << sinMuY << "\n";
+ std::cerr << "JDT: alphaY " << alphaY << "\n";
  double MuY_PR=acos(cosMuY);
  double MuY;
  if     (cosMuY>=0 && sinMuY>=0){MuY=MuY_PR;}
@@ -205,13 +311,12 @@ int main(int argc,char * argv[]){
  b0y=betaY;
  mu_yTent=MuY;
 
- output << "JDT:    MuY " <<    MuY << "\n";
+ std::cerr << "JDT:    MuY " <<    MuY << "\n";
  double QY=MuY/2/PI;
- output << "JDT:    QY  " <<    QY  << "\n";
- output <<                             "\n";
- output.close();
+ std::cerr << "JDT:    QY  " <<    QY  << "\n";
+ std::cerr <<                             "\n";
 
  std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
- return 1;
+ return (int)0;
 }
