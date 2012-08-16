@@ -49,6 +49,11 @@ ETEAPOT::BasicTracker* ETEAPOT::TrackerFactory::createDefaultTracker()
   return new ETEAPOT::DriftTracker();
 }
 
+ETEAPOT::MarkerTracker* ETEAPOT::TrackerFactory::createMarkerTracker()
+{
+  return new ETEAPOT::MarkerTracker();
+}
+
 ETEAPOT::DriftTracker* ETEAPOT::TrackerFactory::createDriftTracker()
 {
   return new ETEAPOT::DriftTracker();
@@ -74,6 +79,9 @@ ETEAPOT::MltTracker* ETEAPOT::TrackerFactory::createMltTracker()
 
 ETEAPOT::TrackerRegister::TrackerRegister()
 {
+  UAL::PropagatorNodePtr markerPtr(new ETEAPOT::MarkerTracker());
+  UAL::PropagatorFactory::getInstance().add("ETEAPOT::MarkerTracker", markerPtr);
+
   UAL::PropagatorNodePtr driftPtr(new ETEAPOT::DriftTracker());
   UAL::PropagatorFactory::getInstance().add("ETEAPOT::DriftTracker", driftPtr);
 
