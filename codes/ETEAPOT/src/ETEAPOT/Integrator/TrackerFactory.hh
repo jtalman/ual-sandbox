@@ -9,6 +9,7 @@
 #include <map>
 
 #include "UAL/APF/PropagatorNodePtr.hh"
+#include "ETEAPOT/Integrator/MarkerTracker.hh"
 #include "ETEAPOT/Integrator/DriftTracker.hh"
 #include "ETEAPOT/Integrator/DipoleTracker.hh"
 
@@ -32,6 +33,9 @@ namespace ETEAPOT {
 
     /** Returns the default tracker */
     static BasicTracker* createDefaultTracker();
+
+    /** Returns the marker tracker */
+    static MarkerTracker* createMarkerTracker();
 
     /** Returns the drift tracker */
     static DriftTracker* createDriftTracker();
