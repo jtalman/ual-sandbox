@@ -4,6 +4,7 @@ OBJS +=	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/ElemSlice.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/BasicPropagator.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/BasicTracker.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/DriftTracker.o \
+	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/MarkerTracker.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/DipoleTracker.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/MltTracker.o \
 	$(UAL_ETEAPOT)/lib/$(UAL_ARCH)/obj/TrackerFactory.o \
