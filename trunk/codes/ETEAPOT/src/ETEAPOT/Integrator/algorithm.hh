@@ -25,6 +25,9 @@
 //                   STATIC
     static int turn;
 
+    static std::string bend_m_elementName[1000];
+    static double bend_m_sX[1000];
+
 //                   GLOBALS
     double c;          // $UAL/codes/ETEAPOT/src/ETEAPOT/inverseSquareBend/MunozPavic/conservedVector/algorithm.icc +73
     double gamma;      // $UAL/codes/ETEAPOT/src/ETEAPOT/inverseSquareBend/MunozPavic/conservedVector/reference.inline
