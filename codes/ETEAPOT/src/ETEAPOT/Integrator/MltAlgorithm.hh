@@ -7,6 +7,8 @@
 #define ETEAPOT_MLT_ALGORITHM_HH
 
 #include <iomanip>
+//#include "Main/Teapot.h"
+//#include "UAL/UI/OpticsCalculator.hh"
 #include "SMF/PacElemMultipole.h"
 #include "ETEAPOT/Integrator/MltData.hh"
 #include "ETEAPOT/Integrator/CommonAlgorithm.hh"
@@ -38,6 +40,10 @@ namespace ETEAPOT {
 // void applyMltKick(const MltData& edata, double rkicks, Coordinates& p, double m_m);
 // void applyMltKick(const MltData& edata, double rkicks, Coordinates& p);
 
+//  static std::string Mlt_m_sxfFilename;
+    static std::string Mlt_m_elementName[1000];
+    static double Mlt_m_sX[1000];
+
   protected:
    
     /** Applies the multipole kick */
@@ -45,6 +51,7 @@ namespace ETEAPOT {
 //  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, int mltK, double m_m);
 //  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, double m_m);
 //  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p);
+//
 
   };
 
