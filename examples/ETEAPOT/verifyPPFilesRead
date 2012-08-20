@@ -1,0 +1,15 @@
+// generate post processing files via e.g.
+//              ./determineTwiss ./data/E_BM_P1.0.sxf +1 > ! OUT_m=+1.00
+//              ./transferMatrices +1.00 -3.3832e-09 36.191 8.49218e-10 262.237 > & ! betaFunctions_m=+1.00
+
+// then execute the following
+diff out/TWISS/StndrdPrtcl1__m=+1.00 out/VERIF/StndrdPrtcl1__m=+1.00
+diff out/TWISS/StndrdPrtcl2__m=+1.00 out/VERIF/StndrdPrtcl2__m=+1.00
+diff out/TWISS/StndrdPrtcl3__m=+1.00 out/VERIF/StndrdPrtcl3__m=+1.00
+diff out/TWISS/StndrdPrtcl4__m=+1.00 out/VERIF/StndrdPrtcl4__m=+1.00
+diff out/TWISS/StndrdPrtcl5__m=+1.00 out/VERIF/StndrdPrtcl5__m=+1.00
+diff out/TWISS/StndrdPrtcl6__m=+1.00 out/VERIF/StndrdPrtcl6__m=+1.00
+diff out/TWISS/StndrdPrtcl7__m=+1.00 out/VERIF/StndrdPrtcl7__m=+1.00
+diff out/TWISS/StndrdPrtcl8__m=+1.00 out/VERIF/StndrdPrtcl8__m=+1.00
+diff out/TWISS/StndrdPrtcl9__m=+1.00 out/VERIF/StndrdPrtcl9__m=+1.00
+diff out/TWISS/StndrdPrtcl10_m=+1.00 out/VERIF/StndrdPrtcl10_m=+1.00
