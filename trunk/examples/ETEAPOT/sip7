@@ -2,10 +2,9 @@
         sip7+=m;
  cerr << "sip7 " << sip7 << "\n";
  fstream filestrSVN_IN;
- std::string dummySVN[sElems];
  filestrSVN_IN.open (sip7.c_str(), fstream::in );
   for(i=0;i<sElems ;i++){
-   filestrSVN_IN >> dummySVN[i] >> p7[i][0] >> p7[i][1] >> p7[i][2] >> p7[i][3] >> p7[i][4] >> p7[i][5] >> alp;
+   filestrSVN_IN >> name[i] >> s[i] >> p7[i][0] >> p7[i][1] >> p7[i][2] >> p7[i][3] >> p7[i][4] >> p7[i][5] >> dummy[i] >> alp;
   }
  filestrSVN_IN.close();
 
@@ -22,18 +21,69 @@
  filestrSVN_OUT << setprecision(13) ;
 
  for(i=0;i<sElems ;i++){
-  if( dummySVN[i].length()==6 ){
-   filestrSVN_OUT << dummySVN[i] << "   ";
+  if( name[i].length()==1 ){
+   filestrSVN_OUT << name[i] << "            ";
   }
-  if( dummySVN[i].length()==7 ){
-   filestrSVN_OUT << dummySVN[i] << "  ";
+  if( name[i].length()==2 ){
+   filestrSVN_OUT << name[i] << "           ";
   }
-  if( dummySVN[i].length()==8 ){
-   filestrSVN_OUT << dummySVN[i] << " ";
+  if( name[i].length()==3 ){
+   filestrSVN_OUT << name[i] << "          ";
   }
-  if( dummySVN[i].length()==9 ){
-// filestrSVN_OUT << dummySVN[i] << "";
+  if( name[i].length()==4 ){
+   filestrSVN_OUT << name[i] << "         ";
   }
-   filestrSVN_OUT << " " << p7[i][0] << " " << p7[i][1] << " " << p7[i][2] << " " << p7[i][3] << " " << p7[i][4] << " " << p7[i][5] << " " << alp << " " << "\n";
+  if( name[i].length()==5 ){
+   filestrSVN_OUT << name[i] << "        ";
+  }
+  if( name[i].length()==6 ){
+   filestrSVN_OUT << name[i] << "       ";
+  }
+  if( name[i].length()==7 ){
+   filestrSVN_OUT << name[i] << "      ";
+  }
+  if( name[i].length()==8 ){
+   filestrSVN_OUT << name[i] << "     ";
+  }
+  if( name[i].length()==9 ){
+   filestrSVN_OUT << name[i] << "    ";
+  }
+  if( name[i].length()==10 ){
+   filestrSVN_OUT << name[i] << "   ";
+  }
+  if( name[i].length()==11 ){
+   filestrSVN_OUT << name[i] << "  ";
+  }
+   filestrSVN_OUT << s[i] << " " << p7[i][0] << " " << p7[i][1] << " " << p7[i][2] << " " << p7[i][3] << " " << p7[i][4] << " " << p7[i][5] << " " << dummy[i];
+// filestrSVN_OUT << s[i] << " " << p7[i][0] << " " << p7[i][1] << " " << p7[i][2] << " " << p7[i][3] << " " << p7[i][4] << " " << p7[i][5] << " " << dummy[i] << "    " << alp << "\n";
+  if( dummy[i].length()==6 ){
+   filestrSVN_OUT << "    ";
+  }
+  if( dummy[i].length()==7 ){
+   filestrSVN_OUT << "   ";
+  }
+  if( dummy[i].length()==8 ){
+   filestrSVN_OUT << "  ";
+  }
+  if( dummy[i].length()==9 ){
+   filestrSVN_OUT << " ";
+  }
+
+  filestrSVN_OUT << alp;
+
+  if( alp.length()==3 ){
+   filestrSVN_OUT << "   ";
+  }
+  if( alp.length()==4 ){
+   filestrSVN_OUT << "  ";
+  }
+  if( alp.length()==5 ){
+   filestrSVN_OUT << " ";
+  }
+  if( alp.length()==6 ){
+   filestrSVN_OUT << "";
+  }
+  filestrSVN_OUT << "\n";
+
  }
  filestrSVN_OUT.close();
