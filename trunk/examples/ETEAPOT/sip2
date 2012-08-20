@@ -5,7 +5,7 @@
  std::string dummyTWO[sElems];
  filestrTWO_IN.open (sip2.c_str(), fstream::in );
   for(i=0;i<sElems ;i++){
-   filestrTWO_IN >> dummyTWO[i] >> p2[i][0] >> p2[i][1] >> p2[i][2] >> p2[i][3] >> p2[i][4] >> p2[i][5] >> alp;
+   filestrTWO_IN >> name[i] >> s[i] >> p2[i][0] >> p2[i][1] >> p2[i][2] >> p2[i][3] >> p2[i][4] >> p2[i][5] >> dummy[i] >> alp;
   }
  filestrTWO_IN.close();
 
@@ -22,18 +22,69 @@
  filestrTWO_OUT << setprecision(13) ;
 
  for(i=0;i<sElems ;i++){
-  if( dummyTWO[i].length()==6 ){
-   filestrTWO_OUT << dummyTWO[i] << "   ";
+  if( name[i].length()==1 ){
+   filestrTWO_OUT << name[i] << "            ";
   }
-  if( dummyTWO[i].length()==7 ){
-   filestrTWO_OUT << dummyTWO[i] << "  ";
+  if( name[i].length()==2 ){
+   filestrTWO_OUT << name[i] << "           ";
   }
-  if( dummyTWO[i].length()==8 ){
-   filestrTWO_OUT << dummyTWO[i] << " ";
+  if( name[i].length()==3 ){
+   filestrTWO_OUT << name[i] << "          ";
   }
-  if( dummyTWO[i].length()==9 ){
-// filestrTWO_OUT << dummyTWO[i] << "";
+  if( name[i].length()==4 ){
+   filestrTWO_OUT << name[i] << "         ";
   }
-   filestrTWO_OUT << " " << p2[i][0] << " " << p2[i][1] << " " << p2[i][2] << " " << p2[i][3] << " " << p2[i][4] << " " << p2[i][5] << " " << alp << "   " << "\n";
+  if( name[i].length()==5 ){
+   filestrTWO_OUT << name[i] << "        ";
+  }
+  if( name[i].length()==6 ){
+   filestrTWO_OUT << name[i] << "       ";
+  }
+  if( name[i].length()==7 ){
+   filestrTWO_OUT << name[i] << "      ";
+  }
+  if( name[i].length()==8 ){
+   filestrTWO_OUT << name[i] << "     ";
+  }
+  if( name[i].length()==9 ){
+   filestrTWO_OUT << name[i] << "    ";
+  }
+  if( name[i].length()==10 ){
+   filestrTWO_OUT << name[i] << "   ";
+  }
+  if( name[i].length()==11 ){
+   filestrTWO_OUT << name[i] << "  ";
+  }
+   filestrTWO_OUT << s[i] << " " << p2[i][0] << " " << p2[i][1] << " " << p2[i][2] << " " << p2[i][3] << " " << p2[i][4] << " " << p2[i][5] << " " << dummy[i];
+// filestrTWO_OUT << s[i] << " " << p2[i][0] << " " << p2[i][1] << " " << p2[i][2] << " " << p2[i][3] << " " << p2[i][4] << " " << p2[i][5] << " " << dummy[i] << "    " << alp << "\n";
+  if( dummy[i].length()==6 ){
+   filestrTWO_OUT << "    ";
+  }
+  if( dummy[i].length()==7 ){
+   filestrTWO_OUT << "   ";
+  }
+  if( dummy[i].length()==8 ){
+   filestrTWO_OUT << "  ";
+  }
+  if( dummy[i].length()==9 ){
+   filestrTWO_OUT << " ";
+  }
+
+  filestrTWO_OUT << alp;
+
+  if( alp.length()==3 ){
+   filestrTWO_OUT << "   ";
+  }
+  if( alp.length()==4 ){
+   filestrTWO_OUT << "  ";
+  }
+  if( alp.length()==5 ){
+   filestrTWO_OUT << " ";
+  }
+  if( alp.length()==6 ){
+   filestrTWO_OUT << "";
+  }
+  filestrTWO_OUT << "\n";
+
  }
  filestrTWO_OUT.close();
