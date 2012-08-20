@@ -2,10 +2,12 @@
         sip1+=m;
  cerr << "sip1 " << sip1 << "\n";
  fstream filestrONE_IN;
+ std::string  name[sElems];
+ double          s[sElems];
  std::string dummy[sElems];
  filestrONE_IN.open (sip1.c_str(), fstream::in );
   for(i=0;i<sElems ;i++){
-   filestrONE_IN >> dummy[i] >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> alp;
+   filestrONE_IN >> name[i] >> s[i] >> p1[i][0] >> p1[i][1] >> p1[i][2] >> p1[i][3] >> p1[i][4] >> p1[i][5] >> dummy[i] >> alp;
   }
  filestrONE_IN.close();
 
@@ -22,18 +24,69 @@
  filestrONE_OUT << setprecision(13) ;
 
  for(i=0;i<sElems ;i++){
+  if( name[i].length()==1 ){
+   filestrONE_OUT << name[i] << "            ";
+  }
+  if( name[i].length()==2 ){
+   filestrONE_OUT << name[i] << "           ";
+  }
+  if( name[i].length()==3 ){
+   filestrONE_OUT << name[i] << "          ";
+  }
+  if( name[i].length()==4 ){
+   filestrONE_OUT << name[i] << "         ";
+  }
+  if( name[i].length()==5 ){
+   filestrONE_OUT << name[i] << "        ";
+  }
+  if( name[i].length()==6 ){
+   filestrONE_OUT << name[i] << "       ";
+  }
+  if( name[i].length()==7 ){
+   filestrONE_OUT << name[i] << "      ";
+  }
+  if( name[i].length()==8 ){
+   filestrONE_OUT << name[i] << "     ";
+  }
+  if( name[i].length()==9 ){
+   filestrONE_OUT << name[i] << "    ";
+  }
+  if( name[i].length()==10 ){
+   filestrONE_OUT << name[i] << "   ";
+  }
+  if( name[i].length()==11 ){
+   filestrONE_OUT << name[i] << "  ";
+  }
+   filestrONE_OUT << s[i] << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << dummy[i];
+// filestrONE_OUT << s[i] << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << dummy[i] << "    " << alp << "\n";
   if( dummy[i].length()==6 ){
-   filestrONE_OUT << dummy[i] << "   ";
+   filestrONE_OUT << "    ";
   }
   if( dummy[i].length()==7 ){
-   filestrONE_OUT << dummy[i] << "  ";
+   filestrONE_OUT << "   ";
   }
   if( dummy[i].length()==8 ){
-   filestrONE_OUT << dummy[i] << " ";
+   filestrONE_OUT << "  ";
   }
   if( dummy[i].length()==9 ){
-// filestrONE_OUT << dummy[i] << "";
+   filestrONE_OUT << " ";
   }
-   filestrONE_OUT << " " << p1[i][0] << " " << p1[i][1] << " " << p1[i][2] << " " << p1[i][3] << " " << p1[i][4] << " " << p1[i][5] << " " << alp << "   " << "\n";
+
+  filestrONE_OUT << alp;
+
+  if( alp.length()==3 ){
+   filestrONE_OUT << "   ";
+  }
+  if( alp.length()==4 ){
+   filestrONE_OUT << "  ";
+  }
+  if( alp.length()==5 ){
+   filestrONE_OUT << " ";
+  }
+  if( alp.length()==6 ){
+   filestrONE_OUT << "";
+  }
+  filestrONE_OUT << "\n";
+
  }
  filestrONE_OUT.close();
