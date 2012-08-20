@@ -2,10 +2,9 @@
         sip8+=m;
  cerr << "sip8 " << sip8 << "\n";
  fstream filestrEGT_IN;
- std::string dummyEGT[sElems];
  filestrEGT_IN.open (sip8.c_str(), fstream::in );
   for(i=0;i<sElems ;i++){
-   filestrEGT_IN >> dummyEGT[i] >> p8[i][0] >> p8[i][1] >> p8[i][2] >> p8[i][3] >> p8[i][4] >> p8[i][5] >> alp;
+   filestrEGT_IN >> name[i] >> s[i] >> p8[i][0] >> p8[i][1] >> p8[i][2] >> p8[i][3] >> p8[i][4] >> p8[i][5] >> dummy[i] >> alp;
   }
  filestrEGT_IN.close();
 
@@ -22,18 +21,69 @@
  filestrEGT_OUT << setprecision(13) ;
 
  for(i=0;i<sElems ;i++){
-  if( dummyEGT[i].length()==6 ){
-   filestrEGT_OUT << dummyEGT[i] << "   ";
+  if( name[i].length()==1 ){
+   filestrEGT_OUT << name[i] << "            ";
   }
-  if( dummyEGT[i].length()==7 ){
-   filestrEGT_OUT << dummyEGT[i] << "  ";
+  if( name[i].length()==2 ){
+   filestrEGT_OUT << name[i] << "           ";
   }
-  if( dummyEGT[i].length()==8 ){
-   filestrEGT_OUT << dummyEGT[i] << " ";
+  if( name[i].length()==3 ){
+   filestrEGT_OUT << name[i] << "          ";
   }
-  if( dummyEGT[i].length()==9 ){
-// filestrEGT_OUT << dummyEGT[i] << "";
+  if( name[i].length()==4 ){
+   filestrEGT_OUT << name[i] << "         ";
   }
-   filestrEGT_OUT << " " << p8[i][0] << " " << p8[i][1] << " " << p8[i][2] << " " << p8[i][3] << " " << p8[i][4] << " " << p8[i][5] << " " << alp << " " << "\n";
+  if( name[i].length()==5 ){
+   filestrEGT_OUT << name[i] << "        ";
+  }
+  if( name[i].length()==6 ){
+   filestrEGT_OUT << name[i] << "       ";
+  }
+  if( name[i].length()==7 ){
+   filestrEGT_OUT << name[i] << "      ";
+  }
+  if( name[i].length()==8 ){
+   filestrEGT_OUT << name[i] << "     ";
+  }
+  if( name[i].length()==9 ){
+   filestrEGT_OUT << name[i] << "    ";
+  }
+  if( name[i].length()==10 ){
+   filestrEGT_OUT << name[i] << "   ";
+  }
+  if( name[i].length()==11 ){
+   filestrEGT_OUT << name[i] << "  ";
+  }
+   filestrEGT_OUT << s[i] << " " << p8[i][0] << " " << p8[i][1] << " " << p8[i][2] << " " << p8[i][3] << " " << p8[i][4] << " " << p8[i][5] << " " << dummy[i];
+// filestrEGT_OUT << s[i] << " " << p8[i][0] << " " << p8[i][1] << " " << p8[i][2] << " " << p8[i][3] << " " << p8[i][4] << " " << p8[i][5] << " " << dummy[i] << "    " << alp << "\n";
+  if( dummy[i].length()==6 ){
+   filestrEGT_OUT << "    ";
+  }
+  if( dummy[i].length()==7 ){
+   filestrEGT_OUT << "   ";
+  }
+  if( dummy[i].length()==8 ){
+   filestrEGT_OUT << "  ";
+  }
+  if( dummy[i].length()==9 ){
+   filestrEGT_OUT << " ";
+  }
+
+  filestrEGT_OUT << alp;
+
+  if( alp.length()==3 ){
+   filestrEGT_OUT << "   ";
+  }
+  if( alp.length()==4 ){
+   filestrEGT_OUT << "  ";
+  }
+  if( alp.length()==5 ){
+   filestrEGT_OUT << " ";
+  }
+  if( alp.length()==6 ){
+   filestrEGT_OUT << "";
+  }
+  filestrEGT_OUT << "\n";
+
  }
  filestrEGT_OUT.close();
