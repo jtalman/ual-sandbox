@@ -2,10 +2,9 @@
         sip9+=m;
  cerr << "sip9 " << sip9 << "\n";
  fstream filestrNIN_IN;
- std::string dummyNIN[sElems];
  filestrNIN_IN.open (sip9.c_str(), fstream::in );
   for(i=0;i<sElems ;i++){
-   filestrNIN_IN >> dummyNIN[i] >> p9[i][0] >> p9[i][1] >> p9[i][2] >> p9[i][3] >> p9[i][4] >> p9[i][5] >> alp;
+   filestrNIN_IN >> name[i] >> s[i] >> p9[i][0] >> p9[i][1] >> p9[i][2] >> p9[i][3] >> p9[i][4] >> p9[i][5] >> dummy[i] >> alp;
   }
  filestrNIN_IN.close();
 
@@ -22,18 +21,69 @@
  filestrNIN_OUT << setprecision(13) ;
 
  for(i=0;i<sElems ;i++){
-  if( dummyNIN[i].length()==6 ){
-   filestrNIN_OUT << dummyNIN[i] << "   ";
+  if( name[i].length()==1 ){
+   filestrNIN_OUT << name[i] << "            ";
   }
-  if( dummyNIN[i].length()==7 ){
-   filestrNIN_OUT << dummyNIN[i] << "  ";
+  if( name[i].length()==2 ){
+   filestrNIN_OUT << name[i] << "           ";
   }
-  if( dummyNIN[i].length()==8 ){
-   filestrNIN_OUT << dummyNIN[i] << " ";
+  if( name[i].length()==3 ){
+   filestrNIN_OUT << name[i] << "          ";
   }
-  if( dummyNIN[i].length()==9 ){
-// filestrNIN_OUT << dummyNIN[i] << "";
+  if( name[i].length()==4 ){
+   filestrNIN_OUT << name[i] << "         ";
   }
-   filestrNIN_OUT << " " << p9[i][0] << " " << p9[i][1] << " " << p9[i][2] << " " << p9[i][3] << " " << p9[i][4] << " " << p9[i][5] << " " << alp << "  " << "\n";
+  if( name[i].length()==5 ){
+   filestrNIN_OUT << name[i] << "        ";
+  }
+  if( name[i].length()==6 ){
+   filestrNIN_OUT << name[i] << "       ";
+  }
+  if( name[i].length()==7 ){
+   filestrNIN_OUT << name[i] << "      ";
+  }
+  if( name[i].length()==8 ){
+   filestrNIN_OUT << name[i] << "     ";
+  }
+  if( name[i].length()==9 ){
+   filestrNIN_OUT << name[i] << "    ";
+  }
+  if( name[i].length()==10 ){
+   filestrNIN_OUT << name[i] << "   ";
+  }
+  if( name[i].length()==11 ){
+   filestrNIN_OUT << name[i] << "  ";
+  }
+   filestrNIN_OUT << s[i] << " " << p9[i][0] << " " << p9[i][1] << " " << p9[i][2] << " " << p9[i][3] << " " << p9[i][4] << " " << p9[i][5] << " " << dummy[i];
+// filestrNIN_OUT << s[i] << " " << p9[i][0] << " " << p9[i][1] << " " << p9[i][2] << " " << p9[i][3] << " " << p9[i][4] << " " << p9[i][5] << " " << dummy[i] << "    " << alp << "\n";
+  if( dummy[i].length()==6 ){
+   filestrNIN_OUT << "    ";
+  }
+  if( dummy[i].length()==7 ){
+   filestrNIN_OUT << "   ";
+  }
+  if( dummy[i].length()==8 ){
+   filestrNIN_OUT << "  ";
+  }
+  if( dummy[i].length()==9 ){
+   filestrNIN_OUT << " ";
+  }
+
+  filestrNIN_OUT << alp;
+
+  if( alp.length()==3 ){
+   filestrNIN_OUT << "   ";
+  }
+  if( alp.length()==4 ){
+   filestrNIN_OUT << "  ";
+  }
+  if( alp.length()==5 ){
+   filestrNIN_OUT << " ";
+  }
+  if( alp.length()==6 ){
+   filestrNIN_OUT << "";
+  }
+  filestrNIN_OUT << "\n";
+
  }
  filestrNIN_OUT.close();
