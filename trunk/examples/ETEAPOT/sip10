@@ -2,10 +2,9 @@
         sip10+=m;
  cerr << "sip10 " << sip10 << "\n";
  fstream filestrTEN_IN;
- std::string dummyTEN[sElems];
  filestrTEN_IN.open (sip10.c_str(), fstream::in );
   for(i=0;i<sElems ;i++){
-   filestrTEN_IN >> dummyTEN[i] >> p10[i][0] >> p10[i][1] >> p10[i][2] >> p10[i][3] >> p10[i][4] >> p10[i][5] >> alp;
+   filestrTEN_IN >> name[i] >> s[i] >> p10[i][0] >> p10[i][1] >> p10[i][2] >> p10[i][3] >> p10[i][4] >> p10[i][5] >> dummy[i] >> alp;
   }
  filestrTEN_IN.close();
 
@@ -22,18 +21,69 @@
  filestrTEN_OUT << setprecision(13) ;
 
  for(i=0;i<sElems ;i++){
-  if( dummyTEN[i].length()==6 ){
-   filestrTEN_OUT << dummyTEN[i] << "   ";
+  if( name[i].length()==1 ){
+   filestrTEN_OUT << name[i] << "            ";
   }
-  if( dummyTEN[i].length()==7 ){
-   filestrTEN_OUT << dummyTEN[i] << "  ";
+  if( name[i].length()==2 ){
+   filestrTEN_OUT << name[i] << "           ";
   }
-  if( dummyTEN[i].length()==8 ){
-   filestrTEN_OUT << dummyTEN[i] << " ";
+  if( name[i].length()==3 ){
+   filestrTEN_OUT << name[i] << "          ";
   }
-  if( dummyTEN[i].length()==9 ){
-// filestrTEN_OUT << dummyTEN[i] << "";
+  if( name[i].length()==4 ){
+   filestrTEN_OUT << name[i] << "         ";
   }
-   filestrTEN_OUT << " " << p10[i][0] << " " << p10[i][1] << " " << p10[i][2] << " " << p10[i][3] << " " << p10[i][4] << " " << p10[i][5] << " " << alp << "   " << "\n";
+  if( name[i].length()==5 ){
+   filestrTEN_OUT << name[i] << "        ";
+  }
+  if( name[i].length()==6 ){
+   filestrTEN_OUT << name[i] << "       ";
+  }
+  if( name[i].length()==7 ){
+   filestrTEN_OUT << name[i] << "      ";
+  }
+  if( name[i].length()==8 ){
+   filestrTEN_OUT << name[i] << "     ";
+  }
+  if( name[i].length()==9 ){
+   filestrTEN_OUT << name[i] << "    ";
+  }
+  if( name[i].length()==10 ){
+   filestrTEN_OUT << name[i] << "   ";
+  }
+  if( name[i].length()==11 ){
+   filestrTEN_OUT << name[i] << "  ";
+  }
+   filestrTEN_OUT << s[i] << " " << p10[i][0] << " " << p10[i][1] << " " << p10[i][2] << " " << p10[i][3] << " " << p10[i][4] << " " << p10[i][5] << " " << dummy[i];
+// filestrTEN_OUT << s[i] << " " << p10[i][0] << " " << p10[i][1] << " " << p10[i][2] << " " << p10[i][3] << " " << p10[i][4] << " " << p10[i][5] << " " << dummy[i] << "    " << alp << "\n";
+  if( dummy[i].length()==6 ){
+   filestrTEN_OUT << "    ";
+  }
+  if( dummy[i].length()==7 ){
+   filestrTEN_OUT << "   ";
+  }
+  if( dummy[i].length()==8 ){
+   filestrTEN_OUT << "  ";
+  }
+  if( dummy[i].length()==9 ){
+   filestrTEN_OUT << " ";
+  }
+
+  filestrTEN_OUT << alp;
+
+  if( alp.length()==3 ){
+   filestrTEN_OUT << "   ";
+  }
+  if( alp.length()==4 ){
+   filestrTEN_OUT << "  ";
+  }
+  if( alp.length()==5 ){
+   filestrTEN_OUT << " ";
+  }
+  if( alp.length()==6 ){
+   filestrTEN_OUT << "";
+  }
+  filestrTEN_OUT << "\n";
+
  }
  filestrTEN_OUT.close();
