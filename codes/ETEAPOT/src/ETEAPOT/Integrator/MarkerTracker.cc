@@ -82,9 +82,11 @@ std::string bp2(buffr2);
 std::string sip = "out/TWISS/StndrdPrtcl";
             sip+=bip;
 std::cout << "sip.length() " << sip.length() << "\n";
+/*
 if(sip.length()==22){sip+="_";}
             sip+="_m=";
             sip+=bp2;
+*/
 fstream filestr;
 filestr.open (sip.c_str(), fstream::out | fstream::app);
 filestr << setiosflags( ios::showpos    );  
