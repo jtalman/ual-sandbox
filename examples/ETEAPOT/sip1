@@ -1,5 +1,5 @@
- string sip1 = "out/TWISS/StndrdPrtcl1__m=";
-        sip1+=m;
+ string sip1 = "out/TWISS/StndrdPrtcl1";
+//      sip1+=m;
  cerr << "sip1 " << sip1 << "\n";
  fstream filestrONE_IN;
  std::string  name[sElems];
