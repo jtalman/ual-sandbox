@@ -1,5 +1,5 @@
- string sip7 = "out/TWISS/StndrdPrtcl7__m=";
-        sip7+=m;
+ string sip7 = "out/TWISS/StndrdPrtcl7";
+//      sip7+=m;
  cerr << "sip7 " << sip7 << "\n";
  fstream filestrSVN_IN;
  filestrSVN_IN.open (sip7.c_str(), fstream::in );
