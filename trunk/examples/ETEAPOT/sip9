@@ -1,5 +1,5 @@
- string sip9 = "out/TWISS/StndrdPrtcl9__m=";
-        sip9+=m;
+ string sip9 = "out/TWISS/StndrdPrtcl9";
+//      sip9+=m;
  cerr << "sip9 " << sip9 << "\n";
  fstream filestrNIN_IN;
  filestrNIN_IN.open (sip9.c_str(), fstream::in );
