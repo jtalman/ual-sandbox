@@ -1,5 +1,5 @@
- string sip8 = "out/TWISS/StndrdPrtcl8__m=";
-        sip8+=m;
+ string sip8 = "out/TWISS/StndrdPrtcl8";
+//      sip8+=m;
  cerr << "sip8 " << sip8 << "\n";
  fstream filestrEGT_IN;
  filestrEGT_IN.open (sip8.c_str(), fstream::in );
