@@ -1,5 +1,5 @@
- string sip2 = "out/TWISS/StndrdPrtcl2__m=";
-        sip2+=m;
+ string sip2 = "out/TWISS/StndrdPrtcl2";
+//      sip2+=m;
  cerr << "sip2 " << sip2 << "\n";
  fstream filestrTWO_IN;
  std::string dummyTWO[sElems];
