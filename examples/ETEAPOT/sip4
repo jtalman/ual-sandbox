@@ -1,5 +1,5 @@
- string sip4 = "out/TWISS/StndrdPrtcl4__m=";
-        sip4+=m;
+ string sip4 = "out/TWISS/StndrdPrtcl4";
+//      sip4+=m;
  cerr << "sip4 " << sip4 << "\n";
  fstream filestrFOR_IN;
  filestrFOR_IN.open (sip4.c_str(), fstream::in );
