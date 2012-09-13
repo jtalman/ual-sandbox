@@ -138,6 +138,13 @@ int main(int argc,char * argv[]){
  std::cerr << "teapot->size() " << teapot->size() << "\n";
  double xX,yX,zX,sX;
  int mltK=0,drft=0,bend=0,mark=0;
+
+ int nonDrifts=0;
+
+ double sPrevious=0;
+ double sBndDlta;
+ double totSplits;
+
  for(int i = 0; i < teapot->size(); i++){
   TeapotElement& te = teapot->element(i);
   nameInput=te.getDesignName();
@@ -191,37 +198,58 @@ int main(int argc,char * argv[]){
   sX = surveyData.survey().suml();
 
   if( typeOutput=="Quadrupole  "){
+   nonDrifts++;
    std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
    ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]=nameOutput;
    ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK++]=sX;
+   sPrevious=sX;
   }
 
   if( typeOutput=="Sextupole   "){
+   nonDrifts++;
    std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
    ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]=nameOutput;
    ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK++]=sX;
+   sPrevious=sX;
   }
 
   if( typeOutput=="Drift       "){
    std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
 // ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_elementName[drft]=nameOutput;
 // ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_sX[drft++]=sX;
+   sPrevious=sX;
   }
 
   if( typeOutput=="Sbend       "){
-   std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
-   algorithm<double,PAC::Position>::bend_m_elementName[bend]=nameOutput;
-   algorithm<double,PAC::Position>::bend_m_sX[bend++]=sX;
+   nonDrifts++;
+   totSplits=2*pow(2,splitForBends);
+// std::cerr << "totSplits " << totSplits << "\n";
+   sBndDlta=(sX-sPrevious)/totSplits;
+// sBndDlta=(sX-sPrevious)/(1+splitForBends);
+   for(int j=0;j<totSplits;j++){
+    std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sPrevious+sBndDlta << "\n";
+//  std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+    algorithm<double,PAC::Position>::bend_m_elementName[bend]=nameOutput;
+    algorithm<double,PAC::Position>::bend_m_sX[bend++]=sPrevious+sBndDlta;
+    sPrevious+=sBndDlta;
+//  algorithm<double,PAC::Position>::bend_m_sX[bend++]=sX;
+   }
   }
 
   if( typeOutput=="Marker      "){
+   nonDrifts++;
    std::cerr << "Marker: name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
    ETEAPOT::MarkerTracker::Mark_m_elementName[mark]=nameOutput;
    ETEAPOT::MarkerTracker::Mark_m_sX[mark++]=sX;
+   sPrevious=sX;
   }
 
 //std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
  }
+
+std::cerr << "teapot->size() " << teapot->size() << "\n";
+std::cerr << "nonDrifts      " << nonDrifts      << "\n";
+
 /*
  for(int i = 0; i < teapot->size(); i++){
   std::cerr << "applyMltKick ETEAPOT::DriftAlgorithm::drft_m_elementName[" << i << "]: "   << ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_elementName[i]   << " " << ETEAPOT::DriftAlgorithm<double,PAC::Position>::drft_m_sX[i] << "\n";
@@ -318,5 +346,7 @@ int main(int argc,char * argv[]){
 
  std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
+
+ std::cerr << "./transferMatrices " << ETEAPOT::DipoleTracker::m_m << " " << alphaX << " " << betaX << " " << alphaY << " " << betaY << " " << nonDrifts << ">! betaFunctions\n";
  return (int)0;
 }
