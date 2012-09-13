@@ -2,13 +2,10 @@
 #include "ETEAPOT/Integrator/algorithm.hh"
 //#include <stdio.h>
 
-template<class Coordinate, class Coordinates>
-int algorithm<Coordinate, Coordinates>::turn=0;
-
 template<class Coordinate, class Coordinates> 
-std::string algorithm<Coordinate, Coordinates>::bend_m_elementName[1000];
+std::string algorithm<Coordinate, Coordinates>::bend_m_elementName[8192];
 template<class Coordinate, class Coordinates> 
-double algorithm<Coordinate, Coordinates>::bend_m_sX[1000];
+double algorithm<Coordinate, Coordinates>::bend_m_sX[8192];
 
 template<class Coordinate, class Coordinates> 
 algorithm<Coordinate, Coordinates>::algorithm()
@@ -75,9 +72,7 @@ std::cout << "JDT-totalSplitBends              " << totalSplitBends << "\n";
 std::cout << "JDT-data.m_angle/totalSplitBends " << data.m_angle/totalSplitBends    << "\n";
 for(int i = 0; i < totalSplitBends/2; i++){
  traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
- splitBendKick(p,cba,Rsxf,data.m_m,2*data.m_angle/totalSplitBends);
- traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
-#ifndef lngTrmTrk
+
 char buffer [3];
 //itoa (ip,buffer,10);
 //std::string sip=itoa(ip);
@@ -107,11 +102,26 @@ filestr << setiosflags( ios::scientific );
 filestr << setfill( ' ' );
 filestr << setiosflags( ios::left );
 filestr << setprecision(13) ;
-  filestr                                     << algorithm<double,PAC::Position>::bend_m_elementName[bend]   << " " << algorithm<double,PAC::Position>::bend_m_sX[bend] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "bend" << setw(5) << bend << " " << S[ip] << "\n";
+  filestr                                     << algorithm<double,PAC::Position>::bend_m_elementName[totalSplitBends*bend+2*i  ]   << " " << algorithm<double,PAC::Position>::bend_m_sX[totalSplitBends*bend+2*i  ] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "bend" << setw(5) << bend << " " << S[ip] << "\n";
+//filestr                                     << algorithm<double,PAC::Position>::bend_m_elementName[totalSplitBends*bend+2*i+1]   << " " << algorithm<double,PAC::Position>::bend_m_sX[totalSplitBends*bend+2*i+1] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "bend" << setw(5) << bend << " " << S[ip] << "\n";
 //filestr << "bend" << setw(5) << bend << " " << algorithm<double,PAC::Position>::bend_m_elementName[bend]   << " " << algorithm<double,PAC::Position>::bend_m_sX[bend] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << S[ip] << "\n";
-turn++;
 filestr.close();
-#endif
+
+ splitBendKick(p,cba,Rsxf,data.m_m,2*data.m_angle/totalSplitBends);
+
+ traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
+
+  sprintf(buffr2,"%+5.2f",data.m_m);
+filestr.open (sip.c_str(), fstream::out | fstream::app);
+filestr << setiosflags( ios::showpos    );  
+filestr << setiosflags( ios::uppercase  );
+filestr << setiosflags( ios::scientific );
+filestr << setfill( ' ' );
+filestr << setiosflags( ios::left );
+filestr << setprecision(13) ;
+  filestr                                     << algorithm<double,PAC::Position>::bend_m_elementName[totalSplitBends*bend+2*i+1]   << " " << algorithm<double,PAC::Position>::bend_m_sX[totalSplitBends*bend+2*i+1] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "bend" << setw(5) << bend << " " << S[ip] << "\n";
+//filestr                                     << algorithm<double,PAC::Position>::bend_m_elementName[totalSplitBends*bend+2*i+2]   << " " << algorithm<double,PAC::Position>::bend_m_sX[totalSplitBends*bend+2*i+2] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "bend" << setw(5) << bend << " " << S[ip] << "\n";
+filestr.close();
 }
 
  return;
