@@ -5,11 +5,19 @@
 #include "PAC/Beam/Position.hh"
 
 //#define sElems 1006
-  #define sElems 286
+//#define sElems 286
+//#define sElems 206
 //#define sElems 160
 
 using namespace std;
 int main(int argc, char* argv[]){
+
+ if( argc != 7 ){
+  cerr << "Usage: ./transferMatrices +1.0 0.0 31.9793 0.0 77.1718 206 > ! betaFunctions\n";
+  exit(1);
+ }
+
+ int sElems = atoi( argv[6] );
  int ip=1;
  int bend=0;
  string alp;
