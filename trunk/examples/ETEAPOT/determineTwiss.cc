@@ -221,7 +221,7 @@ int main(int argc,char * argv[]){
   }
 
   if( typeOutput=="Sbend       "){
-   nonDrifts++;
+// nonDrifts++;
    totSplits=2*pow(2,splitForBends);
 // std::cerr << "totSplits " << totSplits << "\n";
    sBndDlta=(sX-sPrevious)/totSplits;
@@ -231,6 +231,7 @@ int main(int argc,char * argv[]){
 //  std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
     algorithm<double,PAC::Position>::bend_m_elementName[bend]=nameOutput;
     algorithm<double,PAC::Position>::bend_m_sX[bend++]=sPrevious+sBndDlta;
+    nonDrifts++;
     sPrevious+=sBndDlta;
 //  algorithm<double,PAC::Position>::bend_m_sX[bend++]=sX;
    }
