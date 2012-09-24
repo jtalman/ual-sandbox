@@ -97,6 +97,12 @@
     }
 
     double PE(double Rsxf,double r){
+// Appendix UALcode: Development of the UAL/ETEAPOT Code for the Proton EDM Experiment 8/28/2012
+// Eq (2) Page 13 with probe charge, q0, included
+// V(r)=-q0*E0*r0( (r0/r)^m - 1)/m
+//     =-q0*E0*r0( (r0/r) - 1)
+//     =-q0*E0*r0^2(1/r-1/r0)
+//     =-k(1/r-1/r0)
         double value = -k*(1/r-1/Rsxf);
         return value;
     }
