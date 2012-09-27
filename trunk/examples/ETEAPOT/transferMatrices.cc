@@ -155,7 +155,7 @@ int main(int argc, char* argv[]){
   } 
   betaY_OfSLAST = betaY_OfS;
 
-  cout << i << " " << s[i] << " " << betaX_OfS << " " << betaY_OfS << "\n";
+  cout << setw(12) << name[i] << " " << s[i] << " " << betaX_OfS << " " << betaY_OfS << "\n";
  }
  return 0;
 }
