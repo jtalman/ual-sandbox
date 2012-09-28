@@ -3,8 +3,8 @@
 double k       = IA*p0*v0;                         //
 
 //                   probe deviations
-double  dx     = 0.0;
-double  dy     = 0.000001;
+double  dx     = +x1typ;
+double  dy     = 0.0;
 double  dz     = 0.0; 
 
 double dpx     = 0.0; 
