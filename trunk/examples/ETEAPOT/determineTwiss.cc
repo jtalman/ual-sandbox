@@ -38,11 +38,12 @@ int main(int argc,char * argv[]){
 // std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
 // std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
 
- if(argc!=3){
-  std::cout << "usage: ./determineTwiss ./data/E_BM_P1.0.sxf +1 (>&! OUTP1.0)\n";
-  std::cout << "argv[0] is this executable         - ./determineTwiss     \n";
-  std::cout << "argv[1] is the input sxf file      - ./data/E_BM_P1.0.sxf \n";
-  std::cout << "argv[2] is the nominal electrode m - +1                   \n";
+ if(argc!=4){
+  std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 41 (>&! OUT)\n";
+  std::cout << "argv[0] is this executable         - ./determineTwiss         \n";
+  std::cout << "argv[1] is the input sxf file      - ./data/E_BM_M1.0_sl4.sxf \n";
+  std::cout << "argv[2] is the nominal electrode m - +1                       \n";
+  std::cout << "argv[3] is the nominal electrode bend radius - 41=.785/.019   \n";
   exit(0);
  }
 
