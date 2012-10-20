@@ -31,6 +31,7 @@
 #include "ETEAPOT/Integrator/MltTracker.hh"
 //#include "ETEAPOT/Integrator/DriftTracker.hh"
 #include "ETEAPOT/Integrator/MarkerTracker.hh"
+#include "ETEAPOT/Integrator/RFCavityTracker.hh"
 
 using namespace UAL;
 
@@ -39,11 +40,11 @@ int main(int argc,char * argv[]){
 // std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
 
  if(argc!=4){
-  std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 41 (>&! OUT)\n";
+  std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 40 (>&! OUT)\n";
   std::cout << "argv[0] is this executable         - ./determineTwiss         \n";
   std::cout << "argv[1] is the input sxf file      - ./data/E_BM_M1.0_sl4.sxf \n";
   std::cout << "argv[2] is the nominal electrode m - +1                       \n";
-  std::cout << "argv[3] is the nominal electrode bend radius - 41=.785/.019   \n";
+  std::cout << "argv[3] is the nominal electrode bend radius - 40=.7854/.0196  \n";
   exit(0);
  }
 
@@ -138,7 +139,7 @@ int main(int argc,char * argv[]){
  std::string designNameInput;
  std::cerr << "teapot->size() " << teapot->size() << "\n";
  double xX,yX,zX,sX;
- int mltK=0,drft=0,bend=0,mark=0;
+ int mltK=0,drft=0,bend=0,mark=0,RF=0;
 
  int nonDrifts=0;
 
@@ -240,9 +241,17 @@ int main(int argc,char * argv[]){
 
   if( typeOutput=="Marker      "){
    nonDrifts++;
-   std::cerr << "Marker: name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
    ETEAPOT::MarkerTracker::Mark_m_elementName[mark]=nameOutput;
    ETEAPOT::MarkerTracker::Mark_m_sX[mark++]=sX;
+   sPrevious=sX;
+  }
+
+  if( typeOutput=="RfCavity    "){
+   nonDrifts++;
+   std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::RFCavityTracker::RF_m_elementName[RF]=nameOutput;
+   ETEAPOT::RFCavityTracker::RF_m_sX[RF++]=sX;
    sPrevious=sX;
   }
 
