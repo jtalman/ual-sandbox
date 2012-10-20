@@ -4,6 +4,7 @@
 // Author        : L.Schachinger and R.Talman
 // C++ version   : N.Malitsky 
 
+#include <cstdlib>
 
 #include "UAL/Common/Def.hh"
 #include "UAL/APF/PropagatorFactory.hh"
@@ -11,6 +12,11 @@
 #include "SMF/PacLattice.h"
 #include "SMF/PacElemRfCavity.h"
 #include "ETEAPOT/Integrator/RFCavityTracker.hh"
+#include "ETEAPOT/Integrator/DipoleTracker.hh"
+
+int ETEAPOT::RFCavityTracker::RF=0;
+std::string ETEAPOT::RFCavityTracker::RF_m_elementName[1000];
+double ETEAPOT::RFCavityTracker::RF_m_sX[1000];
 
 ETEAPOT::RFCavityTracker::RFCavityTracker()
   : ETEAPOT::BasicTracker()
@@ -81,8 +87,10 @@ void ETEAPOT::RFCavityTracker::setLatticeElement(const PacLattElement& e)
 
 void ETEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)
 {
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)\n";
+std::cerr << "File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT::RFCavityTracker::propagate(UAL::Probe& probe)\n";
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
+
+char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
   // cerr << "V = " << m_V << ", lag = " << m_lag << ", harmon = " << m_h << ", l = " << m_l << "\n";
   
@@ -139,6 +147,33 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method void 
     e_new = e_old + de;
     p.setDE((e_new - e0_new)/p0_new);
 
+#ifndef lngTrmTrk
+char buffer [3];
+sprintf(buffer,"%d",ip);
+std::string bip(buffer);
+char buffr2 [10];
+sprintf(buffr2,"%+5.2f",ETEAPOT::DipoleTracker::m_m);
+std::string bp2(buffr2);
+std::string sip = "out/TWISS/StndrdPrtcl";
+            sip+=bip;
+std::cout << "sip.length() " << sip.length() << "\n";
+/*
+if(sip.length()==22){sip+="_";}
+            sip+="_m=";
+            sip+=bp2;
+*/
+fstream filestr;
+filestr.open (sip.c_str(), fstream::out | fstream::app);
+filestr << setiosflags( ios::showpos    );  
+filestr << setiosflags( ios::uppercase  );  
+filestr << setiosflags( ios::scientific );
+filestr << setfill( ' ' );
+filestr << setiosflags( ios::left );
+filestr << setprecision(13) ;
+  filestr << ETEAPOT::RFCavityTracker::RF_m_elementName[RF] << " " << ETEAPOT::RFCavityTracker::RF_m_sX[RF] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "rf__" << setw(5) << RF << " " << S[ip] << "\n";
+filestr.close();
+#endif
+
     // Drift
 
     p_new = sqrt(e_new*e_new - m0*m0);
@@ -147,6 +182,7 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method void 
     passDrift(m_l/2., p, v0byc_new, vbyc);
     
   }
+RF++;
 
   ba.setElapsedTime(t_old + (m_l/v0byc_old + m_l/v0byc_new)/2./UAL::clight);
 }
@@ -202,6 +238,3 @@ void ETEAPOT::RFCavityTracker::passDrift(double l, PAC::Position& p, double v0by
 
 
 }
-
-
-
