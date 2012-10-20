@@ -38,6 +38,10 @@ namespace ETEAPOT {
     /** Propagates a bunch of particles */
     void propagate(UAL::Probe& probe);
 
+    static int RF;
+    static std::string RF_m_elementName[1000];
+    static double RF_m_sX[1000];
+
     /** Sets Rf patameters */
     void setRF(double V, double harmon, double lag);
 
