@@ -4,6 +4,7 @@
 
 
 #include <math.h>
+#include <string.h>
 #include "PAC/Beam/Bunch.hh"
 #include "SMF/PacLattice.h"
 #include "ETEAPOT/Integrator/MarkerTracker.hh"
@@ -48,6 +49,47 @@ void ETEAPOT::MarkerTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 void ETEAPOT::MarkerTracker::propagate(UAL::Probe& probe)
 {
 //std::cerr << "File " << __FILE__ << " line " << __LINE__ << " method void ETEAPOT::MarkerTracker::propagate(UAL::Probe& probe)\n";
+
+  std::string MM = ETEAPOT::MarkerTracker::Mark_m_elementName[mark];
+  const char * MMp = MM.c_str();
+  if( strcmp( "mbegin      ", MMp ) == 0 ){
+   ifstream spinIFS;
+   spinIFS.open ("initialSpin", ifstream::in);
+
+   ofstream spinOFS;
+   spinOFS.open ("out/VERIF/initialSpin");
+   spinOFS << setiosflags( ios::showpos    );  
+   spinOFS << setiosflags( ios::uppercase  );  
+   spinOFS << setiosflags( ios::scientific );
+   //spinOFS << setw( 11 );
+   spinOFS << setfill( ' ' );
+   spinOFS << setiosflags( ios::left );
+   spinOFS << setprecision(13) ;
+
+   PAC::Spin echo;
+   std::string spinX,spinY,spinZ;
+// while( !spinIFS.eof() ){
+   while( 1              ){
+    spinIFS >> spinX >> spinY >> spinZ;
+    echo.setSX( atof(spinX.c_str()) );echo.setSY( atof(spinY.c_str()) );echo.setSZ( atof(spinZ.c_str()) );
+
+    if( !spinIFS.eof() ){
+     spinOFS << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
+    }
+    else{
+     spinOFS << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ();
+     break;
+    }
+   }
+
+   spinIFS.close();
+   spinOFS.close();
+
+   std::cerr << "mbegin, ETEAPOT::MarkerTracker::Mark_m_elementName[mark] == 0 \n";
+  }
+  else{
+// std::cerr << "mbegin, ETEAPOT::MarkerTracker::Mark_m_elementName[mark] != 0 \n";
+  }
 
   char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
