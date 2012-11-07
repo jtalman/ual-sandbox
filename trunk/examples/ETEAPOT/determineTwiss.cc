@@ -8,6 +8,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <gsl/gsl_math.h>
+#include <gsl/gsl_rng.h>
+#include <gsl/gsl_randist.h>
+
 #include "UAL/APDF/APDF_Builder.hh"
 #include "PAC/Beam/Position.hh"
 #include "SMF/PacSmf.h"
@@ -41,10 +45,10 @@ int main(int argc,char * argv[]){
 
  if(argc!=4){
   std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 40 (>&! OUT)\n";
-  std::cout << "argv[0] is this executable         - ./determineTwiss         \n";
-  std::cout << "argv[1] is the input sxf file      - ./data/E_BM_M1.0_sl4.sxf \n";
-  std::cout << "argv[2] is the nominal electrode m - +1                       \n";
-  std::cout << "argv[3] is the nominal electrode bend radius - 40=.7854/.0196  \n";
+  std::cout << "argv[0] is this executable         - ./determineTwiss           \n";
+  std::cout << "argv[1] is the input sxf file      - ./data/E_BM_M1.0_sl4.sxf   \n";
+  std::cout << "argv[2] is the nominal electrode m - +1                         \n";
+  std::cout << "argv[3] is the nominal electrode bend radius - 40=.7854/.0196   \n";
   exit(0);
  }
 
@@ -72,6 +76,15 @@ int main(int argc,char * argv[]){
  #include "setBeamAttributes.hh"
  PAC::BeamAttributes& ba = shell.getBeamAttributes();
  #include "extractParameters.h"
+// #include "probeDataForTwiss"
+#define TINY 1E-6
+double x1typ  = TINY;
+double x2typ  = TINY;
+double y1typ  = TINY, x3typ  = TINY;
+double y2typ  = TINY, x4typ  = TINY;
+double x5typ  = TINY;
+double deltyp = TINY, x6typ  = TINY;
+ #include "trtrin"
  #include "simulatedProbeValues"
 
  // ************************************************************************
@@ -284,6 +297,14 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
 //#include "probeDataForTwiss"
  std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
+
+//#include "spin"
+ ofstream iS;
+ iS.open ("initialSpin");    // for server side compatibility
+                             // Full spin functionality is anticipated in 
+                             // orbitsWithSpin.cc or such
+ iS.close();
+
  ap -> propagate(bunch);
 
  char buffr2 [10];
