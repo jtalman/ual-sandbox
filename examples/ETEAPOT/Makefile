@@ -38,13 +38,13 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 OBJS = $(OBJ_DIR)/positionPrinter.o \
 	$(OBJ_DIR)/xmgracePrint.o
 
-compile : $(OBJS) ./tracker ./evolver ./transferMatrix ./determineTwiss ./transferMatrices
+compile : $(OBJS) ./evolver ./transferMatrix ./determineTwiss ./transferMatrices ./orbitsWithSpin
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/tracker.o ./tracker $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss $(OBJ_DIR)/transferMatrices.o ./transferMatrices
+	rm -f $(OBJS) $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss $(OBJ_DIR)/transferMatrices.o ./transferMatrices $(OBJ_DIR)/orbitsWithSpin.o ./orbitsWithSpin
 
-./tracker  : $(OBJ_DIR)/tracker.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/tracker.o $(OBJS) $(LIBS)
+outputReady :
+	rm -rf betaFunctions* OUT* initialSpin out/cpp/* out/STT/* out/TWISS/* out/VERIF/*
 
 ./evolver  : $(OBJ_DIR)/evolver.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/evolver.o $(OBJS) $(LIBS)
@@ -52,11 +52,14 @@ clean :
 ./transferMatrix  : $(OBJ_DIR)/transferMatrix.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/transferMatrix.o $(OBJS) $(LIBS)
 
+./determineTwiss  : $(OBJ_DIR)/determineTwiss.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/determineTwiss.o $(OBJS) $(LIBS)
+
 ./transferMatrices  : $(OBJ_DIR)/transferMatrices.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/transferMatrices.o $(OBJS) $(LIBS)
 
-./determineTwiss  : $(OBJ_DIR)/determineTwiss.o $(OBJS)
-	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/determineTwiss.o $(OBJS) $(LIBS)
+./orbitsWithSpin  : $(OBJ_DIR)/orbitsWithSpin.o $(OBJS)
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/orbitsWithSpin.o $(OBJS) $(LIBS)
 
 ./sxfUtility: $(OBJ_DIR)/sxfUtility.o
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/sxfUtility.o $(LIBS)
