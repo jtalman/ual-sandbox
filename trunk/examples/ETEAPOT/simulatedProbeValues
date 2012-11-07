@@ -1,4 +1,4 @@
-#include "probeDataForTwiss"
+//#include "probeDataForTwiss"
 
 double k       = IA*p0*v0;                         //
 
@@ -28,7 +28,7 @@ double dpxbyp0 = dpx/p0;
 double dpybyp0 = dpy/p0; 
 double dEbyp0  = dE /p0;
 
-#include "trtrin"
+//#include "trtrin"
 
 //         This configuration is for a standard one turn bunch for post processing.
 //     Uncomment this next line to look at multi turns for your particle specified above.
