@@ -1,4 +1,3 @@
-turns      = 10;
 PAC::Bunch bunch(21);                               // bunch with 21 particle(s)
 bunch.setBeamAttributes(ba);
 
