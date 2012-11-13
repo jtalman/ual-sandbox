@@ -85,7 +85,8 @@ double y1typ  = TINY, x3typ  = TINY;
 double y2typ  = TINY, x4typ  = TINY;
 double x5typ  = TINY;
 double deltyp = TINY, x6typ  = TINY;
- #include "trtrin"
+  #include "userBunch"
+//#include "trtrin"
  #include "simulatedProbeValues"
 
  // ************************************************************************
@@ -299,6 +300,7 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
  std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
 
+char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
   #include "spin"
 // ofstream iS;
 // iS.open ("initialSpin");    // for server side compatibility
@@ -308,6 +310,7 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
 
  ap -> propagate(bunch);
 
+/*
  char buffr2 [10];
  sprintf( buffr2,"%+5.2f",atof(argv[2]) );
  std::string bp2(buffr2);
@@ -381,5 +384,7 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
 
  std::cerr << "./transferMatrices " << ETEAPOT::DipoleTracker::m_m << " " << alphaX << " " << betaX << " " << alphaY << " " << betaY << " " << nonDrifts << ">! betaFunctions\n";
+*/
+
  return (int)0;
 }
