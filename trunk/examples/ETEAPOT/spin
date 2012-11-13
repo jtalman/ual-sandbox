@@ -1,31 +1,3 @@
-  PAC::Spin * spinX   = new PAC::Spin[21];
-//PAC::Spin spinX[21] = new PAC::Spin[21];
-//PAC::Spin spin[21] = {1,0,0, 1,0,0 , 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0 };
-//PAC::Spin spinX[] = {1,0,0, 1,0,0 , 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0, 1,0,0 };
-
-PAC::Spin spin0 (1,0,0);
-PAC::Spin spin1 (1,0,0);
-PAC::Spin spin2 (1,0,0);
-PAC::Spin spin3 (1,0,0);
-PAC::Spin spin4 (1,0,0);
-PAC::Spin spin5 (1,0,0);
-PAC::Spin spin6 (1,0,0);
-PAC::Spin spin7 (1,0,0);
-PAC::Spin spin8 (1,0,0);
-PAC::Spin spin9 (1,0,0);
-PAC::Spin spin10(1,0,0);
-PAC::Spin spin11(1,0,0);
-PAC::Spin spin12(1,0,0);
-PAC::Spin spin13(1,0,0);
-PAC::Spin spin14(1,0,0);
-PAC::Spin spin15(1,0,0);
-PAC::Spin spin16(1,0,0);
-PAC::Spin spin17(1,0,0);
-PAC::Spin spin18(1,0,0);
-PAC::Spin spin19(1,0,0);
-PAC::Spin spin20(1,0,0);
-//PAC::Spin spin21(1,0,0);
-
 //gsl_rng *r = gsl_rng_alloc(gsl_rng_default);
   gsl_rng *random;
 const gsl_rng_type * T;
@@ -42,7 +14,6 @@ spinOFS.open ("initialSpin");
 spinOFS << setiosflags( ios::showpos    );  
 spinOFS << setiosflags( ios::uppercase  );  
 spinOFS << setiosflags( ios::scientific );
-//spinOFS << setw( 11 );
 spinOFS << setfill( ' ' );
 spinOFS << setiosflags( ios::left );
 spinOFS << setprecision(13) ;
@@ -55,10 +26,6 @@ for(int ip=0; ip < bunch.size(); ip ++){
  phi  =gsl_ran_flat(random,0,2*M_PI);
  std::cerr << "theta " << theta << "\n";
  std::cerr << "phi " << phi << "\n";
- theta=gsl_ran_flat(random,0,M_PI);
- phi  =gsl_ran_flat(random,0,2*M_PI);
- std::cerr << "theta " << theta << "\n";
- std::cerr << "phi " << phi << "\n";
  (spinX+ip)->setSX( 0 );
  (spinX+ip)->setSY( 0 );
  (spinX+ip)->setSZ( 1 );
@@ -67,20 +34,14 @@ for(int ip=0; ip < bunch.size(); ip ++){
   (spinX+ip)->setSY(sin(theta)*sin(phi));
   (spinX+ip)->setSZ(cos(theta));
  }
-/*
- spinX[ip].setSX(sin(theta)*cos(phi));
- spinX[ip].setSY(sin(theta)*sin(phi));
- spinX[ip].setSZ(cos(theta));
-*/
  
    bunch[ip].setSpin( *(spinX+ip) );
-// bunch[ip].setSpin(spinX[ip]);
  echo = *( bunch[ip].getSpin() );
  if(ip < bunch.size()-1){
-  spinOFS << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
+  spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
  }
  else{
-  spinOFS << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ();
+  spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ();
  }
 }
 spinOFS.close();
