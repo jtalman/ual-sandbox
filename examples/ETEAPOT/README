@@ -1,0 +1,17 @@
+11/14/2012: UAL::920:
+                      The line by line instructions in
+                         determineTwissCleanRunPlotM1.0_sl4
+                      targeting the standard bunch, one turn, and Twiss seem to pass the "smoke test".
+
+                      This code should be static ie should be "near working" in the future.
+
+====================================================================================================================
+                        
+                      The line by line instructions in
+                         runExampleFor_orbitsWithSpin
+                      eventually targeting multiple turns with spin seem to pass the "smoke test".
+
+                      This code is anticipated as the leading edge of the research and development
+                      effort, hence will be dynamic.
+
+====================================================================================================================
