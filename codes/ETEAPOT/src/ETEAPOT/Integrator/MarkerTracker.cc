@@ -49,6 +49,7 @@ void ETEAPOT::MarkerTracker::setLatticeElements(const UAL::AcceleratorNode& sequ
 void ETEAPOT::MarkerTracker::propagate(UAL::Probe& probe)
 {
 //std::cerr << "File " << __FILE__ << " line " << __LINE__ << " method void ETEAPOT::MarkerTracker::propagate(UAL::Probe& probe)\n";
+  char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
   std::string MM = ETEAPOT::MarkerTracker::Mark_m_elementName[mark];
   const char * MMp = MM.c_str();
@@ -69,15 +70,19 @@ void ETEAPOT::MarkerTracker::propagate(UAL::Probe& probe)
    PAC::Spin echo;
    std::string spinX,spinY,spinZ;
 // while( !spinIFS.eof() ){
+   int ip=-1;
+   std::string Name;
    while( 1              ){
-    spinIFS >> spinX >> spinY >> spinZ;
+    ip++;
+    spinIFS >> Name >> spinX >> spinY >> spinZ;
     echo.setSX( atof(spinX.c_str()) );echo.setSY( atof(spinY.c_str()) );echo.setSZ( atof(spinZ.c_str()) );
 
     if( !spinIFS.eof() ){
-     spinOFS << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
+     spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
+//   spinOFS << Name << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
     }
     else{
-     spinOFS << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ();
+     spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ();
      break;
     }
    }
@@ -91,7 +96,7 @@ void ETEAPOT::MarkerTracker::propagate(UAL::Probe& probe)
 // std::cerr << "mbegin, ETEAPOT::MarkerTracker::Mark_m_elementName[mark] != 0 \n";
   }
 
-  char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+//char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
