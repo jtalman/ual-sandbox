@@ -1,0 +1,46 @@
+double t1h(double theta){
+ double a     = epsilon;
+ double am    = -1+a;
+ double ap    = +1+a;
+ double AA    = ap*am;
+ double A     = sqrt(AA);
+ double ang   = kappa*theta/2;
+ double tn    = tan(ang);
+ double arg   = am*tn/A;
+ double atnh  = atanh(arg);
+ double num1  = -2*atnh;
+ double den1  = kappa*am*A;
+ 
+ double num2  = -4*a*tn;
+ double den2  = kappa*AA*2*(am*tn*tn-ap);
+ 
+ double num3  = +4*a*atnh;
+ double den3  = kappa*AA*2*A;
+
+ return num1/den1 + num2/den2 + num3/den3;
+}
+
+double t2h(double theta){
+ double a     = epsilon;
+ double am    = -1+a;
+ double ap    = +1+a;
+ double AA    = ap*am;
+ double A     = sqrt(AA);
+ double ang   = kappa*theta/2;
+ double tn    = tan(ang);
+ double arg   = am*tn/A;
+ double atnh  = atanh(arg);
+ double num1  = +2*atnh;
+ double den1  = kappa*am*A;
+
+ double num2  = +4*tn;
+ double den2  = kappa*AA*2*(am*tn*tn-ap);
+
+ double num3  = -4*atnh;
+ double den3  = kappa*AA*2*A;
+ 
+ return num1/den1 + num2/den2 + num3/den3;
+}
+
+double t3h(double theta){
+}
