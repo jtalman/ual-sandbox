@@ -174,6 +174,8 @@
     }
 
 #include "getTimeAlternate.inline"
+#include "timeViaHyperbolic"
+#include "timeViaExpansion"
 
     double get_timeFromFirstTermViaMaple(double fac,double theta){
         double a  = epsilon;
