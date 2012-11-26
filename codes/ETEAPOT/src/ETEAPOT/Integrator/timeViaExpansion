@@ -1,0 +1,45 @@
+double kappa_time1int(double theta){
+ double a = epsilon;
+ double result;
+
+ result = kappa*theta;
+ result-=2.*sin(kappa*theta)*pow(a,1);
+ result+=((3./2.)*cos(kappa*theta)*sin(kappa*theta)+(3./2.)*kappa*theta)*pow(a,2);
+ result+=(-(4./3.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(8./3.)*sin(kappa*theta))*pow(a,3);
+ result+=((5./4.)*pow(cos(kappa*theta),3)*sin(kappa*theta)+(15./8.)*cos(kappa*theta)*sin(kappa*theta)+(15./8.)*kappa*theta)*pow(a,4);
+ result+=(-(6./5.)*pow(cos(kappa*theta),4)*sin(kappa*theta)-(8./5.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(16./5.)*sin(kappa*theta))*pow(a,5);
+
+ return result;
+// return kappa*theta-2*sin(kappa*theta)*pow(a,1)+((3/2)*cos(kappa*theta)*sin(kappa*theta)+(3/2)*kappa*theta)*a^2+(-(4/3)*cos(kappa*theta)^2*sin(kappa*theta)-(8/3)*sin(kappa*theta))*a^3+((5/4)*cos(kappa*theta)^3*sin(kappa*theta)+(15/8)*cos(kappa*theta)*sin(kappa*theta)+(15/8)*kappa*theta)*a^4+(-(6/5)*cos(kappa*theta)^4*sin(kappa*theta)-(8/5)*cos(kappa*theta)^2*sin(kappa*theta)-(16/5)*sin(kappa*theta))*a^5;
+}
+
+double kappa_time2int(double theta){
+ double a = epsilon;
+ double result;
+
+ result =sin(kappa*theta);
+ result+=(-cos(kappa*theta)*sin(kappa*theta)-kappa*theta)*pow(a,1);
+ result+=(pow(cos(kappa*theta),2)*sin(kappa*theta)+2.*sin(kappa*theta))*pow(a,2);
+ result+=(-pow(cos(kappa*theta),3)*sin(kappa*theta)-(3./2.)*cos(kappa*theta)*sin(kappa*theta)-(3./2.)*kappa*theta)*pow(a,3);
+ result+=(pow(cos(kappa*theta),4)*sin(kappa*theta)+(4./3.)*pow(cos(kappa*theta),2)*sin(kappa*theta)+(8./3.)*sin(kappa*theta))*pow(a,4);
+ result+=(-pow(cos(kappa*theta),5)*sin(kappa*theta)-(5./4.)*pow(cos(kappa*theta),3)*sin(kappa*theta)-(15./8.)*cos(kappa*theta)*sin(kappa*theta)-(15./8.)*kappa*theta)*pow(a,5);
+
+ return result;
+
+//sin(kappa*theta)+(-cos(kappa*theta)*sin(kappa*theta)-kappa*theta)*a+(cos(kappa*theta)^2*sin(kappa*theta)+2*sin(kappa*theta))*a^2+(-cos(kappa*theta)^3*sin(kappa*theta)-(3/2)*cos(kappa*theta)*sin(kappa*theta)-(3/2)*kappa*theta)*a^3+(cos(kappa*theta)^4*sin(kappa*theta)+(4/3)*cos(kappa*theta)^2*sin(kappa*theta)+(8/3)*sin(kappa*theta))*a^4+(-cos(kappa*theta)^5*sin(kappa*theta)-(5/4)*cos(kappa*theta)^3*sin(kappa*theta)-(15/8)*cos(kappa*theta)*sin(kappa*theta)-(15/8)*kappa*theta)*a^5+O(a^6)
+}
+
+double kappa_epsilonSqInt(double theta){
+ double a = epsilon;
+ double result;
+
+ result =(1./2.)*cos(kappa*theta)*sin(kappa*theta);
+ result+=(1./2.)*kappa*theta+(-(2./3.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(4./3.)*sin(kappa*theta))*pow(a,1);
+ result+=((3./4.)*pow(cos(kappa*theta),3)*sin(kappa*theta)+(9./8.)*cos(kappa*theta)*sin(kappa*theta)+(9./8.)*kappa*theta)*pow(a,2);
+ result+=(-(4./5.)*pow(cos(kappa*theta),4)*sin(kappa*theta)-(16./15.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(32./15.)*sin(kappa*theta))*pow(a,3);
+ result+=(-(6./7.)*pow(cos(kappa*theta),6)*sin(kappa*theta)-(36./35.)*pow(cos(kappa*theta),4)*sin(kappa*theta)-(48./35.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(96./35.)*sin(kappa*theta))*pow(a,5);
+
+ return result;
+
+//kappa_epsilonSqInt := (1/2)*cos(kappa*theta)*sin(kappa*theta)+(1/2)*kappa*theta+(-(2/3)*cos(kappa*theta)^2*sin(kappa*theta)-(4/3)*sin(kappa*theta))*a+((3/4)*cos(kappa*theta)^3*sin(kappa*theta)+(9/8)*cos(kappa*theta)*sin(kappa*theta)+(9/8)*kappa*theta)*a^2+(-(4/5)*cos(kappa*theta)^4*sin(kappa*theta)-(16/15)*cos(kappa*theta)^2*sin(kappa*theta)-(32/15)*sin(kappa*theta))*a^3+((5/6)*cos(kappa*theta)^5*sin(kappa*theta)+(25/24)*cos(kappa*theta)^3*sin(kappa*theta)+(25/16)*cos(kappa*theta)*sin(kappa*theta)+(25/16)*kappa*theta)*a^4+(-(6/7)*cos(kappa*theta)^6*sin(kappa*theta)-(36/35)*cos(kappa*theta)^4*sin(kappa*theta)-(48/35)*cos(kappa*theta)^2*sin(kappa*theta)-(96/35)*sin(kappa*theta))*a^5+O(a^6
+}
