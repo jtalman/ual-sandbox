@@ -183,10 +183,19 @@ std::cout << "JDT - EscM " << EscM << "\n";
        p[3]       = pyOutp/p0;                             //    here
 //std::cout << "JDT-pOf3" << ip << " " << p[3] << " " << S[ip] << "\n";
 
-double tof0       = Rsxf*th/b0;
-double fac1       = EscM*lambda*lambda/L/kappa/kappa;                //  A?   c==1
-double A_0        = EscM*lambda*lambda/L/kappa/kappa;                // 
-double fac2       = k*C_tilda*lambda*lambda*m0/kappa/kappa/L/L;      //  B?
+double m_p        = m0;
+double kbyL0c     = k/L0/c;                                               //  $UAL/codes/ETEAPOT/src/ETEAPOT/Integrator/hamilton.inline
+double kapSQ0     = 1.-kbyL0c*kbyL0c;                                     //  $UAL/codes/ETEAPOT/src/ETEAPOT/Integrator/hamilton.inline
+double lambda0    = kapSQ0*L0*L0*c*c/k/EscM0;                             //  $UAL/codes/ETEAPOT/src/ETEAPOT/Integrator/hamilton.inline
+double epsilonTld = epsilon/C_tilda;                                      //  ? Eq. (78) in ETEAPOT-expanded.pdf
+                                                                          //  ? epsilonBar
+
+double tof0       = Rsxf*th/v0;                                           //  mks
+double fac1       = EscM* lambda* lambda/ L/ kappa/ kappa/ c/c;           //
+double A          = fac1;
+double A_0        = EscM0*lambda0*lambda0/L0/kappa0/kappa0/c/c;           //  ?
+double fac2       = m_p*k*C_tilda*lambda*lambda/kappa/kappa/L/L/c/c;      //
+double B          = fac2/C_tilda;
 // double time1      = getTime1(fac1,th);                       // get_timeFromFirstTermViaMaple(fac1,th)
 // double time2      = getTime2(fac2,th);                       // get_timeFromSecondTermViaMaple(fac2,th)
 // double time1      = t1h(th);
@@ -195,7 +204,10 @@ double fac2       = k*C_tilda*lambda*lambda*m0/kappa/kappa/L/L;      //  B?
    double time2      = kappa_epsilonSqInt(th);
 double tofA       = time1+time2;
 
-       p[4]      += tofA-tof0;                           //
+double dFac1      = epsilon*(-2.*A+B/epsilonTld);
+double dFac2      = -A*epsilon*epsilon;
+//     p[4]      -= c*(tofA-tof0);                                        //  ? correct sign convention and factor
+       p[4]       = dFac1*time1+dFac2*time2+(A-A_0)*th;
 std::cout << "JDT-pOf4" << ip << " " << p[4] << " " << S[ip] << "\n";
 std::cout << "JDT - leave traverseSplitBendExactly\n";
 std::cout << "____________________________________\n";
