@@ -200,8 +200,8 @@ double B          = fac2/C_tilda;
 // double time2      = getTime2(fac2,th);                       // get_timeFromSecondTermViaMaple(fac2,th)
 // double time1      = t1h(th);
 // double time2      = t2h(th);
-   double time1      = kappa_time2int(th);
-   double time2      = kappa_epsilonSqInt(th);
+   double time1      = kappa_time2int(th)/kappa;
+   double time2      = kappa_epsilonSqInt(th)/kappa;
 double tofA       = time1+time2;
 
 double dFac1      = epsilon*(-2.*A+B/epsilonTld);
