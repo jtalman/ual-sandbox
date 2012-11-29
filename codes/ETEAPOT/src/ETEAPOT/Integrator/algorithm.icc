@@ -207,7 +207,8 @@ double tofA       = time1+time2;
 double dFac1      = epsilon*(-2.*A+B/epsilonTld);
 double dFac2      = -A*epsilon*epsilon;
 //     p[4]      -= c*(tofA-tof0);                                        //  ? correct sign convention and factor
-       p[4]       = dFac1*time1+dFac2*time2+(A-A_0)*th;
+//     p[4]       =     dFac1*time1+dFac2*time2+(A-A_0)*th;
+       p[4]       -= c*(dFac1*time1+dFac2*time2+(A-A_0)*th);
 std::cout << "JDT-pOf4" << ip << " " << p[4] << " " << S[ip] << "\n";
 std::cout << "JDT - leave traverseSplitBendExactly\n";
 std::cout << "____________________________________\n";
