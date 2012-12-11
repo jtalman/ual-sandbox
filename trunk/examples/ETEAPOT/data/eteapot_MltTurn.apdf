@@ -1,0 +1,11 @@
+<apdf>
+  <propagator id="ETEAPOT_MltTurn" accelerator="ring">
+     <create>
+       <link algorithm="ETEAPOT_MltTurn::MarkerTracker" types="Marker"/>
+       <link algorithm="ETEAPOT_MltTurn::DriftTracker" types="Drift|Default"/>
+       <link algorithm="ETEAPOT_MltTurn::DipoleTracker" types="Sbend"/>
+       <link algorithm="ETEAPOT_MltTurn::MltTracker" types="Quadrupole|Sextupole"/>
+       <link algorithm="ETEAPOT_MltTurn::RFCavityTracker" types="RfCavity"/>
+     </create>
+  </propagator>
+</apdf>
