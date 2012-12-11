@@ -1,0 +1,160 @@
+#include "ETEAPOT_MltTurn/Integrator/MltAlgorithm.hh"
+
+/*
+template<class Coordinate, class Coordinates> 
+std::string ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_sxfFilename;
+*/
+template<class Coordinate, class Coordinates> 
+std::string ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_elementName[1000];
+template<class Coordinate, class Coordinates> 
+double ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_sX[1000];
+
+template<class Coordinate, class Coordinates> 
+ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::MltAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::~MltAlgorithm()
+{
+}
+
+template<class Coordinate, class Coordinates>
+void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::passEntry(
+        int ip,
+	const ETEAPOT::MltData& data,
+	Coordinates& p,
+        int mltK,
+        double m_m)
+{
+  if(data.m_entryMlt) applyMltKick(ip, data.m_entryMlt, 0, 1, p, mltK, m_m);
+}
+
+template<class Coordinate, class Coordinates>
+void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::passExit(
+        int ip,
+	const ETEAPOT::MltData& data,
+	Coordinates& p,
+        int mltK,
+        double m_m)
+{
+  if(data.m_exitMlt) applyMltKick(ip, data.m_exitMlt, 0, 1, p, mltK, m_m);
+}
+
+template<class Coordinate, class Coordinates>
+void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
+        int ip,
+	const ETEAPOT::MltData& data,
+	double rkicks, 
+	Coordinates& p,
+        int mltK,
+        double m_m)
+{
+//std::cerr << "applyMltKick ip: "   << ip   << "\n";
+//std::cerr << "applyMltKick mltK: " << mltK << "\n";
+//std::cerr << "applyMltKick m_m: "  << m_m  << "\n";
+  applyMltKick(ip, data.m_mlt, data.m_offset, rkicks, p, mltK, m_m );
+}
+
+template<class Coordinate, class Coordinates>
+void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
+        int ip,
+	PacElemMultipole* mult, PacElemOffset* offset,
+	double rkicks, 
+	Coordinates& p,
+        int mltK,
+        double m_m)
+{
+//std::cerr << "applyMltKick Mlt_m_elementName[" << mltK << "]: "   << Mlt_m_elementName[mltK]   << " " << Mlt_m_sX[mltK] << "\n";
+//std::cerr << "applyMltKick mltK: " << mltK << "\n";
+//mltK++;
+//std::cerr << "Wrapped applyMltKick m_m: " << m_m << "\n";
+
+  if(mult == 0) return;
+
+  Coordinate t0, x, y, px, py;
+
+  x = p[0]; //  xdif
+  y = p[2]; //  ydif
+
+  px = 0.0;
+  py = 0.0;
+
+  if(offset) {
+    x -= offset->dx();
+    y -= offset->dy();
+  }
+
+  if(mult){
+
+     int     index = mult->size();
+     double* data = mult->data();
+
+     double kl, ktl;	
+
+     if(index > 0){
+    	  do {
+	  	ktl = data[--index];
+	 	kl  = data[--index];
+          	t0  = x*px;
+          	t0 -= y*py - kl;
+          	py  = x*py;
+          	py += y*px + ktl;    
+          	px  = t0;
+       	  } while ( index > 0 ) ;
+     }
+     px *= rkicks;
+     py *= rkicks;
+  }
+
+  px *= -1;
+
+  p[1] += px;                              // px/p0
+  p[3] += py;                              // py/p0	
+
+char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+//int ip=1;
+
+#ifndef lngTrmTrk
+char buffer [3];
+sprintf(buffer,"%d",ip);
+std::string bip(buffer);
+char buffr2 [10];
+  sprintf(buffr2,"%+5.2f",m_m);
+//sprintf(buffr2,"%+5.2f",+9.99);
+//sprintf(buffr2,"%+5.2f",+1.00);
+//sprintf(buffr2,"%+5.2f",data.m_m);
+std::string bp2(buffr2);
+  std::string sip = "out/TWISS/StndrdPrtcl";
+//std::string sip = "out/STT/StndrdPrtcl";
+//std::string sip = "out/shortTermTracking/resultsForStandardParticle";
+            sip+=bip;
+std::cout << "sip.length() " << sip.length() << "\n";
+/*
+if(sip.length()==22){sip+="_";}
+            sip+="_m=";
+            sip+=bp2;
+*/
+fstream filestr;
+filestr.open (sip.c_str(), fstream::out | fstream::app);
+filestr << setiosflags( ios::showpos    );  
+filestr << setiosflags( ios::uppercase  );  
+filestr << setiosflags( ios::scientific );
+//filestr << setw( 11 );
+filestr << setfill( ' ' );
+filestr << setiosflags( ios::left );
+filestr << setprecision(13) ;
+
+/*
+UAL::OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
+Teapot* teapot = optics.m_teapot;
+TeapotElement& te = teapot->element(mltK);
+*/
+
+  filestr                                     << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]   << " " << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "mltK" << setw(5) << mltK << " " << S[ip] << "\n";
+//filestr << "mltK" << setw(5) << mltK << " " << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]   << " " << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << S[ip] << "\n";
+//turn++;
+filestr.close();
+#endif
+
+}
