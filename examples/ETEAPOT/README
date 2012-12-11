@@ -11,6 +11,16 @@
                          runExampleFor_orbitsWithSpin
                       eventually targeting multiple turns with spin seem to pass the "smoke test".
 
+                      This code is no longer anticipated as the leading edge of the research and development
+                      effort, hence will be substantially static.
+
+====================================================================================================================
+                        
+12/11/2012: UAL::938
+                      The line by line instructions in
+                         runExampleFor_ETEAPOT_MltTurn
+                      eventually targeting multiple turns with spin seem to pass the "smoke test".
+
                       This code is anticipated as the leading edge of the research and development
                       effort, hence will be dynamic.
 
