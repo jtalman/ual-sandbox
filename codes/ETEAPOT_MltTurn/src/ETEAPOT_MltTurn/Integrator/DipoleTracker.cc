@@ -5,7 +5,7 @@
 
 #include <cstdlib>
 
-algorithm<double, PAC::Position> ETEAPOT_MltTurn::DipoleTracker::s_algorithm;
+DipoleAlgorithm<double, PAC::Position> ETEAPOT_MltTurn::DipoleTracker::s_algorithm;
 double ETEAPOT_MltTurn::DipoleTracker::m_m;
    int ETEAPOT_MltTurn::DipoleTracker::bend=0;
 
