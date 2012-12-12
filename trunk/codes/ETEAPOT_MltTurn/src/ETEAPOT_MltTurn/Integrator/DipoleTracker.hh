@@ -8,8 +8,10 @@
 
 #include "ETEAPOT/Integrator/DipoleData.hh"
 #include "ETEAPOT/Integrator/MltData.hh"
-#include "ETEAPOT/Integrator/algorithm.hh"
+//#include "ETEAPOT/Integrator/algorithm.hh"
 #include "ETEAPOT/Integrator/BasicTracker.hh"
+
+#include "ETEAPOT_MltTurn/Integrator/DipoleAlgorithm.hh"
 
 #define MAXSXF 1000
 
@@ -63,7 +65,7 @@ namespace ETEAPOT_MltTurn {
     ETEAPOT::MltData m_edata;
 
     /** Propagator algorithm */
-    static algorithm<double, PAC::Position> s_algorithm;
+    static DipoleAlgorithm<double, PAC::Position> s_algorithm;
 
   };
 
