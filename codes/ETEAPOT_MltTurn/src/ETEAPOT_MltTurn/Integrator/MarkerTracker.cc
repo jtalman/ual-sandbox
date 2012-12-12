@@ -48,7 +48,8 @@ void ETEAPOT_MltTurn::MarkerTracker::propagate(UAL::Probe& probe)
 //std::cerr << "ENTER: FILE: " << __FILE__ << " LINE: " << __LINE__ << " method void ETEAPOT_MltTurn::MarkerTracker::propagate(UAL::Probe& probe)\n";
   char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
-  std::string MM = ETEAPOT_MltTurn::MarkerTracker::Mark_m_elementName[mark];
+//std::string MM = ETEAPOT_MltTurn::MarkerTracker::Mark_m_elementName[mark];
+  std::string MM = "mdummy";
   const char * MMp = MM.c_str();
   if( strcmp( "mbegin      ", MMp ) == 0 ){
    ifstream spinIFS;
@@ -139,7 +140,7 @@ filestr << setiosflags( ios::scientific );
 filestr << setfill( ' ' );
 filestr << setiosflags( ios::left );
 filestr << setprecision(13) ;
-  filestr << ETEAPOT_MltTurn::MarkerTracker::Mark_m_elementName[mark] << " " << ETEAPOT_MltTurn::MarkerTracker::Mark_m_sX[mark] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "mark" << setw(5) << mark << " " << S[ip] << "\n";
+//filestr << ETEAPOT_MltTurn::MarkerTracker::Mark_m_elementName[mark] << " " << ETEAPOT_MltTurn::MarkerTracker::Mark_m_sX[mark] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "mark" << setw(5) << mark << " " << S[ip] << "\n";
 //filestr << "MARKER  " << mark << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "mark" << setw(5) << mark << " " << S[ip] << "\n";
 filestr.close();
 #endif
