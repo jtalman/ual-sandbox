@@ -151,7 +151,7 @@ Teapot* teapot = optics.m_teapot;
 TeapotElement& te = teapot->element(mltK);
 */
 
-  filestr                                     << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]   << " " << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "mltK" << setw(5) << mltK << " " << S[ip] << "\n";
+//filestr                                     << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]   << " " << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "mltK" << setw(5) << mltK << " " << S[ip] << "\n";
 //filestr << "mltK" << setw(5) << mltK << " " << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]   << " " << ETEAPOT_MltTurn::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << S[ip] << "\n";
 //turn++;
 filestr.close();
