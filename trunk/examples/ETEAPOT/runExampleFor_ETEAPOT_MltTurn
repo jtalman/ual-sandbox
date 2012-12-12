@@ -1,16 +1,8 @@
-// edit userBunch to set bunch size and values. Also the corresponding spin values.
 // cp data/eteapot_MltTurn.apdf data/eteapot.apdf
 
 make outputReady
 make clean
 make
-./ETEAPOT_MltTurn ./data/E_BM_M1.0_sl4.sxf -1 40 1 > ! OUT
-diff initialSpin ./out/VERIF/initialSpin
+./ETEAPOT_MltTurn ./data/E_BM_M1.0_sl4.sxf -1 40 1 5 >! OUT
 
-gnuplot
-   > p 'out/TWISS/StndrdPrtcl0' u 2:3 w l
-
-   > p 'out/TWISS/StndrdPrtcl1' u 2:3 w l,'out/TWISS/StndrdPrtcl2' u 2:3 w l
-   > p 'out/TWISS/StndrdPrtcl1' u 2:4 w l,'out/TWISS/StndrdPrtcl2' u 2:4 w l
-
-   > ...
+// "look" at NikolayOut
