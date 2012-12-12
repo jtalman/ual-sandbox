@@ -164,7 +164,7 @@ filestr << setiosflags( ios::scientific );
 filestr << setfill( ' ' );
 filestr << setiosflags( ios::left );
 filestr << setprecision(13) ;
-  filestr << ETEAPOT_MltTurn::RFCavityTracker::RF_m_elementName[RF] << " " << ETEAPOT_MltTurn::RFCavityTracker::RF_m_sX[RF] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "rf__" << setw(5) << RF << " " << S[ip] << "\n";
+//filestr << ETEAPOT_MltTurn::RFCavityTracker::RF_m_elementName[RF] << " " << ETEAPOT_MltTurn::RFCavityTracker::RF_m_sX[RF] << " " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << " " << p[4] << " " << p[5] << " " << "rf__" << setw(5) << RF << " " << S[ip] << "\n";
 filestr.close();
 #endif
 
