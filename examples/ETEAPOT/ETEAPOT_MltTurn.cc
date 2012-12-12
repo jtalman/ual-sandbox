@@ -43,13 +43,14 @@ int main(int argc,char * argv[]){
 // std::cerr << "ETEAPOT_MltTurn::DipoleTracker::m_m " << ETEAPOT_MltTurn::DipoleTracker::m_m << "\n";
 // std::cerr << "ETEAPOT_MltTurn::MltTracker::m_m    " << ETEAPOT_MltTurn::MltTracker::m_m    << "\n";
 
- if(argc!=5){
-  std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 40 0 (>&! OUT)\n";
-  std::cout << "argv[0] is this executable         - ./determineTwiss           \n";
-  std::cout << "argv[1] is the input sxf file      - ./data/E_BM_M1.0_sl4.sxf   \n";
-  std::cout << "argv[2] is the nominal electrode m - +1                         \n";
-  std::cout << "argv[3] is the nominal electrode bend radius - 40=.7854/.0196   \n";
-  std::cout << "argv[4] is the initialSpin file creation type                   \n";
+ if(argc!=6){
+  std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 40 0 5 (>&! OUT)\n";
+  std::cout << "argv[0] is this executable         - ./determineTwiss               \n";
+  std::cout << "argv[1] is the input sxf file      - ./data/E_BM_M1.0_sl4.sxf       \n";
+  std::cout << "argv[2] is the nominal electrode m - +1                             \n";
+  std::cout << "argv[3] is the nominal electrode bend radius - 40=.7854/.0196       \n";
+  std::cout << "argv[4] is the initialSpin file creation type                       \n";
+  std::cout << "argv[5] is the number of turns                                      \n";
   exit(0);
  }
 
@@ -246,8 +247,8 @@ double deltyp = TINY, x6typ  = TINY;
    for(int j=0;j<totSplits;j++){
     std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sPrevious+sBndDlta << "\n";
 //  std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
-    algorithm<double,PAC::Position>::bend_m_elementName[bend]=nameOutput;
-    algorithm<double,PAC::Position>::bend_m_sX[bend++]=sPrevious+sBndDlta;
+    DipoleAlgorithm<double,PAC::Position>::bend_m_elementName[bend]=nameOutput;
+    DipoleAlgorithm<double,PAC::Position>::bend_m_sX[bend++]=sPrevious+sBndDlta;
     nonDrifts++;
     sPrevious+=sBndDlta;
 //  algorithm<double,PAC::Position>::bend_m_sX[bend++]=sX;
@@ -295,7 +296,8 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
  double b0y=     (double)0;
  double mu_yTent=(double)0;
 //int turns=1;
- turns=1;
+// turns=1;
+  turns=atoi( argv[5] );
 //#include "probeDataForTwiss"
  std::cerr << "ETEAPOT_MltTurn::DipoleTracker::m_m " << ETEAPOT_MltTurn::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT_MltTurn::MltTracker::m_m    " << ETEAPOT_MltTurn::MltTracker::m_m    << "\n";
@@ -308,7 +310,25 @@ char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","
                              // orbitsWithSpin.cc or such
 // iS.close();
 
- ap -> propagate(bunch);
+ positionPrinter pP; 
+ pP.open( "NikolayOut" );
+// pP.open(orbitFile.c_str());
+
+// xmgracePrint xP;
+// xP.open("bunchSub0");
+
+ ba.setElapsedTime(0.0);
+
+ for(int iturn = 0; iturn <= (turns-1); iturn++){
+//ap -> propagate(bunch);
+  for(int ip=0; ip < bunch.size(); ip++){
+   pP.write(iturn, ip, bunch);
+// xP.write(iturn, ip, bunch);
+  }
+  ap -> propagate(bunch);
+ }
+
+ pP.close();
 
 /*
  char buffr2 [10];
