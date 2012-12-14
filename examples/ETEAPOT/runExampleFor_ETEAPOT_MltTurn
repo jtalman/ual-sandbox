@@ -1,4 +1,4 @@
-// cp data/eteapot_MltTurn.apdf data/eteapot.apdf
+cp data/eteapot_MltTurn.apdf data/eteapot.apdf
 
 make outputReady
 make clean
