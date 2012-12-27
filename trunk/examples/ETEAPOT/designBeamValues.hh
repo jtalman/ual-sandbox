@@ -12,9 +12,11 @@ double m0      = UAL::pmass;                       // 2
 double e0      = gamma0*m0;                        // 1
 double p0      = gamma0*m0*v0;                     //
 
-double q0      = UAL::elemCharge;                  // 3
+// double q0      = UAL::elemCharge;                  // 3
+double q0      = 1.0;                  // 3
 double t0      = 0;                                // 4
-double f0      = 1;                                // 5
+// double f0      = 1;                                // 5
+double f0      = 541426.7816;                                // 5
 double M0      = 1;                                // 6
 double G0      = UAL::pG;                          // 7
 double IA      = atof(INJECTION_AMBIT);            // (10) not used
