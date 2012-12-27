@@ -1,0 +1,7 @@
+set grid
+set key left
+set xlabel '{/Symbol d}_U_A_L'
+set ylabel "x [m]"
+set style line 2 lc rgb 'black' pt 6
+#set label 1 "xprime_0=-0.0004" at -6.75e-6,-0.0125
+p 'IG' i 10 u 8:9 lw 1, "<echo '0 -0.000001'" with points ls 2, 'IG' i 11 u 8:9 lw 1, "<echo '0 -0.000002'" with points ls 2, 'IG' i 12 u 8:9 lw 1, "<echo '0 -0.000003'" with points ls 2, 'IG' i 14 u 8:9 lw 1, "<echo '-0.000669 -0.00001'" with points ls 2
