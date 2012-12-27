@@ -2,7 +2,8 @@
 #define ETEAPOT_DRIFT_TRACKER_MLT_TURN_HH
 
 #include "ETEAPOT/Integrator/BasicTracker.hh"
-#include "ETEAPOT/Integrator/DriftAlgorithm.hh"
+//#include         "ETEAPOT/Integrator/DriftAlgorithm.hh"
+  #include "ETEAPOT_MltTurn/Integrator/DriftAlgorithm.hh"
 
 namespace ETEAPOT_MltTurn {
 
@@ -41,7 +42,7 @@ namespace ETEAPOT_MltTurn {
   protected:
 
     /** Propagator algorithm */
-    static ETEAPOT::DriftAlgorithm<double, PAC::Position> s_algorithm;
+    static ETEAPOT_MltTurn::DriftAlgorithm<double, PAC::Position> s_algorithm;
 
   private:
 
