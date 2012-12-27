@@ -4,13 +4,13 @@
 //include         "ETEAPOT/Integrator/DriftTracker.hh"
 #include "ETEAPOT_MltTurn/Integrator/DriftTracker.hh"
 #include "ETEAPOT_MltTurn/Integrator/DipoleTracker.hh"
-#include "ETEAPOT/Integrator/DipoleTracker.hh"
+//#include "ETEAPOT/Integrator/DipoleTracker.hh"
 
 //#include "UAL/UI/OpticsCalculator.hh"
 //#include "Main/Teapot.h"
 #include <cstdlib>
 
-ETEAPOT::DriftAlgorithm<double, PAC::Position> ETEAPOT_MltTurn::DriftTracker::s_algorithm;
+ETEAPOT_MltTurn::DriftAlgorithm<double, PAC::Position> ETEAPOT_MltTurn::DriftTracker::s_algorithm;
 int ETEAPOT_MltTurn::DriftTracker::drft=0;
 
 ETEAPOT_MltTurn::DriftTracker::DriftTracker()
@@ -64,7 +64,7 @@ void ETEAPOT_MltTurn::DriftTracker::propagate(UAL::Probe& probe)
     tmp = p;
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
-    s_algorithm.passDriftPlusPostProcess( ip, m_l, p, tmp, v0byc, ETEAPOT::DipoleTracker::m_m, drft );
+    s_algorithm.passDriftPlusPostProcess( ip, m_l, p, tmp, v0byc, ETEAPOT_MltTurn::DipoleTracker::m_m, drft );
   }
 drft++;
 
