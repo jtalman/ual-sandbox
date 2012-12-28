@@ -1,8 +1,19 @@
+cp Shell.cc $UAL/ext/UI/src/UAL/UI/Shell.cc
+pushd $UAL/ext/UI
+make clean
+make
+ll lib/linux            // e.g. 1154818 libUalUI.so
+popd
+
 cp data/eteapot_MltTurn.apdf data/eteapot.apdf
 
 make outputReady
 make clean
 make
-./ETEAPOT_MltTurn ./data/E_BM_M1.0_sl4.sxf -1 40 1 5 >! OUT
+./ETEAPOT_MltTurn ./data/E_BM_M1.0.RF.sxf -1 40 1 5 >! OUT
 
 // "look" at NikolayOut
+perl SplitNikolayOut.pl NikolayOut >! IG
+
+gnuplot
+   gnuplot> l 'forGnuplot_Figure2'
