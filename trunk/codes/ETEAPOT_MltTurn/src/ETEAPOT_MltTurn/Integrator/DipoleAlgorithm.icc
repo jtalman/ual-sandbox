@@ -196,8 +196,9 @@ double A          = fac1;
 double A_0        = EscM0*lambda0*lambda0/L0/kappa0/kappa0/c/c;           //  ?
 double fac2       = m_p*k*C_tilda*lambda*lambda/kappa/kappa/L/L/c/c;      //
 double B          = fac2/C_tilda;
-// double time1      = getTime1(fac1,th);                       // get_timeFromFirstTermViaMaple(fac1,th)
-// double time2      = getTime2(fac2,th);                       // get_timeFromSecondTermViaMaple(fac2,th)
+double time1p      = getTime1(fac1,th);                       // get_timeFromFirstTermViaMaple(fac1,th)
+double time2p      = getTime2(fac2,th);                       // get_timeFromSecondTermViaMaple(fac2,th)
+double p4old = time1p+time2p - tof0;
 // double time1      = t1h(th);
 // double time2      = t2h(th);
    double time1      = kappa_time2int(th)/kappa;
@@ -208,7 +209,9 @@ double dFac1      = epsilon*(-2.*A+B/epsilonTld);
 double dFac2      = -A*epsilon*epsilon;
 //     p[4]      -= c*(tofA-tof0);                                        //  ? correct sign convention and factor
 //     p[4]       =     dFac1*time1+dFac2*time2+(A-A_0)*th;
-       p[4]       -= c*(dFac1*time1+dFac2*time2+(A-A_0)*th);
+double p4new      = c*(dFac1*time1+dFac2*time2+(A-A_0)*th);
+double p4diff = p4new-p4old;
+       p[4]      -= c*(dFac1*time1+dFac2*time2+(A-A_0)*th);
 std::cout << "JDT-pOf4" << ip << " " << p[4] << " " << S[ip] << "\n";
 std::cout << "JDT - leave traverseSplitBendExactly\n";
 std::cout << "____________________________________\n";
