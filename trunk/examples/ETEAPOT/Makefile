@@ -46,7 +46,7 @@ clean :
 	rm -f $(OBJS) $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss $(OBJ_DIR)/transferMatrices.o ./transferMatrices $(OBJ_DIR)/orbitsWithSpin.o ./orbitsWithSpin $(OBJ_DIR)/ETEAPOT_MltTurn.o ./ETEAPOT_MltTurn.o
 
 outputReady :
-	rm -rf betaFunctions* OUT* initialSpin out/cpp/* out/STT/* out/TWISS/* out/VERIF/*
+	rm -rf betaFunctions* OUT* initialSpin* NikolayOut* IG* out/cpp/* out/STT/* out/TWISS/* out/VERIF/*
 
 ./evolver  : $(OBJ_DIR)/evolver.o $(OBJS)
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/evolver.o $(OBJS) $(LIBS)
