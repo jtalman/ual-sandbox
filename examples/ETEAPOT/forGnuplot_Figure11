@@ -1,0 +1,15 @@
+set terminal postscript eps enhanced color 20
+set output "Q_sVsSynchAmplitude.eps"
+set grid
+set key left
+set xlabel 'turn index'
+set ylabel "ct [m]"
+set multiplot layout 3,1
+set ytics -0.06, 0.02, 0.06
+p 'IG' i 13 u 2:8 w l
+set ytics -0.6, 0.2, 0.6
+p 'IG' i 14 u 2:8 w l
+set xrange [0:200]
+# set ytics -1.5, 0.5, 1.5
+p 'IG' i 14 u 2:8 w l
+unset multiplot
