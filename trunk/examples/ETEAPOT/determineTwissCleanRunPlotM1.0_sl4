@@ -4,6 +4,7 @@ make
 
 //e.g.
 
+cp data/eteapotMARKER.apdf data/eteapot.apdf
 ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 40 >! OUT
 
 // (split=1) betaX (b0x)  35.9195, QX 0.460553           , alphax (a0x) 8.3516e-09
