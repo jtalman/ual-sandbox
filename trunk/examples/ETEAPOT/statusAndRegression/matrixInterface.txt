@@ -1,0 +1,54 @@
+Check out UAL::195, and build server side:
+   svn co -r 195 http://ual.googlecode.com/svn/trunk ual1
+Build almost normally, adding
+   #include "stdlib.h"
+to a few files.
+Build in (abnormally)
+   $UAL/ext/SXF/src/ual_sxf
+to produce
+   $UAL/ext/SXF/lib/linux/libUalSXF.so
+
+Build client side:
+Commenting out
+   +70 //bunch.setEnergy(ba.getEnergy());
+gives
+   $UAL/examples/FastTeapot/linux/tracker
+
+Also built is
+   $UAL/examples/FastTeapot/linux/evolver
+   ($UAL/examples/FastTeapot/src/evolver.cc)
+
+Relevant code is:
+______________________________________________________________
+...
+ 78   PacTMap map1(6);
+ 79   map1.setEnergy(ba.getEnergy());
+ 80   map1.mltOrder(2);
+ 81
+ 82   std::cout << "\nTeapot DA integrator " << endl;
+ 83   std::cout << "size : " << lsize << " elements " <<  endl;
+ 84
+ 85   Teapot teapot(lattice);
+ 86
+ 87   start_ms();
+ 88   teapot.trackMap(map1, ba, 0, lsize);
+ 89   t = (end_ms());
+ 90   std::cout << "time  = " << t << " ms" << endl;
+ 91
+ 92   map1.write("teapot.map");
+ 93
+ 94   // 3.2 FastTeapot DA integrator
+ 95
+ 96   PacTMap map2(6);
+ 97   map2.setEnergy(ba.getEnergy());
+ 98   map2.mltOrder(2);
+ 99
+100   std::cout << "\nFastTeapot Da integrator " << endl;
+101   std::cout << "size : " << ap->getRootNode().size() << " propagators " << endl;
+102
+103   start_ms();
+104   ap->propagate(map2);
+105   t = (end_ms());
+106   std::cout << "time  = " << t << " ms" << endl;
+107
+108   map2.write("fast_teapot.map");
