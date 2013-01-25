@@ -1,6 +1,6 @@
 std::cout << "#################################   Set Beam Attributes\n";
-  shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy",               e0));
   shell.setBeamAttributes(UAL::Args() << UAL::Arg("mass",                 m0));
+  shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy",               e0));
   shell.setBeamAttributes(UAL::Args() << UAL::Arg("charge",               q0));
   shell.setBeamAttributes(UAL::Args() << UAL::Arg("elapsedTime",          t0));
   shell.setBeamAttributes(UAL::Args() << UAL::Arg("frequency",            f0));
