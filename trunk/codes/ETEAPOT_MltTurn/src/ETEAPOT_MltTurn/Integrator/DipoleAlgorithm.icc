@@ -27,7 +27,7 @@ void DipoleAlgorithm<Coordinate, Coordinates>::getE(
 	double v0byc,
 	const PAC::BeamAttributes cba)
 {
-std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates>void DipoleAlgorithm<Coordinate, Coordinates>::getE(...\n";
+//std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates>void DipoleAlgorithm<Coordinate, Coordinates>::getE(...\n";
 }
 
 template<class Coordinate, class Coordinates>
@@ -41,11 +41,11 @@ void DipoleAlgorithm<Coordinate, Coordinates>::passBend(
 	const PAC::BeamAttributes cba,
         int bend)
 {
-std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates> void DipoleAlgorithm<Coordinate, Coordinates>::passBend( ...\n";
+//std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates> void DipoleAlgorithm<Coordinate, Coordinates>::passBend( ...\n";
 #include "ETEAPOT/Integrator/getDesignBeam.h"
 
 double Rsxf = data.m_l/data.m_angle;
-std::cout << "JDT-Rsxf" << ip << " " << Rsxf << "\n";
+//std::cout << "JDT-Rsxf" << ip << " " << Rsxf << "\n";
  // Simple Element
 
 /*
@@ -66,10 +66,10 @@ getE(ip,data,edata,dummy,dummy2,dummy_v0byc,cba);
 char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
 int totalSplitBends = 2*pow( 2, data.m_ir );
-std::cout << "JDT-data.m_ir                    " << data.m_ir       << "\n";
-std::cout << "JDT-data.m_angle                 " << data.m_angle    << "\n";
-std::cout << "JDT-totalSplitBends              " << totalSplitBends << "\n";
-std::cout << "JDT-data.m_angle/totalSplitBends " << data.m_angle/totalSplitBends    << "\n";
+//std::cout << "JDT-data.m_ir                    " << data.m_ir       << "\n";
+//std::cout << "JDT-data.m_angle                 " << data.m_angle    << "\n";
+//std::cout << "JDT-totalSplitBends              " << totalSplitBends << "\n";
+//std::cout << "JDT-data.m_angle/totalSplitBends " << data.m_angle/totalSplitBends    << "\n";
 for(int i = 0; i < totalSplitBends/2; i++){
  traverseSplitBendExactly(ip, p, tmp, v0byc, cba,Rsxf,data.m_angle/totalSplitBends);
 
@@ -87,7 +87,7 @@ std::string bp2(buffr2);
 //std::string sip = "out/STT/StndrdPrtcl";
 //std::string sip = "out/shortTermTracking/resultsForStandardParticle";
             sip+=bip;
-std::cout << "sip.length() " << sip.length() << "\n";
+//std::cout << "sip.length() " << sip.length() << "\n";
 /*
 if(sip.length()==22){sip+="_";}
             sip+="_m=";
@@ -136,7 +136,7 @@ void DipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
   const PAC::BeamAttributes cba,
   double Rsxf,
   double splitTheta){
-  std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates> void DipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly( ...\n";
+//std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates> void DipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly( ...\n";
 //std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 
 char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
@@ -166,11 +166,11 @@ double gafti      = gbefi-eVafti/m0;                      // gamma after input
 
 double th         = splitTheta;                            //    ditto
 
-std::cout << "JDT-gafti" << ip << " " << gafti << "\n";
+//std::cout << "JDT-gafti" << ip << " " << gafti << "\n";
 #include "ETEAPOT/Integrator/reference.inline"                                // 2 approaches in play, RT Original, Munoz
-std::cout << "JDT - L    " << L    << "\n";
-std::cout << "JDT - k    " << k    << "\n";
-std::cout << "JDT - EscM " << EscM << "\n";
+//std::cout << "JDT - L    " << L    << "\n";
+//std::cout << "JDT - k    " << k    << "\n";
+//std::cout << "JDT - EscM " << EscM << "\n";
 
 //     p[0]      += dx85;
        p[0]      += dr;
@@ -212,15 +212,15 @@ double dFac2      = -A*epsilon*epsilon;
 double p4new      = c*(dFac1*time1+dFac2*time2+(A-A_0)*th);
 double p4diff = p4new-p4old;
        p[4]      -= c*(dFac1*time1+dFac2*time2+(A-A_0)*th);
-std::cout << "JDT-pOf4" << ip << " " << p[4] << " " << S[ip] << "\n";
-std::cout << "JDT - leave traverseSplitBendExactly\n";
-std::cout << "____________________________________\n";
-std::cout << "____________________________________\n";
+//std::cout << "JDT-pOf4" << ip << " " << p[4] << " " << S[ip] << "\n";
+//std::cout << "JDT - leave traverseSplitBendExactly\n";
+//std::cout << "____________________________________\n";
+//std::cout << "____________________________________\n";
 }
 
 template<class Coordinate, class Coordinates>
 void DipoleAlgorithm<Coordinate, Coordinates>::splitBendKick(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf,double m,double theta){
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::splitBendKick()\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::splitBendKick()\n";
 #include "ETEAPOT/Integrator/getDesignBeam.h"
 double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
@@ -244,7 +244,7 @@ p[3] += p[2]*inverseFocalLengthY;
 
 template<class Coordinate, class Coordinates>
 void DipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary(Coordinates& p,const PAC::BeamAttributes cba,double Rsxf){
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::handleSplitBendBoundary()\n";
 #include "ETEAPOT/Integrator/getDesignBeam.h"
 double GeVperJ   = 1./q0/1.e9;                            // units
 double p0        = sqrt(e0*e0-m0*m0);                     // derived beam momentum
@@ -265,10 +265,10 @@ void DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(
   Coordinates& tmp,
   double v0byc)
 {
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(const ETEAPOT::ElemSlice& slice,Coordinates& p,Coordinates& tmp,double v0byc)\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " asin(slice.sphpl()) = " << asin(slice.sphpl()) << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " acos(slice.cphpl()) = " << acos(slice.cphpl()) << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " atan(slice.tphpl()) = " << atan(slice.tphpl()) << "\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(const ETEAPOT::ElemSlice& slice,Coordinates& p,Coordinates& tmp,double v0byc)\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " asin(slice.sphpl()) = " << asin(slice.sphpl()) << "\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " acos(slice.cphpl()) = " << acos(slice.cphpl()) << "\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " atan(slice.tphpl()) = " << atan(slice.tphpl()) << "\n";
 
   // From makeVelocity:
   //
@@ -307,7 +307,7 @@ std::cout << "File " << __FILE__ << " line " << __LINE__ << " atan(slice.tphpl()
  p[0] = x;
  p[2] = y;
                               
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " leave method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(const ETEAPOT::ElemSlice& slice,Coordinates& p,Coordinates& tmp,double v0byc)\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " leave method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::passBendSlice(const ETEAPOT::ElemSlice& slice,Coordinates& p,Coordinates& tmp,double v0byc)\n";
  return;
 }
 
@@ -384,7 +384,7 @@ void DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
   const ETEAPOT::MltData& edata, double rkicks,
   Coordinates& p, double v0byc)
 {
-  std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates>void DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(...\n";
+//std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates>void DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(...\n";
   Coordinate x, px, y, py;
 
 
@@ -432,7 +432,7 @@ void DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(
   p[1] += px;                              // px/p0
   p[3] += py;                              // py/p0
 
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " px " << px << "\n";
-std::cout << "File " << __FILE__ << " line " << __LINE__ << " py " << py << "\n";
-  std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " leave template<class Coordinate, class Coordinates>void DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(...\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " px " << px << "\n";
+//std::cout << "File " << __FILE__ << " line " << __LINE__ << " py " << py << "\n";
+//std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " leave template<class Coordinate, class Coordinates>void DipoleAlgorithm<Coordinate, Coordinates>::applyThinBendKick(...\n";
 }
