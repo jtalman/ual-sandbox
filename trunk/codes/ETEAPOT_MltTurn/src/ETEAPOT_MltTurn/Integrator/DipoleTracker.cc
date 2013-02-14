@@ -44,7 +44,7 @@ void ETEAPOT_MltTurn::DipoleTracker::setLatticeElements(const UAL::AcceleratorNo
 					       int is1,
 					       const UAL::AttributeSet& attSet)
 {
-std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,int is0,int is1,const UAL::AttributeSet& attSet)\n";
+//std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::DipoleTracker::setLatticeElements(const UAL::AcceleratorNode& sequence,int is0,int is1,const UAL::AttributeSet& attSet)\n";
    ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);  
    const PacLattice& lattice     = (PacLattice&) sequence;
    setLatticeElement(lattice[is0]);
@@ -52,8 +52,8 @@ std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << 
 
 void ETEAPOT_MltTurn::DipoleTracker::setLatticeElement(const PacLattElement& e)
 {
-std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::DipoleTracker::setLatticeElement(const PacLattElement& e)\n";
-std::cout << "e.getName() " << e.getName() << " e.getPosition() " << e.getPosition() << "\n";
+//std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::DipoleTracker::setLatticeElement(const PacLattElement& e)\n";
+//std::cout << "e.getName() " << e.getName() << " e.getPosition() " << e.getPosition() << "\n";
   m_data.m_m=ETEAPOT_MltTurn::DipoleTracker::m_m;
   m_data.setLatticeElement(e);
   m_edata.setLatticeElement(e);
@@ -61,7 +61,7 @@ std::cout << "e.getName() " << e.getName() << " e.getPosition() " << e.getPositi
 
 void ETEAPOT_MltTurn::DipoleTracker::propagate(UAL::Probe& probe)
 {
-std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::DipoleTracker::propagate(UAL::Probe& probe) - new algorithm\n";
+//std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::DipoleTracker::propagate(UAL::Probe& probe) - new algorithm\n";
   UAL::AcceleratorNode fAN = getFrontAcceleratorNode();
 
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
