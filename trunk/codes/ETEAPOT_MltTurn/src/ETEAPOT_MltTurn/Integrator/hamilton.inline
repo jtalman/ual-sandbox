@@ -20,9 +20,9 @@ double dK = kappa-kappa0;
        epsilon = Lcbyk*sqrt( 2*EscM0*dEscM+dEscM*dEscM-(m0*c*c)*(m0*c*c)*(2*kappa0*dK+dK*dK) );
        epsilon = epsilon/EscM;
 double epsilonBar = m0*c*c*L/EscM/k;
-std::cout << "epsilon                 " << epsilon     << "\n";
+//std::cout << "epsilon                 " << epsilon     << "\n";
 //     epsilon = epsilonBar*C_tilda;
-std::cout << "epsilon                 " << epsilon     << "\n";
+//std::cout << "epsilon                 " << epsilon     << "\n";
 
 double h0p_tildaA = -L*Rsxf*p[1]/m0/rIn/rIn;
        h0p_tilda  = htp_tilda2(p,Rsxf,rIn);
