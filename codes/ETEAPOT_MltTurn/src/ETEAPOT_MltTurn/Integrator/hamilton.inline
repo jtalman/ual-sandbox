@@ -1,0 +1,49 @@
+double kbyLc = k/L/c;
+double kapSQ = 1-kbyLc*kbyLc;
+
+       lambda = kapSQ*L*L*c*c/k/EscM;
+double Lcbyk = L*c/k;
+double m0byEscM = m0/EscM;
+
+double ca1 = m0byEscM*m0byEscM*kapSQ;
+
+       kappa = sqrt(kapSQ);
+double omega = (1-kappa)*L/gamma/rIn/rIn;
+
+double EscM0 = m0*c*c/g0;
+double kappa0 = 1/g0;
+double dEscMbyEscM = (EscM-EscM0)/EscM;
+double dEscM = EscM-EscM0;
+double dK = kappa-kappa0;
+
+       h0_tilda  = ht_tilda(rIn);
+       epsilon = Lcbyk*sqrt( 2*EscM0*dEscM+dEscM*dEscM-(m0*c*c)*(m0*c*c)*(2*kappa0*dK+dK*dK) );
+       epsilon = epsilon/EscM;
+double epsilonBar = m0*c*c*L/EscM/k;
+std::cout << "epsilon                 " << epsilon     << "\n";
+//     epsilon = epsilonBar*C_tilda;
+std::cout << "epsilon                 " << epsilon     << "\n";
+
+double h0p_tildaA = -L*Rsxf*p[1]/m0/rIn/rIn;
+       h0p_tilda  = htp_tilda2(p,Rsxf,rIn);
+       theta0  = _theta0();
+       C_tilda    = sqrt(h0_tilda*h0_tilda+h0p_tilda*h0p_tilda/kappa/kappa);
+       epsilon = epsilonBar*C_tilda;
+
+if(ip==0){
+ std::cout << "\n";
+ std::cout << "###############################\n";
+ std::cout << "precessing ellipse\n";
+ std::cout << "r=lambda/(1+epsilon*cos( kappa*(theta-theta0) ))\n";   //   (78) - page 31
+ std::cout << "lambda                  " << lambda << "\n";
+ std::cout << "epsilonBar              " << epsilonBar  << "\n";
+ std::cout << "getEpsilonMassagedMunoz35(const PAC::BeamAttributes cba,Rsxf,rIn)  " << getEpsilonMassagedMunoz35(cba,Rsxf,rIn)     << "\n";
+ std::cout << "getEpsilonTheta0()                                                 " << getEpsilonTheta0()                          << "\n";
+ std::cout << "XXXC_tilda " << C_tilda    << "\n";
+ std::cout << "XXXtheta0  " << theta0     << "\n";
+ std::cout << "kappa                   " << kappa     << "\n";
+ std::cout << "r=lambda/(1+epsilon*cos( kappa*(theta-theta0) ))\n";   //   (78) - page 31
+ std::cout << "precessing ellipse\n";
+ std::cout << "###############################\n";
+ std::cout << "\n";
+}
