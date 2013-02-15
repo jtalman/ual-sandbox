@@ -103,7 +103,7 @@ char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","
   // RF attributes
   
   double V   = m_V;
-  double lag = m_lag;
+  double lag = 0.5+m_lag;
   double h   = m_h;
 
   // Update the synchronous particle (beam attributes)
@@ -150,7 +150,7 @@ sprintf(buffr2,"%+5.2f",ETEAPOT_MltTurn::DipoleTracker::m_m);
 std::string bp2(buffr2);
 std::string sip = "out/TWISS/StndrdPrtcl";
             sip+=bip;
-std::cout << "sip.length() " << sip.length() << "\n";
+//std::cout << "sip.length() " << sip.length() << "\n";
 /*
 if(sip.length()==22){sip+="_";}
             sip+="_m=";
