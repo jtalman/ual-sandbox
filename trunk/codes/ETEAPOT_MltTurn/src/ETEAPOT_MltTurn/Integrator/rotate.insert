@@ -1,0 +1,125 @@
+#define PI 3.141592653589793
+
+double rInFromEllipse  = get_rFromEllipse(0);
+double rOutFromEllipse = get_rFromEllipse(splitTheta);
+double rOut = rOutFromEllipse;
+double RR = rOut-rIn;
+
+double nx = -Lx/L;      // normal vector for rotation
+double ny = -Ly/L;      //
+double nz = -Lz/L;      // basically aligned with y axes
+
+double rInHatx = x/rIn;
+double rInHaty = y/rIn;
+double rInHatz = z/rIn;
+
+double pInHatx = px/pIn;
+double pInHaty = py/pIn;
+double pInHatz = pz/pIn;
+
+double angleIn = acos(rInHatx*pInHatx+rInHaty*pInHaty+rInHatz*pInHatz);   //   ca PI/2
+
+double rInCross_nx = rInHaty*nz-rInHatz*ny;
+double rInCross_ny = rInHatz*nx-rInHatx*nz;
+double rInCross_nz = rInHatx*ny-rInHaty*nx;
+
+double rInCross_nDotpInHat = rInCross_nx*pInHatx+rInCross_ny*pInHaty+rInCross_nz*pInHatz;   //   ca 1
+
+double xInHat = rInHatx;
+double yInHat = rInHaty;
+
+double den    = sqrt( ny*ny+nx*nx*cos(th)*cos(th)+2*nx*nz*cos(th)*sin(th)+nz*nz*sin(th)*sin(th) );
+double a      = ny/den;   //   ca 1
+double yOutHat;   //   ca 0
+if(yInHat>=0){
+ yOutHat = +sqrt( 1-a*a );
+}else{
+ yOutHat = -sqrt( 1-a*a );
+}
+double zer    = nx*a*cos(th)+ny*yOutHat+nz*a*sin(th);   //   ca 0
+double one    = a*a+yOutHat*yOutHat;   //   ca 1
+  double phi  = acos(xInHat*a*cos(th)+yInHat*yOutHat);
+
+double co = cos(phi);  // cos(th);
+double si = sin(phi);  // sin(th);
+double rOutHatx = co*rInHatx+si*rInCross_nx;
+double rOutHaty = co*rInHaty+si*rInCross_ny;
+double rOutHatz = co*rInHatz+si*rInCross_nz;
+if(ip==0){
+ std::cout << "rInHat:  (" << rInHatx  << "," << rInHaty  << "," << rInHatz  << ")" << "\n";
+ std::cout << "rOutHat: (" << rOutHatx << "," << rOutHaty << "," << rOutHatz << ")" << "\n";
+}
+
+double xOut = rOut*rOutHatx;
+double yOut = rOut*rOutHaty;
+double zOut = rOut*rOutHatz;
+if(ip==0){
+ std::cout << "rIn    : (" << x        << "," << y        << "," << z        << ")" << "\n";
+ std::cout << "rOut   : (" << xOut     << "," << yOut     << "," << zOut     << ")" << "\n";
+}
+
+double thetaHatOutx = co*rInCross_nx-si*rInHatx;
+double thetaHatOuty = co*rInCross_ny-si*rInHaty;
+double thetaHatOutz = co*rInCross_nz-si*rInHatz;
+
+double pxOut = m0*hr_tilda(th)*rOutHatx + m0*_ht_tilda(th)*thetaHatOutx + m0*k*gamma*thetaHatOutx/L;
+double pyOut = m0*hr_tilda(th)*rOutHaty + m0*_ht_tilda(th)*thetaHatOuty + m0*k*gamma*thetaHatOuty/L;
+double pzOut = m0*hr_tilda(th)*rOutHatz + m0*_ht_tilda(th)*thetaHatOutz + m0*k*gamma*thetaHatOutz/L;
+std::cout << "pIn    : (" << px       << "," << py       << "," << pz       << ")" << "\n";
+
+double pxInFrom_h = m0*hr_tilda(0)*rInHatx+m0*_ht_tilda(0)*rInCross_nx+m0*k*gamma*rInCross_nx/L;
+double pyInFrom_h = m0*hr_tilda(0)*rInHaty+m0*_ht_tilda(0)*rInCross_ny+m0*k*gamma*rInCross_ny/L;
+double pzInFrom_h = m0*hr_tilda(0)*rInHatz+m0*_ht_tilda(0)*rInCross_nz+m0*k*gamma*rInCross_nz/L;
+std::cout << "pInH   : (" << pxInFrom_h<< "," << pyInFrom_h<< "," << pzInFrom_h<< ")" << "\n";
+
+       co = cos(th);
+       si = sin(th);
+
+double xOutp  =  co*xOut+si*zOut;
+double yOutp  =  yOut;
+double zOutp  = -si*xOut+co*zOut;
+//if(ip==0){
+ std::cout << "rpOut" << ip << "  : ( " << xOutp    << " , " << yOutp    << " , " << zOutp    << " ): " << S[ip] << "\n";
+ std::cout <<  "pOut" << ip << "  : ( " << pxOut    << " , " << pyOut    << " , " << pzOut    << " ): " << S[ip] << "\n";
+//}
+
+double pxOutp =  co*pxOut+si*pzOut;
+double pyOutp =  pyOut;
+double pzOutp = -si*pxOut+co*pzOut;
+if(ip==0){
+ std::cout << "pOutp  : ( " << pxOutp   << " , " << pyOutp   << " , " << pzOutp   << " )" << "\n";
+}
+
+double F1 = 1+epsilon*cos(kappa*(th-theta0));
+double N1 = sin(kappa*th/2);
+double N2 = sin(kappa*th);
+double F4 = 1+epsilon*cos(kappa*theta0);
+
+if(ip==0){
+ std::cout << "rIn            " << rIn            << "\n";
+ std::cout << "rInFromEllipse " << rInFromEllipse << "\n";
+ std::cout << "rOut           " << rOut           << "\n";
+ std::cout << "rOut-rIn       " << RR             << "\n";
+}
+ std::cout << "JDT-epsilon" << ip << " " << epsilon       << "\n";
+double dr = epsilon*lambda*cos(kappa*theta0)*(2*N1*N1-N2*h0p_tilda/kappa/h0_tilda)/F1/F4;
+//if(ip==0){
+ std::cout << "JDT-dr" << ip << " " << dr       << "\n";
+//}
+double rP = RR-dr;
+if(ip==0){
+ std::cout << "DX       " << dr+p[0]  << "\n";
+}
+
+double dx85  = h0_tilda-_ht_tilda(th);
+if(ip==0){
+ std::cout << "dx85     " << dx85     << "\n";
+}
+double den85 = (1+epsilonBar*_ht_tilda(th))*(1+epsilonBar*h0_tilda);
+if(ip==0){
+ std::cout << "den85    " << den85    << "\n";
+}
+       dx85  = dx85*lambda*epsilonBar/den85;
+//if(ip==0){
+ std::cout << "JDT-dx85" << ip << " " << dx85 << " " << S[ip] << "\n";
+//}
