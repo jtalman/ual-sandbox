@@ -30,6 +30,7 @@ double h0p_tildaA = -L*Rsxf*p[1]/m0/rIn/rIn;
        C_tilda    = sqrt(h0_tilda*h0_tilda+h0p_tilda*h0p_tilda/kappa/kappa);
        epsilon = epsilonBar*C_tilda;
 
+/*
 if(ip==0){
  std::cout << "\n";
  std::cout << "###############################\n";
@@ -47,3 +48,4 @@ if(ip==0){
  std::cout << "###############################\n";
  std::cout << "\n";
 }
+*/
