@@ -86,7 +86,7 @@ void ETEAPOT_MltTurn::DipoleTracker::propagate(UAL::Probe& probe)
     if(bunch[ip].isLost()) continue;
     PAC::Position& p = bunch[ip].getPosition();
     tmp = p;
-#include "ETEAPOT/Integrator/verboseBlock.h"
+//#include "ETEAPOT/Integrator/verboseBlock.h"
 //  if(ip==0){#include "verboseBlock.h"}
     s_algorithm.passEntry(0, m_edata, p, 0, ETEAPOT_MltTurn::DipoleTracker::m_m );
     s_algorithm.makeVelocity(p, tmp, v0byc);
