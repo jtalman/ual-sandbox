@@ -91,7 +91,7 @@ std::string bp2(buffr2);
 //std::string sip = "out/STT/StndrdPrtcl";
 //std::string sip = "out/shortTermTracking/resultsForStandardParticle";
             sip+=bip;
-std::cout << "sip.length() " << sip.length() << "\n";
+//std::cout << "sip.length() " << sip.length() << "\n";
 /*
 if(sip.length()==22){sip+="_";}
             sip+="_m=";
