@@ -126,7 +126,7 @@ sprintf(buffr2,"%+5.2f",ETEAPOT_MltTurn::DipoleTracker::m_m);
 std::string bp2(buffr2);
 std::string sip = "out/TWISS/StndrdPrtcl";
             sip+=bip;
-std::cout << "sip.length() " << sip.length() << "\n";
+//std::cout << "sip.length() " << sip.length() << "\n";
 /*
 if(sip.length()==22){sip+="_";}
             sip+="_m=";
