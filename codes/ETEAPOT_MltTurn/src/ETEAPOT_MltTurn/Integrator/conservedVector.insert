@@ -1,0 +1,95 @@
+if(ip==0){
+ std::cout << "JDT - file " << __FILE__ << " line " << __LINE__ << "\n";
+ std::cout << "th         " << th         << "\n";
+}
+
+double jt_tilda0   =      _ht_tilda(0);
+double jr_tilda0   = kappa*hr_tilda(0);
+
+double jt_tildaIn  = C_tilda*cos( kappa*-theta0 );
+double jr_tildaIn  = C_tilda*sin( kappa*-theta0 );
+
+if(ip==0){
+ std::cout << "jt_tilda0 - jt_tildaIn " << jt_tilda0 - jt_tildaIn << "\n";
+ std::cout << "jr_tilda0 - jr_tildaIn " << jr_tilda0 - jr_tildaIn << "\n";
+}
+
+double TM11  = cos( kappa*th ), TM12 = -sin( kappa*th );
+double TM21  = sin( kappa*th ), TM22 =  cos( kappa*th );
+
+double jt_tildaOut = TM11*jt_tildaIn + TM12*jr_tildaIn;
+double jr_tildaOut = TM21*jt_tildaIn + TM22*jr_tildaIn;
+
+if(ip==0){
+ std::cout << "jt_tildaIn       " << jt_tildaIn       << "\n";
+ std::cout << "jr_tildaIn       " << jr_tildaIn       << "\n";
+
+ std::cout << "jt_tildaOut      " << jt_tildaOut      << "\n";
+ std::cout << "jr_tildaOut      " << jr_tildaOut      << "\n";
+
+ std::cout << "1-kappa    " << 1-kappa    << "\n";
+ std::cout << "L          " << L          << "\n";
+ std::cout << "gamma      " << gamma      << "\n";
+}
+double mp = m0;
+double CC = UAL::clight;
+if(ip==0){
+ std::cout << "mp         " << mp         << "\n";
+ std::cout << "mp [Gev]   "   << mp       << "\n";
+}
+       mp      = mp/GeVperJ/CC/CC;
+if(ip==0){
+ std::cout << "mp [kg]    "    << mp      << "\n";
+}
+double mpcSqu  = mp*CC*CC;
+if(ip==0){
+ std::cout << "mp c^2     "    << mpcSqu  << "\n";
+
+ std::cout << "rIn        " << rIn        << "\n";
+}
+
+double thDot = L/gamma/m0/rIn/rIn;
+if(ip==0){
+ std::cout << "thDot      " << thDot      << "\n";
+
+ std::cout << "GeVperJ    " << GeVperJ    << "\n";
+ std::cout << "p0         " << p0         << "\n";
+ std::cout << "g0         " << g0         << "\n";
+ std::cout << "b0         " << b0         << "\n";
+ std::cout << "c          " << c          << "\n";
+ std::cout << "L0         " << L0         << "\n";
+ std::cout << "CC         " << CC         << "\n";
+ std::cout <<                                "\n";
+}
+double p0MKS =mp*g0*b0*CC;
+double pInMKS=pIn/GeVperJ/CC;
+if(ip==0){
+ std::cout << "p0MKS      " << p0MKS      << "\n";
+ std::cout << "pInMKS     " << pInMKS     << "\n";
+}
+       pInMKS=pIn*UAL::elemCharge*1E9/CC;
+if(ip==0){
+ std::cout << "pInMKS     " << pInMKS     << "\n";
+}
+double v0MKS = b0*CC;
+double vMKS  = pInMKS/gamma/mp;
+if(ip==0){
+ std::cout << "v0(MKS)    " << v0MKS      << "\n";
+ std::cout << "v(MKS)     " << vMKS       << "\n";
+ std::cout << "rIn        " << rIn        << "\n";
+ std::cout << "v/rIn      " << vMKS/rIn   << "\n";
+ std::cout << "v0/Rsxf    " << v0MKS/Rsxf << "\n";
+}
+double thD0  = Rsxf*mp*g0*b0*CC/g0/mp/Rsxf/Rsxf;
+if(ip==0){
+ std::cout << "thD0       " << thD0       << "\n";
+ std::cout <<                                "\n";
+ std::cout << "Rsxf       " << Rsxf       << "\n";
+}
+double L0MKS = Rsxf*p0MKS;
+if(ip==0){
+ std::cout << "L0MKS      " << L0MKS      << "\n";
+
+ std::cout << "JDT - file " << __FILE__ << " line " << __LINE__ << "\n";
+ std::cout <<                                                      "\n";
+}
