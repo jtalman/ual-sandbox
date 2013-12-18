@@ -1,0 +1,54 @@
+cp data/eteapot_MltTurn.apdf data/eteapot.apdf
+cp statusAndRegression/reportData/userBunch_bmIII-Fig2 userBunch
+
+make outputReady
+make clean
+make
+./ETEAPOT_MltTurn ./data/E_BM_M1.0_sl4.sxf -1 40 1 500 >! OUT
+
+// "look" at NikolayOut
+perl SplitNikolayOut.pl NikolayOut >! IG
+
+gnuplot
+   gnuplot> load "forGnuplot_Figure2"
+
+----------------------------------------------------
+
+# set terminal postscript eps enhanced color 20
+# set output "LongitPhSp_BM_M1.0p.eps"
+set grid
+set key left
+set ylabel '{/Symbol d}_U_A_L'
+set xlabel "ct [m]"
+# set style line 2 lc rgb 'black' pt 6
+p 'IG' i 10 u 8:9 w l, "<echo '0 -0.000001'" with points ls 2, \
+  'IG' i 11 u 8:9 w l, "<echo '0 -0.000002'" with points ls 2, \
+  'IG' i 12 u 8:9 w l, "<echo '0 -0.000003'" with points ls 2, \
+  'IG' i 14 u 8:9 w l, "<echo '-0.000669 -0.00001'" with points ls 2
+
+---------------------------------------------------
+
+PAC::Bunch bunch(21);                               // bunch with 21 particle(s)
+PAC::Spin * spinX   = new PAC::Spin[21];            // the corresponding spins
+bunch.setBeamAttributes(ba);
+
+bunch[ 1].getPosition().set( +x1typ,      0,      0,      0,      0,      0 );
+bunch[ 2].getPosition().set( -x1typ,      0,      0,      0,      0,      0 );
+bunch[ 3].getPosition().set(      0, +x2typ,      0,      0,      0,      0 );
+bunch[ 4].getPosition().set(      0, -x2typ,      0,      0,      0,      0 );
+bunch[ 5].getPosition().set(      0,      0, +y1typ,      0,      0,      0 );
+bunch[ 6].getPosition().set(      0,      0, -y1typ,      0,      0,      0 );
+bunch[ 7].getPosition().set(      0,      0,      0, +y2typ,      0,      0 );
+bunch[ 8].getPosition().set(      0,      0,      0, -y2typ,      0,      0 );
+bunch[ 9].getPosition().set(      0,      0,      0,      0,      0,+deltyp );
+bunch[10].getPosition().set(      0,      0,      0,      0,      0,-deltyp );
+bunch[11].getPosition().set(      0,      0,      0,      0,   0,-0.000002 );
+bunch[12].getPosition().set(      0,      0,      0,      0, 0,-0.000003 );
+bunch[13].getPosition().set(-0.0000669,   0,      0,      0,      0,-deltyp );
+bunch[14].getPosition().set(-0.000669,    0,      0,    0, 0,    -0.00001 );
+bunch[15].getPosition().set(0.0,   -0.00005,     0,    0, 0,      0 );
+bunch[16].getPosition().set(0.0,   -0.0001,      0,    0, 0,       0 );
+bunch[17].getPosition().set(0.0,   -0.0002,      0,    0, 0,       0 );
+bunch[18].getPosition().set(0.0,   -0.0004,       0,  0,   0,      0 );
+bunch[19].getPosition().set(-0.02,    0,      0,  0,   0,      0 );
+bunch[20].getPosition().set( 0.02, 0,      0, 0,      0,      0 );
