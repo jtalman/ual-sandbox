@@ -1,0 +1,115 @@
+ string mysxfbase=mysxf.substr(7,mysxf.size()-11);
+ cout << "mysxf     " << mysxf.c_str() << "\n";
+ cout << "mysxfbase " << mysxfbase.c_str() << "\n";
+
+ string apdfFile = "./data/eteapot_MltTurn.apdf";
+
+ UAL::Shell shell;
+ shell.readSXF(UAL::Args() << UAL::Arg("file",  mysxf.c_str()));
+ UAL::APDF_Builder apBuilder;
+ UAL::AcceleratorPropagator* ap = apBuilder.parse(apdfFile);
+
+ if(ap == 0) {
+   cout << "Accelerator Propagator has not been created " << std::endl;
+   return 1;
+ }
+
+ UAL::AcceleratorNode*  m_lattice;
+ UAL::AcceleratorNodeFinder::Iterator it = UAL::AcceleratorNodeFinder::getInstance().find("ring");
+
+ if(it == UAL::AcceleratorNodeFinder::getInstance().end()){
+  cout << "ADBF Builder lattice " << "ring" << " has not been found " << std::endl;
+ }
+ else {
+  m_lattice = (it->second).operator->();
+ }
+
+ double at = 0;
+ int lsize = m_lattice->getNodeCount();
+
+ for(int i=0; i < lsize; i++){
+
+  UAL::AcceleratorNode* const anode = m_lattice->getNodeAt(i);
+
+  string elname = anode->getDesignName();
+  string eltype = anode->getType();
+
+  anode->setPosition(at);
+
+  cout << i << "at = " << at << " name = " << elname << ", type = " << eltype << std::endl;
+   
+  at += anode->getLength();
+ }
+
+ const PacLattice& lattice     = (PacLattice&) *m_lattice;
+ string name = lattice[index].getName();
+ string type = lattice[index].getType();
+ cerr << "lattice["<< index << "].getName() " << name << "\n";
+ cerr << "lattice["<< index << "].getType() " << type << "\n";
+
+ const PacLattElement& e = lattice[index];
+ cerr << "typeid(e).name() " << typeid(e).name() << "\n";
+
+ // Entry multipole
+ PacElemAttributes* front  = e.getFront();
+ if(front){
+  PacElemAttributes::iterator it = front->find(PAC_MULTIPOLE);
+  if(it != front->end()){
+   cout << "setting m_entryMlt\n";  // m_entryMlt = (PacElemMultipole*) &(*it);
+  }
+ }
+
+ // Exit multipole
+ PacElemAttributes* end  = e.getEnd();
+ if(end){
+  PacElemAttributes::iterator it = end->find(PAC_MULTIPOLE);
+  if(it != end->end()){
+   cout << "setting m_exitMlt\n";  // m_exitMlt = (PacElemMultipole*) &(*it);
+  }
+ }
+
+ PacElemAttributes* attributes = e.getBody();
+ PacElemMultipole* m_mlt;
+
+ if(attributes){
+  for(PacElemAttributes::iterator it = attributes->begin(); it != attributes->end(); it++){
+   switch((*it).key()){
+    case PAC_MULTIPOLE:
+     cerr << "setting m_mlt\n";   // m_mlt = (PacElemMultipole*) &(*it);
+     m_mlt = (PacElemMultipole*) &(*it);
+     cerr << "typeid(m_mlt).name() " << typeid(m_mlt).name() << "\n";
+    break;
+    case PAC_OFFSET:
+     cerr << "setting m_offset\n";   // m_offset = (PacElemOffset*) &(*it);
+    break;
+    case PAC_APERTURE:
+     cerr << "setting m_aperture\n";   // m_aperture = (PacElemAperture*) &(*it);
+    // m_aperture = (PacElemAperture*) &(*it);
+    break;
+    case PAC_ROTATION:
+     cerr << "setting m_rotation\n";   // m_rotation = (PacElemRotation*) &(*it);
+    break;
+    default:
+    break;
+   }
+  }
+ }
+
+ string sbnd ("Sbend");
+ string quad ("Quadrupole");
+ string sext ("Sextupole");
+ string octt ("Octupole");
+ if(m_mlt){
+  cerr << "m_mlt->size() " << m_mlt->size() << "\n";
+  int size=m_mlt->size();
+  double* data=m_mlt->data();
+  if(type.compare(sbnd) == 0){cerr << "sbnd match\n";}
+  if(type.compare(quad) == 0){cerr << "quad match\n";}
+  if(type.compare(sext) == 0){cerr << "sext match\n";}
+  if(type.compare(octt) == 0){cerr << "octt match\n";}
+  if( (type.compare(sbnd) == 0) || (type.compare(quad) == 0) || (type.compare(sext) == 0) || (type.compare(octt) == 0) ){
+   for(int di=0;di<size;di++){
+    cerr << "data[ " << di << " ] " << data[di] << "\n";;
+   }
+  }
+ }
