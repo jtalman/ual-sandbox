@@ -1,0 +1,68 @@
+ if(argc!=20){
+  cerr << "usage: ./latticeElements ./data/E_AGS_Analogue2.sxf2 1831 g gamma_M gamma_0 delThtaTilda dx_0 dy_0 dz_0 theta_b phi_b betaProbe theta_s phi_s mag_s gap r_0 E_0 mcc_0(>! OUT)\n";
+  cerr << "argv[0]  is this executable         - ./latticeElements                             \n";
+  cerr << "argv[1]  is the input sxf file      - ./data/E_AGS_Analogue2.sxf2                   \n";
+  cerr << "argv[2]  is the element index in the lattice (sxf+drift)                            \n";
+  cerr << "argv[3]  is g (=2G+2=5.5857 for proton - page 14)                                   \n";
+  cerr << "argv[4]  is gamma_M (=1.248 pEDM - page 14)                                         \n";
+  cerr << "argv[5]  is gamma_0 (actual machine gamma)                                          \n";
+  cerr << "argv[6]  is delThtaTilda (angular deviation ""instantaneous bend plane"" - page 70) \n";
+  cerr << "argv[7]  is dx_0 (probe initial x deviation)                                        \n";
+  cerr << "argv[8]  is dy_0 (probe initial y deviation)                                        \n";
+  cerr << "argv[9]  is dz_0 (probe initial z deviation)                                        \n";
+  cerr << "argv[10] is theta_b (probe beta angle wrto Z)                                       \n";
+  cerr << "argv[11] is phi_b (probe beta angle wrto projection into XY)                        \n";
+  cerr << "argv[12] is betaProbe (probe beta magnitude - less than c!)                         \n";
+  cerr << "argv[13] is theta_s (probe spin angle wrto Z)                                       \n";
+  cerr << "argv[14] is phi_s (probe spin angle wrto projection into XY)                        \n";
+  cerr << "argv[15] is mag_s (probe spin magnitude = 1)                                        \n";
+  cerr << "argv[16] is gap (bend electrode gap in meters - page 69)                            \n";
+  cerr << "argv[17] is r_0 (design orbit radius in meters)                                     \n";
+  cerr << "argv[18] is E_0 (design electric bend field parameter - page 11)                    \n";
+  cerr << "argv[19] is m_0GV (design particle rest mass in accelerator units - page 14         \n";
+  cerr << "see file: runExampleFor_latticeElements\n";
+  cerr << "e.g.:  ./latticeElements ./data/E_AGS_Analogue2.sxf2 2 5.59 1.25 1.25 0.2 1 2 0 0 0 0.6 0 0 1 0.03 40 10.5E6 0.938 >! OUT\n";
+
+  cerr << "\nPage numbers refer to Appendix: UALcode: Development of the UAL/ETEAPOT Code for the Proton EDM Experiment, Malitsky, et al\n";
+  exit(0);
+ }
+
+ string mysxf=            argv[1];
+ int    index=       atoi(argv[2]);
+ double g=           atof(argv[3]);
+ double gamma_M=     atof(argv[4]);
+ double gamma_0=     atof(argv[5]);
+ double delThtaTilda=atof(argv[6]);
+ double dx_0=        atof(argv[7]);
+ double dy_0=        atof(argv[8]);
+ double dz_0=        atof(argv[9]);
+ double theta_b=     atof(argv[10]);
+ double phi_b=       atof(argv[11]);
+ double betaProbe=   atof(argv[12]);
+ double theta_s=     atof(argv[13]);
+ double phi_s=       atof(argv[14]);
+ double mag_s=       atof(argv[15]);
+ double gap=         atof(argv[16]);
+ double r_0=         atof(argv[17]);
+ double E_0=         atof(argv[18]);
+ double mcc_0=       atof(argv[19]);
+
+ cerr << fixed << setprecision(10) << showpos << setfill('0') << scientific;
+
+ cerr << "g=           " << g <<            "\n";
+ cerr << "gamma_M=     " << gamma_M   <<    "\n";
+ cerr << "gamma_0=     " << gamma_0 <<      "\n";
+ cerr << "delThtaTilda=" << delThtaTilda << "\n";
+ cerr << "dx_0=        " << dx_0 <<         "\n";
+ cerr << "dy_0=        " << dy_0 <<         "\n";
+ cerr << "dz_0=        " << dz_0 <<         "\n";
+ cerr << "theta_b=     " << theta_b <<      "\n";
+ cerr << "phi_b=       " << phi_b <<        "\n";
+ cerr << "betaProbe=   " << betaProbe <<    "\n";
+ cerr << "theta_s=     " << theta_s <<      "\n";
+ cerr << "phi_s=       " << phi_s <<        "\n";
+ cerr << "mag_s=       " << mag_s <<        "\n";
+ cerr << "gap=         " << gap <<          "\n";
+ cerr << "r_0=         " << r_0 <<          "\n";
+ cerr << "E_0=         " << E_0 <<          "\n";
+ cerr << "mcc_0        " << mcc_0 <<        "\n";
