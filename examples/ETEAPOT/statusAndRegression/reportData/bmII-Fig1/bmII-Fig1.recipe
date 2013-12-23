@@ -1,0 +1,24 @@
+\cp statusAndRegression/reportData/bmII-Fig1/E_BM_Z_sl4.sxf data
+\cp statusAndRegression/reportData/bmII-Fig1/extractParameters.h .
+
+make outputReady
+make clean
+make
+
+\cp data/eteapotMARKER.apdf data/eteapot.apdf
+
+./determineTwiss ./data/E_BM_Z_sl4.sxf 0 40 >! OUT
+
+// (split=1) betaX (b0x) 36.1004, QX 0.457821           , alphax (a0x) 1.32698e-08
+// (split=1) betaY (b0y) 263.484 , QY 0.200152             alphay (a0y) 4.88527e-09
+// compare with out/TWISS/TWISS_m=+0.00
+// reference UAL/ETEAPOT Results (Augmented) for Proton EDM Benchmark Lattices, 
+// J. Talman & R. Talman, April 29, 2012
+
+// generates a final line like
+// ./transferMatrices 0 1.32698e-08 36.1004 4.88527e-09 263.484 1326>! betaFunctions
+
+  gnuplot > load "statusAndRegression/reportData/bmII-Fig1/BM_Zbetax.gnuplot"
+  gnuplot > load "statusAndRegression/reportData/bmII-Fig1/BM_Zbetay.gnuplot"
+
+
