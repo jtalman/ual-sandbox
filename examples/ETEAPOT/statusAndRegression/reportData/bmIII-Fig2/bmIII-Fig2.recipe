@@ -1,0 +1,33 @@
+\cp Shell.cc $UAL/ext/UI/src/UAL/UI/Shell.cc
+pushd $UAL/ext/UI
+make clean
+make
+ll lib/linux            // e.g. 1154818 libUalUI.so
+popd
+
+\cp $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/RFCavityTracker-mod.cc $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/RFCavityTracker.cc
+pushd $UAL/codes/ETEAPOT_MltTurn
+make clean
+make
+ll lib/linux            // e.g.  574307 libETEAPOT_MltTurn.so
+popd
+
+cp data/eteapot_MltTurn.apdf data/eteapot.apdf
+cp statusAndRegression/reportData/bmIII-Fig2/userBunch .
+cp statusAndRegression/reportData/bmIII-Fig2/extractParameters.h .
+
+make outputReady
+make clean
+make
+
+// We recommend the lenovo ThinkPad line with ubuntu, or Scientific Linux
+// On an ubuntu single processor vostro 200, 12/31/2012, this next command takes 10 minutes or so, and generates a 3G or so file
+./ETEAPOT_MltTurn ./data/E_BM_M1.0.RF.sxf -1 40 1 500 >! OUT
+// On an ubuntu single processor vostro 200, 12/31/2012, this prev command took  10 minutes or so, and generated a 3G or so file
+
+// "look" at NikolayOut
+perl SplitNikolayOut.pl NikolayOut >! IG
+
+gnuplot
+   gnuplot> load "./statusAndRegression/reportData/bmIII-Fig2/forGnuplot_Figure2"
+
