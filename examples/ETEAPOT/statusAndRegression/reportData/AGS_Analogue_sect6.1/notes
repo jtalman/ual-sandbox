@@ -1,0 +1,38 @@
+21 Dec 2013
+-----------
+Original directory was ual964. Below is snippet clipped out from 
+         /home/ualusr2011/NOTES/964/E_AGS-Analogue-notes
+
+--------------------------------
+
+From: Richard M Talman [richard.talman@cornell.edu]
+Sent: Monday, January 14, 2013 4:47 PM
+To: Talman, John
+Subject: RE: E_AGS_Analogue.sxf
+
+To be consistent a bunch of other changes will be necessary, including the following. 
+I have not yet figured how to make the changes self-consistently. The speed, energy, 
+frequency, electric field and radius have to be consistent.
+
+---------------------------------------------------------------------------------
+
+
+std::cout     << "#################################   Design Beam Orientation\n";
+// double gamma0  = GAMMA_FROZEN_SPIN;                // fundamental kinematic parameter
+double gamma0  = 20;
+double c       = 1;                                // other units (mks) have 2.99792458e8 m/s
+double b0      = sqrt(1-1/gamma0/gamma0);          // equivalent fundamental kinematic parameter
+double v0      = b0*c;                             // equivalent fundamental kinematic parameter
+
+// $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.hh   // # (index) of member variable
+// double m0      = UAL::pmass;                       // 2
+double m0      = UAL::emass;                       // 2
+double e0      = gamma0*m0;                        // 1
+double p0      = gamma0*m0*v0;                     //
+
+// double q0      = UAL::elemCharge;                  // 3
+double q0      = 1.0;                  // 3
+double t0      = 0;                                // 4
+// double f0      = 1;                                // 5
+// double f0      = 541426.7816;                                // 5
+double f0      = 6.946435e6;                            // 5

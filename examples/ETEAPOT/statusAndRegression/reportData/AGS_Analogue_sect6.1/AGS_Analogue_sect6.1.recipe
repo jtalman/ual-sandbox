@@ -1,0 +1,94 @@
+It may be necessary to increase some file size limits:
+
+\\ $UAL/codes/ETEAPOT/src/ETEAPOT/Integrator/algorithm.hh 
+\\ needs to have
+\\      static std::string bend_m_elementName[32768];  // [8192];
+\\      static double bend_m_sX[32768]; //   [8192];
+
+\\ $UAL/codes/ETEAPOT/src/ETEAPOT/Integrator/algorithm.icc 
+\\ needs to have
+
+\\     std::string algorithm<Coordinate, Coordinates>::bend_m_elementName[32768];  // [8192];
+\\     template<class Coordinate, class Coordinates> 
+\\     double algorithm<Coordinate, Coordinates>::bend_m_sX[32768];  // [8192];
+
+\cp data/eteapotMARKER.apdf data/eteapot.apdf
+\cp statusAndRegression/reportData/AGS_Analogue_sect6.1/userBunch .
+\cp statusAndRegression/reportData/AGS_Analogue_sect6.1/extractParameters.h .
+
+gcc det.c -o det -lm
+
+\rm make.log OUT* out/TWISS/* out/VERIF/*
+make clean
+make
+
+\cp ./statusAndRegression/reportData/AGS_Analogue_sect6.1/E_AGS_AnEDM-octant.sxf data/E_AGS_AnEDM-octant.sxf
+
+         ./determineTwiss ./data/E_AGS_AnEDM-octant.sxf 1 4.573 >! OUT
+
+// The output can be checked: 
+gnuplot
+   > p 'out/TWISS/StndrdPrtcl1' u 3,'out/TWISS/StndrdPrtcl2' u 3
+   > p 'out/TWISS/StndrdPrtcl1' u 4,'out/TWISS/StndrdPrtcl2' u 4
+
+   > p 'out/TWISS/StndrdPrtcl3' u 3,'out/TWISS/StndrdPrtcl4' u 3
+   > p 'out/TWISS/StndrdPrtcl3' u 4,'out/TWISS/StndrdPrtcl4' u 4
+
+   > p 'out/TWISS/StndrdPrtcl5' u 3,'out/TWISS/StndrdPrtcl6' u 3
+   > p 'out/TWISS/StndrdPrtcl5' u 4,'out/TWISS/StndrdPrtcl6' u 4
+
+   > p 'out/TWISS/StndrdPrtcl7' u 3,'out/TWISS/StndrdPrtcl8' u 3
+   > p 'out/TWISS/StndrdPrtcl7' u 4,'out/TWISS/StndrdPrtcl8' u 4
+
+// as well as the following command line for calculating betaFunctions:
+
+./transferMatrices 1 2.64471e-10 1.70966 5.39381e-11 0.771287 2259>! betaFunctions
+
+// Plot the beta functions using 
+
+    gnuplot>  load "./statusAndRegression/reportData/AGS_Analogue_sect6.1/AGS_Analogue-betas.gnuplot"
+
+// The following should yield identity (though I don't understand the first two command line arguments)
+     ./transferMatrix 1.00 0 1.02794e-10 1.70966
+     ./transferMatrix 1.00 1 1.02794e-10 1.70966
+
+// first quad
+     ./transferMatrix 1.00 5 1.02794e-10 1.70966
+// first bend
+     ./transferMatrix 1.00 6 1.02794e-10 1.70966
+// end
+     ./transferMatrix 1.00 284 1.02794e-10 1.70966
+
+./det
+   6
+   cut-and-paste above yields
+
+Determinant is :1.000000e+00
+
+ 0.068713 1.705623 0.000000 -0.000000 0.000000 0.595065
+ -0.583528 0.068713 -0.000000 0.000000 -0.000000 0.372857
+ 0.000000 -0.000000 0.148588 0.762725 0.000000 -0.000000
+ -0.000000 0.000000 -1.282142 0.148588 -0.000000 0.000000
+ -0.000060 0.000018 0.000000 -0.000000 1.000000 32.471096
+ -0.000000 0.000000 -0.000000 0.000000 -0.000000 1.000000
+
+ 1.000000 -0.000000 0.000000 0.000000 0.000000 -0.000000
+ 0.000000 1.000000 0.000000 0.000000 0.000000 -0.000000
+ 0.000000 0.000000 1.000000 -0.000000 0.000000 0.000000
+ 0.000000 0.000000 -0.000000 1.000000 0.000000 0.000000
+ 0.000000 -0.000000 0.000000 0.000000 1.000000 0.000000
+ 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000
+
+ 1.000000 -0.000000 0.000000 0.000000 0.000000 0.000000
+ 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000
+ 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000
+ 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000
+ -0.000000 0.000000 0.000000 0.000000 1.000000 0.000000
+ 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000
+
+// cut down to 4x4
+
+  0.068713 1.705623  0.000000 0.595065
+ -0.583528 0.068713 -0.000000 0.372857
+ -0.000060 0.000018  1.000000 32.471096
+ -0.000000 0.000000 -0.000000 1.000000
