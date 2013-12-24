@@ -20,7 +20,7 @@
  orbitFile += ".orbit";
 
  int split = 1;            // old split specification
- int splitForBends = 4;    // new split specification
+ int splitForBends = 3;    // new split specification
  int splitForQuads = 0;    // new split specification
  int splitForSexts = 0;    // new split specification
  int order = 2;
