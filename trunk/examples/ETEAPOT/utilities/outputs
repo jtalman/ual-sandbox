@@ -1,0 +1,17 @@
+ std::cout << "EFld0   "    << EFld0  << "\n";
+ std::cout << "kapSqu  "    << kapSqu << "\n";
+ std::cout << "kap     "    << kap    << "\n";
+ std::cout << "R0      "    << R0     << "\n";
+ std::cout << "kapSqu/Efac/Efac " << kapSqu/Efac/Efac << "\n";
+
+ printf("\n" "\033[1m\033[31m" "PURE ACCELERATOR CROSS CHECK\n");
+ printf("_________________________________\n");
+ printf("*********************************\n");
+ printf("lambda            %+20.10e [m]\n",lambda); 
+ printf("LcOver_k          %+20.10e []\n",LcOver_k); 
+ printf("Efac              %+20.10e []\n",Efac); 
+ printf("eps               %+20.10e []\n",eps); 
+ printf("_________________________________\n");
+ printf("*********************************\n");
+ printf("\n");
+ printf(RESET);
