@@ -29,8 +29,12 @@ namespace UAL {
   /** elementary charge - http://physics.nist.gov/cgi-bin/cuu/Value?e|search_for=elecmag_in*/
   /*  should verify with Handbook of Particle Physics?*/
   /*  verified with PDG */
+  /* Proton/Electron charge [C] */
   const double elemCharge = 1.602176487e-19;             // (40) C
   /** PDG, particle data group, July 2010 Particle Physics Booklet, IOP Publishing*/
+
+  /* Vacuum Permittivity [F/m] */
+  const double vcmPerm = 8.854187817e-12;                // F/m
 
 }
 
