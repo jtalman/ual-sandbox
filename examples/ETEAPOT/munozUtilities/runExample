@@ -18,3 +18,6 @@
 
 ./2D_5Values +2.6872238219e-09 40 +1.248107349 0 0 4.4847359e+06 0 0
       cross checks last line in runExample for xyPlotLambda
+
+./2D_5Values +2.6872238219e-09 40 +1.248107349 0 0 +4.484738326260613e+06 0 0
+      cross checks Usage for kappaD
