@@ -133,26 +133,26 @@ int main(int argc,char*argv[]){
  double LcOver_k=L*c/k;
  double Efac=EM/Ep;
  double kapSqu  = 1.-1./LcOver_k/LcOver_k;
- double kap     = sqrt(kapSqu);
- double eps     = LcOver_k*sqrt(1.-kapSqu/Efac/Efac);
+ double kap=sqrt(kapSqu);
+ double eps=0.;
+ if(1.-kapSqu/Efac/Efac>0){
+  eps=LcOver_k*sqrt(1.-kapSqu/Efac/Efac);
+ }
+ else{
+//printf("\"d\" 1.-kapSqu/Efac/Efac %+20.10e\n",1.-kapSqu/Efac/Efac);
+ }
  double R0=lambda/(1.+eps);
 
- printf("\nEpsilon Finding Info\n");
- printf("_________________________________\n");
- printf("kap               %+20.10e []\n",kap); 
- printf("kapSqu            %+20.10e []\n",kapSqu); 
- double bSq=1./Efac/Efac-1.;
- printf("bSq               %+20.10e []\n",bSq);
- double b=sqrt(bSq);
- printf("b                 %+20.10e []\n",b);
+ double b=1./Efac/Efac-1.;
  double a = 1./LcOver_k;
- double a2=b/sqrt(1.+b*b);
- printf("a                 %+20.10e []\n",a);
- printf("1./a              %+20.10e []\n",1./a);
- printf("a2                %+20.10e []\n",a2);
- printf("1./a2             %+20.10e []\n",1./a2);
- printf("_________________________________\n");
- printf("\n");
+ double eps2=0.L;
+ if(a*a-b+b*a*a > 0){
+  eps2=1.L/a*sqrt( a*a - b + b*a*a );
+ }
+ else{
+//printf("\"d\" a*a - b + b*a*a %+20.10e\n",a*a - b + b*a*a);
+ }
+ double a2=b/sqrt(1.+b);
 
   printf("\n" "\033[1m\033[31m" "PURE MUNOZ CROSS CHECK\n");
 //printf("\n" "\033[1m\033[30m" "PURE MUNOZ CROSS CHECK\n");
@@ -161,7 +161,8 @@ int main(int argc,char*argv[]){
  printf("lambda            %+20.10e [m] - just for completeness, lambda plays no role here\n",lambda); 
  printf("LcOver_k          %+20.10e []\n",LcOver_k); 
  printf("Efac              %+20.10e []\n",Efac); 
- printf("eps               %+20.10e []\n",eps); 
+ printf("eps               %+20.10e [] (\"d\" 1.-kapSqu/Efac/Efac %+20.10e)\n",eps,1.-kapSqu/Efac/Efac); 
+ printf("eps2              %+20.10e [] (\"d\" a*a - b + b*a*a %+20.10e)\n",eps2,a*a - b + b*a*a); 
  printf("_________________________________\n");
  printf("*********************************\n");
  printf("\n");
