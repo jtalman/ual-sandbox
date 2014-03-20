@@ -28,7 +28,7 @@ double rIn   = get_rFromProbe(x,y,z);         //
 double pIn;
 double bin;
 
-bin = sqrt(1-1/gamma/gamma);
+bin = sqrt(1.-1./gamma/gamma);
 pIn = gamma*m0*bin*c;
 
 pz = sqrt(pIn*pIn-px*px-py*py);
@@ -50,7 +50,10 @@ if(ip==0){
 
 //                   probe values
 
+//#include "conventional"
+//#include "conventionalRT"
 #include "hamilton.inline"
+  #include "conventionalRT"
 #include "conservedVector.insert"
 
 #include "rotate.insert"
