@@ -91,6 +91,45 @@ std::cout << "Q            " << Q << "\n";
 std::cout << "xi_co_Fac    " << xi_co_Fac << "\n";
 std::cout << "xi_co        " << xi_co << "\n";
 
+{
+ double rD         = Rsxf;
+ double onePlusdA  = rD * bD * Escr/Ly_in_p;
+   double      dA  = onePlusdA-1.;   //   -1.*(1.-onePlusdA);
+// double      dA  = 1.-onePlusdA;
+   double B        = rD * rD * bD * EFD/Ly_in_p;
+// double B        = rD * rD * bD * EFD * qD/Ly_in_p;
+ double a          = xi_co;
+ double c          = xi_in - xi_co;
+ double s          = xip_in/Q;
+
+ double pwrSrsFac  = rD/bD;
+ double TOFD       = pwrSrsFac*th;
+ double pwrSrs0    = pwrSrsFac*dA;
+ double pwrSrs1    = pwrSrsFac*(2.+2.*dA-B);
+
+ double ntgrlXiTo0 = th;
+ double ntgrlXiTo1 = a*th + c*sin(Q*th)/Q + s*(1.-cos(Q*th))/Q;
+
+ double tofDev0    = pwrSrs0*ntgrlXiTo0;
+ double tofDev1    = pwrSrs1*ntgrlXiTo1;
+
+ double tofDev     = tofDev0 + tofDev1;
+
+ std::cout << "onePlusdA    " << onePlusdA << "\n";
+ std::cout << "       dA    " <<        dA << "\n";
+ std::cout << "B            " << B << "\n";
+ std::cout << "bD*bD        " << bD*bD << "\n";
+ std::cout << "a            " << a << "\n";
+ std::cout << "c            " << c << "\n";
+ std::cout << "s            " << s << "\n";
+
+ std::cout << "pwrSrsFac    " << pwrSrsFac << "\n";
+ std::cout << "TOFD         " << TOFD << "\n";
+ std::cout << "tofDev0      " << tofDev0 << "\n";
+ std::cout << "tofDev1      " << tofDev1 << "\n";
+ std::cout << "tofDev       " << tofDev << "\n";
+}
+
 thetaTot = thetaTot + th;
 std::cout << "thetaTot     " << thetaTot << "\n";
 
