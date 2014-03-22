@@ -1,9 +1,12 @@
 // edit userBunch to set bunch size and values. Also the corresponding spin values.
 
+//  ??  cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.00014954888 simulatedProbeValues  ??
+//  RT and JDT have done extensive benchmarking on these probe parameters
+
 make outputReady
 make clean
 make
-./orbitsWithSpin ./data/E_BM_M1.0_sl4.sxf -1 40 1 > ! OUT
+./orbitsWithSpin ./data/E_BM_P1.0zeroedQ.sxf 1 40 1 > ! OUT
 diff initialSpin ./out/VERIF/initialSpin
 
 gnuplot
