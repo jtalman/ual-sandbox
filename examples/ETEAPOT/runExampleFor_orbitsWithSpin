@@ -1,6 +1,7 @@
 // edit userBunch to set bunch size and values. Also the corresponding spin values.
 
-//  ??  cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.00014954888 simulatedProbeValues  ??
+//  ??  cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.00014954888 simulatedProbeValues
+//  ??  cp E_BM_P1.0zeroedQ.sxf ./data
 //  RT and JDT have done extensive benchmarking on these probe parameters
 
 make outputReady
