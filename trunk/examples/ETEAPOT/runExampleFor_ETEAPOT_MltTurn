@@ -14,6 +14,25 @@ popd
 
 cp data/eteapot_MltTurn.apdf data/eteapot.apdf
 
+// edit userBunch to set bunch size and values. Also the corresponding spin values.
+
+//  ??  --->>>   cp simulatedProbeValuesDesign                     simulatedProbeValues
+//                        40.0 meter (design) circle
+//                        Escr = +1.1710642369121E+00    (line 82 in OUT)
+//                        time deviations very close to zero
+
+//  ??  --->>>   cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.000041 simulatedProbeValues
+//                        40.01 meter off momentum circle
+//                        Escr      = +1.1711052369121E+00    (line 82 in OUT)
+//                        tofDev0   = -1.6480247998441E-04    (line 140 in OUT)
+//                        tofDev1   = +1.0789393411257E-03
+//                        tofDev2   = +3.7569437152148E-07
+//                        tofDevTOT = +9.1451255551283E-04
+
+//
+//                       sxf - ./data/E_BM_M1.0.RF.sxf - see below
+//
+
 make outputReady
 make clean
 make
