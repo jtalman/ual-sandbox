@@ -1,0 +1,38 @@
+if(ip==0){
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter conventionalOUT " << ip << " " << S[ip] << "\n";
+
+double x_out       = p[0];
+double xi_out      = x_out/(Rsxf + x_out);
+double V_out_m     = EFD*Rsxf*xi_out; 
+double xp_out_p    = p[1];
+double pcsq_out_p  = pcsq_in_m;
+
+double pczsq_out_p = pcsq_out_p/(1. + xp_out_p * xp_out_p);                   //   JDT
+//double pcx_out   = xp_out_p * sqrt(pcsq_out_p/(1. + xp_out_p*xp_out_p));    //   RT
+  double pcx_out   = xp_out_p * sqrt(pczsq_out_p);                            //   JDT
+
+double pczsq_out_m = (Escr-V_out_m)*(Escr-V_out_m) - mpcsq*mpcsq - pcx_out*pcx_out;
+double xp_out_m    = pcx_out/sqrt(pczsq_out_m);
+double xip_out_m   = xp_out_m*(1.-xi_out)*(1.-xi_out);   //   (236)
+
+//# --------------------------------------------------
+
+std::cout << "thetaTot     " << thetaTot << "\n";
+std::cout << "x_out        " << x_out << "\n";
+std::cout << "xp_out_m     " << xp_out_m << "\n";
+std::cout << "xi_out       " << xi_out << "\n";
+std::cout << "xip_out_m    " << xip_out_m << "\n";
+std::cout << "V_out_m      " << V_out_m << "\n";
+std::cout << "pcsq_in_p    " << pcsq_in_p << "\n";
+std::cout << "pczsq_in_p   " << pczsq_in_p << "\n";
+std::cout << "pczsq_out_p  " << pczsq_out_p << "\n";
+
+//double pcsq_out_p= Escr*Escr - mpcsq * mpcsq;
+//double pczsq_out_p= pcsq_out_p/(1. + xp_out_p * xp_out_p);
+//double xp_out_p  = pcx_out/sqrt(pcsq_out_p);
+
+thetaTot           = thetaTot + th;
+std::cout << "thetaTot     " << thetaTot << "\n";
+
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " leave conventionalOUT " << ip << " " << S[ip] << "\n";
+}
