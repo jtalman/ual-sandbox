@@ -1,0 +1,51 @@
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter timeOfFlightBendPrints1 " << ip << " " << S[ip] << "\n";
+std::cout << "thetaTot     " << thetaTot << "\n";
+std::cout << "Escr         " << Escr << "\n";
+std::cout << "pcsq_in_m    " << pcsq_in_m << "\n";
+std::cout << "gammaD       " << gammaD << "\n";
+std::cout << "gam_in_m     " << gam_in_m << "\n";
+std::cout << "kappa0(Q)    " << kappa0 << "\n";
+std::cout << "pDc          " << pDc << "\n";
+std::cout << "eD           " << eD << "\n";
+std::cout << "mpcsq        " << mpcsq << "\n";
+std::cout << "gam_in_m     " << gam_in_m << "\n";
+std::cout << "Escr         " << Escr << "\n";
+std::cout << "Escr*Escr    " << Escr*Escr << "\n";
+std::cout << "EscM         " << EscM << "\n";
+std::cout << "pcsq_in_m    " << pcsq_in_m << "\n";
+std::cout << "pczsq_in_m   " << pczsq_in_m << "\n";
+std::cout << "pcz_in_m     " << pcz_in_m << "\n";
+std::cout << "pcx_in_m     " << pcx_in_m << "\n";
+std::cout << "x_in         " << x_in << "\n";
+std::cout << "xp_in_m      " << xp_in_m << "\n";
+
+std::cout << "Eel0         " << Eel0 << "\n";
+std::cout << "El0          " << El0 << "\n";
+std::cout << "E0           " << E0 << "\n";
+std::cout << "k            " << k << "\n";
+std::cout << "E0*Rsxf*Rsxf " << E0*Rsxf*Rsxf << "\n";
+
+std::cout << "Design E Fld " << EFD << "\n";
+std::cout << "V_in_p       " << V_in_p << "\n";
+std::cout << "pcsq_in_p    " << pcsq_in_p << "\n";
+std::cout << "pczsq_in_p   " << pczsq_in_p << "\n";
+std::cout << "x_in_p       " << x_in_p << "\n";
+std::cout << "xp_in_p      " << xp_in_p << "\n";
+
+std::cout << "xi_in        " << xi_in << "\n";
+std::cout << "xip_in       " << xip_in << "\n";
+std::cout << "LD           " << LD << "\n";
+std::cout << "Ly_in_m      " << Ly_in_m << "\n";
+std::cout << "Lysq_in_m    " << Lysq_in_m << "\n";
+std::cout << "Lysq_in_p    " << Lysq_in_p << "\n";
+std::cout << "Ly_in_p      " << Ly_in_p << "\n";
+std::cout << "Escr         " << Escr << "\n";
+std::cout << "EscrD        " << EscrD << "\n";
+std::cout << "kappa0(Q)    " << kappa0 << "\n";
+std::cout << "Q            " << Q << "\n";
+std::cout << "xi_co_Fac    " << xi_co_Fac << "\n";
+std::cout << "xi_co        " << xi_co << "\n";
+
+thetaTot = thetaTot + th;
+std::cout << "thetaTot     " << thetaTot << "\n";
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " leave timeOfFlightBendPrints1 " << ip << " " << S[ip] << "\n";
