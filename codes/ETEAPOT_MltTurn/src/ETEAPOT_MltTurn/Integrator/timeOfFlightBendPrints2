@@ -1,0 +1,23 @@
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter timeOfFlightBendPrints2 " << ip << " " << S[ip] << "\n";
+ std::cout << "rD           " << rD << "\n";
+ std::cout << "bD           " << bD << "\n";
+
+ std::cout << "a            " << a << "\n";
+ std::cout << "c            " << c << "\n";
+ std::cout << "s            " << s << "\n";
+
+ std::cout << "pwrSrsFac    " << pwrSrsFac << "\n";
+ std::cout << "TOFD         " << TOFD << "\n";
+ std::cout << "EscrBye      " << EscrBye << "\n";
+ std::cout << "LycBye       " << LycBye << "\n";
+ std::cout << "E0           " << E0 << "\n";
+
+ std::cout << "A0           " << A0 << "\n";
+ std::cout << "A1           " << A1 << "\n";
+ std::cout << "A2           " << A2 << "\n";
+
+ std::cout << "tofDev0      " << tofDev0 << "\n";
+ std::cout << "tofDev1      " << tofDev1 << "\n";
+ std::cout << "tofDev2      " << tofDev2 << "\n";
+ std::cout << "tofDevTOT    " << tofDevTOT << "\n";
+std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " leave timeOfFlightBendPrints2 " << ip << " " << S[ip] << "\n";
