@@ -1,0 +1,44 @@
+double thetaTot   = 0;
+
+double qD         = UAL::elemCharge;
+//double GeVperJ    = 1./qD/1.e9;
+
+double pDc        = p0;
+double eD         = e0;
+double mpcsq      = UAL::pmass;
+
+double gam_in_m   = (eD + pDc * p[5]) / mpcsq;
+double Escr       = gam_in_m * mpcsq;
+//double pcsq_in_m  = Escr-mpcsq*mpcsq;
+double gammaD     = e0/m0;
+double Escr0      = mpcsq/gammaD+k/Rsxf;
+double EscrD      = Escr0;
+double pcsq_in_m  = (Escr + mpcsq) * (Escr - mpcsq);   //   Escr*Escr - mpcsq*mpcsq;
+double pczsq_in_m = pcsq_in_m/(1. + p[1]*p[1]);
+double pcz_in_m   = sqrt(pczsq_in_m);
+double pcx_in_m   = p[1] * sqrt(pczsq_in_m);    // Implicit approximation:  rIn - Rsxf is the same as x[0]
+double x_in       = p[0];
+double xp_in_m    = p[1];
+
+double EFD        = Eel0;
+
+double xi_in      = x_in/(Rsxf + x_in);
+double V_in_p     = EFD * Rsxf * xi_in;   //   x_in/(Rsxf + x_in);   // migrate to xi
+double pcsq_in_p  = (Escr - V_in_p) * (Escr - V_in_p) - mpcsq * mpcsq;
+double pczsq_in_p = pcsq_in_p - pcx_in_m * pcx_in_m;
+double x_in_p     = x_in;
+double xp_in_p    = pcx_in_m/sqrt(pczsq_in_p);
+double xip_in     = Rsxf*Rsxf*xp_in_p/(Rsxf + x_in)/(Rsxf + x_in);
+
+//double Ly_in_m    = Ly;
+  double Ly_in_m    = -(Rsxf+x_in)*pcz_in_m;
+double Lysq_in_m  = Ly_in_m*Ly_in_m;
+double Lysq_in_p  = Lysq_in_m*pczsq_in_p/pczsq_in_m;
+double Ly_in_p    = -sqrt(Lysq_in_p);
+
+double LD         = L0;
+double bD         = b0;
+//double EscrD      = Escr0;
+double Q          = sqrt(1.-LD*LD*bD*bD/Ly_in_p/Ly_in_p);
+double xi_co_Fac  = 1.-LD*LD*Escr/Ly_in_p/Ly_in_p/EscrD;
+double xi_co      = xi_co_Fac/Q/Q;
