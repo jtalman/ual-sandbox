@@ -1,8 +1,23 @@
 // edit userBunch to set bunch size and values. Also the corresponding spin values.
 
-//  ??  cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.00014954888 simulatedProbeValues
+//  ??  --->>>   cp simulatedProbeValuesDesign                     simulatedProbeValues
+//                        40.0 meter (design) circle
+//                        Escr = +1.1710642369121E+00    (line 448 in OUT)
+//                        time deviations very close to zero
+
+//  ??  --->>>   cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.000041 simulatedProbeValues
+//                        40.01 meter off momentum circle
+//                        Escr      = +1.1711052369121E+00    (line 448 in OUT)
+//                        tofDev0   = -1.6480301525806E-04    (line 504 in OUT)
+//                        tofDev1   = +1.0772312964764E-03
+//                        tofDev2   = +3.7450549361553E-07
+//                        tofDevTOT = +9.1280278671200E-04
+
+
 //  ??  cp E_BM_P1.0zeroedQ.sxf ./data
 //  RT and JDT have done extensive benchmarking on these probe parameters
+
+cp data/eteapotMARKER.apdf data/eteapot.apdf
 
 make outputReady
 make clean
