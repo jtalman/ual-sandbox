@@ -6,10 +6,9 @@
 #include<math.h>
 #include"../clr"
 #include"../../../codes/UAL/src/UAL/Common/Def.hh"
-//#include"Def.hh"
 
 #define GAMMA_FROZEN_SPIN 1.248107349
-long double gFS=GAMMA_FROZEN_SPIN;
+long double gFS=UAL::pFSG;
 
 int main(int argc,char*argv[]){
  long double mpG=UAL::pmass;
@@ -20,11 +19,11 @@ int main(int argc,char*argv[]){
 
  if(argc!=10){
   printf("This program does 3 things:\n");
-  printf("      1) Calculates off momentum circle quantities for rD + dr\n");
+  printf("      1) Calculates off momentum circle quantities for rD + dr = rDelta\n");
   printf("      2) Creates a file to be plotted to visually verify the circle\n");
   printf("      3) Calculates absolute (not deviation) time of flight for the near circle\n");
   printf("See the end of file runExample for a little more detail\n");
-  printf("Usage: ./2D_5Values kD(Design) rD(esign) gD(esign) dr th0 thD0 rD0 dg0 Ngrid\n");
+  printf("Usage: ./2D_5Values kD(Design) rD(esign) gD(esign) dr0 th0 thD0 rD0 dg0 Ngrid\n");
   exit(1);
  }
 
@@ -97,6 +96,7 @@ int main(int argc,char*argv[]){
  printf("\nConstraints\n");
  printf("_________________________________\n");
  long double ElD=kD/ep/rD/rD;
+ long double ERT=1.1710642;//1.171064565;       // Escr0 page 14 ETEAPOT-expanded.pdf
  long double ElRT=10.48270839e+6;
  long double kRT=ElRT*ep*rD*rD;
  long double kMCnstrn=mp*rD*(gD-1.L/gD)*c*c;
@@ -396,8 +396,14 @@ int main(int argc,char*argv[]){
  printf("TheorMEDeltaEV                               %+25.15Le [GeV]\n",TheorMEDeltaEV); 
  printf("TheorPEDeltaEV                               %+25.15Le [GeV]\n",TheorPEDeltaEV); 
  printf("TheorTEDeltaEV                               %+25.15Le [GeV]\n",TheorTEDeltaEV); 
+ printf("ERT                                          %+25.15Le [GeV]\n",ERT); 
  printf("______________________________________________________________________________________\n");
  printf("\n");
+
+ printf("./2D_5Values kD(Design) rD(esign) gD(esign) dr0 th0 thD0 rD0 dg0 Ngrid\n"); 
+ printf("./2D_5Values %+16.10Le %+16.10Le %+16.10Le %+16.10Le %+16.10Le %+16.10Le %+16.10Le %+16.10Le %+16.10Le \n",kD,rD,gD,dr0,th0,thD0,rD0,dg0,Ngrid); 
+ printf("\n");
+ printf("TheorTEDeltaEV - ERT                         %+25.15Le [GeV]\n",TheorTEDeltaEV-ERT); 
 
 /*
  printf("\nTheoretical Design Quantities \n");
