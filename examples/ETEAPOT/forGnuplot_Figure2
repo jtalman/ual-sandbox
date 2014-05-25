@@ -1,5 +1,5 @@
-set terminal postscript eps enhanced color 20
-set output "LongitPhSp_BM_M1.0p.eps"
+#set terminal postscript eps enhanced color 20
+#set output "LongitPhSp_BM_M1.0p.eps"
 set grid
 set key left
 set xlabel 'ct [m]'
