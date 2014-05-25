@@ -53,6 +53,20 @@ if(ip==0){
 //                   probe values
 
 #include "ETEAPOT_MltTurn/Integrator/hamilton.inline"
+
+#include "timeOfFlightBendVariables"
+
+if(ip==0){
+ #include "timeOfFlightBendPrints1"
+}
+
+double tofDev0;
+double tofDev1;
+double tofDev2;
+double tofDevTOT;
+
+#include "timeOfFlightBendVariables2"
+
 #include "ETEAPOT_MltTurn/Integrator/conservedVector.insert"
 
 #include "ETEAPOT_MltTurn/Integrator/rotate.insert"
