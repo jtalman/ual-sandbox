@@ -43,7 +43,7 @@ OBJS = $(OBJ_DIR)/positionPrinter.o \
 compile : $(OBJS) ./evolver ./transferMatrix ./determineTwiss ./transferMatrices ./orbitsWithSpin ./ETEAPOT_MltTurn
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss $(OBJ_DIR)/transferMatrices.o ./transferMatrices $(OBJ_DIR)/orbitsWithSpin.o ./orbitsWithSpin $(OBJ_DIR)/ETEAPOT_MltTurn.o ./ETEAPOT_MltTurn.o
+	rm -f $(OBJS) $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss $(OBJ_DIR)/transferMatrices.o ./transferMatrices $(OBJ_DIR)/orbitsWithSpin.o ./orbitsWithSpin $(OBJ_DIR)/ETEAPOT_MltTurn.o ./ETEAPOT_MltTurn
 
 outputReady :
 	rm -rf betaFunctions* OUT* initialSpin* NikolayOut* IG* out/cpp/* out/STT/* out/TWISS/* out/VERIF/*
