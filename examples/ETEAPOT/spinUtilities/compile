@@ -1,4 +1,4 @@
 rm matrix.o
 rm latticeElements
 g++ -c matrix.cc
-g++ latticeElements.cc -o latticeElements -I/home/jtalman/JDTUAL1071/ual/codes/PAC/src/ -I/home/jtalman/JDTUAL1071/ual/codes/UAL/src/ -I/home/jtalman/JDTUAL1071/ual/codes/ZLIB/src -I/home/jtalman/JDTUAL1071/ual/ext/UI/src/ matrix.o /home/jtalman/JDTUAL1071/ual/codes/PAC/lib/linux/libPac.so /home/jtalman/JDTUAL1071/ual/codes/UAL/lib/linux/libUal.so /home/jtalman/JDTUAL1071/ual/codes/ZLIB/lib/linux/libZTps.so /home/jtalman/JDTUAL1071/ual/ext/UI/lib/linux/libUalUI.so
+g++ latticeElements.cc -o latticeElements -I$UAL/codes/PAC/src/ -I$UAL/codes/UAL/src/ -I$UAL/codes/ZLIB/src -I$UAL/ext/UI/src/ matrix.o $UAL/codes/PAC/lib/linux/libPac.so $UAL/codes/UAL/lib/linux/libUal.so $UAL/codes/ZLIB/lib/linux/libZTps.so $UAL/ext/UI/lib/linux/libUalUI.so
