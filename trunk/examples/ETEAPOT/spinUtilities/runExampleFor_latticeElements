@@ -8,6 +8,6 @@
 
 ./latticeElements ./data/E_AGS_Analogue2.sxf2 2 5.59 1.25 1.25 0.2 1 2 0 0 0 0.6 0 0 1 0.03 40 10.5E6 0.938 > ! OUT
 
-./latticeElements ./data/E_AGS_Analogue2.sxf2 2 5.59 1.25 1.25 1.E-4 1 2 0 0.1 0.2 0.60001 0.3 0.4 1 0.03 40 10.5E6 0.938 > ! OUT
+./latticeElements ./E_AGS_Analogue2.sxf2 2 5.59 1.25 1.25 1.E-4 1 2 0 0.1 0.2 0.60001 0.3 0.4 1 0.03 40 10.5E6 0.938 > ! OUT
 
 
