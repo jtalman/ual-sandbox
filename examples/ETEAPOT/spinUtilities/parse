@@ -1,8 +1,9 @@
- string mysxfbase=mysxf.substr(7,mysxf.size()-11);
+   string mysxfbase=mysxf.substr(2,mysxf.size()-7);
+// string mysxfbase=mysxf.substr(7,mysxf.size()-11);
  cout << "mysxf     " << mysxf.c_str() << "\n";
  cout << "mysxfbase " << mysxfbase.c_str() << "\n";
 
- string apdfFile = "./data/eteapot_MltTurn.apdf";
+ string apdfFile = "../data/eteapot_MltTurn.apdf";
 
  UAL::Shell shell;
  shell.readSXF(UAL::Args() << UAL::Arg("file",  mysxf.c_str()));
