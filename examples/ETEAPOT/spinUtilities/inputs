@@ -1,7 +1,7 @@
  if(argc!=20){
-  cerr << "usage: ./latticeElements ./data/E_AGS_Analogue2.sxf2 1831 g gamma_M gamma_0 delThtaTilda dx_0 dy_0 dz_0 theta_b phi_b betaProbe theta_s phi_s mag_s gap r_0 E_0 mcc_0(>! OUT)\n";
+  cerr << "usage: ./latticeElements ./E_AGS_Analogue2.sxf2 1831 g gamma_M gamma_0 delThtaTilda dx_0 dy_0 dz_0 theta_b phi_b betaProbe theta_s phi_s mag_s gap r_0 E_0 mcc_0(>! OUT)\n";
   cerr << "argv[0]  is this executable         - ./latticeElements                             \n";
-  cerr << "argv[1]  is the input sxf file      - ./data/E_AGS_Analogue2.sxf2                   \n";
+  cerr << "argv[1]  is the input sxf file      - ./E_AGS_Analogue2.sxf2                   \n";
   cerr << "argv[2]  is the element index in the lattice (sxf+drift)                            \n";
   cerr << "argv[3]  is g (=2G+2=5.5857 for proton - page 14)                                   \n";
   cerr << "argv[4]  is gamma_M (=1.248 pEDM - page 14)                                         \n";
@@ -21,7 +21,7 @@
   cerr << "argv[18] is E_0 (design electric bend field parameter - page 11)                    \n";
   cerr << "argv[19] is m_0GV (design particle rest mass in accelerator units - page 14         \n";
   cerr << "see file: runExampleFor_latticeElements\n";
-  cerr << "e.g.:  ./latticeElements ./data/E_AGS_Analogue2.sxf2 2 5.59 1.25 1.25 0.2 1 2 0 0 0 0.6 0 0 1 0.03 40 10.5E6 0.938 >! OUT\n";
+  cerr << "e.g.:  ./latticeElements ./E_AGS_Analogue2.sxf2 2 5.59 1.25 1.25 0.2 1 2 0 0 0 0.6 0 0 1 0.03 40 10.5E6 0.938 >! OUT\n";
 
   cerr << "\nPage numbers refer to Appendix: UALcode: Development of the UAL/ETEAPOT Code for the Proton EDM Experiment, Malitsky, et al\n";
   exit(0);
