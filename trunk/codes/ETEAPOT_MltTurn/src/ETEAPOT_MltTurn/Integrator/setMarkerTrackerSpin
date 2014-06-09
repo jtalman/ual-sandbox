@@ -1,0 +1,5 @@
+for(int ip=0;ip<=20;ip++){
+ for(int iq=0;iq<=2;iq++){
+  ETEAPOT_MltTurn::MarkerTracker::spin[ip][iq]=spin[ip][iq];
+ }
+}

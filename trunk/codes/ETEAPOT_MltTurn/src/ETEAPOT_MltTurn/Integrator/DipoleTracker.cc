@@ -8,6 +8,7 @@
 DipoleAlgorithm<double, PAC::Position> ETEAPOT_MltTurn::DipoleTracker::s_algorithm;
 double ETEAPOT_MltTurn::DipoleTracker::m_m;
    int ETEAPOT_MltTurn::DipoleTracker::bend=0;
+double ETEAPOT_MltTurn::DipoleTracker::spin[21][3];
 
 ETEAPOT_MltTurn::DipoleTracker::DipoleTracker()
   : ETEAPOT::BasicTracker()

@@ -38,6 +38,7 @@ namespace ETEAPOT_MltTurn {
 //  static std::string Mlt_m_sxfFilename;
     static std::string Mlt_m_elementName[1000];
     static double Mlt_m_sX[1000];
+    static double spin[21][3];
 
   protected:
    

@@ -15,6 +15,8 @@
 int ETEAPOT_MltTurn::MarkerTracker::mark=0;
 std::string ETEAPOT_MltTurn::MarkerTracker::Mark_m_elementName[1000];
 double ETEAPOT_MltTurn::MarkerTracker::Mark_m_sX[1000];
+//void ETEAPOT_MltTurn::MarkerTracker::initialize();
+double ETEAPOT_MltTurn::MarkerTracker::spin[21][3];
 
 ETEAPOT_MltTurn::MarkerTracker::MarkerTracker()
   : ETEAPOT::BasicTracker()
@@ -152,3 +154,43 @@ mark++;
 
 //ba.setElapsedTime(oldT + m_l/v0byc/UAL::clight);
 }
+
+/*
+static void initialize(){
+ std::cerr << "enter static void initialize(){ \n";
+ char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+
+ ifstream spinIFS;
+ spinIFS.open ("initialSpin", ifstream::in);
+
+ ofstream spinOFS;
+ spinOFS.open ("out/VERIF/initialSpin");
+ spinOFS << setiosflags( ios::showpos    );  
+ spinOFS << setiosflags( ios::uppercase  );  
+ spinOFS << setiosflags( ios::scientific );
+ spinOFS << setfill( ' ' );
+ spinOFS << setiosflags( ios::left );
+ spinOFS << setprecision(13) ;
+
+ PAC::Spin echo;
+ std::string spinX,spinY,spinZ;
+ int ip=-1;
+ std::string Name;
+ while(1){
+  ip++;
+  spinIFS >> Name >> spinX >> spinY >> spinZ;
+  echo.setSX( atof(spinX.c_str()) );echo.setSY( atof(spinY.c_str()) );echo.setSZ( atof(spinZ.c_str()) );
+
+  if( !spinIFS.eof() ){
+   spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
+  }
+  else{
+   spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ();
+   break;
+  }
+ }
+
+ spinIFS.close();
+ spinOFS.close();
+}
+*/
