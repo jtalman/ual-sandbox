@@ -9,11 +9,13 @@
 ETEAPOT_MltTurn::MltAlgorithm<double, PAC::Position> ETEAPOT_MltTurn::MltTracker::s_algorithm;
 double ETEAPOT_MltTurn::MltTracker::m_m;
    int ETEAPOT_MltTurn::MltTracker::mltK=0;
+double ETEAPOT_MltTurn::MltTracker::spin[21][3];
 
 ETEAPOT_MltTurn::MltTracker::MltTracker()
   : ETEAPOT::BasicTracker()
 {
-  initialize();
+//initialize();
+  m_ir = 0.0;
 }
 
 ETEAPOT_MltTurn::MltTracker::MltTracker(const ETEAPOT_MltTurn::MltTracker& mt)
@@ -142,11 +144,13 @@ mltK++;
 
 }
 
+/*
 void ETEAPOT_MltTurn::MltTracker::initialize()
 {
   // m_l = 0.0;
   m_ir = 0.0;
 }
+*/
 
 void ETEAPOT_MltTurn::MltTracker::copy(const ETEAPOT_MltTurn::MltTracker& mt)
 {

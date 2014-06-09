@@ -51,6 +51,37 @@ namespace ETEAPOT_MltTurn {
 
     static int bend;
 
+    static double spin[21][3];
+
+    static void initialize(){
+     char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+
+     ifstream spinIFS;
+     spinIFS.open ("initialSpin", ifstream::in);
+
+     PAC::Spin echo;
+     std::string spinX,spinY,spinZ;
+     int ip=-1;
+     std::string Name;
+     double spin[21][3];
+     while(1){
+      ip++;
+      spinIFS >> Name >> spinX >> spinY >> spinZ;
+      echo.setSX( atof(spinX.c_str()) );echo.setSY( atof(spinY.c_str()) );echo.setSZ( atof(spinZ.c_str()) );
+
+      if( !spinIFS.eof() ){
+       spin[ip][0]=echo.getSX();spin[ip][1]=echo.getSY();spin[ip][2]=echo.getSZ();
+      }
+      else{
+       spin[ip][0]=echo.getSX();spin[ip][1]=echo.getSY();spin[ip][2]=echo.getSZ();
+       break;
+      }
+     }
+
+     spinIFS.close();
+#include"setDipoleTrackerSpin"
+    }
+
   protected:
 
     /** Sets the lattice element */
