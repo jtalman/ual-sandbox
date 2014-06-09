@@ -1,0 +1,14 @@
+ ofstream dipoleSpin;
+ dipoleSpin.open ("out/VERIF/dipoleSpin");
+ dipoleSpin << setiosflags( ios::showpos    );
+ dipoleSpin << setiosflags( ios::uppercase  );
+ dipoleSpin << setiosflags( ios::scientific );
+ dipoleSpin << setfill( ' ' );
+ dipoleSpin << setiosflags( ios::left );
+ dipoleSpin << setprecision(13) ;
+
+ for(int iq=0;iq<=19;iq++){
+  dipoleSpin << S[iq] << " " << ETEAPOT_MltTurn::DipoleTracker::spin[iq][0] << " " << ETEAPOT_MltTurn::DipoleTracker::spin[iq][1] << " " << ETEAPOT_MltTurn::DipoleTracker::spin[iq][2] << "\n";
+ }
+ dipoleSpin << S[iq] << " " << ETEAPOT_MltTurn::DipoleTracker::spin[iq][0] << " " << ETEAPOT_MltTurn::DipoleTracker::spin[iq][1] << " " << ETEAPOT_MltTurn::DipoleTracker::spin[iq][2];
+ dipoleSpin.close();
