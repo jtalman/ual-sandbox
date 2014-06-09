@@ -32,6 +32,7 @@
 #include "xmgracePrint.hh"
 
 #include "ETEAPOT_MltTurn/Integrator/DipoleTracker.hh"
+//#include "ETEAPOT_MltTurn/Integrator/DipoleAlgorithm.icc"
 #include "ETEAPOT_MltTurn/Integrator/MltTracker.hh"
 //#include "ETEAPOT_MltTurn/Integrator/DriftTracker.hh"
 #include "ETEAPOT_MltTurn/Integrator/MarkerTracker.hh"
@@ -304,6 +305,18 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
 
 char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
   #include "spin"
+
+ETEAPOT_MltTurn::MarkerTracker::initialize();
+//#include"../../codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/setMarkerTrackerSpin"
+//#include"setMarkerTrackerSpin"
+//#include"setDipoleAlgorithmSpin"
+ETEAPOT_MltTurn::DipoleTracker::initialize();
+ETEAPOT_MltTurn::MltTracker::initialize();
+
+#include"verifyMarkerTrackerSpin"
+#include"verifyDipoleTrackerSpin"
+#include"verifyMltTrackerSpin"
+
 // ofstream iS;
 // iS.open ("initialSpin");    // for server side compatibility
                              // Full spin functionality is anticipated in 
@@ -331,79 +344,20 @@ char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","
  pP.close();
 
 /*
- char buffr2 [10];
- sprintf( buffr2,"%+5.2f",atof(argv[2]) );
- std::string bp2(buffr2);
- std::string sT = "out/TWISS/TWISS_m=";
- sT+=bp2;
+ ofstream markerSpin;
+ markerSpin.open ("out/VERIF/markerSpin");
+ markerSpin << setiosflags( ios::showpos    );
+ markerSpin << setiosflags( ios::uppercase  );
+ markerSpin << setiosflags( ios::scientific );
+ markerSpin << setfill( ' ' );
+ markerSpin << setiosflags( ios::left );
+ markerSpin << setprecision(13) ;
 
-//std::cerr.open( filename.c_str() );
-//std::cerr.open("TWISS");
- #define PI 3.141592653589793
-                                               // JDT (from RMT)
-                                               // 7/13/2012
- #include "trtrout"                             // Once around matrix determination begins at this point
- double MX11=rx[1][1];double MX12=rx[1][2];
- double MX21=rx[2][1];double MX22=rx[2][2];
- double MXtr=MX11+MX22;
- double cosMuX=MXtr/2;
- if( (1-MXtr*MXtr/4)<0 ){std::cerr << "X: Trying to take square root of a negative number!\n";exit(1);}
- double betaX=abs(MX12)/sqrt(1-MXtr*MXtr/4);
- double sinMuX=MX12/betaX;
- double alphaX=(MX11-MX22)/2/sinMuX;
- std::cerr << "JDT: betaX  " << betaX  << "\n";
- std::cerr << "JDT: cosMuX " << cosMuX << "\n";
- std::cerr << "JDT: sinMuX " << sinMuX << "\n";
- std::cerr << "JDT: alphaX " << alphaX << "\n";
- double MuX_PR=acos(cosMuX);
- double MuX;
-                                               // half integer tune ambiguity resolution
-                                               // NOT full integer tune ambiguity
- if     (cosMuX>=0 && sinMuX>=0){MuX=MuX_PR;}       
- else if(cosMuX<=0 && sinMuX>=0){MuX=MuX_PR;}
- else if(cosMuX<=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
- else if(cosMuX>=0 && sinMuX<=0){MuX=2*PI-MuX_PR;}
-
- a0x=alphaX;
- b0x=betaX;
- mu_xTent=MuX;
-
- std::cerr << "JDT:    MuX " <<    MuX << "\n";
- double QX=MuX/2/PI;
- std::cerr << "JDT:    QX  " <<    QX  << "\n";
- std::cerr <<                             "\n";
-
- double MY11=ry[1][1];double MY12=ry[1][2];
- double MY21=ry[2][1];double MY22=ry[2][2];
- double MYtr=MY11+MY22;
- double cosMuY=MYtr/2;
- if( (1-MYtr*MYtr/4)<0 ){std::cerr << "Y: Trying to take square root of a negative number!\n";exit(1);}
- double betaY=abs(MY12)/sqrt(1-MYtr*MYtr/4);
- double sinMuY=MY12/betaY;;
- double alphaY=(MY11-MY22)/2/sinMuY;
- std::cerr << "JDT: betaY  " << betaY  << "\n";
- std::cerr << "JDT: cosMuY " << cosMuY << "\n";
- std::cerr << "JDT: sinMuY " << sinMuY << "\n";
- std::cerr << "JDT: alphaY " << alphaY << "\n";
- double MuY_PR=acos(cosMuY);
- double MuY;
- if     (cosMuY>=0 && sinMuY>=0){MuY=MuY_PR;}
- else if(cosMuY<=0 && sinMuY>=0){MuY=MuY_PR;}
- else if(cosMuY<=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
- else if(cosMuY>=0 && sinMuY<=0){MuY=2*PI-MuY_PR;}
- a0y=alphaY;
- b0y=betaY;
- mu_yTent=MuY;
-
- std::cerr << "JDT:    MuY " <<    MuY << "\n";
- double QY=MuY/2/PI;
- std::cerr << "JDT:    QY  " <<    QY  << "\n";
- std::cerr <<                             "\n";
-
- std::cerr << "ETEAPOT_MltTurn::DipoleTracker::m_m " << ETEAPOT_MltTurn::DipoleTracker::m_m << "\n";
- std::cerr << "ETEAPOT_MltTurn::MltTracker::m_m    " << ETEAPOT_MltTurn::MltTracker::m_m    << "\n";
-
- std::cerr << "./transferMatrices " << ETEAPOT_MltTurn::DipoleTracker::m_m << " " << alphaX << " " << betaX << " " << alphaY << " " << betaY << " " << nonDrifts << ">! betaFunctions\n";
+ for(int iq=0;iq<=19;iq++){
+  markerSpin << S[iq] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][0] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][1] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][2] << "\n";
+ }
+ markerSpin << S[iq] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][0] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][1] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][2];
+ markerSpin.close();
 */
 
  return (int)0;

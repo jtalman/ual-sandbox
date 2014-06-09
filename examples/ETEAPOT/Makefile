@@ -1,5 +1,5 @@
 CC       = g++                       # Compiler
-CCFLAGS  = -g -fpic -ansi -Wall      # Compilation flags
+CCFLAGS  = -g -fpic -ansi -Wall -Wextra -fpermissive     # Compilation flags
 
 DLD      = g++                       # Dynamic linker
 DLDFLAGS = -shared                   # Dynamic linker flags

@@ -39,7 +39,7 @@ make
 
 // We recommend the lenovo ThinkPad line with ubuntu, or Scientific Linux
 // On an ubuntu single processor vostro 200, 12/31/2012, this next command takes 10 minutes or so, and generates a 3G or so file
-./ETEAPOT_MltTurn ./data/E_BM_M1.0.RF.sxf -1 40 1 500 >! OUT
+./ETEAPOT_MltTurn ./data/E_BM_M1.0.RF.sxf -1 40 0 500 >! OUT
 // On an ubuntu single processor vostro 200, 12/31/2012, this prev command took  10 minutes or so, and generated a 3G or so file
 
 // "look" at NikolayOut
@@ -47,3 +47,7 @@ perl SplitNikolayOut.pl NikolayOut >! IG
 
 gnuplot
    gnuplot> l 'forGnuplot_Figure2'
+
+diff initialSpin ./out/VERIF/markerSpin
+diff initialSpin ./out/VERIF/dipoleSpin
+diff initialSpin ./out/VERIF/mltSpin

@@ -1,0 +1,14 @@
+ ofstream markerSpin;
+ markerSpin.open ("out/VERIF/markerSpin");
+ markerSpin << setiosflags( ios::showpos    );
+ markerSpin << setiosflags( ios::uppercase  );
+ markerSpin << setiosflags( ios::scientific );
+ markerSpin << setfill( ' ' );
+ markerSpin << setiosflags( ios::left );
+ markerSpin << setprecision(13) ;
+
+ for(int iq=0;iq<=19;iq++){
+  markerSpin << S[iq] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][0] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][1] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][2] << "\n";
+ }
+ markerSpin << S[iq] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][0] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][1] << " " << ETEAPOT_MltTurn::MarkerTracker::spin[iq][2];
+ markerSpin.close();
