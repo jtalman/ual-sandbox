@@ -56,6 +56,74 @@ if(ip==0){
 
 #include "timeOfFlightBendVariables"
 
+double sxIn      = spin[ip][0];
+double syIn      = spin[ip][1];
+double szIn      = spin[ip][2];
+Vector3 sIn(sxIn,syIn,szIn);
+
+#include "nonPrtbtveSpinEvolve"
+
+// At this point the precession in tilde-alpha has been calculated
+// for the bend, irrespective of spin vector of any particular particle.
+// It does, however, depend on the gamma of the individual particle.
+// "dAl_dThT" has just been calculated for particle "ip" using "spinIn".
+// As a check "delAlphT" will be calculated for particle "ip" 
+// using "perturbSpinIn".
+ 
+Vector3 sTldIn = Rinv * sIn;
+
+double sTldPerpIn= sTldIn[1];
+
+  double alphTldIn = atan2(-sTldIn[0],sTldIn[2]);
+//double alphTldIn = atan(-sTldIn[0]/sTldIn[2]);
+
+std::cout << "alphTldIn " << alphTldIn << "\n";
+double sTldPrllIn= sqrt(1.-sTldPerpIn*sTldPerpIn);
+std::cout << "sTldPrllIn " << sTldPrllIn << "\n";
+
+#include "perturbSpinEvolve"
+
+double sTldPerpOut= sTldPerpIn;
+double sTldPrllOut= sTldPrllIn;
+//double alphTldOut = alphTldIn + dAl_dThT;
+  double alphTldOut = alphTldIn + delAlphT;
+std::cout << "alphTldOut " << alphTldOut << "\n";
+
+double sxTldOut   = -sTldPrllOut*sin(alphTldOut);
+double syTldOut   =  sTldPerpOut;
+double szTldOut   =  sTldPrllOut*cos(alphTldOut);
+double sTldMag    = sqrt(sxTldOut*sxTldOut + syTldOut*syTldOut + szTldOut*szTldOut);
+std::cout << "sxTldOut " << sxTldOut << "\n";
+std::cout << "syTldOut " << syTldOut << "\n";
+std::cout << "szTldOut " << szTldOut << "\n";
+std::cout << "sTldMag  " << sTldMag  << "\n";
+
+Vector3 sTldOut(sxTldOut,syTldOut,szTldOut);
+Vector3 sOut = R * sTldOut;
+
+spin[ip][0] = sOut[0];
+spin[ip][1] = sOut[1];
+spin[ip][2] = sOut[2];
+std::cout << "     ip     " <<      ip     << "\n";
+std::cout << "spin[ip][0] " << spin[ip][0] << "\n";
+std::cout << "spin[ip][1] " << spin[ip][1] << "\n";
+std::cout << "spin[ip][2] " << spin[ip][2] << "\n";
+#include"setMarkerTrackerSpin"
+#include"setMltTrackerSpin"
+
+if(ip==0){
+// std::cout << spin[ip][0] << " " << spin[ip][1] << " " << spin[ip][2] << " " << alphTldIn << " JDTRT_PART_0\n";
+   std::cout << "JDTRT_SPIN " << spin[ip][0] << " " << spin[ip][1] << " " << spin[ip][2] << " " << alphTldIn << " " << dAl_dThT << " " << delAlphT << " " << IgiQLowr << " " << IgiQUppr << " " << IgiQ << "\n";
+}
+
+/*
+if(ip==20){
+ std::cout << spin[ip][0] << " " << spin[ip][1] << " " << spin[ip][2] << " JDTRT_PART_20\n";
+}
+*/
+
+//std::cin >> dummy;
+
 if(ip==0){
  #include "timeOfFlightBendPrints1"
 }
