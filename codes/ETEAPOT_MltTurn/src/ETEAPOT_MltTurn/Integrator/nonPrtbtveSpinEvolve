@@ -1,0 +1,115 @@
+double yp_in_m  = p[3];
+
+// (290.2) - p page 71
+double pc_x_in  = xp_in_m*sqrt(pczsq_in_m);                                    // (251.3) page 64
+double pc_y_in  = yp_in_m*sqrt(pczsq_in_m);
+double pc_z_in  = sqrt(pczsq_in_p);                                            // (252.2) page 64
+// end pc notation used in e.g. timeOfFlightBendVariables
+
+double pp       = sqrt(pc_x_in*pc_x_in + pc_y_in*pc_y_in + pc_z_in*pc_z_in);   // p --->>> pp
+
+double p_x      = pc_x_in;                                                     // syntax norming
+double p_y      = pc_y_in;                                                     // p is pc
+double p_z      = pc_z_in;
+
+// (292.3)
+double a31      = p_x/pp;
+double a32      = p_y/pp;
+double a33      = p_z/pp;
+
+// (290.1) - r
+double r_x      = Rsxf + p[0];
+double r_y      = p[2];
+double r_z      = 0.;
+
+// (290.3) - L ( = r x p)
+double L_x      = r_y*p_z - r_z*p_y;                                           // L is Lc
+double L_y      = r_z*p_x - r_x*p_z;
+double L_z      = r_x*p_y - r_y*p_x;
+
+double LL       = sqrt(L_x*L_x + L_y*L_y + L_z*L_z);                           // L --->>> LL
+std::cout << "L_x  " << L_x << "\n";
+std::cout << "L_y  " << L_y << "\n";
+std::cout << "L_z  " << L_z << "\n";
+std::cout << "LL   " << LL  << "\n";
+
+// (292.2)
+double a21      = L_x/(-LL);                                                   // CW
+double a22      = L_y/(-LL);                                                   // NOT CCW!
+double a23      = L_z/(-LL);                                                   // CCW has to be addressed
+
+// (292.1)
+double a11      = a22*a33 - a23*a32;
+double a12      = a23*a31 - a21*a33;
+double a13      = a21*a32 - a22*a31;
+
+Matrix3 R(a11,a12,a13,a21,a22,a23,a31,a32,a33);
+Matrix3 Rinv(a11,a12,a13,a21,a22,a23,a31,a32,a33);
+std::cout       << "R.getDeterminant() " << R.getDeterminant() << "\n";
+std::cout       << "R\n" << R << "\n";
+Rinv.invert();
+Matrix3 unitySB = R*Rinv;
+std::cout       << "unitySB\n" << unitySB << "\n";
+
+double mpcsqBye = mpcsq;
+double EscrBye  = Escr;
+
+double trmGam   = EscrBye/mpcsqBye;                                            // (305)
+double facGam   = -Eel0*Rsxf/mpcsqBye;                                         // E0 --->>> Eel0
+
+double aGam     = trmGam + facGam*xi_co;
+double bGam     = facGam*(xi_in - xi_co);
+double cGam     = facGam*xip_in/Q;
+
+double IntGam_a = aGam*th;
+double IntGam_b = bGam*sin(Q*th)/Q;
+double IntGam_c = cGam*(1. - cos(Q*th))/Q;
+double IntGam_T = IntGam_a + IntGam_b + IntGam_c;
+std::cout       << "IntGam_a             " << IntGam_a << "\n";
+std::cout       << "IntGam_b             " << IntGam_b << "\n";
+std::cout       << "IntGam_c             " << IntGam_c << "\n";
+std::cout       << "IntGam_T             " << IntGam_T << "\n";
+
+//
+
+double r_bc     = sqrt(bGam*bGam+cGam*cGam);
+  double psi      = atan2(bGam,cGam);
+//double psi      = atan(bGam/cGam);
+
+double r_a_bc   = sqrt(aGam*aGam - r_bc*r_bc);
+
+double xQUppr   = Q*th + psi;
+double xQLowr   = 0.   + psi;
+
+double argQUppr = (aGam*tan(xQUppr/2.) + r_bc)/r_a_bc;
+double argQLowr = (aGam*tan(xQLowr/2.) + r_bc)/r_a_bc;
+
+double IgiQUppr = 2.*atan(argQUppr)/r_a_bc;
+double IgiQLowr = 2.*atan(argQLowr)/r_a_bc;
+double IgiQ     = IgiQUppr - IgiQLowr;
+
+/*
+double MAX      = Q*th/(aGam - r_bc);
+if( IgiQ > MAX ){
+ std::cerr << "IgiQ > MAX " << IgiQ << " " << MAX << "\n";
+ IgiQ=0.;
+}
+*/
+
+std::cout       << "IgiQUppr               " << IgiQUppr << "\n";
+std::cout       << "IgiQLowr               " << IgiQLowr << "\n";
+std::cout       << "IgiQ=IgiQUppr-IgiQLowr " << IgiQ << "\n";
+
+double g        = UAL::pg;                                                     // 5.58569472;
+
+double dAl_dThL = (g/2. - 1.)*IntGam_T;
+double dAl_dThR = -(g/2.)*IgiQ/Q;
+double dAl_dThT = dAl_dThL + dAl_dThR;                                         // (304)
+std::cout       << "Q                    " << Q        << "\n";
+std::cout       << "dAl_dThL             " << dAl_dThL << "\n";
+std::cout       << "dAl_dThR             " << dAl_dThR << "\n";
+std::cout       << "dAl_dThT             " << dAl_dThT << "\n";
+
+char dummy;
+std::cout << "Enter dummy\n";
+//std::cin >> dummy;
