@@ -1,0 +1,24 @@
+PAC::Bunch bunch(21);                               // bunch with 21 particle(s)
+PAC::Spin * spinX   = new PAC::Spin[21];            // the corresponding spins
+bunch.setBeamAttributes(ba);
+
+bunch[ 1].getPosition().set( +x1typ,       0,      0,      0,      0,      0 );
+bunch[ 2].getPosition().set( -x1typ,       0,      0,      0,      0,      0 );
+bunch[ 3].getPosition().set(      0,  +x2typ,      0,      0,      0,      0 );
+bunch[ 4].getPosition().set(      0,  -x2typ,      0,      0,      0,      0 );
+bunch[ 5].getPosition().set(      0,       0, +y1typ,      0,      0,      0 );
+bunch[ 6].getPosition().set(      0,       0, -y1typ,      0,      0,      0 );
+bunch[ 7].getPosition().set(      0,       0,      0, +y2typ,      0,      0 );
+bunch[ 8].getPosition().set(      0,       0,      0, -y2typ,      0,      0 );
+bunch[ 9].getPosition().set(      0,       0,      0,      0,      0,+deltyp );
+bunch[10].getPosition().set(      0,       0,      0,      0,      0,-deltyp );
+bunch[11].getPosition().set(  0.005,       0,      0,	   0       0,      0 );
+bunch[12].getPosition().set( -0.005,       0,      0,	   0,      0,      0 );
+bunch[13].getPosition().set(	  0,  0.0002,      0,	   0,      0,      0 );
+bunch[14].getPosition().set(      0, -0.0002,      0,      0,      0,      0 );
+bunch[15].getPosition().set(  	  0,	   0,   0.01,      0,      0,      0 );
+bunch[16].getPosition().set(  	  0,	   0,	   0,  0.001,      0,      0 );
+bunch[17].getPosition().set(  	  0,	   0,      0,      0,      0, 5.85e-5 );
+bunch[18].getPosition().set(  	  0,       0,      0,      0,      0,-5.85e-5 );
+bunch[19].getPosition().set(  	  0,       0,      0,      0,      0,      0 );
+bunch[20].getPosition().set(  	  0,       0,      0,      0,      0,      0 );
