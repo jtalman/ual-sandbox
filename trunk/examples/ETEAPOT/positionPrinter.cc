@@ -1,4 +1,3 @@
-
 #include "positionPrinter.hh"
 
 positionPrinter::positionPrinter()
@@ -45,10 +44,14 @@ void positionPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
       double psp0    = get_psp0(pos, v0byc);
 
       char endLine = '\0';
+
+      double spinX = ETEAPOT_MltTurn::MarkerTracker::spin[ip][0];
+      double spinY = ETEAPOT_MltTurn::MarkerTracker::spin[ip][1];
+      double spinZ = ETEAPOT_MltTurn::MarkerTracker::spin[ip][2];
+
       char line1[200];
       
-      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %c",
-	      ip, iturn, wp_time, x, px, y, py, ct, de, psp0, ew, endLine);
+      sprintf(line1, "%1d %7d    %-15.9e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.7e %-15.10e %-15.10e %15.10e %c",ip, iturn, wp_time, x, px, y, py, ct, de, spinX, spinY, spinZ, endLine);
 
       output << line1 << std::endl;
 }
@@ -68,4 +71,3 @@ double positionPrinter::get_psp0(PAC::Position& p, double v0byc)
 
     return psp0;
 }
-
