@@ -1,15 +1,13 @@
+cp BeamAttributes.hh $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.hh
+cp BeamAttributes.cc $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.cc
+
 cp Shell.cc $UAL/ext/UI/src/UAL/UI/Shell.cc
-pushd $UAL/ext/UI
-make clean
-make
-ll lib/linux            // e.g. 1154818 libUalUI.so
-popd
 
 cp $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/RFCavityTracker-mod.cc $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/RFCavityTracker.cc
-pushd $UAL/codes/ETEAPOT_MltTurn
+
+pushd $UAL
 make clean
-make
-ll lib/linux            // e.g.  574307 libETEAPOT_MltTurn.so
+make >&! make.log
 popd
 
 cp data/eteapot_MltTurn.apdf data/eteapot.apdf
@@ -46,7 +44,8 @@ make
 perl SplitNikolayOut.pl NikolayOut >! IG
 
 gnuplot
-   gnuplot> l 'forGnuplot_Figure2'
+        l 'forGnuplot_Figure2'
+        l 'gnuplot/SpinEvolve.gnuplot'
 
 diff initialSpin ./out/VERIF/markerSpin
 diff initialSpin ./out/VERIF/dipoleSpin
