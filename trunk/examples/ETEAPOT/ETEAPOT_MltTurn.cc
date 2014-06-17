@@ -78,6 +78,8 @@ int main(int argc,char * argv[]){
  #include "designBeamValues.hh"
  #include "setBeamAttributes.hh"
  PAC::BeamAttributes& ba = shell.getBeamAttributes();
+ std::cerr << "ba.getG() "  << ba.getG()  << "\n";
+ std::cerr << "ba.get_g() " << ba.get_g() << "\n";
  #include "extractParameters.h"
 // #include "probeDataForTwiss"
 #define TINY 1E-6
