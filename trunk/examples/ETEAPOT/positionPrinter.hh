@@ -1,5 +1,3 @@
-
-
 #ifndef _POSITIONPRINTER_H
 #define	_POSITIONPRINTER_H
 
@@ -8,6 +6,7 @@
 
 #include "PAC/Beam/Bunch.hh"
 #include "UAL/UI/Shell.hh"
+#include "ETEAPOT_MltTurn/Integrator/MarkerTracker.hh"
 
 class positionPrinter
 {
@@ -34,7 +33,4 @@ public:
 
 };
 
-
-
 #endif	/* _OUTPUTPRINTER_H */
-
