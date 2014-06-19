@@ -89,11 +89,11 @@ void ETEAPOT_MltTurn::DipoleTracker::propagate(UAL::Probe& probe)
     tmp = p;
 //#include "ETEAPOT/Integrator/verboseBlock.h"
 //  if(ip==0){#include "verboseBlock.h"}
-    s_algorithm.passEntry(0, m_edata, p, 0, ETEAPOT_MltTurn::DipoleTracker::m_m );
+    s_algorithm.passEntry(0, m_edata, p, 0, ETEAPOT_MltTurn::DipoleTracker::m_m, cba );
     s_algorithm.makeVelocity(p, tmp, v0byc);
     s_algorithm.makeRV(p, tmp, e0, p0, m0);
     s_algorithm.passBend( ip, m_data, m_edata, p, tmp, v0byc, cba, bend );
-    s_algorithm.passExit(0, m_edata, p, 0, ETEAPOT_MltTurn::DipoleTracker::m_m );
+    s_algorithm.passExit(0, m_edata, p, 0, ETEAPOT_MltTurn::DipoleTracker::m_m, cba );
     // testAperture(p);
   }
 bend++;
