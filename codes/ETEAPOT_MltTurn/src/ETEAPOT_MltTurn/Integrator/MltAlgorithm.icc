@@ -23,54 +23,86 @@ ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::~MltAlgorithm()
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::passEntry(
-        int ip,
+	int ip,
 	const ETEAPOT::MltData& data,
 	Coordinates& p,
-        int mltK,
-        double m_m)
+	int mltK,
+	double m_m,
+	const PAC::BeamAttributes cba)
 {
-  if(data.m_entryMlt) applyMltKick(ip, data.m_entryMlt, 0, 1, p, mltK, m_m);
+  if(data.m_entryMlt) applyMltKick(ip, data.m_entryMlt, 0, 1, p, mltK, m_m, cba);
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::passExit(
-        int ip,
+	int ip,
 	const ETEAPOT::MltData& data,
 	Coordinates& p,
-        int mltK,
-        double m_m)
+	int mltK,
+	double m_m,
+	const PAC::BeamAttributes cba)
 {
-  if(data.m_exitMlt) applyMltKick(ip, data.m_exitMlt, 0, 1, p, mltK, m_m);
+  if(data.m_exitMlt) applyMltKick(ip, data.m_exitMlt, 0, 1, p, mltK, m_m, cba);
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
-        int ip,
+	int ip,
 	const ETEAPOT::MltData& data,
 	double rkicks, 
 	Coordinates& p,
-        int mltK,
-        double m_m)
+	int mltK,
+	double m_m,
+	const PAC::BeamAttributes cba)
 {
 //std::cerr << "applyMltKick ip: "   << ip   << "\n";
 //std::cerr << "applyMltKick mltK: " << mltK << "\n";
 //std::cerr << "applyMltKick m_m: "  << m_m  << "\n";
-  applyMltKick(ip, data.m_mlt, data.m_offset, rkicks, p, mltK, m_m );
+  applyMltKick(ip, data.m_mlt, data.m_offset, rkicks, p, mltK, m_m, cba );
 }
 
 template<class Coordinate, class Coordinates>
 void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
-        int ip,
+	int ip,
 	PacElemMultipole* mult, PacElemOffset* offset,
 	double rkicks, 
 	Coordinates& p,
-        int mltK,
-        double m_m)
+	int mltK,
+	double m_m,
+	const PAC::BeamAttributes cba)
 {
 //std::cerr << "applyMltKick Mlt_m_elementName[" << mltK << "]: "   << Mlt_m_elementName[mltK]   << " " << Mlt_m_sX[mltK] << "\n";
 //std::cerr << "applyMltKick mltK: " << mltK << "\n";
 //mltK++;
 //std::cerr << "Wrapped applyMltKick m_m: " << m_m << "\n";
+//std::cerr << "enter template<class Coordinate, class Coordinates> void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::applyMltKick( - mult->keySize() is " << mult->keySize() << " mult->order() " << mult->order() << " mult->size() " << mult->size() << "\n";
+
+  if(mult->order() >= 2){
+   std::cerr << "mult->order() " << mult->order() << " exiting\n";
+   std::cerr << "mult->size()  " << mult->size()  << "\n";
+   double* data = mult->data();
+   std::cerr << "data[0] = " << data[0] << "\n";
+   std::cerr << "data[1] = " << data[1] << "\n";
+   std::cerr << "data[2] = " << data[2] << "\n";
+   std::cerr << "data[3] = " << data[3] << "\n";
+   std::cerr << "data[4] = " << data[4] << "\n";
+   std::cerr << "data[5] = " << data[5] << "\n";
+   exit(1);
+  }
+
+  if(mult->size() >= 6){
+   std::cerr << "SERIOUS INCONSISTENCY " << " exiting\n";
+   std::cerr << "mult->size()  " << mult->size()  << " exiting\n";
+   std::cerr << "mult->order() " << mult->order() << "\n";
+   double* data = mult->data();
+   std::cerr << "data[0] = " << data[0] << "\n";
+   std::cerr << "data[1] = " << data[1] << "\n";
+   std::cerr << "data[2] = " << data[2] << "\n";
+   std::cerr << "data[3] = " << data[3] << "\n";
+   std::cerr << "data[4] = " << data[4] << "\n";
+   std::cerr << "data[5] = " << data[5] << "\n";
+   exit(1);
+  }
 
   if(mult == 0) return;
 
@@ -121,8 +153,52 @@ void ETEAPOT_MltTurn::MltAlgorithm<Coordinate, Coordinates>::applyMltKick(
 
   px *= -1;
 
+/*
+#include "ETEAPOT_MltTurn/Integrator/getDesignBeam.h"
+
+  double* data = mult->data();
+  std::cerr << "data[0] = " << data[0] << "\n";
+  std::cerr << "data[1] = " << data[1] << "\n";
+  std::cerr << "data[2] = " << data[2] << "\n";
+  std::cerr << "data[3] = " << data[3] << "\n";
+  std::cerr << "data[4] = " << data[4] << "\n";
+  std::cerr << "data[5] = " << data[5] << "\n";
+
+  double GeVperJ    = 1./qD/1.e9;                            // units
+  double pD         = sqrt(eD*eD-mD*mD);                     // derived beam momentum
+  double gD         = eD/mD;                                 // derived beam gamma
+  double bD         = sqrt(1.-1./gD/gD);                     // derived beam beta (usually same as velocity)
+  double vD         = bD;                                    // JDT
+//double LD         = Rsxf*pD;
+
+  double gammaD = gD;
+
+  double gamma  = (eD+pD*p[5])/mD;
+  double delGam = gamma - gammaD;
+
+  double betaIn = sqrt(1.-1./gamma/gamma);
+  double pInTot = gamma*mD*betaIn;
+  double pxIn   = p[1]*pD;
+  double pyIn   = p[3]*pD;
+  double pzIn   = sqrt(pInTot*pInTot-pxIn*pxIn-pyIn*pyIn);
+
+  Vector3 pIn(pxIn, pyIn, pzIn);
+*/
+
+#include"quadSpinEvolve"
+
   p[1] += px;                              // px/p0
   p[3] += py;                              // py/p0	
+
+/*
+  double pOutTot;
+  double pxOut  = p[1]*pD;
+  double pyOut  = p[3]*pD;
+  double pzOut  = pzIn;
+//double pzOut  = sqrt(pOutTot*pOutTot-pxOut*pxOut-pyOut*pyOut);
+*/
+
+//#include"quadSpinEvolve"
 
 char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 //int ip=1;
