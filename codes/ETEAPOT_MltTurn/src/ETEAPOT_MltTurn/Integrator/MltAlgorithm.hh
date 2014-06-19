@@ -7,6 +7,7 @@
 #include "SMF/PacElemMultipole.h"
 #include "ETEAPOT/Integrator/MltData.hh"
 #include "ETEAPOT/Integrator/CommonAlgorithm.hh"
+#include "ETEAPOT_MltTurn/Integrator/Matrices.hh"
 
 namespace ETEAPOT_MltTurn {
  
@@ -24,13 +25,13 @@ namespace ETEAPOT_MltTurn {
     ~MltAlgorithm();
 
     /** Passes the element entry  */
-    void passEntry(int ip, const ETEAPOT::MltData& edata, Coordinates& p, int mltK, double m_m );
+    void passEntry(int ip, const ETEAPOT::MltData& edata, Coordinates& p, int mltK, double m_m, const PAC::BeamAttributes cba);
 
     /** Passes the element exit  */
-    void passExit(int ip, const ETEAPOT::MltData& edata, Coordinates& p, int mltK, double m_m );
+    void passExit(int ip, const ETEAPOT::MltData& edata, Coordinates& p, int mltK, double m_m, const PAC::BeamAttributes cba);
 
    /** Applies the multipole kick */
-   void applyMltKick(int ip, const ETEAPOT::MltData& edata, double rkicks, Coordinates& p, int mltK, double m_m);
+   void applyMltKick(int ip, const ETEAPOT::MltData& edata, double rkicks, Coordinates& p, int mltK, double m_m, const PAC::BeamAttributes cba);
 // void applyMltKick(const MltData& edata, double rkicks, Coordinates& p, int mltK, double m_m);
 // void applyMltKick(const MltData& edata, double rkicks, Coordinates& p, double m_m);
 // void applyMltKick(const MltData& edata, double rkicks, Coordinates& p);
@@ -43,7 +44,7 @@ namespace ETEAPOT_MltTurn {
   protected:
    
     /** Applies the multipole kick */
-    void applyMltKick(int ip, PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, int mltK, double m_m);
+    void applyMltKick(int ip, PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, int mltK, double m_m, const PAC::BeamAttributes cba);
 //  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, int mltK, double m_m);
 //  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p, double m_m);
 //  void applyMltKick(PacElemMultipole* mult, PacElemOffset* offset, double rkicks, Coordinates& p);
