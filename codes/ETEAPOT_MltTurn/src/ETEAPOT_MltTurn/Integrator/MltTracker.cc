@@ -70,6 +70,8 @@ void ETEAPOT_MltTurn::MltTracker::propagate(UAL::Probe& probe)
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
   
   PAC::BeamAttributes& ba = bunch.getBeamAttributes();
+  const PAC::BeamAttributes cba = ba;
+
   double e0 = ba.getEnergy(), m0 = ba.getMass();
   double p0 = sqrt(e0*e0 - m0*m0);
   double v0byc = p0/e0;
@@ -83,7 +85,7 @@ void ETEAPOT_MltTurn::MltTracker::propagate(UAL::Probe& probe)
     PAC::Position& p = bunch[ip].getPosition();
     tmp = p;
 
-    ETEAPOT_MltTurn::MltTracker::s_algorithm.passEntry(ip, m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::DipoleTracker::m_m );
+    ETEAPOT_MltTurn::MltTracker::s_algorithm.passEntry(ip, m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m, cba );
 //  ETEAPOT_MltTurn::MltTracker::s_algorithm.passEntry(m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m );
 //  ETEAPOT_MltTurn::MltTracker::s_algorithm.passEntry(m_mdata, p, ETEAPOT_MltTurn::MltTracker::m_m );
 //  ETEAPOT_MltTurn::MltTracker::s_algorithm.passEntry(m_mdata, p);
@@ -95,13 +97,13 @@ void ETEAPOT_MltTurn::MltTracker::propagate(UAL::Probe& probe)
 
     if(!m_ir){
       ETEAPOT_MltTurn::MltTracker::s_algorithm.passDrift(m_l/2., p, tmp, v0byc);
-      ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(ip, m_mdata, 1., p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::DipoleTracker::m_m );
+      ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(ip, m_mdata, 1., p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m, cba );
 //    ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(m_mdata, 1., p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m );
 //    ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(m_mdata, 1., p, ETEAPOT_MltTurn::MltTracker::m_m );
 //    ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(m_mdata, 1., p);
       ETEAPOT_MltTurn::MltTracker::s_algorithm.makeVelocity(p, tmp, v0byc);
       ETEAPOT_MltTurn::MltTracker::s_algorithm.passDrift(m_l/2., p, tmp, v0byc);
-      ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(ip, m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::DipoleTracker::m_m );
+      ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(ip, m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m, cba );
 //    ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m );
 //    ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(m_mdata, p);
       continue;
@@ -120,7 +122,7 @@ void ETEAPOT_MltTurn::MltTracker::propagate(UAL::Probe& probe)
         for(int is = 0; is < 4; is++){
           counter++;
           ETEAPOT_MltTurn::MltTracker::s_algorithm.passDrift(m_l*s_steps[is]*rIr, p, tmp, v0byc);
-          ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(ip, m_mdata, rkicks, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::DipoleTracker::m_m );
+          ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(ip, m_mdata, rkicks, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m, cba );
 //        ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(m_mdata, rkicks, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m );
 //        ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(m_mdata, rkicks, p, ETEAPOT_MltTurn::MltTracker::m_m );
 //        ETEAPOT_MltTurn::MltTracker::s_algorithm.applyMltKick(m_mdata, rkicks, p);
@@ -131,11 +133,12 @@ void ETEAPOT_MltTurn::MltTracker::propagate(UAL::Probe& probe)
       }
     }
 
-    ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(ip, m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::DipoleTracker::m_m );
+    ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(ip, m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m, cba );
 //  ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(m_mdata, p, ETEAPOT_MltTurn::MltTracker::mltK, ETEAPOT_MltTurn::MltTracker::m_m );
 //  ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(m_mdata, p);
     // testAperture(p);
   }
+#include"setDipoleTrackerSpin"
 mltK++;
 
   checkAperture(bunch);
