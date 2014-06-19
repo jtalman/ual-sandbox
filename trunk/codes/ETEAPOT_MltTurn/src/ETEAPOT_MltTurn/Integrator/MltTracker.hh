@@ -26,6 +26,8 @@ namespace ETEAPOT_MltTurn {
     /** Destructor */
     ~MltTracker();
 
+//  friend class DipoleTracker;
+
     /** Returns a deep copy of this object (inherited from UAL::PropagatorNode) */
     UAL::PropagatorNode* clone();
 
@@ -93,6 +95,8 @@ static void initialize(){
 
     /** Mlt attributes */
     ETEAPOT::MltData m_mdata;
+
+  public:
 
     /** Propagator algorithm */
     static ETEAPOT_MltTurn::MltAlgorithm<double, PAC::Position> s_algorithm;
