@@ -95,6 +95,8 @@ namespace ETEAPOT_MltTurn {
     /** Electric attributes */
     ETEAPOT::MltData m_edata;
 
+  public:
+
     /** Propagator algorithm */
     static DipoleAlgorithm<double, PAC::Position> s_algorithm;
 
