@@ -1,0 +1,91 @@
+//std::cerr << "enter quadSpinEvolve\n";
+
+double* data = mult->data();
+/*
+std::cerr << "data[0] = " << data[0] << "\n";
+std::cerr << "data[1] = " << data[1] << "\n";
+std::cerr << "data[2] = " << data[2] << "\n";
+std::cerr << "data[3] = " << data[3] << "\n";
+std::cerr << "data[4] = " << data[4] << "\n";
+std::cerr << "data[5] = " << data[5] << "\n";
+*/
+
+double kl = data[2];
+double q  = kl;
+
+#include "ETEAPOT_MltTurn/Integrator/getDesignBeam.h"
+
+double GeVperJ    = 1./qD/1.e9;                            // units
+double pD         = sqrt(eD*eD-mD*mD);                     // derived beam momentum
+double gammaD     = eD/mD;                                 // derived beam gamma
+double bD         = sqrt(1.-1./gammaD/gammaD);             // derived beam beta (usually same as velocity)
+double vD         = bD;                                    // JDT
+//double rD         = Rsxf;
+//double LD         = rD*pD;
+
+double g = gD;//UAL::pg;                                   // g versus GD versus gD! also gap
+
+//double gammaD = gD;
+double gamma  = (eD+pD*p[5])/mD;
+double delGam = gamma - gammaD;
+
+//double delThtTld = 1.;               //    ???
+
+//double delAlphTld = (g/2. - 1. + g/2./gammaD/gammaD) * delGam * delThtTld;
+
+double x0 = x;
+double y0 = y;
+double phi0 = atan2(q*y0,q*x0);   // (328)
+double rho0 = sqrt(x0*x0 + y0*y0);
+double delThtTld = abs(q)*rho0;               //    (325)
+double delAlphTld = (g/2. - 1. + g/2./gammaD/gammaD) * delGam * delThtTld;
+
+// above (326)
+// below (327) ... stub
+
+double sx = spin[ip][0];
+double sy = spin[ip][1];
+double sz = spin[ip][2];
+
+double checkNorm = 1 - sx*sx - sy*sy - sz*sz;
+/*
+std::cerr << "sx " << sx << "\n";
+std::cerr << "sy " << sy << "\n";
+std::cerr << "sz " << sz << "\n";
+char dummy;
+std::cin >> dummy;
+*/
+
+double cosP = cos(phi0);
+double sinP = sin(phi0);
+
+double cosA = cos(delAlphTld/2.);
+double sinA = sin(delAlphTld/2.);
+
+double a11 = -cosP*cosP*sinA;
+double a12 = -cosP*sinA*sinP;
+double a13 = -cosP*cosA;
+
+double a21 = -cosP*sinA*sinP;
+double a22 = -sinP*sinP*sinA;
+double a23 = -sinP*cosA;
+
+double a31 = cosP*cosA;
+double a32 = sinP*cosA;
+double a33 = -sinA;
+
+Matrix3 R( a11, a12, a13, a21, a22, a23, a31, a32, a33 );
+
+R = 2.*sinA*R;
+
+double sxdev = R[0]*sx +  R[1]*sy + R[2]*sz;
+double sydev = R[3]*sx +  R[4]*sy + R[5]*sz;
+double szdev = R[6]*sx +  R[7]*sy + R[8]*sz;
+
+spin[ip][0] += sxdev;
+spin[ip][1] += sydev;
+spin[ip][2] += szdev;
+
+
+
+
