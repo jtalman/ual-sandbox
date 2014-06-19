@@ -1,0 +1,66 @@
+//   copy new files from e.g. USB drive
+//         6/19/2014:
+//               pushd /media/0000-01D5/ETEAPOT/6_19_2014/
+//               cp * $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator
+//
+//               utility files
+//                     diffsToGoogle
+//                     this file - runExampleFor_ETEAPOT_MltTurn
+//               don't get checked in
+//
+//               popd
+
+cd examples/ETEAPOT
+
+cp BeamAttributes.hh $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.hh
+cp BeamAttributes.cc $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.cc
+
+cp Shell.cc $UAL/ext/UI/src/UAL/UI/Shell.cc
+
+cp $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/RFCavityTracker-mod.cc $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/RFCavityTracker.cc
+
+pushd $UAL
+make clean
+make >&! make.log
+popd
+
+cp data/eteapot_MltTurn.apdf data/eteapot.apdf
+
+// edit userBunch to set bunch size and values. Also the corresponding spin values.
+
+//  ??  --->>>   cp simulatedProbeValuesDesign                     simulatedProbeValues
+//                        40.0 meter (design) circle
+//                        Escr = +1.1710642369121E+00    (line 82 in OUT)
+//                        time deviations very close to zero
+
+//  ??  --->>>   cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.000041 simulatedProbeValues
+//                        40.01 meter off momentum circle
+//                        Escr      = +1.1711052369121E+00    (line 82 in OUT)
+//                        tofDev0   = -1.6480247998441E-04    (line 140 in OUT)
+//                        tofDev1   = +1.0789393411257E-03
+//                        tofDev2   = +3.7569437152148E-07
+//                        tofDevTOT = +9.1451255551283E-04
+
+//
+//                       sxf - ./data/E_BM_M1.0.RF.sxf - see below
+//
+
+make outputReady
+make clean
+make
+
+// We recommend the lenovo ThinkPad line with ubuntu, or Scientific Linux
+// On an ubuntu single processor vostro 200, 12/31/2012, this next command takes 10 minutes or so, and generates a 3G or so file
+./ETEAPOT_MltTurn ./data/E_BM_M1.0.RF.sxf -1 40 0 500 >! OUT
+// On an ubuntu single processor vostro 200, 12/31/2012, this prev command took  10 minutes or so, and generated a 3G or so file
+
+// "look" at NikolayOut
+perl SplitNikolayOut.pl NikolayOut >! IG
+
+gnuplot
+        l 'forGnuplot_Figure2'
+        l 'gnuplot/SpinEvolve.gnuplot'
+
+diff initialSpin ./out/VERIF/markerSpin
+diff initialSpin ./out/VERIF/dipoleSpin
+diff initialSpin ./out/VERIF/mltSpin
