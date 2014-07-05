@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <time.h>
+
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
@@ -41,6 +43,7 @@
 using namespace UAL;
 
 int main(int argc,char * argv[]){
+ int startTime, endTime, totalTime;
 // std::cerr << "ETEAPOT_MltTurn::DipoleTracker::m_m " << ETEAPOT_MltTurn::DipoleTracker::m_m << "\n";
 // std::cerr << "ETEAPOT_MltTurn::MltTracker::m_m    " << ETEAPOT_MltTurn::MltTracker::m_m    << "\n";
 
@@ -334,6 +337,7 @@ ETEAPOT_MltTurn::MltTracker::initialize();
 
  ba.setElapsedTime(0.0);
 
+startTime = time(NULL);
  for(int iturn = 0; iturn <= (turns-1); iturn++){
 //ap -> propagate(bunch);
   for(int ip=0; ip < bunch.size(); ip++){
@@ -342,6 +346,9 @@ ETEAPOT_MltTurn::MltTracker::initialize();
   }
   ap -> propagate(bunch);
  }
+endTime = time(NULL);
+totalTime = endTime - startTime;
+std::cerr << "Runtime: " << totalTime << " seconds\n";
 
  pP.close();
 
