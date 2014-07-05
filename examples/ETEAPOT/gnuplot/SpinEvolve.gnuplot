@@ -14,46 +14,6 @@ set terminal x11 0
 set title " 0.01, 0, 0, 0, 0, 5.85e-5"
 p 'IG' i 0 u 2:10 w l lw 1
 
-set terminal x11 1
-set title " +x1typ, 0, 0, 0, 0, 0"
-p 'IG' i 1 u 2:10 w l lw 1
-
-set terminal x11 2
-set title "-x1typ, 0, 0, 0, 0, 0"
-p 'IG' i 2 u 2:10 w l lw 1
-
-set terminal x11 3
-set title " 0, +x2typ, 0, 0, 0, 0"
-p 'IG' i 3 u 2:10 w l lw 1
-
-set terminal x11 4
-set title " 0, -x2typ, 0, 0, 0, 0"
-p 'IG' i 4 u 2:10 w l lw 1
-
-set terminal x11 5
-set title " N/A 0,      0,      0,      0,      0,      0"
-p 'IG' i 5 u 2:10 w l lw 1
-
-set terminal x11 6
-set title " N/A  0,      0,      0,      0,      0,      0"
-p 'IG' i 6 u 2:10 w l lw 1
-
-set terminal x11 7
-set title " N/A  0,      0,      0,      0,      0,      0"
-p 'IG' i 7 u 2:10 w l lw 1
-
-set terminal x11 8
-set title " N/A  0,      0,      0,      0,      0,      0"
-p 'IG' i 8 u 2:10 w l lw 1
-
-set terminal x11 9
-set title " N/A  0,      0,      0,      0,      0,      0"
-p 'IG' i 9 u 2:10 w l lw 1
-
-set terminal x11 10
-set title " N/A  0,      0,      0,      0,      0,      0"
-p 'IG' i 10 u 2:10 w l lw 1
-
 set terminal x11 11
 set title "0.005, 0, 0, 0, 0, 0"
 p 'IG' i 11 u 2:10 w l lw 1
@@ -86,6 +46,3 @@ set terminal x11 18
 set title "0, 0, 0, 0, 0,-5.85e-5"
 p 'IG' i 18 u 2:10 w l lw 1
 
-set terminal x11 19
-set title " 0,      0,      0,      0,      0,      0"
-p 'IG' i 19 u 2:10 w l lw 1
