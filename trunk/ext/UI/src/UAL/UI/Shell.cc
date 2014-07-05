@@ -85,6 +85,21 @@ bool UAL::Shell::setBeamAttributes(const UAL::Arguments& arguments)
     m_ba.setR(it->second->getNumber());
   }
 
+  it = args.find("frequency");                      // 
+  if(it != args.end()){
+    m_ba.setRevfreq(it->second->getNumber());
+  }
+
+  it = args.find("gyromagnetic");                   // 
+  if(it != args.end()){
+    m_ba.setG(it->second->getNumber());
+  }
+
+  it = args.find("gFactor");                        // 
+  if(it != args.end()){
+    m_ba.set_g(it->second->getNumber());
+  }
+
   UAL::OpticsCalculator::getInstance().setBeamAttributes(m_ba);
   
   return true;
