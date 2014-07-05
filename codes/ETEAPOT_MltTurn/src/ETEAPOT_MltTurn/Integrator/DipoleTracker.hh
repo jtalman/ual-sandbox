@@ -79,7 +79,14 @@ namespace ETEAPOT_MltTurn {
      }
 
      spinIFS.close();
-#include"setDipoleTrackerSpin"
+//#include"setDipoleTrackerSpin"
+for(int ip=0;ip<=20;ip++){
+ for(int iq=0;iq<=2;iq++){
+  ETEAPOT_MltTurn::DipoleTracker::spin[ip][iq]=spin[ip][iq];
+//((ETEAPOT_MltTurn::DipoleTracker).s_algorithm).spin[ip][iq]=spin[ip][iq];
+  ETEAPOT_MltTurn::DipoleTracker::s_algorithm.spin[ip][iq]=spin[ip][iq];
+ }
+}
     }
 
   protected:

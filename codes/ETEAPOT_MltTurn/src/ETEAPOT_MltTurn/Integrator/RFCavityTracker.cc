@@ -81,7 +81,7 @@ void ETEAPOT_MltTurn::RFCavityTracker::setLatticeElement(const PacLattElement& e
 
 void ETEAPOT_MltTurn::RFCavityTracker::propagate(UAL::Probe& probe)
 {
-std::cerr << "File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::RFCavityTracker::propagate(UAL::Probe& probe)\n";
+//std::cerr << "File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT_MltTurn::RFCavityTracker::propagate(UAL::Probe& probe)\n";
   PAC::Bunch& bunch = static_cast<PAC::Bunch&>(probe);
 
 char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};

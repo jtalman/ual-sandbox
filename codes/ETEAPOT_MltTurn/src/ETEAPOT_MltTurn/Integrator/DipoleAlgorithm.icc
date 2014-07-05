@@ -233,8 +233,9 @@ double p4diff = p4new-p4old;
 
      p[4]      -= tofDevTOT;
 
-#include "conventionalOUT"
+//#include "conventionalOUT"
 
+/*
 if(ip==0){
 //std::cout << "SPIN - spin[" << ip << "][2] = " << spin[ip][2] << "\n";
   std::cout << "SPIN - spin[" << ip << "][0] = " << spin[ip][0] << " spin[" << ip << "][1] = " << spin[ip]    [1] << " spin[" << ip << "][2] = " << spin[ip][2] << " norm " << spin[ip][0]*spin[ip][0]+spin[ip][1]*spin[ip][1]+spin[ip][2]*spin[ip][2] <<"\n";
@@ -247,7 +248,9 @@ if(ip==0){
 //ETEAPOT_MltTurn::MarkerTracker::spin[ip][2] = spin[ip][2];
 //ETEAPOT_MltTurn::MltTracker::spin[ip][2] = spin[ip][2];
 }
+*/
 
+/*
  if(ip==0){
   std::cout << "JDTRT-pOf4DEV" << ip << " " << -tofDevTOT << " " << S[ip] << "\n";
   std::cout << "JDTRT-pOf4CUM" << ip << " " << p[4] << " " << S[ip] << "\n";
@@ -256,6 +259,8 @@ if(ip==0){
 //std::cout << "____________________________________\n";
 //std::cout << "____________________________________\n";
  }
+*/
+
 }
 
 template<class Coordinate, class Coordinates>

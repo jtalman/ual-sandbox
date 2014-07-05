@@ -77,9 +77,7 @@ double sTldPerpIn= sTldIn[1];
   double alphTldIn = atan2(-sTldIn[0],sTldIn[2]);
 //double alphTldIn = atan(-sTldIn[0]/sTldIn[2]);
 
-std::cout << "alphTldIn " << alphTldIn << "\n";
 double sTldPrllIn= sqrt(1.-sTldPerpIn*sTldPerpIn);
-std::cout << "sTldPrllIn " << sTldPrllIn << "\n";
 
 #include "perturbSpinEvolve"
 
@@ -87,16 +85,11 @@ double sTldPerpOut= sTldPerpIn;
 double sTldPrllOut= sTldPrllIn;
 //double alphTldOut = alphTldIn + dAl_dThT;
   double alphTldOut = alphTldIn + delAlphT;
-std::cout << "alphTldOut " << alphTldOut << "\n";
 
 double sxTldOut   = -sTldPrllOut*sin(alphTldOut);
 double syTldOut   =  sTldPerpOut;
 double szTldOut   =  sTldPrllOut*cos(alphTldOut);
 double sTldMag    = sqrt(sxTldOut*sxTldOut + syTldOut*syTldOut + szTldOut*szTldOut);
-std::cout << "sxTldOut " << sxTldOut << "\n";
-std::cout << "syTldOut " << syTldOut << "\n";
-std::cout << "szTldOut " << szTldOut << "\n";
-std::cout << "sTldMag  " << sTldMag  << "\n";
 
 Vector3 sTldOut(sxTldOut,syTldOut,szTldOut);
 Vector3 sOut = R * sTldOut;
@@ -104,17 +97,20 @@ Vector3 sOut = R * sTldOut;
 spin[ip][0] = sOut[0];
 spin[ip][1] = sOut[1];
 spin[ip][2] = sOut[2];
-std::cout << "     ip     " <<      ip     << "\n";
-std::cout << "spin[ip][0] " << spin[ip][0] << "\n";
-std::cout << "spin[ip][1] " << spin[ip][1] << "\n";
-std::cout << "spin[ip][2] " << spin[ip][2] << "\n";
-#include"setMarkerTrackerSpin"
-#include"setMltTrackerSpin"
+/*
+ETEAPOT_MltTurn::DipoleTracker::spin[ip][0]=spin[ip][0];
+ETEAPOT_MltTurn::DipoleTracker::spin[ip][1]=spin[ip][1];
+ETEAPOT_MltTurn::DipoleTracker::spin[ip][2]=spin[ip][2];
+*/
+//#include"setMarkerTrackerSpin"
+//#include"setMltTrackerSpin"
 
+/*
 if(ip==0){
 // std::cout << spin[ip][0] << " " << spin[ip][1] << " " << spin[ip][2] << " " << alphTldIn << " JDTRT_PART_0\n";
    std::cout << "JDTRT_SPIN " << spin[ip][0] << " " << spin[ip][1] << " " << spin[ip][2] << " " << alphTldIn << " " << dAl_dThT << " " << delAlphT << " " << IgiQLowr << " " << IgiQUppr << " " << IgiQ << "\n";
 }
+*/
 
 /*
 if(ip==20){
@@ -125,7 +121,7 @@ if(ip==20){
 //std::cin >> dummy;
 
 if(ip==0){
- #include "timeOfFlightBendPrints1"
+// #include "timeOfFlightBendPrints1"
 }
 
 double tofDev0;
