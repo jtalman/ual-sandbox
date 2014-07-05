@@ -128,6 +128,14 @@ void PAC::BeamAttributes::setR(double r) {
    m_R =r;
 }
 
+double PAC::BeamAttributes::get_g() const {
+   return m_gFac;
+}
+
+void PAC::BeamAttributes::set_g(double g) {
+   m_gFac = g; 
+}
+
 // Private methods
 
 void PAC::BeamAttributes::initialize()
@@ -138,6 +146,7 @@ void PAC::BeamAttributes::initialize()
   m_revfreq = 0.0;
   m_macrosize = 0.0;
   m_G = UAL::pG;
+  m_gFac = UAL::pg;
   m_L = 1.0;
   m_E = 1.0;
   m_R = 1.0;
@@ -151,6 +160,7 @@ void PAC::BeamAttributes::define(const PAC::BeamAttributes& ba)
   m_revfreq   = ba.m_revfreq;
   m_macrosize = ba.m_macrosize;
   m_G         = ba.m_G;
+  m_gFac      = ba.m_gFac;
   m_L         = ba.m_L;
   m_E         = ba.m_E;
   m_R         = ba.m_R;
