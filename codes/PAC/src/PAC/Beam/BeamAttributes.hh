@@ -96,6 +96,12 @@ namespace PAC {
       /** Sets the design "radius". */
       void   setR(double v);
 
+      /** Returns the g factor ratio of the particles. */
+      double get_g() const;
+  
+      /** Sets the g factor ratio of the particles. */
+      void   set_g(double v); 
+
     protected:
 
       /** energy */
@@ -127,6 +133,9 @@ namespace PAC {
 
       /** "radius"*/
       double m_R;
+
+      /** g factor */
+      double m_gFac;      
 
     private:
 
