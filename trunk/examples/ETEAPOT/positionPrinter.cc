@@ -45,9 +45,9 @@ void positionPrinter::write(int iturn, int ip, PAC::Bunch& bunch)
 
       char endLine = '\0';
 
-      double spinX = ETEAPOT_MltTurn::MarkerTracker::spin[ip][0];
-      double spinY = ETEAPOT_MltTurn::MarkerTracker::spin[ip][1];
-      double spinZ = ETEAPOT_MltTurn::MarkerTracker::spin[ip][2];
+      double spinX = ETEAPOT_MltTurn::DipoleTracker::s_algorithm.spin[ip][0];
+      double spinY = ETEAPOT_MltTurn::DipoleTracker::s_algorithm.spin[ip][1];
+      double spinZ = ETEAPOT_MltTurn::DipoleTracker::s_algorithm.spin[ip][2];
 
       char line1[200];
       
