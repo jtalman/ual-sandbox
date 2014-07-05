@@ -1,16 +1,7 @@
 double delGam   = gamma - gammaD;
-std::cout << "gammaD " << gammaD << "\n";
-std::cout << "gamma  " << gamma  << "\n";
-std::cout << "delGam " << delGam << "\n\n";
 
 double vDchk=sqrt(1.-1./gammaD/gammaD);
 double vchk =sqrt(1.-1./gamma/gamma);
-std::cout << "sqrt(1.-1./gammaD/gammaD) " << vDchk << "\n";
-std::cout << "sqrt(1.-1./gamma/gamma)   " << vchk << "\n\n";
-
-std::cout << "vD     " << v0     << "\n";
-std::cout << "v      " << bin    << "\n";
-std::cout << "vD-v   " << v0-bin << "\n\n";
 
 double denFac   = gammaD*mpcsq;
 double fac      = g/2./gammaD;
@@ -22,15 +13,11 @@ double delAlph4 = -g/2./gammaD*Eel0*Rsxf/denFac*(1.-cos(Q*th))/Q/Q*xip_in;
 
 double delAlphT = delAlph1+delAlph2+delAlph3+delAlph4;
 
-std::cout << "delAlph1 " << delAlph1 << "\n";
-std::cout << "delAlph2 " << delAlph2 << "\n";
-std::cout << "delAlph3 " << delAlph3 << "\n";
-std::cout << "delAlph4 " << delAlph4 << "\n";
-std::cout << "delAlphT " << delAlphT << "\n";
-
 //std::cin >> dummy;
 
 double toler = 0.001;
+/*
 if( abs( dAl_dThT - delAlphT ) > toler ){
  std::cout << "excessive disagreement between analytic and perturbative: " << dAl_dThT << " " << delAlphT << "\n";
 }
+*/

@@ -77,7 +77,13 @@ static void initialize(){
 
  spinIFS.close();
 
-#include"setMltTrackerSpin"
+//#include"setMltTrackerSpin"
+for(int ip=0;ip<=20;ip++){
+ for(int iq=0;iq<=2;iq++){
+//ETEAPOT_MltTurn::MltTracker::spin[ip][iq]=spin[ip][iq];
+  ETEAPOT_MltTurn::MltTracker::s_algorithm.spin[ip][iq]=spin[ip][iq];
+ }
+}
 }
 
   protected:

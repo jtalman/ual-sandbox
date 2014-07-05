@@ -138,7 +138,21 @@ void ETEAPOT_MltTurn::MltTracker::propagate(UAL::Probe& probe)
 //  ETEAPOT_MltTurn::MltTracker::s_algorithm.passExit(m_mdata, p);
     // testAperture(p);
   }
-#include"setDipoleTrackerSpin"
+  for(int ip = 0; ip < bunch.size(); ip++) {
+/*
+   ETEAPOT_MltTurn::MltTracker::s_algorithm.spin[ip][0]=s_algorithm.spin[ip][0];
+   ETEAPOT_MltTurn::MltTracker::s_algorithm.spin[ip][1]=s_algorithm.spin[ip][1];
+   ETEAPOT_MltTurn::MltTracker::s_algorithm.spin[ip][2]=s_algorithm.spin[ip][2];
+*/
+  }
+//#include"setDipoleTrackerSpin"
+for(int ip=0;ip<=20;ip++){
+ for(int iq=0;iq<=2;iq++){
+//ETEAPOT_MltTurn::DipoleTracker::spin[ip][iq]=spin[ip][iq];
+  ETEAPOT_MltTurn::DipoleTracker::s_algorithm.spin[ip][iq]=s_algorithm.spin[ip][iq];
+ }
+}
+//#include"setMarkerTrackerSpin"
 mltK++;
 
   checkAperture(bunch);

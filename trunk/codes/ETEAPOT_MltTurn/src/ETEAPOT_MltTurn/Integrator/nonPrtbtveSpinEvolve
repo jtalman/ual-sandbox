@@ -28,10 +28,6 @@ double L_y      = r_z*p_x - r_x*p_z;
 double L_z      = r_x*p_y - r_y*p_x;
 
 double LL       = sqrt(L_x*L_x + L_y*L_y + L_z*L_z);                           // L --->>> LL
-std::cout << "L_x  " << L_x << "\n";
-std::cout << "L_y  " << L_y << "\n";
-std::cout << "L_z  " << L_z << "\n";
-std::cout << "LL   " << LL  << "\n";
 
 // (292.2)
 double a21      = L_x/(-LL);                                                   // CW
@@ -45,11 +41,8 @@ double a13      = a21*a32 - a22*a31;
 
 Matrix3 R(a11,a12,a13,a21,a22,a23,a31,a32,a33);
 Matrix3 Rinv(a11,a12,a13,a21,a22,a23,a31,a32,a33);
-std::cout       << "R.getDeterminant() " << R.getDeterminant() << "\n";
-std::cout       << "R\n" << R << "\n";
 Rinv.invert();
 Matrix3 unitySB = R*Rinv;
-std::cout       << "unitySB\n" << unitySB << "\n";
 
 double mpcsqBye = mpcsq;
 double EscrBye  = Escr;
@@ -65,10 +58,6 @@ double IntGam_a = aGam*th;
 double IntGam_b = bGam*sin(Q*th)/Q;
 double IntGam_c = cGam*(1. - cos(Q*th))/Q;
 double IntGam_T = IntGam_a + IntGam_b + IntGam_c;
-std::cout       << "IntGam_a             " << IntGam_a << "\n";
-std::cout       << "IntGam_b             " << IntGam_b << "\n";
-std::cout       << "IntGam_c             " << IntGam_c << "\n";
-std::cout       << "IntGam_T             " << IntGam_T << "\n";
 
 //
 
@@ -96,20 +85,11 @@ if( IgiQ > MAX ){
 }
 */
 
-std::cout       << "IgiQUppr               " << IgiQUppr << "\n";
-std::cout       << "IgiQLowr               " << IgiQLowr << "\n";
-std::cout       << "IgiQ=IgiQUppr-IgiQLowr " << IgiQ << "\n";
-
 double g        = UAL::pg;                                                     // 5.58569472;
 
 double dAl_dThL = (g/2. - 1.)*IntGam_T;
 double dAl_dThR = -(g/2.)*IgiQ/Q;
 double dAl_dThT = dAl_dThL + dAl_dThR;                                         // (304)
-std::cout       << "Q                    " << Q        << "\n";
-std::cout       << "dAl_dThL             " << dAl_dThL << "\n";
-std::cout       << "dAl_dThR             " << dAl_dThR << "\n";
-std::cout       << "dAl_dThT             " << dAl_dThT << "\n";
 
 char dummy;
-std::cout << "Enter dummy\n";
 //std::cin >> dummy;
