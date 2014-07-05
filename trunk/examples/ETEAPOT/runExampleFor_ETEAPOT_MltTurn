@@ -1,17 +1,17 @@
 "checkout UAL, and set environmental variables
 
-cd $UAL/examples/ETEAPOT
+// cd $UAL/examples/ETEAPOT
 
-\cp BeamAttributes.hh $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.hh
-\cp BeamAttributes.cc $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.cc
+// \cp BeamAttributes.hh $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.hh
+// \cp BeamAttributes.cc $UAL/codes/PAC/src/PAC/Beam/BeamAttributes.cc
 
-\cp Shell.cc $UAL/ext/UI/src/UAL/UI/Shell.cc
+// \cp Shell.cc $UAL/ext/UI/src/UAL/UI/Shell.cc
 
-pushd $UAL
-make clean
-make >&! make.log
-"verify build"
-popd
+// pushd $UAL
+// make clean
+// make >&! make.log
+// "verify build"
+// popd
 
 "take over, and build, latest modified server side bits
        This may take the form of
