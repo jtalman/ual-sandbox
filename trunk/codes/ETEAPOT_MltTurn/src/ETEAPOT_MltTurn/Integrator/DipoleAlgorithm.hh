@@ -7,6 +7,8 @@
 #include <iostream>
 //#include <stdlib.h>
 
+//#include "SMF/PacElemMultipole.h"
+
 #include "UAL/Common/Def.hh"
 #include "ETEAPOT_MltTurn/Integrator/MltAlgorithm.hh"
 #include "ETEAPOT_MltTurn/Integrator/Matrices.hh"
@@ -31,6 +33,7 @@
     static double bend_m_sX[8192];
 
     static double spin[21][3];
+    static double dZFF;
 
 //                   GLOBALS
     double c;          // $UAL/codes/ETEAPOT/src/ETEAPOT/inverseSquareBend/MunozPavic/conservedVector/algorithm.icc +73
@@ -76,6 +79,16 @@
     }
 
     void getE(int ip,const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba);
+
+    /** Passes the element entry  */
+    void passEntry(int ip, const ETEAPOT::MltData& edata, Coordinates& p, int mltK, double m_m, const PAC::BeamAttributes cba){
+//   std::cerr << "passEntry for bend stub\n";
+    }
+
+    /** Passes the element exit  */
+    void passExit(int ip, const ETEAPOT::MltData& edata, Coordinates& p, int mltK, double m_m, const PAC::BeamAttributes cba){
+//   std::cerr << "passExit  for bend stub\n";
+    }
 
     /** Propagates a probe coordinates through the bend*/
     void passBend(int ip,const ETEAPOT::DipoleData& ddata, const ETEAPOT::MltData& mdata, Coordinates& p, Coordinates& tmp, double v0byc, const PAC::BeamAttributes cba, int bend );
