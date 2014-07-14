@@ -1,0 +1,102 @@
+_________________________________________________________________________________________
+// README NOTES
+The CODE CHECKOUT stanza has probably already been run at this point.
+The USER MANIFEST stanza can probably be viewed as more detail than readily assimilable. This "recipe", fairly typical, is somewhat unusual in that $UAL/codes/ETEAPOT is likely to be directly implicated.
+The MAIN USAGE stanza probably works fairly well "out of box".
+_________________________________________________________________________________________
+// README NOTES
+
+_________________________________________________________________________________________
+// CODE CHECKOUT
+// "checkout UAL, and set environmental variables
+
+svn checkout http://ual.googlecode.com/svn/trunk/ ual
+cd ual
+setenv UAL `pwd`
+source setup-linux-ual
+make clean
+make >&! make.log
+_________________________________________________________________________________________
+// CODE CHECKOUT
+
+_________________________________________________________________________________________
+// USER MANIFEST:
+//
+//                the following files are implicated in the output of manualTwiss:
+//
+//                       sxf file - ./data/E_BM_M1.0.RF.sxf - see below
+//
+//                       apdf file - ./data/eteapot_MltTurn.apdf - see below
+//
+//                       probe orbit file - userBunch
+//
+//                       probe spin file - spin
+//
+//                       design beam file - designBeamValues.hh
+//
+//                       design particle file - simulatedProbeValues
+//
+//                       probe beam file - extractParameters.h
+//
+// "SERVER SIDE":
+//       "take over, and build, latest modified server side bits"
+//       This may take the form of
+cd $UAL/examples/ETEAPOT
+pushd $UAL/codes/ETEAPOT
+//       allocate enough space for turns
+//       src/ETEAPOT/Integrator/MarkerTracker.hh
+//             static std::string Mark_m_elementName[1260];
+//       src/ETEAPOT/Integrator/MarkerTracker.cc
+//             std::string ETEAPOT::MarkerTracker::Mark_m_elementName[1260];
+//       src/ETEAPOT/Integrator/algorithm.icc
+//             line 181 std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
+// "SERVER SIDE":
+// "CLIENT SIDE":
+// (cat ./data/E_Kepler.sxf | grep marker | wc -l) gives 126
+// ($UAL/examples/ETEAPOT/manualTune.cc gives
+//        line 195  turns = 10;)
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+_________________________________________________________________________________________
+// USER MANIFEST
+
+_________________________________________________________________________________________
+// MAIN USAGE:
+
+\cp data/eteapotMARKER.apdf data/eteapot.apdf
+
+\cp simulatedProbeValuesManualTune simulatedProbeValues
+
+\rm E_Kepler__plus_X
+\rm E_Kepler_minus_X
+make clean
+make
+
+./manualTune ./data/E_Kepler.sxf 30 1 | grep pOf0 | grep ONE >! E_Kepler__plus_X
+./manualTune ./data/E_Kepler.sxf 30 1 | grep pOf0 | grep TWO >! E_Kepler_minus_X
+
+gnuplot
+      p 'E_Kepler__plus_X' u 2 w l, 'E_Kepler_minus_X' u 2 w l
+      q
+
+// The plot should show a spherical horizontal tune of ca 8 oscillations per 10 turns = 0.8
+
+\rm E_KeplerCYL__plus_X
+\rm E_KeplerCYL_minus_X
+make clean
+make
+
+./manualTune ./data/E_Kepler.sxf 30 0 | grep pOf0 | grep ONE >! E_KeplerCYL__plus_X
+./manualTune ./data/E_Kepler.sxf 30 0 | grep pOf0 | grep TWO >! E_KeplerCYL_minus_X
+
+gnuplot
+      p 'E_KeplerCYL__plus_X' u 2 w l, 'E_KeplerCYL_minus_X' u 2 w l
+      q
+
+// The plot should show a cylindrical horizontal tune of ca 12.5 oscillations per 10 turns = 1.25
+_________________________________________________________________________________________
+// MAIN USAGE:

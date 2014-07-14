@@ -40,10 +40,10 @@ OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 OBJS = $(OBJ_DIR)/positionPrinter.o \
 	$(OBJ_DIR)/xmgracePrint.o
 
-compile : $(OBJS) ./evolver ./transferMatrix ./determineTwiss ./transferMatrices ./orbitsWithSpin ./ETEAPOT_MltTurn
+compile : $(OBJS) ./evolver ./transferMatrix ./determineTwiss ./transferMatrices ./orbitsWithSpin ./ETEAPOT_MltTurn ./manualTune ./spinOrbits
 
 clean :
-	rm -f $(OBJS) $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss $(OBJ_DIR)/transferMatrices.o ./transferMatrices $(OBJ_DIR)/orbitsWithSpin.o ./orbitsWithSpin $(OBJ_DIR)/ETEAPOT_MltTurn.o ./ETEAPOT_MltTurn
+	rm -f $(OBJS) $(OBJ_DIR)/evolver.o ./evolver $(OBJ_DIR)/transferMatrix.o ./transferMatrix $(OBJ_DIR)/determineTwiss.o ./determineTwiss $(OBJ_DIR)/transferMatrices.o ./transferMatrices $(OBJ_DIR)/orbitsWithSpin.o ./orbitsWithSpin $(OBJ_DIR)/ETEAPOT_MltTurn.o ./ETEAPOT_MltTurn $(OBJ_DIR)/manualTune.o ./manualTune $(OBJ_DIR)/spinOrbits.o ./spinOrbits
 
 outputReady :
 	rm -rf betaFunctions* OUT* initialSpin* NikolayOut* IG* out/cpp/* out/STT/* out/TWISS/* out/VERIF/*
@@ -68,6 +68,12 @@ outputReady :
 
 ./sxfUtility: $(OBJ_DIR)/sxfUtility.o
 	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/sxfUtility.o $(LIBS)
+
+./manualTune: $(OBJ_DIR)/manualTune.o
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/manualTune.o $(OBJS) $(LIBS)
+
+./spinOrbits: $(OBJ_DIR)/spinOrbits.o
+	$(LD) -o $@  $(LDFLAGS) $(INC) $(OBJ_DIR)/spinOrbits.o $(OBJS) $(LIBS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
