@@ -81,6 +81,22 @@ double sTldPrllIn= sqrt(1.-sTldPerpIn*sTldPerpIn);
 
 #include "perturbSpinEvolve"
 
+/*
+if(ip==0){
+std::cerr << "gamma  " << gamma  << "\n";
+std::cerr << "gammaD " << gammaD << "\n";
+std::cerr << "gamma - gammaD " << gamma - gammaD << "\n";
+std::cerr << "g      " << g      << "\n";
+std::cerr << "g/2. - 1. + g/2./gammaD/gammaD      " << g/2. - 1. + g/2./gammaD/gammaD      << "\n";
+std::cerr << "EFD                                 " << EFD << "\n";
+//std::cerr << "ETEAPOT_MltTurn::DipoleTracker::s_algorithm::dZFF " << ETEAPOT_MltTurn::DipoleTracker::s_algorithm::dZFF << "\n";
+std::cerr << "dZFF " << dZFF << "\n";
+}
+*/
+
+double dAlphFF = (g/2. - 1. + g/2./gammaD/gammaD) * EFD * dZFF / 4. / mpcsqBye / Rsxf;
+delAlphT = delAlphT + dAlphFF;
+
 double sTldPerpOut= sTldPerpIn;
 double sTldPrllOut= sTldPrllIn;
 //double alphTldOut = alphTldIn + dAl_dThT;

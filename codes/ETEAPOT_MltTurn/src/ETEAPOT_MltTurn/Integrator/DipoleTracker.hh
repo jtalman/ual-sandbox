@@ -47,6 +47,8 @@ namespace ETEAPOT_MltTurn {
 
     inline ETEAPOT::MltData& getElectricData();
 
+    static double dZFF;
+
     static double m_m;
 
     static int bend;
@@ -54,6 +56,9 @@ namespace ETEAPOT_MltTurn {
     static double spin[21][3];
 
     static void initialize(){
+ 
+     ETEAPOT_MltTurn::DipoleTracker::s_algorithm.dZFF=ETEAPOT_MltTurn::DipoleTracker::dZFF;
+
      char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
      ifstream spinIFS;

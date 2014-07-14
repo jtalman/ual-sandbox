@@ -13,6 +13,9 @@ double DipoleAlgorithm<Coordinate, Coordinates>::bend_m_sX[8192];
 template<class Coordinate, class Coordinates> 
 double DipoleAlgorithm<Coordinate, Coordinates>::spin[21][3];
 
+template<class Coordinate, class Coordinates> 
+double DipoleAlgorithm<Coordinate, Coordinates>::dZFF;
+
 //class ETEAPOT_MltTurn::DipoleTracker;
 
 //double ETEAPOT_MltTurn::DipoleTracker::spin[21][3];
