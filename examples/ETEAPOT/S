@@ -1,0 +1,1 @@
+char * S[41] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY","21S","22S","23S","24S","25S","26S","27S","28S","29S","30S","31S","32S","33S","34S","35S","36S","37S","38S","39S","40S"};

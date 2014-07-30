@@ -1,0 +1,76 @@
+"checkout UAL, and set environmental variables
+       svn checkout http://ual.googlecode.com/svn/trunk/ ual
+       cd ual
+       setenv UAL `pwd`
+       source setup-linux-ual
+       make clean
+       make >&! make.log
+
+cd $UAL/examples/ETEAPOT
+
+"take over, and build, latest modified server side bits"
+       This may take the form of
+       pushd $UAL/codes/ETEAPOT_MltTurn
+       ll lib/linux
+       make clean
+       ll lib/linux
+       make
+       ll lib/linux
+       popd
+
+\cp data/eteapot_MltTurn.apdf data/eteapot.apdf
+
+// edit userBunch to set bunch size and values. Also the corresponding spin values.
+\cp UserBunchSpin1 UserBunch
+
+//  ??  --->>>   cp simulatedProbeValuesDesign                     simulatedProbeValues
+//                        40.0 meter (design) circle
+//                        Escr = +1.1710642369121E+00    (line 82 in OUT)
+//                        time deviations very close to zero
+
+\cp simulatedProbeValues_dx_0.01_dpx_0_dE_0.000041 simulatedProbeValues
+
+//                        40.01 meter off momentum circle
+//                        Escr      = +1.1711052369121E+00    (line 82 in OUT)
+//                        tofDev0   = -1.6480247998441E-04    (line 140 in OUT)
+//                        tofDev1   = +1.0789393411257E-03
+//                        tofDev2   = +3.7569437152148E-07
+//                        tofDevTOT = +9.1451255551283E-04
+
+//
+//                       sxf file - ./data/E_BM_M1.0.RF.sxf - see below
+//
+//                       apdf file - ./data/eteapot_MltTurn.apdf - see above
+//
+//                       probe orbit file - userBunch
+//
+//                       probe spin file - spin
+//
+//                       design beam file - designBeamValues.hh
+//
+//                       design particle file - simulatedProbeValues
+//
+//                       probe beam file - extractParameters.h
+//
+//                       userBunch - UserBunchSpin1 - see above
+//
+
+make outputReady
+make clean
+make
+
+./spinOrbits ./data/E_pEDM-rtr1.RF.sxf -1.2 40 0 1000 0 >! OUT
+//
+//                       takes 2 minutes or so
+//
+//                           dZFF = 0.0 is new
+//                           it is available in
+//      $UAL/codes/ETEAPOT_MltTurn/src/ETEAPOT_MltTurn/Integrator/reference.inline 
+
+// make sure NumParticles is 23 in SplitNikolayOut.pl
+perl SplitNikolayOut.pl NikolayOut >! IG
+// "look" at NikolayOut
+
+gnuplot
+//        l 'forGnuplot_Figure2'   
+        l 'gnuplot/SpinEvolve.gnuplot'

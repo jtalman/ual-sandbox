@@ -313,7 +313,8 @@ std::cerr << "nonDrifts      " << nonDrifts      << "\n";
  std::cerr << "ETEAPOT_MltTurn::DipoleTracker::m_m " << ETEAPOT_MltTurn::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT_MltTurn::MltTracker::m_m    " << ETEAPOT_MltTurn::MltTracker::m_m    << "\n";
 
-char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+#include"S"
+//char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
   #include "spin"
 
 //ETEAPOT_MltTurn::MarkerTracker::initialize();
