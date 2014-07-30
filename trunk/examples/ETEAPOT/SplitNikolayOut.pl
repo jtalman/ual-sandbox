@@ -4,14 +4,14 @@
 # then two blank lines (the required gnuplot data separator) then all turns for
 # particle 1 then two blanks, and so on. 
 
-# For bunches with other than 21 particles change "$NUMPARTICLES".
+# For bunches with other than 23 particles change "$NUMPARTICLES".
 
 # perl ~/perl/SplitNikolayOut.pl NikolayOut >! InputForGnuplot
 
 $, = ' ';		# set output field separator
 $\ = "\n";		# set output record separator
 
-$NUMPARTICLES = 21;
+$NUMPARTICLES = 23;
 while (<>) {
     chop;	# strip record separator
     $LineTemp = $_;
