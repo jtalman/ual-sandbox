@@ -11,14 +11,14 @@ template<class Coordinate, class Coordinates>
 double DipoleAlgorithm<Coordinate, Coordinates>::bend_m_sX[8192];
 
 template<class Coordinate, class Coordinates> 
-double DipoleAlgorithm<Coordinate, Coordinates>::spin[21][3];
+double DipoleAlgorithm<Coordinate, Coordinates>::spin[41][3];
 
 template<class Coordinate, class Coordinates> 
 double DipoleAlgorithm<Coordinate, Coordinates>::dZFF;
 
 //class ETEAPOT_MltTurn::DipoleTracker;
 
-//double ETEAPOT_MltTurn::DipoleTracker::spin[21][3];
+//double ETEAPOT_MltTurn::DipoleTracker::spin[41][3];
 
 template<class Coordinate, class Coordinates> 
 DipoleAlgorithm<Coordinate, Coordinates>::DipoleAlgorithm()
@@ -76,7 +76,8 @@ PAC::Position dummy;
 PAC::Position dummy2;
 double dummy_v0byc;
 getE(ip,data,edata,dummy,dummy2,dummy_v0byc,cba);
-char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+#include"S"
+//char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
 int totalSplitBends = 2*pow( 2, data.m_ir );
 //std::cout << "JDT-data.m_ir                    " << data.m_ir       << "\n";
@@ -153,7 +154,8 @@ void DipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly(
 //std::cout << "JDT - server side - File " << __FILE__ << " line " << __LINE__ << " enter template<class Coordinate, class Coordinates> void DipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly( ...\n";
 //std::cout << "TDJ - client side - File " << __FILE__ << " line " << __LINE__ << " enter method template<class Coordinate, class Coordinates> -- void ETEAPOT::DipoleAlgorithm<Coordinate, Coordinates>::traverseSplitBendExactly()\n";
 
-char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+#include"S"
+//char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
 #include "ETEAPOT/Integrator/getDesignBeam.h"
 double GeVperJ    = 1./q0/1.e9;                            // units
@@ -194,7 +196,20 @@ double th         = splitTheta;                            //    ditto
 //     p[0]      += dx85;
        p[0]      += dr;
 //std::cout << "JDT-pOf0" << ip << " " << p[0] << " " << S[ip] << "\n";
-       p[1]       = pxOutp/p0;
+
+//std::cerr << "\n";
+
+double D1          = 1. + epsilon * cos( kappa * (th - theta0) );
+double D2          = 1. + epsilon * cos( kappa * theta0 );
+double dxOutByLmbd = kappa* epsilon * sin( kappa * (th - theta0) ) / D1;
+double dxInByLmbd  = -kappa* epsilon * sin( kappa * theta0 ) / D2;
+double Del_dpdz = lambda/Rsxf*(dxOutByLmbd - dxInByLmbd);
+
+//       p[1]       = pxOutp/p0;
+double   p1_ORIG = pxOutp/p0;
+       p[1] += Del_dpdz; 
+double   p1_NEW  = p[1];
+
 //std::cout << "JDT-pOf1" << ip << " " << p[1] << " " << S[ip] << "\n";
 
        p[2]       = yOutp;                                 // approximations

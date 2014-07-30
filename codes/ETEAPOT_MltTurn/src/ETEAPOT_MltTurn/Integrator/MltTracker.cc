@@ -9,7 +9,7 @@
 ETEAPOT_MltTurn::MltAlgorithm<double, PAC::Position> ETEAPOT_MltTurn::MltTracker::s_algorithm;
 double ETEAPOT_MltTurn::MltTracker::m_m;
    int ETEAPOT_MltTurn::MltTracker::mltK=0;
-double ETEAPOT_MltTurn::MltTracker::spin[21][3];
+double ETEAPOT_MltTurn::MltTracker::spin[41][3];
 
 ETEAPOT_MltTurn::MltTracker::MltTracker()
   : ETEAPOT::BasicTracker()
@@ -146,7 +146,7 @@ void ETEAPOT_MltTurn::MltTracker::propagate(UAL::Probe& probe)
 */
   }
 //#include"setDipoleTrackerSpin"
-for(int ip=0;ip<=20;ip++){
+for(int ip=0;ip<=40;ip++){
  for(int iq=0;iq<=2;iq++){
 //ETEAPOT_MltTurn::DipoleTracker::spin[ip][iq]=spin[ip][iq];
   ETEAPOT_MltTurn::DipoleTracker::s_algorithm.spin[ip][iq]=s_algorithm.spin[ip][iq];

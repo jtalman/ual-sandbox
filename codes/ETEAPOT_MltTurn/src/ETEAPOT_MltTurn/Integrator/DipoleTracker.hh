@@ -53,13 +53,13 @@ namespace ETEAPOT_MltTurn {
 
     static int bend;
 
-    static double spin[21][3];
+    static double spin[41][3];
 
     static void initialize(){
  
      ETEAPOT_MltTurn::DipoleTracker::s_algorithm.dZFF=ETEAPOT_MltTurn::DipoleTracker::dZFF;
 
-     char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+     char * S[41] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
      ifstream spinIFS;
      spinIFS.open ("initialSpin", ifstream::in);
@@ -68,7 +68,7 @@ namespace ETEAPOT_MltTurn {
      std::string spinX,spinY,spinZ;
      int ip=-1;
      std::string Name;
-     double spin[21][3];
+     double spin[41][3];
      while(1){
       ip++;
       spinIFS >> Name >> spinX >> spinY >> spinZ;
@@ -85,7 +85,7 @@ namespace ETEAPOT_MltTurn {
 
      spinIFS.close();
 //#include"setDipoleTrackerSpin"
-for(int ip=0;ip<=20;ip++){
+for(int ip=0;ip<=40;ip++){
  for(int iq=0;iq<=2;iq++){
   ETEAPOT_MltTurn::DipoleTracker::spin[ip][iq]=spin[ip][iq];
 //((ETEAPOT_MltTurn::DipoleTracker).s_algorithm).spin[ip][iq]=spin[ip][iq];
