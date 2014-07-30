@@ -32,7 +32,7 @@
     static std::string bend_m_elementName[8192];
     static double bend_m_sX[8192];
 
-    static double spin[21][3];
+    static double spin[41][3];
     static double dZFF;
 
 //                   GLOBALS
@@ -155,6 +155,16 @@
     double htp_tilda2(const Coordinates p,double Rsxf,double r){                     // h theta prime
         double drdtheta = Rsxf*p[1];
         double value    = -kappa*kappa*(L/mass/r/r)*drdtheta;
+        return value;
+    }
+
+    double htp_tilda3(const Coordinates p,double Rsxf,double r,double vz){           // h theta prime
+        double value = -kappa*kappa*gamma*p[1]*vz;
+        return value;
+    }
+
+    double htp_tilda4(const Coordinates p,double Rsxf,double r){                    // h theta prime
+        double value = -kappa*kappa*(L/mass/r)*p[1];
         return value;
     }
 

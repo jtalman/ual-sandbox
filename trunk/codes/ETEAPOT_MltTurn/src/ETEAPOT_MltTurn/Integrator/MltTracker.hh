@@ -46,11 +46,12 @@ namespace ETEAPOT_MltTurn {
 
     static int mltK;
 
-    static double spin[21][3];
+    static double spin[41][3];
 
 static void initialize(){
  std::cerr << "enter static void initialize(){ \n";
- char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
+#include"S"
+// char * S[21] = {"ZERO  ","ONE   ","TWO   ","THREE ","FOUR  ","FIVE  ","SIX   ","SEVEN ","EIGHT ","NINE  ","TEN   ","ELEVEN","TWELVE","THIRTN","FORTN ","FIFTN ","SIKTN ","SEVNTN","EGHTN ","NNETN ","TWENTY"};
 
  ifstream spinIFS;
  spinIFS.open ("initialSpin", ifstream::in);
@@ -60,7 +61,7 @@ static void initialize(){
  std::string spinX,spinY,spinZ;
  int ip=-1;
  std::string Name;
- double spin[21][3];
+ double spin[41][3];
  while(1){
   ip++;
   spinIFS >> Name >> spinX >> spinY >> spinZ;
@@ -78,7 +79,7 @@ static void initialize(){
  spinIFS.close();
 
 //#include"setMltTrackerSpin"
-for(int ip=0;ip<=20;ip++){
+for(int ip=0;ip<=40;ip++){
  for(int iq=0;iq<=2;iq++){
 //ETEAPOT_MltTurn::MltTracker::spin[ip][iq]=spin[ip][iq];
   ETEAPOT_MltTurn::MltTracker::s_algorithm.spin[ip][iq]=spin[ip][iq];
