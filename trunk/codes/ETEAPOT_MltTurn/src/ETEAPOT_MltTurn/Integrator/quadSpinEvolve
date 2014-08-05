@@ -28,6 +28,15 @@ double g = gD;//UAL::pg;                                   // g versus GD versus
 //double gammaD = gD;
 double gamma  = (eD+pD*p[5])/mD;
 double delGam = gamma - gammaD;
+/*
+std::cerr << "eD " << eD << "\n";
+std::cerr << "pD " << pD << "\n";
+std::cerr << "mD " << mD << "\n";
+std::cerr << "p[5] " << p[5] << "\n";
+std::cerr << "gamma " << gamma << "\n";
+std::cerr << "gammaD " << gammaD << "\n";
+std::cerr << "delGam " << delGam << "\n";
+*/
 
 //double delThtTld = 1.;               //    ???
 
@@ -35,7 +44,7 @@ double delGam = gamma - gammaD;
 
 double x0 = x;
 double y0 = y;
-double phi0 = atan2(q*y0,q*x0);   // (328)
+double phi0 = 1.*atan2(q*y0,q*x0);   // (328)
 double rho0 = sqrt(x0*x0 + y0*y0);
 double delThtTld = abs(q)*rho0;               //    (325)
 double delAlphTld = (g/2. - 1. + g/2./gammaD/gammaD) * delGam * delThtTld;
@@ -47,36 +56,41 @@ double sx = spin[ip][0];
 double sy = spin[ip][1];
 double sz = spin[ip][2];
 
-double checkNorm = 1 - sx*sx - sy*sy - sz*sz;
+double checkNorm = 1. - sx*sx - sy*sy - sz*sz;
 /*
+std::cerr << "phi0 " << phi0 << "\n";
+std::cerr << "x0 " << x0 << "\n";
+std::cerr << "y0 " << y0 << "\n";
+std::cerr << "rho0 " << rho0 << "\n";
+std::cerr << "delThtTld " << delThtTld << "\n";
+std::cerr << "delAlphTld " << delAlphTld << "\n";
+
 std::cerr << "sx " << sx << "\n";
 std::cerr << "sy " << sy << "\n";
 std::cerr << "sz " << sz << "\n";
-char dummy;
-std::cin >> dummy;
 */
 
-double cosP = cos(phi0);
-double sinP = sin(phi0);
+double csP = cos(phi0);
+double snP = sin(phi0);
 
-double cosA = cos(delAlphTld/2.);
-double sinA = sin(delAlphTld/2.);
+double csDAf2 = cos(delAlphTld/2.);
+double snDAf2 = sin(delAlphTld/2.);
 
-double a11 = -cosP*cosP*sinA;
-double a12 = -cosP*sinA*sinP;
-double a13 = -cosP*cosA;
+double a11 = -(csP*csP)*snDAf2;   //   -csP*csP*snDAf2;
+double a12 = +csP*snDAf2*snP;     //   -csP*snDAf2*snP;
+double a13 = -csP*csDAf2;
 
-double a21 = -cosP*sinA*sinP;
-double a22 = -sinP*sinP*sinA;
-double a23 = -sinP*cosA;
+double a21 = +csP*snDAf2*snP;     //   -csP*snDAf2*snP;
+double a22 = -(snP*snP)*snDAf2;   //   -snP*snP*snDAf2;
+double a23 = +snP*csDAf2;         //   -snP*csDAf2;
 
-double a31 = cosP*cosA;
-double a32 = sinP*cosA;
-double a33 = -sinA;
+double a31 = +csP*csDAf2;
+double a32 = -snP*csDAf2;         //    snP*csDAf2;
+double a33 = -snDAf2;
 
 Matrix3 R( a11, a12, a13, a21, a22, a23, a31, a32, a33 );
 
-R = 2.*sinA*R;
+R = 2.*snDAf2*R;
 
 double sxdev = R[0]*sx +  R[1]*sy + R[2]*sz;
 double sydev = R[3]*sx +  R[4]*sy + R[5]*sz;
@@ -86,6 +100,8 @@ spin[ip][0] += sxdev;
 spin[ip][1] += sydev;
 spin[ip][2] += szdev;
 
-
-
-
+/*
+std::cerr << "leave quadSpinEvolve\n";
+char dummy;
+std::cin >> dummy;
+*/
