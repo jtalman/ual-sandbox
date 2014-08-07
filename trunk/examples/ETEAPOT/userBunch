@@ -1,5 +1,5 @@
-PAC::Bunch bunch(41);                               // bunch with 41 particle(s)
-PAC::Spin * spinX   = new PAC::Spin[41];            // the corresponding spins
+PAC::Bunch bunch(21);                               // bunch with 21 particle(s)
+PAC::Spin * spinX   = new PAC::Spin[21];            // the corresponding spins
 bunch.setBeamAttributes(ba);
 
 bunch[ 1].getPosition().set( +x1typ,      0,      0,      0,      0,      0 );
@@ -22,24 +22,3 @@ bunch[17].getPosition().set(0.0,   -0.0002,      0,    0, 0,       0 );
 bunch[18].getPosition().set(0.0,   -0.0004,       0,  0,   0,      0 );
 bunch[19].getPosition().set(-0.02,    0,      0,  0,   0,      0 );
 bunch[20].getPosition().set( 0.02, 0,      0, 0,      0,      0 );
-
-bunch[21].getPosition().set( +x1typ,      0,      0,      0,      0,      0 );
-bunch[22].getPosition().set( -x1typ,      0,      0,      0,      0,      0 );
-bunch[23].getPosition().set(      0, +x2typ,      0,      0,      0,      0 );
-bunch[24].getPosition().set(      0, -x2typ,      0,      0,      0,      0 );
-bunch[25].getPosition().set(      0,      0, +y1typ,      0,      0,      0 );
-bunch[26].getPosition().set(      0,      0, -y1typ,      0,      0,      0 );
-bunch[27].getPosition().set(      0,      0,      0, +y2typ,      0,      0 );
-bunch[28].getPosition().set(      0,      0,      0, -y2typ,      0,      0 );
-bunch[29].getPosition().set(      0,      0,      0,      0,      0,+deltyp );
-bunch[30].getPosition().set(      0,      0,      0,      0,      0,-deltyp );
-bunch[31].getPosition().set(      0,      0,      0,      0,   0,-0.000002 );
-bunch[32].getPosition().set(      0,      0,      0,      0, 0,-0.000003 );
-bunch[33].getPosition().set(-0.0000669,   0,      0,      0,      0,-deltyp );
-bunch[34].getPosition().set(-0.000669,    0,      0,    0, 0,    -0.00001 );
-bunch[35].getPosition().set(0.0,   -0.00005,     0,    0, 0,      0 );
-bunch[36].getPosition().set(0.0,   -0.0001,      0,    0, 0,       0 );
-bunch[37].getPosition().set(0.0,   -0.0002,      0,    0, 0,       0 );
-bunch[38].getPosition().set(0.0,   -0.0004,       0,  0,   0,      0 );
-bunch[39].getPosition().set(-0.02,    0,      0,  0,   0,      0 );
-bunch[40].getPosition().set( 0.02, 0,      0, 0,      0,      0 );
