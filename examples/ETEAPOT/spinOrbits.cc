@@ -47,15 +47,16 @@ int main(int argc,char * argv[]){
 // std::cerr << "ETEAPOT_MltTurn::DipoleTracker::m_m " << ETEAPOT_MltTurn::DipoleTracker::m_m << "\n";
 // std::cerr << "ETEAPOT_MltTurn::MltTracker::m_m    " << ETEAPOT_MltTurn::MltTracker::m_m    << "\n";
 
- if(argc!=7){
-  std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 40 0 5 0.01 (>&! OUT)\n";
+ if(argc!=8){
+  std::cout << "usage: ./determineTwiss ./data/E_BM_M1.0_sl4.sxf -1 40 0 5 0.01 10 (>&! OUT)\n";
   std::cout << "argv[0] is this executable         - ./determineTwiss               \n";
   std::cout << "argv[1] is the input sxf file      - ./data/E_BM_M1.0_sl4.sxf       \n";
   std::cout << "argv[2] is the nominal electrode m - +1                             \n";
-  std::cout << "argv[3] is the nominal electrode bend radius - 40 =.7854/.0196       \n";
+  std::cout << "argv[3] is the nominal electrode bend radius - 40 =.7854/.0196      \n";
   std::cout << "argv[4] is the initialSpin file creation type - 0                   \n";
   std::cout << "argv[5] is the number of turns - 5                                  \n";
   std::cout << "argv[6] is the fringe field length - 0.01                           \n";
+  std::cout << "argv[7] is the ""decimation factor"" - 10                           \n";
   exit(0);
  }
 
@@ -343,11 +344,14 @@ ETEAPOT_MltTurn::MltTracker::initialize();
 
  ba.setElapsedTime(0.0);
 
+int decFac=atoi(argv[7]);
 startTime = time(NULL);
  for(int iturn = 0; iturn <= (turns-1); iturn++){
 //ap -> propagate(bunch);
   for(int ip=0; ip < bunch.size(); ip++){
-   pP.write(iturn, ip, bunch);
+   if( iturn%decFac == 0 ){
+    pP.write(iturn, ip, bunch);
+   }
 // xP.write(iturn, ip, bunch);
   }
   ap -> propagate(bunch);

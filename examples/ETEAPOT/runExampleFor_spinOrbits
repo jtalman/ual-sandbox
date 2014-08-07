@@ -56,7 +56,7 @@ make outputReady
 make clean
 make
 
-./spinOrbits ./data/E_BM_M1.0.RF.sxf -1 40 0 100 0 >! OUT
+./spinOrbits ./data/E_BM_M1.0.RF.sxf -1 40 0 1000 0 10 >! OUT
 //
 //                           dZFF = 0.0 is new
 //                           it is available in
