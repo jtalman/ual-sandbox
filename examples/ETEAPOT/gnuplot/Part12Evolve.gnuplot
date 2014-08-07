@@ -31,9 +31,9 @@ set xlabel 'turn index'
 set ylabel 'S[0]'
 f(x) = a + b*x + c*x*x
 fit f(x) 'IG' i 12 u 2:10:(1.0e-6) via a,b,c
-set label 1 sprintf("a = %3.4g",a) at graph 0.05,0.12
-set label 2 sprintf("b = %3.4g",b) at graph 0.05,0.08
-set label 3 sprintf("c = %3.4g",c) at graph 0.05,0.04
+set label 1 sprintf("a = %3.4g",a) at graph -0.15,-0.08
+set label 2 sprintf("b = %3.4g",b) at graph  0.03,-0.08
+set label 3 sprintf("c = %3.4g",c) at graph  0.21,-0.08
 show label 1
 show label 2
 show label 3
