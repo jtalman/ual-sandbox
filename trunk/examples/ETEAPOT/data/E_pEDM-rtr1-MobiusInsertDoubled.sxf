@@ -1,0 +1,113 @@
+// SXF version 2.0
+ring sequence { 
+mbegin
+      marker { 
+            tag = mbegin
+            at = 0
+            l = 0.0
+  }; 
+QS1
+      quadrupole { 
+            tag = QS1
+            at = 0.075
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.233886 ] }
+  }; 
+QS2
+      quadrupole { 
+            tag = QS2
+            at = 3.375
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 -0.392981 ] }
+  }; 
+QS3
+      quadrupole { 
+            tag = QS3
+            at = 4.875
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.429361 ] }
+  }; 
+mMobiusCenter
+      marker { 
+            tag = mMobiusCenter
+            at = 4.95
+            l = 0.0
+  }; 
+QS3.2
+      quadrupole { 
+            tag = QS3
+            at = 5.025
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.429361 ] }
+  }; 
+QS2.2
+      quadrupole { 
+            tag = QS2
+            at = 6.525000000000001
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 -0.392981 ] }
+  }; 
+QS1.2
+      quadrupole { 
+            tag = QS1
+            at = 9.825000000000001
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.233886 ] }
+  }; 
+QS1.3
+      quadrupole { 
+            tag = QS1
+            at = 9.975000000000001
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.233886 ] }
+  }; 
+QS2.3
+      quadrupole { 
+            tag = QS2
+            at = 13.275000000000002
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 -0.392981 ] }
+  }; 
+QS3.3
+      quadrupole { 
+            tag = QS3
+            at = 14.775000000000002
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.429361 ] }
+  }; 
+mMobiusCenter.2
+      marker { 
+            tag = mMobiusCenter
+            at = 14.850000000000003
+            l = 0.0
+  }; 
+QS3.4
+      quadrupole { 
+            tag = QS3
+            at = 14.925000000000002
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.429361 ] }
+  }; 
+QS2.4
+      quadrupole { 
+            tag = QS2
+            at = 16.425000000000004
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 -0.392981 ] }
+  }; 
+QS1.4
+      quadrupole { 
+            tag = QS1
+            at = 19.725
+            l = 0.15
+     body = {  kl = [ 0 0 ]  kls = [ 0 0.233886 ] }
+  }; 
+mend
+      marker { 
+            tag = mend
+            at = 19.8
+            l = 0.0
+  }; 
+endsequence at = 19.8
+};
+// SXF end
