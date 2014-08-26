@@ -28,7 +28,7 @@ double rIn   = get_rFromProbe(x,y,z);         //
 double pIn;
 double bin;
 
-bin = sqrt(1-1/gamma/gamma);
+bin = sqrt(1.-1./gamma/gamma);
 pIn = gamma*m0*bin*c;
 
 pz = sqrt(pIn*pIn-px*px-py*py);
@@ -70,7 +70,8 @@ Vector3 sIn(sxIn,syIn,szIn);
 // As a check "delAlphT" will be calculated for particle "ip" 
 // using "perturbSpinIn".
  
-Vector3 sTldIn = Rinv * sIn;
+//Vector3 sTldIn = Rinv * sIn;
+  Vector3 sTldIn = R_in_INV * sIn;
 
 double sTldPerpIn= sTldIn[1];
 
@@ -94,7 +95,32 @@ std::cerr << "dZFF " << dZFF << "\n";
 }
 */
 
-double dAlphFF = (g/2. - 1. + g/2./gammaD/gammaD) * EFD * dZFF / 4. / mpcsqBye / Rsxf;
+//double dAlphFF = (g/2. - 1. + g/2./gammaD/gammaD) * EFD * dZFF / 4. / mpcsqBye / Rsxf;
+//double delGammaFF = EFD * dZFF / 2. / mpcsqBye;
+  double delGammaFF = EFD * p[0] / 2. / mpcsqBye;
+  double dAlphFac = (g/2. - 1. + g/2./gammaD/gammaD);
+  double angFF = dZFF / Rsxf;//th
+  double dAlphFF = dAlphFac * 2. * angFF * delGammaFF;
+//double dAlphFF = (g/2. - 1. + g/2./gammaD/gammaD) * 2. * delGammaFF;
+//double dAlphFF = (g/2. - 1. + g/2./gammaD/gammaD) * EFD * dZFF / mpcsqBye;
+
+/*
+std::cerr << "Rsxf " << Rsxf << "\n";
+std::cerr << "dZFF " << dZFF << "\n";
+std::cerr << "EFD " << EFD << "\n";
+std::cerr << "p[0] " << p[0] << "\n";
+std::cerr << "mpcsqBye " << mpcsqBye << "\n";
+std::cerr << "delGammaFF " << delGammaFF << "\n";
+std::cerr << "g/2. " << g/2. << "\n";
+std::cerr << "gammaD " << gammaD << "\n";
+std::cerr << "dAlphFac " << dAlphFac << "\n";
+std::cerr << "th " << th << "\n";
+std::cerr << "angFF " << angFF << "\n";
+std::cerr << "dAlphFF " << dAlphFF << "\n";
+char junk;
+std::cin >> junk;
+*/
+
 delAlphT = delAlphT + dAlphFF;
 
 double sTldPerpOut= sTldPerpIn;
@@ -108,11 +134,22 @@ double szTldOut   =  sTldPrllOut*cos(alphTldOut);
 double sTldMag    = sqrt(sxTldOut*sxTldOut + syTldOut*syTldOut + szTldOut*szTldOut);
 
 Vector3 sTldOut(sxTldOut,syTldOut,szTldOut);
-Vector3 sOut = R * sTldOut;
+
+//                         TO LINE 166 !!!
+/*
+Matrix3 R_out;
+Matrix3 R_out_INV;
+#include "nonPrtbtveSpinEvolve_OUT"
+
+  Vector3 sOut = R_out * sTldOut;
+//Vector3 sOut = R * sTldOut;
 
 spin[ip][0] = sOut[0];
 spin[ip][1] = sOut[1];
 spin[ip][2] = sOut[2];
+*/
+//                         TO LINE 166 !!!
+
 /*
 ETEAPOT_MltTurn::DipoleTracker::spin[ip][0]=spin[ip][0];
 ETEAPOT_MltTurn::DipoleTracker::spin[ip][1]=spin[ip][1];
@@ -150,3 +187,17 @@ double tofDevTOT;
 #include "ETEAPOT_MltTurn/Integrator/conservedVector.insert"
 
 #include "ETEAPOT_MltTurn/Integrator/rotate.insert"
+
+// MOVED TO POST UPDATE TO MAKE CONSISTENT WITH BEND ENTRY SEQUENCCING
+/*
+Matrix3 R_out;
+Matrix3 R_out_INV;
+#include "nonPrtbtveSpinEvolve_OUT"
+
+  Vector3 sOut = R_out * sTldOut;
+//Vector3 sOut = R * sTldOut;
+
+spin[ip][0] = sOut[0];
+spin[ip][1] = sOut[1];
+spin[ip][2] = sOut[2];
+*/
