@@ -1,3 +1,4 @@
+{
 /*
 double yp_in_m  = p[3];
 
@@ -58,60 +59,10 @@ Matrix3 Rinv(a11,a12,a13,a21,a22,a23,a31,a32,a33);
 Rinv.invert();
 Matrix3 unitySB = R*Rinv;
 
-Matrix3 R_in     = R;
-Matrix3 R_in_INV = R;
-        R_in_INV.invert();
+R_out     = R;
+R_out_INV = R;
+R_out_INV.invert();
 //
-// END SPIN R (Rin) MATRIX DETERMINATION
+// END SPIN R (Rout) MATRIX DETERMINATION
 
-//BEGIN TOF
-//
-double mpcsqBye = mpcsq;
-double EscrBye  = Escr;
-
-double trmGam   = EscrBye/mpcsqBye;                                            // (305)
-double facGam   = -Eel0*Rsxf/mpcsqBye;                                         // E0 --->>> Eel0
-
-double aGam     = trmGam + facGam*xi_co;
-double bGam     = facGam*(xi_in - xi_co);
-double cGam     = facGam*xip_in/Q;
-
-double IntGam_a = aGam*th;
-double IntGam_b = bGam*sin(Q*th)/Q;
-double IntGam_c = cGam*(1. - cos(Q*th))/Q;
-double IntGam_T = IntGam_a + IntGam_b + IntGam_c;
-
-//
-
-double r_bc     = sqrt(bGam*bGam+cGam*cGam);
-  double psi      = atan2(bGam,cGam);
-//double psi      = atan(bGam/cGam);
-
-double r_a_bc   = sqrt(aGam*aGam - r_bc*r_bc);
-
-double xQUppr   = Q*th + psi;
-double xQLowr   = 0.   + psi;
-
-double argQUppr = (aGam*tan(xQUppr/2.) + r_bc)/r_a_bc;
-double argQLowr = (aGam*tan(xQLowr/2.) + r_bc)/r_a_bc;
-
-double IgiQUppr = 2.*atan(argQUppr)/r_a_bc;
-double IgiQLowr = 2.*atan(argQLowr)/r_a_bc;
-double IgiQ     = IgiQUppr - IgiQLowr;
-
-/*
-double MAX      = Q*th/(aGam - r_bc);
-if( IgiQ > MAX ){
- std::cerr << "IgiQ > MAX " << IgiQ << " " << MAX << "\n";
- IgiQ=0.;
 }
-*/
-
-double g        = UAL::pg;                                                     // 5.58569472;
-
-double dAl_dThL = (g/2. - 1.)*IntGam_T;
-double dAl_dThR = -(g/2.)*IgiQ/Q;
-double dAl_dThT = dAl_dThL + dAl_dThR;                                         // (304)
-
-char dummy;
-//std::cin >> dummy;
