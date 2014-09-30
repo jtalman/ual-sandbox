@@ -253,6 +253,18 @@ double p4diff = p4new-p4old;
 
 //#include "conventionalOUT"
 
+//         BEGIN R (Rout) MATRIX DETERMINATION
+Matrix3 R_out;
+Matrix3 R_out_INV;
+#include "nonPrtbtveSpinEvolve_OUT"
+  
+  Vector3 sOut = R_out * sTldOut;
+//Vector3 sOut = R * sTldOut;
+
+spin[ip][0] = sOut[0];
+spin[ip][1] = sOut[1];
+spin[ip][2] = sOut[2];
+    
 /*
 if(ip==0){
 //std::cout << "SPIN - spin[" << ip << "][2] = " << spin[ip][2] << "\n";
