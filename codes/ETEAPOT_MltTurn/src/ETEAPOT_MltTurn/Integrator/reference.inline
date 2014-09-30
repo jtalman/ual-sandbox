@@ -189,7 +189,7 @@ double tofDevTOT;
 #include "ETEAPOT_MltTurn/Integrator/rotate.insert"
 
 // MOVED TO POST UPDATE TO MAKE CONSISTENT WITH BEND ENTRY SEQUENCCING
-/*
+
 Matrix3 R_out;
 Matrix3 R_out_INV;
 #include "nonPrtbtveSpinEvolve_OUT"
@@ -200,4 +200,4 @@ Matrix3 R_out_INV;
 spin[ip][0] = sOut[0];
 spin[ip][1] = sOut[1];
 spin[ip][2] = sOut[2];
-*/
+
