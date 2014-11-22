@@ -5,9 +5,9 @@ template<class Coordinate, class Coordinates>
 std::string ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_sxfFilename;
 */
 template<class Coordinate, class Coordinates> 
-std::string ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_elementName[1000];
+std::string ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_elementName[2000];
 template<class Coordinate, class Coordinates> 
-double ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_sX[1000];
+double ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::Mlt_m_sX[2000];
 
 template<class Coordinate, class Coordinates> 
 ETEAPOT::MltAlgorithm<Coordinate, Coordinates>::MltAlgorithm()
