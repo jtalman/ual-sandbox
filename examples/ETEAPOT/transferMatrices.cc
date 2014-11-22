@@ -56,7 +56,7 @@ int main(int argc, char* argv[]){
  double muX_OfS;
  double xTrace;
  double xMu;
- double psiX_OfS;
+ double psiX_OfS=0.0;
  double betaX_OfS;
 
  double a0y=atof(argv[4]);
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]){
  double muY_OfS;
  double yTrace;
  double yMu;
- double psiY_OfS;
+ double psiY_OfS=0.0;
  double betaY_OfS;
 
  double tolerance=+0.000001;
@@ -72,10 +72,12 @@ int main(int argc, char* argv[]){
  double betaY_OfSLAST=b0y;
  double psiX_OfSLAST=0.0;
  double psiY_OfSLAST=0.0;
+ int intTuneX_LAST=0;
+ int intTuneY_LAST=0;
 
+#include "probeDataForTwiss"
 // i=atoi(argv[2]);
  for(int i=0;i<sElems;i++){
-#include "probeDataForTwiss"
 
   // #include "col0"
   M[i][0][0]=(p1[i][0]-p2[i][0])/2/x1typ;
@@ -125,9 +127,10 @@ int main(int argc, char* argv[]){
   M[i][4][5]=(p9[i][4]-p10[i][4])/2/deltyp;
   M[i][5][5]=(p9[i][5]-p10[i][5])/2/deltyp;
 
-  psiX_OfS=atan2( M[i][0][1], b0x*M[i][0][0]-a0x*M[i][0][1] );
+  psiX_OfS=2*PI*intTuneX_LAST + atan2( M[i][0][1], b0x*M[i][0][0]-a0x*M[i][0][1] );
   if( psiX_OfS < psiX_OfSLAST ){ 
-    psiX_OfS += 2*PI;
+    intTuneX_LAST++;
+    psiX_OfS+=2*PI;
   }
   psiX_OfSLAST = psiX_OfS;
 
@@ -140,9 +143,10 @@ int main(int argc, char* argv[]){
   }
   betaX_OfSLAST = betaX_OfS;
 
-  psiY_OfS=atan2( M[i][2][3],b0y*M[i][2][2]-a0y*M[i][2][3] );
+  psiY_OfS=2*PI*intTuneY_LAST + atan2( M[i][2][3],b0y*M[i][2][2]-a0y*M[i][2][3] );
   if( psiY_OfS < psiY_OfSLAST ){ 
-    psiY_OfS += 2*PI; 
+    intTuneY_LAST++;
+    psiY_OfS+=2*PI;
   }
   psiY_OfSLAST = psiY_OfS;
 
@@ -155,7 +159,7 @@ int main(int argc, char* argv[]){
   } 
   betaY_OfSLAST = betaY_OfS;
 
-  cout << setw(12) << name[i] << " " << s[i] << " " << betaX_OfS << " " << betaY_OfS << "\n";
+  cout << setw(12) << name[i] << " " << s[i] << " " << betaX_OfSLAST << " " << betaY_OfSLAST << " " << psiX_OfSLAST << " " <<  psiY_OfSLAST << "\n";
  }
  return 0;
 }
