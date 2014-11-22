@@ -1,0 +1,86 @@
+"checkout UAL, and set environmental variables
+       svn checkout http://ual.googlecode.com/svn/trunk/ ual 
+       cd ual 
+       setenv UAL `pwd`
+       source setup-linux-ual
+       make clean
+       make >&! make.log"
+
+cd $UAL/examples/ETEAPOT
+
+"take over, and build, latest modified server side bits
+       This may take the form of
+       pushd $UAL/codes/ETEAPOT_MltTurn
+       make clean
+       make
+       popd"
+
+//                       twiss file - probeDataForTwiss
+//                          set TINY
+//
+//                       apdf file - ./data/eteapotMARKER.apdf - see below
+//
+//                       sxf file - ./data/E_Protonium.sxf - see below
+//
+//                       standard probe orbit file - trtrin
+//
+//                       design beam file - designBeamValues.hh
+//
+//                       probe beam file - extractParameters.h
+
+\cp data/eteapotMARKER.apdf data/eteapot.apdf
+
+make outputReady
+make clean
+make
+
+./determineTwiss ./data/E_AGS_AnEDM_SepQuads_sxf1.sxf 1 4.572 > ! OUT
+
+______________________________________________________________________________________
+teapot->size() 2338
+nonDrifts      2738
+ETEAPOT::DipoleTracker::m_m 1
+ETEAPOT::MltTracker::m_m    1
+mbegin, ETEAPOT::MarkerTracker::Mark_m_elementName[mark] == 0 
+JDT: betaX  1.70966
+JDT: cosMuX 0.852458
+JDT: sinMuX 0.522795
+JDT: alphaX 1.55015e-10
+JDT:    MuX 0.550127
+JDT:    QX  0.0875554
+
+JDT: betaY  0.771287
+JDT: cosMuY 0.368765
+JDT: sinMuY 0.929523
+JDT: alphaY -7.05837e-12
+JDT:    MuY 1.19312
+JDT:    QY  0.18989
+______________________________________________________________________________________
+
+// note that MuX, QX, MuY, QY are typically wrong due to aliasing error 
+// but a final line is output for cutting and pasting as new executable
+
+./transferMatrices 1 1.55015e-10 1.70966 -7.05837e-12 0.771287 2738>! betaFunctions
+______________________________________________________________________________________
+
+gnuplot
+   p 'out/TWISS/StndrdPrtcl0' u 2:3 w l
+
+   p 'out/TWISS/StndrdPrtcl1' u 2:3 w l,'out/TWISS/StndrdPrtcl2' u 2:3 w l
+   p 'out/TWISS/StndrdPrtcl1' u 2:4 w l,'out/TWISS/StndrdPrtcl2' u 2:4 w l
+
+   p 'out/TWISS/StndrdPrtcl3' u 2:3 w l,'out/TWISS/StndrdPrtcl4' u 2:3 w l
+   p 'out/TWISS/StndrdPrtcl3' u 2:4 w l,'out/TWISS/StndrdPrtcl4' u 2:4 w l
+
+   p 'out/TWISS/StndrdPrtcl5' u 2:5 w l,'out/TWISS/StndrdPrtcl6' u 2:5 w l
+      spherical: ok
+      cylindrical: X
+   p 'out/TWISS/StndrdPrtcl5' u 2:6 w l,'out/TWISS/StndrdPrtcl6' u 2:6 w l
+
+   p 'out/TWISS/StndrdPrtcl7' u 2:5 w l,'out/TWISS/StndrdPrtcl8' u 2:5 w l
+   p 'out/TWISS/StndrdPrtcl7' u 2:6 w l,'out/TWISS/StndrdPrtcl8' u 2:6 w l
+
+   p 'betaFunctions' u 2:3 w l t 'X Beta'
+   p 'betaFunctions' u 2:4 w l t 'Y Beta'
+   p 'betaFunctions' u 2:5 w l t 'X Phase'
+   p 'betaFunctions' u 2:6 w l t 'Y Phase'
