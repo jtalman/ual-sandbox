@@ -41,8 +41,8 @@ namespace ETEAPOT {
 // void applyMltKick(const MltData& edata, double rkicks, Coordinates& p);
 
 //  static std::string Mlt_m_sxfFilename;
-    static std::string Mlt_m_elementName[1000];
-    static double Mlt_m_sX[1000];
+    static std::string Mlt_m_elementName[2000];
+    static double Mlt_m_sX[2000];
 
   protected:
    
