@@ -1,0 +1,75 @@
+// bend file
+bend()
+  : UAL::PropagatorNode()
+{
+}
+
+bend(const ETEAPOT2::bend& dt) 
+  : UAL::PropagatorNode(dt)
+{
+  m_data = dt.m_data;
+  m_edata = dt.m_edata;
+
+}
+
+~bend()
+{
+}
+
+bend* clone()
+{
+  return new bend(*this);
+}
+
+void setLatticeElements(const UAL::AcceleratorNode& sequence, 
+                                               int is0, 
+                                               int is1,
+                                               const UAL::AttributeSet& attSet)
+{
+std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT2::bend::setLatticeElements(const UAL::AcceleratorNode& sequence,int is0,int is1,const UAL::AttributeSet& attSet)\n"; 
+
+  if(is0 < sequence.getNodeCount()) m_frontNode = 
+                                     *((PacLattElement*) sequence.getNodeAt(is0));
+  if(is1 < sequence.getNodeCount()) m_backNode  =   
+                                     *((PacLattElement*) sequence.getNodeAt(is1));
+   m_i0 = is0;
+   m_i1 = is1;
+
+// const PacLattice& lattice     = (PacLattice&) sequence;
+
+// UAL::PropagatorNode::setLatticeElements(sequence, is0, is1, attSet);  
+   const PacLattice& lattice     = (PacLattice&) sequence;
+   setLatticeElement(lattice[is0]);
+
+   m_l = (lattice[is0]).getLength();
+   m_n = (lattice[is0]).getLength();
+
+   m_s = lattice[is0].getPosition();
+   m_name=lattice[is0].getDesignName();
+}
+
+void setLatticeElement(const PacLattElement& e)
+{
+std::cout << "TDJ - server side - File " << __FILE__ << " line " << __LINE__ << " enter method void ETEAPOT2::bend::setLatticeElement(const PacLattElement& e)\n";
+std::cout << "e.getName() " << e.getName() << " e.getPosition() " << e.getPosition() << "\n";
+  m_data.m_m=ETEAPOT2::bend::m_m;
+  m_data.setLatticeElement(e);
+  m_edata.setLatticeElement(e);
+}
+
+const char*  getType()
+{
+  return "ETEAPOT2::bend";
+}
+
+bool isSequence() { return false; }
+
+UAL::AcceleratorNode& getFrontAcceleratorNode()
+{
+  return m_frontNode;
+}
+
+UAL::AcceleratorNode& getBackAcceleratorNode()
+{
+  return m_backNode;
+}

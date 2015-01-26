@@ -1,0 +1,26 @@
+void passDrift(double D, double T){
+ PAC::Position& p = *pacPmy;
+ xinput           = p[0];
+ yinput           = p[2];
+
+ e                = eD + pDc * p[5];
+ gama             = e / mDcc;
+ vlcy             = get_vlcyMKS(p, gama);
+ vT               = sqrt(vlcy[0]*vlcy[0] + vlcy[1]*vlcy[1]);
+
+ ang              = atan( vT/vlcy[2] );
+ dst              = D/cos(ang);
+
+ spd              = vlcy.length();
+ tof              = dst/spd;
+
+ x                = vlcy[0]*tof;
+ y                = vlcy[1]*tof;
+
+ xoutput          = x + xinput;
+ youtput          = y + yinput;
+
+ p[0]             = xoutput;
+ p[2]             = youtput;
+ p[4]            -= UAL::clight*(T-tof);
+}

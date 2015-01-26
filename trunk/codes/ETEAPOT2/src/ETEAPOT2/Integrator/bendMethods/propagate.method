@@ -1,0 +1,47 @@
+// bend file
+void propagate(UAL::Probe& probe)                                    // Bend method
+{
+ tofD               = m_l/vD;
+ thetaD             = m_data.m_angle;
+ Rsxf               = m_data.m_l/m_data.m_angle;                     // sxf file determines radius
+ rD                 = Rsxf;                                          // design radius is new, in principle
+ updateDesignParameters();                                           // pDc, gammaD, ... might change
+                                                                     // they don't here. rD on command line?
+ PAC::Bunch& bunch  = static_cast<PAC::Bunch&>(probe);
+ int totalSplitBends= 2*pow( 2, m_data.m_ir );
+ double m           = m_data.m_m;
+ double theta       = 2.*m_data.m_angle/totalSplitBends;
+ double invFclLngtX = (m-1.)*theta/rD;
+ th=theta/2.;                                                        // angle for exact beam advance
+ for(int ip = 1; ip < bunch.size(); ip++) {   // BUNCH LOOP
+  PAC::Position& p  = bunch[ip].getPosition();
+  pacPmy            = &p;
+  entryFF(ip);                                                       // "pure FF" (stub)
+  refractIn(ip);                                                     // refract, alternate Lxc, Lyc, Lzc, Lc, no gamma kick
+  updateMunoz();                                                     // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+  for(int i = 0; i < totalSplitBends/2; i++){       // SPLIT LOOP
+// update_xi();                                                      // xi0, xip0, xi_co
+   traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   perSplitBendOutput(ip);
+   initSpin(ip);
+   updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+   updateSpin(ip);                                                   // sTldIn, delGam, ... xi disabled
+
+   p[1]            +=  p[0]*invFclLngtX;                             // uses real m to correct for m=1
+   p[3]            -=  p[2]*invFclLngtX;                             // uses real m to correct for m=1
+
+   updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+// update_xi();
+   traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   perSplitBendOutput(ip);
+   initSpin(ip);
+   updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+   updateSpin(ip);
+  }                                                 // SPLIT LOOP - END
+  refractOut(ip);                                                    // (stub)
+  exitFF(ip);                                                        // (stub)
+ }                                            // BUNCH LOOP - END
+ bnd++;
+ tofDT             += tofD;
+ thetaDT           += thetaD;
+}

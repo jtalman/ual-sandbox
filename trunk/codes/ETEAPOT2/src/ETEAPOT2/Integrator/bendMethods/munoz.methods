@@ -1,0 +1,46 @@
+// bend file
+inline ETEAPOT::DipoleData& getDipoleData(){return m_data;}
+inline ETEAPOT::MltData& getElectricData(){return m_edata;}
+
+    double PE(double rD,double r){
+        double value = -kD*(1./r-1./rD);
+        return value;
+    }
+
+    double ht_tilda(double r){                       // h theta - Munoz equation (15)
+        double fac   = kD/Lc/mDcc;
+        double value = Lc/mDcc/r-fac*(Escr+kD/r);
+        return value;
+    }
+
+    double htp_tilda2(const PAC::Position p,double rD,double r){                     // h theta prime
+        double drdtheta = rD*p[1];
+        double value    = -kappa*kappa*(Lc/mDcc/r/r)*drdtheta;
+        return value;
+    }
+
+    double hr_tilda(double theta){
+        double value = C_tilda*sin( kappa*(theta-theta0) )/kappa;
+        return value;
+    }
+
+    double _ht_tilda(double theta){
+        double value = C_tilda*cos( kappa*(theta-theta0) );
+        return value;
+    }
+
+    double _theta0(){
+        double value = atan2( h0p_tilda/kappa,h0_tilda )/kappa;
+        return value;
+    }
+
+    double get_rFromProbe(double x,double y,double z){
+       return sqrt(x*x+y*y+z*z);
+    }
+
+    double get_rFromEllipse(double theta){
+        double fac = Lc*mDcc/kD/Escr;
+        return lambda/( 1.+fac*C_tilda*cos( kappa*(theta-theta0) ) );
+    }
+
+//#include "ETEAPOT2/Integrator/bendMethods/timeViaExpansion"

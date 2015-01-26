@@ -1,0 +1,8 @@
+// bend file
+void initSpin(int ip){
+ PAC::Position& p = *pacPmy;
+ R_in_INV         = getRinverse();
+ sIn[0]           = __SPIN__[ip][0];
+ sIn[1]           = __SPIN__[ip][1];
+ sIn[2]           = __SPIN__[ip][2];
+}

@@ -1,0 +1,60 @@
+// sext file
+sext()
+  : ETEAPOT::BasicTracker()
+{
+//initialize();
+  m_ir = 0.0;
+}
+
+sext(const ETEAPOT2::sext& mt) 
+  : ETEAPOT::BasicTracker(mt)
+{
+  copy(mt);
+}
+
+~sext()
+{
+}
+
+UAL::PropagatorNode* clone()
+{
+  return new ETEAPOT2::sext(*this);
+}
+
+void setLatticeElements(const UAL::AcceleratorNode& sequence, 
+                                            int is0, 
+                                            int is1,
+                                            const UAL::AttributeSet& attSet)
+{
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+   const PacLattice& lattice     = (PacLattice&) sequence;
+   setLatticeElement(lattice[is0]);
+}
+
+void setLatticeElement(const PacLattElement& e)
+{
+  // length
+  // m_l = e.getLength();
+
+  // ir
+  m_ir = e.getN();
+
+if(!m_ir){
+ std::cerr << "enter sext::void setLatticeElement(const PacLattElement& e) - m_ir = e.getN()- " << m_ir << "\n";
+}
+else{
+ std::cerr << "Complex Elements not allowed!!!\n";
+ exit(1);
+}
+
+  m_mdata.setLatticeElement(e);
+
+}
+
+void copy(const ETEAPOT2::sext& mt) 
+{
+  // m_l   = mt.m_l;
+  m_ir  = mt.m_ir;
+
+  m_mdata = mt.m_mdata;
+}

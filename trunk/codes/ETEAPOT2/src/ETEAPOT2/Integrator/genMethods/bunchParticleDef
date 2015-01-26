@@ -1,0 +1,60 @@
+#ifndef ETEAPOT2_BUNCH_PARTICLE_DEF
+#define ETEAPOT2_BUNCH_PARTICLE_DEF
+
+ double gama;
+ double tof;
+ Vector3 vlcy;
+ double vT;
+ double V;
+ double spd;
+ double trnsDst;
+ double ang;
+ double x;
+ double y;
+ double z;
+ double dst;
+
+ double e;                         // e is "energy" of current bunch loop particle.
+                                   // Somewhat confusingly, e can be fundamental charge.
+                                   // Furthermore, energy units are in terms of this charge.
+                                   // e [GV]
+                                   // Thus, somewhat whimsically, "e" could be named "eByBe".
+                                   // The 2nd "B" is short for billion.
+/*
+ double b;
+ double xR;
+ double yR;
+ double zR;
+ double pxc;
+ double pyc;
+ double pzc;
+ double pc;
+ double Lxc;
+ double Lyc;
+ double Lzc;
+ double Lc;
+*/
+
+ double xinput;
+ double yinput;
+ 
+ double xoutput;
+ double youtput;
+
+ PAC::Position* pacPmy; 
+// PAC::Position* pPtr; 
+
+ double rIn;
+ double Escr;
+ double xi_co;
+// double xi_in;
+// double xip_in;
+ double xi0;
+ double xip0;
+ double Q;
+// double Ly_in_p;
+// double pcsq_in_m;
+// double pcsq_in_p;
+// double pczsq_in_p;
+
+#endif

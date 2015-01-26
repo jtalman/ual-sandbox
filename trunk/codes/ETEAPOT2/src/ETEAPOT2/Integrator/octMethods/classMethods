@@ -1,0 +1,60 @@
+// oct file
+oct()
+  : ETEAPOT::BasicTracker()
+{
+//initialize();
+  m_ir = 0.0;
+}
+
+oct(const ETEAPOT2::oct& mt) 
+  : ETEAPOT::BasicTracker(mt)
+{
+  copy(mt);
+}
+
+~oct()
+{
+}
+
+UAL::PropagatorNode* clone()
+{
+  return new ETEAPOT2::oct(*this);
+}
+
+void setLatticeElements(const UAL::AcceleratorNode& sequence, 
+                                            int is0, 
+                                            int is1,
+                                            const UAL::AttributeSet& attSet)
+{
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+   const PacLattice& lattice     = (PacLattice&) sequence;
+   setLatticeElement(lattice[is0]);
+}
+
+void setLatticeElement(const PacLattElement& e)
+{
+  // length
+  // m_l = e.getLength();
+
+  // ir
+  m_ir = e.getN();
+
+if(!m_ir){
+ std::cerr << "enter oct::void setLatticeElement(const PacLattElement& e) - m_ir = e.getN()- " << m_ir << "\n";
+}
+else{
+ std::cerr << "Complex Elements not allowed!!!\n";
+ exit(1);
+}
+
+  m_mdata.setLatticeElement(e);
+
+}
+
+void copy(const ETEAPOT2::oct& mt) 
+{
+  // m_l   = mt.m_l;
+  m_ir  = mt.m_ir;
+
+  m_mdata = mt.m_mdata;
+}

@@ -1,0 +1,83 @@
+// rfCavity file
+rfCavity()
+  : ETEAPOT::BasicTracker()
+{
+  init();
+}
+
+rfCavity(const ETEAPOT2::rfCavity& rft)
+  : ETEAPOT::BasicTracker(rft)
+{
+  copy(rft);
+}
+
+~rfCavity()
+{
+}
+
+void setRF(double V, double h, double lag)
+{
+  m_V   = V;
+  m_h   = h;
+  m_lag = lag;
+}
+
+UAL::PropagatorNode* clone()
+{
+  return new ETEAPOT2::rfCavity(*this);
+}
+
+void setLatticeElements(const UAL::AcceleratorNode& sequence,
+                                                  int is0,
+                                                  int is1,
+                                                  const UAL::AttributeSet& attSet)
+{
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+
+   const PacLattice& lattice     = (PacLattice&) sequence;
+   setLatticeElement(lattice[is0]);
+}
+
+void setLatticeElement(const PacLattElement& e)
+{
+  init();
+
+  m_l = e.getLength();
+
+      m_V = 0.0;
+      m_lag = 0.0;
+      m_h = 0.0;
+
+  PacElemAttributes* attributes = e.getBody();
+
+  if(attributes == 0) {
+    return;
+  }
+
+  PacElemAttributes::iterator it = attributes->find(PAC_RFCAVITY);
+  if(it != attributes->end()){
+    PacElemRfCavity* rfSet = (PacElemRfCavity*) &(*it);
+    if(rfSet->order() >= 0){
+      m_V = rfSet->volt(0);
+      m_lag = rfSet->lag(0);
+      m_h = rfSet->harmon(0);
+    }
+  }
+  // cerr << "V = " << m_V << " lag = " << m_lag << " harmon = " << m_h << "\n";
+}
+
+void init()
+{
+  m_l   = 0.0;
+  m_V   = 0.0;
+  m_lag = 0.0;
+  m_h   = 0.0;
+}
+
+void copy(const ETEAPOT2::rfCavity& rft)
+{
+  m_l   = rft.m_l;
+  m_V   = rft.m_V;
+  m_lag = rft.m_lag;
+  m_h   = rft.m_h;
+}

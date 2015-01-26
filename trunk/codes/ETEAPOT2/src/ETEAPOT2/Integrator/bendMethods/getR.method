@@ -1,0 +1,30 @@
+// bend file
+Matrix3 getR(){
+// (292.3)
+/*
+double a31 = pxc/pc;
+double a32 = pyc/pc;
+double a33 = pzc/pc;
+*/
+Vector3 pHat(pxc/pc,pyc/pc,pzc/pc);
+
+// (292.2)
+/*
+double a21 = Lxc/(-Lc);            // CW
+double a22 = Lyc/(-Lc);            // NOT CCW!
+double a23 = Lzc/(-Lc);            // CCW has to be addressed
+*/
+Vector3 nHat(Lxc/(-Lc),Lyc/(-Lc),Lzc/(-Lc));
+
+// (292.1)
+/*
+double a11 = a22*a33 - a23*a32;
+double a12 = a23*a31 - a21*a33;
+double a13 = a21*a32 - a22*a31;
+*/
+Vector3 rHat = nHat.cross(pHat);
+
+  return Matrix3(rHat,nHat,pHat);
+//return Matrix3(rHat[0],rHat[1],rHat[2],LHat[0],LHat[1],LHat[2],pHat[0],pHat[1],pHat[2]);
+//return Matrix3(a11,a12,a13,a21,a22,a23,a31,a32,a33);
+}
