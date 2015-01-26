@@ -1,0 +1,81 @@
+The structure of this directory is designed to be concise/uncluttered, though it still has 20 files.
+
+Class TrackerFactory is traditional C++ with an interface file
+      TrackerFactory.hh
+that declares the class methods. Implementation file
+      TrackerFactory.cc
+has the actual code for each method listed in the interface file.
+
+This class is "the bridge" to the very powerful UAL architecture. These 2 files may serve as orientation.
+
+The rest of the classes
+      bend.cc
+      drift.cc
+      marker.cc
+      oct.cc
+      quad.cc
+      rfCavity.cc
+      sext.cc
+have a non traditional format where the cc file effectively declares the methods via the
+      #include"..."
+mechanism. Class member variables are also "# included" in files this way. These class files are also intended to be concise.
+
+Perhaps these files should be suffixed ".hh", but the current UAL build process is based on ".cc". See file
+      $UAL/codes/ETEAPOT2/src/Makefile.config
+
+File
+      $UAL/codes/ETEAPOT2/src/ETEAPOT2/Integrator/Objects
+specifies the cc files to be built
+      OBJS +=	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/bend.o \
+	        $(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/drift.o \
+                ...
+                $(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/TrackerFactory.o
+
+Each class has it's own directory
+      bendMethods
+      driftMethods
+      markerMethods
+      octMethods
+      quadMethods
+      rfCavityMethods
+      sextMethods
+where each of the # included method implementation file sits (also the member variable files).
+
+Also somewhat unusually, the bend "tracker class" inherits from UAL directly
+      namespace ETEAPOT2 {
+            class bend : public UAL::PropagatorNode
+                  ...
+
+More typically, tracker classes inherit from a local class
+      namespace ETEAPOT_MltTurn {
+            class DipoleTracker : public ETEAPOT::BasicTracker
+which in turn inherits from a local class
+      namespace ETEAPOT {
+            class BasicTracker : public ETEAPOT::BasicPropagator {
+which finally "connects" to UAL
+      namespace ETEAPOT {
+            class BasicPropagator : public UAL::PropagatorNode {
+
+____________________________________________________________________________________________________
+
+TBD
+
+xi disbaled
+      // update_xi()
+in files
+      propagate.method
+      updateSpin.method
+
+File
+      updateDesignParameters.method
+is inefficient.
+
+Method
+      updateMunoz()
+is called 3 times in file
+      propagate.method
+
+File
+      updateLhardEdge
+is disabled in method
+      refractIn.method 

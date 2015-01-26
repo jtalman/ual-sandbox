@@ -1,0 +1,8 @@
+// bend file
+void perSplitBendOutput(int ip){
+ PAC::Position& p = *pacPmy;
+ JDTout.open ("out/JDTout", fstream::out | fstream::app);
+ JDTout.precision(15);
+ JDTout << setw(3) << ip << " " << setw(3) << bnd << " " << setw(17) << 0 << " " << setw(17) << p[0] <<     " " << setw(17) << p[1] << " " << setw(17) << p[2] << " " << setw(17) << p[3] << " " << setw(17) << p[4] << " " << setw(17) << p[5] << " " << setw(17) << __SPIN__[ip][0] << " " << setw(17) << __SPIN__[ip][1] << "     " << setw(17) << __SPIN__[ip][2] << "\n";
+ JDTout.close();
+}

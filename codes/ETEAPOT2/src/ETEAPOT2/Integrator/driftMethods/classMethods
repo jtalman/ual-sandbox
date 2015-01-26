@@ -1,0 +1,27 @@
+// drift file
+drift()
+  : ETEAPOT::BasicTracker()
+{
+}
+
+drift(const ETEAPOT2::drift& dt) 
+  : ETEAPOT::BasicTracker(dt)
+{
+}
+
+~drift()
+{
+}
+
+UAL::PropagatorNode* clone()
+{
+  return new ETEAPOT2::drift(*this);
+}
+
+void setLatticeElements(const UAL::AcceleratorNode& sequence, 
+                                              int is0, 
+                                              int is1,
+                                              const UAL::AttributeSet& attSet)
+{
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+}

@@ -1,0 +1,31 @@
+#ifndef ETEAPOT2_DESIGN_EXTERN
+#define ETEAPOT2_DESIGN_EXTERN
+
+ extern double mDcc;                 // physics
+ extern double qD;
+
+ extern double betaD;                // kinematics
+ extern double vD;
+ extern double gammaD;
+
+ extern double eD;                   // force
+ extern double pDc;
+
+ extern double fD;                   // longitudinal - local
+ extern double tofD;
+
+ extern double thetaD;
+ extern double th;
+
+ extern double tofDT;                // longitudinal - global
+ extern double thetaDT;
+
+ extern double Rsxf;
+ extern double rD;
+// extern double LD;
+ extern double LDc;
+ extern double kD;
+ extern double EscrD;
+ extern double ED;
+
+#endif

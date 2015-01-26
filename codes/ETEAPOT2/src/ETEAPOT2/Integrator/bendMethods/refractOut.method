@@ -1,0 +1,38 @@
+// bend file
+void refractOut(int ip){                                      // Bend method
+                                                              // Pure "0 transverse force" kinematics
+                                                              // With 1 call to Munoz PE
+                                                              // (doesn't use xi for V)
+ PAC::Position& p  = *pacPmy;
+ e                 = eD + pDc * p[5];
+ double pcsq_out_m  = (e + mDcc) * (e - mDcc);
+ double pczsq_out_m = pcsq_out_m/( 1. + p[1]*p[1] + p[3]*p[3] );
+ double pcz_out_m   = sqrt(pczsq_out_m);
+ double pcx_out_m   = p[1] * sqrt(pczsq_out_m);                   // Implicit Approximation:  rOut - rD is the same as x[0]
+ double pcy_out_m   = p[3] * sqrt(pczsq_out_m);
+
+ double x_out       = p[0];
+ double xp_out_m    = p[1];
+ double rOut        = get_rFromProbe(rD+p[0],p[2],0);      // p[0]+rD;                                   // Approximation
+
+//double V_out_p     = ED * rD * x_out/(rD + x_out);               // xi
+  double eVafti     = PE(rD,rOut);
+//std::cerr << "V_out_p " << V_out_p << " eVafti " << eVafti << "\n";
+
+  double pcsq_out_p  = (e - eVafti) * (e - eVafti) - mDcc * mDcc;
+//double pcsq_out_p  = (e - V_out_p) * (e - V_out_p) - mDcc * mDcc;
+ double pczsq_out_p = pcsq_out_p - pcx_out_m * pcx_out_m;
+ double x_out_p     = x_out;
+ double xp_out_p    = pcx_out_m/sqrt(pczsq_out_p);
+// p[1]              = xp_out_p;
+ double pcx_out_p   = p[1] * sqrt(pczsq_out_p);
+
+ double y_out       = p[2];
+ double yp_out_m    = p[3];
+ double y_out_p     = y_out;
+ double yp_out_p    = pcy_out_m/sqrt(pczsq_out_p);
+// p[3]              = yp_out_p;
+ double pcy_out_p   = p[3] * sqrt(pczsq_out_p);
+
+//#include"ETEAPOT2/Integrator/bendMethods/updateLhardEdge"
+}

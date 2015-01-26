@@ -1,0 +1,8 @@
+OBJS +=	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/bend.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/drift.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/marker.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/oct.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/quad.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/rfCavity.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/sext.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/TrackerFactory.o

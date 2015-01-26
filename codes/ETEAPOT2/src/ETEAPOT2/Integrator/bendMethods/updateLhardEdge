@@ -1,0 +1,21 @@
+ double Lyc_in_m   = -(rD+x_in)*pcz_in_m;                       // z = 0!
+ double Lycsq_in_m = Lyc_in_m*Lyc_in_m;
+ double Lycsq_in_p = Lycsq_in_m*pczsq_in_p/pczsq_in_m;
+ double Lyc_in_p   = -sqrt(Lycsq_in_p);
+ Lyc               = Lyc_in_p;
+
+ double Lxc_in_m   = y_in*pcz_in_m;                             // z = 0!
+ double Lxcsq_in_m = Lxc_in_m*Lxc_in_m;
+ double Lxcsq_in_p = Lxcsq_in_m*pczsq_in_p/pczsq_in_m;
+ double Lxc_in_p   = -sqrt(Lxcsq_in_p);
+ Lxc               = Lxc_in_p;
+
+ Lzc               = (rD+x_in)*pcy_in_p - y_in*pcx_in_p;
+
+ Lc                = sqrt(Lxc*Lxc+Lyc*Lyc+Lzc*Lzc);
+/*
+std::cerr << __FILE__ << " Lxc " << Lxc << "\n";
+std::cerr << __FILE__ << " Lyc " << Lyc << "\n";
+std::cerr << __FILE__ << " Lzc " << Lzc << "\n";
+std::cerr << __FILE__ << " Lc  " << Lc  << "\n";
+*/

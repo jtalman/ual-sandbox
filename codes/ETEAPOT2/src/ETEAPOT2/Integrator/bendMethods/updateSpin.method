@@ -1,0 +1,50 @@
+// bend file
+void updateSpin(int ip){
+ PAC::Position& p   = *pacPmy;
+ Vector3 sTldIn     = R_in_INV*sIn;
+ double sTldPerpIn  = sTldIn[1];
+ double alphTldIn   = atan2(-sTldIn[0],sTldIn[2]);
+ double sTldPrllIn  = sqrt(1. - sTldPerpIn*sTldPerpIn);
+ double g           = UAL::pg;                        // 5.58569472;
+ double delGam      = gama - gammaD;
+//double denFac     = gammaD*mDcc;
+
+ double delAlph1    = +(g/2. - 1.)*delGam*th;
+ double delAlph2    = g/2./gammaD*delGam/gammaD*th;
+//double delAlph3   = g/2./gammaD*ED*rD/denFac*(th - sin(Q*th)/Q)*xi0;
+//double delAlph4   = -g/2./gammaD*ED*rD/denFac*(1. - cos(Q*th))/Q/Q*xip0;
+
+  double delAlphT   = delAlph1+delAlph2;
+//double delAlphT   = delAlph1+delAlph2+delAlph3+delAlph4;
+
+/*
+double toler        = 0.001;
+if( abs( dAl_dThT - delAlphT ) > toler ){
+ std::cout << "excessive disagreement between analytic and perturbative: " << dAl_dThT << " " << delAlphT << "\n";
+}
+*/
+
+ double delGammaFF  = ED*p[0]/2./mDcc;
+ double dAlphFac    = g/2. - 1. + g/2./gammaD/gammaD;
+ double angFF       = dZFF/rD;
+ double dAlphFF     = dAlphFac*2.*angFF*delGammaFF;
+
+ delAlphT           = delAlphT + dAlphFF;
+
+ double sTldPerpOut = sTldPerpIn;
+ double sTldPrllOut = sTldPrllIn;
+ double alphTldOut  = alphTldIn + delAlphT;
+
+ double sxTldOut    = -sTldPrllOut*sin(alphTldOut);
+ double syTldOut    = sTldPerpOut;
+ double szTldOut    = sTldPrllOut*cos(alphTldOut);
+ double sTldMag     = sqrt(sxTldOut*sxTldOut + syTldOut*syTldOut + szTldOut*szTldOut);
+
+ Vector3 sTldOut(sxTldOut,syTldOut,szTldOut);
+
+ R_out              = getR();
+ Vector3 sOut       = R_out*sTldOut;
+ __SPIN__[ip][0]    = sOut[0];
+ __SPIN__[ip][1]    = sOut[1];
+ __SPIN__[ip][2]    = sOut[2];
+}

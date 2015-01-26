@@ -1,0 +1,42 @@
+// bend file
+double kappa_time1int(double theta){
+ double a = epsilon;
+ double result;
+
+ result = kappa*theta;
+ result+=-2.*sin(kappa*theta)*pow(a,1);
+ result+=((3./2.)*cos(kappa*theta)*sin(kappa*theta)+(3./2.)*kappa*theta)*pow(a,2);
+ result+=(-(4./3.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(8./3.)*sin(kappa*theta))*pow(a,3);
+ result+=((5./4.)*pow(cos(kappa*theta),3)*sin(kappa*theta)+(15./8.)*cos(kappa*theta)*sin(kappa*theta)+(15./8.)*kappa*theta)*pow(a,4);
+ result+=(-(6./5.)*pow(cos(kappa*theta),4)*sin(kappa*theta)-(8./5.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(16./5.)*sin(kappa*theta))*pow(a,5);
+
+ return result;
+}
+
+double kappa_time2int(double theta){
+ double a = epsilon;
+ double result;
+
+ result =sin(kappa*theta);
+ result+=(-cos(kappa*theta)*sin(kappa*theta)-kappa*theta)*pow(a,1);
+ result+=(pow(cos(kappa*theta),2)*sin(kappa*theta)+2.*sin(kappa*theta))*pow(a,2);
+ result+=(-pow(cos(kappa*theta),3)*sin(kappa*theta)-(3./2.)*cos(kappa*theta)*sin(kappa*theta)-(3./2.)*kappa*theta)*pow(a,3);
+ result+=(pow(cos(kappa*theta),4)*sin(kappa*theta)+(4./3.)*pow(cos(kappa*theta),2)*sin(kappa*theta)+(8./3.)*sin(kappa*theta))*pow(a,4);
+ result+=(-pow(cos(kappa*theta),5)*sin(kappa*theta)-(5./4.)*pow(cos(kappa*theta),3)*sin(kappa*theta)-(15./8.)*cos(kappa*theta)*sin(kappa*theta)-(15./8.)*kappa*theta)*pow(a,5);
+
+ return result;
+}
+
+double kappa_epsilonSqInt(double theta){
+ double a = epsilon;
+ double result;
+
+ result =  (1./2.)*cos(kappa*theta)*sin(kappa*theta)+(1./2.)*kappa*theta;
+ result+=(-(2./3.)*pow(cos(kappa*theta),2)*sin(kappa*theta)  -(4./3.)*sin(kappa*theta))*pow(a,1);
+ result+=( (3./4.)*pow(cos(kappa*theta),3)*sin(kappa*theta)  +(9./8.)*cos(kappa*theta)*sin(kappa*theta)+(9./8.)*kappa*theta)*pow(a,2);
+ result+=(-(4./5.)*pow(cos(kappa*theta),4)*sin(kappa*theta)-(16./15.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(32./15.)*sin(kappa*theta))*pow(a,3);
+ result+=( (5./6.)*pow(cos(kappa*theta),5)*sin(kappa*theta)+(25./24.)*pow(cos(kappa*theta),3)*sin(kappa*theta)+(25./16.)*cos(kappa*theta)*sin(kappa*theta)+(25./16.)*kappa*theta)*pow(a,4);
+ result+=(-(6./7.)*pow(cos(kappa*theta),6)*sin(kappa*theta)-(36./35.)*pow(cos(kappa*theta),4)*sin(kappa*theta)-(48./35.)*pow(cos(kappa*theta),2)*sin(kappa*theta)-(96./35.)*sin(kappa*theta))*pow(a,5);
+
+ return result;
+}

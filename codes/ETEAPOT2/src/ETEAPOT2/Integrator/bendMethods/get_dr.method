@@ -1,0 +1,8 @@
+// bend file
+double get_dr(){
+ double F1 = 1.+epsilon*cos(kappa*(th-theta0));
+ double N1 = sin(kappa*th/2.);
+ double N2 = sin(kappa*th);
+ double F4 = 1.+epsilon*cos(kappa*theta0);
+ return epsilon*lambda*cos(kappa*theta0)*(2.*N1*N1-N2*h0p_tilda/kappa/h0_tilda)/F1/F4;
+}

@@ -1,0 +1,6 @@
+#ifndef ETEAPOT2_SPIN_EXTERN
+#define ETEAPOT2_SPIN_EXTERN
+
+ extern double __SPIN__[41][3];
+
+#endif

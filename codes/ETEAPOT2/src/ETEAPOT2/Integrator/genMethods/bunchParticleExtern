@@ -1,0 +1,56 @@
+#ifndef ETEAPOT2_BUNCH_PARTICLE_EXTERN
+#define ETEAPOT2_BUNCH_PARTICLE_EXTERN
+
+ extern double gama;
+ extern double tof;
+ extern Vector3 vlcy;
+ extern double vT;
+ extern double V;
+ extern double spd;
+ extern double x;
+ extern double y;
+ extern double trnsDst;
+ extern double ang;
+ extern double z;
+ extern double dst;
+
+ extern double e;
+
+/*
+ extern double b;
+ extern double xR; 
+ extern double yR; 
+ extern double zR; 
+ extern double pxc;
+ extern double pyc;
+ extern double pzc;
+ extern double pc;
+ extern double Lxc;
+ extern double Lyc;
+ extern double Lzc;
+ extern double Lc; 
+*/
+
+ extern double xinput;
+ extern double yinput;
+
+ extern double xoutput;
+ extern double youtput;
+
+ extern PAC::Position* pacPmy;
+// extern PAC::Position* pPtr;
+
+ extern double rIn;
+ extern double Escr;
+ extern double xi_co;
+// extern double xi_in;
+// extern double xip_in;
+ extern double xi0;
+ extern double xip0;
+ extern double Q;
+// extern double Ly_in_p;
+// extern double pcsq_in_m;
+// extern double pcsq_in_p;
+// extern double pczsq_in_p;
+
+#endif
