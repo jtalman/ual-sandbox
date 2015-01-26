@@ -1,9 +1,0 @@
-PAC::Bunch bunch(5);                               // bunch with 5 particle(s)
-PAC::Spin * spinX   = new PAC::Spin[5];            // the corresponding spins
-bunch.setBeamAttributes(ba);
-
-bunch[0].getPosition().set(      0,       0,      0,	   0,      0,      0 );
-bunch[1].getPosition().set( -x1typ,       0,      0,	   0,      0,      0 );
-bunch[2].getPosition().set( +x1typ,       0,      0,	   0,      0,      0 );
-bunch[3].getPosition().set(      0,  -x2typ,      0,	   0,      0,      0 );
-bunch[4].getPosition().set(      0,  +x2typ,      0,	   0,      0,      0 );
