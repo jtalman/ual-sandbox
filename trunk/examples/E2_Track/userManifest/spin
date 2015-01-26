@@ -1,0 +1,50 @@
+//gsl_rng *r = gsl_rng_alloc(gsl_rng_default);
+  gsl_rng *random;
+const gsl_rng_type * T;
+gsl_rng_env_setup();
+T      = gsl_rng_default;
+random = gsl_rng_alloc(T);
+std::cerr << "generator type: " << gsl_rng_name(random) << "\n";
+std::cerr << "seed: " << gsl_rng_default_seed << "\n";
+std::cerr << "first value: " << gsl_rng_get(random) << "\n";
+float theta, phi;
+
+ofstream spinOFS;
+spinOFS.open ("initialSpin");
+spinOFS << setiosflags( ios::showpos    );  
+spinOFS << setiosflags( ios::uppercase  );  
+spinOFS << setiosflags( ios::scientific );
+spinOFS << setfill( ' ' );
+spinOFS << setiosflags( ios::left );
+spinOFS << setprecision(13) ;
+
+PAC::Spin echo;
+
+for(int ip=0; ip < bunch.size(); ip ++){
+ const PAC::Position pos = bunch[ip].getPosition();
+ theta=gsl_ran_flat(random,0,M_PI);
+ phi  =gsl_ran_flat(random,0,2*M_PI);
+ std::cerr << "theta " << theta << "\n";
+ std::cerr << "phi " << phi << "\n";
+ (spinX+ip)->setSX( 0 );
+ __SPIN__[ip][0]=0;
+ (spinX+ip)->setSY( 0 );
+ __SPIN__[ip][1]=0;
+ (spinX+ip)->setSZ( 1 );
+ __SPIN__[ip][2]=1;
+ if(atoi(argv[4])==1){
+  (spinX+ip)->setSX(sin(theta)*cos(phi));
+  (spinX+ip)->setSY(sin(theta)*sin(phi));
+  (spinX+ip)->setSZ(cos(theta));
+ }
+ 
+   bunch[ip].setSpin( *(spinX+ip) );
+ echo = *( bunch[ip].getSpin() );
+ if(ip < bunch.size()-1){
+  spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ() << "\n";
+ }
+ else{
+  spinOFS << S[ip] << " " << echo.getSX() << " " << echo.getSY() << " " << echo.getSZ();
+ }
+}
+spinOFS.close();

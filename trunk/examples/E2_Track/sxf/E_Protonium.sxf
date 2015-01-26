@@ -1,0 +1,1890 @@
+// SXF version 2.0
+ring sequence { 
+mbegin
+      marker { 
+            tag = mbegin
+            at = 0
+            l = 0.0
+  }; 
+rf
+     rfcavity {
+         tag = rf
+         l = 1e-10
+         at = 5e-11
+         body = {
+                 volt =  0.0 harmon =  100 lag = 0.0
+                }
+         };
+marcin
+      marker { 
+            tag = marcin
+            at = 0
+            l = 0.0
+  }; 
+mcellin
+      marker { 
+            tag = mcellin
+            at = 0
+            l = 0.0
+  }; 
+Q
+      quadrupole { 
+            tag = Q
+            at = 0.00000000015
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh
+      sbend { 
+            tag = Bh
+            at = 1.570796326995
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter
+      marker { 
+            tag = mcellcenter
+            at = 3.14159265379
+            l = 0.0
+  }; 
+Bh.2
+      sbend { 
+            tag = Bh
+            at = 4.7123889805850006
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.2
+      quadrupole { 
+            tag = Q
+            at = 6.28318530743
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout
+      marker { 
+            tag = mcellout
+            at = 6.28318530758
+            l = 0.0
+  }; 
+mcellin.2
+      marker { 
+            tag = mcellin
+            at = 6.28318530758
+            l = 0.0
+  }; 
+Q.3
+      quadrupole { 
+            tag = Q
+            at = 6.28318530773
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.3
+      sbend { 
+            tag = Bh
+            at = 7.853981634575
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.2
+      marker { 
+            tag = mcellcenter
+            at = 9.424777961370001
+            l = 0.0
+  }; 
+Bh.4
+      sbend { 
+            tag = Bh
+            at = 10.995574288165
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.4
+      quadrupole { 
+            tag = Q
+            at = 12.56637061501
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.2
+      marker { 
+            tag = mcellout
+            at = 12.56637061516
+            l = 0.0
+  }; 
+mcellin.3
+      marker { 
+            tag = mcellin
+            at = 12.56637061516
+            l = 0.0
+  }; 
+Q.5
+      quadrupole { 
+            tag = Q
+            at = 12.56637061531
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.5
+      sbend { 
+            tag = Bh
+            at = 14.137166942155
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.3
+      marker { 
+            tag = mcellcenter
+            at = 15.70796326895
+            l = 0.0
+  }; 
+Bh.6
+      sbend { 
+            tag = Bh
+            at = 17.278759595745
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.6
+      quadrupole { 
+            tag = Q
+            at = 18.84955592259
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.3
+      marker { 
+            tag = mcellout
+            at = 18.849555922739995
+            l = 0.0
+  }; 
+mcellin.4
+      marker { 
+            tag = mcellin
+            at = 18.849555922739995
+            l = 0.0
+  }; 
+Q.7
+      quadrupole { 
+            tag = Q
+            at = 18.849555922889994
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.7
+      sbend { 
+            tag = Bh
+            at = 20.420352249734993
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.4
+      marker { 
+            tag = mcellcenter
+            at = 21.99114857652999
+            l = 0.0
+  }; 
+Bh.8
+      sbend { 
+            tag = Bh
+            at = 23.561944903324992
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.8
+      quadrupole { 
+            tag = Q
+            at = 25.13274123016999
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.4
+      marker { 
+            tag = mcellout
+            at = 25.132741230319986
+            l = 0.0
+  }; 
+mcellin.5
+      marker { 
+            tag = mcellin
+            at = 25.132741230319986
+            l = 0.0
+  }; 
+Q.9
+      quadrupole { 
+            tag = Q
+            at = 25.132741230469986
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.9
+      sbend { 
+            tag = Bh
+            at = 26.703537557314984
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.5
+      marker { 
+            tag = mcellcenter
+            at = 28.274333884109982
+            l = 0.0
+  }; 
+Bh.10
+      sbend { 
+            tag = Bh
+            at = 29.845130210904983
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.10
+      quadrupole { 
+            tag = Q
+            at = 31.415926537749982
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.5
+      marker { 
+            tag = mcellout
+            at = 31.415926537899978
+            l = 0.0
+  }; 
+mcellin.6
+      marker { 
+            tag = mcellin
+            at = 31.415926537899978
+            l = 0.0
+  }; 
+Q.11
+      quadrupole { 
+            tag = Q
+            at = 31.415926538049977
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.11
+      sbend { 
+            tag = Bh
+            at = 32.98672286489497
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.6
+      marker { 
+            tag = mcellcenter
+            at = 34.55751919168998
+            l = 0.0
+  }; 
+Bh.12
+      sbend { 
+            tag = Bh
+            at = 36.128315518484975
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.12
+      quadrupole { 
+            tag = Q
+            at = 37.69911184532998
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.6
+      marker { 
+            tag = mcellout
+            at = 37.69911184547998
+            l = 0.0
+  }; 
+mcellin.7
+      marker { 
+            tag = mcellin
+            at = 37.69911184547998
+            l = 0.0
+  }; 
+Q.13
+      quadrupole { 
+            tag = Q
+            at = 37.699111845629986
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.13
+      sbend { 
+            tag = Bh
+            at = 39.269908172474985
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.7
+      marker { 
+            tag = mcellcenter
+            at = 40.84070449926999
+            l = 0.0
+  }; 
+Bh.14
+      sbend { 
+            tag = Bh
+            at = 42.41150082606499
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.14
+      quadrupole { 
+            tag = Q
+            at = 43.98229715290999
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.7
+      marker { 
+            tag = mcellout
+            at = 43.982297153059996
+            l = 0.0
+  }; 
+mcellin.8
+      marker { 
+            tag = mcellin
+            at = 43.982297153059996
+            l = 0.0
+  }; 
+Q.15
+      quadrupole { 
+            tag = Q
+            at = 43.98229715321
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.15
+      sbend { 
+            tag = Bh
+            at = 45.553093480055
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.8
+      marker { 
+            tag = mcellcenter
+            at = 47.12388980685
+            l = 0.0
+  }; 
+Bh.16
+      sbend { 
+            tag = Bh
+            at = 48.694686133645
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.16
+      quadrupole { 
+            tag = Q
+            at = 50.265482460490006
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.8
+      marker { 
+            tag = mcellout
+            at = 50.26548246064001
+            l = 0.0
+  }; 
+mcellin.9
+      marker { 
+            tag = mcellin
+            at = 50.26548246064001
+            l = 0.0
+  }; 
+Q.17
+      quadrupole { 
+            tag = Q
+            at = 50.26548246079001
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.17
+      sbend { 
+            tag = Bh
+            at = 51.83627878763501
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.9
+      marker { 
+            tag = mcellcenter
+            at = 53.407075114430015
+            l = 0.0
+  }; 
+Bh.18
+      sbend { 
+            tag = Bh
+            at = 54.97787144122501
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.18
+      quadrupole { 
+            tag = Q
+            at = 56.54866776807002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.9
+      marker { 
+            tag = mcellout
+            at = 56.54866776822002
+            l = 0.0
+  }; 
+mcellin.10
+      marker { 
+            tag = mcellin
+            at = 56.54866776822002
+            l = 0.0
+  }; 
+Q.19
+      quadrupole { 
+            tag = Q
+            at = 56.548667768370024
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.19
+      sbend { 
+            tag = Bh
+            at = 58.11946409521502
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.10
+      marker { 
+            tag = mcellcenter
+            at = 59.69026042201003
+            l = 0.0
+  }; 
+Bh.20
+      sbend { 
+            tag = Bh
+            at = 61.261056748805025
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.20
+      quadrupole { 
+            tag = Q
+            at = 62.83185307565003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.10
+      marker { 
+            tag = mcellout
+            at = 62.83185307580003
+            l = 0.0
+  }; 
+mcellin.11
+      marker { 
+            tag = mcellin
+            at = 62.83185307580003
+            l = 0.0
+  }; 
+Q.21
+      quadrupole { 
+            tag = Q
+            at = 62.831853075950036
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.21
+      sbend { 
+            tag = Bh
+            at = 64.40264940279503
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.11
+      marker { 
+            tag = mcellcenter
+            at = 65.97344572959004
+            l = 0.0
+  }; 
+Bh.22
+      sbend { 
+            tag = Bh
+            at = 67.54424205638504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.22
+      quadrupole { 
+            tag = Q
+            at = 69.11503838323003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.11
+      marker { 
+            tag = mcellout
+            at = 69.11503838338004
+            l = 0.0
+  }; 
+mcellin.12
+      marker { 
+            tag = mcellin
+            at = 69.11503838338004
+            l = 0.0
+  }; 
+Q.23
+      quadrupole { 
+            tag = Q
+            at = 69.11503838353003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.23
+      sbend { 
+            tag = Bh
+            at = 70.68583471037505
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.12
+      marker { 
+            tag = mcellcenter
+            at = 72.25663103717004
+            l = 0.0
+  }; 
+Bh.24
+      sbend { 
+            tag = Bh
+            at = 73.82742736396504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.24
+      quadrupole { 
+            tag = Q
+            at = 75.39822369081003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.12
+      marker { 
+            tag = mcellout
+            at = 75.39822369096004
+            l = 0.0
+  }; 
+mcellin.13
+      marker { 
+            tag = mcellin
+            at = 75.39822369096004
+            l = 0.0
+  }; 
+Q.25
+      quadrupole { 
+            tag = Q
+            at = 75.39822369111003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.25
+      sbend { 
+            tag = Bh
+            at = 76.96902001795505
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.13
+      marker { 
+            tag = mcellcenter
+            at = 78.53981634475004
+            l = 0.0
+  }; 
+Bh.26
+      sbend { 
+            tag = Bh
+            at = 80.11061267154504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.26
+      quadrupole { 
+            tag = Q
+            at = 81.68140899839003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.13
+      marker { 
+            tag = mcellout
+            at = 81.68140899854004
+            l = 0.0
+  }; 
+mcellin.14
+      marker { 
+            tag = mcellin
+            at = 81.68140899854004
+            l = 0.0
+  }; 
+Q.27
+      quadrupole { 
+            tag = Q
+            at = 81.68140899869003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.27
+      sbend { 
+            tag = Bh
+            at = 83.25220532553504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.14
+      marker { 
+            tag = mcellcenter
+            at = 84.82300165233003
+            l = 0.0
+  }; 
+Bh.28
+      sbend { 
+            tag = Bh
+            at = 86.39379797912504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.28
+      quadrupole { 
+            tag = Q
+            at = 87.96459430597002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.14
+      marker { 
+            tag = mcellout
+            at = 87.96459430612003
+            l = 0.0
+  }; 
+mcellin.15
+      marker { 
+            tag = mcellin
+            at = 87.96459430612003
+            l = 0.0
+  }; 
+Q.29
+      quadrupole { 
+            tag = Q
+            at = 87.96459430627003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.29
+      sbend { 
+            tag = Bh
+            at = 89.53539063311504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.15
+      marker { 
+            tag = mcellcenter
+            at = 91.10618695991003
+            l = 0.0
+  }; 
+Bh.30
+      sbend { 
+            tag = Bh
+            at = 92.67698328670504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.30
+      quadrupole { 
+            tag = Q
+            at = 94.24777961355002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.15
+      marker { 
+            tag = mcellout
+            at = 94.24777961370003
+            l = 0.0
+  }; 
+mcellin.16
+      marker { 
+            tag = mcellin
+            at = 94.24777961370003
+            l = 0.0
+  }; 
+Q.31
+      quadrupole { 
+            tag = Q
+            at = 94.24777961385003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.31
+      sbend { 
+            tag = Bh
+            at = 95.81857594069504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.16
+      marker { 
+            tag = mcellcenter
+            at = 97.38937226749003
+            l = 0.0
+  }; 
+Bh.32
+      sbend { 
+            tag = Bh
+            at = 98.96016859428504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.32
+      quadrupole { 
+            tag = Q
+            at = 100.53096492113002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.16
+      marker { 
+            tag = mcellout
+            at = 100.53096492128003
+            l = 0.0
+  }; 
+mcellin.17
+      marker { 
+            tag = mcellin
+            at = 100.53096492128003
+            l = 0.0
+  }; 
+Q.33
+      quadrupole { 
+            tag = Q
+            at = 100.53096492143003
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.33
+      sbend { 
+            tag = Bh
+            at = 102.10176124827504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.17
+      marker { 
+            tag = mcellcenter
+            at = 103.67255757507003
+            l = 0.0
+  }; 
+Bh.34
+      sbend { 
+            tag = Bh
+            at = 105.24335390186504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.34
+      quadrupole { 
+            tag = Q
+            at = 106.81415022871002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.17
+      marker { 
+            tag = mcellout
+            at = 106.81415022886003
+            l = 0.0
+  }; 
+mcellin.18
+      marker { 
+            tag = mcellin
+            at = 106.81415022886003
+            l = 0.0
+  }; 
+Q.35
+      quadrupole { 
+            tag = Q
+            at = 106.81415022901002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.35
+      sbend { 
+            tag = Bh
+            at = 108.38494655585504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.18
+      marker { 
+            tag = mcellcenter
+            at = 109.95574288265003
+            l = 0.0
+  }; 
+Bh.36
+      sbend { 
+            tag = Bh
+            at = 111.52653920944503
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.36
+      quadrupole { 
+            tag = Q
+            at = 113.09733553629002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.18
+      marker { 
+            tag = mcellout
+            at = 113.09733553644003
+            l = 0.0
+  }; 
+mcellin.19
+      marker { 
+            tag = mcellin
+            at = 113.09733553644003
+            l = 0.0
+  }; 
+Q.37
+      quadrupole { 
+            tag = Q
+            at = 113.09733553659002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.37
+      sbend { 
+            tag = Bh
+            at = 114.66813186343504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.19
+      marker { 
+            tag = mcellcenter
+            at = 116.23892819023003
+            l = 0.0
+  }; 
+Bh.38
+      sbend { 
+            tag = Bh
+            at = 117.80972451702503
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.38
+      quadrupole { 
+            tag = Q
+            at = 119.38052084387002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.19
+      marker { 
+            tag = mcellout
+            at = 119.38052084402003
+            l = 0.0
+  }; 
+mcellin.20
+      marker { 
+            tag = mcellin
+            at = 119.38052084402003
+            l = 0.0
+  }; 
+Q.39
+      quadrupole { 
+            tag = Q
+            at = 119.38052084417002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.39
+      sbend { 
+            tag = Bh
+            at = 120.95131717101503
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.20
+      marker { 
+            tag = mcellcenter
+            at = 122.52211349781003
+            l = 0.0
+  }; 
+Bh.40
+      sbend { 
+            tag = Bh
+            at = 124.09290982460503
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.40
+      quadrupole { 
+            tag = Q
+            at = 125.66370615145001
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.20
+      marker { 
+            tag = mcellout
+            at = 125.66370615160002
+            l = 0.0
+  }; 
+marcout
+      marker { 
+            tag = marcout
+            at = 125.66370615160002
+            l = 0.0
+  }; 
+marcin.2
+      marker { 
+            tag = marcin
+            at = 125.66370615160002
+            l = 0.0
+  }; 
+mcellin.21
+      marker { 
+            tag = mcellin
+            at = 125.66370615160002
+            l = 0.0
+  }; 
+Q.41
+      quadrupole { 
+            tag = Q
+            at = 125.66370615175002
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.41
+      sbend { 
+            tag = Bh
+            at = 127.23450247859503
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.21
+      marker { 
+            tag = mcellcenter
+            at = 128.80529880539004
+            l = 0.0
+  }; 
+Bh.42
+      sbend { 
+            tag = Bh
+            at = 130.37609513218504
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.42
+      quadrupole { 
+            tag = Q
+            at = 131.94689145903004
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.21
+      marker { 
+            tag = mcellout
+            at = 131.94689145918002
+            l = 0.0
+  }; 
+mcellin.22
+      marker { 
+            tag = mcellin
+            at = 131.94689145918002
+            l = 0.0
+  }; 
+Q.43
+      quadrupole { 
+            tag = Q
+            at = 131.94689145933
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.43
+      sbend { 
+            tag = Bh
+            at = 133.517687786175
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.22
+      marker { 
+            tag = mcellcenter
+            at = 135.08848411297
+            l = 0.0
+  }; 
+Bh.44
+      sbend { 
+            tag = Bh
+            at = 136.659280439765
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.44
+      quadrupole { 
+            tag = Q
+            at = 138.23007676661
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.22
+      marker { 
+            tag = mcellout
+            at = 138.23007676676
+            l = 0.0
+  }; 
+mcellin.23
+      marker { 
+            tag = mcellin
+            at = 138.23007676676
+            l = 0.0
+  }; 
+Q.45
+      quadrupole { 
+            tag = Q
+            at = 138.23007676690997
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.45
+      sbend { 
+            tag = Bh
+            at = 139.80087309375497
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.23
+      marker { 
+            tag = mcellcenter
+            at = 141.37166942054998
+            l = 0.0
+  }; 
+Bh.46
+      sbend { 
+            tag = Bh
+            at = 142.94246574734498
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.46
+      quadrupole { 
+            tag = Q
+            at = 144.51326207418998
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.23
+      marker { 
+            tag = mcellout
+            at = 144.51326207433996
+            l = 0.0
+  }; 
+mcellin.24
+      marker { 
+            tag = mcellin
+            at = 144.51326207433996
+            l = 0.0
+  }; 
+Q.47
+      quadrupole { 
+            tag = Q
+            at = 144.51326207448994
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.47
+      sbend { 
+            tag = Bh
+            at = 146.08405840133494
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.24
+      marker { 
+            tag = mcellcenter
+            at = 147.65485472812995
+            l = 0.0
+  }; 
+Bh.48
+      sbend { 
+            tag = Bh
+            at = 149.22565105492495
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.48
+      quadrupole { 
+            tag = Q
+            at = 150.79644738176995
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.24
+      marker { 
+            tag = mcellout
+            at = 150.79644738191993
+            l = 0.0
+  }; 
+mcellin.25
+      marker { 
+            tag = mcellin
+            at = 150.79644738191993
+            l = 0.0
+  }; 
+Q.49
+      quadrupole { 
+            tag = Q
+            at = 150.7964473820699
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.49
+      sbend { 
+            tag = Bh
+            at = 152.3672437089149
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.25
+      marker { 
+            tag = mcellcenter
+            at = 153.93804003570992
+            l = 0.0
+  }; 
+Bh.50
+      sbend { 
+            tag = Bh
+            at = 155.50883636250492
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.50
+      quadrupole { 
+            tag = Q
+            at = 157.07963268934992
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.25
+      marker { 
+            tag = mcellout
+            at = 157.0796326894999
+            l = 0.0
+  }; 
+mcellin.26
+      marker { 
+            tag = mcellin
+            at = 157.0796326894999
+            l = 0.0
+  }; 
+Q.51
+      quadrupole { 
+            tag = Q
+            at = 157.07963268964988
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.51
+      sbend { 
+            tag = Bh
+            at = 158.65042901649488
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.26
+      marker { 
+            tag = mcellcenter
+            at = 160.2212253432899
+            l = 0.0
+  }; 
+Bh.52
+      sbend { 
+            tag = Bh
+            at = 161.7920216700849
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.52
+      quadrupole { 
+            tag = Q
+            at = 163.3628179969299
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.26
+      marker { 
+            tag = mcellout
+            at = 163.36281799707987
+            l = 0.0
+  }; 
+mcellin.27
+      marker { 
+            tag = mcellin
+            at = 163.36281799707987
+            l = 0.0
+  }; 
+Q.53
+      quadrupole { 
+            tag = Q
+            at = 163.36281799722985
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.53
+      sbend { 
+            tag = Bh
+            at = 164.93361432407485
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.27
+      marker { 
+            tag = mcellcenter
+            at = 166.50441065086986
+            l = 0.0
+  }; 
+Bh.54
+      sbend { 
+            tag = Bh
+            at = 168.07520697766486
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.54
+      quadrupole { 
+            tag = Q
+            at = 169.64600330450986
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.27
+      marker { 
+            tag = mcellout
+            at = 169.64600330465984
+            l = 0.0
+  }; 
+mcellin.28
+      marker { 
+            tag = mcellin
+            at = 169.64600330465984
+            l = 0.0
+  }; 
+Q.55
+      quadrupole { 
+            tag = Q
+            at = 169.64600330480982
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.55
+      sbend { 
+            tag = Bh
+            at = 171.21679963165482
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.28
+      marker { 
+            tag = mcellcenter
+            at = 172.78759595844983
+            l = 0.0
+  }; 
+Bh.56
+      sbend { 
+            tag = Bh
+            at = 174.35839228524483
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.56
+      quadrupole { 
+            tag = Q
+            at = 175.92918861208983
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.28
+      marker { 
+            tag = mcellout
+            at = 175.9291886122398
+            l = 0.0
+  }; 
+mcellin.29
+      marker { 
+            tag = mcellin
+            at = 175.9291886122398
+            l = 0.0
+  }; 
+Q.57
+      quadrupole { 
+            tag = Q
+            at = 175.9291886123898
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.57
+      sbend { 
+            tag = Bh
+            at = 177.4999849392348
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.29
+      marker { 
+            tag = mcellcenter
+            at = 179.0707812660298
+            l = 0.0
+  }; 
+Bh.58
+      sbend { 
+            tag = Bh
+            at = 180.6415775928248
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.58
+      quadrupole { 
+            tag = Q
+            at = 182.2123739196698
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.29
+      marker { 
+            tag = mcellout
+            at = 182.21237391981978
+            l = 0.0
+  }; 
+mcellin.30
+      marker { 
+            tag = mcellin
+            at = 182.21237391981978
+            l = 0.0
+  }; 
+Q.59
+      quadrupole { 
+            tag = Q
+            at = 182.21237391996976
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.59
+      sbend { 
+            tag = Bh
+            at = 183.78317024681476
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.30
+      marker { 
+            tag = mcellcenter
+            at = 185.35396657360977
+            l = 0.0
+  }; 
+Bh.60
+      sbend { 
+            tag = Bh
+            at = 186.92476290040477
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.60
+      quadrupole { 
+            tag = Q
+            at = 188.49555922724977
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.30
+      marker { 
+            tag = mcellout
+            at = 188.49555922739975
+            l = 0.0
+  }; 
+mcellin.31
+      marker { 
+            tag = mcellin
+            at = 188.49555922739975
+            l = 0.0
+  }; 
+Q.61
+      quadrupole { 
+            tag = Q
+            at = 188.49555922754973
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.61
+      sbend { 
+            tag = Bh
+            at = 190.06635555439473
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.31
+      marker { 
+            tag = mcellcenter
+            at = 191.63715188118974
+            l = 0.0
+  }; 
+Bh.62
+      sbend { 
+            tag = Bh
+            at = 193.20794820798474
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.62
+      quadrupole { 
+            tag = Q
+            at = 194.77874453482974
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.31
+      marker { 
+            tag = mcellout
+            at = 194.77874453497972
+            l = 0.0
+  }; 
+mcellin.32
+      marker { 
+            tag = mcellin
+            at = 194.77874453497972
+            l = 0.0
+  }; 
+Q.63
+      quadrupole { 
+            tag = Q
+            at = 194.7787445351297
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.63
+      sbend { 
+            tag = Bh
+            at = 196.3495408619747
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.32
+      marker { 
+            tag = mcellcenter
+            at = 197.9203371887697
+            l = 0.0
+  }; 
+Bh.64
+      sbend { 
+            tag = Bh
+            at = 199.4911335155647
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.64
+      quadrupole { 
+            tag = Q
+            at = 201.0619298424097
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.32
+      marker { 
+            tag = mcellout
+            at = 201.0619298425597
+            l = 0.0
+  }; 
+mcellin.33
+      marker { 
+            tag = mcellin
+            at = 201.0619298425597
+            l = 0.0
+  }; 
+Q.65
+      quadrupole { 
+            tag = Q
+            at = 201.06192984270967
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.65
+      sbend { 
+            tag = Bh
+            at = 202.63272616955467
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.33
+      marker { 
+            tag = mcellcenter
+            at = 204.20352249634968
+            l = 0.0
+  }; 
+Bh.66
+      sbend { 
+            tag = Bh
+            at = 205.77431882314468
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.66
+      quadrupole { 
+            tag = Q
+            at = 207.34511514998968
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.33
+      marker { 
+            tag = mcellout
+            at = 207.34511515013966
+            l = 0.0
+  }; 
+mcellin.34
+      marker { 
+            tag = mcellin
+            at = 207.34511515013966
+            l = 0.0
+  }; 
+Q.67
+      quadrupole { 
+            tag = Q
+            at = 207.34511515028964
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.67
+      sbend { 
+            tag = Bh
+            at = 208.91591147713464
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.34
+      marker { 
+            tag = mcellcenter
+            at = 210.48670780392965
+            l = 0.0
+  }; 
+Bh.68
+      sbend { 
+            tag = Bh
+            at = 212.05750413072465
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.68
+      quadrupole { 
+            tag = Q
+            at = 213.62830045756965
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.34
+      marker { 
+            tag = mcellout
+            at = 213.62830045771963
+            l = 0.0
+  }; 
+mcellin.35
+      marker { 
+            tag = mcellin
+            at = 213.62830045771963
+            l = 0.0
+  }; 
+Q.69
+      quadrupole { 
+            tag = Q
+            at = 213.6283004578696
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.69
+      sbend { 
+            tag = Bh
+            at = 215.1990967847146
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.35
+      marker { 
+            tag = mcellcenter
+            at = 216.76989311150962
+            l = 0.0
+  }; 
+Bh.70
+      sbend { 
+            tag = Bh
+            at = 218.34068943830462
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.70
+      quadrupole { 
+            tag = Q
+            at = 219.91148576514962
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.35
+      marker { 
+            tag = mcellout
+            at = 219.9114857652996
+            l = 0.0
+  }; 
+mcellin.36
+      marker { 
+            tag = mcellin
+            at = 219.9114857652996
+            l = 0.0
+  }; 
+Q.71
+      quadrupole { 
+            tag = Q
+            at = 219.91148576544958
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.71
+      sbend { 
+            tag = Bh
+            at = 221.48228209229458
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.36
+      marker { 
+            tag = mcellcenter
+            at = 223.0530784190896
+            l = 0.0
+  }; 
+Bh.72
+      sbend { 
+            tag = Bh
+            at = 224.6238747458846
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.72
+      quadrupole { 
+            tag = Q
+            at = 226.1946710727296
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.36
+      marker { 
+            tag = mcellout
+            at = 226.19467107287957
+            l = 0.0
+  }; 
+mcellin.37
+      marker { 
+            tag = mcellin
+            at = 226.19467107287957
+            l = 0.0
+  }; 
+Q.73
+      quadrupole { 
+            tag = Q
+            at = 226.19467107302955
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.73
+      sbend { 
+            tag = Bh
+            at = 227.76546739987455
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.37
+      marker { 
+            tag = mcellcenter
+            at = 229.33626372666956
+            l = 0.0
+  }; 
+Bh.74
+      sbend { 
+            tag = Bh
+            at = 230.90706005346456
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.74
+      quadrupole { 
+            tag = Q
+            at = 232.47785638030956
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.37
+      marker { 
+            tag = mcellout
+            at = 232.47785638045954
+            l = 0.0
+  }; 
+mcellin.38
+      marker { 
+            tag = mcellin
+            at = 232.47785638045954
+            l = 0.0
+  }; 
+Q.75
+      quadrupole { 
+            tag = Q
+            at = 232.47785638060952
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.75
+      sbend { 
+            tag = Bh
+            at = 234.04865270745452
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.38
+      marker { 
+            tag = mcellcenter
+            at = 235.61944903424953
+            l = 0.0
+  }; 
+Bh.76
+      sbend { 
+            tag = Bh
+            at = 237.19024536104453
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.76
+      quadrupole { 
+            tag = Q
+            at = 238.76104168788953
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.38
+      marker { 
+            tag = mcellout
+            at = 238.7610416880395
+            l = 0.0
+  }; 
+mcellin.39
+      marker { 
+            tag = mcellin
+            at = 238.7610416880395
+            l = 0.0
+  }; 
+Q.77
+      quadrupole { 
+            tag = Q
+            at = 238.7610416881895
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.77
+      sbend { 
+            tag = Bh
+            at = 240.3318380150345
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.39
+      marker { 
+            tag = mcellcenter
+            at = 241.9026343418295
+            l = 0.0
+  }; 
+Bh.78
+      sbend { 
+            tag = Bh
+            at = 243.4734306686245
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.78
+      quadrupole { 
+            tag = Q
+            at = 245.0442269954695
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.39
+      marker { 
+            tag = mcellout
+            at = 245.04422699561948
+            l = 0.0
+  }; 
+mcellin.40
+      marker { 
+            tag = mcellin
+            at = 245.04422699561948
+            l = 0.0
+  }; 
+Q.79
+      quadrupole { 
+            tag = Q
+            at = 245.04422699576946
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+Bh.79
+      sbend { 
+            tag = Bh
+            at = 246.61502332261446
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+mcellcenter.40
+      marker { 
+            tag = mcellcenter
+            at = 248.18581964940947
+            l = 0.0
+  }; 
+Bh.80
+      sbend { 
+            tag = Bh
+            at = 249.75661597620447
+            l = 3.14159265359
+     body = {  kl = [ 0.07853981633975 ] }
+  }; 
+Q.80
+      quadrupole { 
+            tag = Q
+            at = 251.32741230304947
+            l = 0.0000000001
+     body = {  kl = [ 0 0.0000000001 ] }
+  }; 
+mcellout.40
+      marker { 
+            tag = mcellout
+            at = 251.32741230319945
+            l = 0.0
+  }; 
+marcout.2
+      marker { 
+            tag = marcout
+            at = 251.32741230319945
+            l = 0.0
+  }; 
+mend
+      marker { 
+            tag = mend
+            at = 251.32741230319945
+            l = 0.0
+  }; 
+endsequence at = 251.32741230319945
+};
+// SXF end

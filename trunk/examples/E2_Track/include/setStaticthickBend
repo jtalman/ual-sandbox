@@ -1,0 +1,15 @@
+ofstream m_m;
+m_m.open ("m_m");
+m_m << argv[2];
+m_m.close();
+ETEAPOT2::thickBend* edt=new ETEAPOT2::thickBend();
+ETEAPOT2::MltTracker*    mdt=new ETEAPOT2::MltTracker();
+std::cerr << "ETEAPOT2::thickBend::dZFF " << ETEAPOT2::thickBend::dZFF << "\n";
+std::cerr << "ETEAPOT2::thickBend::m_m " << ETEAPOT2::thickBend::m_m << "\n";
+std::cerr << "ETEAPOT2::MltTracker::m_m    " << ETEAPOT2::MltTracker::m_m    << "\n";
+              ETEAPOT2::thickBend::m_m=atof( argv[3] );
+              ETEAPOT2::MltTracker::m_m   =atof( argv[3] );
+              ETEAPOT2::thickBend::dZFF=atof( argv[6] );
+std::cerr << "ETEAPOT2::thickBend::dZFF " << ETEAPOT2::thickBend::dZFF << "\n";
+std::cerr << "ETEAPOT2::thickBend::m_m " << ETEAPOT2::thickBend::m_m << "\n";
+std::cerr << "ETEAPOT2::MltTracker::m_m    " << ETEAPOT2::MltTracker::m_m    << "\n";

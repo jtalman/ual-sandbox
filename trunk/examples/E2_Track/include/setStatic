@@ -1,0 +1,15 @@
+ofstream m_m;
+m_m.open ("m_m");
+m_m << argv[2];
+m_m.close();
+ETEAPOT2::bend* edt=new ETEAPOT2::bend();
+//ETEAPOT2::quad*    mdt=new ETEAPOT2::quad();
+std::cerr << "ETEAPOT2::bend::dZFF " << ETEAPOT2::bend::dZFF << "\n";
+std::cerr << "ETEAPOT2::bend::m_m " << ETEAPOT2::bend::m_m << "\n";
+//std::cerr << "ETEAPOT2::quad::m_m    " << ETEAPOT2::quad::m_m    << "\n";
+              ETEAPOT2::bend::m_m=atof( argv[3] );
+//            ETEAPOT2::quad::m_m   =atof( argv[3] );
+              ETEAPOT2::bend::dZFF=atof( argv[6] );
+std::cerr << "ETEAPOT2::bend::dZFF " << ETEAPOT2::bend::dZFF << "\n";
+std::cerr << "ETEAPOT2::bend::m_m " << ETEAPOT2::bend::m_m << "\n";
+//std::cerr << "ETEAPOT2::quad::m_m    " << ETEAPOT2::quad::m_m    << "\n";
