@@ -1,0 +1,37 @@
+PAC::Bunch bunch(33);                               // bunch with 33 particle(s)
+PAC::Spin * spinX   = new PAC::Spin[33];            // the corresponding spins
+bunch.setBeamAttributes(ba);
+
+ bunch[0].getPosition().set(      0,       0,      0,       0,      0,      0 );
+ bunch[1].getPosition().set( -x1typ,       0,      0,       0,      0,      0 );
+ bunch[2].getPosition().set( +x1typ,       0,      0,       0,      0,      0 );
+ bunch[3].getPosition().set(      0,  -x2typ,      0,       0,      0,      0 );
+ bunch[4].getPosition().set(      0,  +x2typ,      0,       0,      0,      0 );
+ bunch[5].getPosition().set(      0,       0, -y1typ,       0,      0,      0 );
+ bunch[6].getPosition().set(      0,       0, +y1typ,       0,      0,      0 );
+ bunch[7].getPosition().set(      0,       0,      0,  -y2typ,      0,      0 );
+ bunch[8].getPosition().set(      0,       0,      0,  +y2typ,      0,      0 );
+ bunch[9].getPosition().set(      0,       0,      0,       0, -x5typ,      0 );
+bunch[10].getPosition().set(      0,       0,      0,       0, -x5typ,      0 );
+bunch[11].getPosition().set(      0,       0,      0,       0,      0, -x6typ );
+bunch[12].getPosition().set(      0,       0,      0,       0,      0, +x6typ );
+bunch[13].getPosition().set( -x1typ,       0,      0,       0, -x5typ,      0 );
+bunch[14].getPosition().set( +x1typ,       0,      0,       0, +x5typ,      0 );
+bunch[15].getPosition().set( -x1typ,       0,      0,       0,      0, -x6typ );
+bunch[16].getPosition().set( +x1typ,       0,      0,       0,      0, +x6typ );
+bunch[17].getPosition().set( -x1typ,       0, -y1typ,       0,      0,      0 );
+bunch[18].getPosition().set( +x1typ,       0, +y1typ,       0,      0,      0 );
+bunch[19].getPosition().set(      0,  -x2typ,      0,  -y2typ,      0,      0 );
+bunch[20].getPosition().set(      0,  +x2typ,      0,  +y2typ,      0,      0 );
+bunch[21].getPosition().set(      0,       0, -y1typ,       0, -x5typ,      0 );
+bunch[22].getPosition().set(      0,       0, +y1typ,       0, +x5typ,      0 );
+bunch[23].getPosition().set(      0,       0,      0,  -y2typ, -x5typ,      0 );
+bunch[24].getPosition().set(      0,       0,      0,  +y2typ, +x5typ,      0 );
+bunch[25].getPosition().set(      0,       0,      0,       0, -x5typ, -x6typ );
+bunch[26].getPosition().set(      0,       0,      0,       0, -x5typ, +x6typ );
+bunch[27].getPosition().set(      0,  -x2typ,      0,       0,      0, -x6typ );
+bunch[28].getPosition().set(      0,  +x2typ,      0,       0,      0, +x6typ );
+bunch[29].getPosition().set( -x1typ,       0,      0,       0, -x5typ, -x6typ );
+bunch[30].getPosition().set( +x1typ,       0,      0,       0, +x5typ, +x6typ );
+bunch[31].getPosition().set(      0,  -x2typ,      0,       0,      0, -x6typ );
+bunch[32].getPosition().set(      0,  -x2typ,      0,       0,      0, +x6typ );

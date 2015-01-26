@@ -1,0 +1,13 @@
+if(argc!=8){
+ std::cout << "usage: ./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 646617.830 -1.2 0 1000 0.02 10 >! /dev/null (>&! OUT)\n";
+ std::cout << "argv[0] is this executable         - ./E2_Track                         \n";
+ std::cout << "argv[1] is the input sxf file      - ./sxf/E_pEDM-rtr1-preMobius.RF.sxf \n";
+ std::cout << "argv[2] is the design frequency, fD, 646617.830 -                       \n";
+ std::cout << "argv[3] is the nominal electrode m - -1.2                               \n";
+ std::cout << "argv[4] is the initialSpin file creation type - 0                       \n";
+ std::cout << "argv[5] is the number of turns - 1000                                   \n";
+ std::cout << "argv[6] is the fringe field length - 0.02                               \n";
+ std::cout << "argv[7] is the ""decimation factor"" - 10                               \n";
+//std::cout << "argv[8] is the # of bends per turn - 16 (don't forget splitting!)      \n";
+ exit(0);
+}
