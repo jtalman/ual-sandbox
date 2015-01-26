@@ -26,6 +26,10 @@ setenv LD_LIBRARY_PATH $UAL_TEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 setenv UAL_ETEAPOT          $UAL/codes/ETEAPOT
 setenv LD_LIBRARY_PATH $UAL_ETEAPOT/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
 
+# ETEAPOT2 - element by element electric tracker (with errors)
+setenv UAL_ETEAPOT2         $UAL/codes/ETEAPOT2
+setenv LD_LIBRARY_PATH $UAL_ETEAPOT2/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
+
 # ETEAPOT_MltTurn - element by element electric tracker - multiple turn oriented
 setenv UAL_ETEAPOT_MltTurn          $UAL/codes/ETEAPOT_MltTurn
 setenv LD_LIBRARY_PATH $UAL_ETEAPOT_MltTurn/lib/$UAL_ARCH/:$LD_LIBRARY_PATH
