@@ -1,0 +1,33 @@
+void passDrift(double D, double T){
+ PAC::Position& p = *pacPmy;
+ xinput           = p[0];
+ yinput           = p[2];
+
+ e                = eD + pDc * p[5];
+ gama             = e / mDcc;
+ vlcy             = get_vlcyMKS(p, gama);
+ vT               = sqrt(vlcy[0]*vlcy[0] + vlcy[1]*vlcy[1]);
+
+ ang              = atan( vT/vlcy[2] );
+ dst              = D/cos(ang);
+
+ spd              = vlcy.length();
+ tof              = dst/spd;
+
+ x                = vlcy[0]*tof;
+ y                = vlcy[1]*tof;
+
+ xoutput          = x + xinput;
+ youtput          = y + yinput;
+
+ p[0]             = xoutput;
+ p[2]             = youtput;
+ p[4]            -= UAL::clight*(T-tof);
+
+std::cerr << "================================================================" << "\n";
+std::cerr << __FILE__ << "\n";
+std::cerr << " vlcy[0] " << vlcy[0] << " vlcy[1] " << vlcy[1] << " vlcy[2] " << vlcy[2] << " vT " << vT << " ang " << ang << " dst " << dst << " tof " << tof << " x " << x << " y " << y << "\n";
+std::cerr << " p[0] " << p[0] << " p[1] " << p[1] << " p[2] " << p[2] << " p[3] " << p[3] << " p[4] " << p[4] << " p[5] " << p[5] << "\n";
+std::cerr << "================================================================" << "\n";
+
+}
