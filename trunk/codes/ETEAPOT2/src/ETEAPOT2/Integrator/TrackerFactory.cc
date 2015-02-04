@@ -5,10 +5,11 @@
 
 ETEAPOT2::TrackerFactory* ETEAPOT2::TrackerFactory::s_theInstance = 0;
 
+int ETEAPOT2::marker::markerCount=0;
 double ETEAPOT2::bend::dZFF;
 double ETEAPOT2::bend::m_m;
 int ETEAPOT2::bend::bnd=0;
-//int ETEAPOT2::bend::bndsPrTrn;
+//int ETEAPOT2::bend::bndsPerTrn;
 //double ETEAPOT2::bend::spin[41][3];
 
 ETEAPOT2::TrackerFactory::TrackerFactory()
