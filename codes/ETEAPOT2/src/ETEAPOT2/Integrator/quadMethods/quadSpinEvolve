@@ -4,8 +4,8 @@ double g = UAL::pg;      //gD;      //UAL::pg;                                  
 
 double delGam = gama - eD/mDcc;
 
-double x0 = x;
-double y0 = y;
+double x0 = pacP[0];
+double y0 = pacP[2];
 double phi0 = 1.*atan2(q*y0,q*x0);   // (328)
 double rho0 = sqrt(x0*x0 + y0*y0);
   double delThtTld = sqrt(q*q)*rho0;               //    (325)
