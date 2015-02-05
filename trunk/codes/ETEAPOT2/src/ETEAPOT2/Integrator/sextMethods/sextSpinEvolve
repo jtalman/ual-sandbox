@@ -3,8 +3,8 @@ double gammaD       = eD/mDcc;
 double g = UAL::pg;
 double delGam = gama - eD/mDcc;
 
-double x0 = x;
-double y0 = y;
+double x0 = pacP[0];
+double y0 = pacP[2];
 double phi0 = 2.*atan2(S*y0,S*x0);   // (328)
 double rho0 = sqrt(x0*x0 + y0*y0);
 double delThtTld = abs(S)/2.*rho0;               //    (325)
