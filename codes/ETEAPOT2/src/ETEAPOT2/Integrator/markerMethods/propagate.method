@@ -1,11 +1,9 @@
 // marker file
 void propagate(UAL::Probe& probe)
 {
-//std::cerr << __FILE__ << " " << m_name << "\n";
-const char * M_N = m_name.c_str();
- PAC::Bunch& bunch  = static_cast<PAC::Bunch&>(probe);
+ PAC::Bunch& bunch   = static_cast<PAC::Bunch&>(probe);
+ const char * M_N    = m_name.c_str();
  if( strcmp( M_N, "mbegin") == 0 ){
-//std::cerr << __FILE__ << " " << m_name << "\n";
   for(int ip = 1; ip < bunch.size(); ip++) {   // BUNCH LOOP
    PAC::Position& p  = bunch[ip].getPosition();
    pacPmy            = &p;
@@ -15,4 +13,5 @@ const char * M_N = m_name.c_str();
   }
   markerCount++;
  }
+// sDT                += m_l;
 }
