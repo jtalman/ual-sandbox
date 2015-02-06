@@ -28,4 +28,6 @@
  double EscrD;
  double ED;
 
+ double sDT = 0;
+
 #endif

@@ -28,4 +28,6 @@
  extern double EscrD;
  extern double ED;
 
+ extern double sDT;
+
 #endif
