@@ -54,4 +54,5 @@ void propagate(UAL::Probe& probe)                                    // Bend met
  bnd++;
  tofDT             += tofD;
  thetaDT           += thetaD;
+ sDT               += m_l;
 }
