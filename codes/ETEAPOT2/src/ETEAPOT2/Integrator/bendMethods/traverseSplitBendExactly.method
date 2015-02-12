@@ -15,6 +15,7 @@ void traverseSplitBendExactly(int ip){
 //p[3]              = pOutV_rot[1]/pDc;
 //p[3]              = pyOutp/pDc;
   p[4]             += get_dt();
+//p[4]             += get_dt_xi();
 /*
   p[5] unchanged except in RF Cavities
 */
