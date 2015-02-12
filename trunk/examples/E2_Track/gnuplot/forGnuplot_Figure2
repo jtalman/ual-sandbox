@@ -1,0 +1,11 @@
+#set terminal postscript eps enhanced color 20
+#set output "LongitPhSp_BM_M1.0p.eps"
+set grid
+set key left
+set xlabel 'ct [m]'
+set ylabel 'delta\_{UAL}'
+set style line 2 lc rgb 'black' pt 6
+p 'IG' i 10 u 8:9 w l, "<echo '0 -0.000001'" with points ls 2, \
+  'IG' i 11 u 8:9 w l, "<echo '0 -0.000002'" with points ls 2, \
+  'IG' i 12 u 8:9 w l, "<echo '0 -0.000003'" with points ls 2, \
+  'IG' i 14 u 8:9 w l, "<echo '-0.000669 -0.00001'" with points ls 2
