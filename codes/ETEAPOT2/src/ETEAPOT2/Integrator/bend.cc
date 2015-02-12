@@ -56,6 +56,7 @@ namespace ETEAPOT2 {
 #include "ETEAPOT2/Integrator/bendMethods/get_pOutV_rot.method"
 #include "ETEAPOT2/Integrator/bendMethods/get_dpxBypDc.method"
 #include "ETEAPOT2/Integrator/bendMethods/get_dt.method"
+#include "ETEAPOT2/Integrator/bendMethods/get_dt_xi.method"
 #include "ETEAPOT2/Integrator/bendMethods/perSplitBendOutput.method"
  };
 }
