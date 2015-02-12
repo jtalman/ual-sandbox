@@ -8,7 +8,7 @@ void propagate(UAL::Probe& probe)
    PAC::Position& p  = bunch[ip].getPosition();
    pacPmy            = &p;
    NikolayOut.open ("NikolayOut", fstream::out | fstream::app);
-   NikolayOut << m_name << " " << setw(3) << ip << " " << setw(3) << markerCount << " " << setw(17) << 0 << " " << setw(17) << p[0] <<     " " << setw(17) << p[1] << " " << setw(17) << p[2] << " " << setw(17) << p[3] << " " << setw(17) << p[4] << " " << setw(17) << p[5] << " " << setw(17) << __SPIN__[ip][0] << " " << setw(17) << __SPIN__[ip][1] << "     " << setw(17) << __SPIN__[ip][2] << "\n"; 
+   NikolayOut << setw(3) << ip << " " << setw(3) << markerCount << " " << setw(17) << 0 << " " << setw(17) << p[0] <<     " " << setw(17) << p[1] << " " << setw(17) << p[2] << " " << setw(17) << p[3] << " " << setw(17) << p[4] << " " << setw(17) << p[5] << " " << setw(17) << __SPIN__[ip][0] << " " << setw(17) << __SPIN__[ip][1] << "     " << setw(17) << __SPIN__[ip][2] << " " << m_name << "\n";
    NikolayOut.close ();
   }
   markerCount++;
