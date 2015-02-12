@@ -16,7 +16,7 @@ make
 
 ./E2_Track ./sxf/E_BM_M1.0.RF.sxf 5.4142678e+05 -1 0 200 0.02 1 > ! /dev/null
 
-perl SplitNikolayOut.pl NikolayOut >! IG
+perl perl/SplitNikolayOut.pl NikolayOut >! IG
 
 gnuplot
         l 'gnuplot/forGnuplot_Figure2'
