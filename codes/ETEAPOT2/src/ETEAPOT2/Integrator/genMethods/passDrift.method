@@ -20,9 +20,9 @@ void passDrift(double D, double T){
  xoutput          = x + xinput;
  youtput          = y + yinput;
 
- p[0]             +=D*p[1];      //      = xoutput;
- p[2]             +=D*p[3];      //      = youtput;
- p[4]            -= UAL::clight*(T-tof);
+ // p[0]             +=D*p[1];      //      = xoutput;
+ // p[2]             +=D*p[3];      //      = youtput;
+ // p[4]            -= UAL::clight*(T-tof);
 /*
 std::cerr << "================================================================" << "\n";
 std::cerr << __FILE__ << "\n";
@@ -30,4 +30,22 @@ std::cerr << " vlcy[0] " << vlcy[0] << " vlcy[1] " << vlcy[1] << " vlcy[2] " << 
 std::cerr << " p[0] " << p[0] << " p[1] " << p[1] << " p[2] " << p[2] << " p[3] " << p[3] << " p[4] " << p[4] << " p[5] " << p[5] << "\n";
 std::cerr << "================================================================" << "\n";
 */
+double vDbyc,vbyc,cdt_vel;
+vDbyc = sqrt(1.0-mDcc*mDcc/eD/eD);
+vbyc = sqrt(1.0-mDcc*mDcc/e/e);
+cdt_vel = D*(1.0/vbyc - 1.0/vDbyc);
+
+double cdt_circ,dst,ang,ptran,ptot;
+ptran = sqrt(p[1]*p[1] + p[3]*p[3]);
+ptot = sqrt( (eD + pDc*p[5])*(eD + pDc*p[5]) - mDcc*mDcc);
+ang = abs(asin(ptran/ptot));
+dst = D/cos(ang);
+cdt_circ = (dst-D)/vDbyc;
+
+ p[0]             +=D*p[1];      //      = xoutput;
+ p[2]             +=D*p[3];      //      = youtput;
+ p[4] += cdt_vel;
+ p[4] -= cdt_circ;
+
+double dummy=1.0;
 }
