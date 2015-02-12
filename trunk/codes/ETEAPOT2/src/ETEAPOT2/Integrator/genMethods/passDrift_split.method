@@ -1,0 +1,51 @@
+void passDrift(double D, double T){
+ PAC::Position& p = *pacPmy;
+ xinput           = p[0];
+ yinput           = p[2];
+
+ e                = eD + pDc * p[5];
+ gama             = e / mDcc;
+ vlcy             = get_vlcyMKS(p, gama);
+ vT               = sqrt(vlcy[0]*vlcy[0] + vlcy[1]*vlcy[1]);
+
+ ang              = atan( vT/vlcy[2] );
+ dst              = D/cos(ang);
+
+ spd              = vlcy.length();
+ tof              = dst/spd;
+
+ x                = vlcy[0]*tof;
+ y                = vlcy[1]*tof;
+
+ xoutput          = x + xinput;
+ youtput          = y + yinput;
+
+ // p[0]             +=D*p[1];      //      = xoutput;
+ // p[2]             +=D*p[3];      //      = youtput;
+ // p[4]            -= UAL::clight*(T-tof);
+/*
+std::cerr << "================================================================" << "\n";
+std::cerr << __FILE__ << "\n";
+std::cerr << " vlcy[0] " << vlcy[0] << " vlcy[1] " << vlcy[1] << " vlcy[2] " << vlcy[2] << " vT " << vT << " ang " << ang << " dst " << dst << " tof " << tof << " x " << x << " y " << y << "\n";
+std::cerr << " p[0] " << p[0] << " p[1] " << p[1] << " p[2] " << p[2] << " p[3] " << p[3] << " p[4] " << p[4] << " p[5] " << p[5] << "\n";
+std::cerr << "================================================================" << "\n";
+*/
+double vDbyc,vbyc,cdt_vel;
+vDbyc = sqrt(1.0-mDcc*mDcc/eD/eD);
+vbyc = sqrt(1.0-mDcc*mDcc/e/e);
+cdt_vel = D*(1.0/vbyc - 1.0/vDbyc);
+
+double cdt_circ,dst,ang,ptran,ptot;
+ptran = sqrt(p[1]*p[1] + p[3]*p[3]);
+ptot = sqrt( (eD + pDc*p[5])*(eD + pDc*p[5]) - mDcc*mDcc);
+ang = abs(asin(ptran/ptot));
+dst = D/cos(ang);
+cdt_circ = (dst-D)/vDbyc;
+
+ p[0]             +=D*p[1];      //      = xoutput;
+ p[2]             +=D*p[3];      //      = youtput;
+ p[4] += cdt_vel;
+ p[4] -= cdt_circ;
+
+double dummy=1.0;
+}
