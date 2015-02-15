@@ -15,6 +15,7 @@
  extern double dst;
 
  extern double e;
+ extern double Escr;
 
 /*
  extern double b;
@@ -40,7 +41,9 @@
  extern PAC::Position* pacPmy;
 // extern PAC::Position* pPtr;
 
+/*
  extern double rIn;
+ extern double EscrM;
  extern double Escr;
  extern double xi_co;
 // extern double xi_in;
@@ -52,5 +55,6 @@
 // extern double pcsq_in_m;
 // extern double pcsq_in_p;
 // extern double pczsq_in_p;
+*/
 
 #endif

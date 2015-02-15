@@ -20,6 +20,8 @@
                                    // e [GV]
                                    // Thus, somewhat whimsically, "e" could be named "eByBe".
                                    // The 2nd "B" is short for billion.
+ double Escr;
+
 /*
  double b;
  double xR;
@@ -44,7 +46,9 @@
  PAC::Position* pacPmy; 
 // PAC::Position* pPtr; 
 
+/*
  double rIn;
+ double EscrM;
  double Escr;
  double xi_co;
 // double xi_in;
@@ -56,5 +60,6 @@
 // double pcsq_in_m;
 // double pcsq_in_p;
 // double pczsq_in_p;
+*/
 
 #endif
