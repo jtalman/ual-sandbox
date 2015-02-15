@@ -45,6 +45,21 @@ double Lxc;
 double Lyc;
 double Lzc;
 double Lc; 
+double Lyc_in_p;
+
+ double rIn;
+ double EscrM;
+// double Escr;
+ double xi_co;
+// double xi_in;
+// double xip_in;
+ double xi0;
+ double xip0;
+ double Q;
+// double Ly_in_p;
+// double pcsq_in_m;
+// double pcsq_in_p;
+// double pczsq_in_p;
 
 Matrix3 R_in_INV;
 Matrix3 R_out;
