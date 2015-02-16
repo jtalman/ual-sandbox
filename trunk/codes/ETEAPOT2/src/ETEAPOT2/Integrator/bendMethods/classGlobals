@@ -49,6 +49,7 @@ double Lyc_in_p;
 
  double rIn;
  double EscrM;
+ double EscrMD;
 // double Escr;
  double xi_co;
 // double xi_in;
