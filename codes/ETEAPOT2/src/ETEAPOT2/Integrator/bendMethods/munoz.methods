@@ -9,7 +9,7 @@ inline ETEAPOT::MltData& getElectricData(){return m_edata;}
 
     double ht_tilda(double r){                       // h theta - Munoz equation (15)
         double fac   = kD/Lc/mDcc;
-        double value = Lc/mDcc/r-fac*(Escr+kD/r);
+        double value = Lc/mDcc/r-fac*(EscrM+kD/r);
         return value;
     }
 
@@ -39,7 +39,7 @@ inline ETEAPOT::MltData& getElectricData(){return m_edata;}
     }
 
     double get_rFromEllipse(double theta){
-        double fac = Lc*mDcc/kD/Escr;
+        double fac = Lc*mDcc/kD/EscrM;
         return lambda/( 1.+fac*C_tilda*cos( kappa*(theta-theta0) ) );
     }
 

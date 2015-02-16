@@ -2,10 +2,10 @@
 void updateDesignParameters(){
  LDc    = rD*pDc;
  kD     = pDc*betaD*rD;
- EscrD  = mDcc/gammaD;            // (60), (62) ETEAPOT-expanded ?
+ EscrMD = mDcc/gammaD;            // (60), (62) ETEAPOT-expanded ?
  ED     = pDc*betaD/rD;
 
  kbyLDc     = kD/LDc;
  kapSQD     = 1.-kbyLDc*kbyLDc;
- lambdaD    = kapSQD*LDc*LDc/kD/EscrD;
+ lambdaD    = kapSQD*LDc*LDc/kD/EscrMD;
 }
