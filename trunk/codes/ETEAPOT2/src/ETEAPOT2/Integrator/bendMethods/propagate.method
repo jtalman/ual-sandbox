@@ -22,7 +22,7 @@ void propagate(UAL::Probe& probe)                                    // Bend met
   refractIn(ip);                                                     // refract, alternate Lxc, Lyc, Lzc, Lc, no gamma kick
   updateMunoz();                                                     // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
   for(int i = 0; i < totalSplitBends/2; i++){       // SPLIT LOOP
-// update_xi();                                                      // xi0, xip0, xi_co
+   update_xi();                                                      // xi0, xip0, xi_co
    traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
    perSplitBendOutput(ip);
    initSpin(ip);
@@ -33,7 +33,7 @@ void propagate(UAL::Probe& probe)                                    // Bend met
    p[3]            -=  p[2]*invFclLngtX;                             // uses real m to correct for m=1
 
    updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
-// update_xi();
+   update_xi();
    traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
    perSplitBendOutput(ip);
 
