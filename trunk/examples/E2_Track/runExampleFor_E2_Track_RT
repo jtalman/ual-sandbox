@@ -19,4 +19,4 @@ make
 perl perl/SplitNikolayOut.pl NikolayOut >! IG
 
 gnuplot
-        l 'gnuplot/forGnuplot_Figure2'
+        l 'gnuplot/forGnuplot_Figure2-mod'
