@@ -15,22 +15,10 @@
 
 #include "UAL/APDF/APDF_Builder.hh"
 #include "PAC/Beam/Position.hh"
-#include "SMF/PacSmf.h"
 #include "PAC/Beam/Bunch.hh"
-#include "Main/Teapot.h"
-#include "Main/Eteapot.h"
-
 #include "UAL/UI/Shell.hh"
 
-#include "PAC/Beam/Particle.hh"
 #include "PAC/Beam/Spin.hh"
-
-#include "UAL/SMF/AcceleratorNodeFinder.hh"
-#include "Optics/PacTMap.h"
-#include "Integrator/TeapotElemBend.h"
-
-//#include "positionPrinter.hh"
-//#include "xmgracePrint.hh"
 
 #include "ETEAPOT2/Integrator/bend.cc"
 #include "ETEAPOT2/Integrator/quad.cc"
@@ -59,16 +47,14 @@ int main(int argc,char * argv[]){
 
  UAL::Shell shell;
 
- #include "userManifest/designBeamValues.hh"
- #include "userManifest/setBeamAttributes.hh"
- PAC::BeamAttributes& ba = shell.getBeamAttributes();
+#include "userManifest/designBeamValues.hh"
 
 //
   mDcc=m0;
   qD=q0;
 
   betaD=b0;
-  vD=v0*UAL::clight;
+  vD=betaD*UAL::clight;
   gammaD=gamma0;
 
   eD=e0;
@@ -77,24 +63,19 @@ int main(int argc,char * argv[]){
   fD=f0;
 
   tofDT=0;
-//tofD
 //
 
- #include "userManifest/extractParameters.h"
+#include "userManifest/extractParameters.h"
 
- #include "userManifest/probeDataForTwiss"
- #include "userManifest/userBunch"
-// #include "userManifest/simulatedProbeValues"
+#include "userManifest/probeDataForTwiss"
+#include "userManifest/userBunch"
  int spltBndsPrBend=pow(2,splitForBends);
- //ETEAPOT2::bend::bndsPrTrn=16;   //   atoi( argv[8] )*spltBndsPrBend;
- //std::cerr << "ETEAPOT2::bend::bndsPrTrn " << ETEAPOT2::bend::bndsPrTrn << "\n";
 
  // ************************************************************************
  std::cout << "\nDefine the space of Taylor maps." << std::endl;
  // ************************************************************************
 
   shell.setMapAttributes(UAL::Args() << UAL::Arg("order", order));
-//shell.setMapAttributes(UAL::Args() << UAL::Arg("order", 5));
 
  // ************************************************************************
  std::cout << "\nBuild lattice." << std::endl;
@@ -137,9 +118,6 @@ int main(int argc,char * argv[]){
 
  UAL::APDF_Builder apBuilder;
 
- apBuilder.setBeamAttributes(ba);
-
-// ETEAPOT::ElectricAcceleratorPropagator* ap = (ETEAPOT::ElectricAcceleratorPropagator*) apBuilder.parse(apdfFile);
  UAL::AcceleratorPropagator* ap = apBuilder.parse(apdfFile);
 
  if(ap == 0) {
@@ -171,19 +149,11 @@ int main(int argc,char * argv[]){
  turns=atoi( argv[5] );
  #include"userManifest/S"
  #include"userManifest/spin"
-// ETEAPOT2::mlt::initialize();
-// ETEAPOT2::bend::initialize();
-
-// positionPrinter pP;
-// pP.open(orbitFile.c_str());
-
- ba.setElapsedTime(0.0);
 
  int decFac=atoi(argv[7]);
  startTime = time(NULL);
  for(int iturn = 0; iturn <= (turns-1); iturn++){
   for(int ip=0; ip < bunch.size(); ip++){
-// pP.write(iturn, ip, bunch);
   }
   ap -> propagate(bunch);
  }
@@ -196,6 +166,8 @@ int main(int argc,char * argv[]){
  std::cerr << "++==========================================================================================++\n";
  std::cerr << "++==========================================================================================++\n";
  std::cerr << "++==========================================================================================++\n";
+ std::cerr << "++  gammaD " << gammaD << "                                                                     ++\n";
+ std::cerr << "++  betaD " << betaD << "                                                                     ++\n";
  std::cerr << "++  tofDT " << tofDT << "                                                                     ++\n";
  std::cerr << "++  SXF Equilibrium Frequency: 1./tofDT " << 1./tofDT << " Design Frequency (fD): " << fD << "  ++\n";
  std::cerr << "++  thetaDT " << thetaDT << "                                                                   ++\n";
@@ -206,7 +178,5 @@ int main(int argc,char * argv[]){
  std::cerr << "\n";
 #endif
 
-// pP.close();
-
- return 0;//1;
+ return 0;
 }
