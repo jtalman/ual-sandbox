@@ -1,0 +1,110 @@
+_________________________________________________________________________________________
+// README NOTES
+The CODE CHECKOUT stanza has probably already been run at this point.
+The USER MANIFEST stanza can probably be viewed as more detail than readily assimilable, to start.
+This "recipe", fairly typical, is somewhat unusual in that $UAL/codes/ETEAPOT2 is likely to be
+directly implicated.
+
+???
+The MAIN USAGE stanza probably works fairly well "out of box".
+???
+_________________________________________________________________________________________
+// README NOTES
+
+_________________________________________________________________________________________
+// CODE CHECKOUT
+// "checkout UAL, and set environmental variables
+
+svn checkout http://ual.googlecode.com/svn/trunk/ ual
+cd ual
+setenv UAL `pwd`
+source setup-linux-ual
+make clean
+make >&! make.log
+_________________________________________________________________________________________
+// CODE CHECKOUT
+
+_________________________________________________________________________________________
+// USER MANIFEST:
+//
+//      The following files, in subdirectory userManifest, are implicated in the output of E2_Track:
+//
+//                       design beam file - designBeamValues.hh
+//
+//                       probe beam file - extractParameters.h
+//
+//                       split file - probeDataForTwiss
+//
+//                       shell file - setBeamAttributes.hh
+//
+//                       design particle file - simulatedProbeValues
+//
+//                       probe spin file - spin
+//
+//                       probe orbit file - userBunch1
+//
+//      Additionally, these files are critical:
+//
+//                       sxf file - ./sxf/E_pEDM-rtr1-preMobius.RF.sxf - see below
+//
+//                       apdf file - ./apdf/eteapot.apdf - see below
+//
+//      Utility Files:
+//
+//                       perl file - ./perl/userBunch1.pl - see below
+//
+//                       gnuplot file - ./gnuplot/userBunch1.gnuplot - see below
+//
+_________________________________________________________________________________________
+// USER MANIFEST
+
+// Compile in Server Side Debug?
+//      ???
+\cp $UAL/env/linux/Makefile.configDEBUG $UAL/env/linux/Makefile.config
+//      ???
+// Compile in Server Side Debug?
+
+: MAIN SERVER SIDE COMPILE:
+pushd $UAL/codes/ETEAPOT2
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: SXF TEST USAGE:
+\cp $UAL/examples/E2_Track/Makefile_sxfCheck $UAL/examples/E2_Track/Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
+make clean
+make
+./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 646617.91 -1.2 0 1 0.02 1 >! /dev/null
+
+: MAIN USAGE:
+\cp $UAL/examples/E2_Track/Makefile_production $UAL/examples/E2_Track/Makefile
+\cp userManifest/userBunch_RT userManifest/userBunch
+\cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
+make clean
+make
+./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 646617.91 -1.2 0 160 0.02 1 >! /dev/null
+
+perl perl/userBunch_RT.pl out/JDTout > out/IG
+
+gnuplot
+      l 'gnuplot/6plus3D.gnuplot'
+
+// This replaces the (obsolete) smoke test using E_pEDM-rtr1-preMobius.RF.sxf 
+// and corrects
+//          traverseSplitBendExactly.method
+// by reversing commented outs
+//                  p[4]             += get_dt();
+//                //p[4]             += get_dt_xi();
+
+// This includes updating 
+//          1. "userBunch1" has been modified
+//          2. "userBunch_RT" has been modified
+//          3. 'gnuplot/userBunch1.gnuplot' is obsolete. We now use "6plus3D.gnuplot"
+//          4. IG perl script is called 'perl/userBunch_RT.pl'
+// This merges the two previous "smoke tests" 
+// to a single version that provisionally checks transverse, longitudinal, and spin 
