@@ -6,29 +6,32 @@
 # the entries in the userBunch file.
 
 # set terminal postscript eps enhanced color 20
-# set output "SpinEvolve.eps"
+# set output "6plus3D.eps"
+
 set timestamp "%d/%m/%y %H:%M" font "Times, 30" rotate 4,0 
 set grid
 
 set terminal x11 1
 set title "x1typ, 0, 0, 0, 0, 0"
-set xrange [0:100]
+# set xrange [0:100]
 set xlabel 'split bend index'
 set ylabel 'p[0] = x [m]'
 show timestamp
 p 'out/IG' i 1 u 2:4 w l lw 1
 
-set terminal x11 101
+# set terminal x11 101
+set terminal png giant size 800,600
+set output "6plus3D-101.png"
 set title "x1typ, 0, 0, 0, 0, 0"
-set xrange [0:100]
 set xlabel 'split bend index'
 set ylabel 'spin[0] = Sx'
 show timestamp
 p 'out/IG' i 1 u 2:10 w l lw 1
 
-set terminal x11 201
+# set terminal x11 201
+set terminal png giant size 800,600
+set output "6plus3D-201.png"
 set title "x1typ, 0, 0, 0, 0, 0"
-set xrange [0:100]
 set xlabel 'split bend index'
 set ylabel 'spin[1] = Sy'
 show timestamp
@@ -36,41 +39,41 @@ p 'out/IG' i 1 u 2:11 w l lw 1
 
 set terminal x11 3
 set title "0, x2typ, 0, 0, 0, 0"
-set xrange [0:100]
 set xlabel 'split bend index'
-set ylabel "p[0] = x [m]"
+set ylabel "p[0] = x'"
 show timestamp
 p 'out/IG' i 3 u 2:5 w l lw 1
 
 set terminal x11 5
 set title "0, 0, y1typ, 0, 0, 0"
-set xrange [0:100]
 set xlabel 'split bend index'
 set ylabel 'p[2] = y [m]'
 show timestamp
-p 'out/IG' i 5 u 2:7 w l lw 1
+p 'out/IG' i 5 u 2:6 w l lw 1
 
 set terminal x11 7
 set title "0, 0, 0, y2typ, 0, 0"
-set xrange [0:100]
 set xlabel 'split bend index'
-set ylabel "p[2] = y [m]"
+set ylabel "p[2] = y'"
 show timestamp
-p 'out/IG' i 7 u 2:8 w l lw 1
+p 'out/IG' i 7 u 2:7 w l lw 1
 
-set terminal x11 9
+# set terminal x11 9
+set terminal png giant size 800,600
+set output "6plus3D-9.png"
 set title "0, 0, 0, 0, 0, deltyp"
-set xrange [0:100]
 set xlabel 'split bend index'
-set ylabel '-ct [m]'
+set ylabel 'de [m]'
 show timestamp
 p 'out/IG' i 9 u 2:9 w l lw 1
 
-set terminal x11 101112
+# set terminal x11 101112
+set terminal png giant size 800,600
+set output "6plus3D-101112.png"
 set title "0, 0, 0, 0, 0, -0.000001/-0.000002"
 set xrange [*:*]
-set xlabel 'x'
-set ylabel '-ct [m]'
+set xlabel '-ct [m]'
+set ylabel 'de'
 show timestamp
 p 'out/IG' i 10 u 8:9 w l lw 1, 'out/IG' i 11 u 8:9 w l lw 1, 'out/IG' i 12 u 8:9 w l lw 1
 
