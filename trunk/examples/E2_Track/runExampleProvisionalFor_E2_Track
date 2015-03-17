@@ -108,3 +108,38 @@ gnuplot
 //          4. IG perl script is called 'perl/userBunch_RT.pl'
 // This merges the two previous "smoke tests" 
 // to a single version that provisionally checks transverse, longitudinal, and spin 
+
+////////////////////////////////////////////////////////////////////////
+// For ELECTRON RING (E_AGS_AnEDM_SepQuads.RF-)
+
+: MAIN SERVER SIDE COMPILE:
+pushd $UAL/codes/ETEAPOT2
+ll lib/linux
+make clean
+ll lib/linux
+make
+ll lib/linux
+popd
+
+: SXF TEST USAGE:
+\cp $UAL/examples/E2_Track/Makefile_sxfCheck $UAL/examples/E2_Track/Makefile
+\cp userManifest/userBunch1 userManifest/userBunch
+\cp userManifest/designBeamValues-e.hh userManifest/designBeamValues.hh
+make clean
+make
+
+./E2_Track ./sxf/E_AGS_AnEDM_SepQuads.RF-.sxf 6.9511053e6 -1 0 1 0.02 1  >! /dev/null  
+
+: MAIN USAGE:
+\cp $UAL/examples/E2_Track/Makefile_production $UAL/examples/E2_Track/Makefile
+\cp userManifest/userBunch_RT userManifest/userBunch
+\cp userManifest/designBeamValues-e.hh userManifest/designBeamValues.hh
+make clean
+make
+
+./E2_Track ./sxf/E_AGS_AnEDM_SepQuads.RF-.sxf 6.9511053e6 -1 0 59 0.02 10  >! /dev/null  
+
+perl perl/userBunch_RT.pl out/JDTout > out/IG
+
+gnuplot
+      l 'gnuplot/6plus3D.gnuplot'
