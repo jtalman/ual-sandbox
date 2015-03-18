@@ -1,6 +1,8 @@
 #ifndef ETEAPOT2_BUNCH_PARTICLE_EXTERN
 #define ETEAPOT2_BUNCH_PARTICLE_EXTERN
 
+ extern int decFac;
+
  extern double gama;
  extern double tof;
  extern Vector3 vlcy;
