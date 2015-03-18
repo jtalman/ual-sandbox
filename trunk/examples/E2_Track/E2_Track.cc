@@ -150,7 +150,7 @@ int main(int argc,char * argv[]){
  #include"userManifest/S"
  #include"userManifest/spin"
 
- int decFac=atoi(argv[7]);
+ decFac=atoi(argv[7]);
  startTime = time(NULL);
  for(int iturn = 0; iturn <= (turns-1); iturn++){
   for(int ip=0; ip < bunch.size(); ip++){

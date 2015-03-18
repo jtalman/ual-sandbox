@@ -76,10 +76,11 @@ popd
 : SXF TEST USAGE:
 \cp $UAL/examples/E2_Track/Makefile_sxfCheck $UAL/examples/E2_Track/Makefile
 \cp userManifest/userBunch1 userManifest/userBunch
-\cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
+\cp userManifest/designBeamValues-e.hh userManifest/designBeamValues.hh
 make clean
 make
-./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 646617.91 -1.2 0 1 0.02 1 >! /dev/null
+: ./E2_Track ./sxf/E_AGS_AnEDM_SepQuads.RF.sxf 6.9511053e6 -1 0 1 0.02 1 >! /dev/null
+ ./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 646617.91 -1.2 0 1 0.02 1 >! /dev/null
 
 : MAIN USAGE:
 \cp $UAL/examples/E2_Track/Makefile_production $UAL/examples/E2_Track/Makefile
@@ -87,12 +88,12 @@ make
 \cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
 make clean
 make
-./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 646617.91 -1.2 0 160 0.02 1 >! /dev/null
+./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 646617.91 -1.2 0 160 0.02 10 >! /dev/null
 
-perl perl/userBunch_RT.pl out/JDTout > out/IG
+perl perl/userBunch_RT.pl NikolayOut > out/IG
 
 gnuplot
-      l 'gnuplot/6plus3D.gnuplot'
+      l 'gnuplot/6plus3D_turnplot.gnuplot'
 
 // This replaces the (obsolete) smoke test using E_pEDM-rtr1-preMobius.RF.sxf 
 // and corrects
@@ -139,7 +140,24 @@ make
 
 ./E2_Track ./sxf/E_AGS_AnEDM_SepQuads.RF-.sxf 6.9511053e6 -1 0 59 0.02 10  >! /dev/null  
 
-perl perl/userBunch_RT.pl out/JDTout > out/IG
+perl perl/userBunch_RT.pl NikolayOut > out/IG
 
 gnuplot
-      l 'gnuplot/6plus3D.gnuplot'
+      l 'gnuplot/6plus3D_turnplot.gnuplot'
+
+////////////////////////////////////////////////////////////////////////
+
+// Split bend output has been suppressed by default
+// To recover split bend output uncomment the following lines
+
+// line 27: //   perSplitBendOutput(ip);
+// line 36: //   perSplitBendOutput(ip);
+
+// in codes/ETEAPOT2/src/ETEAPOT2/Integrator/bendMethods/propagate.method
+
+// We then need the scripts 
+
+// perl perl/userBunch_RT.pl out/JDTout > out/IG
+// gnuplot
+//      l 'gnuplot/6plus3D.gnuplot'
+
