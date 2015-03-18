@@ -18,17 +18,17 @@ namespace ETEAPOT2 {
 
   /** Marker tracker. */
 
-  class marker : public ETEAPOT::BasicTracker {
+ class marker : public ETEAPOT::BasicTracker {
 
-public:
+  public:
 
 #include"ETEAPOT2/Integrator/markerMethods/classMethods"
 #include"ETEAPOT2/Integrator/markerMethods/propagate.method"
 
-fstream NikolayOut;
-static int markerCount;
-
-  };
+   fstream NikolayOut;
+   static int turns;
+   static int markerCount;
+ };
 
 }
 

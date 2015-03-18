@@ -1,6 +1,8 @@
 #ifndef ETEAPOT2_BUNCH_PARTICLE_DEF
 #define ETEAPOT2_BUNCH_PARTICLE_DEF
 
+ int decFac = 1;                   // "decimation factor" moved "server side"(because output happens there now)
+
  double gama;
  double tof;
  Vector3 vlcy;

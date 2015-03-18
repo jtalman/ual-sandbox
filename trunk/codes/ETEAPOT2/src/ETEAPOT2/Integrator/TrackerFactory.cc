@@ -5,6 +5,7 @@
 
 ETEAPOT2::TrackerFactory* ETEAPOT2::TrackerFactory::s_theInstance = 0;
 
+int ETEAPOT2::marker::turns=0;
 int ETEAPOT2::marker::markerCount=0;
 double ETEAPOT2::bend::dZFF;
 double ETEAPOT2::bend::m_m;
