@@ -6,6 +6,10 @@ Vector3 get_rOutV_rot(){
  double nx           = nHat[0];
  double ny           = nHat[1];
  double nz           = nHat[2];
+// std::cerr << nHat << " " << th << " " << atan2(-nx,nz) << "\n";
+ double dsnPlaneCrs  = 1.;
+ double psi          = atan2(-nx,nz);
+ if( psi>0 && psi<th ){dsnPlaneCrs=-1; // std::cerr << "### " << nHat << " " << th << " " << atan2(-nx,nz) << "\n";}
 
  Vector3 rInHat(xR/rIn,yR/rIn,zR/rIn);
  Vector3 pInHat(pxc/pc,pyc/pc,pzc/pc);
@@ -16,9 +20,9 @@ Vector3 get_rOutV_rot(){
   double yOutHat;                                           //   ca 0
 //double yOutHat    = sqrt( 1.-a*a )*+rInHaty/fabs(+rInHaty);   //   ca 0
  if(+rInHat[1]>=0){
-  yOutHat            = +sqrt( 1.-a*a );
+  yOutHat            = +sqrt( 1.-a*a )*dsnPlaneCrs;
  }else{
-  yOutHat            = -sqrt( 1.-a*a );
+  yOutHat            = -sqrt( 1.-a*a )*dsnPlaneCrs;
  }
 
  double phi          = acos(rInHat[0]*a*cos(th)+rInHat[1]*yOutHat);
