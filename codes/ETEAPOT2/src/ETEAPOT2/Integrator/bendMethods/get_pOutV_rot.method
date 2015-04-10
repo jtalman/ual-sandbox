@@ -9,7 +9,10 @@ Vector3 get_pOutV_rot(){
 // std::cerr << nHat << " " << th << " " << atan2(-nx,nz) << "\n";
  double dsnPlaneCrs  = 1.;
  double psi          = atan2(-nx,nz);
- if( psi>0 && psi<th ){dsnPlaneCrs=-1; // std::cerr << "### " << nHat << " " << th << " " << atan2(-nx,nz) << "\n";}
+ if( psi>0 && psi<th ){
+  dsnPlaneCrs=-1;
+//std::cerr << "### " << nHat << " " << th << " " << atan2(-nx,nz) << "\n";
+ }
 
  Vector3 rInHat(xR/rIn,yR/rIn,zR/rIn);
  Vector3 pInHat(pxc/pc,pyc/pc,pzc/pc);
