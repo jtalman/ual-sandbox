@@ -25,6 +25,8 @@ namespace SXF_TRACKER {
 
   public:
 
+    const char* getType(){return "SXF_TRACKER_driftOrDefault";}
+
     /** Constructor */
     driftOrDefault();
 

@@ -58,6 +58,8 @@ UAL::AcceleratorNode& getBackAcceleratorNode()
   return m_backNode;
 }
 
+    const char* getType(){return "SXF_TRACKER_dipole";}
+
     /** Propagates a bunch */
     void propagate(UAL::Probe& bunch);
 
