@@ -106,7 +106,8 @@ int main(int argc,char * argv[]){
   p0 = .1;
   e0 = sqrt(m0*m0 + p0*p0);
   c0 = 1.60193E-19;
-  shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", e0) << UAL::Arg("mass", m0) << UAL::Arg("charge", c0));
+  shell.setBeamAttributes(UAL::Args() << UAL::Arg("mass", m0));
+  shell.setBeamAttributes(UAL::Args() << UAL::Arg("energy", e0) << UAL::Arg("charge", c0));
   PAC::BeamAttributes& ba = shell.getBeamAttributes();
   ba.setG(0.0011659230);             // adds muon G factor
   G0 = ba.getG();
