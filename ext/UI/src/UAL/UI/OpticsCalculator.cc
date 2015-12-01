@@ -367,6 +367,7 @@ void UAL::OpticsCalculator::selectElementsByNames(const std::string& names,
 void UAL::OpticsCalculator::writeTeapotTwissToFile(const std::string& accName,
     const std::string& fileName, const std::string& elemNames)
 {
+std::cout << "JDT " << __FILE__ << " " << __LINE__ << "enter UAL::OpticsCalculator::writeTeapotTwissToFile\n";
 
   PacLattices::iterator latIterator = PacLattices::instance()->find(accName);
   if(latIterator == PacLattices::instance()->end()){
@@ -425,9 +426,11 @@ void UAL::OpticsCalculator::writeTeapotTwissToFile(const std::string& accName,
   for(int i=0; i < lattice.size(); i++){
 
     PacLattElement& el = lattice[i];
+    string name=el.getDesignName();
+    if(name.size()==0){name.assign("drift");} 
 
     sprintf(line, "%5d %-10s %15.7e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e %10.3e%c", 
-	    i, el.getDesignName().c_str(), positions[i], 
+	    i, name.c_str(), positions[i], 
 	    twiss[i].beta(0), twiss[i].alpha(0), 
 	    twiss[i].mu(0)/twopi, twiss[i].d(0),
 	    twiss[i].beta(1), twiss[i].alpha(1), 
@@ -436,6 +439,7 @@ void UAL::OpticsCalculator::writeTeapotTwissToFile(const std::string& accName,
   }
 
   out.close();
+std::cout << "JDT " << __FILE__ << " " << __LINE__ << "leave UAL::OpticsCalculator::writeTeapotTwissToFile\n";
 }
 
 void UAL::OpticsCalculator::writeTeapotTwissToFile(const std::string& accName,
