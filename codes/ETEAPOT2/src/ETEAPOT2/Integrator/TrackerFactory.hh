@@ -7,6 +7,7 @@
 
 #include "ETEAPOT2/Integrator/drift.cc"
 #include "ETEAPOT2/Integrator/bend.cc"
+#include "ETEAPOT2/Integrator/M_bend.cc"
 #include "ETEAPOT2/Integrator/marker.cc"
 #include "ETEAPOT2/Integrator/quad.cc"
 #include "ETEAPOT2/Integrator/sext.cc"

@@ -1,4 +1,5 @@
 OBJS +=	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/bend.o \
+	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/M_bend.o \
 	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/drift.o \
 	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/marker.o \
 	$(UAL_ETEAPOT2)/lib/$(UAL_ARCH)/obj/oct.o \

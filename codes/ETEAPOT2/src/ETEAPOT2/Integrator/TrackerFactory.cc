@@ -10,14 +10,23 @@ int ETEAPOT2::marker::markerCount=0;
 double ETEAPOT2::bend::dZFF;
 double ETEAPOT2::bend::m_m;
 int ETEAPOT2::bend::bnd=0;
+double ETEAPOT2::M_bend::dZFF;
+double ETEAPOT2::M_bend::m_m;
+int ETEAPOT2::M_bend::bnd=0;
 //int ETEAPOT2::bend::bndsPerTrn;
 //double ETEAPOT2::bend::spin[41][3];
 
 ETEAPOT2::TrackerFactory::TrackerFactory()
 {
+#ifndef Magnetic
   UAL::PropagatorNodePtr dipolePtr(new ETEAPOT2::bend());
   m_trackers["Sbend"] = dipolePtr;
   m_trackers["Rbend"] = dipolePtr;
+#else
+  UAL::PropagatorNodePtr dipolePtr(new ETEAPOT2::M_bend());
+  m_trackers["Sbend"] = dipolePtr;
+  m_trackers["Rbend"] = dipolePtr;
+#endif
 
 //UAL::PropagatorNodePtr mltPtr(new ETEAPOT2::mlt());
   UAL::PropagatorNodePtr quadPtr(new ETEAPOT2::quad());
@@ -109,8 +118,13 @@ ETEAPOT2::TrackerRegister::TrackerRegister()
   UAL::PropagatorNodePtr driftPtr(new ETEAPOT2::drift());
   UAL::PropagatorFactory::getInstance().add("ETEAPOT2::drift", driftPtr);
 
+#ifndef Magnetic
   UAL::PropagatorNodePtr dipolePtr(new ETEAPOT2::bend());
   UAL::PropagatorFactory::getInstance().add("ETEAPOT2::bend", dipolePtr);
+#else
+  UAL::PropagatorNodePtr dipolePtr(new ETEAPOT2::M_bend());
+  UAL::PropagatorFactory::getInstance().add("ETEAPOT2::M_bend", dipolePtr);
+#endif
 
   UAL::PropagatorNodePtr quadPtr(new ETEAPOT2::quad());
   UAL::PropagatorFactory::getInstance().add("ETEAPOT2::quad", quadPtr);

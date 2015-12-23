@@ -1,5 +1,6 @@
 : MAIN SERVER SIDE COMPILE:
 pushd $UAL/codes/ETEAPOT2
+\cp src/ETEAPOT2/Integrator/MakefileMagnetic src/ETEAPOT2/Integrator/Makefile
 ll lib/linux
 make clean
 ll lib/linux
@@ -9,8 +10,9 @@ popd
 
 : SXF TEST USAGE:
 \cp Makefile_sxfCheck Makefile
+\cp apdf/eteapot.apdfMagnetic apdf/eteapot.apdf
 \cp userManifest/userBunch1 userManifest/userBunch
 \cp userManifest/designBeamValues-e.hh userManifest/designBeamValues.hh
 make clean
 make
-./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 1470000 1 0 1 0.0 1 >! /dev/null
+./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 1470000 1 0 1 0.0 1
