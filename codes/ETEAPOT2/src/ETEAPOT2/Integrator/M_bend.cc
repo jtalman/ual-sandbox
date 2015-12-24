@@ -35,7 +35,10 @@ namespace ETEAPOT2 {
 
 #include "ETEAPOT2/Integrator/bendMethods/entryFF.method"
 #include "ETEAPOT2/Integrator/bendMethods/refractIn.method"
-#include "ETEAPOT2/Integrator/bendMethods/traverseSplitBendExactly.method"
+
+//#include "ETEAPOT2/Integrator/bendMethods/traverseSplitBendExactly.method"
+  #include "ETEAPOT2/Integrator/M_bendMethods/passSplitBendWithKicks.method"
+
 #include "ETEAPOT2/Integrator/bendMethods/refractOut.method"
 #include "ETEAPOT2/Integrator/bendMethods/exitFF.method"
 

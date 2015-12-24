@@ -24,7 +24,8 @@ std::cerr << "JDT: line " << __LINE__ << " in function " << __FUNCTION__ << " in
   updateMunoz();                                                     // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
   for(int i = 0; i < totalSplitBends/2; i++){       // SPLIT LOOP
    update_xi();                                                      // xi0, xip0, xi_co
-   traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+// traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   passSplitBendWithKicks(ip);                                     // pure Munoz, uses rD, th
    perSplitBendOutput(ip);
    initSpin(ip);
    updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
@@ -35,7 +36,8 @@ std::cerr << "JDT: line " << __LINE__ << " in function " << __FUNCTION__ << " in
 
    updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
    update_xi();
-   traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+// traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   passSplitBendWithKicks(ip);                                     // pure Munoz, uses rD, th
    perSplitBendOutput(ip);
 
    initSpin(ip);
