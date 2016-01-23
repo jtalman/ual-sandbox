@@ -16,4 +16,7 @@ popd
 \cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
 make clean
 make
-./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 1470000 1 0 1 0.0 1
+: ./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 6.4661791e+05 1 0 1 0.0 1
+
+: BAD SEXT at s=12!!
+: ./E2_Track ./sxf/M_041209_COSY-mod.sxf 1470000 1 0 1 0.0 1
