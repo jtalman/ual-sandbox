@@ -1,0 +1,1320 @@
+// SXF version 2.0
+elsa sequence
+ {
+   my_start
+     marker {
+         tag = my_start
+         at = 0
+         };
+   ic01
+     marker {
+         tag = ic01
+         at = 0.013
+         };
+   qd1
+     quadrupole {
+         tag = qd1
+         l = 0.4997
+         at = 0.284
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm01
+     monitor {
+         tag = bpm01
+         l = 0.025
+         at = 0.55
+         };
+   kv01
+     vkicker {
+         tag = kv01
+         l = 0.1
+         at = 0.784
+         };
+   sq1
+     quadrupole {
+         tag = sq1
+         l = 0.45
+         at = 2.85275
+         };
+   lq1
+     quadrupole {
+         tag = lq1
+         l = 0.45
+         at = 4.3165
+         };
+   sx1
+     sextupole {
+         tag = sx1
+         l = 0.287
+         at = 4.8915
+         };
+   ic02
+     marker {
+         tag = ic02
+         at = 5.1175
+         };
+   qf2
+     quadrupole {
+         tag = qf2
+         l = 0.4997
+         at = 5.4215
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm02
+     monitor {
+         tag = bpm02
+         l = 0.025
+         at = 5.69
+         };
+   ijk2
+     hkicker {
+         tag = ijk2
+         l = 0.73
+         at = 6.282
+         };
+   kv02
+     vkicker {
+         tag = kv02
+         l = 0.13
+         at = 6.7715
+         };
+   m2
+     sbend {
+         tag = m2
+         arc = 2.87500000012
+         at = 8.5702
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic03
+     marker {
+         tag = ic03
+         at = 10.288
+         };
+   qd3
+     quadrupole {
+         tag = qd3
+         l = 0.4997
+         at = 10.559
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm03
+     monitor {
+         tag = bpm03
+         l = 0.025
+         at = 10.83
+         };
+   sd3
+     sextupole {
+         tag = sd3
+         l = 0.287
+         at = 11.089
+         body = {
+                 kl = [ 0 0 -0.574]
+                }
+         };
+   kv03
+     vkicker {
+         tag = kv03
+         l = 0.13
+         at = 11.4
+         };
+   ijk3
+     hkicker {
+         tag = ijk3
+         l = 0.73
+         at = 14.841
+         };
+   ic04
+     marker {
+         tag = ic04
+         at = 15.4255
+         };
+   qf4
+     quadrupole {
+         tag = qf4
+         l = 0.4997
+         at = 15.6965
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm04
+     monitor {
+         tag = bpm04
+         l = 0.025
+         at = 15.97
+         };
+   sf4
+     sextupole {
+         tag = sf4
+         l = 0.287
+         at = 16.2265
+         body = {
+                 kl = [ 0 0 1.0045]
+                }
+         };
+   kv04
+     vkicker {
+         tag = kv04
+         l = 0.13
+         at = 16.6345
+         };
+   m4
+     sbend {
+         tag = m4
+         arc = 2.87500000012
+         at = 18.8452
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic05
+     marker {
+         tag = ic05
+         at = 20.563
+         };
+   qd5
+     quadrupole {
+         tag = qd5
+         l = 0.4997
+         at = 20.834
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm05
+     monitor {
+         tag = bpm05
+         l = 0.025
+         at = 21.1
+         };
+   kv05
+     vkicker {
+         tag = kv05
+         l = 0.13
+         at = 21.332
+         };
+   m5
+     sbend {
+         tag = m5
+         arc = 2.87500000012
+         at = 23.9827
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic06
+     marker {
+         tag = ic06
+         at = 25.7005
+         };
+   qf6
+     quadrupole {
+         tag = qf6
+         l = 0.4997
+         at = 25.9715
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm06
+     monitor {
+         tag = bpm06
+         l = 0.025
+         at = 26.24
+         };
+   mse6
+     rcollimator {
+         tag = mse6
+         l = 0.65
+         at = 26.752
+         };
+   icmse6
+     marker {
+         tag = icmse6
+         at = 27.216
+         };
+   kv06
+     vkicker {
+         tag = kv06
+         l = 0.13
+         at = 27.2995
+         };
+   m6
+     sbend {
+         tag = m6
+         arc = 2.87500000012
+         at = 29.1202
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic07
+     marker {
+         tag = ic07
+         at = 30.838
+         };
+   qd7
+     quadrupole {
+         tag = qd7
+         l = 0.4997
+         at = 31.109
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm07
+     monitor {
+         tag = bpm07
+         l = 0.025
+         at = 31.38
+         };
+   mse7
+     rcollimator {
+         tag = mse7
+         l = 0.9
+         at = 32.0275
+         };
+   m7
+     sbend {
+         tag = m7
+         arc = 2.87500000012
+         at = 34.2577
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic08
+     marker {
+         tag = ic08
+         at = 35.9755
+         };
+   qf8
+     quadrupole {
+         tag = qf8
+         l = 0.4997
+         at = 36.2465
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm08
+     monitor {
+         tag = bpm08
+         l = 0.025
+         at = 36.52
+         };
+   kv08
+     vkicker {
+         tag = kv08
+         l = 0.13
+         at = 37.5685
+         };
+   m8
+     sbend {
+         tag = m8
+         arc = 2.87500000012
+         at = 39.3952
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   qd9
+     quadrupole {
+         tag = qd9
+         l = 0.4997
+         at = 41.384
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm09
+     monitor {
+         tag = bpm09
+         l = 0.025
+         at = 41.65
+         };
+   m9
+     sbend {
+         tag = m9
+         arc = 2.87500000012
+         at = 43.3727
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv09
+     vkicker {
+         tag = kv09
+         l = 0.13
+         at = 45.2225
+         };
+   ic10
+     marker {
+         tag = ic10
+         at = 46.2505
+         };
+   qf10
+     quadrupole {
+         tag = qf10
+         l = 0.4997
+         at = 46.5215
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm10
+     monitor {
+         tag = bpm10
+         l = 0.025
+         at = 46.79
+         };
+   m10
+     sbend {
+         tag = m10
+         arc = 2.87500000012
+         at = 48.5102
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv10
+     vkicker {
+         tag = kv10
+         l = 0.13
+         at = 50.709
+         };
+   sd10
+     sextupole {
+         tag = sd10
+         l = 0.287
+         at = 51.129
+         body = {
+                 kl = [ 0 0 -0.574]
+                }
+         };
+   bpm11
+     monitor {
+         tag = bpm11
+         l = 0.025
+         at = 51.39
+         };
+   qd11
+     quadrupole {
+         tag = qd11
+         l = 0.4997
+         at = 51.659
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   ic11
+     marker {
+         tag = ic11
+         at = 51.93
+         };
+   m11
+     sbend {
+         tag = m11
+         arc = 2.87500000012
+         at = 53.6477
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv11
+     vkicker {
+         tag = kv11
+         l = 0.13
+         at = 55.8605
+         };
+   sf11
+     sextupole {
+         tag = sf11
+         l = 0.287
+         at = 56.2665
+         body = {
+                 kl = [ 0 0 1.0045]
+                }
+         };
+   bpm12
+     monitor {
+         tag = bpm12
+         l = 0.025
+         at = 56.53
+         };
+   qf12
+     quadrupole {
+         tag = qf12
+         l = 0.4997
+         at = 56.7965
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   ic12
+     marker {
+         tag = ic12
+         at = 57.0675
+         };
+   m12
+     sbend {
+         tag = m12
+         arc = 2.87500000012
+         at = 58.7852
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv12
+     vkicker {
+         tag = kv12
+         l = 0.13
+         at = 61.444
+         };
+   ic13
+     marker {
+         tag = ic13
+         at = 61.663
+         };
+   qd13
+     quadrupole {
+         tag = qd13
+         l = 0.4997
+         at = 61.934
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm13
+     monitor {
+         tag = bpm13
+         l = 0.025
+         at = 62.2
+         };
+   m13
+     sbend {
+         tag = m13
+         arc = 2.87500000012
+         at = 63.9227
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv13
+     vkicker {
+         tag = kv13
+         l = 0.13
+         at = 66.1515
+         };
+   ic14
+     marker {
+         tag = ic14
+         at = 66.8005
+         };
+   qf14
+     quadrupole {
+         tag = qf14
+         l = 0.4997
+         at = 67.0715
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm14
+     monitor {
+         tag = bpm14
+         l = 0.025
+         at = 67.34
+         };
+   kv14
+     vkicker {
+         tag = kv14
+         l = 0.13
+         at = 71.044
+         };
+   ic15
+     marker {
+         tag = ic15
+         at = 71.938
+         };
+   qd15
+     quadrupole {
+         tag = qd15
+         l = 0.4997
+         at = 72.209
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm15
+     monitor {
+         tag = bpm15
+         l = 0.025
+         at = 72.48
+         };
+   m15
+     sbend {
+         tag = m15
+         arc = 2.87500000012
+         at = 74.1977
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv15
+     vkicker {
+         tag = kv15
+         l = 0.13
+         at = 76.8485
+         };
+   ic16
+     marker {
+         tag = ic16
+         at = 77.0755
+         };
+   qf16
+     quadrupole {
+         tag = qf16
+         l = 0.4997
+         at = 77.3465
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm16
+     monitor {
+         tag = bpm16
+         l = 0.025
+         at = 77.62
+         };
+   sx16
+     sextupole {
+         tag = sx16
+         l = 0.287
+         at = 77.8765
+         };
+   lq16
+     quadrupole {
+         tag = lq16
+         l = 0.45
+         at = 78.4515
+         };
+   petra1
+     rfcavity {
+         tag = petra1
+         l = 1.6
+         at = 79.784
+         body = {
+                 volt =  0.56492 lag =  0.5 harmon =  274 shunt =  11.25
+                }
+         };
+   tjqd16
+     quadrupole {
+         tag = tjqd16
+         l = 0.5515
+         at = 81.797
+         };
+   bpm17
+     monitor {
+         tag = bpm17
+         l = 0.025
+         at = 82.21
+         };
+   qd17
+     quadrupole {
+         tag = qd17
+         l = 0.4997
+         at = 82.484
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   ic17
+     marker {
+         tag = ic17
+         at = 82.755
+         };
+   petra2
+     rfcavity {
+         tag = petra2
+         l = 1.6
+         at = 83.984
+         body = {
+                 volt =  0.56492 lag =  0.5 harmon =  274 shunt =  11.25
+                }
+         };
+   kv17
+     vkicker {
+         tag = kv17
+         l = 0.13
+         at = 85.16
+         };
+   lq17
+     quadrupole {
+         tag = lq17
+         l = 0.45
+         at = 86.5165
+         };
+   sx17
+     sextupole {
+         tag = sx17
+         l = 0.287
+         at = 87.0915
+         };
+   ic18
+     marker {
+         tag = ic18
+         at = 87.3175
+         };
+   qf18
+     quadrupole {
+         tag = qf18
+         l = 0.4997
+         at = 87.6215
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm18
+     monitor {
+         tag = bpm18
+         l = 0.025
+         at = 87.89
+         };
+   kv18
+     vkicker {
+         tag = kv18
+         l = 0.13
+         at = 88.9295
+         };
+   m18
+     sbend {
+         tag = m18
+         arc = 2.87500000012
+         at = 90.7702
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic19
+     marker {
+         tag = ic19
+         at = 92.488
+         };
+   qd19
+     quadrupole {
+         tag = qd19
+         l = 0.4997
+         at = 92.759
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm19
+     monitor {
+         tag = bpm19
+         l = 0.025
+         at = 93.03
+         };
+   sd19
+     sextupole {
+         tag = sd19
+         l = 0.287
+         at = 93.289
+         body = {
+                 kl = [ 0 0 -0.574]
+                }
+         };
+   kv19
+     vkicker {
+         tag = kv19
+         l = 0.13
+         at = 93.708
+         };
+   fmon
+     monitor {
+         tag = fmon
+         at = 94.28
+         };
+   sf19
+     sextupole {
+         tag = sf19
+         l = 0.287
+         at = 97.3665
+         body = {
+                 kl = [ 0 0 1.0045]
+                }
+         };
+   bpm20
+     monitor {
+         tag = bpm20
+         l = 0.025
+         at = 97.63
+         };
+   qf20
+     quadrupole {
+         tag = qf20
+         l = 0.4997
+         at = 97.8965
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   ic20
+     marker {
+         tag = ic20
+         at = 98.1675
+         };
+   kv20
+     vkicker {
+         tag = kv20
+         l = 0.13
+         at = 99.2175
+         };
+   m20
+     sbend {
+         tag = m20
+         arc = 2.87500000012
+         at = 101.0452
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic21
+     marker {
+         tag = ic21
+         at = 102.763
+         };
+   qd21
+     quadrupole {
+         tag = qd21
+         l = 0.4997
+         at = 103.034
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm21
+     monitor {
+         tag = bpm21
+         l = 0.025
+         at = 103.3
+         };
+   kv21
+     vkicker {
+         tag = kv21
+         l = 0.13
+         at = 103.554
+         };
+   m21
+     sbend {
+         tag = m21
+         arc = 2.87500000012
+         at = 106.1825
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic22
+     marker {
+         tag = ic22
+         at = 107.9005
+         };
+   qf22
+     quadrupole {
+         tag = qf22
+         l = 0.4997
+         at = 108.1715
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm22
+     monitor {
+         tag = bpm22
+         l = 0.025
+         at = 108.44
+         };
+   mse22
+     rcollimator {
+         tag = mse22
+         l = 0.65
+         at = 108.909
+         };
+   icmse22
+     marker {
+         tag = icmse22
+         at = 109.399
+         };
+   kv22
+     vkicker {
+         tag = kv22
+         l = 0.13
+         at = 109.4645
+         };
+   m22
+     sbend {
+         tag = m22
+         arc = 2.87500000012
+         at = 111.3205
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic23
+     marker {
+         tag = ic23
+         at = 113.038
+         };
+   qd23
+     quadrupole {
+         tag = qd23
+         l = 0.4997
+         at = 113.309
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm23
+     monitor {
+         tag = bpm23
+         l = 0.025
+         at = 113.58
+         };
+   mse23
+     rcollimator {
+         tag = mse23
+         l = 0.9
+         at = 114.219
+         };
+   m23
+     sbend {
+         tag = m23
+         arc = 2.87500000012
+         at = 116.4575
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   ic24
+     marker {
+         tag = ic24
+         at = 118.1755
+         };
+   qf24
+     quadrupole {
+         tag = qf24
+         l = 0.4997
+         at = 118.4465
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm24
+     monitor {
+         tag = bpm24
+         l = 0.025
+         at = 118.72
+         };
+   kv24
+     vkicker {
+         tag = kv24
+         l = 0.13
+         at = 119.6835
+         };
+   m24
+     sbend {
+         tag = m24
+         arc = 2.87500000012
+         at = 121.5955
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   bpm25
+     monitor {
+         tag = bpm25
+         l = 0.025
+         at = 123.31
+         };
+   qd25
+     quadrupole {
+         tag = qd25
+         l = 0.4997
+         at = 123.584
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   ic25
+     marker {
+         tag = ic25
+         at = 123.855
+         };
+   m25
+     sbend {
+         tag = m25
+         arc = 2.87500000012
+         at = 125.5725
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv25
+     vkicker {
+         tag = kv25
+         l = 0.13
+         at = 127.7735
+         };
+   ic26
+     marker {
+         tag = ic26
+         at = 128.4505
+         };
+   qf26
+     quadrupole {
+         tag = qf26
+         l = 0.4997
+         at = 128.7215
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm26
+     monitor {
+         tag = bpm26
+         l = 0.025
+         at = 128.99
+         };
+   m26
+     sbend {
+         tag = m26
+         arc = 2.87500000012
+         at = 130.7105
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv26
+     vkicker {
+         tag = kv26
+         l = 0.13
+         at = 132.942
+         };
+   sd26
+     sextupole {
+         tag = sd26
+         l = 0.287
+         at = 133.3285
+         body = {
+                 kl = [ 0 0 -0.574]
+                }
+         };
+   bpm27
+     monitor {
+         tag = bpm27
+         l = 0.025
+         at = 133.59
+         };
+   qd27
+     quadrupole {
+         tag = qd27
+         l = 0.4997
+         at = 133.859
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   ic27
+     marker {
+         tag = ic27
+         at = 134.13
+         };
+   m27
+     sbend {
+         tag = m27
+         arc = 2.87500000012
+         at = 135.8475
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv27
+     vkicker {
+         tag = kv27
+         l = 0.13
+         at = 138.0525
+         };
+   sf27
+     sextupole {
+         tag = sf27
+         l = 0.287
+         at = 138.4665
+         body = {
+                 kl = [ 0 0 1.0045]
+                }
+         };
+   bpm28
+     monitor {
+         tag = bpm28
+         l = 0.025
+         at = 138.73
+         };
+   qf28
+     quadrupole {
+         tag = qf28
+         l = 0.4997
+         at = 138.9965
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   ic28
+     marker {
+         tag = ic28
+         at = 139.2675
+         };
+   m28
+     sbend {
+         tag = m28
+         arc = 2.87500000012
+         at = 140.9855
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv28
+     vkicker {
+         tag = kv28
+         l = 0.13
+         at = 143.647
+         };
+   ic29
+     marker {
+         tag = ic29
+         at = 143.863
+         };
+   qd29
+     quadrupole {
+         tag = qd29
+         l = 0.4997
+         at = 144.134
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   bpm29
+     monitor {
+         tag = bpm29
+         l = 0.025
+         at = 144.4
+         };
+   m29
+     sbend {
+         tag = m29
+         arc = 2.87500000012
+         at = 146.1225
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv29
+     vkicker {
+         tag = kv29
+         l = 0.13
+         at = 147.9355
+         };
+   ijk29
+     hkicker {
+         tag = ijk29
+         l = 0.73
+         at = 148.411
+         };
+   ic30
+     marker {
+         tag = ic30
+         at = 149.0005
+         };
+   qf30
+     quadrupole {
+         tag = qf30
+         l = 0.4997
+         at = 149.2715
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm30
+     monitor {
+         tag = bpm30
+         l = 0.025
+         at = 149.54
+         };
+   kv30
+     vkicker {
+         tag = kv30
+         l = 0.13
+         at = 152.672
+         };
+   msi30
+     hkicker {
+         tag = msi30
+         l = 0.9
+         at = 153.435
+         };
+   bpm31
+     monitor {
+         tag = bpm31
+         l = 0.025
+         at = 154.13
+         };
+   qd31
+     quadrupole {
+         tag = qd31
+         l = 0.4997
+         at = 154.409
+         body = {
+                 kl = [ 0 -0.291365076]
+                }
+         };
+   ic31
+     marker {
+         tag = ic31
+         at = 154.68
+         };
+   m31
+     sbend {
+         tag = m31
+         arc = 2.87500000012
+         at = 156.3975
+         body = {
+                 kl = [ 0.261799387799]
+                 e1 =  0.1308996939 e2 =  0.1308996939 kl = [ 0 0
+                 -0.24437500001]
+                }
+         };
+   kv31
+     vkicker {
+         tag = kv31
+         l = 0.13
+         at = 158.1765
+         };
+   msi31
+     hkicker {
+         tag = msi31
+         l = 0.6
+         at = 158.703
+         };
+   ic32
+     marker {
+         tag = ic32
+         at = 159.2775
+         };
+   qf32
+     quadrupole {
+         tag = qf32
+         l = 0.4997
+         at = 159.5465
+         body = {
+                 kl = [ 0 0.31561052]
+                }
+         };
+   bpm32
+     monitor {
+         tag = bpm32
+         l = 0.025
+         at = 159.82
+         };
+   sx32
+     sextupole {
+         tag = sx32
+         l = 0.287
+         at = 160.0765
+         };
+   lq32
+     quadrupole {
+         tag = lq32
+         l = 0.45
+         at = 160.6519
+         };
+   kv32
+     vkicker {
+         tag = kv32
+         l = 0.1
+         at = 161.4225
+         };
+   sq32
+     quadrupole {
+         tag = sq32
+         l = 0.45
+         at = 162.11525
+         };
+   tjq32
+     quadrupole {
+         tag = tjq32
+         l = 0.5515
+         at = 163.998
+         };
+   endm
+     marker {
+         tag = endm
+         at = 164.4
+         };
+ endsequence at = 164.4
+}
+// SXF end

@@ -1,0 +1,101 @@
+!
+! MadX lattice
+! Electron Stretcher Ring ELSA
+!
+! loads elsa_lattice.madx, which contains lattice definitions
+!
+
+
+OPTION,ECHO = false,INFO = false;
+TITLE,"ELSA - Electron Stretcher Accelerator";
+
+
+! ********************
+! Quadrupole Strengths
+! ********************
+! * examples
+! * tune Qx=4.612, Qz=4.431:
+! *  QFOK= 0.629595 m^-1
+! *  QDEF=-0.580185 m^-1
+! * tune Qx=4.63, Qz=4.46:
+! *  QFOK= 0.63160 m^-1
+! *  QDEF=-0.58308 m^-1
+! ********************
+QFOK   := 0.6316;
+QDEF   := -0.58308;
+
+! ********************
+! Sextupole Strengths
+! ********************
+! * typical
+! *   SFOK= 3.5 m^-2
+! *   SDEF=-2.0 m^-2
+! ********************
+SFOK   := 3.5;
+SDEF   := -2.0;
+
+! ********************
+! Extraction Sextupole Strengths
+! ********************
+! * typical
+! *   SEXTEXT=3.8 m^-3
+! ********************
+SEXTEXT := 0.0;
+
+! ********************
+! Cavity Voltage (per Cavity!)
+! ********************
+! * e.g. overvoltage factor 5
+! *   PVOLT=0.04186 MV @ 1.2 GeV
+! *   PVOLT=0.56492 MV @ 2.3 GeV
+! *   PVOLT=2.11676 MV @ 3.2 GeV
+! ********************
+PVOLT := 0.56492;
+
+
+! ********************
+! Lattice
+! ********************
+call, file="elsa_lattice.madx";
+
+
+! ********************
+! Beam
+! ********************
+BEAM, PARTICLE=ELECTRON, ENERGY:=2.3, RADIATE;
+USE, period=ELSA;
+
+
+! ********************
+! Misalignments (examples)
+! ********************
+! EOPTION, SEED=42;
+
+! * all Dipoles, gaussian distribution
+! select, flag=error, clear=true;
+! SELECT, FLAG=ERROR, CLASS=DIP;
+! EALIGN, DPSI := 0.0011*GAUSS();
+
+! * single Dipole
+! select, flag=error, clear=true;
+! SELECT, FLAG=ERROR, PATTERN="M2$";
+! EALIGN, DPSI := 0.001;
+
+
+
+
+! ****************
+! Output Examples
+! ****************
+! * Full Twiss-Table (very many columns...)
+! TWISS, FILE="elsa.twiss";
+
+! * Only beta, alpha, phase
+! select, flag=twiss, column=name,keyword,s,betx,bety,alfx,alfy,mux,muy;
+! TWISS, FILE="elsa.twiss";
+
+! * Geographical lattice overview
+! SURVEY, file="elsa.survey";
+! WRITE, table=survey;
+
+EMIT;
