@@ -1,5 +1,5 @@
 // SXF version 2.0
-elsa sequence
+ring sequence
  {
    my_start
      marker {
