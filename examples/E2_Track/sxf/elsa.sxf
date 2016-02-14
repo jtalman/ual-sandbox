@@ -37,18 +37,27 @@ elsa sequence
          tag = sq1
          l = 0.45
          at = 2.85275
+         body = {
+                 kl = [ 0 4.5e-11]
+                }
          };
    lq1
      quadrupole {
          tag = lq1
          l = 0.45
          at = 4.3165
+         body = {
+                 kl = [ 0 4.5e-11]
+                }
          };
    sx1
      sextupole {
          tag = sx1
          l = 0.287
          at = 4.8915
+         body = {
+                 kl = [ 0 0 2.87e-10]
+                }
          };
    ic02
      marker {
@@ -625,12 +634,18 @@ elsa sequence
          tag = sx16
          l = 0.287
          at = 77.8765
+         body = {
+                 kl = [ 0 0 2.87e-10]
+                }
          };
    lq16
      quadrupole {
          tag = lq16
          l = 0.45
          at = 78.4515
+         body = {
+                 kl = [ 0 4.5e-11]
+                }
          };
    petra1
      rfcavity {
@@ -646,6 +661,9 @@ elsa sequence
          tag = tjqd16
          l = 0.5515
          at = 81.797
+         body = {
+                 kl = [ 0 5.515e-11]
+                }
          };
    bpm17
      monitor {
@@ -687,12 +705,18 @@ elsa sequence
          tag = lq17
          l = 0.45
          at = 86.5165
+         body = {
+                 kl = [ 0 4.5e-11]
+                }
          };
    sx17
      sextupole {
          tag = sx17
          l = 0.287
          at = 87.0915
+         body = {
+                 kl = [ 0 0 2.87e-10]
+                }
          };
    ic18
      marker {
@@ -1285,12 +1309,18 @@ elsa sequence
          tag = sx32
          l = 0.287
          at = 160.0765
+         body = {
+                 kl = [ 0 0 2.87e-10]
+                }
          };
    lq32
      quadrupole {
          tag = lq32
          l = 0.45
          at = 160.6519
+         body = {
+                 kl = [ 0 4.5e-11]
+                }
          };
    kv32
      vkicker {
@@ -1303,12 +1333,18 @@ elsa sequence
          tag = sq32
          l = 0.45
          at = 162.11525
+         body = {
+                 kl = [ 0 4.5e-11]
+                }
          };
    tjq32
      quadrupole {
          tag = tjq32
          l = 0.5515
          at = 163.998
+         body = {
+                 kl = [ 0 5.515e-11]
+                }
          };
    endm
      marker {

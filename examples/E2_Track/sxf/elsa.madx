@@ -5,7 +5,6 @@
 ! loads elsa_lattice.madx, which contains lattice definitions
 !
 
-
 OPTION,ECHO = false,INFO = false;
 TITLE,"ELSA - Electron Stretcher Accelerator";
 
@@ -65,6 +64,8 @@ call, file="elsa_lattice.madx";
 BEAM, PARTICLE=ELECTRON, ENERGY:=2.3, RADIATE;
 USE, period=ELSA;
 
+SXFWRITE, FILE=elsa.sxf;
+
 
 ! ********************
 ! Misalignments (examples)
@@ -88,14 +89,14 @@ USE, period=ELSA;
 ! Output Examples
 ! ****************
 ! * Full Twiss-Table (very many columns...)
-! TWISS, FILE="elsa.twiss";
+! TWISS, FILE="elsa.twiss1";
 
 ! * Only beta, alpha, phase
-! select, flag=twiss, column=name,keyword,s,betx,bety,alfx,alfy,mux,muy;
-! TWISS, FILE="elsa.twiss";
+select, flag=twiss, column=name,keyword,s,betx,bety,alfx,alfy,mux,muy;
+TWISS, FILE="elsa.twiss";
 
 ! * Geographical lattice overview
-! SURVEY, file="elsa.survey";
-! WRITE, table=survey;
+SURVEY, file="elsa.survey";
+WRITE, table=survey;
 
 EMIT;

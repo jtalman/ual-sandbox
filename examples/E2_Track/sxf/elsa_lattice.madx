@@ -5,6 +5,7 @@
 ! loaded by elsa.madx, which contains optics and beam definitions
 !
 
+tiny:=0.0000000001;
 
 !********************
 ! Magnets
@@ -29,20 +30,22 @@ L6_MET:=0.250;			// iron length (not used!)
 ! Dipole
 DIP:SBEND, L:=L2_EFF*B_FACT, ANGLE:=WINKEL, E1:=WINKEL/2, E2:=WINKEL/2, K2:=SDPSTR; //optional: K1:= 7E-04
 
+LQSTR:=tiny;
+
 ! Quadrupole
 QDF:quadrupole, L:=L4_EFF, K1:=QFOK;         // focussing (F) quadrupole
 QDD:quadrupole, L:=L4_EFF, K1:=QDEF;         // defocussing (D) quadrupole
 LQD16:quadrupole, L:=0.45, K1:=LQSTR;        // air quadrupole
 LQD32:quadrupole, L:=0.45, K1:=LQSTR;
-TJQD32:quadrupole, L=0.5515, K1= 0.0;        // Tune-Jump-Quadrupole
-TJQD16:quadrupole, L=0.5515, K1= 0.0;
-SQD1:quadrupole, L=0.45, K1=0.0, TILT=pi/4;  // Skew-Quadrupole ! TILT sign not checked
-SQD32:quadrupole, L=0.45, K1=0.0, TILT=pi/4;
+TJQD32:quadrupole, L=0.5515, K1= tiny; ! 0.0;        // Tune-Jump-Quadrupole
+TJQD16:quadrupole, L=0.5515, K1= tiny; ! 0.0;
+SQD1:quadrupole, L=0.45, K1= tiny;     ! 0.0, TILT=pi/4;  // Skew-Quadrupole ! TILT sign not checked
+SQD32:quadrupole, L=0.45, K1= tiny;    ! 0.0, TILT=pi/4;
 
 ! Sextupole
 SXTF:sextupole, L:=L6_EFF, K2:=SFOK;         // F-Sextupole
 SXTD:sextupole, L:=L6_EFF, K2:=SDEF;         // D-Sextupole
-SXTEX:sextupole, L:=L6_EFF, K2:=SEXSTR;      // sextupoles for extraction
+SXTEX:sextupole, L:=L6_EFF, K2:=0.000000001;      // sextupoles for extraction
 
 ! Corrector
 KODIV:  VKICKER, L=0.1;                      // old vertikal corrector magnet
@@ -62,7 +65,7 @@ RFC1:RFCAVITY, L:=1.6, VOLT:=PVOLT, SHUNT:=11.25, HARMON:=274, LAG:=0.5, APERTYP
 
 ! Monitor
 NMON:   MONITOR, L=0.025;              // new monitors (ESRF-Buttons)
-RMON:   MONITOR, L=0.0;                // old monitors (DESY-Buttons)
+RMON:   MONITOR, L= 0.0;                // old monitors (DESY-Buttons)
 
 ! Ion Clearing Electrode
 IONCL:	MARKER;
