@@ -12,11 +12,7 @@ popd
 \cp Makefile_sxfCheck Makefile
 \cp apdf/eteapot.apdfMagnetic apdf/eteapot.apdf
 \cp userManifest/userBunch1 userManifest/userBunch
-: \cp userManifest/M_designValuesCOSY-p.hh userManifest/designBeamValues-p.hh
-\cp userManifest/designBeamValues-p.hh userManifest/designBeamValues.hh
+\cp userManifest/designBeamValues-e.hh userManifest/designBeamValues.hh
 make clean
 make
-: ./E2_Track ./sxf/E_pEDM-rtr1-preMobius.RF.sxf 6.4661791e+05 1 0 1 0.0 1
-
-: BAD SEXT at s=12!!
-: ./E2_Track ./sxf/M_041209_COSY-mod.sxf 1470000 1 0 1 0.0 1
+./E2_Track ./sxf/elsa.sxf 1.8235400e+06 1 0 1 0.0 1
