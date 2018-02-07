@@ -247,6 +247,8 @@ double deltyp = TINY, x6typ  = TINY;
  std::cerr << "ETEAPOT::DipoleTracker::m_m " << ETEAPOT::DipoleTracker::m_m << "\n";
  std::cerr << "ETEAPOT::MltTracker::m_m    " << ETEAPOT::MltTracker::m_m    << "\n";
 
- std::cerr << "./transferMatrices " << ETEAPOT::DipoleTracker::m_m << " " << alphaX << " " << betaX << " " << alphaY << " " << betaY << " " << nonDrifts << ">! betaFunctions\n";
+   std::cerr << "./transferMatrices " << ETEAPOT::DipoleTracker::m_m << " " << alphaX << " " << betaX << " " << alphaY << " " << betaY << " " << ">! betaFunctions\n";
+// std::cerr << "./transferMatrices " << ETEAPOT::DipoleTracker::m_m << " " << alphaX << " " << betaX << " " << alphaY << " " << betaY << " " << nonDrifts << ">! betaFunctions\n";
+
  return (int)0;
 }

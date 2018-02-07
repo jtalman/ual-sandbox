@@ -44,4 +44,4 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/determineTwiss-mod.o $(OBJS) $(LIBS)
 
 clean :
-	rm -f determineTwiss-mod initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrout forTwissStndrdPrtcls lib/linux/obj/determineTwiss-mod.o
+	rm -f determineTwiss-mod initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrout lib/linux/obj/determineTwiss-mod.o
