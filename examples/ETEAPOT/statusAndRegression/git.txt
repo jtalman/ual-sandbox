@@ -1,0 +1,10 @@
+git clone https://github.com/jtalman/ual-sandbox
+      cd ual-sandbox
+      cp 041209_COSY-QF-QD.sxf examples/THINSPIN/sxf/
+      git add .
+      git status -s
+      git commit
+      git remote set-url origin https://jtalman@github.com/jtalman/ual-sandbox
+      git push
+
+
