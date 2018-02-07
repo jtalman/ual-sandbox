@@ -152,7 +152,7 @@ double deltyp = TINY, x6typ  = TINY;
    return 1;
  }
 
-#include"forTwissStndrdPrtcls"
+//#include"forTwissStndrdPrtcls"
 
  double a0x=     (double)0;
  double b0x=     (double)0;
