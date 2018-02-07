@@ -1,0 +1,21 @@
+make clean
+\cp $UAL/examples/ETEAPOT/*.hh .
+\cp $UAL/examples/ETEAPOT/extractParameters.h .
+: \cp $UAL/examples/ETEAPOT/userBunch .
+\cp $UAL/examples/ETEAPOT/simulatedProbeValues .
+\cp $UAL/examples/ETEAPOT/forTwissStndrdPrtcls .
+\cp $UAL/examples/ETEAPOT/trtrout .
+\cp $UAL/examples/ETEAPOT/printProbeValues .
+: \cp $UAL/examples/ETEAPOT/data/eteapot.apdf data
+: \cp $UAL/examples/ETEAPOT/data/E_BM_Z.sxf data
+
+: \cp $UAL/examples/ETEAPOT/determineTwiss.cc .
+make
+
+  ./determineTwiss-mod  data/E_BM_Z.sxf 0 4.572 >! OUT
+
+: split=1 betaX b0x  36.0795, QX 0.4581  -->> 1.4581, alphax a0x 3.8436e-10
+: split=1 betaY b0y 261.4688, QY 0.2018,              alphay a0y 8.42004e-10
+: compare with out/TWISS/TWISS_m=+0.00
+: reference UAL/ETEAPOT Results Augmented for Proton EDM Benchmark Lattices, J. Talman, R. Talman, April 29, 2012
+: JDT2018 page 8
