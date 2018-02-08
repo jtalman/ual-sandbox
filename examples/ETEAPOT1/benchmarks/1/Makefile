@@ -40,8 +40,8 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	@echo object file compilation
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
 
-./determineTwiss-mod  : $(OBJ_DIR)/determineTwiss-mod.o $(OBJS)
-	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/determineTwiss-mod.o $(OBJS) $(LIBS)
+./determineTwiss  : $(OBJ_DIR)/determineTwiss.o $(OBJS)
+	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/determineTwiss.o $(OBJS) $(LIBS)
 
 clean :
-	rm -f determineTwiss-mod initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrout lib/linux/obj/determineTwiss-mod.o
+	rm -f determineTwiss determineTwiss.cc determineTwiss-mod initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/determineTwiss-mod.o
