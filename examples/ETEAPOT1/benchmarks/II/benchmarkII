@@ -1,0 +1,34 @@
+make clean
+
+\cp $UAL/examples/ETEAPOT/*.hh .
+\cp $UAL/examples/ETEAPOT/extractParameters.h .
+\cp $UAL/examples/ETEAPOT/simulatedProbeValues .
+\cp $UAL/examples/ETEAPOT/trtrin .
+\cp $UAL/examples/ETEAPOT/trtrout .
+\cp $UAL/examples/ETEAPOT/printProbeValues .
+\cp $UAL/examples/ETEAPOT/data/eteapotMARKER.apdf data/eteapot.apdf
+\cp $UAL/examples/ETEAPOT/data/E_BM_M1.0_sl4.sxf data
+\cp $UAL/examples/ETEAPOT/userBunch data
+\cp $UAL/examples/ETEAPOT/determineTwiss.cc .
+
+\cp $UAL/examples/ETEAPOT/sip* .
+\cp $UAL/examples/ETEAPOT/probeDataForTwiss .
+\cp $UAL/examples/ETEAPOT/transferMatrices.cc .
+
+make
+
+./determineTwiss  data/E_BM_M1.0_sl4.sxf -1 40 >! OUT
+
+: split=1 betaX b0x  36.0795, QX 0.4581 fractional horiz tune,  1.4581 is the actual, alphax a0x 3.8436e-10
+: split=1 betaY b0y 261.4688, QY 0.2018,              alphay a0y 8.42004e-10
+: compare with out/TWISS/TWISS_m=+0.00
+: reference UAL/ETEAPOT Results Augmented for Proton EDM Benchmark Lattices, J. Talman, R. Talman, April 29, 2012
+: JDT2018 page 8
+
+: COPY AND PASTE LINE
+: ./transferMatrices 0 -3.74282e-09 36.0795 8.41935e-10 261.469 366 > betaFunctions
+: AND RUN IT
+
+gnuplot
+	l 'plotBeta_X_JDT2018.gnu'
+	l 'plotBeta_Y_JDT2018.gnu'
