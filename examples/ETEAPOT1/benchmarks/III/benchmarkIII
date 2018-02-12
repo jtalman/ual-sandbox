@@ -1,0 +1,30 @@
+make clean
+
+\cp ../../../ETEAPOT/designBeamValues.hh .
+\cp ../../../ETEAPOT/setBeamAttributes.hh .
+\cp ../../../ETEAPOT/extractParameters.h .
+\cp ../../../ETEAPOT/printProbeValues .
+\cp ../../../ETEAPOT/spin .
+\cp ../../../ETEAPOT/verifyMarkerTrackerSpin .
+\cp ../../../ETEAPOT/verifyDipoleTrackerSpin .
+\cp ../../../ETEAPOT/verifyMltTrackerSpin .
+\cp ../../../ETEAPOT/simulatedProbeValues_dx_0.01_dpx_0_dE_0.000041 simulatedProbeValues
+\cp ../../../ETEAPOT/positionPrinter.hh .
+\cp ../../../ETEAPOT/positionPrinter.cc .
+\cp ../../../ETEAPOT/xmgracePrint.hh .
+
+\cp data/userBunch .
+
+\cp ../../../ETEAPOT/ETEAPOT_MltTurn.cc .
+
+\cp ../../../ETEAPOT/SplitNikolayOut.pl .
+
+make
+
+./ETEAPOT_MltTurn ./data/E_BM_M1.0.RF.sxf -1 40 0 100 >! OUT
+
+perl SplitNikolayOut.pl NikolayOut >! IG
+
+gnuplot
+	l 'forGnuplot_Figure2'
+	l 'SpinEvolve.gnu'
