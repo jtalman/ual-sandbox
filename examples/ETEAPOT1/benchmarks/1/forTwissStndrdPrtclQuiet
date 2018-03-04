@@ -1,0 +1,122 @@
+ OpticsCalculator& optics = UAL::OpticsCalculator::getInstance();
+ Teapot* teapot = optics.m_teapot;
+ PacSurveyData surveyData;
+ char drift[13]="Drift       ";
+ std::string nameInput,nameOutput;
+ std::string typeInput,typeOutput;
+ std::string designNameInput;
+ std::cerr << "teapot->size() " << teapot->size() << "\n";
+ double xX,yX,zX,sX;
+ int mltK=0,drft=0,bend=0,mark=0,RF=0;
+
+ int nonDrifts=0;
+
+ double sPrevious=0;
+ double sBndDlta;
+ double totSplits;
+
+ for(int i = 0; i < teapot->size(); i++){
+  TeapotElement& te = teapot->element(i);
+  nameInput=te.getDesignName();
+  typeInput=te.getType();
+  designNameInput=te.getDesignName();
+  teapot->survey(surveyData,i,i+1);
+
+  if(nameInput.length()==1 ){nameInput+="           "; }
+  if(nameInput.length()==2 ){nameInput+="          ";  }
+  if(nameInput.length()==3 ){nameInput+="         ";   }   
+  if(nameInput.length()==4 ){nameInput+="        ";    }   
+  if(nameInput.length()==5 ){nameInput+="       ";     }   
+  if(nameInput.length()==6 ){nameInput+="      ";      }   
+  if(nameInput.length()==7 ){nameInput+="     ";       }   
+  if(nameInput.length()==8 ){nameInput+="    ";        }   
+  if(nameInput.length()==9 ){nameInput+="   ";         }   
+  if(nameInput.length()==10){nameInput+="  ";          }   
+  if(nameInput.length()==11){nameInput+=" ";           }   
+  if(nameInput.length()==12){nameInput+="";            }   
+
+  if(nameInput.size()>=1){
+   nameOutput=nameInput;
+  }
+  else{
+   nameOutput=drift;
+  }
+
+  if(typeInput.length()==1 ){typeInput+="           "; }
+  if(typeInput.length()==2 ){typeInput+="          ";  }
+  if(typeInput.length()==3 ){typeInput+="         ";   }   
+  if(typeInput.length()==4 ){typeInput+="        ";    }   
+  if(typeInput.length()==5 ){typeInput+="       ";     }   
+  if(typeInput.length()==6 ){typeInput+="      ";      }   
+  if(typeInput.length()==7 ){typeInput+="     ";       }   
+  if(typeInput.length()==8 ){typeInput+="    ";        }   
+  if(typeInput.length()==9 ){typeInput+="   ";         }   
+  if(typeInput.length()==10){typeInput+="  ";          }   
+  if(typeInput.length()==11){typeInput+=" ";           }   
+  if(typeInput.length()==12){typeInput+="";            }   
+
+  if(typeInput.size()>=1){
+   typeOutput=typeInput;
+  }
+  else{
+   typeOutput=drift;
+  }
+
+  xX = surveyData.survey().x();
+  yX = surveyData.survey().y();
+  zX = surveyData.survey().z();
+  sX = surveyData.survey().suml();
+
+  if( typeOutput=="Quadrupole  "){
+   nonDrifts++;
+// std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]=nameOutput;
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK++]=sX;
+   sPrevious=sX;
+  }
+
+  if( typeOutput=="Sextupole   "){
+   nonDrifts++;
+// std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_elementName[mltK]=nameOutput;
+   ETEAPOT::MltAlgorithm<double,PAC::Position>::Mlt_m_sX[mltK++]=sX;
+   sPrevious=sX;
+  }
+
+  if( typeOutput=="Drift       "){
+// std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   sPrevious=sX;
+  }
+
+  if( typeOutput=="Sbend       "){
+   totSplits=2*pow(2,splitForBends);
+   sBndDlta=(sX-sPrevious)/totSplits;
+   for(int j=0;j<totSplits;j++){
+//  std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sPrevious+sBndDlta << "\n";
+    algorithm<double,PAC::Position>::bend_m_elementName[bend]=nameOutput;
+    algorithm<double,PAC::Position>::bend_m_sX[bend++]=sPrevious+sBndDlta;
+    nonDrifts++;
+    sPrevious+=sBndDlta;
+   }
+  }
+
+  if( typeOutput=="Marker      "){
+   nonDrifts++;
+// std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::MarkerTracker::Mark_m_elementName[mark]=nameOutput;
+   ETEAPOT::MarkerTracker::Mark_m_sX[mark++]=sX;
+   sPrevious=sX;
+  }
+
+  if( typeOutput=="RfCavity    "){
+   nonDrifts++;
+// std::cerr << "name " << nameOutput << " type " << typeOutput << " " << xX << " " << yX << " " << zX << " " << sX << "\n";
+   ETEAPOT::RFCavityTracker::RF_m_elementName[RF]=nameOutput;
+   ETEAPOT::RFCavityTracker::RF_m_sX[RF++]=sX;
+   sPrevious=sX;
+  }
+
+ }
+
+std::cerr << "teapot->size() " << teapot->size() << "\n";
+std::cerr << "nonDrifts      " << nonDrifts      << "\n";

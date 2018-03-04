@@ -9,7 +9,7 @@ make clean
 
 \cp $UAL/examples/ETEAPOT/data/eteapotMARKER.apdf data/eteapot.apdf
 
-\cp $UAL/examples/ETEAPOT/determineTwiss.cc .
+: \cp $UAL/examples/ETEAPOT/determineTwiss.cc .
 
 make
 
@@ -26,3 +26,6 @@ gnuplot
    set xlabel 'Split Bend'
    set ylabel 'x as a Function of Split Bend'
    p 'out/TWISS/StndrdPrtcl1' u (160./331.*$2):3 w l,'out/TWISS/StndrdPrtcl2' u (160./331.*$2):3 w l
+
+: ddd ./determineTwiss
+: r data/E_BM_Z.sxf 0 40 >! OUT

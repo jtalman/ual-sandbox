@@ -1,7 +1,7 @@
 LD       = g++                       # Linker
 LDFLAGS  =                           # Linker flags
 CC       = $(LD)
-CCFLAGS  = $(LDFLAGS)
+CCFLAGS  = $(LDFLAGS) -g
 
 INC  =
 INC += -I. -I./src
@@ -44,4 +44,4 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/determineTwiss.o $(OBJS) $(LIBS)
 
 clean :
-	rm -f out/TWISS/StndrdPrtcl* determineTwiss determineTwiss.cc determineTwiss-mod initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/determineTwiss-mod.o
+	rm -f out/TWISS/StndrdPrtcl* determineTwiss initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/*.o out/cpp/*
