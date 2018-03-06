@@ -142,8 +142,8 @@ double deltyp = TINY, x6typ  = TINY;
    return 1;
  }
 
-//#include"forTwissStndrdPrtclQuiet"
-#include"forTwissStndrdPrtclVerbose"
+#include"forTwissStndrdPrtclQuiet"
+//#include"forTwissStndrdPrtclVerbose"
 
  double a0x=     (double)0;
  double b0x=     (double)0;

@@ -21,12 +21,12 @@ make
 : reference UAL/ETEAPOT Results Augmented for Proton EDM Benchmark Lattices, J. Talman, R. Talman, April 29, 2012
 : JDT2018 page 8
 
-: gnuplot -persist
-:  set title 'X Oscillation Over One Turn'
-:  set xlabel 'Split Bend'
-:  set ylabel 'x as a Function of Split Bend'
-:  p 'out/TWISS/StndrdPrtcl1' u (160./331.*$2):3 w l,'out/TWISS/StndrdPrtcl2' u (160./331.*$2):3 w l
-:  q
+gnuplot -persist
+ set title 'X Oscillation Over One Turn'
+ set xlabel 'Split Bend'
+ set ylabel 'x as a Function of Split Bend'
+ p 'out/TWISS/StndrdPrtcl1' u (160./331.*$2):3 w l,'out/TWISS/StndrdPrtcl2' u (160./331.*$2):3 w l
+ q
 
 ddd ./determineTwiss --debugger "gdb -d /home/ualusrPERL/ual-sandbox/codes/ETEAPOT/src/ETEAPOT/Integrator/"
 : ddd ./determineTwiss
