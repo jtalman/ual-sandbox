@@ -36,10 +36,14 @@ LIBS +=                                          -lm
 SRC_DIR  = .
 OBJ_DIR  = ./lib/$(UAL_ARCH)/obj
 
-all: $(OBJ_DIR)/y.tab.o $(OBJ_DIR)/determineTwiss.o ./determineTwiss
+all: $(OBJ_DIR)/y.tab.o $(OBJ_DIR)/sxf.tab.o $(OBJ_DIR)/determineTwiss.o ./determineTwiss
 
 $(OBJ_DIR)/y.tab.o : $(SRC_DIR)/y.tab.cc
 	@echo ./lib/linux/obj/y.tab.o file compilation
+	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_DIR)/sxf.tab.o : $(SRC_DIR)/sxf.tab.cc
+	@echo ./lib/linux/obj/sxf.tab.o file compilation
 	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR)/determineTwiss.o : $(SRC_DIR)/determineTwiss.cc
@@ -55,4 +59,4 @@ $(OBJ_DIR)/determineTwiss.o : $(SRC_DIR)/determineTwiss.cc
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/y.tab.o $(OBJ_DIR)/determineTwiss.o $(OBJS) $(LIBS)
 
 clean :
-	rm -f out/TWISS/StndrdPrtcl* determineTwiss y.tab initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/*.o out/cpp/*
+	rm -f out/TWISS/StndrdPrtcl* determineTwiss initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/*.o out/cpp/*
