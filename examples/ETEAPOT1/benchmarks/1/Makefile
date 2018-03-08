@@ -59,4 +59,4 @@ $(OBJ_DIR)/determineTwiss.o : $(SRC_DIR)/determineTwiss.cc
 	$(CC) -o $@  $(CCFLAGS) $(INC) $(OBJ_DIR)/y.tab.o $(OBJ_DIR)/determineTwiss.o $(OBJS) $(LIBS)
 
 clean :
-	rm -f out/TWISS/StndrdPrtcl* determineTwiss initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin trtrout lib/linux/obj/*.o out/cpp/*
+	rm -f out/TWISS/StndrdPrtcl* determineTwiss initialSpin m_m OUT echo.sxf betaFunctions try.log *.hh *.h printProbeValues simulatedProbeValues trtrin lib/linux/obj/*.o out/cpp/*
