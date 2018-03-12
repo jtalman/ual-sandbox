@@ -28,9 +28,9 @@ make
 : reference UAL/ETEAPOT Results Augmented for Proton EDM Benchmark Lattices, J. Talman, R. Talman, April 29, 2012
 : JDT2018 page 8
 
-: COPY AND PASTE LINE
-: ./transferMatrices 0 -3.74282e-09 36.0795 8.41935e-10 261.469 366 > betaFunctions
-: AND RUN IT
+: VERIFY   <<<<----
+  ./transferMatrices -1 1.47125e-08 35.9195 4.85079e-09 263.356 1326 >! betaFunctions
+: VERIFY   <<<<----
 
 gnuplot
 	l 'plotBeta_X_JDT2018.gnu'
