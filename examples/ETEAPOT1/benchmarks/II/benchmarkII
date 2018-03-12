@@ -4,7 +4,10 @@ make clean
 \cp $UAL/examples/ETEAPOT/extractParameters.h .
 \cp $UAL/examples/ETEAPOT/simulatedProbeValues .
 \cp $UAL/examples/ETEAPOT/trtrin .
-\cp $UAL/examples/ETEAPOT/trtrout .
+
+: \cp $UAL/examples/ETEAPOT/trtrout .
+  \cp ../1/trtrout .
+
 \cp $UAL/examples/ETEAPOT/printProbeValues .
 \cp $UAL/examples/ETEAPOT/data/eteapotMARKER.apdf data/eteapot.apdf
 \cp $UAL/examples/ETEAPOT/data/E_BM_M1.0_sl4.sxf data
