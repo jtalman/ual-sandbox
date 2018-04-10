@@ -1,0 +1,543 @@
+// SXF version 2.0
+ring sequence { 
+mbegin
+      marker { 
+            tag = mbegin
+            at = 0
+            l = 0.0
+  }; 
+msuperbeg
+      marker { 
+            tag = msuperbeg
+            at = 0
+            l = 0.0
+  }; 
+QFh
+      quadrupole { 
+            tag = QFh
+            at = 2.9000000000000004
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.2
+      quadrupole { 
+            tag = QFh
+            at = 3.1000000000000005
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegpl
+      sbend { 
+            tag = Esegpl
+            at = 4.283572933822188
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.2
+      sbend { 
+            tag = Esegpl
+            at = 6.050718801466563
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegmi
+      sbend { 
+            tag = Esegmi
+            at = 7.817864669110938
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.2
+      sbend { 
+            tag = Esegmi
+            at = 9.585010536755313
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+QDh
+      quadrupole { 
+            tag = QDh
+            at = 10.7685834705775
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.2
+      quadrupole { 
+            tag = QDh
+            at = 10.9685834705775
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+mmidbend
+      marker { 
+            tag = mmidbend
+            at = 11.268583470577498
+            l = 0.0
+  }; 
+QDh.3
+      quadrupole { 
+            tag = QDh
+            at = 11.568583470577497
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.4
+      quadrupole { 
+            tag = QDh
+            at = 11.768583470577497
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegmi.3
+      sbend { 
+            tag = Esegmi
+            at = 12.952156404399682
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.4
+      sbend { 
+            tag = Esegmi
+            at = 14.719302272044057
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegpl.3
+      sbend { 
+            tag = Esegpl
+            at = 16.486448139688434
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.4
+      sbend { 
+            tag = Esegpl
+            at = 18.253594007332808
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+QFh.3
+      quadrupole { 
+            tag = QFh
+            at = 19.437166941154995
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.4
+      quadrupole { 
+            tag = QFh
+            at = 19.637166941154995
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+msuperend
+      marker { 
+            tag = msuperend
+            at = 22.537166941154993
+            l = 0.0
+  }; 
+msuperbeg.2
+      marker { 
+            tag = msuperbeg
+            at = 22.537166941154993
+            l = 0.0
+  }; 
+QFh.5
+      quadrupole { 
+            tag = QFh
+            at = 25.437166941154995
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.6
+      quadrupole { 
+            tag = QFh
+            at = 25.637166941154995
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegpl.5
+      sbend { 
+            tag = Esegpl
+            at = 26.82073987497718
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.6
+      sbend { 
+            tag = Esegpl
+            at = 28.587885742621552
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegmi.5
+      sbend { 
+            tag = Esegmi
+            at = 30.355031610265925
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.6
+      sbend { 
+            tag = Esegmi
+            at = 32.1221774779103
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+QDh.5
+      quadrupole { 
+            tag = QDh
+            at = 33.30575041173249
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.6
+      quadrupole { 
+            tag = QDh
+            at = 33.50575041173249
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+mmidbend.2
+      marker { 
+            tag = mmidbend
+            at = 33.8057504117325
+            l = 0.0
+  }; 
+QDh.7
+      quadrupole { 
+            tag = QDh
+            at = 34.1057504117325
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.8
+      quadrupole { 
+            tag = QDh
+            at = 34.305750411732504
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegmi.7
+      sbend { 
+            tag = Esegmi
+            at = 35.489323345554695
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.8
+      sbend { 
+            tag = Esegmi
+            at = 37.25646921319907
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegpl.7
+      sbend { 
+            tag = Esegpl
+            at = 39.02361508084344
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.8
+      sbend { 
+            tag = Esegpl
+            at = 40.790760948487815
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+QFh.7
+      quadrupole { 
+            tag = QFh
+            at = 41.974333882310006
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.8
+      quadrupole { 
+            tag = QFh
+            at = 42.17433388231001
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+msuperend.2
+      marker { 
+            tag = msuperend
+            at = 45.074333882310015
+            l = 0.0
+  }; 
+mmidring
+      marker { 
+            tag = mmidring
+            at = 45.074333882310015
+            l = 0.0
+  }; 
+msuperbeg.3
+      marker { 
+            tag = msuperbeg
+            at = 45.074333882310015
+            l = 0.0
+  }; 
+QFh.9
+      quadrupole { 
+            tag = QFh
+            at = 47.97433388231002
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.10
+      quadrupole { 
+            tag = QFh
+            at = 48.17433388231002
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegpl.9
+      sbend { 
+            tag = Esegpl
+            at = 49.357906816132214
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.10
+      sbend { 
+            tag = Esegpl
+            at = 51.12505268377659
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegmi.9
+      sbend { 
+            tag = Esegmi
+            at = 52.89219855142096
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.10
+      sbend { 
+            tag = Esegmi
+            at = 54.659344419065334
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+QDh.9
+      quadrupole { 
+            tag = QDh
+            at = 55.842917352887525
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.10
+      quadrupole { 
+            tag = QDh
+            at = 56.04291735288753
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+mmidbend.3
+      marker { 
+            tag = mmidbend
+            at = 56.34291735288753
+            l = 0.0
+  }; 
+QDh.11
+      quadrupole { 
+            tag = QDh
+            at = 56.64291735288754
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.12
+      quadrupole { 
+            tag = QDh
+            at = 56.84291735288754
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegmi.11
+      sbend { 
+            tag = Esegmi
+            at = 58.02649028670973
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.12
+      sbend { 
+            tag = Esegmi
+            at = 59.793636154354104
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegpl.11
+      sbend { 
+            tag = Esegpl
+            at = 61.56078202199848
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.12
+      sbend { 
+            tag = Esegpl
+            at = 63.32792788964285
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+QFh.11
+      quadrupole { 
+            tag = QFh
+            at = 64.51150082346504
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.12
+      quadrupole { 
+            tag = QFh
+            at = 64.71150082346504
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+msuperend.3
+      marker { 
+            tag = msuperend
+            at = 67.61150082346505
+            l = 0.0
+  }; 
+msuperbeg.4
+      marker { 
+            tag = msuperbeg
+            at = 67.61150082346505
+            l = 0.0
+  }; 
+QFh.13
+      quadrupole { 
+            tag = QFh
+            at = 70.51150082346504
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.14
+      quadrupole { 
+            tag = QFh
+            at = 70.71150082346504
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegpl.13
+      sbend { 
+            tag = Esegpl
+            at = 71.89507375728725
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.14
+      sbend { 
+            tag = Esegpl
+            at = 73.66221962493162
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegmi.13
+      sbend { 
+            tag = Esegmi
+            at = 75.429365492576
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.14
+      sbend { 
+            tag = Esegmi
+            at = 77.19651136022037
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+QDh.13
+      quadrupole { 
+            tag = QDh
+            at = 78.38008429404255
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.14
+      quadrupole { 
+            tag = QDh
+            at = 78.58008429404255
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+mmidbend.4
+      marker { 
+            tag = mmidbend
+            at = 78.88008429404256
+            l = 0.0
+  }; 
+QDh.15
+      quadrupole { 
+            tag = QDh
+            at = 79.18008429404256
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+QDh.16
+      quadrupole { 
+            tag = QDh
+            at = 79.38008429404256
+            l = 0.2
+     body = {  kl = [ 0 0.25 ]  kls = [ 0 0 ] }
+  }; 
+Esegmi.15
+      sbend { 
+            tag = Esegmi
+            at = 80.56365722786477
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegmi.16
+      sbend { 
+            tag = Esegmi
+            at = 82.33080309550914
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 -0.0012360000650799717 ] }
+  }; 
+Esegpl.15
+      sbend { 
+            tag = Esegpl
+            at = 84.09794896315351
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+Esegpl.16
+      sbend { 
+            tag = Esegpl
+            at = 85.86509483079789
+            l = 1.767145867644375
+     body = {  kl = [ 0.196349540849375 0.0012360000650799717 ] }
+  }; 
+QFh.15
+      quadrupole { 
+            tag = QFh
+            at = 87.04866776462006
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+QFh.16
+      quadrupole { 
+            tag = QFh
+            at = 87.24866776462007
+            l = 0.2
+     body = {  kl = [ 0 -0.25 ]  kls = [ 0 0 ] }
+  }; 
+msuperend.4
+      marker { 
+            tag = msuperend
+            at = 90.14866776462007
+            l = 0.0
+  }; 
+mend
+      marker { 
+            tag = mend
+            at = 90.14866776462007
+            l = 0.0
+  }; 
+endsequence at = 90.14866776462007
+};
+// SXF end
