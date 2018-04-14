@@ -21,6 +21,7 @@ INC += -I$(UAL)/tools/include
 INC += -I$(SXF)/src
 INC += -I/home/ual/tools/gsl/include
 
+LIBS += -L$(UAL)/tools/lib/linux                 -lgsl
 LIBS += -L$(UAL)/ext/UI/lib/$(UAL_ARCH)  	 -lUalUI
 LIBS += -L$(UAL_TIBETAN)/lib/$(UAL_ARCH)  	 -lTibetan
 LIBS += -L$(UAL_SXF)/lib/$(UAL_ARCH) 		 -lUalSXF2
