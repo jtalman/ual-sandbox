@@ -1,0 +1,13 @@
+// drift file
+void propagate(UAL::Probe& probe)
+{
+ PAC::Bunch& bunch    = static_cast<PAC::Bunch&>(probe);
+ tofD                 = m_l/vD;
+ for(int ip = 1; ip < bunch.size(); ip++) {
+  PAC::Position& pacP = bunch[ip].getPosition();
+  pacPmy              = &pacP;
+  passDrift( m_l, tofD );
+ }
+ tofDT               +=tofD;
+ sDT                 += m_l;
+}

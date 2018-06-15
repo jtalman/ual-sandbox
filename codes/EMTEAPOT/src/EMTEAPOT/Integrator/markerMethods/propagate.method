@@ -1,0 +1,35 @@
+// marker file
+void propagate(UAL::Probe& probe)
+{
+ PAC::Bunch& bunch   = static_cast<PAC::Bunch&>(probe);
+ const char * M_N    = m_name.c_str();
+ if( strcmp( M_N, "mbegin") == 0 ){
+  std::cerr << __FILE__ << " turns " << turns << " decFac " << decFac << "\n";
+  if( turns%decFac == 0 ){
+   NikolayOut.open ("NikolayOut", fstream::out | fstream::app);
+   for(int ip = 1; ip < bunch.size(); ip++) {   // BUNCH LOOP
+    PAC::Position& p  = bunch[ip].getPosition();
+    pacPmy            = &p;
+    NikolayOut << setw(3) << ip << " " << setw(3) << turns << " " << setw(17) << 0 << " " << setw(17) << p[0] <<     " " << setw(17) << p[1] << " " << setw(17) << p[2] << " " << setw(17) << p[3] << " " << setw(17) << p[4] << " " << setw(17) << p[5] << " " << setw(17) << __SPIN__[ip][0] << " " << setw(17) << __SPIN__[ip][1] << "     " << setw(17) << __SPIN__[ip][2] << " " << m_name << "\n";
+   }
+   NikolayOut.close ();
+  }
+  turns++;
+ }
+ markerCount++;
+// sDT                += m_l;
+
+// 1 ip
+// 2 turns 
+// 3 0 
+// 4 x 
+// 5 x'
+// 6 y 
+// 7 y'
+// 8 -ct 
+// 9 de
+// 10 sx
+// 11 sy
+// 12 sz
+// 13 m_name
+}

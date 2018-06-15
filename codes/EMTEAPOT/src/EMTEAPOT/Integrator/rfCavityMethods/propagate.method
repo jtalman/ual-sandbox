@@ -1,0 +1,23 @@
+// rfCavity file
+void propagate(UAL::Probe& probe)
+{
+ PAC::Bunch& bunch    = static_cast<PAC::Bunch&>(probe);
+ tofD                 = m_l/vD;
+ double V             = m_V;
+ double lag           = 0.5+m_lag;
+ double h             = m_h;
+ double de;
+ double phase;
+ for(int ip = 1; ip < bunch.size(); ip++) {
+  PAC::Position& pacP = bunch[ip].getPosition();
+  pacPmy              = &pacP;
+  passDrift( m_l/2., tofD/2. );
+  phase               = h*fD*(pacP[4]/UAL::clight);
+  de                  = qD*V*sin(2.*UAL::pi*(lag - phase)); 
+  e                   = e + de;
+  pacP[5]             = (e - eD)/pDc;
+  passDrift( m_l/2., tofD/2. );
+ }
+ tofDT               +=tofD;
+ sDT                 += m_l;
+}

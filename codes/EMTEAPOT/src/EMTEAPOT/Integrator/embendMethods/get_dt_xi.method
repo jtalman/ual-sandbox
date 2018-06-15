@@ -1,0 +1,31 @@
+double get_dt_xi(){
+ double tofDev0;
+ double tofDev1;
+ double tofDev2;
+ double tofDevTOT;
+// double Escr       = e;
+ double a          = xi_co;
+ double c          = xi0 - xi_co;
+ double s          = xip0/Q;
+
+ double pwrSrsFac  = rD/betaD;
+ double TOFD       = pwrSrsFac*th;
+
+ double EscrBye    = Escr;//gama_in*mDcc;//e;//Escr;
+ double LycBye     = Lyc;
+
+ double A0         = -rD*rD*EscrBye/LycBye-rD/betaD;
+ double A1         = -2.*rD*rD*EscrBye/LycBye + rD*rD*rD*ED/LycBye;
+ double A2         = -3.*rD*rD*EscrBye/LycBye + 2.*rD*rD*rD*ED/LycBye;
+
+ double ntgrlXiTo0 = th;
+ double ntgrlXiTo1 = a*th + c*sin(Q*th)/Q + s*(1.-cos(Q*th))/Q;
+ double ntgrlXiTo2 = a*a*th + 2.*a*c*sin(Q*th)/Q + 2.*a*s*(1.-cos(Q*th))/Q + c*c*(th/2. + sin(2.*Q*th)/4./Q) + 2.*c*s*(1.-cos(2.*Q*th))/4./Q + s*s*(th/2. - sin(2.*Q*th)/4./Q);
+
+        tofDev0    = A0*ntgrlXiTo0;
+        tofDev1    = A1*ntgrlXiTo1;
+        tofDev2    = A2*ntgrlXiTo2;
+
+        tofDevTOT  = tofDev0+tofDev1+tofDev2;
+ return -tofDevTOT;
+}

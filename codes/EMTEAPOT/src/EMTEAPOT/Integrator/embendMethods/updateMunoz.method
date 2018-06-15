@@ -1,0 +1,38 @@
+// bend file
+void updateMunoz(){
+ PAC::Position& p = *pacPmy;
+ rIn        = get_rFromProbe(rD+p[0],p[2],0);
+ gama       = (eD + pDc*p[5] - PE(rD, rIn ))/mDcc;
+
+ xR         = rD+p[0]; 
+ yR         = p[2];
+ zR         = 0;
+
+ pxc        = p[1]*pDc;
+ pyc        = p[3]*pDc;
+ b          = sqrt(1.-1./gama/gama);
+ pc         = gama*mDcc*b;
+ pzc        = sqrt(pc*pc-pxc*pxc-pyc*pyc);
+
+ Lxc        = yR*pzc-zR*pyc;
+ Lyc        = zR*pxc-xR*pzc;
+ Lzc        = xR*pyc-yR*pxc;      //      p[0]*pyc-yR*pxc;
+ Lc         = sqrt(Lxc*Lxc+Lyc*Lyc+Lzc*Lzc);
+
+ Q          = sqrt(1.-LDc*LDc*betaD*betaD/Lyc/Lyc);         //      (247) page 64
+
+ EscrM      = gama*mDcc-kD/rIn;
+ Escr       = EscrM + kD/rD;                                //      (60) page 23
+ e          = Escr;                                         //   not strictly Munoz
+
+ kbyLc      = kD/Lc;
+ kapSQ      = 1.-kbyLc*kbyLc;
+ lambda     = kapSQ*Lc*Lc/kD/EscrM;
+ kappa      = sqrt(kapSQ);
+ h0_tilda   = ht_tilda(rIn);
+ epsilonBar = mDcc*Lc/EscrM/kD;
+ h0p_tilda  = htp_tilda2(p,rD,rIn);
+ theta0     = _theta0();
+ C_tilda    = sqrt(h0_tilda*h0_tilda+h0p_tilda*h0p_tilda/kappa/kappa);
+ epsilon    = epsilonBar*C_tilda;
+}

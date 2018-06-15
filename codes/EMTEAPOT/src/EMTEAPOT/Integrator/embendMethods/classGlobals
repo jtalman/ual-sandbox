@@ -1,0 +1,69 @@
+// bend file
+PacLattElement m_frontNode;
+PacLattElement m_backNode;
+int m_i0;
+int m_i1;
+double m_l;
+int m_n;
+float m_s;
+std::string m_name;
+PacElemAperture* m_aperture; 
+PacElemOffset* m_offset;
+//==========================================================================
+
+static double m_m;
+static double dZFF;
+static int bnd;
+ETEAPOT::DipoleData m_data;
+ETEAPOT::MltData m_edata;
+
+double lambda;
+double epsilon;
+double kappa;
+double h0_tilda;
+double h0p_tilda;
+double C_tilda;
+double theta0;
+
+double kbyLDc;
+double kapSQD;
+double lambdaD;
+
+double kbyLc;
+double kapSQ;
+double epsilonBar;
+
+double b;
+double xR; 
+double yR; 
+double zR; 
+double pxc;
+double pyc;
+double pzc;
+double pc; 
+double Lxc;
+double Lyc;
+double Lzc;
+double Lc; 
+double Lyc_in_p;
+
+ double rIn;
+ double EscrM;
+ double EscrMD;
+// double Escr;
+ double xi_co;
+// double xi_in;
+// double xip_in;
+ double xi0;
+ double xip0;
+ double Q;
+// double Ly_in_p;
+// double pcsq_in_m;
+// double pcsq_in_p;
+// double pczsq_in_p;
+
+Matrix3 R_in_INV;
+Matrix3 R_out;
+Vector3 sIn;
+
+fstream JDTout;

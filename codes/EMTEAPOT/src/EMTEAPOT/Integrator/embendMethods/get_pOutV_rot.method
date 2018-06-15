@@ -1,0 +1,52 @@
+// bend file
+Vector3 get_pOutV_rot(){
+ double rOut         = get_rFromEllipse(th);      //      rOutFromEllipse;
+
+ Vector3 nHat(-Lxc/Lc,-Lyc/Lc,-Lzc/Lc);   // normal vector for rotation - basically aligned with y axes
+ double nx           = nHat[0];
+ double ny           = nHat[1];
+ double nz           = nHat[2];
+// std::cerr << nHat << " " << th << " " << atan2(-nx,nz) << "\n";
+ double dsnPlaneCrs  = 1.;
+ double psi          = atan2(-nx,nz);
+ if( psi>0 && psi<th ){
+  dsnPlaneCrs=-1;
+//std::cerr << "### " << nHat << " " << th << " " << atan2(-nx,nz) << "\n";
+ }
+
+ Vector3 rInHat(xR/rIn,yR/rIn,zR/rIn);
+ Vector3 pInHat(pxc/pc,pyc/pc,pzc/pc);
+ Vector3 thetaInHat  = rInHat.cross(nHat);
+
+ double den          = sqrt( ny*ny+nx*nx*cos(th)*cos(th)+2*nx*nz*cos(th)*sin(th)+nz*nz*sin(th)*sin(th) );
+ double a            = ny/den;                               //   ca 1
+  double yOutHat;                                           //   ca 0
+//double yOutHat    = sqrt( 1.-a*a )*+rInHaty/fabs(+rInHaty);   //   ca 0
+ if(+rInHat[1]>=0){
+  yOutHat            = +sqrt( 1.-a*a )*dsnPlaneCrs;
+ }else{
+  yOutHat            = -sqrt( 1.-a*a )*dsnPlaneCrs;
+ }
+
+ double phi          = acos(rInHat[0]*a*cos(th)+rInHat[1]*yOutHat);
+
+ Vector3 rOutHat(0,0,0);
+ double co           = cos(phi);
+ double si           = sin(phi);
+ rOutHat[0]          = co*rInHat[0]+si*thetaInHat[0];
+ rOutHat[1]          = co*rInHat[1]+si*thetaInHat[1];
+ rOutHat[2]          = co*rInHat[2]+si*thetaInHat[2];
+
+ Vector3 rOutV = rOut*rOutHat;
+
+ Vector3 thetaOutHat(co*thetaInHat[0]-si*rInHat[0],co*thetaInHat[1]-si*rInHat[1],co*thetaInHat[2]-si*rInHat[2]);
+
+ double pxOut        = mDcc*hr_tilda(th)*rOutHat[0] + mDcc*_ht_tilda(th)*thetaOutHat[0] + mDcc*kD*gama*thetaOutHat[0]/Lc;
+ double pyOut        = mDcc*hr_tilda(th)*rOutHat[1] + mDcc*_ht_tilda(th)*thetaOutHat[1] + mDcc*kD*gama*thetaOutHat[1]/Lc;
+ double pzOut        = mDcc*hr_tilda(th)*rOutHat[2] + mDcc*_ht_tilda(th)*thetaOutHat[2] + mDcc*kD*gama*thetaOutHat[2]/Lc;
+
+ co                  = cos(th);
+ si                  = sin(th);
+
+ return Vector3(co*pxOut+si*pzOut,pyOut,-si*pxOut+co*pzOut);
+}

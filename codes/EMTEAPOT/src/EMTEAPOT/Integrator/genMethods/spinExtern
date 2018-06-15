@@ -1,0 +1,6 @@
+#ifndef EMTEAPOT_SPIN_EXTERN
+#define EMTEAPOT_SPIN_EXTERN
+
+ extern double __SPIN__[41][3];
+
+#endif

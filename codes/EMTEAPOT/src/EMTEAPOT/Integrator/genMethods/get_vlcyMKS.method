@@ -1,0 +1,19 @@
+Vector3 get_vlcyMKS(PAC::Position& pacP, double gama){
+ #ifdef DEBUG
+  std::cerr << __LINE__ << " " << __FILE__ << " enter get_vlcyMKS(pacP, gama)\n";
+ #endif
+
+double dvx   = UAL::clight*pacP[1]*pDc/gama/mDcc;
+double dvy   = UAL::clight*pacP[3]*pDc/gama/mDcc;
+double dvz;
+
+double vx    = dvx;
+double vy    = dvy;
+double vz; 
+
+double beta  = sqrt(1.-1./gama/gama);
+double v     = beta*UAL::clight;
+
+vz = sqrt(v*v-vx*vx-vy*vy);
+return Vector3(vx,vy,vz);
+}

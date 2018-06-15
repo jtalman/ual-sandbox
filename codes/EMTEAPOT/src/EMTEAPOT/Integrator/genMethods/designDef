@@ -1,0 +1,33 @@
+#ifndef EMTEAPOT_DESIGN_DEF
+#define EMTEAPOT_DESIGN_DEF
+
+ double mDcc;
+ double qD;
+
+ double betaD;
+ double vD;
+ double gammaD;
+
+ double eD;
+ double pDc;
+
+ double fD;
+ double tofD;
+
+ double thetaD;
+ double th;
+
+ double tofDT = 0;
+ double thetaDT = 0;
+
+ double Rsxf;
+ double rD;
+// double LD;
+ double LDc;
+ double kD;
+ double EscrD;
+ double ED;
+
+ double sDT = 0;
+
+#endif

@@ -1,0 +1,22 @@
+// bend file
+void traverseSplitBendExactly(int ip){
+ PAC::Position& p   = *pacPmy;
+//#include "EMTEAPOT/Integrator/bendMethods/rotate.insert"
+ Vector3 rOutVnewMP = get_rOutV_rot();
+ Vector3 pOutVnewMP = get_pOutV_rot();
+
+  p[0]             += get_dr();
+  p[1]             += get_dpxBypDc();   //   "Del_dpdz" in ETEAPOT_MltTurn::DipoleAlgorithm.icc +210
+//p[1]              = pxOutp/pDc;
+//p[2]              = yOutp;
+//p[2]              = rOutV_rot[1];
+  p[2]              = rOutVnewMP[1];
+  p[3]              = pOutVnewMP[1]/pDc;
+//p[3]              = pOutV_rot[1]/pDc;
+//p[3]              = pyOutp/pDc;
+//p[4]             += get_dt();
+  p[4]             += get_dt_xi();
+/*
+  p[5] unchanged except in RF Cavities
+*/
+}

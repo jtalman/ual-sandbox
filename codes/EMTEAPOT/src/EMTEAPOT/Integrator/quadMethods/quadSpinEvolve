@@ -1,0 +1,49 @@
+// quad file
+double gammaD       = eD/mDcc;                                 // derived beam gamma
+double g = UAL::pg;      //gD;      //UAL::pg;                                   // g versus GD versus gD! also gap
+
+double delGam = gama - eD/mDcc;
+
+double x0 = pacP[0];
+double y0 = pacP[2];
+double phi0 = 1.*atan2(q*y0,q*x0);   // (328)
+double rho0 = sqrt(x0*x0 + y0*y0);
+  double delThtTld = sqrt(q*q)*rho0;               //    (325)
+//double delThtTld = fabs(q)*rho0;               //    (325)
+double delAlphTld = (g/2. - 1. + g/2./gammaD/gammaD) * delGam * delThtTld;
+
+double sx = __SPIN__[ip][0];//spin[ip][0];
+double sy = __SPIN__[ip][1];//spin[ip][1];
+double sz = __SPIN__[ip][2];//spin[ip][2];
+
+double checkNorm = 1. - sx*sx - sy*sy - sz*sz;
+
+double csP = cos(phi0);
+double snP = sin(phi0);
+
+double csDAf2 = cos(delAlphTld/2.);
+double snDAf2 = sin(delAlphTld/2.);
+
+double a11 = -(csP*csP)*snDAf2;   //   -csP*csP*snDAf2;
+double a12 = +csP*snDAf2*snP;     //   -csP*snDAf2*snP;
+double a13 = -csP*csDAf2;
+
+double a21 = +csP*snDAf2*snP;     //   -csP*snDAf2*snP;
+double a22 = -(snP*snP)*snDAf2;   //   -snP*snP*snDAf2;
+double a23 = +snP*csDAf2;         //   -snP*csDAf2;
+
+double a31 = +csP*csDAf2;
+double a32 = -snP*csDAf2;         //    snP*csDAf2;
+double a33 = -snDAf2;
+
+Matrix3 R( a11, a12, a13, a21, a22, a23, a31, a32, a33 );
+
+R = 2.*snDAf2*R;
+
+double sxdev = R[0]*sx +  R[1]*sy + R[2]*sz;
+double sydev = R[3]*sx +  R[4]*sy + R[5]*sz;
+double szdev = R[6]*sx +  R[7]*sy + R[8]*sz;
+
+__SPIN__[ip][0] += sxdev;
+__SPIN__[ip][1] += sydev;
+__SPIN__[ip][2] += szdev;

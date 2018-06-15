@@ -1,0 +1,8 @@
+// bend file
+ double get_dpxBypDc(){
+ double D1          = 1. + epsilon*cos( kappa*(th - theta0) );
+ double D2          = 1. + epsilon*cos( kappa*theta0 );
+ double dxOutByLmbd = kappa*epsilon*sin( kappa*(th - theta0) )/D1;
+ double dxInByLmbd  = -kappa*epsilon*sin( kappa*theta0 )/D2;
+ return lambda/rD*(dxOutByLmbd - dxInByLmbd);
+}

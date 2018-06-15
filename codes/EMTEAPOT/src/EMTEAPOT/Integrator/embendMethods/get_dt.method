@@ -1,0 +1,18 @@
+// bend file
+double get_dt(){
+/*
+std::cerr.precision(10);
+std::cerr << "EscrM " << EscrM << " EscrMD " << EscrMD << " lambda " << lambda << " lambdaD " << lambdaD << " Lc " << Lc << " kappa " << kappa << "\n";
+*/
+ double A          = EscrM* lambda* lambda/ Lc/ kappa/ kappa;
+ double A_0        =(EscrMD*lambdaD*lambdaD/LDc)*gammaD*gammaD;
+ double fac2       = mDcc*kD*C_tilda*lambda*lambda/kappa/kappa/Lc/Lc;
+ double B          = fac2/C_tilda;
+ double time1      = kappa_time2int(th)/kappa;
+ double time2      = kappa_epsilonSqInt(th)/kappa;
+ double tofA       = time1+time2;
+
+ double dFac1      = epsilon*(-2.*A+B/epsilonBar);
+ double dFac2      = -A*epsilon*epsilon;
+ return -(dFac1*time1+dFac2*time2+(A-A_0)*th);
+}

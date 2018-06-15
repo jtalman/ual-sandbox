@@ -1,0 +1,72 @@
+// bend file
+void propagate(UAL::Probe& probe)                                    // Bend method
+{
+double* data           = m_mdata.m_mlt->data();
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method embend::propagate - sizeof(data) " << sizeof(data) << "\n";
+std::cerr << "                                                                                                    data[0] " << data[0] << "\n";
+std::cerr << "                                                                                                    data[1] " << data[1] << "\n";
+std::cerr << "                                                                                                    data[2] " << data[2] << "\n";
+std::cerr << "                                                                                                    data[3] " << data[3] << "\n";
+std::cerr << "                                                                                                    data[4] " << data[4] << "\n";
+std::cerr << "                                                                                                    data[5] " << data[5] << "\n";
+std::cerr << "                                                                                                    data[6] " << data[6] << "\n";
+std::cerr << "                                                                                                    data[7] " << data[7] << "\n";
+
+ tofD               = m_l/vD;
+ thetaD             = m_data.m_angle;
+ Rsxf               = m_data.m_l/m_data.m_angle;                     // sxf file determines radius
+ rD                 = Rsxf;                                          // design radius is new, in principle
+/*
+ updateDesignParameters();                                           // pDc, gammaD, ... might change
+                                                                     // they don't here. rD on command line?
+ PAC::Bunch& bunch  = static_cast<PAC::Bunch&>(probe);
+ int totalSplitBends= 2*pow( 2, m_data.m_ir );
+// int splitBndsPerTrn= bndsPerTrn*totalSplitBends;
+//std::cerr << "totalSplitBends " << totalSplitBends << " splitBndsPerTrn " << splitBndsPerTrn << "\n";
+ double m           = m_data.m_m;
+ double theta       = 2.*m_data.m_angle/totalSplitBends;
+ double invFclLngtX = (m-1.)*theta/rD;
+ th=theta/2.;                                                        // angle for exact beam advance
+ for(int ip = 1; ip < bunch.size(); ip++) {   // BUNCH LOOP
+  PAC::Position& p  = bunch[ip].getPosition();
+  pacPmy            = &p;
+  entryFF(ip);                                                       // "pure FF" (stub)
+  refractIn(ip);                                                     // refract, alternate Lxc, Lyc, Lzc, Lc, no gamma kick
+  updateMunoz();                                                     // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+  for(int i = 0; i < totalSplitBends/2; i++){       // SPLIT LOOP
+   update_xi();                                                      // xi0, xip0, xi_co
+   traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   perSplitBendOutput(ip);
+   initSpin(ip);
+   updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+   updateSpin(ip);                                                   // sTldIn, delGam, ... xi disabled
+
+   p[1]            +=  p[0]*invFclLngtX;                             // uses real m to correct for m=1
+   p[3]            -=  p[2]*invFclLngtX;                             // uses real m to correct for m=1
+
+   updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+   update_xi();
+   traverseSplitBendExactly(ip);                                     // pure Munoz, uses rD, th
+   perSplitBendOutput(ip);
+
+   initSpin(ip);
+   updateMunoz();                                                    // Lxc, Lyc, Lzc, Lc, Q, kappa, ...
+   updateSpin(ip);
+  }                                                 // SPLIT LOOP - END
+  refractOut(ip);                                                    // (stub)
+  exitFF(ip);                                                        // (stub)
+/*
+  if( (bnd%splitBndsPerTrn) == 0 ){
+   NikolayOut.open ("NikolayOut", fstream::out | fstream::app);
+   NikolayOut << setw(3) << ip << " " << setw(3) << bnd/splitBndsPerTrn << " " << setw(17) << 0 << " " << setw(17) << p[0] <<     " " << setw(17) << p[1] << " " << setw(17) << p[2] << " " << setw(17) << p[3] << " " << setw(17) << p[4] << " " << setw(17) << p[5] << " " << setw(17) << __SPIN__[ip][0] << " " << setw(17) << __SPIN__[ip][1] << "     " << setw(17) << __SPIN__[ip][2] << "\n";
+   NikolayOut.close (); 
+  }
+*/
+ }                                            // BUNCH LOOP - END
+*/
+ bnd++;
+ tofDT             += tofD;
+ thetaDT           += thetaD;
+ sDT               += m_l;
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " leave method embend::propagate\n";
+}

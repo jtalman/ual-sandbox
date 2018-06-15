@@ -1,0 +1,22 @@
+// oct file
+void propagate(UAL::Probe& probe)
+{
+  PAC::Bunch& bunch      = static_cast<PAC::Bunch&>(probe);
+  tofD                   = m_l/vD;
+  PacElemMultipole* mult = m_mdata.m_mlt;
+  double* data           = m_mdata.m_mlt->data();
+  double O               = data[6];
+  for(int ip = 1; ip < bunch.size(); ip++) {
+   PAC::Position& pacP   = bunch[ip].getPosition();
+   pacPmy    = &pacP;
+   passDrift( m_l/2., tofD/2. );
+   pacP[1]              -= O*pacP[0]*pacP[0]*pacP[0]/6.;
+   pacP[1]              += O*pacP[0]*pacP[1]*pacP[1]/2.;
+   pacP[3]              += O*pacP[0]*pacP[0]*pacP[1]/2.;
+   pacP[3]              -= O*pacP[1]*pacP[1]*pacP[1]/6.;
+   #include"octSpinEvolve"
+   passDrift( m_l/2., tofD/2. );
+  }
+ tofDT                  +=tofD;
+ sDT                    += m_l;
+}

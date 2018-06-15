@@ -1,0 +1,13 @@
+// bend file
+void update_xi(){
+ PAC::Position& p = *pacPmy;
+
+ Q                = sqrt(1.-LDc*LDc*betaD*betaD/Lyc/Lyc);      //      (247) page 64
+
+ xi0              = p[0]/(rD + p[0]);
+ xip0             = rD*rD*p[1]/(rD + p[0])/(rD + p[0]);
+ xi_co            = (1.-LDc*LDc/Lyc/Lyc)/Q/Q;
+
+ double xi_co_Fac  = 1.-LDc*LDc*e/Lyc/Lyc/eD;
+ xi_co             = xi_co_Fac/Q/Q;
+}

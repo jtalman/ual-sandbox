@@ -1,0 +1,8 @@
+OBJS +=	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/embend.o \
+	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/drift.o \
+	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/marker.o \
+	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/oct.o \
+	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/quad.o \
+	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/rfCavity.o \
+	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/sext.o \
+	$(UAL_EMTEAPOT)/lib/$(UAL_ARCH)/obj/TrackerFactory.o

@@ -1,0 +1,62 @@
+// quad file
+quad()
+  : ETEAPOT::BasicTracker()
+{
+//initialize();
+  m_ir = 0.0;
+}
+
+quad(const EMTEAPOT::quad& mt) 
+  : ETEAPOT::BasicTracker(mt)
+{
+  copy(mt);
+}
+
+~quad()
+{
+}
+
+UAL::PropagatorNode* clone()
+{
+  return new EMTEAPOT::quad(*this);
+}
+
+void setLatticeElements(const UAL::AcceleratorNode& sequence, 
+                                            int is0, 
+                                            int is1,
+                                            const UAL::AttributeSet& attSet)
+{
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method setLatticeElements(UAL)\n";
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+   const PacLattice& lattice     = (PacLattice&) sequence;
+   setLatticeElement(lattice[is0]);
+}
+
+void setLatticeElement(const PacLattElement& e)
+{
+std::cerr << "\nJDT2018 - File " << __FILE__ << " line " << __LINE__ << " enter method setLatticeElements(PAC)\n";
+  // length
+  // m_l = e.getLength();
+
+  // ir
+  m_ir = e.getN();
+
+if(!m_ir){
+ std::cerr << "JDT2018 - enter quad::void setLatticeElement(PAC)" << "\n";
+}
+else{
+ std::cerr << "Complex Elements not allowed!!!\n";
+ exit(1);
+}
+
+  m_mdata.setLatticeElement(e);
+
+}
+
+void copy(const EMTEAPOT::quad& mt) 
+{
+  // m_l   = mt.m_l;
+  m_ir  = mt.m_ir;
+
+  m_mdata = mt.m_mdata;
+}

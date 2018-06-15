@@ -1,0 +1,27 @@
+// marker file
+marker()
+  : ETEAPOT::BasicTracker()
+{
+}
+
+marker(const EMTEAPOT::marker& dt) 
+  : ETEAPOT::BasicTracker(dt)
+{
+}
+
+~marker()
+{
+}
+
+UAL::PropagatorNode* clone()
+{
+  return new EMTEAPOT::marker(*this);
+}
+
+void setLatticeElements(const UAL::AcceleratorNode& sequence, 
+                                              int is0, 
+                                              int is1,
+                                              const UAL::AttributeSet& attSet)
+{
+   ETEAPOT::BasicTracker::setLatticeElements(sequence, is0, is1, attSet);
+}
